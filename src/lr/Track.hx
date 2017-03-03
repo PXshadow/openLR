@@ -1,5 +1,8 @@
 package lr;
+import cpp.net.Poll;
+import lr.line.LineBase;
 import openfl.display.MovieClip;
+import openfl.geom.Point;
 
 import global.Common;
 
@@ -21,6 +24,26 @@ class Track extends MovieClip
 		this.graphics.lineTo(5, 0);
 		this.graphics.moveTo(0, -5);
 		this.graphics.lineTo(0, 5);
+		
+		Common.track_scale = 1;
 	}
-	
+	public function add_vis_line(line:LineBase) {
+		this.addChild(line);
+		line.render();
+	}
+	public function render_preview_line(_a:Point, _b:Point) {
+		var _locDis = Common.get_distance(_a, _b);
+		var _locCol = 0xFF0000;
+		if (_locDis > Common.line_minLength) {
+			_locCol = 0x000000;
+		}
+		this.graphics.clear();
+		this.graphics.lineStyle(4 * Common.track_scale, _locCol, 1);
+		this.graphics.moveTo(_a.x, _a.y);
+		this.graphics.lineTo(_b.x, _b.y);
+	}
+	public function clear_preview()
+	{
+		this.graphics.clear();
+	}
 }

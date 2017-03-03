@@ -1,5 +1,6 @@
 package ui.tool.lr;
 
+import lr.line.LineBase;
 import openfl.events.MouseEvent;
 import openfl.geom.Point;
 
@@ -13,6 +14,7 @@ import ui.tool.ToolBase;
 class Pencil extends ToolBase
 {
 	private var a:Point;
+	private var b:Point;
 	public function new() 
 	{
 		super();
@@ -20,5 +22,27 @@ class Pencil extends ToolBase
 	override public function mouseDown(e:MouseEvent) {
 		a = new Point(Common.gTrack.mouseX, Common.gTrack.mouseY);
 		trace(a);
+		Common.gStage.addEventListener(MouseEvent.MOUSE_MOVE, pencil_move);
+	}
+	
+	private function pencil_move(e:MouseEvent):Void 
+	{
+		b = new Point(Common.gTrack.mouseX, Common.gTrack.mouseY);
+		Common.gTrack.render_preview_line(a, b);
+		if (Common.get_distance(a, b) >= Common.line_minLength) {
+			var _loc1 = new LineBase(a, b);
+			Common.gTrack.add_vis_line(_loc1);
+			a = new Point(Common.gTrack.mouseX, Common.gTrack.mouseY);
+		}
+	}
+	override public function mouseUp(e:MouseEvent) {
+		Common.gStage.removeEventListener(MouseEvent.MOUSE_MOVE, pencil_move);
+		Common.gTrack.clear_preview();
+	}
+	override public function mMouseDown(e:MouseEvent) {
+		Common.gTrack.startDrag();
+	}
+	override public function mMouseUp(e:MouseEvent) {
+		Common.gTrack.stopDrag();
 	}
 }

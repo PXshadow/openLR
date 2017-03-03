@@ -23,12 +23,17 @@ class Common
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	public static var version:String = "0.0.0";
+	
 	public static var gStage:Stage;
 	public static var gCode:Main;
 	public static var gTrack:Track;
 	public static var gVisContainer:MovieClip;
 	public static var gToolBase:ToolBase;
 	public static var gToolCurrent:Any;
+	
+	public static var line_minLength:Int = 14;
+	
+	public static var track_scale:Float;
 	
 	public static var cvar_icon_hit_display:Bool = false;
 	
