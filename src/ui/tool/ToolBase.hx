@@ -33,12 +33,12 @@ class ToolBase
 	
 	public function mMouseUp(e:MouseEvent):Void 
 	{
-		trace(Common.gStage.mouseX, Common.gStage.mouseY);
+		Common.gTrack.stopDrag();
 	}
 	
 	public function mMouseDown(e:MouseEvent):Void 
 	{
-		trace(Common.gStage.mouseX, Common.gStage.mouseY);
+		Common.gTrack.startDrag();
 	}
 	
 	public function rMouseUp(e:MouseEvent):Void 

@@ -39,10 +39,4 @@ class Pencil extends ToolBase
 		Common.gStage.removeEventListener(MouseEvent.MOUSE_MOVE, pencil_move);
 		Common.gTrack.clear_preview();
 	}
-	override public function mMouseDown(e:MouseEvent) {
-		Common.gTrack.startDrag();
-	}
-	override public function mMouseUp(e:MouseEvent) {
-		Common.gTrack.stopDrag();
-	}
 }
