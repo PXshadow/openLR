@@ -30,20 +30,34 @@ class ToolBase
 		Common.gStage.addEventListener(MouseEvent.MIDDLE_MOUSE_DOWN, mMouseDown);
 		Common.gStage.addEventListener(MouseEvent.MIDDLE_MOUSE_UP, mMouseUp);
 		Common.gStage.addEventListener(MouseEvent.MOUSE_WHEEL, mouseScroll);
-		Common.gStage.addEventListener(KeyboardEvent.KEY_DOWN, keyDown);
-		Common.gStage.addEventListener(KeyboardEvent.KEY_UP, keyUp);
+		Common.gStage.addEventListener(KeyboardEvent.KEY_DOWN, keyShiftDown);
+		Common.gStage.addEventListener(KeyboardEvent.KEY_UP, keyShiftUp);
+		Common.gStage.addEventListener(KeyboardEvent.KEY_DOWN, KeyNumDown);
 		
 		Common.gToolBase = this;
 	}
 	
-	private function keyUp(e:KeyboardEvent):Void 
+	private function KeyNumDown(e:KeyboardEvent):Void 
+	{
+		if (e.keyCode == Keyboard.NUMBER_1) {
+			Common.line_type = 0;
+		}
+		if (e.keyCode == Keyboard.NUMBER_2) {
+			Common.line_type = 1;
+		}
+		if (e.keyCode == Keyboard.NUMBER_3) {
+			Common.line_type = 2;
+		}
+	}
+	
+	private function keyShiftUp(e:KeyboardEvent):Void 
 	{
 		if (e.keyCode == Keyboard.SHIFT) {
 			this.mod_shift = false;
 		}
 	}
 	
-	private function keyDown(e:KeyboardEvent):Void 
+	private function keyShiftDown(e:KeyboardEvent):Void 
 	{
 		if (e.keyCode == Keyboard.SHIFT) {
 			this.mod_shift = true;
@@ -88,8 +102,8 @@ class ToolBase
 		Common.gStage.removeEventListener(MouseEvent.MIDDLE_MOUSE_DOWN, mMouseDown);
 		Common.gStage.removeEventListener(MouseEvent.MIDDLE_MOUSE_UP, mMouseUp);
 		Common.gStage.removeEventListener(MouseEvent.MOUSE_WHEEL, mouseScroll);
-		Common.gStage.removeEventListener(KeyboardEvent.KEY_DOWN, keyDown);
-		Common.gStage.removeEventListener(KeyboardEvent.KEY_UP, keyUp);
+		Common.gStage.removeEventListener(KeyboardEvent.KEY_DOWN, keyShiftDown);
+		Common.gStage.removeEventListener(KeyboardEvent.KEY_UP, keyShiftUp);
 	}
 	public function enable() {
 		Common.gStage.addEventListener(MouseEvent.MOUSE_DOWN, mouseDown);
@@ -99,8 +113,8 @@ class ToolBase
 		Common.gStage.addEventListener(MouseEvent.MIDDLE_MOUSE_DOWN, mMouseDown);
 		Common.gStage.addEventListener(MouseEvent.MIDDLE_MOUSE_UP, mMouseUp);
 		Common.gStage.addEventListener(MouseEvent.MOUSE_WHEEL, mouseScroll);
-		Common.gStage.addEventListener(KeyboardEvent.KEY_DOWN, keyDown);
-		Common.gStage.addEventListener(KeyboardEvent.KEY_UP, keyUp);
+		Common.gStage.addEventListener(KeyboardEvent.KEY_DOWN, keyShiftDown);
+		Common.gStage.addEventListener(KeyboardEvent.KEY_UP, keyShiftUp);
 	}
 	
 	private function mouseScroll(e:MouseEvent):Void 

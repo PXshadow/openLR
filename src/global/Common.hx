@@ -32,7 +32,7 @@ class Common
 	public static var gToolCurrent:Any;
 	
 	public static var line_minLength:Int = 14;
-	public static var line_type:Int = 2;
+	public static var line_type:Int = 0;
 	
 	public static var track_scale:Float;
 	public static var track_scale_max:Float = 12;
