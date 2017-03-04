@@ -3,7 +3,7 @@
 	<!-- NMML reference: https://gist.github.com/1763850 -->
 	
 	<!-- metadata, make sure 'package' is at least 3 segments (ie. com.mycompany.myproject) -->
-	<meta title="openLR Alpha 0.0.1" package="openLR" version="0.0.1" company="Kaelan Evans" />
+	<meta title="openLR Alpha 0.0.2" package="openLR" version="0.0.1" company="Kaelan Evans" />
 	
 	<!-- output -->
 	<app main="Main" file="openLR" path="bin" />

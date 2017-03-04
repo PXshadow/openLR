@@ -5,6 +5,7 @@ import lr.Track;
 import openfl.display.MovieClip;
 import openfl.display.Sprite;
 import openfl.Lib;
+import openfl.events.Event;
 
 import init.FileStart;
 import global.Common;
@@ -42,6 +43,8 @@ class Main extends Sprite
 		
 		this.init_env();
 		this.init_track();
+		
+		this.stage.addEventListener(Event.RESIZE, resize);
 	}
 	public function init_env()
 	{
@@ -60,5 +63,13 @@ class Main extends Sprite
 		
 		this.toolBar = new Toolbar();
 		this.visContainer.addChild(this.toolBar);
+	}
+	private function resize(e:Event):Void 
+	{
+		trace(this.stage.stageWidth, this.stage.stageHeight);
+		
+		this.visContainer.x = this.visContainer.y = 0;
+		
+		this.toolBar.x = (this.stage.stageWidth / 2) - (this.toolBar.width / 2); 
 	}
 }
