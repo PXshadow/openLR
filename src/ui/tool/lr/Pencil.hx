@@ -21,7 +21,6 @@ class Pencil extends ToolBase
 	}
 	override public function mouseDown(e:MouseEvent) {
 		a = new Point(Common.gTrack.mouseX, Common.gTrack.mouseY);
-		trace(a);
 		Common.gStage.addEventListener(MouseEvent.MOUSE_MOVE, pencil_move);
 	}
 	
