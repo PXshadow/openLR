@@ -25,21 +25,16 @@ class LineBase extends MovieClip
 	private var _lim2:Float;
 	public var inv:Bool = false;
 	
-	public function new(_a:Point, _b:Point, _inv:Bool, _lim = -1) 
+	public function new() 
 	{
 		super();
-		a = _a;
-		b = _b;
-		inv = _inv;
-		this.calculateConstants();
-		this.set_lim(_lim == -1 ? (0) : (_lim));
 	}
 	
 	function calculateConstants() 
 	{
 		d = Common.get_distance_point(a, b);
 		C = d.y * a.x - d.x * a.y;
-		var sqrDis = Math.pow(d.x, 2) + Math.pow(d.y, 2);
+		var sqrDis = d.x * d.x + d.y * d.y;
 		invSqrDis = 1 / sqrDis;
         dst = Math.sqrt(sqrDis);
         invDst = 1 / dst;
@@ -72,12 +67,5 @@ class LineBase extends MovieClip
             } 
         }
         _lim = input;
-	}
-	public function render()
-	{
-		this.graphics.clear();
-		this.graphics.lineStyle(4, 0x000000, 1);
-		this.graphics.moveTo(a.x, a.y);
-		this.graphics.lineTo(b.x, b.y);
 	}
 }

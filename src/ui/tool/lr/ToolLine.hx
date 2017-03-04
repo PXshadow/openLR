@@ -37,8 +37,17 @@ class ToolLine extends ToolBase
 	}
 	override public function mouseUp(e:MouseEvent) {
 		if (Common.get_distance(c, d) >= Common.line_minLength) {
-			var _loc1 = new LineBase(a, b, this.mod_shift);
-			Common.gTrack.add_vis_line(_loc1);
+			var _loc1:Dynamic;
+			if (Common.line_type == 0) {
+				_loc1 = new LineFloor(a, b, this.mod_shift);
+				Common.gTrack.add_vis_line(_loc1);
+			} else if (Common.line_type == 1) {
+				_loc1 = new LineAccel(a, b, this.mod_shift);
+				Common.gTrack.add_vis_line(_loc1);
+			} else if (Common.line_type == 2) {
+				_loc1 = new LineScene(a, b, this.mod_shift);
+				Common.gTrack.add_vis_line(_loc1);
+			}
 		}
 		Common.gTrack.clear_preview();
 		Common.gStage.removeEventListener(MouseEvent.MOUSE_MOVE, line_move);

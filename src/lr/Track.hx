@@ -1,5 +1,4 @@
 package lr;
-import cpp.net.Poll;
 import lr.line.LineBase;
 import openfl.display.MovieClip;
 import openfl.geom.Point;
@@ -27,7 +26,7 @@ class Track extends MovieClip
 		
 		Common.track_scale = 1;
 	}
-	public function add_vis_line(line:LineBase) {
+	public function add_vis_line(line:Dynamic) {
 		this.addChild(line);
 		line.render();
 	}

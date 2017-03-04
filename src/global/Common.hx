@@ -32,6 +32,7 @@ class Common
 	public static var gToolCurrent:Any;
 	
 	public static var line_minLength:Int = 14;
+	public static var line_type:Int = 2;
 	
 	public static var track_scale:Float;
 	public static var track_scale_max:Float = 12;
@@ -63,5 +64,10 @@ class Common
 	public static function get_distance(_a:Point, _b:Point):Float 
 	{
 		return(Math.sqrt(Math.pow(_b.y - _a.y, 2) + Math.pow(_b.x - _a.x, 2)));
+	}
+	public static function get_distance_point(_a:Point, _b:Point):Point
+	{
+		var _loc1:Point = new Point(_b.y - _a.y, _b.x - _a.x);
+		return(_loc1);
 	}
 }
