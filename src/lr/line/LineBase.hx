@@ -22,7 +22,7 @@ class LineBase extends MovieClip
 	public function render()
 	{
 		this.graphics.clear();
-		this.graphics.lineStyle(4 * Common.track_scale, 0x000000, 1);
+		this.graphics.lineStyle(4, 0x000000, 1);
 		this.graphics.moveTo(a.x, a.y);
 		this.graphics.lineTo(b.x, b.y);
 	}

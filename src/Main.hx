@@ -25,6 +25,7 @@ import global.Common;
  * /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
  * 
  * -- OpenFL does not constantly update vector graphics. Zomming in will cause blurring of lines.
+ * 		--Okay suddenly it does anti-alias? Really weird AF
  * -- Haxe does not support array indexing in negative values. Map data type might possible fix this instead of Array or Vector.
  * 
  */
@@ -50,6 +51,9 @@ class Main extends Sprite
 	{
 		Common.gCode = this;
 		Common.gStage = this.stage;
+		
+		Common.stage_height = this.stage.stageHeight;
+		Common.stage_width = this.stage.stageWidth;
 	}
 	
 	public function init_track()
@@ -67,9 +71,10 @@ class Main extends Sprite
 	private function resize(e:Event):Void 
 	{
 		trace(this.stage.stageWidth, this.stage.stageHeight);
-		
 		this.visContainer.x = this.visContainer.y = 0;
-		
 		this.toolBar.x = (this.stage.stageWidth / 2) - (this.toolBar.width / 2); 
+		
+		Common.stage_height = this.stage.stageHeight;
+		Common.stage_width = this.stage.stageWidth;
 	}
 }

@@ -15,6 +15,8 @@ class Line extends ToolBase
 {
 	private var a:Point;
 	private var b:Point;
+	private var c:Point;
+	private var d:Point;
 	public function new() 
 	{
 		super();
@@ -22,16 +24,19 @@ class Line extends ToolBase
 	override public function mouseDown(e:MouseEvent) {
 		a = new Point(Common.gTrack.mouseX, Common.gTrack.mouseY);
 		b = new Point(Common.gTrack.mouseX, Common.gTrack.mouseY);
+		c = new Point(Common.gStage.mouseX, Common.gStage.mouseY);
+		d = new Point(Common.gStage.mouseX, Common.gStage.mouseY);
 		Common.gStage.addEventListener(MouseEvent.MOUSE_MOVE, line_move);
 	}
 	
 	private function line_move(e:MouseEvent):Void 
 	{
 		b = new Point(Common.gTrack.mouseX, Common.gTrack.mouseY);
+		d = new Point(Common.gStage.mouseX, Common.gStage.mouseY);
 		Common.gTrack.render_preview_line(a, b);
 	}
 	override public function mouseUp(e:MouseEvent) {
-		if (Common.get_distance(a, b) >= Common.line_minLength) {
+		if (Common.get_distance(c, d) >= Common.line_minLength) {
 			var _loc1 = new LineBase(a, b);
 			Common.gTrack.add_vis_line(_loc1);
 		}

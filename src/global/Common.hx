@@ -34,8 +34,13 @@ class Common
 	public static var line_minLength:Int = 14;
 	
 	public static var track_scale:Float;
+	public static var track_scale_max:Float = 12;
+	public static var track_scale_min:Float = 0.6;
 	
 	public static var cvar_icon_hit_display:Bool = false;
+	
+	public static var stage_width:Float;
+	public static var stage_height:Float;
 	
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//functions
