@@ -2,6 +2,7 @@ package ui.tool.icon;
 
 import openfl.display.MovieClip;
 import openfl.events.MouseEvent;
+import openfl.display.Bitmap;
 
 import global.Common;
 
@@ -12,6 +13,7 @@ import global.Common;
 class IconBase extends MovieClip
 {
 	var debug_alpha = 0;
+	var icon:Bitmap;
 	public function new() 
 	{
 		super();

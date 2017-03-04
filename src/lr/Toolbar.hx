@@ -4,6 +4,7 @@ import global.Common;
 import openfl.display.MovieClip;
 import ui.tool.icon.IconBase;
 import ui.tool.lr.*;
+import ui.tool.icon.*;
 
 /**
  * ...
@@ -12,13 +13,21 @@ import ui.tool.lr.*;
 class Toolbar extends MovieClip
 {
 
-	public var tool:Any;
+	public static var tool:Any;
+	private var pencil:IconPencil;
+	private var line:IconLine;
 	public function new() 
 	{
 		super();
 		
-		tool = new Pencil();
-		Common.gToolCurrent = this.tool;
+		tool = new Line();
+		
+		pencil = new IconPencil();
+		this.addChild(this.pencil);
+		
+		line = new IconLine();
+		this.addChild(line);
+		this.line.x = 30;
+		
 	}
-	
 }
