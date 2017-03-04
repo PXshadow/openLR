@@ -17,8 +17,9 @@ import global.Common;
  */
 class ToolBase
 {
+
 	public var type:String = "Null";
-	
+	public var mod_shift:Bool = false;
 
 	public function new() 
 	{
@@ -29,8 +30,24 @@ class ToolBase
 		Common.gStage.addEventListener(MouseEvent.MIDDLE_MOUSE_DOWN, mMouseDown);
 		Common.gStage.addEventListener(MouseEvent.MIDDLE_MOUSE_UP, mMouseUp);
 		Common.gStage.addEventListener(MouseEvent.MOUSE_WHEEL, mouseScroll);
+		Common.gStage.addEventListener(KeyboardEvent.KEY_DOWN, keyDown);
+		Common.gStage.addEventListener(KeyboardEvent.KEY_UP, keyUp);
 		
 		Common.gToolBase = this;
+	}
+	
+	private function keyUp(e:KeyboardEvent):Void 
+	{
+		if (e.keyCode == Keyboard.SHIFT) {
+			this.mod_shift = false;
+		}
+	}
+	
+	private function keyDown(e:KeyboardEvent):Void 
+	{
+		if (e.keyCode == Keyboard.SHIFT) {
+			this.mod_shift = true;
+		}
 	}
 	
 	public function mMouseUp(e:MouseEvent):Void 
@@ -71,6 +88,8 @@ class ToolBase
 		Common.gStage.removeEventListener(MouseEvent.MIDDLE_MOUSE_DOWN, mMouseDown);
 		Common.gStage.removeEventListener(MouseEvent.MIDDLE_MOUSE_UP, mMouseUp);
 		Common.gStage.removeEventListener(MouseEvent.MOUSE_WHEEL, mouseScroll);
+		Common.gStage.removeEventListener(KeyboardEvent.KEY_DOWN, keyDown);
+		Common.gStage.removeEventListener(KeyboardEvent.KEY_UP, keyUp);
 	}
 	public function enable() {
 		Common.gStage.addEventListener(MouseEvent.MOUSE_DOWN, mouseDown);
@@ -80,6 +99,8 @@ class ToolBase
 		Common.gStage.addEventListener(MouseEvent.MIDDLE_MOUSE_DOWN, mMouseDown);
 		Common.gStage.addEventListener(MouseEvent.MIDDLE_MOUSE_UP, mMouseUp);
 		Common.gStage.addEventListener(MouseEvent.MOUSE_WHEEL, mouseScroll);
+		Common.gStage.addEventListener(KeyboardEvent.KEY_DOWN, keyDown);
+		Common.gStage.addEventListener(KeyboardEvent.KEY_UP, keyUp);
 	}
 	
 	private function mouseScroll(e:MouseEvent):Void 
