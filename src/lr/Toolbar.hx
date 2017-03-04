@@ -20,7 +20,7 @@ class Toolbar extends MovieClip
 	{
 		super();
 		
-		tool = new Line();
+		tool = new ToolLine();
 		
 		pencil = new IconPencil();
 		this.addChild(this.pencil);

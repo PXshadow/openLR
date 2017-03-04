@@ -5,7 +5,7 @@ import openfl.events.MouseEvent;
 import openfl.Lib;
 import openfl.Assets;
 import openfl.net.URLRequest;
-import ui.tool.lr.Line;
+import ui.tool.lr.ToolLine;
 
 import global.Common;
 import lr.Toolbar;
@@ -26,6 +26,6 @@ class IconLine extends IconBase
 	}
 	override public function down(e:MouseEvent) {
 		Common.gToolBase.disable();
-		Toolbar.tool = new Line();
+		Toolbar.tool = new ToolLine();
 	}
 }

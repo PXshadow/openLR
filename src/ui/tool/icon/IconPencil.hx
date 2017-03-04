@@ -5,7 +5,7 @@ import openfl.events.MouseEvent;
 import openfl.Lib;
 import openfl.Assets;
 import openfl.net.URLRequest;
-import ui.tool.lr.Pencil;
+import ui.tool.lr.ToolPencil;
 
 import global.Common;
 import lr.Toolbar;
@@ -24,6 +24,6 @@ class IconPencil extends IconBase
 	}
 	override public function down(e:MouseEvent) {
 		Common.gToolBase.disable();
-		Toolbar.tool = new Pencil();
+		Toolbar.tool = new ToolPencil();
 	}
 }
