@@ -33,7 +33,7 @@ class ToolPencil extends ToolBase
 		d = new Point(Common.gStage.mouseX, Common.gStage.mouseY);
 		Common.gTrack.render_preview_line(a, b);
 		if (Common.get_distance(c, d) >= Common.line_minLength) {
-			var _loc1 = new LineBase(a, b);
+			var _loc1 = new LineBase(a, b, this.mod_shift);
 			Common.gTrack.add_vis_line(_loc1);
 			a = new Point(Common.gTrack.mouseX, Common.gTrack.mouseY);
 			c = new Point(Common.gStage.mouseX, Common.gStage.mouseY);

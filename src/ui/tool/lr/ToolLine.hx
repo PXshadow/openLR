@@ -37,7 +37,7 @@ class ToolLine extends ToolBase
 	}
 	override public function mouseUp(e:MouseEvent) {
 		if (Common.get_distance(c, d) >= Common.line_minLength) {
-			var _loc1 = new LineBase(a, b);
+			var _loc1 = new LineBase(a, b, this.mod_shift);
 			Common.gTrack.add_vis_line(_loc1);
 		}
 		Common.gTrack.clear_preview();
