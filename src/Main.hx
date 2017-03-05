@@ -28,7 +28,7 @@ import global.Common;
  * 		--Okay suddenly it does anti-alias? Really weird AF
  * -- Haxe does not support array indexing in negative values. Map data type might possible fix this instead of Array or Vector.
  * 
- * -- GitKraken test
+ * -- GitKraken test: Success!
  * 
  */
 class Main extends Sprite 
