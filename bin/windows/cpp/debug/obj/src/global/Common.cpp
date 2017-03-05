@@ -55,17 +55,21 @@
 #endif
 
 HX_DEFINE_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_19_new,"global.Common","new",0xda3ca4e8,"global.Common.new","global/Common.hx",19,0x2e53e767)
-HX_LOCAL_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_52_get_angle_radians,"global.Common","get_angle_radians",0x2d502ca5,"global.Common.get_angle_radians","global/Common.hx",52,0x2e53e767)
-HX_LOCAL_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_57_get_angle_degrees,"global.Common","get_angle_degrees",0x40bac9da,"global.Common.get_angle_degrees","global/Common.hx",57,0x2e53e767)
-HX_LOCAL_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_62_get_point_vector,"global.Common","get_point_vector",0x25fd1b13,"global.Common.get_point_vector","global/Common.hx",62,0x2e53e767)
-HX_LOCAL_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_68_get_distance,"global.Common","get_distance",0x9cffa1b6,"global.Common.get_distance","global/Common.hx",68,0x2e53e767)
-HX_LOCAL_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_71_get_distance_point,"global.Common","get_distance_point",0x38a7c9c7,"global.Common.get_distance_point","global/Common.hx",71,0x2e53e767)
+HX_LOCAL_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_57_get_angle_radians,"global.Common","get_angle_radians",0x2d502ca5,"global.Common.get_angle_radians","global/Common.hx",57,0x2e53e767)
+HX_LOCAL_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_62_get_angle_degrees,"global.Common","get_angle_degrees",0x40bac9da,"global.Common.get_angle_degrees","global/Common.hx",62,0x2e53e767)
+HX_LOCAL_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_67_get_point_vector,"global.Common","get_point_vector",0x25fd1b13,"global.Common.get_point_vector","global/Common.hx",67,0x2e53e767)
+HX_LOCAL_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_73_get_distance,"global.Common","get_distance",0x9cffa1b6,"global.Common.get_distance","global/Common.hx",73,0x2e53e767)
+HX_LOCAL_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_76_get_distance_point,"global.Common","get_distance_point",0x38a7c9c7,"global.Common.get_distance_point","global/Common.hx",76,0x2e53e767)
 HX_LOCAL_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_26_boot,"global.Common","boot",0x12eca6aa,"global.Common.boot","global/Common.hx",26,0x2e53e767)
 HX_LOCAL_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_36_boot,"global.Common","boot",0x12eca6aa,"global.Common.boot","global/Common.hx",36,0x2e53e767)
 HX_LOCAL_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_37_boot,"global.Common","boot",0x12eca6aa,"global.Common.boot","global/Common.hx",37,0x2e53e767)
+HX_LOCAL_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_39_boot,"global.Common","boot",0x12eca6aa,"global.Common.boot","global/Common.hx",39,0x2e53e767)
 HX_LOCAL_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_40_boot,"global.Common","boot",0x12eca6aa,"global.Common.boot","global/Common.hx",40,0x2e53e767)
 HX_LOCAL_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_41_boot,"global.Common","boot",0x12eca6aa,"global.Common.boot","global/Common.hx",41,0x2e53e767)
-HX_LOCAL_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_43_boot,"global.Common","boot",0x12eca6aa,"global.Common.boot","global/Common.hx",43,0x2e53e767)
+HX_LOCAL_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_42_boot,"global.Common","boot",0x12eca6aa,"global.Common.boot","global/Common.hx",42,0x2e53e767)
+HX_LOCAL_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_45_boot,"global.Common","boot",0x12eca6aa,"global.Common.boot","global/Common.hx",45,0x2e53e767)
+HX_LOCAL_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_46_boot,"global.Common","boot",0x12eca6aa,"global.Common.boot","global/Common.hx",46,0x2e53e767)
+HX_LOCAL_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_48_boot,"global.Common","boot",0x12eca6aa,"global.Common.boot","global/Common.hx",48,0x2e53e767)
 namespace global{
 
 void Common_obj::__construct(){
@@ -107,6 +111,14 @@ int Common_obj::line_minLength;
 
 int Common_obj::line_type;
 
+int Common_obj::sLineCount;
+
+int Common_obj::sBLueLineCount;
+
+int Common_obj::sRedLineCount;
+
+int Common_obj::sGreenLineCount;
+
 Float Common_obj::track_scale;
 
 Float Common_obj::track_scale_max;
@@ -120,49 +132,49 @@ Float Common_obj::stage_width;
 Float Common_obj::stage_height;
 
 Float Common_obj::get_angle_radians( ::openfl::geom::Point _a, ::openfl::geom::Point _b){
-            	HX_STACKFRAME(&_hx_pos_7ee4709dfe1b7650_52_get_angle_radians)
-HXLINE(  53)		Float _locAngle = (_b->y - _a->y);
-HXDLIN(  53)		Float _locAngle1 = ::Math_obj::atan2(_locAngle,(_b->x - _a->x));
-HXLINE(  54)		return _locAngle1;
+            	HX_STACKFRAME(&_hx_pos_7ee4709dfe1b7650_57_get_angle_radians)
+HXLINE(  58)		Float _locAngle = (_b->y - _a->y);
+HXDLIN(  58)		Float _locAngle1 = ::Math_obj::atan2(_locAngle,(_b->x - _a->x));
+HXLINE(  59)		return _locAngle1;
             	}
 
 
 STATIC_HX_DEFINE_DYNAMIC_FUNC2(Common_obj,get_angle_radians,return )
 
 Float Common_obj::get_angle_degrees( ::openfl::geom::Point _a, ::openfl::geom::Point _b){
-            	HX_STACKFRAME(&_hx_pos_7ee4709dfe1b7650_57_get_angle_degrees)
-HXLINE(  58)		Float _locAngle = (_b->y - _a->y);
-HXDLIN(  58)		Float _locAngle1 = ((Float)(::Math_obj::atan2(_locAngle,(_b->x - _a->x)) * (int)180) / (Float)::Math_obj::PI);
-HXLINE(  59)		return _locAngle1;
+            	HX_STACKFRAME(&_hx_pos_7ee4709dfe1b7650_62_get_angle_degrees)
+HXLINE(  63)		Float _locAngle = (_b->y - _a->y);
+HXDLIN(  63)		Float _locAngle1 = ((Float)(::Math_obj::atan2(_locAngle,(_b->x - _a->x)) * (int)180) / (Float)::Math_obj::PI);
+HXLINE(  64)		return _locAngle1;
             	}
 
 
 STATIC_HX_DEFINE_DYNAMIC_FUNC2(Common_obj,get_angle_degrees,return )
 
  ::openfl::geom::Point Common_obj::get_point_vector(int _dis,Float _ang){
-            	HX_GC_STACKFRAME(&_hx_pos_7ee4709dfe1b7650_62_get_point_vector)
-HXLINE(  63)		Float _loc1 = ((_dis * (int)-1) * ::Math_obj::cos(_ang));
-HXDLIN(  63)		 ::openfl::geom::Point _loc11 =  ::openfl::geom::Point_obj::__alloc( HX_CTX ,_loc1,((_dis * (int)-1) * ::Math_obj::sin(_ang)));
-HXLINE(  64)		return _loc11;
+            	HX_GC_STACKFRAME(&_hx_pos_7ee4709dfe1b7650_67_get_point_vector)
+HXLINE(  68)		Float _loc1 = ((_dis * (int)-1) * ::Math_obj::cos(_ang));
+HXDLIN(  68)		 ::openfl::geom::Point _loc11 =  ::openfl::geom::Point_obj::__alloc( HX_CTX ,_loc1,((_dis * (int)-1) * ::Math_obj::sin(_ang)));
+HXLINE(  69)		return _loc11;
             	}
 
 
 STATIC_HX_DEFINE_DYNAMIC_FUNC2(Common_obj,get_point_vector,return )
 
 Float Common_obj::get_distance( ::openfl::geom::Point _a, ::openfl::geom::Point _b){
-            	HX_STACKFRAME(&_hx_pos_7ee4709dfe1b7650_68_get_distance)
-HXLINE(  68)		Float _hx_tmp = ::Math_obj::pow((_b->y - _a->y),(int)2);
-HXDLIN(  68)		return ::Math_obj::sqrt((_hx_tmp + ::Math_obj::pow((_b->x - _a->x),(int)2)));
+            	HX_STACKFRAME(&_hx_pos_7ee4709dfe1b7650_73_get_distance)
+HXLINE(  73)		Float _hx_tmp = ::Math_obj::pow((_b->y - _a->y),(int)2);
+HXDLIN(  73)		return ::Math_obj::sqrt((_hx_tmp + ::Math_obj::pow((_b->x - _a->x),(int)2)));
             	}
 
 
 STATIC_HX_DEFINE_DYNAMIC_FUNC2(Common_obj,get_distance,return )
 
  ::openfl::geom::Point Common_obj::get_distance_point( ::openfl::geom::Point _a, ::openfl::geom::Point _b){
-            	HX_GC_STACKFRAME(&_hx_pos_7ee4709dfe1b7650_71_get_distance_point)
-HXLINE(  72)		Float _loc1 = (_b->y - _a->y);
-HXDLIN(  72)		 ::openfl::geom::Point _loc11 =  ::openfl::geom::Point_obj::__alloc( HX_CTX ,_loc1,(_b->x - _a->x));
-HXLINE(  73)		return _loc11;
+            	HX_GC_STACKFRAME(&_hx_pos_7ee4709dfe1b7650_76_get_distance_point)
+HXLINE(  77)		Float _loc1 = (_b->y - _a->y);
+HXDLIN(  77)		 ::openfl::geom::Point _loc11 =  ::openfl::geom::Point_obj::__alloc( HX_CTX ,_loc1,(_b->x - _a->x));
+HXLINE(  78)		return _loc11;
             	}
 
 
@@ -191,6 +203,9 @@ bool Common_obj::__GetStatic(const ::String &inName, Dynamic &outValue, hx::Prop
 		if (HX_FIELD_EQ(inName,"gToolBase") ) { outValue = gToolBase; return true; }
 		if (HX_FIELD_EQ(inName,"line_type") ) { outValue = line_type; return true; }
 		break;
+	case 10:
+		if (HX_FIELD_EQ(inName,"sLineCount") ) { outValue = sLineCount; return true; }
+		break;
 	case 11:
 		if (HX_FIELD_EQ(inName,"track_scale") ) { outValue = track_scale; return true; }
 		if (HX_FIELD_EQ(inName,"stage_width") ) { outValue = stage_width; return true; }
@@ -202,11 +217,14 @@ bool Common_obj::__GetStatic(const ::String &inName, Dynamic &outValue, hx::Prop
 		break;
 	case 13:
 		if (HX_FIELD_EQ(inName,"gVisContainer") ) { outValue = gVisContainer; return true; }
+		if (HX_FIELD_EQ(inName,"sRedLineCount") ) { outValue = sRedLineCount; return true; }
 		break;
 	case 14:
 		if (HX_FIELD_EQ(inName,"line_minLength") ) { outValue = line_minLength; return true; }
+		if (HX_FIELD_EQ(inName,"sBLueLineCount") ) { outValue = sBLueLineCount; return true; }
 		break;
 	case 15:
+		if (HX_FIELD_EQ(inName,"sGreenLineCount") ) { outValue = sGreenLineCount; return true; }
 		if (HX_FIELD_EQ(inName,"track_scale_max") ) { outValue = track_scale_max; return true; }
 		if (HX_FIELD_EQ(inName,"track_scale_min") ) { outValue = track_scale_min; return true; }
 		break;
@@ -244,6 +262,9 @@ bool Common_obj::__SetStatic(const ::String &inName,Dynamic &ioValue,hx::Propert
 		if (HX_FIELD_EQ(inName,"gToolBase") ) { gToolBase=ioValue.Cast<  ::ui::tool::ToolBase >(); return true; }
 		if (HX_FIELD_EQ(inName,"line_type") ) { line_type=ioValue.Cast< int >(); return true; }
 		break;
+	case 10:
+		if (HX_FIELD_EQ(inName,"sLineCount") ) { sLineCount=ioValue.Cast< int >(); return true; }
+		break;
 	case 11:
 		if (HX_FIELD_EQ(inName,"track_scale") ) { track_scale=ioValue.Cast< Float >(); return true; }
 		if (HX_FIELD_EQ(inName,"stage_width") ) { stage_width=ioValue.Cast< Float >(); return true; }
@@ -254,11 +275,14 @@ bool Common_obj::__SetStatic(const ::String &inName,Dynamic &ioValue,hx::Propert
 		break;
 	case 13:
 		if (HX_FIELD_EQ(inName,"gVisContainer") ) { gVisContainer=ioValue.Cast<  ::openfl::display::MovieClip >(); return true; }
+		if (HX_FIELD_EQ(inName,"sRedLineCount") ) { sRedLineCount=ioValue.Cast< int >(); return true; }
 		break;
 	case 14:
 		if (HX_FIELD_EQ(inName,"line_minLength") ) { line_minLength=ioValue.Cast< int >(); return true; }
+		if (HX_FIELD_EQ(inName,"sBLueLineCount") ) { sBLueLineCount=ioValue.Cast< int >(); return true; }
 		break;
 	case 15:
+		if (HX_FIELD_EQ(inName,"sGreenLineCount") ) { sGreenLineCount=ioValue.Cast< int >(); return true; }
 		if (HX_FIELD_EQ(inName,"track_scale_max") ) { track_scale_max=ioValue.Cast< Float >(); return true; }
 		if (HX_FIELD_EQ(inName,"track_scale_min") ) { track_scale_min=ioValue.Cast< Float >(); return true; }
 		break;
@@ -281,6 +305,10 @@ static hx::StaticInfo Common_obj_sStaticStorageInfo[] = {
 	{hx::fsObject /*::lr::line::Grid*/ ,(void *) &Common_obj::gGrid,HX_HCSTRING("gGrid","\xcd","\xc2","\x8a","\x7d")},
 	{hx::fsInt,(void *) &Common_obj::line_minLength,HX_HCSTRING("line_minLength","\xcd","\x20","\x06","\x29")},
 	{hx::fsInt,(void *) &Common_obj::line_type,HX_HCSTRING("line_type","\x25","\xa2","\xe7","\xb3")},
+	{hx::fsInt,(void *) &Common_obj::sLineCount,HX_HCSTRING("sLineCount","\x48","\x01","\xa5","\x94")},
+	{hx::fsInt,(void *) &Common_obj::sBLueLineCount,HX_HCSTRING("sBLueLineCount","\xee","\xd1","\x8a","\xea")},
+	{hx::fsInt,(void *) &Common_obj::sRedLineCount,HX_HCSTRING("sRedLineCount","\xbd","\xc9","\xd1","\x8c")},
+	{hx::fsInt,(void *) &Common_obj::sGreenLineCount,HX_HCSTRING("sGreenLineCount","\xcb","\x00","\x4a","\x96")},
 	{hx::fsFloat,(void *) &Common_obj::track_scale,HX_HCSTRING("track_scale","\x96","\x9e","\x1b","\xe8")},
 	{hx::fsFloat,(void *) &Common_obj::track_scale_max,HX_HCSTRING("track_scale_max","\x3b","\xf1","\x7b","\x7e")},
 	{hx::fsFloat,(void *) &Common_obj::track_scale_min,HX_HCSTRING("track_scale_min","\x29","\xf8","\x7b","\x7e")},
@@ -303,6 +331,10 @@ static void Common_obj_sMarkStatics(HX_MARK_PARAMS) {
 	HX_MARK_MEMBER_NAME(Common_obj::gGrid,"gGrid");
 	HX_MARK_MEMBER_NAME(Common_obj::line_minLength,"line_minLength");
 	HX_MARK_MEMBER_NAME(Common_obj::line_type,"line_type");
+	HX_MARK_MEMBER_NAME(Common_obj::sLineCount,"sLineCount");
+	HX_MARK_MEMBER_NAME(Common_obj::sBLueLineCount,"sBLueLineCount");
+	HX_MARK_MEMBER_NAME(Common_obj::sRedLineCount,"sRedLineCount");
+	HX_MARK_MEMBER_NAME(Common_obj::sGreenLineCount,"sGreenLineCount");
 	HX_MARK_MEMBER_NAME(Common_obj::track_scale,"track_scale");
 	HX_MARK_MEMBER_NAME(Common_obj::track_scale_max,"track_scale_max");
 	HX_MARK_MEMBER_NAME(Common_obj::track_scale_min,"track_scale_min");
@@ -324,6 +356,10 @@ static void Common_obj_sVisitStatics(HX_VISIT_PARAMS) {
 	HX_VISIT_MEMBER_NAME(Common_obj::gGrid,"gGrid");
 	HX_VISIT_MEMBER_NAME(Common_obj::line_minLength,"line_minLength");
 	HX_VISIT_MEMBER_NAME(Common_obj::line_type,"line_type");
+	HX_VISIT_MEMBER_NAME(Common_obj::sLineCount,"sLineCount");
+	HX_VISIT_MEMBER_NAME(Common_obj::sBLueLineCount,"sBLueLineCount");
+	HX_VISIT_MEMBER_NAME(Common_obj::sRedLineCount,"sRedLineCount");
+	HX_VISIT_MEMBER_NAME(Common_obj::sGreenLineCount,"sGreenLineCount");
 	HX_VISIT_MEMBER_NAME(Common_obj::track_scale,"track_scale");
 	HX_VISIT_MEMBER_NAME(Common_obj::track_scale_max,"track_scale_max");
 	HX_VISIT_MEMBER_NAME(Common_obj::track_scale_min,"track_scale_min");
@@ -347,6 +383,10 @@ static ::String Common_obj_sStaticFields[] = {
 	HX_HCSTRING("gGrid","\xcd","\xc2","\x8a","\x7d"),
 	HX_HCSTRING("line_minLength","\xcd","\x20","\x06","\x29"),
 	HX_HCSTRING("line_type","\x25","\xa2","\xe7","\xb3"),
+	HX_HCSTRING("sLineCount","\x48","\x01","\xa5","\x94"),
+	HX_HCSTRING("sBLueLineCount","\xee","\xd1","\x8a","\xea"),
+	HX_HCSTRING("sRedLineCount","\xbd","\xc9","\xd1","\x8c"),
+	HX_HCSTRING("sGreenLineCount","\xcb","\x00","\x4a","\x96"),
 	HX_HCSTRING("track_scale","\x96","\x9e","\x1b","\xe8"),
 	HX_HCSTRING("track_scale_max","\x3b","\xf1","\x7b","\x7e"),
 	HX_HCSTRING("track_scale_min","\x29","\xf8","\x7b","\x7e"),
@@ -403,16 +443,32 @@ HXLINE(  36)		line_minLength = (int)14;
 HXLINE(  37)		line_type = (int)0;
             	}
 {
+            	HX_STACKFRAME(&_hx_pos_7ee4709dfe1b7650_39_boot)
+HXLINE(  39)		sLineCount = (int)0;
+            	}
+{
             	HX_STACKFRAME(&_hx_pos_7ee4709dfe1b7650_40_boot)
-HXLINE(  40)		track_scale_max = ((Float)12);
+HXLINE(  40)		sBLueLineCount = (int)0;
             	}
 {
             	HX_STACKFRAME(&_hx_pos_7ee4709dfe1b7650_41_boot)
-HXLINE(  41)		track_scale_min = ((Float)0.6);
+HXLINE(  41)		sRedLineCount = (int)0;
             	}
 {
-            	HX_STACKFRAME(&_hx_pos_7ee4709dfe1b7650_43_boot)
-HXLINE(  43)		cvar_icon_hit_display = false;
+            	HX_STACKFRAME(&_hx_pos_7ee4709dfe1b7650_42_boot)
+HXLINE(  42)		sGreenLineCount = (int)0;
+            	}
+{
+            	HX_STACKFRAME(&_hx_pos_7ee4709dfe1b7650_45_boot)
+HXLINE(  45)		track_scale_max = ((Float)12);
+            	}
+{
+            	HX_STACKFRAME(&_hx_pos_7ee4709dfe1b7650_46_boot)
+HXLINE(  46)		track_scale_min = ((Float)0.6);
+            	}
+{
+            	HX_STACKFRAME(&_hx_pos_7ee4709dfe1b7650_48_boot)
+HXLINE(  48)		cvar_icon_hit_display = false;
             	}
 }
 

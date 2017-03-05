@@ -2854,6 +2854,7 @@
   </file>
   <file name="src/lr/line/Grid.cpp" >
    <depend name="include/global/Common.h"/>
+   <depend name="include/haxe/Log.h"/>
    <depend name="include/lr/line/Grid.h"/>
   </file>
   <file name="src/lr/Track.cpp" >

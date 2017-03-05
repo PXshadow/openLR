@@ -118,7 +118,7 @@ void ApplicationMain_obj::main(){
             	HX_STACKFRAME(&_hx_pos_6fcf922b66429816_27_main)
 HXLINE(  29)		::ApplicationMain_obj::config =  ::Dynamic(hx::Anon_obj::Create(9)
             			->setFixed(0,HX_("company",3d,15,69,83),HX_("Kaelan Evans",1f,58,46,51))
-            			->setFixed(1,HX_("build",2e,db,ea,ba),HX_("2",32,00,00,00))
+            			->setFixed(1,HX_("build",2e,db,ea,ba),HX_("3",33,00,00,00))
             			->setFixed(2,HX_("windows",83,de,74,e8),::Array_obj< ::Dynamic>::__new(1)->init(0, ::Dynamic(hx::Anon_obj::Create(20)
             				->setFixed(0,HX_("resizable",6b,37,50,a9),true)
             				->setFixed(1,HX_("allowHighDPI",92,07,a2,b4),false)

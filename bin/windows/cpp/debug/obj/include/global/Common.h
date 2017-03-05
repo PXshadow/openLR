@@ -82,6 +82,10 @@ class HXCPP_CLASS_ATTRIBUTES Common_obj : public hx::Object
 		static  ::lr::line::Grid gGrid;
 		static int line_minLength;
 		static int line_type;
+		static int sLineCount;
+		static int sBLueLineCount;
+		static int sRedLineCount;
+		static int sGreenLineCount;
 		static Float track_scale;
 		static Float track_scale_max;
 		static Float track_scale_min;

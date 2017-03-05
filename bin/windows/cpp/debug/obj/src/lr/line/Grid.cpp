@@ -4,12 +4,15 @@
 #ifndef INCLUDED_global_Common
 #include <global/Common.h>
 #endif
+#ifndef INCLUDED_haxe_Log
+#include <haxe/Log.h>
+#endif
 #ifndef INCLUDED_lr_line_Grid
 #include <lr/line/Grid.h>
 #endif
 
 HX_DEFINE_STACK_FRAME(_hx_pos_0c86f2f20bd0cd73_31_new,"lr.line.Grid","new",0xf463aeaa,"lr.line.Grid.new","lr/line/Grid.hx",31,0x1f9d43a6)
-HX_LOCAL_STACK_FRAME(_hx_pos_0c86f2f20bd0cd73_37_massLineIndex,"lr.line.Grid","massLineIndex",0xe6daddb4,"lr.line.Grid.massLineIndex","lr/line/Grid.hx",37,0x1f9d43a6)
+HX_LOCAL_STACK_FRAME(_hx_pos_0c86f2f20bd0cd73_36_massLineIndex,"lr.line.Grid","massLineIndex",0xe6daddb4,"lr.line.Grid.massLineIndex","lr/line/Grid.hx",36,0x1f9d43a6)
 namespace lr{
 namespace line{
 
@@ -35,8 +38,32 @@ bool Grid_obj::_hx_isInstanceOf(int inClassId) {
 }
 
 void Grid_obj::massLineIndex( ::Dynamic line){
-            	HX_STACKFRAME(&_hx_pos_0c86f2f20bd0cd73_37_massLineIndex)
+            	HX_STACKFRAME(&_hx_pos_0c86f2f20bd0cd73_36_massLineIndex)
 HXLINE(  37)		this->lines->push(line);
+HXLINE(  38)		 ::Dynamic _hx_tmp = hx::ClassOf< ::global::Common >();
+HXDLIN(  38)		::global::Common_obj::sLineCount = (::global::Common_obj::sLineCount + (int)1);
+HXLINE(  39)		if (hx::IsEq(  ::Dynamic(line->__Field(HX_("type",ba,f2,08,4d),hx::paccDynamic)),(int)0 )) {
+HXLINE(  40)			 ::Dynamic _hx_tmp1 = hx::ClassOf< ::global::Common >();
+HXDLIN(  40)			::global::Common_obj::sBLueLineCount = (::global::Common_obj::sBLueLineCount + (int)1);
+            		}
+            		else {
+HXLINE(  41)			if (hx::IsEq(  ::Dynamic(line->__Field(HX_("type",ba,f2,08,4d),hx::paccDynamic)),(int)1 )) {
+HXLINE(  42)				 ::Dynamic _hx_tmp2 = hx::ClassOf< ::global::Common >();
+HXDLIN(  42)				::global::Common_obj::sRedLineCount = (::global::Common_obj::sRedLineCount + (int)1);
+            			}
+            			else {
+HXLINE(  43)				if (hx::IsEq(  ::Dynamic(line->__Field(HX_("type",ba,f2,08,4d),hx::paccDynamic)),(int)2 )) {
+HXLINE(  44)					 ::Dynamic _hx_tmp3 = hx::ClassOf< ::global::Common >();
+HXDLIN(  44)					::global::Common_obj::sGreenLineCount = (::global::Common_obj::sGreenLineCount + (int)1);
+            				}
+            			}
+            		}
+HXLINE(  46)		::haxe::Log_obj::trace(::global::Common_obj::sLineCount, ::Dynamic(hx::Anon_obj::Create(5)
+            			->setFixed(0,HX_("className",a3,92,3d,dc),HX_("lr.line.Grid",b8,d1,b0,0c))
+            			->setFixed(1,HX_("customParams",d7,51,18,ed),::cpp::VirtualArray_obj::__new(3)->init(0,::global::Common_obj::sBLueLineCount)->init(1,::global::Common_obj::sRedLineCount)->init(2,::global::Common_obj::sGreenLineCount))
+            			->setFixed(2,HX_("methodName",cc,19,0f,12),HX_("massLineIndex",ea,7e,be,88))
+            			->setFixed(3,HX_("fileName",e7,5a,43,62),HX_("Grid.hx",98,93,72,d4))
+            			->setFixed(4,HX_("lineNumber",dd,81,22,76),(int)46)));
             	}
 
 
