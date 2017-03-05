@@ -1,5 +1,6 @@
 package global;
 
+import file.SaveManager;
 import lr.line.Grid;
 import openfl.display.MovieClip;
 import openfl.display.Stage;
@@ -23,7 +24,7 @@ class Common
 	//variables
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	public static var version:String = "0.0.0";
+	public static var version:String = "0.0.2";
 	
 	public static var gStage:Stage;
 	public static var gCode:Main;
@@ -32,6 +33,7 @@ class Common
 	public static var gToolBase:ToolBase;
 	public static var gToolCurrent:Any;
 	public static var gGrid:Grid;
+	public static var gSaveManager:SaveManager;
 	
 	public static var line_minLength:Int = 14;
 	public static var line_type:Int = 0;
@@ -47,6 +49,7 @@ class Common
 	
 	public static var cvar_icon_hit_display:Bool = false;
 	public static var cvar_line_render_mode:Int = 0; //0 = color, 1 = black, 2 = color play, 3 = preview
+	public static var cvar_track_author:String = "Unknown";
 	
 	public static var stage_width:Float;
 	public static var stage_height:Float;

@@ -1,5 +1,7 @@
 package;
 
+import file.SaveManager;
+import file.TrackParse;
 import lr.Toolbar;
 import lr.Track;
 import openfl.display.MovieClip;
@@ -41,8 +43,6 @@ class Main extends Sprite
 	public function new() 
 	{
 		super();
-		
-		mainFileInit = new FileStart();
 		
 		this.init_env();
 		this.init_track();

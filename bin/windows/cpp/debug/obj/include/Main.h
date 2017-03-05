@@ -10,6 +10,7 @@
 #include <openfl/display/Sprite.h>
 #endif
 HX_DECLARE_CLASS0(Main)
+HX_DECLARE_CLASS1(file,SaveManager)
 HX_DECLARE_CLASS1(init,FileStart)
 HX_DECLARE_CLASS1(lr,Toolbar)
 HX_DECLARE_CLASS1(lr,Track)
@@ -61,6 +62,7 @@ class HXCPP_CLASS_ATTRIBUTES Main_obj : public  ::openfl::display::Sprite_obj
 		 ::openfl::display::MovieClip visContainer;
 		 ::lr::Track track;
 		 ::lr::Toolbar toolBar;
+		 ::file::SaveManager saveManager;
 		void init_env();
 		::Dynamic init_env_dyn();
 

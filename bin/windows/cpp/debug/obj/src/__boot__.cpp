@@ -1540,6 +1540,12 @@
 #ifndef INCLUDED_haxe_CallStack
 #include <haxe/CallStack.h>
 #endif
+#ifndef INCLUDED_file_TrackParse
+#include <file/TrackParse.h>
+#endif
+#ifndef INCLUDED_file_SaveManager
+#include <file/SaveManager.h>
+#endif
 #ifndef INCLUDED_cpp_vm_Thread
 #include <cpp/vm/Thread.h>
 #endif
@@ -2141,6 +2147,8 @@ hx::RegisterResources( hx::GetResources() );
 ::haxe::Resource_obj::__register();
 ::haxe::IMap_obj::__register();
 ::haxe::CallStack_obj::__register();
+::file::TrackParse_obj::__register();
+::file::SaveManager_obj::__register();
 ::cpp::vm::Thread_obj::__register();
 ::cpp::vm::Gc_obj::__register();
 ::cpp::vm::Deque_obj::__register();

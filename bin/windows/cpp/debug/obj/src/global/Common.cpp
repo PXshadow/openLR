@@ -8,6 +8,9 @@
 #ifndef INCLUDED_Main
 #include <Main.h>
 #endif
+#ifndef INCLUDED_file_SaveManager
+#include <file/SaveManager.h>
+#endif
 #ifndef INCLUDED_global_Common
 #include <global/Common.h>
 #endif
@@ -54,27 +57,28 @@
 #include <ui/tool/ToolBase.h>
 #endif
 
-HX_DEFINE_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_19_new,"global.Common","new",0xda3ca4e8,"global.Common.new","global/Common.hx",19,0x2e53e767)
-HX_LOCAL_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_58_get_angle_radians,"global.Common","get_angle_radians",0x2d502ca5,"global.Common.get_angle_radians","global/Common.hx",58,0x2e53e767)
-HX_LOCAL_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_63_get_angle_degrees,"global.Common","get_angle_degrees",0x40bac9da,"global.Common.get_angle_degrees","global/Common.hx",63,0x2e53e767)
-HX_LOCAL_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_68_get_point_vector,"global.Common","get_point_vector",0x25fd1b13,"global.Common.get_point_vector","global/Common.hx",68,0x2e53e767)
-HX_LOCAL_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_74_get_distance,"global.Common","get_distance",0x9cffa1b6,"global.Common.get_distance","global/Common.hx",74,0x2e53e767)
-HX_LOCAL_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_77_get_distance_point,"global.Common","get_distance_point",0x38a7c9c7,"global.Common.get_distance_point","global/Common.hx",77,0x2e53e767)
-HX_LOCAL_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_26_boot,"global.Common","boot",0x12eca6aa,"global.Common.boot","global/Common.hx",26,0x2e53e767)
-HX_LOCAL_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_36_boot,"global.Common","boot",0x12eca6aa,"global.Common.boot","global/Common.hx",36,0x2e53e767)
-HX_LOCAL_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_37_boot,"global.Common","boot",0x12eca6aa,"global.Common.boot","global/Common.hx",37,0x2e53e767)
+HX_DEFINE_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_20_new,"global.Common","new",0xda3ca4e8,"global.Common.new","global/Common.hx",20,0x2e53e767)
+HX_LOCAL_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_61_get_angle_radians,"global.Common","get_angle_radians",0x2d502ca5,"global.Common.get_angle_radians","global/Common.hx",61,0x2e53e767)
+HX_LOCAL_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_66_get_angle_degrees,"global.Common","get_angle_degrees",0x40bac9da,"global.Common.get_angle_degrees","global/Common.hx",66,0x2e53e767)
+HX_LOCAL_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_71_get_point_vector,"global.Common","get_point_vector",0x25fd1b13,"global.Common.get_point_vector","global/Common.hx",71,0x2e53e767)
+HX_LOCAL_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_77_get_distance,"global.Common","get_distance",0x9cffa1b6,"global.Common.get_distance","global/Common.hx",77,0x2e53e767)
+HX_LOCAL_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_80_get_distance_point,"global.Common","get_distance_point",0x38a7c9c7,"global.Common.get_distance_point","global/Common.hx",80,0x2e53e767)
+HX_LOCAL_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_27_boot,"global.Common","boot",0x12eca6aa,"global.Common.boot","global/Common.hx",27,0x2e53e767)
+HX_LOCAL_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_38_boot,"global.Common","boot",0x12eca6aa,"global.Common.boot","global/Common.hx",38,0x2e53e767)
 HX_LOCAL_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_39_boot,"global.Common","boot",0x12eca6aa,"global.Common.boot","global/Common.hx",39,0x2e53e767)
-HX_LOCAL_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_40_boot,"global.Common","boot",0x12eca6aa,"global.Common.boot","global/Common.hx",40,0x2e53e767)
 HX_LOCAL_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_41_boot,"global.Common","boot",0x12eca6aa,"global.Common.boot","global/Common.hx",41,0x2e53e767)
 HX_LOCAL_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_42_boot,"global.Common","boot",0x12eca6aa,"global.Common.boot","global/Common.hx",42,0x2e53e767)
-HX_LOCAL_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_45_boot,"global.Common","boot",0x12eca6aa,"global.Common.boot","global/Common.hx",45,0x2e53e767)
-HX_LOCAL_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_46_boot,"global.Common","boot",0x12eca6aa,"global.Common.boot","global/Common.hx",46,0x2e53e767)
+HX_LOCAL_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_43_boot,"global.Common","boot",0x12eca6aa,"global.Common.boot","global/Common.hx",43,0x2e53e767)
+HX_LOCAL_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_44_boot,"global.Common","boot",0x12eca6aa,"global.Common.boot","global/Common.hx",44,0x2e53e767)
+HX_LOCAL_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_47_boot,"global.Common","boot",0x12eca6aa,"global.Common.boot","global/Common.hx",47,0x2e53e767)
 HX_LOCAL_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_48_boot,"global.Common","boot",0x12eca6aa,"global.Common.boot","global/Common.hx",48,0x2e53e767)
-HX_LOCAL_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_49_boot,"global.Common","boot",0x12eca6aa,"global.Common.boot","global/Common.hx",49,0x2e53e767)
+HX_LOCAL_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_50_boot,"global.Common","boot",0x12eca6aa,"global.Common.boot","global/Common.hx",50,0x2e53e767)
+HX_LOCAL_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_51_boot,"global.Common","boot",0x12eca6aa,"global.Common.boot","global/Common.hx",51,0x2e53e767)
+HX_LOCAL_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_52_boot,"global.Common","boot",0x12eca6aa,"global.Common.boot","global/Common.hx",52,0x2e53e767)
 namespace global{
 
 void Common_obj::__construct(){
-            	HX_STACKFRAME(&_hx_pos_7ee4709dfe1b7650_19_new)
+            	HX_STACKFRAME(&_hx_pos_7ee4709dfe1b7650_20_new)
             	}
 
 Dynamic Common_obj::__CreateEmpty() { return new Common_obj; }
@@ -108,6 +112,8 @@ bool Common_obj::_hx_isInstanceOf(int inClassId) {
 
  ::lr::line::Grid Common_obj::gGrid;
 
+ ::file::SaveManager Common_obj::gSaveManager;
+
 int Common_obj::line_minLength;
 
 int Common_obj::line_type;
@@ -130,54 +136,56 @@ bool Common_obj::cvar_icon_hit_display;
 
 int Common_obj::cvar_line_render_mode;
 
+::String Common_obj::cvar_track_author;
+
 Float Common_obj::stage_width;
 
 Float Common_obj::stage_height;
 
 Float Common_obj::get_angle_radians( ::openfl::geom::Point _a, ::openfl::geom::Point _b){
-            	HX_STACKFRAME(&_hx_pos_7ee4709dfe1b7650_58_get_angle_radians)
-HXLINE(  59)		Float _locAngle = (_b->y - _a->y);
-HXDLIN(  59)		Float _locAngle1 = ::Math_obj::atan2(_locAngle,(_b->x - _a->x));
-HXLINE(  60)		return _locAngle1;
+            	HX_STACKFRAME(&_hx_pos_7ee4709dfe1b7650_61_get_angle_radians)
+HXLINE(  62)		Float _locAngle = (_b->y - _a->y);
+HXDLIN(  62)		Float _locAngle1 = ::Math_obj::atan2(_locAngle,(_b->x - _a->x));
+HXLINE(  63)		return _locAngle1;
             	}
 
 
 STATIC_HX_DEFINE_DYNAMIC_FUNC2(Common_obj,get_angle_radians,return )
 
 Float Common_obj::get_angle_degrees( ::openfl::geom::Point _a, ::openfl::geom::Point _b){
-            	HX_STACKFRAME(&_hx_pos_7ee4709dfe1b7650_63_get_angle_degrees)
-HXLINE(  64)		Float _locAngle = (_b->y - _a->y);
-HXDLIN(  64)		Float _locAngle1 = ((Float)(::Math_obj::atan2(_locAngle,(_b->x - _a->x)) * (int)180) / (Float)::Math_obj::PI);
-HXLINE(  65)		return _locAngle1;
+            	HX_STACKFRAME(&_hx_pos_7ee4709dfe1b7650_66_get_angle_degrees)
+HXLINE(  67)		Float _locAngle = (_b->y - _a->y);
+HXDLIN(  67)		Float _locAngle1 = ((Float)(::Math_obj::atan2(_locAngle,(_b->x - _a->x)) * (int)180) / (Float)::Math_obj::PI);
+HXLINE(  68)		return _locAngle1;
             	}
 
 
 STATIC_HX_DEFINE_DYNAMIC_FUNC2(Common_obj,get_angle_degrees,return )
 
  ::openfl::geom::Point Common_obj::get_point_vector(int _dis,Float _ang){
-            	HX_GC_STACKFRAME(&_hx_pos_7ee4709dfe1b7650_68_get_point_vector)
-HXLINE(  69)		Float _loc1 = ((_dis * (int)-1) * ::Math_obj::cos(_ang));
-HXDLIN(  69)		 ::openfl::geom::Point _loc11 =  ::openfl::geom::Point_obj::__alloc( HX_CTX ,_loc1,((_dis * (int)-1) * ::Math_obj::sin(_ang)));
-HXLINE(  70)		return _loc11;
+            	HX_GC_STACKFRAME(&_hx_pos_7ee4709dfe1b7650_71_get_point_vector)
+HXLINE(  72)		Float _loc1 = ((_dis * (int)-1) * ::Math_obj::cos(_ang));
+HXDLIN(  72)		 ::openfl::geom::Point _loc11 =  ::openfl::geom::Point_obj::__alloc( HX_CTX ,_loc1,((_dis * (int)-1) * ::Math_obj::sin(_ang)));
+HXLINE(  73)		return _loc11;
             	}
 
 
 STATIC_HX_DEFINE_DYNAMIC_FUNC2(Common_obj,get_point_vector,return )
 
 Float Common_obj::get_distance( ::openfl::geom::Point _a, ::openfl::geom::Point _b){
-            	HX_STACKFRAME(&_hx_pos_7ee4709dfe1b7650_74_get_distance)
-HXLINE(  74)		Float _hx_tmp = ::Math_obj::pow((_b->y - _a->y),(int)2);
-HXDLIN(  74)		return ::Math_obj::sqrt((_hx_tmp + ::Math_obj::pow((_b->x - _a->x),(int)2)));
+            	HX_STACKFRAME(&_hx_pos_7ee4709dfe1b7650_77_get_distance)
+HXLINE(  77)		Float _hx_tmp = ::Math_obj::pow((_b->y - _a->y),(int)2);
+HXDLIN(  77)		return ::Math_obj::sqrt((_hx_tmp + ::Math_obj::pow((_b->x - _a->x),(int)2)));
             	}
 
 
 STATIC_HX_DEFINE_DYNAMIC_FUNC2(Common_obj,get_distance,return )
 
  ::openfl::geom::Point Common_obj::get_distance_point( ::openfl::geom::Point _a, ::openfl::geom::Point _b){
-            	HX_GC_STACKFRAME(&_hx_pos_7ee4709dfe1b7650_77_get_distance_point)
-HXLINE(  78)		Float _loc1 = (_b->y - _a->y);
-HXDLIN(  78)		 ::openfl::geom::Point _loc11 =  ::openfl::geom::Point_obj::__alloc( HX_CTX ,_loc1,(_b->x - _a->x));
-HXLINE(  79)		return _loc11;
+            	HX_GC_STACKFRAME(&_hx_pos_7ee4709dfe1b7650_80_get_distance_point)
+HXLINE(  81)		Float _loc1 = (_b->y - _a->y);
+HXDLIN(  81)		 ::openfl::geom::Point _loc11 =  ::openfl::geom::Point_obj::__alloc( HX_CTX ,_loc1,(_b->x - _a->x));
+HXLINE(  82)		return _loc11;
             	}
 
 
@@ -215,6 +223,7 @@ bool Common_obj::__GetStatic(const ::String &inName, Dynamic &outValue, hx::Prop
 		break;
 	case 12:
 		if (HX_FIELD_EQ(inName,"gToolCurrent") ) { outValue = gToolCurrent; return true; }
+		if (HX_FIELD_EQ(inName,"gSaveManager") ) { outValue = gSaveManager; return true; }
 		if (HX_FIELD_EQ(inName,"stage_height") ) { outValue = stage_height; return true; }
 		if (HX_FIELD_EQ(inName,"get_distance") ) { outValue = get_distance_dyn(); return true; }
 		break;
@@ -235,6 +244,7 @@ bool Common_obj::__GetStatic(const ::String &inName, Dynamic &outValue, hx::Prop
 		if (HX_FIELD_EQ(inName,"get_point_vector") ) { outValue = get_point_vector_dyn(); return true; }
 		break;
 	case 17:
+		if (HX_FIELD_EQ(inName,"cvar_track_author") ) { outValue = cvar_track_author; return true; }
 		if (HX_FIELD_EQ(inName,"get_angle_radians") ) { outValue = get_angle_radians_dyn(); return true; }
 		if (HX_FIELD_EQ(inName,"get_angle_degrees") ) { outValue = get_angle_degrees_dyn(); return true; }
 		break;
@@ -275,6 +285,7 @@ bool Common_obj::__SetStatic(const ::String &inName,Dynamic &ioValue,hx::Propert
 		break;
 	case 12:
 		if (HX_FIELD_EQ(inName,"gToolCurrent") ) { gToolCurrent=ioValue.Cast<  ::Dynamic >(); return true; }
+		if (HX_FIELD_EQ(inName,"gSaveManager") ) { gSaveManager=ioValue.Cast<  ::file::SaveManager >(); return true; }
 		if (HX_FIELD_EQ(inName,"stage_height") ) { stage_height=ioValue.Cast< Float >(); return true; }
 		break;
 	case 13:
@@ -289,6 +300,9 @@ bool Common_obj::__SetStatic(const ::String &inName,Dynamic &ioValue,hx::Propert
 		if (HX_FIELD_EQ(inName,"sGreenLineCount") ) { sGreenLineCount=ioValue.Cast< int >(); return true; }
 		if (HX_FIELD_EQ(inName,"track_scale_max") ) { track_scale_max=ioValue.Cast< Float >(); return true; }
 		if (HX_FIELD_EQ(inName,"track_scale_min") ) { track_scale_min=ioValue.Cast< Float >(); return true; }
+		break;
+	case 17:
+		if (HX_FIELD_EQ(inName,"cvar_track_author") ) { cvar_track_author=ioValue.Cast< ::String >(); return true; }
 		break;
 	case 21:
 		if (HX_FIELD_EQ(inName,"cvar_icon_hit_display") ) { cvar_icon_hit_display=ioValue.Cast< bool >(); return true; }
@@ -308,6 +322,7 @@ static hx::StaticInfo Common_obj_sStaticStorageInfo[] = {
 	{hx::fsObject /*::ui::tool::ToolBase*/ ,(void *) &Common_obj::gToolBase,HX_HCSTRING("gToolBase","\x10","\xf7","\x4a","\x68")},
 	{hx::fsObject /*Dynamic*/ ,(void *) &Common_obj::gToolCurrent,HX_HCSTRING("gToolCurrent","\x9a","\xb6","\x73","\x4e")},
 	{hx::fsObject /*::lr::line::Grid*/ ,(void *) &Common_obj::gGrid,HX_HCSTRING("gGrid","\xcd","\xc2","\x8a","\x7d")},
+	{hx::fsObject /*::file::SaveManager*/ ,(void *) &Common_obj::gSaveManager,HX_HCSTRING("gSaveManager","\x89","\x73","\x99","\xc5")},
 	{hx::fsInt,(void *) &Common_obj::line_minLength,HX_HCSTRING("line_minLength","\xcd","\x20","\x06","\x29")},
 	{hx::fsInt,(void *) &Common_obj::line_type,HX_HCSTRING("line_type","\x25","\xa2","\xe7","\xb3")},
 	{hx::fsInt,(void *) &Common_obj::sLineCount,HX_HCSTRING("sLineCount","\x48","\x01","\xa5","\x94")},
@@ -319,6 +334,7 @@ static hx::StaticInfo Common_obj_sStaticStorageInfo[] = {
 	{hx::fsFloat,(void *) &Common_obj::track_scale_min,HX_HCSTRING("track_scale_min","\x29","\xf8","\x7b","\x7e")},
 	{hx::fsBool,(void *) &Common_obj::cvar_icon_hit_display,HX_HCSTRING("cvar_icon_hit_display","\x8b","\xbb","\xdf","\xf5")},
 	{hx::fsInt,(void *) &Common_obj::cvar_line_render_mode,HX_HCSTRING("cvar_line_render_mode","\x9c","\x0f","\x8d","\x03")},
+	{hx::fsString,(void *) &Common_obj::cvar_track_author,HX_HCSTRING("cvar_track_author","\xfa","\x8a","\xd7","\xe2")},
 	{hx::fsFloat,(void *) &Common_obj::stage_width,HX_HCSTRING("stage_width","\x85","\x0a","\xaf","\x24")},
 	{hx::fsFloat,(void *) &Common_obj::stage_height,HX_HCSTRING("stage_height","\x88","\xa2","\xc9","\xaa")},
 	{ hx::fsUnknown, 0, null()}
@@ -335,6 +351,7 @@ static void Common_obj_sMarkStatics(HX_MARK_PARAMS) {
 	HX_MARK_MEMBER_NAME(Common_obj::gToolBase,"gToolBase");
 	HX_MARK_MEMBER_NAME(Common_obj::gToolCurrent,"gToolCurrent");
 	HX_MARK_MEMBER_NAME(Common_obj::gGrid,"gGrid");
+	HX_MARK_MEMBER_NAME(Common_obj::gSaveManager,"gSaveManager");
 	HX_MARK_MEMBER_NAME(Common_obj::line_minLength,"line_minLength");
 	HX_MARK_MEMBER_NAME(Common_obj::line_type,"line_type");
 	HX_MARK_MEMBER_NAME(Common_obj::sLineCount,"sLineCount");
@@ -346,6 +363,7 @@ static void Common_obj_sMarkStatics(HX_MARK_PARAMS) {
 	HX_MARK_MEMBER_NAME(Common_obj::track_scale_min,"track_scale_min");
 	HX_MARK_MEMBER_NAME(Common_obj::cvar_icon_hit_display,"cvar_icon_hit_display");
 	HX_MARK_MEMBER_NAME(Common_obj::cvar_line_render_mode,"cvar_line_render_mode");
+	HX_MARK_MEMBER_NAME(Common_obj::cvar_track_author,"cvar_track_author");
 	HX_MARK_MEMBER_NAME(Common_obj::stage_width,"stage_width");
 	HX_MARK_MEMBER_NAME(Common_obj::stage_height,"stage_height");
 };
@@ -361,6 +379,7 @@ static void Common_obj_sVisitStatics(HX_VISIT_PARAMS) {
 	HX_VISIT_MEMBER_NAME(Common_obj::gToolBase,"gToolBase");
 	HX_VISIT_MEMBER_NAME(Common_obj::gToolCurrent,"gToolCurrent");
 	HX_VISIT_MEMBER_NAME(Common_obj::gGrid,"gGrid");
+	HX_VISIT_MEMBER_NAME(Common_obj::gSaveManager,"gSaveManager");
 	HX_VISIT_MEMBER_NAME(Common_obj::line_minLength,"line_minLength");
 	HX_VISIT_MEMBER_NAME(Common_obj::line_type,"line_type");
 	HX_VISIT_MEMBER_NAME(Common_obj::sLineCount,"sLineCount");
@@ -372,6 +391,7 @@ static void Common_obj_sVisitStatics(HX_VISIT_PARAMS) {
 	HX_VISIT_MEMBER_NAME(Common_obj::track_scale_min,"track_scale_min");
 	HX_VISIT_MEMBER_NAME(Common_obj::cvar_icon_hit_display,"cvar_icon_hit_display");
 	HX_VISIT_MEMBER_NAME(Common_obj::cvar_line_render_mode,"cvar_line_render_mode");
+	HX_VISIT_MEMBER_NAME(Common_obj::cvar_track_author,"cvar_track_author");
 	HX_VISIT_MEMBER_NAME(Common_obj::stage_width,"stage_width");
 	HX_VISIT_MEMBER_NAME(Common_obj::stage_height,"stage_height");
 };
@@ -389,6 +409,7 @@ static ::String Common_obj_sStaticFields[] = {
 	HX_HCSTRING("gToolBase","\x10","\xf7","\x4a","\x68"),
 	HX_HCSTRING("gToolCurrent","\x9a","\xb6","\x73","\x4e"),
 	HX_HCSTRING("gGrid","\xcd","\xc2","\x8a","\x7d"),
+	HX_HCSTRING("gSaveManager","\x89","\x73","\x99","\xc5"),
 	HX_HCSTRING("line_minLength","\xcd","\x20","\x06","\x29"),
 	HX_HCSTRING("line_type","\x25","\xa2","\xe7","\xb3"),
 	HX_HCSTRING("sLineCount","\x48","\x01","\xa5","\x94"),
@@ -400,6 +421,7 @@ static ::String Common_obj_sStaticFields[] = {
 	HX_HCSTRING("track_scale_min","\x29","\xf8","\x7b","\x7e"),
 	HX_HCSTRING("cvar_icon_hit_display","\x8b","\xbb","\xdf","\xf5"),
 	HX_HCSTRING("cvar_line_render_mode","\x9c","\x0f","\x8d","\x03"),
+	HX_HCSTRING("cvar_track_author","\xfa","\x8a","\xd7","\xe2"),
 	HX_HCSTRING("stage_width","\x85","\x0a","\xaf","\x24"),
 	HX_HCSTRING("stage_height","\x88","\xa2","\xc9","\xaa"),
 	HX_HCSTRING("get_angle_radians","\x1d","\x7a","\x6f","\x47"),
@@ -440,48 +462,52 @@ void Common_obj::__register()
 void Common_obj::__boot()
 {
 {
-            	HX_STACKFRAME(&_hx_pos_7ee4709dfe1b7650_26_boot)
-HXLINE(  26)		version = HX_("0.0.0",34,3d,c8,c1);
+            	HX_STACKFRAME(&_hx_pos_7ee4709dfe1b7650_27_boot)
+HXLINE(  27)		version = HX_("0.0.2",36,3d,c8,c1);
             	}
 {
-            	HX_STACKFRAME(&_hx_pos_7ee4709dfe1b7650_36_boot)
-HXLINE(  36)		line_minLength = (int)14;
-            	}
-{
-            	HX_STACKFRAME(&_hx_pos_7ee4709dfe1b7650_37_boot)
-HXLINE(  37)		line_type = (int)0;
+            	HX_STACKFRAME(&_hx_pos_7ee4709dfe1b7650_38_boot)
+HXLINE(  38)		line_minLength = (int)14;
             	}
 {
             	HX_STACKFRAME(&_hx_pos_7ee4709dfe1b7650_39_boot)
-HXLINE(  39)		sLineCount = (int)0;
-            	}
-{
-            	HX_STACKFRAME(&_hx_pos_7ee4709dfe1b7650_40_boot)
-HXLINE(  40)		sBLueLineCount = (int)0;
+HXLINE(  39)		line_type = (int)0;
             	}
 {
             	HX_STACKFRAME(&_hx_pos_7ee4709dfe1b7650_41_boot)
-HXLINE(  41)		sRedLineCount = (int)0;
+HXLINE(  41)		sLineCount = (int)0;
             	}
 {
             	HX_STACKFRAME(&_hx_pos_7ee4709dfe1b7650_42_boot)
-HXLINE(  42)		sGreenLineCount = (int)0;
+HXLINE(  42)		sBLueLineCount = (int)0;
             	}
 {
-            	HX_STACKFRAME(&_hx_pos_7ee4709dfe1b7650_45_boot)
-HXLINE(  45)		track_scale_max = ((Float)12);
+            	HX_STACKFRAME(&_hx_pos_7ee4709dfe1b7650_43_boot)
+HXLINE(  43)		sRedLineCount = (int)0;
             	}
 {
-            	HX_STACKFRAME(&_hx_pos_7ee4709dfe1b7650_46_boot)
-HXLINE(  46)		track_scale_min = ((Float)0.6);
+            	HX_STACKFRAME(&_hx_pos_7ee4709dfe1b7650_44_boot)
+HXLINE(  44)		sGreenLineCount = (int)0;
+            	}
+{
+            	HX_STACKFRAME(&_hx_pos_7ee4709dfe1b7650_47_boot)
+HXLINE(  47)		track_scale_max = ((Float)12);
             	}
 {
             	HX_STACKFRAME(&_hx_pos_7ee4709dfe1b7650_48_boot)
-HXLINE(  48)		cvar_icon_hit_display = false;
+HXLINE(  48)		track_scale_min = ((Float)0.6);
             	}
 {
-            	HX_STACKFRAME(&_hx_pos_7ee4709dfe1b7650_49_boot)
-HXLINE(  49)		cvar_line_render_mode = (int)0;
+            	HX_STACKFRAME(&_hx_pos_7ee4709dfe1b7650_50_boot)
+HXLINE(  50)		cvar_icon_hit_display = false;
+            	}
+{
+            	HX_STACKFRAME(&_hx_pos_7ee4709dfe1b7650_51_boot)
+HXLINE(  51)		cvar_line_render_mode = (int)0;
+            	}
+{
+            	HX_STACKFRAME(&_hx_pos_7ee4709dfe1b7650_52_boot)
+HXLINE(  52)		cvar_track_author = HX_("Unknown",6a,4b,cc,ae);
             	}
 }
 

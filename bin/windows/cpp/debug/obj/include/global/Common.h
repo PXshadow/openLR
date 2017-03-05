@@ -6,8 +6,9 @@
 #include <hxcpp.h>
 #endif
 
-HX_DECLARE_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_19_new)
+HX_DECLARE_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_20_new)
 HX_DECLARE_CLASS0(Main)
+HX_DECLARE_CLASS1(file,SaveManager)
 HX_DECLARE_CLASS1(global,Common)
 HX_DECLARE_CLASS2(lime,app,IModule)
 HX_DECLARE_CLASS1(lr,Track)
@@ -53,7 +54,7 @@ class HXCPP_CLASS_ATTRIBUTES Common_obj : public hx::Object
 			Common_obj *__this = (Common_obj*)(hx::Ctx::alloc(_hx_ctx, sizeof(Common_obj), false, "global.Common"));
 			*(void **)__this = Common_obj::_hx_vtable;
 {
-            	HX_STACKFRAME(&_hx_pos_7ee4709dfe1b7650_19_new)
+            	HX_STACKFRAME(&_hx_pos_7ee4709dfe1b7650_20_new)
             	}
 		
 			return __this;
@@ -80,6 +81,7 @@ class HXCPP_CLASS_ATTRIBUTES Common_obj : public hx::Object
 		static  ::ui::tool::ToolBase gToolBase;
 		static  ::Dynamic gToolCurrent;
 		static  ::lr::line::Grid gGrid;
+		static  ::file::SaveManager gSaveManager;
 		static int line_minLength;
 		static int line_type;
 		static int sLineCount;
@@ -91,6 +93,7 @@ class HXCPP_CLASS_ATTRIBUTES Common_obj : public hx::Object
 		static Float track_scale_min;
 		static bool cvar_icon_hit_display;
 		static int cvar_line_render_mode;
+		static ::String cvar_track_author;
 		static Float stage_width;
 		static Float stage_height;
 		static Float get_angle_radians( ::openfl::geom::Point _a, ::openfl::geom::Point _b);

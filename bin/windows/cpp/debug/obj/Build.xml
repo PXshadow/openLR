@@ -49,8 +49,8 @@
    <depend name="include/ui/tool/lr/ToolLine.h"/>
   </file>
   <file name="src/ui/tool/icon/IconPlay.cpp" >
+   <depend name="include/file/SaveManager.h"/>
    <depend name="include/global/Common.h"/>
-   <depend name="include/lr/Track.h"/>
    <depend name="include/openfl/Assets.h"/>
    <depend name="include/openfl/display/Bitmap.h"/>
    <depend name="include/openfl/display/BitmapData.h"/>
@@ -4385,6 +4385,7 @@
   </file>
   <file name="src/global/Common.cpp" >
    <depend name="include/Main.h"/>
+   <depend name="include/file/SaveManager.h"/>
    <depend name="include/global/Common.h"/>
    <depend name="include/lime/app/IModule.h"/>
    <depend name="include/lr/Track.h"/>
@@ -4400,6 +4401,18 @@
    <depend name="include/openfl/events/IEventDispatcher.h"/>
    <depend name="include/openfl/geom/Point.h"/>
    <depend name="include/ui/tool/ToolBase.h"/>
+  </file>
+  <file name="src/file/TrackParse.cpp" >
+   <depend name="include/Date.h"/>
+   <depend name="include/file/TrackParse.h"/>
+   <depend name="include/global/Common.h"/>
+   <depend name="include/haxe/Log.h"/>
+   <depend name="include/lr/line/Grid.h"/>
+  </file>
+  <file name="src/file/SaveManager.cpp" >
+   <depend name="include/file/SaveManager.h"/>
+   <depend name="include/file/TrackParse.h"/>
+   <depend name="include/global/Common.h"/>
   </file>
   <file name="src/cpp/vm/Thread.cpp" >
    <depend name="include/cpp/vm/Thread.h"/>
@@ -4514,6 +4527,7 @@
   </file>
   <file name="src/Main.cpp" >
    <depend name="include/Main.h"/>
+   <depend name="include/file/SaveManager.h"/>
    <depend name="include/global/Common.h"/>
    <depend name="include/haxe/Log.h"/>
    <depend name="include/init/FileStart.h"/>

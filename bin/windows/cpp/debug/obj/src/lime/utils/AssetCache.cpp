@@ -36,7 +36,7 @@ HXLINE(  18)		this->enabled = true;
 HXLINE(  26)		this->audio =  ::haxe::ds::StringMap_obj::__alloc( HX_CTX );
 HXLINE(  27)		this->font =  ::haxe::ds::StringMap_obj::__alloc( HX_CTX );
 HXLINE(  28)		this->image =  ::haxe::ds::StringMap_obj::__alloc( HX_CTX );
-HXLINE(  29)		this->version = (int)263680;
+HXLINE(  29)		this->version = (int)750553;
             	}
 
 Dynamic AssetCache_obj::__CreateEmpty() { return new AssetCache_obj; }

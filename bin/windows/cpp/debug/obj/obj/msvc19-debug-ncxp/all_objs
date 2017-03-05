@@ -508,6 +508,8 @@
 "obj/msvc19-debug-ncxp/e57a2653_CallStack.obj"
 "obj/msvc19-debug-ncxp/e57a2653_StackItem.obj"
 "obj/msvc19-debug-ncxp/bfacc196_Common.obj"
+"obj/msvc19-debug-ncxp/6323adcd_TrackParse.obj"
+"obj/msvc19-debug-ncxp/6323adcd_SaveManager.obj"
 "obj/msvc19-debug-ncxp/03806f7f_Thread.obj"
 "obj/msvc19-debug-ncxp/03806f7f_Gc.obj"
 "obj/msvc19-debug-ncxp/03806f7f_Deque.obj"
