@@ -1,4 +1,5 @@
 package lr;
+import lr.line.Grid;
 import lr.line.LineBase;
 import openfl.display.MovieClip;
 import openfl.geom.Point;
@@ -11,23 +12,17 @@ import global.Common;
  */
 class Track extends MovieClip
 {
-
+	private var grid:Grid;
 	public function new() 
 	{
 		super();
 		Common.gTrack = this;
-		
-		this.graphics.clear();
-		this.graphics.lineStyle(1, 0x000000, 1);
-		this.graphics.moveTo( -5, 0);
-		this.graphics.lineTo(5, 0);
-		this.graphics.moveTo(0, -5);
-		this.graphics.lineTo(0, 5);
-		
 		Common.track_scale = 1;
+		this.grid = new Grid();
 	}
 	public function add_vis_line(line:Dynamic) {
-		this.addChild(line);
+		Common.gGrid.massLineIndex(line);
+		Common.gTrack.addChild(line);
 		line.render();
 	}
 	public function render_preview_line(_a:Point, _b:Point) {

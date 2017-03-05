@@ -1,5 +1,6 @@
 package global;
 
+import lr.line.Grid;
 import openfl.display.MovieClip;
 import openfl.display.Stage;
 import openfl.geom.Point;
@@ -30,6 +31,7 @@ class Common
 	public static var gVisContainer:MovieClip;
 	public static var gToolBase:ToolBase;
 	public static var gToolCurrent:Any;
+	public static var gGrid:Grid;
 	
 	public static var line_minLength:Int = 14;
 	public static var line_type:Int = 0;

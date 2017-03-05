@@ -1,5 +1,6 @@
 package lr.line;
 
+import init.Defaults;
 import openfl.display.MovieClip;
 import openfl.geom.Point;
 
@@ -24,6 +25,7 @@ class LineBase extends MovieClip
 	private var _lim1:Float;
 	private var _lim2:Float;
 	public var inv:Bool = false;
+	public var type:Int = -1;
 	
 	public function new() 
 	{

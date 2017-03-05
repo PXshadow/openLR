@@ -13,6 +13,7 @@ class LineFloor extends LineBase
 	public function new(_a:Point, _b:Point, _inv:Bool, _lim = -1) 
 	{
 		super();
+		this.type = 0;
 		a = _a;
 		b = _b;
 		inv = _inv;
