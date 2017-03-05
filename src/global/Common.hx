@@ -46,6 +46,7 @@ class Common
 	public static var track_scale_min:Float = 0.6;
 	
 	public static var cvar_icon_hit_display:Bool = false;
+	public static var cvar_line_render_mode:Int = 0; //0 = color, 1 = black, 2 = color play, 3 = preview
 	
 	public static var stage_width:Float;
 	public static var stage_height:Float;

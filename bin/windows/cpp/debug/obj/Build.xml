@@ -48,6 +48,25 @@
    <depend name="include/ui/tool/ToolBase.h"/>
    <depend name="include/ui/tool/lr/ToolLine.h"/>
   </file>
+  <file name="src/ui/tool/icon/IconPlay.cpp" >
+   <depend name="include/global/Common.h"/>
+   <depend name="include/lr/Track.h"/>
+   <depend name="include/openfl/Assets.h"/>
+   <depend name="include/openfl/display/Bitmap.h"/>
+   <depend name="include/openfl/display/BitmapData.h"/>
+   <depend name="include/openfl/display/DisplayObject.h"/>
+   <depend name="include/openfl/display/DisplayObjectContainer.h"/>
+   <depend name="include/openfl/display/IBitmapDrawable.h"/>
+   <depend name="include/openfl/display/InteractiveObject.h"/>
+   <depend name="include/openfl/display/MovieClip.h"/>
+   <depend name="include/openfl/display/Sprite.h"/>
+   <depend name="include/openfl/events/Event.h"/>
+   <depend name="include/openfl/events/EventDispatcher.h"/>
+   <depend name="include/openfl/events/IEventDispatcher.h"/>
+   <depend name="include/openfl/events/MouseEvent.h"/>
+   <depend name="include/ui/tool/icon/IconBase.h"/>
+   <depend name="include/ui/tool/icon/IconPlay.h"/>
+  </file>
   <file name="src/ui/tool/icon/IconPencil.cpp" >
    <depend name="include/global/Common.h"/>
    <depend name="include/lr/Toolbar.h"/>
@@ -2885,7 +2904,8 @@
    <depend name="include/ui/tool/icon/IconBase.h"/>
    <depend name="include/ui/tool/icon/IconLine.h"/>
    <depend name="include/ui/tool/icon/IconPencil.h"/>
-   <depend name="include/ui/tool/lr/ToolLine.h"/>
+   <depend name="include/ui/tool/icon/IconPlay.h"/>
+   <depend name="include/ui/tool/lr/ToolPencil.h"/>
   </file>
   <file name="src/openfl/display/MovieClip.cpp" >
    <depend name="include/Reflect.h"/>

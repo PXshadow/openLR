@@ -392,6 +392,7 @@ const char *__hxcpp_all_files[] = {
 "ui/tool/icon/IconBase.hx",
 "ui/tool/icon/IconLine.hx",
 "ui/tool/icon/IconPencil.hx",
+"ui/tool/icon/IconPlay.hx",
 "ui/tool/lr/ToolLine.hx",
 "ui/tool/lr/ToolPencil.hx",
 #endif
@@ -787,6 +788,7 @@ const char *__hxcpp_all_files_fullpath[] = {
 "C:\\Users\\Evans2\\Desktop\\Projects\\openLR\\src\\ui\\tool\\icon\\IconBase.hx",
 "C:\\Users\\Evans2\\Desktop\\Projects\\openLR\\src\\ui\\tool\\icon\\IconLine.hx",
 "C:\\Users\\Evans2\\Desktop\\Projects\\openLR\\src\\ui\\tool\\icon\\IconPencil.hx",
+"C:\\Users\\Evans2\\Desktop\\Projects\\openLR\\src\\ui\\tool\\icon\\IconPlay.hx",
 "C:\\Users\\Evans2\\Desktop\\Projects\\openLR\\src\\ui\\tool\\lr\\ToolLine.hx",
 "C:\\Users\\Evans2\\Desktop\\Projects\\openLR\\src\\ui\\tool\\lr\\ToolPencil.hx",
 #endif
@@ -1293,6 +1295,7 @@ const char *__hxcpp_all_classes[] = {
 "ui.tool.icon.IconBase",
 "ui.tool.icon.IconLine",
 "ui.tool.icon.IconPencil",
+"ui.tool.icon.IconPlay",
 "ui.tool.lr.ToolLine",
 "ui.tool.lr.ToolPencil",
 #endif

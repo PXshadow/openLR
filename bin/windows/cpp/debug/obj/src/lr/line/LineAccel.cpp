@@ -109,10 +109,10 @@ bool LineAccel_obj::_hx_isInstanceOf(int inClassId) {
 
 void LineAccel_obj::render(::String con){
             	HX_STACKFRAME(&_hx_pos_dd56be6e622e2db2_23_render)
-HXLINE(  24)		if ((con == HX_("edit",0a,ca,0e,43))) {
-HXLINE(  25)			Float _loc_3;
-HXLINE(  26)			Float _loc_4;
-HXLINE(  27)			this->get_graphics()->clear();
+HXLINE(  24)		this->get_graphics()->clear();
+HXLINE(  25)		if ((con == HX_("edit",0a,ca,0e,43))) {
+HXLINE(  26)			Float _loc_3;
+HXLINE(  27)			Float _loc_4;
 HXLINE(  28)			if ((this->n->x > (int)0)) {
 HXLINE(  28)				_loc_3 = ::Math_obj::ceil(this->n->x);
             			}

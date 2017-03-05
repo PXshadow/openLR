@@ -21,6 +21,7 @@ HX_DECLARE_CLASS2(openfl,events,IEventDispatcher)
 HX_DECLARE_CLASS3(ui,tool,icon,IconBase)
 HX_DECLARE_CLASS3(ui,tool,icon,IconLine)
 HX_DECLARE_CLASS3(ui,tool,icon,IconPencil)
+HX_DECLARE_CLASS3(ui,tool,icon,IconPlay)
 
 namespace lr{
 
@@ -62,6 +63,7 @@ class HXCPP_CLASS_ATTRIBUTES Toolbar_obj : public  ::openfl::display::MovieClip_
 		static  ::Dynamic tool;
 		 ::ui::tool::icon::IconPencil pencil;
 		 ::ui::tool::icon::IconLine line;
+		 ::ui::tool::icon::IconPlay playB;
 };
 
 } // end namespace lr

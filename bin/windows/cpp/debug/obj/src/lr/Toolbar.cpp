@@ -40,22 +40,28 @@
 #ifndef INCLUDED_ui_tool_icon_IconPencil
 #include <ui/tool/icon/IconPencil.h>
 #endif
-#ifndef INCLUDED_ui_tool_lr_ToolLine
-#include <ui/tool/lr/ToolLine.h>
+#ifndef INCLUDED_ui_tool_icon_IconPlay
+#include <ui/tool/icon/IconPlay.h>
+#endif
+#ifndef INCLUDED_ui_tool_lr_ToolPencil
+#include <ui/tool/lr/ToolPencil.h>
 #endif
 
-HX_DEFINE_STACK_FRAME(_hx_pos_d63ce7f7d2486650_20_new,"lr.Toolbar","new",0xb8b5d1e5,"lr.Toolbar.new","lr/Toolbar.hx",20,0x98a81c6c)
+HX_DEFINE_STACK_FRAME(_hx_pos_d63ce7f7d2486650_22_new,"lr.Toolbar","new",0xb8b5d1e5,"lr.Toolbar.new","lr/Toolbar.hx",22,0x98a81c6c)
 namespace lr{
 
 void Toolbar_obj::__construct(){
-            	HX_GC_STACKFRAME(&_hx_pos_d63ce7f7d2486650_20_new)
-HXLINE(  21)		super::__construct();
-HXLINE(  23)		::lr::Toolbar_obj::tool =  ::ui::tool::lr::ToolLine_obj::__alloc( HX_CTX );
-HXLINE(  25)		this->pencil =  ::ui::tool::icon::IconPencil_obj::__alloc( HX_CTX );
-HXLINE(  26)		this->addChild(this->pencil);
-HXLINE(  28)		this->line =  ::ui::tool::icon::IconLine_obj::__alloc( HX_CTX );
-HXLINE(  29)		this->addChild(this->line);
-HXLINE(  30)		this->line->set_x((int)30);
+            	HX_GC_STACKFRAME(&_hx_pos_d63ce7f7d2486650_22_new)
+HXLINE(  23)		super::__construct();
+HXLINE(  25)		::lr::Toolbar_obj::tool =  ::ui::tool::lr::ToolPencil_obj::__alloc( HX_CTX );
+HXLINE(  27)		this->pencil =  ::ui::tool::icon::IconPencil_obj::__alloc( HX_CTX );
+HXLINE(  28)		this->addChild(this->pencil);
+HXLINE(  30)		this->line =  ::ui::tool::icon::IconLine_obj::__alloc( HX_CTX );
+HXLINE(  31)		this->addChild(this->line);
+HXLINE(  32)		this->line->set_x((int)30);
+HXLINE(  34)		this->playB =  ::ui::tool::icon::IconPlay_obj::__alloc( HX_CTX );
+HXLINE(  35)		this->addChild(this->playB);
+HXLINE(  36)		this->playB->set_x((int)60);
             	}
 
 Dynamic Toolbar_obj::__CreateEmpty() { return new Toolbar_obj; }
@@ -114,6 +120,7 @@ void Toolbar_obj::__Mark(HX_MARK_PARAMS)
 	HX_MARK_BEGIN_CLASS(Toolbar);
 	HX_MARK_MEMBER_NAME(pencil,"pencil");
 	HX_MARK_MEMBER_NAME(line,"line");
+	HX_MARK_MEMBER_NAME(playB,"playB");
 	 ::openfl::display::MovieClip_obj::__Mark(HX_MARK_ARG);
 	HX_MARK_END_CLASS();
 }
@@ -122,6 +129,7 @@ void Toolbar_obj::__Visit(HX_VISIT_PARAMS)
 {
 	HX_VISIT_MEMBER_NAME(pencil,"pencil");
 	HX_VISIT_MEMBER_NAME(line,"line");
+	HX_VISIT_MEMBER_NAME(playB,"playB");
 	 ::openfl::display::MovieClip_obj::__Visit(HX_VISIT_ARG);
 }
 
@@ -130,6 +138,9 @@ hx::Val Toolbar_obj::__Field(const ::String &inName,hx::PropertyAccess inCallPro
 	switch(inName.length) {
 	case 4:
 		if (HX_FIELD_EQ(inName,"line") ) { return hx::Val( line); }
+		break;
+	case 5:
+		if (HX_FIELD_EQ(inName,"playB") ) { return hx::Val( playB); }
 		break;
 	case 6:
 		if (HX_FIELD_EQ(inName,"pencil") ) { return hx::Val( pencil); }
@@ -152,6 +163,9 @@ hx::Val Toolbar_obj::__SetField(const ::String &inName,const hx::Val &inValue,hx
 	case 4:
 		if (HX_FIELD_EQ(inName,"line") ) { line=inValue.Cast<  ::ui::tool::icon::IconLine >(); return inValue; }
 		break;
+	case 5:
+		if (HX_FIELD_EQ(inName,"playB") ) { playB=inValue.Cast<  ::ui::tool::icon::IconPlay >(); return inValue; }
+		break;
 	case 6:
 		if (HX_FIELD_EQ(inName,"pencil") ) { pencil=inValue.Cast<  ::ui::tool::icon::IconPencil >(); return inValue; }
 	}
@@ -171,6 +185,7 @@ void Toolbar_obj::__GetFields(Array< ::String> &outFields)
 {
 	outFields->push(HX_HCSTRING("pencil","\xcd","\xf3","\x71","\x38"));
 	outFields->push(HX_HCSTRING("line","\xf4","\x17","\xb3","\x47"));
+	outFields->push(HX_HCSTRING("playB","\xce","\x07","\x8e","\xc4"));
 	super::__GetFields(outFields);
 };
 
@@ -178,6 +193,7 @@ void Toolbar_obj::__GetFields(Array< ::String> &outFields)
 static hx::StorageInfo Toolbar_obj_sMemberStorageInfo[] = {
 	{hx::fsObject /*::ui::tool::icon::IconPencil*/ ,(int)offsetof(Toolbar_obj,pencil),HX_HCSTRING("pencil","\xcd","\xf3","\x71","\x38")},
 	{hx::fsObject /*::ui::tool::icon::IconLine*/ ,(int)offsetof(Toolbar_obj,line),HX_HCSTRING("line","\xf4","\x17","\xb3","\x47")},
+	{hx::fsObject /*::ui::tool::icon::IconPlay*/ ,(int)offsetof(Toolbar_obj,playB),HX_HCSTRING("playB","\xce","\x07","\x8e","\xc4")},
 	{ hx::fsUnknown, 0, null()}
 };
 static hx::StaticInfo Toolbar_obj_sStaticStorageInfo[] = {
@@ -189,6 +205,7 @@ static hx::StaticInfo Toolbar_obj_sStaticStorageInfo[] = {
 static ::String Toolbar_obj_sMemberFields[] = {
 	HX_HCSTRING("pencil","\xcd","\xf3","\x71","\x38"),
 	HX_HCSTRING("line","\xf4","\x17","\xb3","\x47"),
+	HX_HCSTRING("playB","\xce","\x07","\x8e","\xc4"),
 	::String(null()) };
 
 static void Toolbar_obj_sMarkStatics(HX_MARK_PARAMS) {

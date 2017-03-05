@@ -22,8 +22,8 @@ class Track extends MovieClip
 	}
 	public function add_vis_line(line:Dynamic) {
 		Common.gGrid.massLineIndex(line);
-		Common.gTrack.addChild(line);
-		line.render("edit");
+		Common.gTrack.addChild(grid.lines[grid.lines.length - 1]);
+		grid.lines[grid.lines.length - 1].render("edit");
 	}
 	public function render_preview_line(_a:Point, _b:Point) {
 		var _locDis = Common.get_distance(_a, _b);
@@ -39,5 +39,20 @@ class Track extends MovieClip
 	public function clear_preview()
 	{
 		this.graphics.clear();
+	}
+	public function update_render()
+	{
+		var con = Common.cvar_line_render_mode;
+		if (con == 0) {
+			for (a in 0...grid.lines.length) {
+				grid.lines[a].render("play");
+			}
+			Common.cvar_line_render_mode = 1;
+		} else if (con == 1) {
+			for (b in 0...grid.lines.length) {
+				grid.lines[b].render("edit");
+			}
+			Common.cvar_line_render_mode = 0;
+		}
 	}
 }

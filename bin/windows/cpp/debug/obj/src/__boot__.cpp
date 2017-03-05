@@ -499,6 +499,9 @@
 #ifndef INCLUDED_ui_tool_lr_ToolLine
 #include <ui/tool/lr/ToolLine.h>
 #endif
+#ifndef INCLUDED_ui_tool_icon_IconPlay
+#include <ui/tool/icon/IconPlay.h>
+#endif
 #ifndef INCLUDED_ui_tool_icon_IconPencil
 #include <ui/tool/icon/IconPencil.h>
 #endif
@@ -1791,6 +1794,7 @@ hx::RegisterResources( hx::GetResources() );
 ::openfl::display::DisplayObject_obj::__register();
 ::ui::tool::lr::ToolPencil_obj::__register();
 ::ui::tool::lr::ToolLine_obj::__register();
+::ui::tool::icon::IconPlay_obj::__register();
 ::ui::tool::icon::IconPencil_obj::__register();
 ::ui::tool::icon::IconLine_obj::__register();
 ::ui::tool::icon::IconBase_obj::__register();

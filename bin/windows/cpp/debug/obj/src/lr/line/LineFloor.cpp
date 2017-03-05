@@ -109,10 +109,10 @@ bool LineFloor_obj::_hx_isInstanceOf(int inClassId) {
 
 void LineFloor_obj::render(::String con){
             	HX_STACKFRAME(&_hx_pos_67f2f2f3fefeb1e4_24_render)
-HXLINE(  25)		if ((con == HX_("edit",0a,ca,0e,43))) {
-HXLINE(  26)			Float _loc_3;
-HXLINE(  27)			Float _loc_4;
-HXLINE(  28)			this->get_graphics()->clear();
+HXLINE(  25)		this->get_graphics()->clear();
+HXLINE(  26)		if ((con == HX_("edit",0a,ca,0e,43))) {
+HXLINE(  27)			Float _loc_3;
+HXLINE(  28)			Float _loc_4;
 HXLINE(  29)			if ((this->n->x > (int)0)) {
 HXLINE(  29)				_loc_3 = ::Math_obj::ceil(this->n->x);
             			}

@@ -90,6 +90,7 @@ class HXCPP_CLASS_ATTRIBUTES Common_obj : public hx::Object
 		static Float track_scale_max;
 		static Float track_scale_min;
 		static bool cvar_icon_hit_display;
+		static int cvar_line_render_mode;
 		static Float stage_width;
 		static Float stage_height;
 		static Float get_angle_radians( ::openfl::geom::Point _a, ::openfl::geom::Point _b);

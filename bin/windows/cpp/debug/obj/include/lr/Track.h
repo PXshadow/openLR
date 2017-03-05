@@ -66,6 +66,9 @@ class HXCPP_CLASS_ATTRIBUTES Track_obj : public  ::openfl::display::MovieClip_ob
 		void clear_preview();
 		::Dynamic clear_preview_dyn();
 
+		void update_render();
+		::Dynamic update_render_dyn();
+
 };
 
 } // end namespace lr

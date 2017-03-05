@@ -22,10 +22,10 @@ class LineFloor extends LineBase
 	}
 	public function render(con:String)
 	{
+		this.graphics.clear();
 		if (con == "edit") {
 			var _loc_3:Float;
 			var _loc_4:Float;
-			this.graphics.clear();
 			_loc_3 = n.x > 0 ? (Math.ceil(n.x)) : (Math.floor(n.x));
 			_loc_4 = n.y > 0 ? (Math.ceil(n.y)) : (Math.floor(n.y));
 			this.graphics.lineStyle(2, 26367, 1, true, "normal", "round");
