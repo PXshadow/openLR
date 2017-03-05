@@ -42,6 +42,7 @@ class Common
 	public static var sBLueLineCount:Int = 0;
 	public static var sRedLineCount:Int = 0;
 	public static var sGreenLineCount:Int = 0;
+	public static var sLineID:Int = 0;
 	
 	public static var track_scale:Float;
 	public static var track_scale_max:Float = 12;

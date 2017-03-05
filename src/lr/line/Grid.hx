@@ -35,7 +35,6 @@ class Grid
 	public function massLineIndex(line:Dynamic)
 	{
 		this.lines.push(line);
-		Common.sLineCount += 1;
 		if (line.type == 0) {
 			Common.sBLueLineCount += 1;
 		} else if (line.type == 1) {
@@ -43,5 +42,8 @@ class Grid
 		} else if (line.type == 2) {
 			Common.sGreenLineCount += 1;
 		}
+		line.name = Common.sLineID;
+		Common.sLineCount += 1;
+		Common.sLineID += 1;
 	}
 }

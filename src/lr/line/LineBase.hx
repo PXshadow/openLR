@@ -26,6 +26,7 @@ class LineBase extends MovieClip
 	private var _lim2:Float;
 	public var inv:Bool = false;
 	public var type:Int = -1;
+	public var name:Int;
 	
 	public function new() 
 	{

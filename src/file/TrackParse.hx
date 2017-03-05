@@ -34,6 +34,7 @@ class TrackParse
 			this.trackData.e[i].type = lines[i].type; 
 			this.trackData.e[i].inv = lines[i].inv;
 			this.trackData.e[i].lim = lines[i]._lim;
+			this.trackData.e[i].name = lines[i].name;
 		}
 		
 		return(this.trackData);
