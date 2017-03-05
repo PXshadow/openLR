@@ -4,9 +4,6 @@
 #ifndef INCLUDED_global_Common
 #include <global/Common.h>
 #endif
-#ifndef INCLUDED_haxe_Log
-#include <haxe/Log.h>
-#endif
 #ifndef INCLUDED_lr_line_Grid
 #include <lr/line/Grid.h>
 #endif
@@ -58,12 +55,6 @@ HXDLIN(  44)					::global::Common_obj::sGreenLineCount = (::global::Common_obj::
             				}
             			}
             		}
-HXLINE(  46)		::haxe::Log_obj::trace(::global::Common_obj::sLineCount, ::Dynamic(hx::Anon_obj::Create(5)
-            			->setFixed(0,HX_("className",a3,92,3d,dc),HX_("lr.line.Grid",b8,d1,b0,0c))
-            			->setFixed(1,HX_("customParams",d7,51,18,ed),::cpp::VirtualArray_obj::__new(3)->init(0,::global::Common_obj::sBLueLineCount)->init(1,::global::Common_obj::sRedLineCount)->init(2,::global::Common_obj::sGreenLineCount))
-            			->setFixed(2,HX_("methodName",cc,19,0f,12),HX_("massLineIndex",ea,7e,be,88))
-            			->setFixed(3,HX_("fileName",e7,5a,43,62),HX_("Grid.hx",98,93,72,d4))
-            			->setFixed(4,HX_("lineNumber",dd,81,22,76),(int)46)));
             	}
 
 

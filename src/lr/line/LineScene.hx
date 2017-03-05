@@ -19,10 +19,14 @@ class LineScene extends LineBase
 		this.calculateConstants();
 		this.set_lim(_lim == -1 ? (0) : (_lim));
 	}
-	public function render()
+	public function render(con:String)
 	{
         this.graphics.clear();
-        this.graphics.lineStyle(2, 0x00CC00, 1, true, "normal", "round");
+		if (con == "edit") {
+			this.graphics.lineStyle(2, 0x00CC00, 1, true, "normal", "round");
+		} else {
+			this.graphics.lineStyle(2, 0x000000, 1, true, "normal", "round");
+		}
         this.graphics.moveTo(a.x, a.y);
         this.graphics.lineTo(b.x, b.y);
 	}

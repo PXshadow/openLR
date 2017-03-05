@@ -53,7 +53,7 @@ class HXCPP_CLASS_ATTRIBUTES LineScene_obj : public  ::lr::line::LineBase_obj
 		bool _hx_isInstanceOf(int inClassId);
 		::String __ToString() const { return HX_HCSTRING("LineScene","\x98","\xbc","\x9f","\x61"); }
 
-		void render();
+		void render(::String con);
 		::Dynamic render_dyn();
 
 };

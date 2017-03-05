@@ -54,6 +54,7 @@ import sys.FileSystem;
 		var id;
 		id = "icon/line.png";useManifest = true;
 		id = "icon/pencil.png";useManifest = true;
+		id = "icon/play.png";useManifest = true;
 		
 		
 		if (useManifest) {
@@ -153,6 +154,7 @@ import sys.FileSystem;
 
 #if !display
 #if flash
+
 
 
 

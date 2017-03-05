@@ -90,7 +90,7 @@ void Track_obj::add_vis_line( ::Dynamic line){
             	HX_STACKFRAME(&_hx_pos_f9b804989ab5517c_23_add_vis_line)
 HXLINE(  24)		::global::Common_obj::gGrid->massLineIndex(line);
 HXLINE(  25)		::global::Common_obj::gTrack->addChild(( ( ::openfl::display::DisplayObject)(line) ));
-HXLINE(  26)		line->__Field(HX_("render",56,6b,29,05),hx::paccDynamic)();
+HXLINE(  26)		line->__Field(HX_("render",56,6b,29,05),hx::paccDynamic)(HX_("few",58,be,4d,00));
             	}
 
 

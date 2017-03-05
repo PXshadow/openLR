@@ -39,7 +39,7 @@
 #endif
 
 HX_DEFINE_STACK_FRAME(_hx_pos_fffeb3ab353ef1d6_27_new,"DefaultAssetLibrary","new",0xbc37e41e,"DefaultAssetLibrary.new","DefaultAssetLibrary.hx",27,0x0fc48912)
-HX_LOCAL_STACK_FRAME(_hx_pos_fffeb3ab353ef1d6_98_loadManifest,"DefaultAssetLibrary","loadManifest",0x6f596c77,"DefaultAssetLibrary.loadManifest","DefaultAssetLibrary.hx",98,0x0fc48912)
+HX_LOCAL_STACK_FRAME(_hx_pos_fffeb3ab353ef1d6_99_loadManifest,"DefaultAssetLibrary","loadManifest",0x6f596c77,"DefaultAssetLibrary.loadManifest","DefaultAssetLibrary.hx",99,0x0fc48912)
 
 void DefaultAssetLibrary_obj::__construct(){
             	HX_STACKFRAME(&_hx_pos_fffeb3ab353ef1d6_27_new)
@@ -63,8 +63,10 @@ HXLINE(  54)		::String id = HX_("icon/line.png",c5,77,ca,b4);
 HXLINE(  55)		useManifest = true;
 HXLINE(  56)		id = HX_("icon/pencil.png",9e,85,92,d7);
 HXDLIN(  56)		useManifest = true;
-HXLINE(  59)		if (useManifest) {
-HXLINE(  61)			this->loadManifest();
+HXLINE(  57)		id = HX_("icon/play.png",c5,8d,b4,67);
+HXDLIN(  57)		useManifest = true;
+HXLINE(  60)		if (useManifest) {
+HXLINE(  62)			this->loadManifest();
             		}
             	}
 
@@ -88,22 +90,22 @@ bool DefaultAssetLibrary_obj::_hx_isInstanceOf(int inClassId) {
 }
 
 void DefaultAssetLibrary_obj::loadManifest(){
-            	HX_STACKFRAME(&_hx_pos_fffeb3ab353ef1d6_98_loadManifest)
-HXLINE( 100)		 ::haxe::io::Bytes bytes = ::haxe::Resource_obj::getBytes(HX_("__ASSET_MANIFEST__",fe,d8,3a,3a));
-HXLINE( 101)		 ::Dynamic manifest;
-HXLINE( 103)		if (hx::IsNotNull( bytes )) {
-HXLINE( 105)			 ::lime::utils::AssetManifest manifest1 = ::lime::utils::AssetManifest_obj::fromBytes(bytes);
-HXLINE( 106)			manifest1->basePath = this->rootPath;
-HXLINE( 107)			this->_hx___fromManifest(manifest1);
+            	HX_STACKFRAME(&_hx_pos_fffeb3ab353ef1d6_99_loadManifest)
+HXLINE( 101)		 ::haxe::io::Bytes bytes = ::haxe::Resource_obj::getBytes(HX_("__ASSET_MANIFEST__",fe,d8,3a,3a));
+HXLINE( 102)		 ::Dynamic manifest;
+HXLINE( 104)		if (hx::IsNotNull( bytes )) {
+HXLINE( 106)			 ::lime::utils::AssetManifest manifest1 = ::lime::utils::AssetManifest_obj::fromBytes(bytes);
+HXLINE( 107)			manifest1->basePath = this->rootPath;
+HXLINE( 108)			this->_hx___fromManifest(manifest1);
             		}
             		else {
-HXLINE( 113)			 ::lime::utils::AssetManifest manifest2 = ::lime::utils::AssetManifest_obj::fromFile((this->rootPath + HX_("manifest",af,fb,29,d0)));
-HXLINE( 115)			if (hx::IsNotNull( manifest2 )) {
-HXLINE( 117)				manifest2->basePath = this->rootPath;
-HXLINE( 118)				this->_hx___fromManifest(manifest2);
+HXLINE( 114)			 ::lime::utils::AssetManifest manifest2 = ::lime::utils::AssetManifest_obj::fromFile((this->rootPath + HX_("manifest",af,fb,29,d0)));
+HXLINE( 116)			if (hx::IsNotNull( manifest2 )) {
+HXLINE( 118)				manifest2->basePath = this->rootPath;
+HXLINE( 119)				this->_hx___fromManifest(manifest2);
             			}
             			else {
-HXLINE( 122)				::lime::utils::Log_obj::warn(HX_("Could not load asset manifest (bytes was null)",21,51,77,e6),hx::SourceInfo(HX_("DefaultAssetLibrary.hx",12,89,c4,0f),122,HX_("DefaultAssetLibrary",2c,3d,78,3a),HX_("loadManifest",f5,e7,92,89)));
+HXLINE( 123)				::lime::utils::Log_obj::warn(HX_("Could not load asset manifest (bytes was null)",21,51,77,e6),hx::SourceInfo(HX_("DefaultAssetLibrary.hx",12,89,c4,0f),123,HX_("DefaultAssetLibrary",2c,3d,78,3a),HX_("loadManifest",f5,e7,92,89)));
             			}
             		}
             	}

@@ -107,41 +107,43 @@ bool LineFloor_obj::_hx_isInstanceOf(int inClassId) {
 	}
 }
 
-void LineFloor_obj::render(){
+void LineFloor_obj::render(::String con){
             	HX_STACKFRAME(&_hx_pos_67f2f2f3fefeb1e4_24_render)
-HXLINE(  25)		Float _loc_3;
-HXLINE(  26)		Float _loc_4;
-HXLINE(  27)		this->get_graphics()->clear();
-HXLINE(  28)		if ((this->n->x > (int)0)) {
-HXLINE(  28)			_loc_3 = ::Math_obj::ceil(this->n->x);
+HXLINE(  25)		if ((con == HX_("edit",0a,ca,0e,43))) {
+HXLINE(  26)			Float _loc_3;
+HXLINE(  27)			Float _loc_4;
+HXLINE(  28)			this->get_graphics()->clear();
+HXLINE(  29)			if ((this->n->x > (int)0)) {
+HXLINE(  29)				_loc_3 = ::Math_obj::ceil(this->n->x);
+            			}
+            			else {
+HXLINE(  29)				_loc_3 = ::Math_obj::floor(this->n->x);
+            			}
+HXLINE(  30)			if ((this->n->y > (int)0)) {
+HXLINE(  30)				_loc_4 = ::Math_obj::ceil(this->n->y);
+            			}
+            			else {
+HXLINE(  30)				_loc_4 = ::Math_obj::floor(this->n->y);
+            			}
+HXLINE(  31)			 ::openfl::display::Graphics _hx_tmp = this->get_graphics();
+HXDLIN(  31)			 ::Dynamic _hx_tmp1 = ::openfl::display::_LineScaleMode::LineScaleMode_Impl__obj::fromString(HX_("normal",27,72,69,30));
+HXDLIN(  31)			_hx_tmp->lineStyle((int)2,(int)26367,(int)1,true,_hx_tmp1,::openfl::display::_CapsStyle::CapsStyle_Impl__obj::fromString(HX_("round",4e,f8,65,ed)),null(),null());
+HXLINE(  32)			 ::openfl::display::Graphics _hx_tmp2 = this->get_graphics();
+HXDLIN(  32)			Float _hx_tmp3 = (this->a->x + _loc_3);
+HXDLIN(  32)			_hx_tmp2->moveTo(_hx_tmp3,(this->a->y + _loc_4));
+HXLINE(  33)			 ::openfl::display::Graphics _hx_tmp4 = this->get_graphics();
+HXDLIN(  33)			Float _hx_tmp5 = (this->b->x + _loc_3);
+HXDLIN(  33)			_hx_tmp4->lineTo(_hx_tmp5,(this->b->y + _loc_4));
             		}
-            		else {
-HXLINE(  28)			_loc_3 = ::Math_obj::floor(this->n->x);
-            		}
-HXLINE(  29)		if ((this->n->y > (int)0)) {
-HXLINE(  29)			_loc_4 = ::Math_obj::ceil(this->n->y);
-            		}
-            		else {
-HXLINE(  29)			_loc_4 = ::Math_obj::floor(this->n->y);
-            		}
-HXLINE(  30)		 ::openfl::display::Graphics _hx_tmp = this->get_graphics();
-HXDLIN(  30)		 ::Dynamic _hx_tmp1 = ::openfl::display::_LineScaleMode::LineScaleMode_Impl__obj::fromString(HX_("normal",27,72,69,30));
-HXDLIN(  30)		_hx_tmp->lineStyle((int)2,(int)26367,(int)1,true,_hx_tmp1,::openfl::display::_CapsStyle::CapsStyle_Impl__obj::fromString(HX_("round",4e,f8,65,ed)),null(),null());
-HXLINE(  31)		 ::openfl::display::Graphics _hx_tmp2 = this->get_graphics();
-HXDLIN(  31)		Float _hx_tmp3 = (this->a->x + _loc_3);
-HXDLIN(  31)		_hx_tmp2->moveTo(_hx_tmp3,(this->a->y + _loc_4));
-HXLINE(  32)		 ::openfl::display::Graphics _hx_tmp4 = this->get_graphics();
-HXDLIN(  32)		Float _hx_tmp5 = (this->b->x + _loc_3);
-HXDLIN(  32)		_hx_tmp4->lineTo(_hx_tmp5,(this->b->y + _loc_4));
-HXLINE(  33)		 ::openfl::display::Graphics _hx_tmp6 = this->get_graphics();
-HXDLIN(  33)		 ::Dynamic _hx_tmp7 = ::openfl::display::_LineScaleMode::LineScaleMode_Impl__obj::fromString(HX_("normal",27,72,69,30));
-HXDLIN(  33)		_hx_tmp6->lineStyle((int)2,(int)0,(int)1,true,_hx_tmp7,::openfl::display::_CapsStyle::CapsStyle_Impl__obj::fromString(HX_("round",4e,f8,65,ed)),null(),null());
-HXLINE(  34)		this->get_graphics()->moveTo(this->a->x,this->a->y);
-HXLINE(  35)		this->get_graphics()->lineTo(this->b->x,this->b->y);
+HXLINE(  35)		 ::openfl::display::Graphics _hx_tmp6 = this->get_graphics();
+HXDLIN(  35)		 ::Dynamic _hx_tmp7 = ::openfl::display::_LineScaleMode::LineScaleMode_Impl__obj::fromString(HX_("normal",27,72,69,30));
+HXDLIN(  35)		_hx_tmp6->lineStyle((int)2,(int)0,(int)1,true,_hx_tmp7,::openfl::display::_CapsStyle::CapsStyle_Impl__obj::fromString(HX_("round",4e,f8,65,ed)),null(),null());
+HXLINE(  36)		this->get_graphics()->moveTo(this->a->x,this->a->y);
+HXLINE(  37)		this->get_graphics()->lineTo(this->b->x,this->b->y);
             	}
 
 
-HX_DEFINE_DYNAMIC_FUNC0(LineFloor_obj,render,(void))
+HX_DEFINE_DYNAMIC_FUNC1(LineFloor_obj,render,(void))
 
 
 hx::ObjectPtr< LineFloor_obj > LineFloor_obj::__new( ::openfl::geom::Point _a, ::openfl::geom::Point _b,bool _inv,hx::Null< int >  __o__lim) {

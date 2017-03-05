@@ -23,7 +23,7 @@ class Track extends MovieClip
 	public function add_vis_line(line:Dynamic) {
 		Common.gGrid.massLineIndex(line);
 		Common.gTrack.addChild(line);
-		line.render();
+		line.render("edit");
 	}
 	public function render_preview_line(_a:Point, _b:Point) {
 		var _locDis = Common.get_distance(_a, _b);
@@ -32,7 +32,7 @@ class Track extends MovieClip
 			_locCol = 0x000000;
 		}
 		this.graphics.clear();
-		this.graphics.lineStyle(4, _locCol, 1);
+		this.graphics.lineStyle(2, _locCol, 1);
 		this.graphics.moveTo(_a.x, _a.y);
 		this.graphics.lineTo(_b.x, _b.y);
 	}

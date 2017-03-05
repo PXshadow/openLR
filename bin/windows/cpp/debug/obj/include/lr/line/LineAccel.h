@@ -53,7 +53,7 @@ class HXCPP_CLASS_ATTRIBUTES LineAccel_obj : public  ::lr::line::LineBase_obj
 		bool _hx_isInstanceOf(int inClassId);
 		::String __ToString() const { return HX_HCSTRING("LineAccel","\x34","\xbf","\x67","\x04"); }
 
-		void render();
+		void render(::String con);
 		::Dynamic render_dyn();
 
 };

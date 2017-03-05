@@ -53,7 +53,7 @@ class HXCPP_CLASS_ATTRIBUTES LineFloor_obj : public  ::lr::line::LineBase_obj
 		bool _hx_isInstanceOf(int inClassId);
 		::String __ToString() const { return HX_HCSTRING("LineFloor","\x18","\xb5","\x64","\xeb"); }
 
-		void render();
+		void render(::String con);
 		::Dynamic render_dyn();
 
 };

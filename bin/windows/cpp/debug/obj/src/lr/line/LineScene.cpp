@@ -103,18 +103,25 @@ bool LineScene_obj::_hx_isInstanceOf(int inClassId) {
 	}
 }
 
-void LineScene_obj::render(){
+void LineScene_obj::render(::String con){
             	HX_STACKFRAME(&_hx_pos_c872745660560a05_23_render)
 HXLINE(  24)		this->get_graphics()->clear();
-HXLINE(  25)		 ::openfl::display::Graphics _hx_tmp = this->get_graphics();
-HXDLIN(  25)		 ::Dynamic _hx_tmp1 = ::openfl::display::_LineScaleMode::LineScaleMode_Impl__obj::fromString(HX_("normal",27,72,69,30));
-HXDLIN(  25)		_hx_tmp->lineStyle((int)2,(int)52224,(int)1,true,_hx_tmp1,::openfl::display::_CapsStyle::CapsStyle_Impl__obj::fromString(HX_("round",4e,f8,65,ed)),null(),null());
-HXLINE(  26)		this->get_graphics()->moveTo(this->a->x,this->a->y);
-HXLINE(  27)		this->get_graphics()->lineTo(this->b->x,this->b->y);
+HXLINE(  25)		if ((con == HX_("edit",0a,ca,0e,43))) {
+HXLINE(  26)			 ::openfl::display::Graphics _hx_tmp = this->get_graphics();
+HXDLIN(  26)			 ::Dynamic _hx_tmp1 = ::openfl::display::_LineScaleMode::LineScaleMode_Impl__obj::fromString(HX_("normal",27,72,69,30));
+HXDLIN(  26)			_hx_tmp->lineStyle((int)2,(int)52224,(int)1,true,_hx_tmp1,::openfl::display::_CapsStyle::CapsStyle_Impl__obj::fromString(HX_("round",4e,f8,65,ed)),null(),null());
+            		}
+            		else {
+HXLINE(  28)			 ::openfl::display::Graphics _hx_tmp2 = this->get_graphics();
+HXDLIN(  28)			 ::Dynamic _hx_tmp3 = ::openfl::display::_LineScaleMode::LineScaleMode_Impl__obj::fromString(HX_("normal",27,72,69,30));
+HXDLIN(  28)			_hx_tmp2->lineStyle((int)2,(int)0,(int)1,true,_hx_tmp3,::openfl::display::_CapsStyle::CapsStyle_Impl__obj::fromString(HX_("round",4e,f8,65,ed)),null(),null());
+            		}
+HXLINE(  30)		this->get_graphics()->moveTo(this->a->x,this->a->y);
+HXLINE(  31)		this->get_graphics()->lineTo(this->b->x,this->b->y);
             	}
 
 
-HX_DEFINE_DYNAMIC_FUNC0(LineScene_obj,render,(void))
+HX_DEFINE_DYNAMIC_FUNC1(LineScene_obj,render,(void))
 
 
 hx::ObjectPtr< LineScene_obj > LineScene_obj::__new( ::openfl::geom::Point _a, ::openfl::geom::Point _b,bool _inv,hx::Null< int >  __o__lim) {
