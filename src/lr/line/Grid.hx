@@ -42,7 +42,7 @@ class Grid
 		} else if (line.type == 2) {
 			Common.sGreenLineCount += 1;
 		}
-		line.name = Common.sLineID;
+		line.ID = Common.sLineID;
 		Common.sLineCount += 1;
 		Common.sLineID += 1;
 	}

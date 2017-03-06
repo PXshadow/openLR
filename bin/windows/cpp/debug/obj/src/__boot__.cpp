@@ -499,6 +499,9 @@
 #ifndef INCLUDED_ui_tool_lr_ToolLine
 #include <ui/tool/lr/ToolLine.h>
 #endif
+#ifndef INCLUDED_ui_tool_icon_IconSave
+#include <ui/tool/icon/IconSave.h>
+#endif
 #ifndef INCLUDED_ui_tool_icon_IconPlay
 #include <ui/tool/icon/IconPlay.h>
 #endif
@@ -522,6 +525,12 @@
 #endif
 #ifndef INCLUDED_sys_io__Process_Stdin
 #include <sys/io/_Process/Stdin.h>
+#endif
+#ifndef INCLUDED_sys_io_FileOutput
+#include <sys/io/FileOutput.h>
+#endif
+#ifndef INCLUDED_sys_io_File
+#include <sys/io/File.h>
 #endif
 #ifndef INCLUDED_sys_FileSystem
 #include <sys/FileSystem.h>
@@ -1800,6 +1809,7 @@ hx::RegisterResources( hx::GetResources() );
 ::openfl::display::DisplayObject_obj::__register();
 ::ui::tool::lr::ToolPencil_obj::__register();
 ::ui::tool::lr::ToolLine_obj::__register();
+::ui::tool::icon::IconSave_obj::__register();
 ::ui::tool::icon::IconPlay_obj::__register();
 ::ui::tool::icon::IconPencil_obj::__register();
 ::ui::tool::icon::IconLine_obj::__register();
@@ -1808,6 +1818,8 @@ hx::RegisterResources( hx::GetResources() );
 ::sys::io::Process_obj::__register();
 ::sys::io::_Process::Stdout_obj::__register();
 ::sys::io::_Process::Stdin_obj::__register();
+::sys::io::FileOutput_obj::__register();
+::sys::io::File_obj::__register();
 ::sys::FileSystem_obj::__register();
 ::haxe::lang::Iterable_obj::__register();
 ::haxe::lang::Iterator_obj::__register();

@@ -30,6 +30,10 @@ import global.Common;
  * 		--Okay suddenly it does anti-alias? Really weird AF
  * -- Haxe does not support array indexing in negative values. Map data type might possible fix this instead of Array or Vector.
  * 
+ * /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ * //Notes
+ * /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ * 
  * -- GitKraken test: Success!
  * 
  */
@@ -39,7 +43,7 @@ class Main extends Sprite
 	private var visContainer:MovieClip;
 	private var track:Track;
 	private var toolBar:Toolbar;
-	
+	private var saveManager:SaveManager;
 	public function new() 
 	{
 		super();
@@ -56,6 +60,8 @@ class Main extends Sprite
 		
 		Common.stage_height = this.stage.stageHeight;
 		Common.stage_width = this.stage.stageWidth;
+		
+		this.saveManager = new SaveManager();
 	}
 	
 	public function init_track()

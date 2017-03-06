@@ -40,8 +40,8 @@
 #endif
 
 HX_DEFINE_STACK_FRAME(_hx_pos_75467877f4d5b1ca_13_new,"lr.line.LineBase","new",0x08208a89,"lr.line.LineBase.new","lr/line/LineBase.hx",13,0x0e3518a7)
-HX_LOCAL_STACK_FRAME(_hx_pos_75467877f4d5b1ca_36_calculateConstants,"lr.line.LineBase","calculateConstants",0x5b500040,"lr.line.LineBase.calculateConstants","lr/line/LineBase.hx",36,0x0e3518a7)
-HX_LOCAL_STACK_FRAME(_hx_pos_75467877f4d5b1ca_47_set_lim,"lr.line.LineBase","set_lim",0x1ae82b9c,"lr.line.LineBase.set_lim","lr/line/LineBase.hx",47,0x0e3518a7)
+HX_LOCAL_STACK_FRAME(_hx_pos_75467877f4d5b1ca_37_calculateConstants,"lr.line.LineBase","calculateConstants",0x5b500040,"lr.line.LineBase.calculateConstants","lr/line/LineBase.hx",37,0x0e3518a7)
+HX_LOCAL_STACK_FRAME(_hx_pos_75467877f4d5b1ca_48_set_lim,"lr.line.LineBase","set_lim",0x1ae82b9c,"lr.line.LineBase.set_lim","lr/line/LineBase.hx",48,0x0e3518a7)
 namespace lr{
 namespace line{
 
@@ -49,7 +49,7 @@ void LineBase_obj::__construct(){
             	HX_STACKFRAME(&_hx_pos_75467877f4d5b1ca_13_new)
 HXLINE(  28)		this->type = (int)-1;
 HXLINE(  27)		this->inv = false;
-HXLINE(  32)		super::__construct();
+HXLINE(  33)		super::__construct();
             	}
 
 Dynamic LineBase_obj::__CreateEmpty() { return new LineBase_obj; }
@@ -84,62 +84,62 @@ bool LineBase_obj::_hx_isInstanceOf(int inClassId) {
 }
 
 void LineBase_obj::calculateConstants(){
-            	HX_GC_STACKFRAME(&_hx_pos_75467877f4d5b1ca_36_calculateConstants)
-HXLINE(  37)		this->d = ::global::Common_obj::get_distance_point(this->a,this->b);
-HXLINE(  38)		Float _hx_tmp = (this->d->y * this->a->x);
-HXDLIN(  38)		this->C = (_hx_tmp - (this->d->x * this->a->y));
-HXLINE(  39)		Float sqrDis = (this->d->x * this->d->x);
-HXDLIN(  39)		Float sqrDis1 = (sqrDis + (this->d->y * this->d->y));
-HXLINE(  40)		this->invSqrDis = ((Float)(int)1 / (Float)sqrDis1);
-HXLINE(  41)		this->dst = ::Math_obj::sqrt(sqrDis1);
-HXLINE(  42)		this->invDst = ((Float)(int)1 / (Float)this->dst);
-HXLINE(  43)		int _hx_tmp1;
-HXDLIN(  43)		if (this->inv) {
-HXLINE(  43)			_hx_tmp1 = (int)1;
+            	HX_GC_STACKFRAME(&_hx_pos_75467877f4d5b1ca_37_calculateConstants)
+HXLINE(  38)		this->d = ::global::Common_obj::get_distance_point(this->a,this->b);
+HXLINE(  39)		Float _hx_tmp = (this->d->y * this->a->x);
+HXDLIN(  39)		this->C = (_hx_tmp - (this->d->x * this->a->y));
+HXLINE(  40)		Float sqrDis = (this->d->x * this->d->x);
+HXDLIN(  40)		Float sqrDis1 = (sqrDis + (this->d->y * this->d->y));
+HXLINE(  41)		this->invSqrDis = ((Float)(int)1 / (Float)sqrDis1);
+HXLINE(  42)		this->dst = ::Math_obj::sqrt(sqrDis1);
+HXLINE(  43)		this->invDst = ((Float)(int)1 / (Float)this->dst);
+HXLINE(  44)		int _hx_tmp1;
+HXDLIN(  44)		if (this->inv) {
+HXLINE(  44)			_hx_tmp1 = (int)1;
             		}
             		else {
-HXLINE(  43)			_hx_tmp1 = (int)-1;
+HXLINE(  44)			_hx_tmp1 = (int)-1;
             		}
-HXDLIN(  43)		Float _hx_tmp2 = ((this->d->y * this->invDst) * _hx_tmp1);
-HXDLIN(  43)		int _hx_tmp3;
-HXDLIN(  43)		if (this->inv) {
-HXLINE(  43)			_hx_tmp3 = (int)-1;
+HXDLIN(  44)		Float _hx_tmp2 = ((this->d->y * this->invDst) * _hx_tmp1);
+HXDLIN(  44)		int _hx_tmp3;
+HXDLIN(  44)		if (this->inv) {
+HXLINE(  44)			_hx_tmp3 = (int)-1;
             		}
             		else {
-HXLINE(  43)			_hx_tmp3 = (int)1;
+HXLINE(  44)			_hx_tmp3 = (int)1;
             		}
-HXDLIN(  43)		this->n =  ::openfl::geom::Point_obj::__alloc( HX_CTX ,_hx_tmp2,((this->d->x * this->invDst) * _hx_tmp3));
-HXLINE(  44)		this->LIM = ::Math_obj::min(((Float)0.25),((Float)(int)10 / (Float)this->dst));
+HXDLIN(  44)		this->n =  ::openfl::geom::Point_obj::__alloc( HX_CTX ,_hx_tmp2,((this->d->x * this->invDst) * _hx_tmp3));
+HXLINE(  45)		this->LIM = ::Math_obj::min(((Float)0.25),((Float)(int)10 / (Float)this->dst));
             	}
 
 
 HX_DEFINE_DYNAMIC_FUNC0(LineBase_obj,calculateConstants,(void))
 
 void LineBase_obj::set_lim(int input){
-            	HX_STACKFRAME(&_hx_pos_75467877f4d5b1ca_47_set_lim)
-HXLINE(  48)		switch((int)(input)){
+            	HX_STACKFRAME(&_hx_pos_75467877f4d5b1ca_48_set_lim)
+HXLINE(  49)		switch((int)(input)){
             			case (int)0: {
-HXLINE(  52)				this->_lim1 = (int)0;
-HXLINE(  53)				this->_lim2 = (int)1;
+HXLINE(  53)				this->_lim1 = (int)0;
+HXLINE(  54)				this->_lim2 = (int)1;
             			}
             			break;
             			case (int)1: {
-HXLINE(  57)				this->_lim1 = -(this->LIM);
-HXLINE(  58)				this->_lim2 = (int)1;
+HXLINE(  58)				this->_lim1 = -(this->LIM);
+HXLINE(  59)				this->_lim2 = (int)1;
             			}
             			break;
             			case (int)2: {
-HXLINE(  62)				this->_lim1 = (int)0;
-HXLINE(  63)				this->_lim2 = ((int)1 + this->LIM);
+HXLINE(  63)				this->_lim1 = (int)0;
+HXLINE(  64)				this->_lim2 = ((int)1 + this->LIM);
             			}
             			break;
             			case (int)3: {
-HXLINE(  67)				this->_lim1 = -(this->LIM);
-HXLINE(  68)				this->_lim2 = ((int)1 + this->LIM);
+HXLINE(  68)				this->_lim1 = -(this->LIM);
+HXLINE(  69)				this->_lim2 = ((int)1 + this->LIM);
             			}
             			break;
             		}
-HXLINE(  71)		this->_lim = input;
+HXLINE(  72)		this->_lim = input;
             	}
 
 
@@ -180,6 +180,7 @@ void LineBase_obj::__Mark(HX_MARK_PARAMS)
 	HX_MARK_MEMBER_NAME(_lim2,"_lim2");
 	HX_MARK_MEMBER_NAME(inv,"inv");
 	HX_MARK_MEMBER_NAME(type,"type");
+	HX_MARK_MEMBER_NAME(ID,"ID");
 	 ::openfl::display::MovieClip_obj::__Mark(HX_MARK_ARG);
 	HX_MARK_END_CLASS();
 }
@@ -200,6 +201,7 @@ void LineBase_obj::__Visit(HX_VISIT_PARAMS)
 	HX_VISIT_MEMBER_NAME(_lim2,"_lim2");
 	HX_VISIT_MEMBER_NAME(inv,"inv");
 	HX_VISIT_MEMBER_NAME(type,"type");
+	HX_VISIT_MEMBER_NAME(ID,"ID");
 	 ::openfl::display::MovieClip_obj::__Visit(HX_VISIT_ARG);
 }
 
@@ -212,6 +214,9 @@ hx::Val LineBase_obj::__Field(const ::String &inName,hx::PropertyAccess inCallPr
 		if (HX_FIELD_EQ(inName,"d") ) { return hx::Val( d); }
 		if (HX_FIELD_EQ(inName,"C") ) { return hx::Val( C); }
 		if (HX_FIELD_EQ(inName,"n") ) { return hx::Val( n); }
+		break;
+	case 2:
+		if (HX_FIELD_EQ(inName,"ID") ) { return hx::Val( ID); }
 		break;
 	case 3:
 		if (HX_FIELD_EQ(inName,"dst") ) { return hx::Val( dst); }
@@ -251,6 +256,9 @@ hx::Val LineBase_obj::__SetField(const ::String &inName,const hx::Val &inValue,h
 		if (HX_FIELD_EQ(inName,"C") ) { C=inValue.Cast< Float >(); return inValue; }
 		if (HX_FIELD_EQ(inName,"n") ) { n=inValue.Cast<  ::openfl::geom::Point >(); return inValue; }
 		break;
+	case 2:
+		if (HX_FIELD_EQ(inName,"ID") ) { ID=inValue.Cast< int >(); return inValue; }
+		break;
 	case 3:
 		if (HX_FIELD_EQ(inName,"dst") ) { dst=inValue.Cast< Float >(); return inValue; }
 		if (HX_FIELD_EQ(inName,"LIM") ) { LIM=inValue.Cast< Float >(); return inValue; }
@@ -289,6 +297,7 @@ void LineBase_obj::__GetFields(Array< ::String> &outFields)
 	outFields->push(HX_HCSTRING("_lim2","\xc1","\x32","\xc4","\xfa"));
 	outFields->push(HX_HCSTRING("inv","\xf1","\x0c","\x50","\x00"));
 	outFields->push(HX_HCSTRING("type","\xba","\xf2","\x08","\x4d"));
+	outFields->push(HX_HCSTRING("ID","\xdb","\x3f","\x00","\x00"));
 	super::__GetFields(outFields);
 };
 
@@ -308,6 +317,7 @@ static hx::StorageInfo LineBase_obj_sMemberStorageInfo[] = {
 	{hx::fsFloat,(int)offsetof(LineBase_obj,_lim2),HX_HCSTRING("_lim2","\xc1","\x32","\xc4","\xfa")},
 	{hx::fsBool,(int)offsetof(LineBase_obj,inv),HX_HCSTRING("inv","\xf1","\x0c","\x50","\x00")},
 	{hx::fsInt,(int)offsetof(LineBase_obj,type),HX_HCSTRING("type","\xba","\xf2","\x08","\x4d")},
+	{hx::fsInt,(int)offsetof(LineBase_obj,ID),HX_HCSTRING("ID","\xdb","\x3f","\x00","\x00")},
 	{ hx::fsUnknown, 0, null()}
 };
 static hx::StaticInfo *LineBase_obj_sStaticStorageInfo = 0;
@@ -328,6 +338,7 @@ static ::String LineBase_obj_sMemberFields[] = {
 	HX_HCSTRING("_lim2","\xc1","\x32","\xc4","\xfa"),
 	HX_HCSTRING("inv","\xf1","\x0c","\x50","\x00"),
 	HX_HCSTRING("type","\xba","\xf2","\x08","\x4d"),
+	HX_HCSTRING("ID","\xdb","\x3f","\x00","\x00"),
 	HX_HCSTRING("calculateConstants","\x49","\xe4","\x04","\xd9"),
 	HX_HCSTRING("set_lim","\xf3","\xa8","\xc8","\x19"),
 	::String(null()) };

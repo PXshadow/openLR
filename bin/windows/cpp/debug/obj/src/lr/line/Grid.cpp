@@ -37,24 +37,27 @@ bool Grid_obj::_hx_isInstanceOf(int inClassId) {
 void Grid_obj::massLineIndex( ::Dynamic line){
             	HX_STACKFRAME(&_hx_pos_0c86f2f20bd0cd73_36_massLineIndex)
 HXLINE(  37)		this->lines->push(line);
-HXLINE(  38)		 ::Dynamic _hx_tmp = hx::ClassOf< ::global::Common >();
-HXDLIN(  38)		::global::Common_obj::sLineCount = (::global::Common_obj::sLineCount + (int)1);
-HXLINE(  39)		if (hx::IsEq(  ::Dynamic(line->__Field(HX_("type",ba,f2,08,4d),hx::paccDynamic)),(int)0 )) {
-HXLINE(  40)			 ::Dynamic _hx_tmp1 = hx::ClassOf< ::global::Common >();
-HXDLIN(  40)			::global::Common_obj::sBLueLineCount = (::global::Common_obj::sBLueLineCount + (int)1);
+HXLINE(  38)		if (hx::IsEq(  ::Dynamic(line->__Field(HX_("type",ba,f2,08,4d),hx::paccDynamic)),(int)0 )) {
+HXLINE(  39)			 ::Dynamic _hx_tmp = hx::ClassOf< ::global::Common >();
+HXDLIN(  39)			::global::Common_obj::sBLueLineCount = (::global::Common_obj::sBLueLineCount + (int)1);
             		}
             		else {
-HXLINE(  41)			if (hx::IsEq(  ::Dynamic(line->__Field(HX_("type",ba,f2,08,4d),hx::paccDynamic)),(int)1 )) {
-HXLINE(  42)				 ::Dynamic _hx_tmp2 = hx::ClassOf< ::global::Common >();
-HXDLIN(  42)				::global::Common_obj::sRedLineCount = (::global::Common_obj::sRedLineCount + (int)1);
+HXLINE(  40)			if (hx::IsEq(  ::Dynamic(line->__Field(HX_("type",ba,f2,08,4d),hx::paccDynamic)),(int)1 )) {
+HXLINE(  41)				 ::Dynamic _hx_tmp1 = hx::ClassOf< ::global::Common >();
+HXDLIN(  41)				::global::Common_obj::sRedLineCount = (::global::Common_obj::sRedLineCount + (int)1);
             			}
             			else {
-HXLINE(  43)				if (hx::IsEq(  ::Dynamic(line->__Field(HX_("type",ba,f2,08,4d),hx::paccDynamic)),(int)2 )) {
-HXLINE(  44)					 ::Dynamic _hx_tmp3 = hx::ClassOf< ::global::Common >();
-HXDLIN(  44)					::global::Common_obj::sGreenLineCount = (::global::Common_obj::sGreenLineCount + (int)1);
+HXLINE(  42)				if (hx::IsEq(  ::Dynamic(line->__Field(HX_("type",ba,f2,08,4d),hx::paccDynamic)),(int)2 )) {
+HXLINE(  43)					 ::Dynamic _hx_tmp2 = hx::ClassOf< ::global::Common >();
+HXDLIN(  43)					::global::Common_obj::sGreenLineCount = (::global::Common_obj::sGreenLineCount + (int)1);
             				}
             			}
             		}
+HXLINE(  45)		line->__SetField(HX_("ID",db,3f,00,00),::global::Common_obj::sLineID,hx::paccDynamic);
+HXLINE(  46)		 ::Dynamic _hx_tmp3 = hx::ClassOf< ::global::Common >();
+HXDLIN(  46)		::global::Common_obj::sLineCount = (::global::Common_obj::sLineCount + (int)1);
+HXLINE(  47)		 ::Dynamic _hx_tmp4 = hx::ClassOf< ::global::Common >();
+HXDLIN(  47)		::global::Common_obj::sLineID = (::global::Common_obj::sLineID + (int)1);
             	}
 
 

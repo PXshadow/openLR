@@ -16,6 +16,7 @@ class Toolbar extends MovieClip
 	public static var tool:Any;
 	private var pencil:IconPencil;
 	private var line:IconLine;
+	private var save:IconSave;
 	
 	private var playB:IconPlay;
 	public function new() 
@@ -34,6 +35,10 @@ class Toolbar extends MovieClip
 		playB = new IconPlay();
 		this.addChild(playB);
 		this.playB.x = 60;
+		
+		save = new IconSave();
+		this.addChild(save);
+		this.save.x = 90;
 		
 	}
 }

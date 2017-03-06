@@ -10,9 +10,6 @@
 #ifndef INCLUDED_global_Common
 #include <global/Common.h>
 #endif
-#ifndef INCLUDED_haxe_Log
-#include <haxe/Log.h>
-#endif
 #ifndef INCLUDED_lr_line_Grid
 #include <lr/line/Grid.h>
 #endif
@@ -64,9 +61,9 @@ HXLINE(  33)				 ::Dynamic(this->trackData->__Field(HX_("e",65,00,00,00),hx::pac
 HXLINE(  34)				 ::Dynamic(this->trackData->__Field(HX_("e",65,00,00,00),hx::paccDynamic))->__GetItem(i)->__SetField(HX_("type",ba,f2,08,4d), ::Dynamic(this->lines->__get(i)->__Field(HX_("type",ba,f2,08,4d),hx::paccDynamic)),hx::paccDynamic);
 HXLINE(  35)				 ::Dynamic(this->trackData->__Field(HX_("e",65,00,00,00),hx::paccDynamic))->__GetItem(i)->__SetField(HX_("inv",f1,0c,50,00), ::Dynamic(this->lines->__get(i)->__Field(HX_("inv",f1,0c,50,00),hx::paccDynamic)),hx::paccDynamic);
 HXLINE(  36)				 ::Dynamic(this->trackData->__Field(HX_("e",65,00,00,00),hx::paccDynamic))->__GetItem(i)->__SetField(HX_("lim",50,4f,52,00), ::Dynamic(this->lines->__get(i)->__Field(HX_("_lim",51,94,1d,3f),hx::paccDynamic)),hx::paccDynamic);
+HXLINE(  37)				 ::Dynamic(this->trackData->__Field(HX_("e",65,00,00,00),hx::paccDynamic))->__GetItem(i)->__SetField(HX_("ID",db,3f,00,00), ::Dynamic(this->lines->__get(i)->__Field(HX_("ID",db,3f,00,00),hx::paccDynamic)),hx::paccDynamic);
             			}
             		}
-HXLINE(  39)		::haxe::Log_obj::trace( ::Dynamic(this->trackData->__Field(HX_("e",65,00,00,00),hx::paccDynamic)),hx::SourceInfo(HX_("TrackParse.hx",f6,31,71,36),39,HX_("file.TrackParse",7a,2e,98,9c),HX_("parse",33,90,55,bd)));
 HXLINE(  40)		return this->trackData;
             	}
 

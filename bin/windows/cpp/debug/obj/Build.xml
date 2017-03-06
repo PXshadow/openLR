@@ -48,9 +48,28 @@
    <depend name="include/ui/tool/ToolBase.h"/>
    <depend name="include/ui/tool/lr/ToolLine.h"/>
   </file>
-  <file name="src/ui/tool/icon/IconPlay.cpp" >
+  <file name="src/ui/tool/icon/IconSave.cpp" >
    <depend name="include/file/SaveManager.h"/>
    <depend name="include/global/Common.h"/>
+   <depend name="include/openfl/Assets.h"/>
+   <depend name="include/openfl/display/Bitmap.h"/>
+   <depend name="include/openfl/display/BitmapData.h"/>
+   <depend name="include/openfl/display/DisplayObject.h"/>
+   <depend name="include/openfl/display/DisplayObjectContainer.h"/>
+   <depend name="include/openfl/display/IBitmapDrawable.h"/>
+   <depend name="include/openfl/display/InteractiveObject.h"/>
+   <depend name="include/openfl/display/MovieClip.h"/>
+   <depend name="include/openfl/display/Sprite.h"/>
+   <depend name="include/openfl/events/Event.h"/>
+   <depend name="include/openfl/events/EventDispatcher.h"/>
+   <depend name="include/openfl/events/IEventDispatcher.h"/>
+   <depend name="include/openfl/events/MouseEvent.h"/>
+   <depend name="include/ui/tool/icon/IconBase.h"/>
+   <depend name="include/ui/tool/icon/IconSave.h"/>
+  </file>
+  <file name="src/ui/tool/icon/IconPlay.cpp" >
+   <depend name="include/global/Common.h"/>
+   <depend name="include/lr/Track.h"/>
    <depend name="include/openfl/Assets.h"/>
    <depend name="include/openfl/display/Bitmap.h"/>
    <depend name="include/openfl/display/BitmapData.h"/>
@@ -164,8 +183,20 @@
   </file>
   <file name="src/sys/io/_Process/Stdin.cpp" >
    <depend name="include/haxe/io/Bytes.h"/>
+   <depend name="include/haxe/io/Eof.h"/>
    <depend name="include/haxe/io/Output.h"/>
    <depend name="include/sys/io/_Process/Stdin.h"/>
+  </file>
+  <file name="src/sys/io/FileOutput.cpp" >
+   <depend name="include/haxe/io/Bytes.h"/>
+   <depend name="include/haxe/io/Error.h"/>
+   <depend name="include/haxe/io/Output.h"/>
+   <depend name="include/sys/io/FileOutput.h"/>
+  </file>
+  <file name="src/sys/io/File.cpp" >
+   <depend name="include/haxe/io/Output.h"/>
+   <depend name="include/sys/io/File.h"/>
+   <depend name="include/sys/io/FileOutput.h"/>
   </file>
   <file name="src/sys/FileSystem.cpp" >
    <depend name="include/Sys.h"/>
@@ -2905,6 +2936,7 @@
    <depend name="include/ui/tool/icon/IconLine.h"/>
    <depend name="include/ui/tool/icon/IconPencil.h"/>
    <depend name="include/ui/tool/icon/IconPlay.h"/>
+   <depend name="include/ui/tool/icon/IconSave.h"/>
    <depend name="include/ui/tool/lr/ToolPencil.h"/>
   </file>
   <file name="src/openfl/display/MovieClip.cpp" >
@@ -4263,6 +4295,8 @@
    <depend name="include/haxe/io/Eof.h"/>
   </file>
   <file name="src/haxe/io/Output.cpp" >
+   <depend name="include/haxe/io/Bytes.h"/>
+   <depend name="include/haxe/io/Error.h"/>
    <depend name="include/haxe/io/Output.h"/>
   </file>
   <file name="src/haxe/io/Input.cpp" >
@@ -4406,13 +4440,16 @@
    <depend name="include/Date.h"/>
    <depend name="include/file/TrackParse.h"/>
    <depend name="include/global/Common.h"/>
-   <depend name="include/haxe/Log.h"/>
    <depend name="include/lr/line/Grid.h"/>
   </file>
   <file name="src/file/SaveManager.cpp" >
    <depend name="include/file/SaveManager.h"/>
    <depend name="include/file/TrackParse.h"/>
    <depend name="include/global/Common.h"/>
+   <depend name="include/haxe/Serializer.h"/>
+   <depend name="include/haxe/io/Output.h"/>
+   <depend name="include/sys/io/File.h"/>
+   <depend name="include/sys/io/FileOutput.h"/>
   </file>
   <file name="src/cpp/vm/Thread.cpp" >
    <depend name="include/cpp/vm/Thread.h"/>

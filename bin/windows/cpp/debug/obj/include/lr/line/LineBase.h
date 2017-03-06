@@ -70,6 +70,7 @@ class HXCPP_CLASS_ATTRIBUTES LineBase_obj : public  ::openfl::display::MovieClip
 		Float _lim2;
 		bool inv;
 		int type;
+		int ID;
 		void calculateConstants();
 		::Dynamic calculateConstants_dyn();
 

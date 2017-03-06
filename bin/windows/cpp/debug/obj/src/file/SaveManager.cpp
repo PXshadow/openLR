@@ -10,14 +10,26 @@
 #ifndef INCLUDED_global_Common
 #include <global/Common.h>
 #endif
+#ifndef INCLUDED_haxe_Serializer
+#include <haxe/Serializer.h>
+#endif
+#ifndef INCLUDED_haxe_io_Output
+#include <haxe/io/Output.h>
+#endif
+#ifndef INCLUDED_sys_io_File
+#include <sys/io/File.h>
+#endif
+#ifndef INCLUDED_sys_io_FileOutput
+#include <sys/io/FileOutput.h>
+#endif
 
-HX_DEFINE_STACK_FRAME(_hx_pos_19651f73c9cf9811_14_new,"file.SaveManager","new",0x0c886b90,"file.SaveManager.new","file/SaveManager.hx",14,0x2a46d5a1)
-HX_LOCAL_STACK_FRAME(_hx_pos_19651f73c9cf9811_16_generateSave,"file.SaveManager","generateSave",0x10f7d3e2,"file.SaveManager.generateSave","file/SaveManager.hx",16,0x2a46d5a1)
+HX_DEFINE_STACK_FRAME(_hx_pos_19651f73c9cf9811_21_new,"file.SaveManager","new",0x0c886b90,"file.SaveManager.new","file/SaveManager.hx",21,0x2a46d5a1)
+HX_LOCAL_STACK_FRAME(_hx_pos_19651f73c9cf9811_23_generateSave,"file.SaveManager","generateSave",0x10f7d3e2,"file.SaveManager.generateSave","file/SaveManager.hx",23,0x2a46d5a1)
 namespace file{
 
 void SaveManager_obj::__construct(){
-            	HX_STACKFRAME(&_hx_pos_19651f73c9cf9811_14_new)
-HXLINE(  14)		::global::Common_obj::gSaveManager = hx::ObjectPtr<OBJ_>(this);
+            	HX_STACKFRAME(&_hx_pos_19651f73c9cf9811_21_new)
+HXLINE(  21)		::global::Common_obj::gSaveManager = hx::ObjectPtr<OBJ_>(this);
             	}
 
 Dynamic SaveManager_obj::__CreateEmpty() { return new SaveManager_obj; }
@@ -36,9 +48,15 @@ bool SaveManager_obj::_hx_isInstanceOf(int inClassId) {
 }
 
 void SaveManager_obj::generateSave(){
-            	HX_GC_STACKFRAME(&_hx_pos_19651f73c9cf9811_16_generateSave)
-HXLINE(  17)		this->trackParse =  ::file::TrackParse_obj::__alloc( HX_CTX );
-HXLINE(  18)		 ::Dynamic _locObject = this->trackParse->parse();
+            	HX_GC_STACKFRAME(&_hx_pos_19651f73c9cf9811_23_generateSave)
+HXLINE(  24)		this->trackParse =  ::file::TrackParse_obj::__alloc( HX_CTX );
+HXLINE(  25)		 ::Dynamic _locObject = this->trackParse->parse();
+HXLINE(  26)		::String serial = ::haxe::Serializer_obj::run(_locObject);
+HXLINE(  27)		 ::sys::io::FileOutput Fout = null();
+HXLINE(  29)		{
+HXLINE(  30)			Fout = ::sys::io::File_obj::write(HX_("C:\\Users\\Evans2\\Desktop\\test.lrpk",d7,b5,3d,ad),false);
+HXLINE(  31)			Fout->writeString(serial);
+            		}
             	}
 
 

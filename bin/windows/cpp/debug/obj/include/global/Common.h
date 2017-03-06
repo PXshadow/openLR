@@ -88,6 +88,7 @@ class HXCPP_CLASS_ATTRIBUTES Common_obj : public hx::Object
 		static int sBLueLineCount;
 		static int sRedLineCount;
 		static int sGreenLineCount;
+		static int sLineID;
 		static Float track_scale;
 		static Float track_scale_max;
 		static Float track_scale_min;
