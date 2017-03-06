@@ -9,6 +9,9 @@ import ui.tool.icon.*;
 /**
  * ...
  * @author Kaelan Evans
+ * 
+ * Tool bar seen across top of screen
+ * 
  */
 class Toolbar extends MovieClip
 {

@@ -3,6 +3,9 @@ package init;
 /**
  * ...
  * @author Kaelan Evans
+ * 
+ * makes sure directories are made and proper file navigation is established
+ * 
  */
 class FileStart
 {

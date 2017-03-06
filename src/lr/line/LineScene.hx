@@ -5,6 +5,10 @@ import openfl.geom.Point;
 /**
  * ...
  * @author Kaelan Evans
+ * 
+ * Default lines
+ * 
+ * 
  */
 class LineScene extends LineBase
 {

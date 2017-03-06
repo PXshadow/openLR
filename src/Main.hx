@@ -39,32 +39,34 @@ import global.Common;
  */
 class Main extends Sprite 
 {
-	private var mainFileInit:FileStart;
-	private var visContainer:MovieClip;
+	private var mainFileInit:FileStart; //this class controls settings
+	private var visContainer:MovieClip; //This is a simple movieclip container. This will make it easier to take screenshots and record video without having to move the matrix all aroubd
 	private var track:Track;
 	private var toolBar:Toolbar;
-	private var saveManager:SaveManager;
+	private var saveManager:SaveManager; //controls file saving and (in the future) loading
+	
+	
 	public function new() 
 	{
-		super();
+		super(); //In Haxe, a super must be called when classes inherit
 		
 		this.init_env();
 		this.init_track();
 		
 		this.stage.addEventListener(Event.RESIZE, resize);
 	}
-	public function init_env()
+	public function init_env() //Initialize enviornment
 	{
-		Common.gCode = this;
-		Common.gStage = this.stage;
+		Common.gCode = this; //This class
+		Common.gStage = this.stage; //The stage, not to be comfused with main.hx
 		
 		Common.stage_height = this.stage.stageHeight;
 		Common.stage_width = this.stage.stageWidth;
 		
-		this.saveManager = new SaveManager();
+		this.saveManager = new SaveManager(); //need to move this
 	}
 	
-	public function init_track()
+	public function init_track() //display minimum items
 	{
 		this.visContainer = new MovieClip();
 		this.addChild(visContainer);
@@ -76,7 +78,7 @@ class Main extends Sprite
 		this.toolBar = new Toolbar();
 		this.visContainer.addChild(this.toolBar);
 	}
-	private function resize(e:Event):Void 
+	private function resize(e:Event):Void
 	{
 		trace(this.stage.stageWidth, this.stage.stageHeight);
 		this.visContainer.x = this.visContainer.y = 0;

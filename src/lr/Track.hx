@@ -9,6 +9,9 @@ import global.Common;
 /**
  * ...
  * @author Kaelan Evans
+ * 
+ * Track movie clip with track specific functions and variables
+ * 
  */
 class Track extends MovieClip
 {
@@ -20,12 +23,14 @@ class Track extends MovieClip
 		Common.track_scale = 1;
 		this.grid = new Grid();
 	}
-	public function add_vis_line(line:Dynamic) {
+	public function add_vis_line(line:Dynamic) //This is the function that must be called when adding a line. Do not take shortcuts!
+	{
 		Common.gGrid.massLineIndex(line);
 		Common.gTrack.addChild(grid.lines[grid.lines.length - 1]);
 		grid.lines[grid.lines.length - 1].render("edit");
 	}
-	public function render_preview_line(_a:Point, _b:Point) {
+	public function render_preview_line(_a:Point, _b:Point) 
+	{
 		var _locDis = Common.get_distance(_a, _b);
 		var _locCol = 0xFF0000;
 		if (_locDis > Common.line_minLength) {
@@ -40,7 +45,7 @@ class Track extends MovieClip
 	{
 		this.graphics.clear();
 	}
-	public function update_render()
+	public function update_render() //toggles render mode. IE if lines appear black, or colored.
 	{
 		var con = Common.cvar_line_render_mode;
 		if (con == 0) {

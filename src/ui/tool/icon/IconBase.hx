@@ -9,6 +9,9 @@ import global.Common;
 /**
  * ...
  * @author Kaelan Evans
+ * 
+ * Base functions and variables for icons. Default behavior disables mosue tools on rollover and reenables on roll out.
+ * 
  */
 class IconBase extends MovieClip
 {
@@ -18,7 +21,8 @@ class IconBase extends MovieClip
 	{
 		super();
 		
-		if (Common.cvar_icon_hit_display) {
+		if (Common.cvar_icon_hit_display) //enable to see boundaries
+		{
 			this.debug_alpha = 1;
 		}
 		

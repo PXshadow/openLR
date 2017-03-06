@@ -5,6 +5,9 @@ import openfl.geom.Point;
 /**
  * ...
  * @author Kaelan Evans
+ * 
+ *  Speedy lines
+ * 
  */
 class LineAccel extends LineBase
 {

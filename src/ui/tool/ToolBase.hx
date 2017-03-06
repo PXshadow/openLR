@@ -13,7 +13,7 @@ import global.Common;
  * ...
  * @author Kaelan Evans
  * 
- * todo: Add in keyboard manager
+ * Base functions for anything mouse related, specifically pertaining to click and drag behavior
  * 
  */
 class ToolBase
@@ -38,7 +38,7 @@ class ToolBase
 		Common.gToolBase = this;
 	}
 	
-	private function KeyNumDown(e:KeyboardEvent):Void 
+	private function KeyNumDown(e:KeyboardEvent):Void //Line type switcher
 	{
 		if (e.keyCode == Keyboard.NUMBER_1) {
 			Common.line_type = 0;
@@ -51,7 +51,7 @@ class ToolBase
 		}
 	}
 	
-	private function keyShiftUp(e:KeyboardEvent):Void 
+	private function keyShiftUp(e:KeyboardEvent):Void //Shift modifier
 	{
 		if (e.keyCode == Keyboard.SHIFT) {
 			this.mod_shift = false;
@@ -77,7 +77,7 @@ class ToolBase
 	
 	public function rMouseUp(e:MouseEvent):Void 
 	{
-		trace(Common.gStage.mouseX, Common.gStage.mouseY);
+		trace(Common.gStage.mouseX, Common.gStage.mouseY); //default behavior for any mouse tool that hasn't had an action assigned
 	}
 	
 	public function rMouseDown(e:MouseEvent):Void 
