@@ -526,9 +526,6 @@
 #ifndef INCLUDED_sys_io__Process_Stdin
 #include <sys/io/_Process/Stdin.h>
 #endif
-#ifndef INCLUDED_sys_io_FileOutput
-#include <sys/io/FileOutput.h>
-#endif
 #ifndef INCLUDED_sys_io_File
 #include <sys/io/File.h>
 #endif
@@ -1549,9 +1546,6 @@
 #ifndef INCLUDED_haxe_CallStack
 #include <haxe/CallStack.h>
 #endif
-#ifndef INCLUDED_file_TrackParse
-#include <file/TrackParse.h>
-#endif
 #ifndef INCLUDED_file_SaveManager
 #include <file/SaveManager.h>
 #endif
@@ -1818,7 +1812,6 @@ hx::RegisterResources( hx::GetResources() );
 ::sys::io::Process_obj::__register();
 ::sys::io::_Process::Stdout_obj::__register();
 ::sys::io::_Process::Stdin_obj::__register();
-::sys::io::FileOutput_obj::__register();
 ::sys::io::File_obj::__register();
 ::sys::FileSystem_obj::__register();
 ::haxe::lang::Iterable_obj::__register();
@@ -2159,7 +2152,6 @@ hx::RegisterResources( hx::GetResources() );
 ::haxe::Resource_obj::__register();
 ::haxe::IMap_obj::__register();
 ::haxe::CallStack_obj::__register();
-::file::TrackParse_obj::__register();
 ::file::SaveManager_obj::__register();
 ::cpp::vm::Thread_obj::__register();
 ::cpp::vm::Gc_obj::__register();

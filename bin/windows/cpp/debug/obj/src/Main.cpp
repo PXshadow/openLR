@@ -56,17 +56,17 @@
 #include <openfl/events/IEventDispatcher.h>
 #endif
 
-HX_DEFINE_STACK_FRAME(_hx_pos_e47a9afac0942eb9_44_new,"Main","new",0x6616a5cb,"Main.new","Main.hx",44,0x087e5c05)
-HX_LOCAL_STACK_FRAME(_hx_pos_e47a9afac0942eb9_53_init_env,"Main","init_env",0x9ffef2b3,"Main.init_env","Main.hx",53,0x087e5c05)
-HX_LOCAL_STACK_FRAME(_hx_pos_e47a9afac0942eb9_64_init_track,"Main","init_track",0x793f3ad1,"Main.init_track","Main.hx",64,0x087e5c05)
-HX_LOCAL_STACK_FRAME(_hx_pos_e47a9afac0942eb9_76_resize,"Main","resize",0x39257969,"Main.resize","Main.hx",76,0x087e5c05)
+HX_DEFINE_STACK_FRAME(_hx_pos_e47a9afac0942eb9_49_new,"Main","new",0x6616a5cb,"Main.new","Main.hx",49,0x087e5c05)
+HX_LOCAL_STACK_FRAME(_hx_pos_e47a9afac0942eb9_58_init_env,"Main","init_env",0x9ffef2b3,"Main.init_env","Main.hx",58,0x087e5c05)
+HX_LOCAL_STACK_FRAME(_hx_pos_e47a9afac0942eb9_69_init_track,"Main","init_track",0x793f3ad1,"Main.init_track","Main.hx",69,0x087e5c05)
+HX_LOCAL_STACK_FRAME(_hx_pos_e47a9afac0942eb9_81_resize,"Main","resize",0x39257969,"Main.resize","Main.hx",81,0x087e5c05)
 
 void Main_obj::__construct(){
-            	HX_STACKFRAME(&_hx_pos_e47a9afac0942eb9_44_new)
-HXLINE(  45)		super::__construct();
-HXLINE(  47)		this->init_env();
-HXLINE(  48)		this->init_track();
-HXLINE(  50)		this->stage->addEventListener(HX_("resize",f4,59,7b,08),this->resize_dyn(),null(),null(),null());
+            	HX_STACKFRAME(&_hx_pos_e47a9afac0942eb9_49_new)
+HXLINE(  50)		super::__construct();
+HXLINE(  52)		this->init_env();
+HXLINE(  53)		this->init_track();
+HXLINE(  55)		this->stage->addEventListener(HX_("resize",f4,59,7b,08),this->resize_dyn(),null(),null(),null());
             	}
 
 Dynamic Main_obj::__CreateEmpty() { return new Main_obj; }
@@ -101,46 +101,46 @@ bool Main_obj::_hx_isInstanceOf(int inClassId) {
 }
 
 void Main_obj::init_env(){
-            	HX_GC_STACKFRAME(&_hx_pos_e47a9afac0942eb9_53_init_env)
-HXLINE(  54)		::global::Common_obj::gCode = hx::ObjectPtr<OBJ_>(this);
-HXLINE(  55)		::global::Common_obj::gStage = this->stage;
-HXLINE(  57)		::global::Common_obj::stage_height = this->stage->stageHeight;
-HXLINE(  58)		::global::Common_obj::stage_width = this->stage->stageWidth;
-HXLINE(  60)		this->saveManager =  ::file::SaveManager_obj::__alloc( HX_CTX );
+            	HX_GC_STACKFRAME(&_hx_pos_e47a9afac0942eb9_58_init_env)
+HXLINE(  59)		::global::Common_obj::gCode = hx::ObjectPtr<OBJ_>(this);
+HXLINE(  60)		::global::Common_obj::gStage = this->stage;
+HXLINE(  62)		::global::Common_obj::stage_height = this->stage->stageHeight;
+HXLINE(  63)		::global::Common_obj::stage_width = this->stage->stageWidth;
+HXLINE(  65)		this->saveManager =  ::file::SaveManager_obj::__alloc( HX_CTX );
             	}
 
 
 HX_DEFINE_DYNAMIC_FUNC0(Main_obj,init_env,(void))
 
 void Main_obj::init_track(){
-            	HX_GC_STACKFRAME(&_hx_pos_e47a9afac0942eb9_64_init_track)
-HXLINE(  65)		this->visContainer =  ::openfl::display::MovieClip_obj::__alloc( HX_CTX );
-HXLINE(  66)		this->addChild(this->visContainer);
-HXLINE(  67)		::global::Common_obj::gVisContainer = this->visContainer;
-HXLINE(  69)		this->track =  ::lr::Track_obj::__alloc( HX_CTX );
-HXLINE(  70)		this->visContainer->addChild(this->track);
-HXLINE(  72)		this->toolBar =  ::lr::Toolbar_obj::__alloc( HX_CTX );
-HXLINE(  73)		this->visContainer->addChild(this->toolBar);
+            	HX_GC_STACKFRAME(&_hx_pos_e47a9afac0942eb9_69_init_track)
+HXLINE(  70)		this->visContainer =  ::openfl::display::MovieClip_obj::__alloc( HX_CTX );
+HXLINE(  71)		this->addChild(this->visContainer);
+HXLINE(  72)		::global::Common_obj::gVisContainer = this->visContainer;
+HXLINE(  74)		this->track =  ::lr::Track_obj::__alloc( HX_CTX );
+HXLINE(  75)		this->visContainer->addChild(this->track);
+HXLINE(  77)		this->toolBar =  ::lr::Toolbar_obj::__alloc( HX_CTX );
+HXLINE(  78)		this->visContainer->addChild(this->toolBar);
             	}
 
 
 HX_DEFINE_DYNAMIC_FUNC0(Main_obj,init_track,(void))
 
 void Main_obj::resize( ::openfl::events::Event e){
-            	HX_STACKFRAME(&_hx_pos_e47a9afac0942eb9_76_resize)
-HXLINE(  77)		::haxe::Log_obj::trace(this->stage->stageWidth, ::Dynamic(hx::Anon_obj::Create(5)
+            	HX_STACKFRAME(&_hx_pos_e47a9afac0942eb9_81_resize)
+HXLINE(  82)		::haxe::Log_obj::trace(this->stage->stageWidth, ::Dynamic(hx::Anon_obj::Create(5)
             			->setFixed(0,HX_("className",a3,92,3d,dc),HX_("Main",59,64,2f,33))
             			->setFixed(1,HX_("customParams",d7,51,18,ed),::cpp::VirtualArray_obj::__new(1)->init(0,this->stage->stageHeight))
             			->setFixed(2,HX_("methodName",cc,19,0f,12),HX_("resize",f4,59,7b,08))
             			->setFixed(3,HX_("fileName",e7,5a,43,62),HX_("Main.hx",05,5c,7e,08))
-            			->setFixed(4,HX_("lineNumber",dd,81,22,76),(int)77)));
-HXLINE(  78)		 ::openfl::display::MovieClip _hx_tmp = this->visContainer;
-HXDLIN(  78)		_hx_tmp->set_x(this->visContainer->set_y((int)0));
-HXLINE(  79)		 ::lr::Toolbar _hx_tmp1 = this->toolBar;
-HXDLIN(  79)		Float _hx_tmp2 = ((Float)this->stage->stageWidth / (Float)(int)2);
-HXDLIN(  79)		_hx_tmp1->set_x((_hx_tmp2 - ((Float)this->toolBar->get_width() / (Float)(int)2)));
-HXLINE(  81)		::global::Common_obj::stage_height = this->stage->stageHeight;
-HXLINE(  82)		::global::Common_obj::stage_width = this->stage->stageWidth;
+            			->setFixed(4,HX_("lineNumber",dd,81,22,76),(int)82)));
+HXLINE(  83)		 ::openfl::display::MovieClip _hx_tmp = this->visContainer;
+HXDLIN(  83)		_hx_tmp->set_x(this->visContainer->set_y((int)0));
+HXLINE(  84)		 ::lr::Toolbar _hx_tmp1 = this->toolBar;
+HXDLIN(  84)		Float _hx_tmp2 = ((Float)this->stage->stageWidth / (Float)(int)2);
+HXDLIN(  84)		_hx_tmp1->set_x((_hx_tmp2 - ((Float)this->toolBar->get_width() / (Float)(int)2)));
+HXLINE(  86)		::global::Common_obj::stage_height = this->stage->stageHeight;
+HXLINE(  87)		::global::Common_obj::stage_width = this->stage->stageWidth;
             	}
 
 

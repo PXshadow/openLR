@@ -7,7 +7,7 @@
 #endif
 
 HX_DECLARE_CLASS1(file,SaveManager)
-HX_DECLARE_CLASS1(file,TrackParse)
+HX_DECLARE_CLASS2(sys,io,File)
 
 namespace file{
 
@@ -44,9 +44,13 @@ class HXCPP_CLASS_ATTRIBUTES SaveManager_obj : public hx::Object
 		bool _hx_isInstanceOf(int inClassId);
 		::String __ToString() const { return HX_HCSTRING("SaveManager","\x90","\x58","\x94","\x51"); }
 
-		 ::file::TrackParse trackParse;
+		 ::sys::io::File directory;
+		 ::Dynamic trackData;
 		void generateSave();
 		::Dynamic generateSave_dyn();
+
+		 ::Dynamic parse();
+		::Dynamic parse_dyn();
 
 };
 

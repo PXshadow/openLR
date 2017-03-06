@@ -39,17 +39,17 @@
 #include <openfl/geom/Point.h>
 #endif
 
-HX_DEFINE_STACK_FRAME(_hx_pos_75467877f4d5b1ca_13_new,"lr.line.LineBase","new",0x08208a89,"lr.line.LineBase.new","lr/line/LineBase.hx",13,0x0e3518a7)
-HX_LOCAL_STACK_FRAME(_hx_pos_75467877f4d5b1ca_37_calculateConstants,"lr.line.LineBase","calculateConstants",0x5b500040,"lr.line.LineBase.calculateConstants","lr/line/LineBase.hx",37,0x0e3518a7)
-HX_LOCAL_STACK_FRAME(_hx_pos_75467877f4d5b1ca_48_set_lim,"lr.line.LineBase","set_lim",0x1ae82b9c,"lr.line.LineBase.set_lim","lr/line/LineBase.hx",48,0x0e3518a7)
+HX_DEFINE_STACK_FRAME(_hx_pos_75467877f4d5b1ca_17_new,"lr.line.LineBase","new",0x08208a89,"lr.line.LineBase.new","lr/line/LineBase.hx",17,0x0e3518a7)
+HX_LOCAL_STACK_FRAME(_hx_pos_75467877f4d5b1ca_41_calculateConstants,"lr.line.LineBase","calculateConstants",0x5b500040,"lr.line.LineBase.calculateConstants","lr/line/LineBase.hx",41,0x0e3518a7)
+HX_LOCAL_STACK_FRAME(_hx_pos_75467877f4d5b1ca_52_set_lim,"lr.line.LineBase","set_lim",0x1ae82b9c,"lr.line.LineBase.set_lim","lr/line/LineBase.hx",52,0x0e3518a7)
 namespace lr{
 namespace line{
 
 void LineBase_obj::__construct(){
-            	HX_STACKFRAME(&_hx_pos_75467877f4d5b1ca_13_new)
-HXLINE(  28)		this->type = (int)-1;
-HXLINE(  27)		this->inv = false;
-HXLINE(  33)		super::__construct();
+            	HX_STACKFRAME(&_hx_pos_75467877f4d5b1ca_17_new)
+HXLINE(  32)		this->type = (int)-1;
+HXLINE(  31)		this->inv = false;
+HXLINE(  37)		super::__construct();
             	}
 
 Dynamic LineBase_obj::__CreateEmpty() { return new LineBase_obj; }
@@ -84,62 +84,62 @@ bool LineBase_obj::_hx_isInstanceOf(int inClassId) {
 }
 
 void LineBase_obj::calculateConstants(){
-            	HX_GC_STACKFRAME(&_hx_pos_75467877f4d5b1ca_37_calculateConstants)
-HXLINE(  38)		this->d = ::global::Common_obj::get_distance_point(this->a,this->b);
-HXLINE(  39)		Float _hx_tmp = (this->d->y * this->a->x);
-HXDLIN(  39)		this->C = (_hx_tmp - (this->d->x * this->a->y));
-HXLINE(  40)		Float sqrDis = (this->d->x * this->d->x);
-HXDLIN(  40)		Float sqrDis1 = (sqrDis + (this->d->y * this->d->y));
-HXLINE(  41)		this->invSqrDis = ((Float)(int)1 / (Float)sqrDis1);
-HXLINE(  42)		this->dst = ::Math_obj::sqrt(sqrDis1);
-HXLINE(  43)		this->invDst = ((Float)(int)1 / (Float)this->dst);
-HXLINE(  44)		int _hx_tmp1;
-HXDLIN(  44)		if (this->inv) {
-HXLINE(  44)			_hx_tmp1 = (int)1;
+            	HX_GC_STACKFRAME(&_hx_pos_75467877f4d5b1ca_41_calculateConstants)
+HXLINE(  42)		this->d = ::global::Common_obj::get_distance_point(this->a,this->b);
+HXLINE(  43)		Float _hx_tmp = (this->d->y * this->a->x);
+HXDLIN(  43)		this->C = (_hx_tmp - (this->d->x * this->a->y));
+HXLINE(  44)		Float sqrDis = (this->d->x * this->d->x);
+HXDLIN(  44)		Float sqrDis1 = (sqrDis + (this->d->y * this->d->y));
+HXLINE(  45)		this->invSqrDis = ((Float)(int)1 / (Float)sqrDis1);
+HXLINE(  46)		this->dst = ::Math_obj::sqrt(sqrDis1);
+HXLINE(  47)		this->invDst = ((Float)(int)1 / (Float)this->dst);
+HXLINE(  48)		int _hx_tmp1;
+HXDLIN(  48)		if (this->inv) {
+HXLINE(  48)			_hx_tmp1 = (int)1;
             		}
             		else {
-HXLINE(  44)			_hx_tmp1 = (int)-1;
+HXLINE(  48)			_hx_tmp1 = (int)-1;
             		}
-HXDLIN(  44)		Float _hx_tmp2 = ((this->d->y * this->invDst) * _hx_tmp1);
-HXDLIN(  44)		int _hx_tmp3;
-HXDLIN(  44)		if (this->inv) {
-HXLINE(  44)			_hx_tmp3 = (int)-1;
+HXDLIN(  48)		Float _hx_tmp2 = ((this->d->y * this->invDst) * _hx_tmp1);
+HXDLIN(  48)		int _hx_tmp3;
+HXDLIN(  48)		if (this->inv) {
+HXLINE(  48)			_hx_tmp3 = (int)-1;
             		}
             		else {
-HXLINE(  44)			_hx_tmp3 = (int)1;
+HXLINE(  48)			_hx_tmp3 = (int)1;
             		}
-HXDLIN(  44)		this->n =  ::openfl::geom::Point_obj::__alloc( HX_CTX ,_hx_tmp2,((this->d->x * this->invDst) * _hx_tmp3));
-HXLINE(  45)		this->LIM = ::Math_obj::min(((Float)0.25),((Float)(int)10 / (Float)this->dst));
+HXDLIN(  48)		this->n =  ::openfl::geom::Point_obj::__alloc( HX_CTX ,_hx_tmp2,((this->d->x * this->invDst) * _hx_tmp3));
+HXLINE(  49)		this->LIM = ::Math_obj::min(((Float)0.25),((Float)(int)10 / (Float)this->dst));
             	}
 
 
 HX_DEFINE_DYNAMIC_FUNC0(LineBase_obj,calculateConstants,(void))
 
 void LineBase_obj::set_lim(int input){
-            	HX_STACKFRAME(&_hx_pos_75467877f4d5b1ca_48_set_lim)
-HXLINE(  49)		switch((int)(input)){
+            	HX_STACKFRAME(&_hx_pos_75467877f4d5b1ca_52_set_lim)
+HXLINE(  53)		switch((int)(input)){
             			case (int)0: {
-HXLINE(  53)				this->_lim1 = (int)0;
-HXLINE(  54)				this->_lim2 = (int)1;
+HXLINE(  57)				this->_lim1 = (int)0;
+HXLINE(  58)				this->_lim2 = (int)1;
             			}
             			break;
             			case (int)1: {
-HXLINE(  58)				this->_lim1 = -(this->LIM);
-HXLINE(  59)				this->_lim2 = (int)1;
+HXLINE(  62)				this->_lim1 = -(this->LIM);
+HXLINE(  63)				this->_lim2 = (int)1;
             			}
             			break;
             			case (int)2: {
-HXLINE(  63)				this->_lim1 = (int)0;
-HXLINE(  64)				this->_lim2 = ((int)1 + this->LIM);
+HXLINE(  67)				this->_lim1 = (int)0;
+HXLINE(  68)				this->_lim2 = ((int)1 + this->LIM);
             			}
             			break;
             			case (int)3: {
-HXLINE(  68)				this->_lim1 = -(this->LIM);
-HXLINE(  69)				this->_lim2 = ((int)1 + this->LIM);
+HXLINE(  72)				this->_lim1 = -(this->LIM);
+HXLINE(  73)				this->_lim2 = ((int)1 + this->LIM);
             			}
             			break;
             		}
-HXLINE(  72)		this->_lim = input;
+HXLINE(  76)		this->_lim = input;
             	}
 
 

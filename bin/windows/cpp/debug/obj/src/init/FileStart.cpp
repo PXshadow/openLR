@@ -8,16 +8,16 @@
 #include <init/FileStart.h>
 #endif
 
-HX_DEFINE_STACK_FRAME(_hx_pos_1d7674365e5ce2ca_7_new,"init.FileStart","new",0xd3b1123a,"init.FileStart.new","init/FileStart.hx",7,0xb7340ff7)
-HX_LOCAL_STACK_FRAME(_hx_pos_1d7674365e5ce2ca_18_loadSettings,"init.FileStart","loadSettings",0x45831c0f,"init.FileStart.loadSettings","init/FileStart.hx",18,0xb7340ff7)
-HX_LOCAL_STACK_FRAME(_hx_pos_1d7674365e5ce2ca_23_checkDirectories,"init.FileStart","checkDirectories",0x76541e09,"init.FileStart.checkDirectories","init/FileStart.hx",23,0xb7340ff7)
+HX_DEFINE_STACK_FRAME(_hx_pos_1d7674365e5ce2ca_10_new,"init.FileStart","new",0xd3b1123a,"init.FileStart.new","init/FileStart.hx",10,0xb7340ff7)
+HX_LOCAL_STACK_FRAME(_hx_pos_1d7674365e5ce2ca_21_loadSettings,"init.FileStart","loadSettings",0x45831c0f,"init.FileStart.loadSettings","init/FileStart.hx",21,0xb7340ff7)
+HX_LOCAL_STACK_FRAME(_hx_pos_1d7674365e5ce2ca_26_checkDirectories,"init.FileStart","checkDirectories",0x76541e09,"init.FileStart.checkDirectories","init/FileStart.hx",26,0xb7340ff7)
 namespace init{
 
 void FileStart_obj::__construct(){
-            	HX_STACKFRAME(&_hx_pos_1d7674365e5ce2ca_7_new)
-HXLINE(   9)		this->ready = false;
-HXLINE(  12)		this->checkDirectories();
-HXLINE(  13)		this->loadSettings();
+            	HX_STACKFRAME(&_hx_pos_1d7674365e5ce2ca_10_new)
+HXLINE(  12)		this->ready = false;
+HXLINE(  15)		this->checkDirectories();
+HXLINE(  16)		this->loadSettings();
             	}
 
 Dynamic FileStart_obj::__CreateEmpty() { return new FileStart_obj; }
@@ -36,16 +36,16 @@ bool FileStart_obj::_hx_isInstanceOf(int inClassId) {
 }
 
 void FileStart_obj::loadSettings(){
-            	HX_STACKFRAME(&_hx_pos_1d7674365e5ce2ca_18_loadSettings)
-HXLINE(  18)		::haxe::Log_obj::trace(HX_("Loading settings",27,fb,ba,5c),hx::SourceInfo(HX_("FileStart.hx",58,ea,6b,4a),18,HX_("init.FileStart",48,2d,81,e3),HX_("loadSettings",29,69,a6,44)));
+            	HX_STACKFRAME(&_hx_pos_1d7674365e5ce2ca_21_loadSettings)
+HXLINE(  21)		::haxe::Log_obj::trace(HX_("Loading settings",27,fb,ba,5c),hx::SourceInfo(HX_("FileStart.hx",58,ea,6b,4a),21,HX_("init.FileStart",48,2d,81,e3),HX_("loadSettings",29,69,a6,44)));
             	}
 
 
 HX_DEFINE_DYNAMIC_FUNC0(FileStart_obj,loadSettings,(void))
 
 void FileStart_obj::checkDirectories(){
-            	HX_STACKFRAME(&_hx_pos_1d7674365e5ce2ca_23_checkDirectories)
-HXLINE(  23)		::haxe::Log_obj::trace(HX_("checking directories",05,70,4f,38),hx::SourceInfo(HX_("FileStart.hx",58,ea,6b,4a),23,HX_("init.FileStart",48,2d,81,e3),HX_("checkDirectories",23,00,0d,16)));
+            	HX_STACKFRAME(&_hx_pos_1d7674365e5ce2ca_26_checkDirectories)
+HXLINE(  26)		::haxe::Log_obj::trace(HX_("checking directories",05,70,4f,38),hx::SourceInfo(HX_("FileStart.hx",58,ea,6b,4a),26,HX_("init.FileStart",48,2d,81,e3),HX_("checkDirectories",23,00,0d,16)));
             	}
 
 

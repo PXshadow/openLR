@@ -50,24 +50,24 @@
 #include <ui/tool/lr/ToolPencil.h>
 #endif
 
-HX_DEFINE_STACK_FRAME(_hx_pos_d63ce7f7d2486650_23_new,"lr.Toolbar","new",0xb8b5d1e5,"lr.Toolbar.new","lr/Toolbar.hx",23,0x98a81c6c)
+HX_DEFINE_STACK_FRAME(_hx_pos_d63ce7f7d2486650_26_new,"lr.Toolbar","new",0xb8b5d1e5,"lr.Toolbar.new","lr/Toolbar.hx",26,0x98a81c6c)
 namespace lr{
 
 void Toolbar_obj::__construct(){
-            	HX_GC_STACKFRAME(&_hx_pos_d63ce7f7d2486650_23_new)
-HXLINE(  24)		super::__construct();
-HXLINE(  26)		::lr::Toolbar_obj::tool =  ::ui::tool::lr::ToolPencil_obj::__alloc( HX_CTX );
-HXLINE(  28)		this->pencil =  ::ui::tool::icon::IconPencil_obj::__alloc( HX_CTX );
-HXLINE(  29)		this->addChild(this->pencil);
-HXLINE(  31)		this->line =  ::ui::tool::icon::IconLine_obj::__alloc( HX_CTX );
-HXLINE(  32)		this->addChild(this->line);
-HXLINE(  33)		this->line->set_x((int)30);
-HXLINE(  35)		this->playB =  ::ui::tool::icon::IconPlay_obj::__alloc( HX_CTX );
-HXLINE(  36)		this->addChild(this->playB);
-HXLINE(  37)		this->playB->set_x((int)60);
-HXLINE(  39)		this->save =  ::ui::tool::icon::IconSave_obj::__alloc( HX_CTX );
-HXLINE(  40)		this->addChild(this->save);
-HXLINE(  41)		this->save->set_x((int)90);
+            	HX_GC_STACKFRAME(&_hx_pos_d63ce7f7d2486650_26_new)
+HXLINE(  27)		super::__construct();
+HXLINE(  29)		::lr::Toolbar_obj::tool =  ::ui::tool::lr::ToolPencil_obj::__alloc( HX_CTX );
+HXLINE(  31)		this->pencil =  ::ui::tool::icon::IconPencil_obj::__alloc( HX_CTX );
+HXLINE(  32)		this->addChild(this->pencil);
+HXLINE(  34)		this->line =  ::ui::tool::icon::IconLine_obj::__alloc( HX_CTX );
+HXLINE(  35)		this->addChild(this->line);
+HXLINE(  36)		this->line->set_x((int)30);
+HXLINE(  38)		this->playB =  ::ui::tool::icon::IconPlay_obj::__alloc( HX_CTX );
+HXLINE(  39)		this->addChild(this->playB);
+HXLINE(  40)		this->playB->set_x((int)60);
+HXLINE(  42)		this->save =  ::ui::tool::icon::IconSave_obj::__alloc( HX_CTX );
+HXLINE(  43)		this->addChild(this->save);
+HXLINE(  44)		this->save->set_x((int)90);
             	}
 
 Dynamic Toolbar_obj::__CreateEmpty() { return new Toolbar_obj; }

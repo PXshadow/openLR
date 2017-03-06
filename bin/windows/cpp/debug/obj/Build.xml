@@ -183,20 +183,11 @@
   </file>
   <file name="src/sys/io/_Process/Stdin.cpp" >
    <depend name="include/haxe/io/Bytes.h"/>
-   <depend name="include/haxe/io/Eof.h"/>
    <depend name="include/haxe/io/Output.h"/>
    <depend name="include/sys/io/_Process/Stdin.h"/>
   </file>
-  <file name="src/sys/io/FileOutput.cpp" >
-   <depend name="include/haxe/io/Bytes.h"/>
-   <depend name="include/haxe/io/Error.h"/>
-   <depend name="include/haxe/io/Output.h"/>
-   <depend name="include/sys/io/FileOutput.h"/>
-  </file>
   <file name="src/sys/io/File.cpp" >
-   <depend name="include/haxe/io/Output.h"/>
    <depend name="include/sys/io/File.h"/>
-   <depend name="include/sys/io/FileOutput.h"/>
   </file>
   <file name="src/sys/FileSystem.cpp" >
    <depend name="include/Sys.h"/>
@@ -4295,8 +4286,6 @@
    <depend name="include/haxe/io/Eof.h"/>
   </file>
   <file name="src/haxe/io/Output.cpp" >
-   <depend name="include/haxe/io/Bytes.h"/>
-   <depend name="include/haxe/io/Error.h"/>
    <depend name="include/haxe/io/Output.h"/>
   </file>
   <file name="src/haxe/io/Input.cpp" >
@@ -4436,20 +4425,14 @@
    <depend name="include/openfl/geom/Point.h"/>
    <depend name="include/ui/tool/ToolBase.h"/>
   </file>
-  <file name="src/file/TrackParse.cpp" >
-   <depend name="include/Date.h"/>
-   <depend name="include/file/TrackParse.h"/>
-   <depend name="include/global/Common.h"/>
-   <depend name="include/lr/line/Grid.h"/>
-  </file>
   <file name="src/file/SaveManager.cpp" >
+   <depend name="include/Date.h"/>
    <depend name="include/file/SaveManager.h"/>
-   <depend name="include/file/TrackParse.h"/>
    <depend name="include/global/Common.h"/>
+   <depend name="include/haxe/Log.h"/>
    <depend name="include/haxe/Serializer.h"/>
-   <depend name="include/haxe/io/Output.h"/>
+   <depend name="include/lr/line/Grid.h"/>
    <depend name="include/sys/io/File.h"/>
-   <depend name="include/sys/io/FileOutput.h"/>
   </file>
   <file name="src/cpp/vm/Thread.cpp" >
    <depend name="include/cpp/vm/Thread.h"/>

@@ -48,28 +48,28 @@
 #include <openfl/geom/Point.h>
 #endif
 
-HX_DEFINE_STACK_FRAME(_hx_pos_dd56be6e622e2db2_13_new,"lr.line.LineAccel","new",0xa305d114,"lr.line.LineAccel.new","lr/line/LineAccel.hx",13,0x3d52593c)
-HX_LOCAL_STACK_FRAME(_hx_pos_dd56be6e622e2db2_23_render,"lr.line.LineAccel","render",0x14b1d322,"lr.line.LineAccel.render","lr/line/LineAccel.hx",23,0x3d52593c)
+HX_DEFINE_STACK_FRAME(_hx_pos_dd56be6e622e2db2_16_new,"lr.line.LineAccel","new",0xa305d114,"lr.line.LineAccel.new","lr/line/LineAccel.hx",16,0x3d52593c)
+HX_LOCAL_STACK_FRAME(_hx_pos_dd56be6e622e2db2_26_render,"lr.line.LineAccel","render",0x14b1d322,"lr.line.LineAccel.render","lr/line/LineAccel.hx",26,0x3d52593c)
 namespace lr{
 namespace line{
 
 void LineAccel_obj::__construct( ::openfl::geom::Point _a, ::openfl::geom::Point _b,bool _inv,hx::Null< int >  __o__lim){
 int _lim = __o__lim.Default(-1);
-            	HX_STACKFRAME(&_hx_pos_dd56be6e622e2db2_13_new)
-HXLINE(  14)		super::__construct();
-HXLINE(  15)		this->type = (int)1;
-HXLINE(  16)		this->a = _a;
-HXLINE(  17)		this->b = _b;
-HXLINE(  18)		this->inv = _inv;
-HXLINE(  19)		this->calculateConstants();
-HXLINE(  20)		int _hx_tmp;
-HXDLIN(  20)		if ((_lim == (int)-1)) {
-HXLINE(  20)			_hx_tmp = (int)0;
+            	HX_STACKFRAME(&_hx_pos_dd56be6e622e2db2_16_new)
+HXLINE(  17)		super::__construct();
+HXLINE(  18)		this->type = (int)1;
+HXLINE(  19)		this->a = _a;
+HXLINE(  20)		this->b = _b;
+HXLINE(  21)		this->inv = _inv;
+HXLINE(  22)		this->calculateConstants();
+HXLINE(  23)		int _hx_tmp;
+HXDLIN(  23)		if ((_lim == (int)-1)) {
+HXLINE(  23)			_hx_tmp = (int)0;
             		}
             		else {
-HXLINE(  20)			_hx_tmp = _lim;
+HXLINE(  23)			_hx_tmp = _lim;
             		}
-HXDLIN(  20)		this->set_lim(_hx_tmp);
+HXDLIN(  23)		this->set_lim(_hx_tmp);
             	}
 
 Dynamic LineAccel_obj::__CreateEmpty() { return new LineAccel_obj; }
@@ -108,38 +108,38 @@ bool LineAccel_obj::_hx_isInstanceOf(int inClassId) {
 }
 
 void LineAccel_obj::render(::String con){
-            	HX_STACKFRAME(&_hx_pos_dd56be6e622e2db2_23_render)
-HXLINE(  24)		this->get_graphics()->clear();
-HXLINE(  25)		if ((con == HX_("edit",0a,ca,0e,43))) {
-HXLINE(  26)			Float _loc_3;
-HXLINE(  27)			Float _loc_4;
-HXLINE(  28)			if ((this->n->x > (int)0)) {
-HXLINE(  28)				_loc_3 = ::Math_obj::ceil(this->n->x);
+            	HX_STACKFRAME(&_hx_pos_dd56be6e622e2db2_26_render)
+HXLINE(  27)		this->get_graphics()->clear();
+HXLINE(  28)		if ((con == HX_("edit",0a,ca,0e,43))) {
+HXLINE(  29)			Float _loc_3;
+HXLINE(  30)			Float _loc_4;
+HXLINE(  31)			if ((this->n->x > (int)0)) {
+HXLINE(  31)				_loc_3 = ::Math_obj::ceil(this->n->x);
             			}
             			else {
-HXLINE(  28)				_loc_3 = ::Math_obj::floor(this->n->x);
+HXLINE(  31)				_loc_3 = ::Math_obj::floor(this->n->x);
             			}
-HXLINE(  29)			if ((this->n->y > (int)0)) {
-HXLINE(  29)				_loc_4 = ::Math_obj::ceil(this->n->y);
+HXLINE(  32)			if ((this->n->y > (int)0)) {
+HXLINE(  32)				_loc_4 = ::Math_obj::ceil(this->n->y);
             			}
             			else {
-HXLINE(  29)				_loc_4 = ::Math_obj::floor(this->n->y);
+HXLINE(  32)				_loc_4 = ::Math_obj::floor(this->n->y);
             			}
-HXLINE(  30)			 ::openfl::display::Graphics _hx_tmp = this->get_graphics();
-HXDLIN(  30)			 ::Dynamic _hx_tmp1 = ::openfl::display::_LineScaleMode::LineScaleMode_Impl__obj::fromString(HX_("normal",27,72,69,30));
-HXDLIN(  30)			_hx_tmp->lineStyle((int)2,(int)13369344,(int)1,true,_hx_tmp1,::openfl::display::_CapsStyle::CapsStyle_Impl__obj::fromString(HX_("round",4e,f8,65,ed)),null(),null());
-HXLINE(  31)			 ::openfl::display::Graphics _hx_tmp2 = this->get_graphics();
-HXDLIN(  31)			Float _hx_tmp3 = (this->a->x + _loc_3);
-HXDLIN(  31)			_hx_tmp2->moveTo(_hx_tmp3,(this->a->y + _loc_4));
-HXLINE(  32)			 ::openfl::display::Graphics _hx_tmp4 = this->get_graphics();
-HXDLIN(  32)			Float _hx_tmp5 = (this->b->x + _loc_3);
-HXDLIN(  32)			_hx_tmp4->lineTo(_hx_tmp5,(this->b->y + _loc_4));
+HXLINE(  33)			 ::openfl::display::Graphics _hx_tmp = this->get_graphics();
+HXDLIN(  33)			 ::Dynamic _hx_tmp1 = ::openfl::display::_LineScaleMode::LineScaleMode_Impl__obj::fromString(HX_("normal",27,72,69,30));
+HXDLIN(  33)			_hx_tmp->lineStyle((int)2,(int)13369344,(int)1,true,_hx_tmp1,::openfl::display::_CapsStyle::CapsStyle_Impl__obj::fromString(HX_("round",4e,f8,65,ed)),null(),null());
+HXLINE(  34)			 ::openfl::display::Graphics _hx_tmp2 = this->get_graphics();
+HXDLIN(  34)			Float _hx_tmp3 = (this->a->x + _loc_3);
+HXDLIN(  34)			_hx_tmp2->moveTo(_hx_tmp3,(this->a->y + _loc_4));
+HXLINE(  35)			 ::openfl::display::Graphics _hx_tmp4 = this->get_graphics();
+HXDLIN(  35)			Float _hx_tmp5 = (this->b->x + _loc_3);
+HXDLIN(  35)			_hx_tmp4->lineTo(_hx_tmp5,(this->b->y + _loc_4));
             		}
-HXLINE(  34)		 ::openfl::display::Graphics _hx_tmp6 = this->get_graphics();
-HXDLIN(  34)		 ::Dynamic _hx_tmp7 = ::openfl::display::_LineScaleMode::LineScaleMode_Impl__obj::fromString(HX_("normal",27,72,69,30));
-HXDLIN(  34)		_hx_tmp6->lineStyle((int)2,(int)0,(int)1,true,_hx_tmp7,::openfl::display::_CapsStyle::CapsStyle_Impl__obj::fromString(HX_("round",4e,f8,65,ed)),null(),null());
-HXLINE(  35)		this->get_graphics()->moveTo(this->a->x,this->a->y);
-HXLINE(  36)		this->get_graphics()->lineTo(this->b->x,this->b->y);
+HXLINE(  37)		 ::openfl::display::Graphics _hx_tmp6 = this->get_graphics();
+HXDLIN(  37)		 ::Dynamic _hx_tmp7 = ::openfl::display::_LineScaleMode::LineScaleMode_Impl__obj::fromString(HX_("normal",27,72,69,30));
+HXDLIN(  37)		_hx_tmp6->lineStyle((int)2,(int)0,(int)1,true,_hx_tmp7,::openfl::display::_CapsStyle::CapsStyle_Impl__obj::fromString(HX_("round",4e,f8,65,ed)),null(),null());
+HXLINE(  38)		this->get_graphics()->moveTo(this->a->x,this->a->y);
+HXLINE(  39)		this->get_graphics()->lineTo(this->b->x,this->b->y);
             	}
 
 

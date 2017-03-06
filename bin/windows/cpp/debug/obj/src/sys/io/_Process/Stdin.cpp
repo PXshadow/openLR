@@ -4,9 +4,6 @@
 #ifndef INCLUDED_haxe_io_Bytes
 #include <haxe/io/Bytes.h>
 #endif
-#ifndef INCLUDED_haxe_io_Eof
-#include <haxe/io/Eof.h>
-#endif
 #ifndef INCLUDED_haxe_io_Output
 #include <haxe/io/Output.h>
 #endif
@@ -15,8 +12,6 @@
 #endif
 
 HX_DEFINE_STACK_FRAME(_hx_pos_f1dc2a72381c14cb_31_new,"sys.io._Process.Stdin","new",0xd3131563,"sys.io._Process.Stdin.new","C:\\HaxeToolkit\\haxe\\std/cpp/_std/sys/io/Process.hx",31,0x19dec630)
-HX_LOCAL_STACK_FRAME(_hx_pos_f1dc2a72381c14cb_41_writeByte,"sys.io._Process.Stdin","writeByte",0xfb987cca,"sys.io._Process.Stdin.writeByte","C:\\HaxeToolkit\\haxe\\std/cpp/_std/sys/io/Process.hx",41,0x19dec630)
-HX_LOCAL_STACK_FRAME(_hx_pos_f1dc2a72381c14cb_47_writeBytes,"sys.io._Process.Stdin","writeBytes",0x29d4b469,"sys.io._Process.Stdin.writeBytes","C:\\HaxeToolkit\\haxe\\std/cpp/_std/sys/io/Process.hx",47,0x19dec630)
 namespace sys{
 namespace io{
 namespace _Process{
@@ -45,33 +40,6 @@ bool Stdin_obj::_hx_isInstanceOf(int inClassId) {
 		return inClassId==(int)0x7e8e3445;
 	}
 }
-
-void Stdin_obj::writeByte(int c){
-            	HX_STACKFRAME(&_hx_pos_f1dc2a72381c14cb_41_writeByte)
-HXLINE(  42)		this->buf->b[(int)0] = c;
-HXLINE(  43)		this->writeBytes(this->buf,(int)0,(int)1);
-            	}
-
-
-int Stdin_obj::writeBytes( ::haxe::io::Bytes buf,int pos,int len){
-            	HX_GC_STACKFRAME(&_hx_pos_f1dc2a72381c14cb_47_writeBytes)
-HXLINE(  47)		try {
-            			HX_STACK_CATCHABLE( ::Dynamic, 0);
-HXLINE(  48)			return _hx_std_process_stdin_write(this->p,buf->b,pos,len);
-            		}
-            		catch( ::Dynamic _hx_e){
-            			if (_hx_e.IsClass<  ::Dynamic >() ){
-            				HX_STACK_BEGIN_CATCH
-            				 ::Dynamic e = _hx_e;
-HXLINE(  50)				HX_STACK_DO_THROW( ::haxe::io::Eof_obj::__alloc( HX_CTX ));
-            			}
-            			else {
-            				HX_STACK_DO_THROW(_hx_e);
-            			}
-            		}
-HXLINE(  47)		return (int)0;
-            	}
-
 
 
 hx::ObjectPtr< Stdin_obj > Stdin_obj::__new( ::Dynamic p) {
@@ -113,12 +81,6 @@ hx::Val Stdin_obj::__Field(const ::String &inName,hx::PropertyAccess inCallProp)
 		break;
 	case 3:
 		if (HX_FIELD_EQ(inName,"buf") ) { return hx::Val( buf); }
-		break;
-	case 9:
-		if (HX_FIELD_EQ(inName,"writeByte") ) { return hx::Val( writeByte_dyn()); }
-		break;
-	case 10:
-		if (HX_FIELD_EQ(inName,"writeBytes") ) { return hx::Val( writeBytes_dyn()); }
 	}
 	return super::__Field(inName,inCallProp);
 }
@@ -154,8 +116,6 @@ static hx::StaticInfo *Stdin_obj_sStaticStorageInfo = 0;
 static ::String Stdin_obj_sMemberFields[] = {
 	HX_HCSTRING("p","\x70","\x00","\x00","\x00"),
 	HX_HCSTRING("buf","\x33","\xc3","\x4a","\x00"),
-	HX_HCSTRING("writeByte","\x87","\x13","\xd7","\x49"),
-	HX_HCSTRING("writeBytes","\x0c","\x03","\x5a","\x52"),
 	::String(null()) };
 
 static void Stdin_obj_sMarkStatics(HX_MARK_PARAMS) {

@@ -41,19 +41,19 @@
 #include <openfl/geom/Point.h>
 #endif
 
-HX_DEFINE_STACK_FRAME(_hx_pos_f9b804989ab5517c_17_new,"lr.Track","new",0x6e6f3cf5,"lr.Track.new","lr/Track.hx",17,0x1293c11c)
-HX_LOCAL_STACK_FRAME(_hx_pos_f9b804989ab5517c_23_add_vis_line,"lr.Track","add_vis_line",0xd2e313dc,"lr.Track.add_vis_line","lr/Track.hx",23,0x1293c11c)
-HX_LOCAL_STACK_FRAME(_hx_pos_f9b804989ab5517c_28_render_preview_line,"lr.Track","render_preview_line",0x44ad2729,"lr.Track.render_preview_line","lr/Track.hx",28,0x1293c11c)
-HX_LOCAL_STACK_FRAME(_hx_pos_f9b804989ab5517c_41_clear_preview,"lr.Track","clear_preview",0xe3cd58eb,"lr.Track.clear_preview","lr/Track.hx",41,0x1293c11c)
-HX_LOCAL_STACK_FRAME(_hx_pos_f9b804989ab5517c_44_update_render,"lr.Track","update_render",0x864c92e1,"lr.Track.update_render","lr/Track.hx",44,0x1293c11c)
+HX_DEFINE_STACK_FRAME(_hx_pos_f9b804989ab5517c_20_new,"lr.Track","new",0x6e6f3cf5,"lr.Track.new","lr/Track.hx",20,0x1293c11c)
+HX_LOCAL_STACK_FRAME(_hx_pos_f9b804989ab5517c_27_add_vis_line,"lr.Track","add_vis_line",0xd2e313dc,"lr.Track.add_vis_line","lr/Track.hx",27,0x1293c11c)
+HX_LOCAL_STACK_FRAME(_hx_pos_f9b804989ab5517c_33_render_preview_line,"lr.Track","render_preview_line",0x44ad2729,"lr.Track.render_preview_line","lr/Track.hx",33,0x1293c11c)
+HX_LOCAL_STACK_FRAME(_hx_pos_f9b804989ab5517c_46_clear_preview,"lr.Track","clear_preview",0xe3cd58eb,"lr.Track.clear_preview","lr/Track.hx",46,0x1293c11c)
+HX_LOCAL_STACK_FRAME(_hx_pos_f9b804989ab5517c_49_update_render,"lr.Track","update_render",0x864c92e1,"lr.Track.update_render","lr/Track.hx",49,0x1293c11c)
 namespace lr{
 
 void Track_obj::__construct(){
-            	HX_GC_STACKFRAME(&_hx_pos_f9b804989ab5517c_17_new)
-HXLINE(  18)		super::__construct();
-HXLINE(  19)		::global::Common_obj::gTrack = hx::ObjectPtr<OBJ_>(this);
-HXLINE(  20)		::global::Common_obj::track_scale = (int)1;
-HXLINE(  21)		this->grid =  ::lr::line::Grid_obj::__alloc( HX_CTX );
+            	HX_GC_STACKFRAME(&_hx_pos_f9b804989ab5517c_20_new)
+HXLINE(  21)		super::__construct();
+HXLINE(  22)		::global::Common_obj::gTrack = hx::ObjectPtr<OBJ_>(this);
+HXLINE(  23)		::global::Common_obj::track_scale = (int)1;
+HXLINE(  24)		this->grid =  ::lr::line::Grid_obj::__alloc( HX_CTX );
             	}
 
 Dynamic Track_obj::__CreateEmpty() { return new Track_obj; }
@@ -88,69 +88,69 @@ bool Track_obj::_hx_isInstanceOf(int inClassId) {
 }
 
 void Track_obj::add_vis_line( ::Dynamic line){
-            	HX_STACKFRAME(&_hx_pos_f9b804989ab5517c_23_add_vis_line)
-HXLINE(  24)		::global::Common_obj::gGrid->massLineIndex(line);
-HXLINE(  25)		 ::lr::Track _hx_tmp = ::global::Common_obj::gTrack;
-HXDLIN(  25)		::cpp::VirtualArray _hx_tmp1 = this->grid->lines;
-HXDLIN(  25)		_hx_tmp->addChild(( ( ::openfl::display::DisplayObject)(_hx_tmp1->__get((this->grid->lines->get_length() - (int)1))) ));
-HXLINE(  26)		::cpp::VirtualArray _hx_tmp2 = this->grid->lines;
-HXDLIN(  26)		_hx_tmp2->__get((this->grid->lines->get_length() - (int)1))->__Field(HX_("render",56,6b,29,05),hx::paccDynamic)(HX_("edit",0a,ca,0e,43));
+            	HX_STACKFRAME(&_hx_pos_f9b804989ab5517c_27_add_vis_line)
+HXLINE(  28)		::global::Common_obj::gGrid->massLineIndex(line);
+HXLINE(  29)		 ::lr::Track _hx_tmp = ::global::Common_obj::gTrack;
+HXDLIN(  29)		::cpp::VirtualArray _hx_tmp1 = this->grid->lines;
+HXDLIN(  29)		_hx_tmp->addChild(( ( ::openfl::display::DisplayObject)(_hx_tmp1->__get((this->grid->lines->get_length() - (int)1))) ));
+HXLINE(  30)		::cpp::VirtualArray _hx_tmp2 = this->grid->lines;
+HXDLIN(  30)		_hx_tmp2->__get((this->grid->lines->get_length() - (int)1))->__Field(HX_("render",56,6b,29,05),hx::paccDynamic)(HX_("edit",0a,ca,0e,43));
             	}
 
 
 HX_DEFINE_DYNAMIC_FUNC1(Track_obj,add_vis_line,(void))
 
 void Track_obj::render_preview_line( ::openfl::geom::Point _a, ::openfl::geom::Point _b){
-            	HX_STACKFRAME(&_hx_pos_f9b804989ab5517c_28_render_preview_line)
-HXLINE(  29)		Float _locDis = ::global::Common_obj::get_distance(_a,_b);
-HXLINE(  30)		int _locCol = (int)16711680;
-HXLINE(  31)		if ((_locDis > ::global::Common_obj::line_minLength)) {
-HXLINE(  32)			_locCol = (int)0;
+            	HX_STACKFRAME(&_hx_pos_f9b804989ab5517c_33_render_preview_line)
+HXLINE(  34)		Float _locDis = ::global::Common_obj::get_distance(_a,_b);
+HXLINE(  35)		int _locCol = (int)16711680;
+HXLINE(  36)		if ((_locDis > ::global::Common_obj::line_minLength)) {
+HXLINE(  37)			_locCol = (int)0;
             		}
-HXLINE(  34)		this->get_graphics()->clear();
-HXLINE(  35)		this->get_graphics()->lineStyle((int)2,_locCol,(int)1,null(),null(),null(),null(),null());
-HXLINE(  36)		this->get_graphics()->moveTo(_a->x,_a->y);
-HXLINE(  37)		this->get_graphics()->lineTo(_b->x,_b->y);
+HXLINE(  39)		this->get_graphics()->clear();
+HXLINE(  40)		this->get_graphics()->lineStyle((int)2,_locCol,(int)1,null(),null(),null(),null(),null());
+HXLINE(  41)		this->get_graphics()->moveTo(_a->x,_a->y);
+HXLINE(  42)		this->get_graphics()->lineTo(_b->x,_b->y);
             	}
 
 
 HX_DEFINE_DYNAMIC_FUNC2(Track_obj,render_preview_line,(void))
 
 void Track_obj::clear_preview(){
-            	HX_STACKFRAME(&_hx_pos_f9b804989ab5517c_41_clear_preview)
-HXLINE(  41)		this->get_graphics()->clear();
+            	HX_STACKFRAME(&_hx_pos_f9b804989ab5517c_46_clear_preview)
+HXLINE(  46)		this->get_graphics()->clear();
             	}
 
 
 HX_DEFINE_DYNAMIC_FUNC0(Track_obj,clear_preview,(void))
 
 void Track_obj::update_render(){
-            	HX_STACKFRAME(&_hx_pos_f9b804989ab5517c_44_update_render)
-HXLINE(  45)		int con = ::global::Common_obj::cvar_line_render_mode;
-HXLINE(  46)		if ((con == (int)0)) {
-HXLINE(  47)			{
-HXLINE(  47)				int _g1 = (int)0;
-HXDLIN(  47)				int _g = this->grid->lines->get_length();
-HXDLIN(  47)				while((_g1 < _g)){
-HXLINE(  47)					_g1 = (_g1 + (int)1);
-HXDLIN(  47)					int a = (_g1 - (int)1);
-HXLINE(  48)					this->grid->lines->__get(a)->__Field(HX_("render",56,6b,29,05),hx::paccDynamic)(HX_("play",f4,2d,5a,4a));
+            	HX_STACKFRAME(&_hx_pos_f9b804989ab5517c_49_update_render)
+HXLINE(  50)		int con = ::global::Common_obj::cvar_line_render_mode;
+HXLINE(  51)		if ((con == (int)0)) {
+HXLINE(  52)			{
+HXLINE(  52)				int _g1 = (int)0;
+HXDLIN(  52)				int _g = this->grid->lines->get_length();
+HXDLIN(  52)				while((_g1 < _g)){
+HXLINE(  52)					_g1 = (_g1 + (int)1);
+HXDLIN(  52)					int a = (_g1 - (int)1);
+HXLINE(  53)					this->grid->lines->__get(a)->__Field(HX_("render",56,6b,29,05),hx::paccDynamic)(HX_("play",f4,2d,5a,4a));
             				}
             			}
-HXLINE(  50)			::global::Common_obj::cvar_line_render_mode = (int)1;
+HXLINE(  55)			::global::Common_obj::cvar_line_render_mode = (int)1;
             		}
             		else {
-HXLINE(  51)			if ((con == (int)1)) {
-HXLINE(  52)				{
-HXLINE(  52)					int _g11 = (int)0;
-HXDLIN(  52)					int _g2 = this->grid->lines->get_length();
-HXDLIN(  52)					while((_g11 < _g2)){
-HXLINE(  52)						_g11 = (_g11 + (int)1);
-HXDLIN(  52)						int b = (_g11 - (int)1);
-HXLINE(  53)						this->grid->lines->__get(b)->__Field(HX_("render",56,6b,29,05),hx::paccDynamic)(HX_("edit",0a,ca,0e,43));
+HXLINE(  56)			if ((con == (int)1)) {
+HXLINE(  57)				{
+HXLINE(  57)					int _g11 = (int)0;
+HXDLIN(  57)					int _g2 = this->grid->lines->get_length();
+HXDLIN(  57)					while((_g11 < _g2)){
+HXLINE(  57)						_g11 = (_g11 + (int)1);
+HXDLIN(  57)						int b = (_g11 - (int)1);
+HXLINE(  58)						this->grid->lines->__get(b)->__Field(HX_("render",56,6b,29,05),hx::paccDynamic)(HX_("edit",0a,ca,0e,43));
             					}
             				}
-HXLINE(  55)				::global::Common_obj::cvar_line_render_mode = (int)0;
+HXLINE(  60)				::global::Common_obj::cvar_line_render_mode = (int)0;
             			}
             		}
             	}

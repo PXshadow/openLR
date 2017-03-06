@@ -50,35 +50,35 @@
 #include <ui/tool/icon/IconBase.h>
 #endif
 
-HX_DEFINE_STACK_FRAME(_hx_pos_330102231cfe36ba_13_new,"ui.tool.icon.IconBase","new",0x019a9895,"ui.tool.icon.IconBase.new","ui/tool/icon/IconBase.hx",13,0xa1b1da7a)
-HX_LOCAL_STACK_FRAME(_hx_pos_330102231cfe36ba_43_alt,"ui.tool.icon.IconBase","alt",0x0190c15e,"ui.tool.icon.IconBase.alt","ui/tool/icon/IconBase.hx",43,0xa1b1da7a)
-HX_LOCAL_STACK_FRAME(_hx_pos_330102231cfe36ba_48_down,"ui.tool.icon.IconBase","down",0x5f165e8d,"ui.tool.icon.IconBase.down","ui/tool/icon/IconBase.hx",48,0xa1b1da7a)
-HX_LOCAL_STACK_FRAME(_hx_pos_330102231cfe36ba_52_enable_tool,"ui.tool.icon.IconBase","enable_tool",0x34fdd309,"ui.tool.icon.IconBase.enable_tool","ui/tool/icon/IconBase.hx",52,0xa1b1da7a)
-HX_LOCAL_STACK_FRAME(_hx_pos_330102231cfe36ba_58_disable_tool,"ui.tool.icon.IconBase","disable_tool",0x4e742d7a,"ui.tool.icon.IconBase.disable_tool","ui/tool/icon/IconBase.hx",58,0xa1b1da7a)
-HX_LOCAL_STACK_FRAME(_hx_pos_330102231cfe36ba_63_enable,"ui.tool.icon.IconBase","enable",0xdcb6356e,"ui.tool.icon.IconBase.enable","ui/tool/icon/IconBase.hx",63,0xa1b1da7a)
+HX_DEFINE_STACK_FRAME(_hx_pos_330102231cfe36ba_16_new,"ui.tool.icon.IconBase","new",0x019a9895,"ui.tool.icon.IconBase.new","ui/tool/icon/IconBase.hx",16,0xa1b1da7a)
+HX_LOCAL_STACK_FRAME(_hx_pos_330102231cfe36ba_47_alt,"ui.tool.icon.IconBase","alt",0x0190c15e,"ui.tool.icon.IconBase.alt","ui/tool/icon/IconBase.hx",47,0xa1b1da7a)
+HX_LOCAL_STACK_FRAME(_hx_pos_330102231cfe36ba_52_down,"ui.tool.icon.IconBase","down",0x5f165e8d,"ui.tool.icon.IconBase.down","ui/tool/icon/IconBase.hx",52,0xa1b1da7a)
+HX_LOCAL_STACK_FRAME(_hx_pos_330102231cfe36ba_56_enable_tool,"ui.tool.icon.IconBase","enable_tool",0x34fdd309,"ui.tool.icon.IconBase.enable_tool","ui/tool/icon/IconBase.hx",56,0xa1b1da7a)
+HX_LOCAL_STACK_FRAME(_hx_pos_330102231cfe36ba_62_disable_tool,"ui.tool.icon.IconBase","disable_tool",0x4e742d7a,"ui.tool.icon.IconBase.disable_tool","ui/tool/icon/IconBase.hx",62,0xa1b1da7a)
+HX_LOCAL_STACK_FRAME(_hx_pos_330102231cfe36ba_67_enable,"ui.tool.icon.IconBase","enable",0xdcb6356e,"ui.tool.icon.IconBase.enable","ui/tool/icon/IconBase.hx",67,0xa1b1da7a)
 namespace ui{
 namespace tool{
 namespace icon{
 
 void IconBase_obj::__construct(){
-            	HX_STACKFRAME(&_hx_pos_330102231cfe36ba_13_new)
-HXLINE(  15)		this->debug_alpha = (int)0;
-HXLINE(  19)		super::__construct();
-HXLINE(  21)		if (::global::Common_obj::cvar_icon_hit_display) {
-HXLINE(  22)			this->debug_alpha = (int)1;
+            	HX_STACKFRAME(&_hx_pos_330102231cfe36ba_16_new)
+HXLINE(  18)		this->debug_alpha = (int)0;
+HXLINE(  22)		super::__construct();
+HXLINE(  24)		if (::global::Common_obj::cvar_icon_hit_display) {
+HXLINE(  26)			this->debug_alpha = (int)1;
             		}
-HXLINE(  26)		this->get_graphics()->clear();
-HXLINE(  27)		this->get_graphics()->lineStyle((int)2,(int)0,this->debug_alpha,null(),null(),null(),null(),null());
-HXLINE(  28)		this->get_graphics()->beginFill((int)16777215,this->debug_alpha);
-HXLINE(  29)		this->get_graphics()->moveTo((int)0,(int)0);
-HXLINE(  30)		this->get_graphics()->lineTo((int)30,(int)0);
-HXLINE(  31)		this->get_graphics()->lineTo((int)30,(int)30);
-HXLINE(  32)		this->get_graphics()->lineTo((int)0,(int)30);
-HXLINE(  33)		this->get_graphics()->lineTo((int)0,(int)0);
-HXLINE(  35)		this->addEventListener(HX_("mouseOver",19,4a,0d,f6),this->disable_tool_dyn(),null(),null(),null());
-HXLINE(  36)		this->addEventListener(HX_("mouseOut",69,e7,1d,a4),this->enable_tool_dyn(),null(),null(),null());
-HXLINE(  37)		this->addEventListener(HX_("mouseDown",27,b1,c2,ee),this->down_dyn(),null(),null(),null());
-HXLINE(  38)		this->addEventListener(HX_("rightMouseDown",ab,29,d7,cd),this->alt_dyn(),null(),null(),null());
+HXLINE(  30)		this->get_graphics()->clear();
+HXLINE(  31)		this->get_graphics()->lineStyle((int)2,(int)0,this->debug_alpha,null(),null(),null(),null(),null());
+HXLINE(  32)		this->get_graphics()->beginFill((int)16777215,this->debug_alpha);
+HXLINE(  33)		this->get_graphics()->moveTo((int)0,(int)0);
+HXLINE(  34)		this->get_graphics()->lineTo((int)30,(int)0);
+HXLINE(  35)		this->get_graphics()->lineTo((int)30,(int)30);
+HXLINE(  36)		this->get_graphics()->lineTo((int)0,(int)30);
+HXLINE(  37)		this->get_graphics()->lineTo((int)0,(int)0);
+HXLINE(  39)		this->addEventListener(HX_("mouseOver",19,4a,0d,f6),this->disable_tool_dyn(),null(),null(),null());
+HXLINE(  40)		this->addEventListener(HX_("mouseOut",69,e7,1d,a4),this->enable_tool_dyn(),null(),null(),null());
+HXLINE(  41)		this->addEventListener(HX_("mouseDown",27,b1,c2,ee),this->down_dyn(),null(),null(),null());
+HXLINE(  42)		this->addEventListener(HX_("rightMouseDown",ab,29,d7,cd),this->alt_dyn(),null(),null(),null());
             	}
 
 Dynamic IconBase_obj::__CreateEmpty() { return new IconBase_obj; }
@@ -113,43 +113,43 @@ bool IconBase_obj::_hx_isInstanceOf(int inClassId) {
 }
 
 void IconBase_obj::alt( ::openfl::events::MouseEvent e){
-            	HX_STACKFRAME(&_hx_pos_330102231cfe36ba_43_alt)
-HXLINE(  43)		::haxe::Log_obj::trace(HX_("Alt behavior not yet set or not yet overidden",d6,75,15,0e),hx::SourceInfo(HX_("IconBase.hx",b4,a4,b3,21),43,HX_("ui.tool.icon.IconBase",23,aa,bb,a3),HX_("alt",29,f9,49,00)));
+            	HX_STACKFRAME(&_hx_pos_330102231cfe36ba_47_alt)
+HXLINE(  47)		::haxe::Log_obj::trace(HX_("Alt behavior not yet set or not yet overidden",d6,75,15,0e),hx::SourceInfo(HX_("IconBase.hx",b4,a4,b3,21),47,HX_("ui.tool.icon.IconBase",23,aa,bb,a3),HX_("alt",29,f9,49,00)));
             	}
 
 
 HX_DEFINE_DYNAMIC_FUNC1(IconBase_obj,alt,(void))
 
 void IconBase_obj::down( ::openfl::events::MouseEvent e){
-            	HX_STACKFRAME(&_hx_pos_330102231cfe36ba_48_down)
-HXLINE(  48)		::haxe::Log_obj::trace(HX_("action not yet overidden",4f,db,35,60),hx::SourceInfo(HX_("IconBase.hx",b4,a4,b3,21),48,HX_("ui.tool.icon.IconBase",23,aa,bb,a3),HX_("down",62,f8,6d,42)));
+            	HX_STACKFRAME(&_hx_pos_330102231cfe36ba_52_down)
+HXLINE(  52)		::haxe::Log_obj::trace(HX_("action not yet overidden",4f,db,35,60),hx::SourceInfo(HX_("IconBase.hx",b4,a4,b3,21),52,HX_("ui.tool.icon.IconBase",23,aa,bb,a3),HX_("down",62,f8,6d,42)));
             	}
 
 
 HX_DEFINE_DYNAMIC_FUNC1(IconBase_obj,down,(void))
 
 void IconBase_obj::enable_tool( ::openfl::events::MouseEvent e){
-            	HX_STACKFRAME(&_hx_pos_330102231cfe36ba_52_enable_tool)
-HXLINE(  53)		::global::Common_obj::gToolBase->enable();
-HXLINE(  54)		this->set_alpha((int)1);
+            	HX_STACKFRAME(&_hx_pos_330102231cfe36ba_56_enable_tool)
+HXLINE(  57)		::global::Common_obj::gToolBase->enable();
+HXLINE(  58)		this->set_alpha((int)1);
             	}
 
 
 HX_DEFINE_DYNAMIC_FUNC1(IconBase_obj,enable_tool,(void))
 
 void IconBase_obj::disable_tool( ::openfl::events::MouseEvent e){
-            	HX_STACKFRAME(&_hx_pos_330102231cfe36ba_58_disable_tool)
-HXLINE(  59)		::global::Common_obj::gToolBase->disable();
-HXLINE(  60)		this->set_alpha(((Float)0.75));
+            	HX_STACKFRAME(&_hx_pos_330102231cfe36ba_62_disable_tool)
+HXLINE(  63)		::global::Common_obj::gToolBase->disable();
+HXLINE(  64)		this->set_alpha(((Float)0.75));
             	}
 
 
 HX_DEFINE_DYNAMIC_FUNC1(IconBase_obj,disable_tool,(void))
 
 void IconBase_obj::enable(){
-            	HX_STACKFRAME(&_hx_pos_330102231cfe36ba_63_enable)
-HXLINE(  64)		this->addEventListener(HX_("mouseOver",19,4a,0d,f6),this->disable_tool_dyn(),null(),null(),null());
-HXLINE(  65)		this->addEventListener(HX_("mouseOut",69,e7,1d,a4),this->enable_tool_dyn(),null(),null(),null());
+            	HX_STACKFRAME(&_hx_pos_330102231cfe36ba_67_enable)
+HXLINE(  68)		this->addEventListener(HX_("mouseOver",19,4a,0d,f6),this->disable_tool_dyn(),null(),null(),null());
+HXLINE(  69)		this->addEventListener(HX_("mouseOut",69,e7,1d,a4),this->enable_tool_dyn(),null(),null(),null());
             	}
 
 

@@ -9,6 +9,10 @@ import global.Common;
 /**
  * ...
  * @author Kaelan Evans
+ * 
+ * 
+ * Base variables for all lines
+ * 
  */
 class LineBase extends MovieClip
 {
