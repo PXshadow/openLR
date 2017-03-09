@@ -71,7 +71,7 @@ class SaveManager
 		file.writeString("\r\n" + Common.cvar_author_comment);
 		file.writeString("\r\n");
 		file.writeString("\r\n");
-		file.writeString("the following are debug values:"); //End of save
+		file.writeString("the following are debug values:");
 		file.writeString("\r\n" + "Version: " + Common.version);
 		file.writeString("\r\n" + "Stage Dimensions: " + Common.stage_width + ", " + Common.stage_height);
 		file.writeString("\r\n" + "Line Count: " + Common.sLineCount + ", " + Common.sBLueLineCount + ", " + Common.sRedLineCount + ", " + Common.sGreenLineCount + ", ");

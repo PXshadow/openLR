@@ -86,7 +86,7 @@ HXDLIN(  38)		::String time1 = ((time + ::Date_obj::now()->getMonth()) + HX_("_"
 HXDLIN(  38)		::String time2 = ((time1 + ::Date_obj::now()->getFullYear()) + HX_("_",5f,00,00,00));
 HXDLIN(  38)		::String time3 = ((time2 + ::Date_obj::now()->getHours()) + HX_("_",5f,00,00,00));
 HXDLIN(  38)		::String time4 = (time3 + ::Date_obj::now()->getMinutes());
-HXLINE(  39)		 ::sys::io::FileOutput file1 = ::sys::io::File_obj::append(((HX_("./test_save_",16,c7,0e,d1) + time4) + HX_(".olrs",4c,b5,1f,c6)),true);
+HXLINE(  39)		 ::sys::io::FileOutput file1 = ::sys::io::File_obj::append(((HX_("./saves/test_save_",ef,bf,2f,11) + time4) + HX_(".olrs",4c,b5,1f,c6)),true);
 HXLINE(  40)		file1->writeString(HX_("openLR save;",0e,9f,3d,f4));
 HXLINE(  41)		file1->writeString(HX_("VER;",98,fc,0c,39));
 HXLINE(  42)		file1->writeString(( (::String)(this->trackData->__Field(HX_("a",61,00,00,00),hx::paccDynamic)) ));

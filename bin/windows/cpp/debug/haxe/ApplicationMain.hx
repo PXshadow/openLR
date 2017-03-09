@@ -28,7 +28,7 @@ import DefaultAssetLibrary;
 		
 		config = {
 			
-			build: "99",
+			build: "100",
 			company: "Kaelan Evans",
 			file: "openLR",
 			fps: 60,
