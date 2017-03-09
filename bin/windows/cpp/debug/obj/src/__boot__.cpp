@@ -526,6 +526,9 @@
 #ifndef INCLUDED_sys_io__Process_Stdin
 #include <sys/io/_Process/Stdin.h>
 #endif
+#ifndef INCLUDED_sys_io_FileOutput
+#include <sys/io/FileOutput.h>
+#endif
 #ifndef INCLUDED_sys_io_File
 #include <sys/io/File.h>
 #endif
@@ -1812,6 +1815,7 @@ hx::RegisterResources( hx::GetResources() );
 ::sys::io::Process_obj::__register();
 ::sys::io::_Process::Stdout_obj::__register();
 ::sys::io::_Process::Stdin_obj::__register();
+::sys::io::FileOutput_obj::__register();
 ::sys::io::File_obj::__register();
 ::sys::FileSystem_obj::__register();
 ::haxe::lang::Iterable_obj::__register();

@@ -6,7 +6,9 @@
 #include <hxcpp.h>
 #endif
 
+HX_DECLARE_CLASS2(haxe,io,Output)
 HX_DECLARE_CLASS2(sys,io,File)
+HX_DECLARE_CLASS2(sys,io,FileOutput)
 
 namespace sys{
 namespace io{
@@ -46,9 +48,13 @@ class HXCPP_CLASS_ATTRIBUTES File_obj : public hx::Object
 		//~File_obj();
 
 		HX_DO_RTTI_ALL;
+		static bool __GetStatic(const ::String &inString, Dynamic &outValue, hx::PropertyAccess inCallProp);
 		static void __register();
 		bool _hx_isInstanceOf(int inClassId);
 		::String __ToString() const { return HX_HCSTRING("File","\x9c","\xfa","\x94","\x2e"); }
+
+		static  ::sys::io::FileOutput append(::String path,hx::Null< bool >  binary);
+		static ::Dynamic append_dyn();
 
 };
 
