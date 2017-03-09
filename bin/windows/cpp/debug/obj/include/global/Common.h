@@ -97,6 +97,7 @@ class HXCPP_CLASS_ATTRIBUTES Common_obj : public hx::Object
 		static ::String cvar_track_author;
 		static Float stage_width;
 		static Float stage_height;
+		static ::String cvar_author_comment;
 		static Float get_angle_radians( ::openfl::geom::Point _a, ::openfl::geom::Point _b);
 		static ::Dynamic get_angle_radians_dyn();
 

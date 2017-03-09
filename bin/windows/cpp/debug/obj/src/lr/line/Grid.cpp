@@ -4,9 +4,6 @@
 #ifndef INCLUDED_global_Common
 #include <global/Common.h>
 #endif
-#ifndef INCLUDED_haxe_Log
-#include <haxe/Log.h>
-#endif
 #ifndef INCLUDED_lr_line_Grid
 #include <lr/line/Grid.h>
 #endif
@@ -61,7 +58,6 @@ HXLINE(  46)		 ::Dynamic _hx_tmp3 = hx::ClassOf< ::global::Common >();
 HXDLIN(  46)		::global::Common_obj::sLineCount = (::global::Common_obj::sLineCount + (int)1);
 HXLINE(  47)		 ::Dynamic _hx_tmp4 = hx::ClassOf< ::global::Common >();
 HXDLIN(  47)		::global::Common_obj::sLineID = (::global::Common_obj::sLineID + (int)1);
-HXLINE(  48)		::haxe::Log_obj::trace(::global::Common_obj::sLineCount,hx::SourceInfo(HX_("Grid.hx",98,93,72,d4),48,HX_("lr.line.Grid",b8,d1,b0,0c),HX_("massLineIndex",ea,7e,be,88)));
             	}
 
 

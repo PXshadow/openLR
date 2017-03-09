@@ -58,11 +58,11 @@
 #endif
 
 HX_DEFINE_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_20_new,"global.Common","new",0xda3ca4e8,"global.Common.new","global/Common.hx",20,0x2e53e767)
-HX_LOCAL_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_62_get_angle_radians,"global.Common","get_angle_radians",0x2d502ca5,"global.Common.get_angle_radians","global/Common.hx",62,0x2e53e767)
-HX_LOCAL_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_67_get_angle_degrees,"global.Common","get_angle_degrees",0x40bac9da,"global.Common.get_angle_degrees","global/Common.hx",67,0x2e53e767)
-HX_LOCAL_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_72_get_point_vector,"global.Common","get_point_vector",0x25fd1b13,"global.Common.get_point_vector","global/Common.hx",72,0x2e53e767)
-HX_LOCAL_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_78_get_distance,"global.Common","get_distance",0x9cffa1b6,"global.Common.get_distance","global/Common.hx",78,0x2e53e767)
-HX_LOCAL_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_81_get_distance_point,"global.Common","get_distance_point",0x38a7c9c7,"global.Common.get_distance_point","global/Common.hx",81,0x2e53e767)
+HX_LOCAL_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_64_get_angle_radians,"global.Common","get_angle_radians",0x2d502ca5,"global.Common.get_angle_radians","global/Common.hx",64,0x2e53e767)
+HX_LOCAL_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_69_get_angle_degrees,"global.Common","get_angle_degrees",0x40bac9da,"global.Common.get_angle_degrees","global/Common.hx",69,0x2e53e767)
+HX_LOCAL_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_74_get_point_vector,"global.Common","get_point_vector",0x25fd1b13,"global.Common.get_point_vector","global/Common.hx",74,0x2e53e767)
+HX_LOCAL_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_80_get_distance,"global.Common","get_distance",0x9cffa1b6,"global.Common.get_distance","global/Common.hx",80,0x2e53e767)
+HX_LOCAL_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_83_get_distance_point,"global.Common","get_distance_point",0x38a7c9c7,"global.Common.get_distance_point","global/Common.hx",83,0x2e53e767)
 HX_LOCAL_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_27_boot,"global.Common","boot",0x12eca6aa,"global.Common.boot","global/Common.hx",27,0x2e53e767)
 HX_LOCAL_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_38_boot,"global.Common","boot",0x12eca6aa,"global.Common.boot","global/Common.hx",38,0x2e53e767)
 HX_LOCAL_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_39_boot,"global.Common","boot",0x12eca6aa,"global.Common.boot","global/Common.hx",39,0x2e53e767)
@@ -76,6 +76,7 @@ HX_LOCAL_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_49_boot,"global.Common","boot",0x1
 HX_LOCAL_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_51_boot,"global.Common","boot",0x12eca6aa,"global.Common.boot","global/Common.hx",51,0x2e53e767)
 HX_LOCAL_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_52_boot,"global.Common","boot",0x12eca6aa,"global.Common.boot","global/Common.hx",52,0x2e53e767)
 HX_LOCAL_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_53_boot,"global.Common","boot",0x12eca6aa,"global.Common.boot","global/Common.hx",53,0x2e53e767)
+HX_LOCAL_STACK_FRAME(_hx_pos_7ee4709dfe1b7650_58_boot,"global.Common","boot",0x12eca6aa,"global.Common.boot","global/Common.hx",58,0x2e53e767)
 namespace global{
 
 void Common_obj::__construct(){
@@ -145,50 +146,52 @@ Float Common_obj::stage_width;
 
 Float Common_obj::stage_height;
 
+::String Common_obj::cvar_author_comment;
+
 Float Common_obj::get_angle_radians( ::openfl::geom::Point _a, ::openfl::geom::Point _b){
-            	HX_STACKFRAME(&_hx_pos_7ee4709dfe1b7650_62_get_angle_radians)
-HXLINE(  63)		Float _locAngle = (_b->y - _a->y);
-HXDLIN(  63)		Float _locAngle1 = ::Math_obj::atan2(_locAngle,(_b->x - _a->x));
-HXLINE(  64)		return _locAngle1;
+            	HX_STACKFRAME(&_hx_pos_7ee4709dfe1b7650_64_get_angle_radians)
+HXLINE(  65)		Float _locAngle = (_b->y - _a->y);
+HXDLIN(  65)		Float _locAngle1 = ::Math_obj::atan2(_locAngle,(_b->x - _a->x));
+HXLINE(  66)		return _locAngle1;
             	}
 
 
 STATIC_HX_DEFINE_DYNAMIC_FUNC2(Common_obj,get_angle_radians,return )
 
 Float Common_obj::get_angle_degrees( ::openfl::geom::Point _a, ::openfl::geom::Point _b){
-            	HX_STACKFRAME(&_hx_pos_7ee4709dfe1b7650_67_get_angle_degrees)
-HXLINE(  68)		Float _locAngle = (_b->y - _a->y);
-HXDLIN(  68)		Float _locAngle1 = ((Float)(::Math_obj::atan2(_locAngle,(_b->x - _a->x)) * (int)180) / (Float)::Math_obj::PI);
-HXLINE(  69)		return _locAngle1;
+            	HX_STACKFRAME(&_hx_pos_7ee4709dfe1b7650_69_get_angle_degrees)
+HXLINE(  70)		Float _locAngle = (_b->y - _a->y);
+HXDLIN(  70)		Float _locAngle1 = ((Float)(::Math_obj::atan2(_locAngle,(_b->x - _a->x)) * (int)180) / (Float)::Math_obj::PI);
+HXLINE(  71)		return _locAngle1;
             	}
 
 
 STATIC_HX_DEFINE_DYNAMIC_FUNC2(Common_obj,get_angle_degrees,return )
 
  ::openfl::geom::Point Common_obj::get_point_vector(int _dis,Float _ang){
-            	HX_GC_STACKFRAME(&_hx_pos_7ee4709dfe1b7650_72_get_point_vector)
-HXLINE(  73)		Float _loc1 = ((_dis * (int)-1) * ::Math_obj::cos(_ang));
-HXDLIN(  73)		 ::openfl::geom::Point _loc11 =  ::openfl::geom::Point_obj::__alloc( HX_CTX ,_loc1,((_dis * (int)-1) * ::Math_obj::sin(_ang)));
-HXLINE(  74)		return _loc11;
+            	HX_GC_STACKFRAME(&_hx_pos_7ee4709dfe1b7650_74_get_point_vector)
+HXLINE(  75)		Float _loc1 = ((_dis * (int)-1) * ::Math_obj::cos(_ang));
+HXDLIN(  75)		 ::openfl::geom::Point _loc11 =  ::openfl::geom::Point_obj::__alloc( HX_CTX ,_loc1,((_dis * (int)-1) * ::Math_obj::sin(_ang)));
+HXLINE(  76)		return _loc11;
             	}
 
 
 STATIC_HX_DEFINE_DYNAMIC_FUNC2(Common_obj,get_point_vector,return )
 
 Float Common_obj::get_distance( ::openfl::geom::Point _a, ::openfl::geom::Point _b){
-            	HX_STACKFRAME(&_hx_pos_7ee4709dfe1b7650_78_get_distance)
-HXLINE(  78)		Float _hx_tmp = ::Math_obj::pow((_b->y - _a->y),(int)2);
-HXDLIN(  78)		return ::Math_obj::sqrt((_hx_tmp + ::Math_obj::pow((_b->x - _a->x),(int)2)));
+            	HX_STACKFRAME(&_hx_pos_7ee4709dfe1b7650_80_get_distance)
+HXLINE(  80)		Float _hx_tmp = ::Math_obj::pow((_b->y - _a->y),(int)2);
+HXDLIN(  80)		return ::Math_obj::sqrt((_hx_tmp + ::Math_obj::pow((_b->x - _a->x),(int)2)));
             	}
 
 
 STATIC_HX_DEFINE_DYNAMIC_FUNC2(Common_obj,get_distance,return )
 
  ::openfl::geom::Point Common_obj::get_distance_point( ::openfl::geom::Point _a, ::openfl::geom::Point _b){
-            	HX_GC_STACKFRAME(&_hx_pos_7ee4709dfe1b7650_81_get_distance_point)
-HXLINE(  82)		Float _loc1 = (_b->y - _a->y);
-HXDLIN(  82)		 ::openfl::geom::Point _loc11 =  ::openfl::geom::Point_obj::__alloc( HX_CTX ,_loc1,(_b->x - _a->x));
-HXLINE(  83)		return _loc11;
+            	HX_GC_STACKFRAME(&_hx_pos_7ee4709dfe1b7650_83_get_distance_point)
+HXLINE(  84)		Float _loc1 = (_b->y - _a->y);
+HXDLIN(  84)		 ::openfl::geom::Point _loc11 =  ::openfl::geom::Point_obj::__alloc( HX_CTX ,_loc1,(_b->x - _a->x));
+HXLINE(  85)		return _loc11;
             	}
 
 
@@ -255,6 +258,9 @@ bool Common_obj::__GetStatic(const ::String &inName, Dynamic &outValue, hx::Prop
 	case 18:
 		if (HX_FIELD_EQ(inName,"get_distance_point") ) { outValue = get_distance_point_dyn(); return true; }
 		break;
+	case 19:
+		if (HX_FIELD_EQ(inName,"cvar_author_comment") ) { outValue = cvar_author_comment; return true; }
+		break;
 	case 21:
 		if (HX_FIELD_EQ(inName,"cvar_icon_hit_display") ) { outValue = cvar_icon_hit_display; return true; }
 		if (HX_FIELD_EQ(inName,"cvar_line_render_mode") ) { outValue = cvar_line_render_mode; return true; }
@@ -309,6 +315,9 @@ bool Common_obj::__SetStatic(const ::String &inName,Dynamic &ioValue,hx::Propert
 	case 17:
 		if (HX_FIELD_EQ(inName,"cvar_track_author") ) { cvar_track_author=ioValue.Cast< ::String >(); return true; }
 		break;
+	case 19:
+		if (HX_FIELD_EQ(inName,"cvar_author_comment") ) { cvar_author_comment=ioValue.Cast< ::String >(); return true; }
+		break;
 	case 21:
 		if (HX_FIELD_EQ(inName,"cvar_icon_hit_display") ) { cvar_icon_hit_display=ioValue.Cast< bool >(); return true; }
 		if (HX_FIELD_EQ(inName,"cvar_line_render_mode") ) { cvar_line_render_mode=ioValue.Cast< int >(); return true; }
@@ -343,6 +352,7 @@ static hx::StaticInfo Common_obj_sStaticStorageInfo[] = {
 	{hx::fsString,(void *) &Common_obj::cvar_track_author,HX_HCSTRING("cvar_track_author","\xfa","\x8a","\xd7","\xe2")},
 	{hx::fsFloat,(void *) &Common_obj::stage_width,HX_HCSTRING("stage_width","\x85","\x0a","\xaf","\x24")},
 	{hx::fsFloat,(void *) &Common_obj::stage_height,HX_HCSTRING("stage_height","\x88","\xa2","\xc9","\xaa")},
+	{hx::fsString,(void *) &Common_obj::cvar_author_comment,HX_HCSTRING("cvar_author_comment","\x26","\xdc","\x06","\xde")},
 	{ hx::fsUnknown, 0, null()}
 };
 #endif
@@ -373,6 +383,7 @@ static void Common_obj_sMarkStatics(HX_MARK_PARAMS) {
 	HX_MARK_MEMBER_NAME(Common_obj::cvar_track_author,"cvar_track_author");
 	HX_MARK_MEMBER_NAME(Common_obj::stage_width,"stage_width");
 	HX_MARK_MEMBER_NAME(Common_obj::stage_height,"stage_height");
+	HX_MARK_MEMBER_NAME(Common_obj::cvar_author_comment,"cvar_author_comment");
 };
 
 #ifdef HXCPP_VISIT_ALLOCS
@@ -402,6 +413,7 @@ static void Common_obj_sVisitStatics(HX_VISIT_PARAMS) {
 	HX_VISIT_MEMBER_NAME(Common_obj::cvar_track_author,"cvar_track_author");
 	HX_VISIT_MEMBER_NAME(Common_obj::stage_width,"stage_width");
 	HX_VISIT_MEMBER_NAME(Common_obj::stage_height,"stage_height");
+	HX_VISIT_MEMBER_NAME(Common_obj::cvar_author_comment,"cvar_author_comment");
 };
 
 #endif
@@ -433,6 +445,7 @@ static ::String Common_obj_sStaticFields[] = {
 	HX_HCSTRING("cvar_track_author","\xfa","\x8a","\xd7","\xe2"),
 	HX_HCSTRING("stage_width","\x85","\x0a","\xaf","\x24"),
 	HX_HCSTRING("stage_height","\x88","\xa2","\xc9","\xaa"),
+	HX_HCSTRING("cvar_author_comment","\x26","\xdc","\x06","\xde"),
 	HX_HCSTRING("get_angle_radians","\x1d","\x7a","\x6f","\x47"),
 	HX_HCSTRING("get_angle_degrees","\x52","\x17","\xda","\x5a"),
 	HX_HCSTRING("get_point_vector","\x9b","\x24","\xc6","\x1b"),
@@ -521,6 +534,10 @@ HXLINE(  52)		cvar_line_render_mode = (int)0;
 {
             	HX_STACKFRAME(&_hx_pos_7ee4709dfe1b7650_53_boot)
 HXLINE(  53)		cvar_track_author = HX_("Unknown",6a,4b,cc,ae);
+            	}
+{
+            	HX_STACKFRAME(&_hx_pos_7ee4709dfe1b7650_58_boot)
+HXLINE(  58)		cvar_author_comment = HX_("This save was made in an alpha version of openLR. Please respect my rights as a track maker and do not upload this track to any website without my permission, including video form.",a7,4e,9d,b5);
             	}
 }
 

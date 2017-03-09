@@ -74,6 +74,21 @@ HXLINE(  27)		( ( ::Date)(__this) )->mSeconds = ::__hxcpp_new_date(year,month,da
 		Float getTime();
 		::Dynamic getTime_dyn();
 
+		int getHours();
+		::Dynamic getHours_dyn();
+
+		int getMinutes();
+		::Dynamic getMinutes_dyn();
+
+		int getFullYear();
+		::Dynamic getFullYear_dyn();
+
+		int getMonth();
+		::Dynamic getMonth_dyn();
+
+		int getDate();
+		::Dynamic getDate_dyn();
+
 		virtual ::String toString();
 		::Dynamic toString_dyn();
 

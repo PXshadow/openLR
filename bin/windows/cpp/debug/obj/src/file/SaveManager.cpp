@@ -16,8 +16,35 @@
 #ifndef INCLUDED_haxe_io_Output
 #include <haxe/io/Output.h>
 #endif
+#ifndef INCLUDED_lr_Track
+#include <lr/Track.h>
+#endif
 #ifndef INCLUDED_lr_line_Grid
 #include <lr/line/Grid.h>
+#endif
+#ifndef INCLUDED_openfl_display_DisplayObject
+#include <openfl/display/DisplayObject.h>
+#endif
+#ifndef INCLUDED_openfl_display_DisplayObjectContainer
+#include <openfl/display/DisplayObjectContainer.h>
+#endif
+#ifndef INCLUDED_openfl_display_IBitmapDrawable
+#include <openfl/display/IBitmapDrawable.h>
+#endif
+#ifndef INCLUDED_openfl_display_InteractiveObject
+#include <openfl/display/InteractiveObject.h>
+#endif
+#ifndef INCLUDED_openfl_display_MovieClip
+#include <openfl/display/MovieClip.h>
+#endif
+#ifndef INCLUDED_openfl_display_Sprite
+#include <openfl/display/Sprite.h>
+#endif
+#ifndef INCLUDED_openfl_events_EventDispatcher
+#include <openfl/events/EventDispatcher.h>
+#endif
+#ifndef INCLUDED_openfl_events_IEventDispatcher
+#include <openfl/events/IEventDispatcher.h>
 #endif
 #ifndef INCLUDED_sys_io_File
 #include <sys/io/File.h>
@@ -26,14 +53,14 @@
 #include <sys/io/FileOutput.h>
 #endif
 
-HX_DEFINE_STACK_FRAME(_hx_pos_19651f73c9cf9811_25_new,"file.SaveManager","new",0x0c886b90,"file.SaveManager.new","file/SaveManager.hx",25,0x2a46d5a1)
-HX_LOCAL_STACK_FRAME(_hx_pos_19651f73c9cf9811_27_generateSave,"file.SaveManager","generateSave",0x10f7d3e2,"file.SaveManager.generateSave","file/SaveManager.hx",27,0x2a46d5a1)
-HX_LOCAL_STACK_FRAME(_hx_pos_19651f73c9cf9811_62_parse,"file.SaveManager","parse",0xb44b5763,"file.SaveManager.parse","file/SaveManager.hx",62,0x2a46d5a1)
+HX_DEFINE_STACK_FRAME(_hx_pos_19651f73c9cf9811_34_new,"file.SaveManager","new",0x0c886b90,"file.SaveManager.new","file/SaveManager.hx",34,0x2a46d5a1)
+HX_LOCAL_STACK_FRAME(_hx_pos_19651f73c9cf9811_36_generateSave,"file.SaveManager","generateSave",0x10f7d3e2,"file.SaveManager.generateSave","file/SaveManager.hx",36,0x2a46d5a1)
+HX_LOCAL_STACK_FRAME(_hx_pos_19651f73c9cf9811_85_parse,"file.SaveManager","parse",0xb44b5763,"file.SaveManager.parse","file/SaveManager.hx",85,0x2a46d5a1)
 namespace file{
 
 void SaveManager_obj::__construct(){
-            	HX_STACKFRAME(&_hx_pos_19651f73c9cf9811_25_new)
-HXLINE(  25)		::global::Common_obj::gSaveManager = hx::ObjectPtr<OBJ_>(this);
+            	HX_STACKFRAME(&_hx_pos_19651f73c9cf9811_34_new)
+HXLINE(  34)		::global::Common_obj::gSaveManager = hx::ObjectPtr<OBJ_>(this);
             	}
 
 Dynamic SaveManager_obj::__CreateEmpty() { return new SaveManager_obj; }
@@ -52,77 +79,98 @@ bool SaveManager_obj::_hx_isInstanceOf(int inClassId) {
 }
 
 void SaveManager_obj::generateSave(){
-            	HX_STACKFRAME(&_hx_pos_19651f73c9cf9811_27_generateSave)
-HXLINE(  28)		 ::Dynamic _locObject = this->parse();
-HXLINE(  30)		 ::sys::io::FileOutput file1 = ::sys::io::File_obj::append(HX_("./test_save.txt",ab,44,a7,43),true);
-HXLINE(  31)		file1->writeString(HX_("openLR save;",0e,9f,3d,f4));
-HXLINE(  32)		file1->writeString(HX_("VER;",98,fc,0c,39));
-HXLINE(  33)		file1->writeString(( (::String)(this->trackData->__Field(HX_("a",61,00,00,00),hx::paccDynamic)) ));
-HXLINE(  34)		file1->writeString(HX_("E;",56,3c,00,00));
-HXLINE(  35)		file1->writeString(HX_("AUT;",5b,a7,37,2b));
-HXLINE(  36)		file1->writeInt32(( (int)( ::Dynamic(this->trackData->__Field(HX_("b",62,00,00,00),hx::paccDynamic))->__Field(HX_("length",e6,94,07,9f),hx::paccDynamic)) ));
-HXLINE(  37)		file1->writeString(( (::String)(this->trackData->__Field(HX_("b",62,00,00,00),hx::paccDynamic)) ));
-HXLINE(  38)		file1->writeString(HX_("E;",56,3c,00,00));
-HXLINE(  39)		file1->writeString(HX_("DTS;",18,88,32,2d));
-HXLINE(  40)		file1->writeInt32(( (int)( ::Dynamic(this->trackData->__Field(HX_("c",63,00,00,00),hx::paccDynamic))->__Field(HX_("length",e6,94,07,9f),hx::paccDynamic)) ));
-HXLINE(  41)		file1->writeString(( (::String)(this->trackData->__Field(HX_("c",63,00,00,00),hx::paccDynamic)) ));
-HXLINE(  42)		file1->writeString(HX_("LCT;",9e,57,6f,32));
-HXLINE(  43)		file1->writeInt32(( (int)(this->trackData->__Field(HX_("d",64,00,00,00),hx::paccDynamic)) ));
-HXLINE(  44)		file1->writeString(HX_("E;",56,3c,00,00));
-HXLINE(  45)		file1->writeString(HX_("TRK;",8e,66,c4,37));
-HXLINE(  46)		file1->writeInt32(( (int)(this->trackData->__Field(HX_("d",64,00,00,00),hx::paccDynamic)) ));
-HXLINE(  48)		{
-HXLINE(  48)			int _g1 = (int)0;
-HXDLIN(  48)			int _g = ( (int)(this->trackData->__Field(HX_("d",64,00,00,00),hx::paccDynamic)) );
-HXDLIN(  48)			while((_g1 < _g)){
-HXLINE(  48)				_g1 = (_g1 + (int)1);
-HXDLIN(  48)				int i = (_g1 - (int)1);
-HXLINE(  49)				file1->writeFloat(( (Float)( ::Dynamic( ::Dynamic(this->trackData->__Field(HX_("e",65,00,00,00),hx::paccDynamic))->__GetItem(i)->__Field(HX_("a",61,00,00,00),hx::paccDynamic))->__Field(HX_("x",78,00,00,00),hx::paccDynamic)) ));
-HXLINE(  50)				file1->writeFloat(( (Float)( ::Dynamic( ::Dynamic(this->trackData->__Field(HX_("e",65,00,00,00),hx::paccDynamic))->__GetItem(i)->__Field(HX_("a",61,00,00,00),hx::paccDynamic))->__Field(HX_("y",79,00,00,00),hx::paccDynamic)) ));
-HXLINE(  51)				file1->writeFloat(( (Float)( ::Dynamic( ::Dynamic(this->trackData->__Field(HX_("e",65,00,00,00),hx::paccDynamic))->__GetItem(i)->__Field(HX_("b",62,00,00,00),hx::paccDynamic))->__Field(HX_("x",78,00,00,00),hx::paccDynamic)) ));
-HXLINE(  52)				file1->writeFloat(( (Float)( ::Dynamic( ::Dynamic(this->trackData->__Field(HX_("e",65,00,00,00),hx::paccDynamic))->__GetItem(i)->__Field(HX_("b",62,00,00,00),hx::paccDynamic))->__Field(HX_("y",79,00,00,00),hx::paccDynamic)) ));
-HXLINE(  53)				file1->writeInt8(( (int)( ::Dynamic(this->trackData->__Field(HX_("e",65,00,00,00),hx::paccDynamic))->__GetItem(i)->__Field(HX_("type",ba,f2,08,4d),hx::paccDynamic)) ));
-HXLINE(  54)				file1->writeInt8(::Std_obj::_hx_int(( (Float)( ::Dynamic(this->trackData->__Field(HX_("e",65,00,00,00),hx::paccDynamic))->__GetItem(i)->__Field(HX_("inv",f1,0c,50,00),hx::paccDynamic)) )));
-HXLINE(  55)				file1->writeInt8(( (int)( ::Dynamic(this->trackData->__Field(HX_("e",65,00,00,00),hx::paccDynamic))->__GetItem(i)->__Field(HX_("lim",50,4f,52,00),hx::paccDynamic)) ));
-HXLINE(  56)				file1->writeInt32(( (int)( ::Dynamic(this->trackData->__Field(HX_("e",65,00,00,00),hx::paccDynamic))->__GetItem(i)->__Field(HX_("ID",db,3f,00,00),hx::paccDynamic)) ));
+            	HX_STACKFRAME(&_hx_pos_19651f73c9cf9811_36_generateSave)
+HXLINE(  37)		 ::Dynamic _locObject = this->parse();
+HXLINE(  38)		::String time = (::Date_obj::now()->getDate() + HX_("_",5f,00,00,00));
+HXDLIN(  38)		::String time1 = ((time + ::Date_obj::now()->getMonth()) + HX_("_",5f,00,00,00));
+HXDLIN(  38)		::String time2 = ((time1 + ::Date_obj::now()->getFullYear()) + HX_("_",5f,00,00,00));
+HXDLIN(  38)		::String time3 = ((time2 + ::Date_obj::now()->getHours()) + HX_("_",5f,00,00,00));
+HXDLIN(  38)		::String time4 = (time3 + ::Date_obj::now()->getMinutes());
+HXLINE(  39)		 ::sys::io::FileOutput file1 = ::sys::io::File_obj::append(((HX_("./test_save_",16,c7,0e,d1) + time4) + HX_(".olrs",4c,b5,1f,c6)),true);
+HXLINE(  40)		file1->writeString(HX_("openLR save;",0e,9f,3d,f4));
+HXLINE(  41)		file1->writeString(HX_("VER;",98,fc,0c,39));
+HXLINE(  42)		file1->writeString(( (::String)(this->trackData->__Field(HX_("a",61,00,00,00),hx::paccDynamic)) ));
+HXLINE(  43)		file1->writeString(HX_("E;",56,3c,00,00));
+HXLINE(  44)		file1->writeString(HX_("AUT;",5b,a7,37,2b));
+HXLINE(  45)		file1->writeInt32(( (int)( ::Dynamic(this->trackData->__Field(HX_("b",62,00,00,00),hx::paccDynamic))->__Field(HX_("length",e6,94,07,9f),hx::paccDynamic)) ));
+HXLINE(  46)		file1->writeString(( (::String)(this->trackData->__Field(HX_("b",62,00,00,00),hx::paccDynamic)) ));
+HXLINE(  47)		file1->writeString(HX_("E;",56,3c,00,00));
+HXLINE(  48)		file1->writeString(HX_("DTS;",18,88,32,2d));
+HXLINE(  49)		file1->writeInt32(( (int)( ::Dynamic(this->trackData->__Field(HX_("c",63,00,00,00),hx::paccDynamic))->__Field(HX_("length",e6,94,07,9f),hx::paccDynamic)) ));
+HXLINE(  50)		file1->writeString(( (::String)(this->trackData->__Field(HX_("c",63,00,00,00),hx::paccDynamic)) ));
+HXLINE(  51)		file1->writeString(HX_("LCT;",9e,57,6f,32));
+HXLINE(  52)		file1->writeInt32(( (int)(this->trackData->__Field(HX_("d",64,00,00,00),hx::paccDynamic)) ));
+HXLINE(  53)		file1->writeString(HX_("E;",56,3c,00,00));
+HXLINE(  54)		file1->writeString(HX_("TRK;",8e,66,c4,37));
+HXLINE(  55)		file1->writeInt32(( (int)(this->trackData->__Field(HX_("d",64,00,00,00),hx::paccDynamic)) ));
+HXLINE(  57)		{
+HXLINE(  57)			int _g1 = (int)0;
+HXDLIN(  57)			int _g = ( (int)(this->trackData->__Field(HX_("d",64,00,00,00),hx::paccDynamic)) );
+HXDLIN(  57)			while((_g1 < _g)){
+HXLINE(  57)				_g1 = (_g1 + (int)1);
+HXDLIN(  57)				int i = (_g1 - (int)1);
+HXLINE(  58)				file1->writeFloat(( (Float)( ::Dynamic( ::Dynamic(this->trackData->__Field(HX_("e",65,00,00,00),hx::paccDynamic))->__GetItem(i)->__Field(HX_("a",61,00,00,00),hx::paccDynamic))->__Field(HX_("x",78,00,00,00),hx::paccDynamic)) ));
+HXLINE(  59)				file1->writeFloat(( (Float)( ::Dynamic( ::Dynamic(this->trackData->__Field(HX_("e",65,00,00,00),hx::paccDynamic))->__GetItem(i)->__Field(HX_("a",61,00,00,00),hx::paccDynamic))->__Field(HX_("y",79,00,00,00),hx::paccDynamic)) ));
+HXLINE(  60)				file1->writeFloat(( (Float)( ::Dynamic( ::Dynamic(this->trackData->__Field(HX_("e",65,00,00,00),hx::paccDynamic))->__GetItem(i)->__Field(HX_("b",62,00,00,00),hx::paccDynamic))->__Field(HX_("x",78,00,00,00),hx::paccDynamic)) ));
+HXLINE(  61)				file1->writeFloat(( (Float)( ::Dynamic( ::Dynamic(this->trackData->__Field(HX_("e",65,00,00,00),hx::paccDynamic))->__GetItem(i)->__Field(HX_("b",62,00,00,00),hx::paccDynamic))->__Field(HX_("y",79,00,00,00),hx::paccDynamic)) ));
+HXLINE(  62)				file1->writeInt8(( (int)( ::Dynamic(this->trackData->__Field(HX_("e",65,00,00,00),hx::paccDynamic))->__GetItem(i)->__Field(HX_("type",ba,f2,08,4d),hx::paccDynamic)) ));
+HXLINE(  63)				file1->writeInt8(::Std_obj::_hx_int(( (Float)( ::Dynamic(this->trackData->__Field(HX_("e",65,00,00,00),hx::paccDynamic))->__GetItem(i)->__Field(HX_("inv",f1,0c,50,00),hx::paccDynamic)) )));
+HXLINE(  64)				file1->writeInt8(( (int)( ::Dynamic(this->trackData->__Field(HX_("e",65,00,00,00),hx::paccDynamic))->__GetItem(i)->__Field(HX_("lim",50,4f,52,00),hx::paccDynamic)) ));
+HXLINE(  65)				file1->writeInt32(( (int)( ::Dynamic(this->trackData->__Field(HX_("e",65,00,00,00),hx::paccDynamic))->__GetItem(i)->__Field(HX_("ID",db,3f,00,00),hx::paccDynamic)) ));
             			}
             		}
-HXLINE(  58)		file1->writeString(HX_("E;",56,3c,00,00));
+HXLINE(  67)		file1->writeString(HX_("E;",56,3c,00,00));
+HXLINE(  68)		file1->writeString(HX_("EOS;",72,f3,d7,2d));
+HXLINE(  69)		file1->writeString(HX_("\r\n",5d,0b,00,00));
+HXLINE(  70)		file1->writeString(HX_("\r\n",5d,0b,00,00));
+HXLINE(  71)		file1->writeString((HX_("\r\n",5d,0b,00,00) + ::global::Common_obj::cvar_author_comment));
+HXLINE(  72)		file1->writeString(HX_("\r\n",5d,0b,00,00));
+HXLINE(  73)		file1->writeString(HX_("\r\n",5d,0b,00,00));
+HXLINE(  74)		file1->writeString(HX_("the following are debug values:",81,b0,c9,1e));
+HXLINE(  75)		file1->writeString(((HX_("\r\n",5d,0b,00,00) + HX_("Version: ",9e,ef,5e,ac)) + ::global::Common_obj::version));
+HXLINE(  76)		file1->writeString(((((HX_("\r\n",5d,0b,00,00) + HX_("Stage Dimensions: ",15,35,a8,18)) + ::global::Common_obj::stage_width) + HX_(", ",74,26,00,00)) + ::global::Common_obj::stage_height));
+HXLINE(  77)		file1->writeString((((((((((HX_("\r\n",5d,0b,00,00) + HX_("Line Count: ",09,6d,45,4a)) + ::global::Common_obj::sLineCount) + HX_(", ",74,26,00,00)) + ::global::Common_obj::sBLueLineCount) + HX_(", ",74,26,00,00)) + ::global::Common_obj::sRedLineCount) + HX_(", ",74,26,00,00)) + ::global::Common_obj::sGreenLineCount) + HX_(", ",74,26,00,00)));
+HXLINE(  78)		file1->writeString(((HX_("\r\n",5d,0b,00,00) + HX_("Line ID: ",cd,62,e7,f2)) + ::global::Common_obj::sLineID));
+HXLINE(  79)		file1->writeString(((HX_("\r\n",5d,0b,00,00) + HX_("Render: ",9c,5b,8d,8c)) + ::global::Common_obj::cvar_line_render_mode));
+HXLINE(  80)		::String _hx_tmp = (((HX_("\r\n",5d,0b,00,00) + HX_("track info: Scale ",bf,0e,31,d7)) + ::global::Common_obj::track_scale) + HX_(", Position ",43,3e,ae,a1));
+HXDLIN(  80)		::String _hx_tmp1 = ((_hx_tmp + ::global::Common_obj::gTrack->get_x()) + HX_(", ",74,26,00,00));
+HXDLIN(  80)		file1->writeString((_hx_tmp1 + ::global::Common_obj::gTrack->get_y()));
+HXLINE(  81)		file1->writeString(HX_("\r\n",5d,0b,00,00));
             	}
 
 
 HX_DEFINE_DYNAMIC_FUNC0(SaveManager_obj,generateSave,(void))
 
  ::Dynamic SaveManager_obj::parse(){
-            	HX_STACKFRAME(&_hx_pos_19651f73c9cf9811_62_parse)
-HXLINE(  63)		::cpp::VirtualArray lines = ::global::Common_obj::gGrid->lines;
-HXLINE(  64)		 ::Dynamic this1 =  ::Dynamic(hx::Anon_obj::Create(0));
-HXDLIN(  64)		this->trackData = this1;
-HXLINE(  66)		 ::Dynamic this2 =  ::Dynamic(hx::Anon_obj::Create(0));
-HXDLIN(  66)		this->trackData = this2;
-HXLINE(  67)		this->trackData->__SetField(HX_("a",61,00,00,00),::global::Common_obj::version,hx::paccDynamic);
-HXLINE(  68)		this->trackData->__SetField(HX_("b",62,00,00,00),::global::Common_obj::cvar_track_author,hx::paccDynamic);
-HXLINE(  69)		this->trackData->__SetField(HX_("c",63,00,00,00),::Date_obj::now(),hx::paccDynamic);
-HXLINE(  70)		this->trackData->__SetField(HX_("d",64,00,00,00),lines->get_length(),hx::paccDynamic);
-HXLINE(  71)		this->trackData->__SetField(HX_("e",65,00,00,00),::cpp::VirtualArray_obj::__new(),hx::paccDynamic);
-HXLINE(  73)		{
-HXLINE(  73)			int _g1 = (int)0;
-HXDLIN(  73)			int _g = lines->get_length();
-HXDLIN(  73)			while((_g1 < _g)){
-HXLINE(  73)				_g1 = (_g1 + (int)1);
-HXDLIN(  73)				int i = (_g1 - (int)1);
-HXLINE(  74)				 ::Dynamic _hx_tmp =  ::Dynamic(this->trackData->__Field(HX_("e",65,00,00,00),hx::paccDynamic));
-HXDLIN(  74)				 ::Dynamic this3 =  ::Dynamic(hx::Anon_obj::Create(0));
-HXDLIN(  74)				_hx_tmp->__SetItem(i,this3);
-HXLINE(  75)				 ::Dynamic(this->trackData->__Field(HX_("e",65,00,00,00),hx::paccDynamic))->__GetItem(i)->__SetField(HX_("a",61,00,00,00), ::Dynamic(lines->__get(i)->__Field(HX_("a",61,00,00,00),hx::paccDynamic)),hx::paccDynamic);
-HXLINE(  76)				 ::Dynamic(this->trackData->__Field(HX_("e",65,00,00,00),hx::paccDynamic))->__GetItem(i)->__SetField(HX_("b",62,00,00,00), ::Dynamic(lines->__get(i)->__Field(HX_("b",62,00,00,00),hx::paccDynamic)),hx::paccDynamic);
-HXLINE(  77)				 ::Dynamic(this->trackData->__Field(HX_("e",65,00,00,00),hx::paccDynamic))->__GetItem(i)->__SetField(HX_("type",ba,f2,08,4d), ::Dynamic(lines->__get(i)->__Field(HX_("type",ba,f2,08,4d),hx::paccDynamic)),hx::paccDynamic);
-HXLINE(  78)				 ::Dynamic(this->trackData->__Field(HX_("e",65,00,00,00),hx::paccDynamic))->__GetItem(i)->__SetField(HX_("inv",f1,0c,50,00), ::Dynamic(lines->__get(i)->__Field(HX_("inv",f1,0c,50,00),hx::paccDynamic)),hx::paccDynamic);
-HXLINE(  79)				 ::Dynamic(this->trackData->__Field(HX_("e",65,00,00,00),hx::paccDynamic))->__GetItem(i)->__SetField(HX_("lim",50,4f,52,00), ::Dynamic(lines->__get(i)->__Field(HX_("_lim",51,94,1d,3f),hx::paccDynamic)),hx::paccDynamic);
-HXLINE(  80)				 ::Dynamic(this->trackData->__Field(HX_("e",65,00,00,00),hx::paccDynamic))->__GetItem(i)->__SetField(HX_("ID",db,3f,00,00), ::Dynamic(lines->__get(i)->__Field(HX_("ID",db,3f,00,00),hx::paccDynamic)),hx::paccDynamic);
+            	HX_STACKFRAME(&_hx_pos_19651f73c9cf9811_85_parse)
+HXLINE(  86)		::cpp::VirtualArray lines = ::global::Common_obj::gGrid->lines;
+HXLINE(  87)		 ::Dynamic this1 =  ::Dynamic(hx::Anon_obj::Create(0));
+HXDLIN(  87)		this->trackData = this1;
+HXLINE(  89)		 ::Dynamic this2 =  ::Dynamic(hx::Anon_obj::Create(0));
+HXDLIN(  89)		this->trackData = this2;
+HXLINE(  90)		this->trackData->__SetField(HX_("a",61,00,00,00),::global::Common_obj::version,hx::paccDynamic);
+HXLINE(  91)		this->trackData->__SetField(HX_("b",62,00,00,00),::global::Common_obj::cvar_track_author,hx::paccDynamic);
+HXLINE(  92)		this->trackData->__SetField(HX_("c",63,00,00,00),::Date_obj::now(),hx::paccDynamic);
+HXLINE(  93)		this->trackData->__SetField(HX_("d",64,00,00,00),lines->get_length(),hx::paccDynamic);
+HXLINE(  94)		this->trackData->__SetField(HX_("e",65,00,00,00),::cpp::VirtualArray_obj::__new(),hx::paccDynamic);
+HXLINE(  96)		{
+HXLINE(  96)			int _g1 = (int)0;
+HXDLIN(  96)			int _g = lines->get_length();
+HXDLIN(  96)			while((_g1 < _g)){
+HXLINE(  96)				_g1 = (_g1 + (int)1);
+HXDLIN(  96)				int i = (_g1 - (int)1);
+HXLINE(  97)				 ::Dynamic _hx_tmp =  ::Dynamic(this->trackData->__Field(HX_("e",65,00,00,00),hx::paccDynamic));
+HXDLIN(  97)				 ::Dynamic this3 =  ::Dynamic(hx::Anon_obj::Create(0));
+HXDLIN(  97)				_hx_tmp->__SetItem(i,this3);
+HXLINE(  98)				 ::Dynamic(this->trackData->__Field(HX_("e",65,00,00,00),hx::paccDynamic))->__GetItem(i)->__SetField(HX_("a",61,00,00,00), ::Dynamic(lines->__get(i)->__Field(HX_("a",61,00,00,00),hx::paccDynamic)),hx::paccDynamic);
+HXLINE(  99)				 ::Dynamic(this->trackData->__Field(HX_("e",65,00,00,00),hx::paccDynamic))->__GetItem(i)->__SetField(HX_("b",62,00,00,00), ::Dynamic(lines->__get(i)->__Field(HX_("b",62,00,00,00),hx::paccDynamic)),hx::paccDynamic);
+HXLINE( 100)				 ::Dynamic(this->trackData->__Field(HX_("e",65,00,00,00),hx::paccDynamic))->__GetItem(i)->__SetField(HX_("type",ba,f2,08,4d), ::Dynamic(lines->__get(i)->__Field(HX_("type",ba,f2,08,4d),hx::paccDynamic)),hx::paccDynamic);
+HXLINE( 101)				 ::Dynamic(this->trackData->__Field(HX_("e",65,00,00,00),hx::paccDynamic))->__GetItem(i)->__SetField(HX_("inv",f1,0c,50,00), ::Dynamic(lines->__get(i)->__Field(HX_("inv",f1,0c,50,00),hx::paccDynamic)),hx::paccDynamic);
+HXLINE( 102)				 ::Dynamic(this->trackData->__Field(HX_("e",65,00,00,00),hx::paccDynamic))->__GetItem(i)->__SetField(HX_("lim",50,4f,52,00), ::Dynamic(lines->__get(i)->__Field(HX_("_lim",51,94,1d,3f),hx::paccDynamic)),hx::paccDynamic);
+HXLINE( 103)				 ::Dynamic(this->trackData->__Field(HX_("e",65,00,00,00),hx::paccDynamic))->__GetItem(i)->__SetField(HX_("ID",db,3f,00,00), ::Dynamic(lines->__get(i)->__Field(HX_("ID",db,3f,00,00),hx::paccDynamic)),hx::paccDynamic);
             			}
             		}
-HXLINE(  83)		return this->trackData;
+HXLINE( 106)		return this->trackData;
             	}
 
 

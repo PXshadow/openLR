@@ -10,6 +10,11 @@
 
 HX_DEFINE_STACK_FRAME(_hx_pos_c0151d669b9b886e_27_new,"Date","new",0x9aa26240,"Date.new","C:\\HaxeToolkit\\haxe\\std/cpp/_std/Date.hx",27,0x1bc6780a)
 HX_LOCAL_STACK_FRAME(_hx_pos_c0151d669b9b886e_31_getTime,"Date","getTime",0x0cac7da3,"Date.getTime","C:\\HaxeToolkit\\haxe\\std/cpp/_std/Date.hx",31,0x1bc6780a)
+HX_LOCAL_STACK_FRAME(_hx_pos_c0151d669b9b886e_34_getHours,"Date","getHours",0x256fe079,"Date.getHours","C:\\HaxeToolkit\\haxe\\std/cpp/_std/Date.hx",34,0x1bc6780a)
+HX_LOCAL_STACK_FRAME(_hx_pos_c0151d669b9b886e_36_getMinutes,"Date","getMinutes",0xad798749,"Date.getMinutes","C:\\HaxeToolkit\\haxe\\std/cpp/_std/Date.hx",36,0x1bc6780a)
+HX_LOCAL_STACK_FRAME(_hx_pos_c0151d669b9b886e_40_getFullYear,"Date","getFullYear",0x72528782,"Date.getFullYear","C:\\HaxeToolkit\\haxe\\std/cpp/_std/Date.hx",40,0x1bc6780a)
+HX_LOCAL_STACK_FRAME(_hx_pos_c0151d669b9b886e_42_getMonth,"Date","getMonth",0x066b78ea,"Date.getMonth","C:\\HaxeToolkit\\haxe\\std/cpp/_std/Date.hx",42,0x1bc6780a)
+HX_LOCAL_STACK_FRAME(_hx_pos_c0151d669b9b886e_44_getDate,"Date","getDate",0x021307c4,"Date.getDate","C:\\HaxeToolkit\\haxe\\std/cpp/_std/Date.hx",44,0x1bc6780a)
 HX_LOCAL_STACK_FRAME(_hx_pos_c0151d669b9b886e_48_toString,"Date","toString",0xd2a372cc,"Date.toString","C:\\HaxeToolkit\\haxe\\std/cpp/_std/Date.hx",48,0x1bc6780a)
 HX_LOCAL_STACK_FRAME(_hx_pos_c0151d669b9b886e_51_now,"Date","now",0x9aa26af6,"Date.now","C:\\HaxeToolkit\\haxe\\std/cpp/_std/Date.hx",51,0x1bc6780a)
 HX_LOCAL_STACK_FRAME(_hx_pos_c0151d669b9b886e_54_new1,"Date","new1",0xb37395f1,"Date.new1","C:\\HaxeToolkit\\haxe\\std/cpp/_std/Date.hx",54,0x1bc6780a)
@@ -43,6 +48,46 @@ HXLINE(  31)		return (this->mSeconds * ((Float)1000.0));
 
 
 HX_DEFINE_DYNAMIC_FUNC0(Date_obj,getTime,return )
+
+int Date_obj::getHours(){
+            	HX_STACKFRAME(&_hx_pos_c0151d669b9b886e_34_getHours)
+HXLINE(  34)		return ::__hxcpp_get_hours(this->mSeconds);
+            	}
+
+
+HX_DEFINE_DYNAMIC_FUNC0(Date_obj,getHours,return )
+
+int Date_obj::getMinutes(){
+            	HX_STACKFRAME(&_hx_pos_c0151d669b9b886e_36_getMinutes)
+HXLINE(  36)		return ::__hxcpp_get_minutes(this->mSeconds);
+            	}
+
+
+HX_DEFINE_DYNAMIC_FUNC0(Date_obj,getMinutes,return )
+
+int Date_obj::getFullYear(){
+            	HX_STACKFRAME(&_hx_pos_c0151d669b9b886e_40_getFullYear)
+HXLINE(  40)		return ::__hxcpp_get_year(this->mSeconds);
+            	}
+
+
+HX_DEFINE_DYNAMIC_FUNC0(Date_obj,getFullYear,return )
+
+int Date_obj::getMonth(){
+            	HX_STACKFRAME(&_hx_pos_c0151d669b9b886e_42_getMonth)
+HXLINE(  42)		return ::__hxcpp_get_month(this->mSeconds);
+            	}
+
+
+HX_DEFINE_DYNAMIC_FUNC0(Date_obj,getMonth,return )
+
+int Date_obj::getDate(){
+            	HX_STACKFRAME(&_hx_pos_c0151d669b9b886e_44_getDate)
+HXLINE(  44)		return ::__hxcpp_get_date(this->mSeconds);
+            	}
+
+
+HX_DEFINE_DYNAMIC_FUNC0(Date_obj,getDate,return )
 
 ::String Date_obj::toString(){
             	HX_STACKFRAME(&_hx_pos_c0151d669b9b886e_48_toString)
@@ -129,10 +174,19 @@ hx::Val Date_obj::__Field(const ::String &inName,hx::PropertyAccess inCallProp)
 	switch(inName.length) {
 	case 7:
 		if (HX_FIELD_EQ(inName,"getTime") ) { return hx::Val( getTime_dyn()); }
+		if (HX_FIELD_EQ(inName,"getDate") ) { return hx::Val( getDate_dyn()); }
 		break;
 	case 8:
 		if (HX_FIELD_EQ(inName,"mSeconds") ) { return hx::Val( mSeconds); }
+		if (HX_FIELD_EQ(inName,"getHours") ) { return hx::Val( getHours_dyn()); }
+		if (HX_FIELD_EQ(inName,"getMonth") ) { return hx::Val( getMonth_dyn()); }
 		if (HX_FIELD_EQ(inName,"toString") ) { return hx::Val( toString_dyn()); }
+		break;
+	case 10:
+		if (HX_FIELD_EQ(inName,"getMinutes") ) { return hx::Val( getMinutes_dyn()); }
+		break;
+	case 11:
+		if (HX_FIELD_EQ(inName,"getFullYear") ) { return hx::Val( getFullYear_dyn()); }
 	}
 	return super::__Field(inName,inCallProp);
 }
@@ -181,6 +235,11 @@ static hx::StaticInfo *Date_obj_sStaticStorageInfo = 0;
 static ::String Date_obj_sMemberFields[] = {
 	HX_HCSTRING("mSeconds","\x92","\x75","\x59","\x82"),
 	HX_HCSTRING("getTime","\xc3","\x7b","\x7f","\x1f"),
+	HX_HCSTRING("getHours","\x59","\x3e","\x3b","\x8b"),
+	HX_HCSTRING("getMinutes","\x29","\x1d","\x40","\xa3"),
+	HX_HCSTRING("getFullYear","\xa2","\x15","\x4f","\x8a"),
+	HX_HCSTRING("getMonth","\xca","\xd6","\x36","\x6c"),
+	HX_HCSTRING("getDate","\xe4","\x05","\xe6","\x14"),
 	HX_HCSTRING("toString","\xac","\xd0","\x6e","\x38"),
 	::String(null()) };
 

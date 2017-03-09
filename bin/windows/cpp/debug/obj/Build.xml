@@ -2904,7 +2904,6 @@
   </file>
   <file name="src/lr/line/Grid.cpp" >
    <depend name="include/global/Common.h"/>
-   <depend name="include/haxe/Log.h"/>
    <depend name="include/lr/line/Grid.h"/>
   </file>
   <file name="src/lr/Track.cpp" >
@@ -4444,7 +4443,16 @@
    <depend name="include/file/SaveManager.h"/>
    <depend name="include/global/Common.h"/>
    <depend name="include/haxe/io/Output.h"/>
+   <depend name="include/lr/Track.h"/>
    <depend name="include/lr/line/Grid.h"/>
+   <depend name="include/openfl/display/DisplayObject.h"/>
+   <depend name="include/openfl/display/DisplayObjectContainer.h"/>
+   <depend name="include/openfl/display/IBitmapDrawable.h"/>
+   <depend name="include/openfl/display/InteractiveObject.h"/>
+   <depend name="include/openfl/display/MovieClip.h"/>
+   <depend name="include/openfl/display/Sprite.h"/>
+   <depend name="include/openfl/events/EventDispatcher.h"/>
+   <depend name="include/openfl/events/IEventDispatcher.h"/>
    <depend name="include/sys/io/File.h"/>
    <depend name="include/sys/io/FileOutput.h"/>
   </file>

@@ -45,6 +45,5 @@ class Grid
 		line.ID = Common.sLineID;
 		Common.sLineCount += 1;
 		Common.sLineID += 1;
-		trace(Common.sLineCount);
 	}
 }
