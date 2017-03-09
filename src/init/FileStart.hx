@@ -1,10 +1,12 @@
 package init;
 
+import sys.FileSystem;
+
 /**
  * ...
  * @author Kaelan Evans
  * 
- * makes sure directories are made and proper file navigation is established
+ * makes sure directories are made and default settings are loaded.
  * 
  */
 class FileStart
@@ -18,12 +20,19 @@ class FileStart
 	
 	function loadSettings() 
 	{
-		trace("Loading settings");
+		if (FileSystem.exists("./settings.dat")) {
+			trace("settings found");
+		} else {
+			trace("settings non-existant");
+		}
 	}
 	
 	function checkDirectories() 
 	{
-		trace("checking directories");
+		if (FileSystem.isDirectory("./saves")) {
+			return;
+		} else{
+			FileSystem.createDirectory("./saves");
+		}
 	}
-	
 }

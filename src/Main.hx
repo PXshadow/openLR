@@ -55,10 +55,16 @@ class Main extends Sprite
 	{
 		super(); //In Haxe, a super must be called when classes inherit
 		
+		this.init_file();
 		this.init_env();
 		this.init_track();
 		
 		this.stage.addEventListener(Event.RESIZE, resize);
+	}
+	
+	function init_file() 
+	{
+		var init:FileStart = new init.FileStart();
 	}
 	public function init_env() //Initialize enviornment
 	{

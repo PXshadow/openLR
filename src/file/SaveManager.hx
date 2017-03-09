@@ -7,11 +7,9 @@ import sys.FileSystem;
 import sys.io.File;
 import sys.io.FileOutput;
 import sys.io.FileInput;
-import haxe.io.Bytes;
 
 import global.Common;
-import haxe.Serializer;
-import haxe.Unserializer;
+
 /**
  * ...
  * @author Kaelan Evans
@@ -36,7 +34,7 @@ class SaveManager
 	public function generateSave() {
 		var _locObject = this.parse();
 		var time:String = Date.now().getDate() + "_" + Date.now().getMonth() + "_" + Date.now().getFullYear() + "_" + Date.now().getHours() + "_" + Date.now().getMinutes();
-		var file = File.append("./test_save_" + time + ".olrs", true); //.olrs = OpenLR Save.
+		var file = File.append("./saves/test_save_" + time + ".olrs", true); //.olrs = OpenLR Save.
 		file.writeString("openLR save;");
 		file.writeString("VER;"); //Version track was saved in
 		file.writeString(trackData.a);
