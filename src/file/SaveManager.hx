@@ -23,6 +23,10 @@ import global.Common;
  * At the end of the block, the ending string will be "E;" This will tell the parser (when made) to check for the next tag so it can switch.
  * The final end of the save data will be marked with "EOS;" (end of save). After this point, an authors comments can be added, and debug information will follow if needed.
  * 
+ * The JSON format will be added for legacy saving. This will allow cross support for other versions that support it as well. However as a downside, it will not support exclusive features.
+ * This is not to imply that I am excluding them, but it's to act as a measurement to make sure nothing in the save would conflict with other versions. Heavily consider saving under
+ * this format for collab purposes if a build is not settled on.
+ * 
  */
 class SaveManager
 {

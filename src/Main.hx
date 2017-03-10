@@ -10,6 +10,7 @@ import openfl.events.Event;
 
 import init.FileStart;
 import global.Common;
+import ui.inter.SingleButton;
 
 /**
  * ...
@@ -28,6 +29,7 @@ import global.Common;
  * -- OpenFL does not constantly update vector graphics. Zomming in will cause blurring of lines.
  * 		--Okay suddenly it does anti-alias? Really weird AF
  * -- Haxe does not support array indexing in negative values. Map data type might possible fix this instead of Array or Vector.
+ * -- Json save exporting does not come out as expected. Need to figure out why and ask for advice.
  * 
  * /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
  * //Notes
@@ -40,6 +42,7 @@ import global.Common;
  * /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
  * 
  * -- Arbitrary save parser. Will allow for saves to be incomplete and future proof
+ * -- UI system. Menus, checkboxes, radio buttons, arbitrarily sized buttons, fonts, blah blah blah
  * 
  */
 class Main extends Sprite 
@@ -49,6 +52,8 @@ class Main extends Sprite
 	private var track:Track;
 	private var toolBar:Toolbar;
 	private var saveManager:SaveManager; //controls file saving and (in the future) loading
+	
+	var testButton:SingleButton;
 	
 	
 	public function new() 
@@ -60,6 +65,9 @@ class Main extends Sprite
 		this.init_track();
 		
 		this.stage.addEventListener(Event.RESIZE, resize);
+		
+		this.testButton = new SingleButton("this is a test button I am making it super long to make sure it works");
+		this.addChild(this.testButton);
 	}
 	
 	public function init_env() //Initialize enviornment
