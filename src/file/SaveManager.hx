@@ -94,14 +94,15 @@ class SaveManager
 		
 		return(this.trackData);
 	}
-	public function generate_save_json()
+	public function generate_save_json() //Top function for generating JSON file
 	{
 		var track:Object = parse_json();
 		var time:String = Date.now().getDate() + "_" + Date.now().getMonth() + "_" + Date.now().getFullYear() + "_" + Date.now().getHours() + "_" + Date.now().getMinutes();
 		var file = File.append("./saves/test_save_" + time + ".json", true); //.json = legacy format
 		file.writeString(Json.stringify(track));
 	}
-	public function parse_json():Object {
+	public function parse_json():Object //top object. Gets name, author, etc.
+	{
 		var _locArray = this.json_line_aray_parse();
 		var json_object:Object = {
 			"label": "test_track",
@@ -117,7 +118,7 @@ class SaveManager
 		}
 		return(json_object);
 	}
-	private function json_line_aray_parse():Array<Object>
+	private function json_line_aray_parse():Array<Object> //parses line array and organizes data
 	{
 		var lines = Common.gGrid.lines;
 		var a:Array<Object> = new Array();
