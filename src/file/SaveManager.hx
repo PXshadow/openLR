@@ -113,7 +113,7 @@ class SaveManager
 			"creator": " ",
 			"description": Common.cvar_author_comment,
 			"version": "openLR",
-			"startposition": {
+			"startPosition": {
 				"x": 0,
 				"y": 0
 			},
