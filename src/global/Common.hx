@@ -51,6 +51,7 @@ class Common
 	public static var cvar_icon_hit_display:Bool = false;
 	public static var cvar_line_render_mode:Int = 0; //0 = color, 1 = black, 2 = color play, 3 = preview
 	public static var cvar_track_author:String = "Unknown";
+	public static var cvar_save_mode:String = "openLR"; //openLR will be the native file which will support theoretical features exclusive here, while the second option of JSON will be the bare minimum
 	
 	public static var stage_width:Float;
 	public static var stage_height:Float;

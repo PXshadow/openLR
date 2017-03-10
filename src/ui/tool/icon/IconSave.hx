@@ -23,6 +23,6 @@ class IconSave extends IconBase
 		this.addChild(this.icon);
 	}
 	override public function down(e:MouseEvent) {
-		Common.gSaveManager.generateSave();
+		Common.gSaveManager.generate_save_json();
 	}
 }

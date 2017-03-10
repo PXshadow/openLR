@@ -45,7 +45,7 @@ import global.Common;
 class Main extends Sprite 
 {
 	private var mainFileInit:FileStart; //this class controls settings
-	private var visContainer:MovieClip; //This is a simple movieclip container. This will make it easier to take screenshots and record video without having to move the matrix all aroubd
+	private var visContainer:MovieClip; //simple display container. This will make it easier to take screenshots and record video without having to move a matrix all around
 	private var track:Track;
 	private var toolBar:Toolbar;
 	private var saveManager:SaveManager; //controls file saving and (in the future) loading
@@ -55,17 +55,13 @@ class Main extends Sprite
 	{
 		super(); //In Haxe, a super must be called when classes inherit
 		
-		this.init_file();
+		this.mainFileInit = new FileStart();
 		this.init_env();
 		this.init_track();
 		
 		this.stage.addEventListener(Event.RESIZE, resize);
 	}
 	
-	function init_file() 
-	{
-		var init:FileStart = new init.FileStart();
-	}
 	public function init_env() //Initialize enviornment
 	{
 		Common.gCode = this; //This class

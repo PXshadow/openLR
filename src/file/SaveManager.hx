@@ -7,6 +7,7 @@ import sys.FileSystem;
 import sys.io.File;
 import sys.io.FileOutput;
 import sys.io.FileInput;
+import haxe.Json;
 
 import global.Common;
 
@@ -51,17 +52,8 @@ class SaveManager
 		file.writeString("E;");
 		file.writeString("TRK;");
 		file.writeInt32(trackData.d); //save line count here in case "TRK;" occurs before line count
-		
-		for (i in 0...trackData.d) {
-			file.writeFloat(this.trackData.e[i].a.x);
-			file.writeFloat(this.trackData.e[i].a.y);
-			file.writeFloat(this.trackData.e[i].b.x);
-			file.writeFloat(this.trackData.e[i].b.y);
-			file.writeInt8(this.trackData.e[i].type);
-			file.writeInt8(Std.int(this.trackData.e[i].inv));
-			file.writeInt8(this.trackData.e[i].lim);
-			file.writeInt32(this.trackData.e[i].ID);
-		}
+		file.writeInt32(Json.stringify(trackData.e).length); //string length
+		file.writeString(Json.stringify(trackData.e)); //objects converted to string. Maintain some resemblance to .com's saves. Might convert the rest of it into this format.
 		file.writeString("E;");
 		file.writeString("EOS;"); //End of save
 		file.writeString("\r\n");
@@ -78,7 +70,6 @@ class SaveManager
 		file.writeString("\r\n" + "track info: Scale " + Common.track_scale + ", Position " + Common.gTrack.x + ", " + Common.gTrack.y);
 		file.writeString("\r\n");
 	}
-	
 	public function parse():Object //runs through track and organizes data similar to beta 2
 	{
 		var lines = Common.gGrid.lines;
@@ -102,5 +93,39 @@ class SaveManager
 		}
 		
 		return(this.trackData);
+	}
+	public function generate_save_json()
+	{
+		var track:Object = parse_json();
+		var time:String = Date.now().getDate() + "_" + Date.now().getMonth() + "_" + Date.now().getFullYear() + "_" + Date.now().getHours() + "_" + Date.now().getMinutes();
+		var file = File.append("./saves/test_save_" + time + ".json", true); //.json = legacy format
+		file.writeString(Json.stringify(track));
+	}
+	public function parse_json():Object {
+		var lines = Common.gGrid.lines;
+		var _loc1:Object = new Object();
+		_loc1.label = "Test";
+		_loc1.creator = Common.cvar_track_author;
+		_loc1.description = Common.cvar_author_comment;
+		_loc1.version = "openLR";
+		_loc1.startposition = new Object();
+		_loc1.startposition.x = 0;
+		_loc1.startposition.y = 0;
+		_loc1.duration = 0;
+		_loc1.lines = new Array<Object>();
+		
+		for (i in 0...lines.length) {
+			_loc1.lines[i] = new Object();
+			_loc1.lines[i].id = lines[i].ID;
+			_loc1.lines[i].type = lines[i].type;
+			_loc1.lines[i].x1 = lines[i].a.x;
+			_loc1.lines[i].y1 = lines[i].a.y;
+			_loc1.lines[i].x2 = lines[i].b.x;
+			_loc1.lines[i].y2 = lines[i].b.y;
+			_loc1.lines[i].flipped = lines[i].inv;
+			_loc1.lines[i].leftExtended = false;
+			_loc1.lines[i].rightExtended = false;
+		}
+		return(_loc1);
 	}
 }
