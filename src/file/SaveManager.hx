@@ -39,7 +39,7 @@ class SaveManager
 	public function generateSave() {
 		var _locObject = this.parse();
 		var time:String = Date.now().getDate() + "_" + Date.now().getMonth() + "_" + Date.now().getFullYear() + "_" + Date.now().getHours() + "_" + Date.now().getMinutes();
-		var file = File.append("./saves/test_save_" + time + ".olrs", true); //.olrs = OpenLR Save.
+		var file = File.write("./saves/test_save_" + time + ".olrs", true); //.olrs = OpenLR Save.
 		file.writeString("openLR save;");
 		file.writeString("VER;"); //Version track was saved in
 		file.writeString(trackData.a);
@@ -73,6 +73,7 @@ class SaveManager
 		file.writeString("\r\n" + "Render: " + Common.cvar_line_render_mode);
 		file.writeString("\r\n" + "track info: Scale " + Common.track_scale + ", Position " + Common.gTrack.x + ", " + Common.gTrack.y);
 		file.writeString("\r\n");
+		file.close(); //this is important, otherwise the file is held hostage by the program until it closes
 	}
 	public function parse():Object //runs through track and organizes data similar to beta 2
 	{
@@ -102,8 +103,9 @@ class SaveManager
 	{
 		var track:Object = parse_json();
 		var time:String = Date.now().getDate() + "_" + Date.now().getMonth() + "_" + Date.now().getFullYear() + "_" + Date.now().getHours() + "_" + Date.now().getMinutes();
-		var file = File.append("./saves/test_save_" + time + ".json", true); //.json = legacy format
+		var file = File.write("./saves/test_save_" + time + ".json", true); //.json = legacy format
 		file.writeString(Json.stringify(track));
+		file.close();
 	}
 	public function parse_json():Object //top object. Gets name, author, etc.
 	{

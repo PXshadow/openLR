@@ -53,9 +53,6 @@ class Main extends Sprite
 	private var toolBar:Toolbar;
 	private var saveManager:SaveManager; //controls file saving and (in the future) loading
 	
-	var testButton:SingleButton;
-	
-	
 	public function new() 
 	{
 		super(); //In Haxe, a super must be called when classes inherit
@@ -65,9 +62,6 @@ class Main extends Sprite
 		this.init_track();
 		
 		this.stage.addEventListener(Event.RESIZE, resize);
-		
-		this.testButton = new SingleButton("this is a test button I am making it super long to make sure it works");
-		this.addChild(this.testButton);
 	}
 	
 	public function init_env() //Initialize enviornment
