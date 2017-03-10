@@ -12,8 +12,6 @@ import openfl.events.MouseEvent;
  * ...
  * @author Kaelan Evans
  * 
- * Fonts can be found here http://www.dafont.com/comfortaa.font
- * 
  */
 class SingleButton extends Sprite
 {
