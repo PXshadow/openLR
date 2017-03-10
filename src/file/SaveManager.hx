@@ -102,30 +102,39 @@ class SaveManager
 		file.writeString(Json.stringify(track));
 	}
 	public function parse_json():Object {
-		var lines = Common.gGrid.lines;
-		var _loc1:Object = new Object();
-		_loc1.label = "Test";
-		_loc1.creator = Common.cvar_track_author;
-		_loc1.description = Common.cvar_author_comment;
-		_loc1.version = "openLR";
-		_loc1.startposition = new Object();
-		_loc1.startposition.x = 0;
-		_loc1.startposition.y = 0;
-		_loc1.duration = 0;
-		_loc1.lines = new Array<Object>();
-		
-		for (i in 0...lines.length) {
-			_loc1.lines[i] = new Object();
-			_loc1.lines[i].id = lines[i].ID;
-			_loc1.lines[i].type = lines[i].type;
-			_loc1.lines[i].x1 = lines[i].a.x;
-			_loc1.lines[i].y1 = lines[i].a.y;
-			_loc1.lines[i].x2 = lines[i].b.x;
-			_loc1.lines[i].y2 = lines[i].b.y;
-			_loc1.lines[i].flipped = lines[i].inv;
-			_loc1.lines[i].leftExtended = false;
-			_loc1.lines[i].rightExtended = false;
+		var _locArray = this.json_line_aray_parse();
+		var json_object:Object = {
+			"label": "test_track",
+			"creator": " ",
+			"description": Common.cvar_author_comment,
+			"version": "openLR",
+			"startposition": {
+				"x": 0,
+				"y": 0
+			},
+			"duration": 0,
+			"lines": _locArray
 		}
-		return(_loc1);
+		return(json_object);
+	}
+	private function json_line_aray_parse():Array<Object>
+	{
+		var lines = Common.gGrid.lines;
+		var a:Array<Object> = new Array();
+		for (i in 0...lines.length) {
+			a[i] = new Object();
+			a[i] = {
+				"id": lines[i].ID,
+				"type": lines[i].type,
+				"x1": lines[i].a.x,
+				"y1": lines[i].a.y,
+				"x2": lines[i].b.x,
+				"y2": lines[i].b.y,
+				"flipped": lines[i].inv,
+				"leftExtended": false,
+				"rightExtended": false
+			}
+		}
+		return(a);
 	}
 }
