@@ -21,10 +21,10 @@ import ui.inter.SingleButton;
  * //OpenLR Project
  * /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
  * 
- * This program was built using FlashDevelop IDE, with haxe and openFL. Other libraries if used can be found in project.xml
+ * This program was built using HaxeDevelop IDE, with haxe and openFL. Other libraries if used can be found in project.xml
  * 
  * /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
- * //Known issues to make work around
+ * //Known issues to work around
  * /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
  * 
  * -- OpenFL does not constantly update vector graphics. Zomming in will cause blurring of lines.
@@ -103,7 +103,7 @@ class Main extends Sprite
 		Common.stage_height = this.stage.stageHeight;
 		Common.stage_width = this.stage.stageWidth;
 		
-		this.textInfo.x = (this.stage.stageWidth - this.textInfo.width);
-		this.textInfo.y = 0;
+		this.textInfo.x = (this.stage.stageWidth - this.textInfo.width) - 5;
+		this.textInfo.y = 5;
 	}
 }

@@ -11,11 +11,14 @@ import global.Common;
 
 /**
  * ...
- * @author ...
+ * @author Kaelan Evans
+ * 
+ * This class controls the text seen on the top right. When sim mode is added, it'll display time. Might switch it to use the color indicators instead of "Floor, Accel, Scene"
+ * 
  */
 class TextInfo extends MovieClip
 {
-	var font:TextFormat = new TextFormat(Assets.getFont("fonts/Verdana.ttf").fontName, 14, 0, null, null, null, null, null, TextFormatAlign.RIGHT);
+	var font:TextFormat = new TextFormat(Assets.getFont("fonts/Verdana.ttf").fontName, 12, 0, null, null, null, null, null, TextFormatAlign.RIGHT);
 	public var textInfo_A:TextField;
 	public var textInfo_B:TextField;
 	public var textInfo_C:TextField;

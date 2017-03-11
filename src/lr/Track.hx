@@ -27,7 +27,12 @@ class Track extends MovieClip
 	{
 		Common.gGrid.massLineIndex(line);
 		Common.gTrack.addChild(grid.lines[grid.lines.length - 1]);
-		grid.lines[grid.lines.length - 1].render("edit");
+		if (Common.cvar_line_render_mode == 0)
+		{
+			grid.lines[grid.lines.length - 1].render("edit");
+		} else if (Common.cvar_line_render_mode == 1) {
+			grid.lines[grid.lines.length - 1].render("play");
+		}
 	}
 	public function render_preview_line(_a:Point, _b:Point) 
 	{
