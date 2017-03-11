@@ -65,7 +65,10 @@ class TextInfo extends MovieClip
 			textInfo_B.text = Common.sBLueLineCount + " Floor";
 			textInfo_C.text = Common.sRedLineCount + " Accel";
 			textInfo_D.text = Common.sGreenLineCount + " Scene";
-			textInfo_E.text = Common.version;
 		}
+	}
+	public function update_textInfo_E()
+	{
+		textInfo_E.text = Common.svar_frame_rate + " FPS";
 	}
 }

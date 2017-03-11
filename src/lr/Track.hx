@@ -27,10 +27,10 @@ class Track extends MovieClip
 	{
 		Common.gGrid.massLineIndex(line);
 		Common.gTrack.addChild(grid.lines[grid.lines.length - 1]);
-		if (Common.cvar_line_render_mode == 0)
+		if (Common.cvar_line_render_mode == 0 || Common.cvar_line_render_mode == 2)
 		{
 			grid.lines[grid.lines.length - 1].render("edit");
-		} else if (Common.cvar_line_render_mode == 1) {
+		} else if (Common.cvar_line_render_mode == 1 || Common.cvar_line_render_mode == 3) {
 			grid.lines[grid.lines.length - 1].render("play");
 		}
 	}

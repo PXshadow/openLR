@@ -3,12 +3,12 @@
 	<!-- NMML reference: https://gist.github.com/1763850 -->
 	
 	<!-- metadata, make sure 'package' is at least 3 segments (ie. com.mycompany.myproject) -->
-	<meta title="openLR Alpha 0.0.2" package="openLR" version="0.0.1" company="Kaelan Evans" />
+	<meta title="openLR Alpha 0.0.3" package="openLR" version="0.0.3" company="Kaelan Evans" />
 	
 	<!-- output -->
 	<app main="Main" file="openLR" path="bin" />
 	
-	<window background="#CCCCCC" fps="60" />
+	<window background="#CCCCCC" fps="120" />
 	<window width="1280" height="720" unless="mobile" />
 	<window orientation="landscape" vsync="false" antialiasing="0" if="cpp" />
 	
@@ -18,7 +18,7 @@
 	<haxelib name="actuate" />
 	
 	<!-- assets -->
-	<icon path="assets/openfl.svg" />
+	<icon path="assets/icon.ico" />
 	<assets path="assets/icons" rename="icon" />
 	<assets path="assets/fonts" rename="fonts" />
 	

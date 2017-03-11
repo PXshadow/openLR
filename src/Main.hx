@@ -1,6 +1,8 @@
 package;
 
 import file.SaveManager;
+import global.FrameRate;
+import haxe.Timer;
 import lr.TextInfo;
 import lr.Toolbar;
 import lr.Track;
@@ -18,7 +20,7 @@ import ui.inter.SingleButton;
  * @author Kaelan Evans
  * 
  * /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
- * //OpenLR Project Release Alpha 0.0.2
+ * //OpenLR Project Release Alpha 0.0.3
  * /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
  * 
  * This program was built using HaxeDevelop IDE, with haxe and openFL. Other libraries if used can be found in project.xml
@@ -58,6 +60,7 @@ class Main extends Sprite
 	private var track:Track;
 	private var toolBar:Toolbar;
 	private var textInfo:TextInfo;
+	private var FPS:FrameRate;
 	
 	public function new() 
 	{
@@ -77,6 +80,8 @@ class Main extends Sprite
 		
 		Common.stage_height = this.stage.stageHeight;
 		Common.stage_width = this.stage.stageWidth;
+		
+		this.FPS = new FrameRate();
 	}
 	
 	public function init_track() //display minimum items
