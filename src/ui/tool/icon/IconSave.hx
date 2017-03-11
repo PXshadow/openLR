@@ -10,6 +10,7 @@ import openfl.net.URLRequest;
 import global.Common;
 import lr.Toolbar;
 import ui.inter.SingleButton;
+import file.SaveManager;
 
 /**
  * ...
@@ -21,6 +22,7 @@ class IconSave extends IconBase
 	private var menu:MovieClip;
 	private var new_track:SingleButton;
 	private var save_track:SingleButton;
+	private var saveManager:SaveManager;
 	public function new() 
 	{
 		super();
@@ -41,6 +43,8 @@ class IconSave extends IconBase
 			this.removeChild(this.menu);
 			this.open = false;
 		} else if (!open) {
+			this.saveManager = new SaveManager();
+			
 			this.menu = new MovieClip();
 			this.addChild(menu);
 			this.menu.graphics.clear();

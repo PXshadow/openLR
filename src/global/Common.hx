@@ -1,6 +1,7 @@
 package global;
 
 import file.SaveManager;
+import lr.TextInfo;
 import lr.line.Grid;
 import openfl.display.MovieClip;
 import openfl.display.Stage;
@@ -34,6 +35,7 @@ class Common
 	public static var gToolCurrent:Any;
 	public static var gGrid:Grid;
 	public static var gSaveManager:SaveManager;
+	public static var gTextInfo:TextInfo;
 	
 	public static var line_minLength:Int = 14;
 	public static var line_type:Int = 0;

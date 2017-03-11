@@ -1,6 +1,7 @@
 package;
 
 import file.SaveManager;
+import lr.TextInfo;
 import lr.Toolbar;
 import lr.Track;
 import openfl.display.MovieClip;
@@ -56,7 +57,7 @@ class Main extends Sprite
 	private var visContainer:MovieClip; //simple display container. This will make it easier to take screenshots and record video without having to move a matrix all around
 	private var track:Track;
 	private var toolBar:Toolbar;
-	private var saveManager:SaveManager; //controls file saving and (in the future) loading
+	private var textInfo:TextInfo;
 	
 	public function new() 
 	{
@@ -76,8 +77,6 @@ class Main extends Sprite
 		
 		Common.stage_height = this.stage.stageHeight;
 		Common.stage_width = this.stage.stageWidth;
-		
-		this.saveManager = new SaveManager(); //need to move this
 	}
 	
 	public function init_track() //display minimum items
@@ -91,6 +90,9 @@ class Main extends Sprite
 		
 		this.toolBar = new Toolbar();
 		this.visContainer.addChild(this.toolBar);
+		
+		this.textInfo = new TextInfo();
+		this.addChild(this.textInfo);
 	}
 	private function resize(e:Event):Void
 	{
@@ -100,5 +102,8 @@ class Main extends Sprite
 		
 		Common.stage_height = this.stage.stageHeight;
 		Common.stage_width = this.stage.stageWidth;
+		
+		this.textInfo.x = (this.stage.stageWidth - this.textInfo.width);
+		this.textInfo.y = 0;
 	}
 }

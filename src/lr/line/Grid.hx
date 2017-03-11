@@ -45,11 +45,13 @@ class Grid
 		line.ID = Common.sLineID;
 		Common.sLineCount += 1;
 		Common.sLineID += 1;
+		Common.gTextInfo.update();
 	}
 	public function new_grid()
 	{
 		this.lines = new Array();
 		Common.sLineCount = 0;
 		Common.sLineID = 0;
+		Common.gTextInfo.update();
 	}
 }
