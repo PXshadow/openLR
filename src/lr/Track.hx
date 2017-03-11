@@ -60,4 +60,11 @@ class Track extends MovieClip
 			Common.cvar_line_render_mode = 0;
 		}
 	}
+	public function clear_stage()
+	{
+		for (i in 0...Common.gGrid.lines.length) {
+			this.removeChild(Common.gGrid.lines[i]);
+		}
+		Common.gGrid.new_grid();
+	}
 }

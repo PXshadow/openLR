@@ -46,4 +46,10 @@ class Grid
 		Common.sLineCount += 1;
 		Common.sLineID += 1;
 	}
+	public function new_grid()
+	{
+		this.lines = new Array();
+		Common.sLineCount = 0;
+		Common.sLineID = 0;
+	}
 }

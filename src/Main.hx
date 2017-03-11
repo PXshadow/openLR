@@ -36,6 +36,10 @@ import ui.inter.SingleButton;
  * /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
  * 
  * -- GitKraken test: Success!
+ * -- Supported platforms
+ * 		-- Windows: Yes!
+ * 		-- Linux: Yes! (Debian)
+ * 		-- OSX: Yes! (Built in Yosemite)
  * 
  * /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
  * //To do
@@ -43,6 +47,7 @@ import ui.inter.SingleButton;
  * 
  * -- Arbitrary save parser. Will allow for saves to be incomplete and future proof
  * -- UI system. Menus, checkboxes, radio buttons, arbitrarily sized buttons, fonts, blah blah blah
+ * -- Better file management. Save with name support, save as (arbitrary location), load from saves folder, and browse.
  * 
  */
 class Main extends Sprite 

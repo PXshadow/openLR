@@ -48,7 +48,7 @@ class IconSave extends IconBase
 			this.menu.graphics.beginFill(0xCCCCCC, 1);
 			this.menu.graphics.lineTo(0, 0);
 			
-			this.new_track = new SingleButton("New Track");
+			this.new_track = new SingleButton("New Track", Common.gTrack.clear_stage);
 			this.menu.addChild(this.new_track);
 			this.menu.y = this.height + 5;
 			this.menu.x = 5;

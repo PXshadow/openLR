@@ -27,6 +27,8 @@ import global.Common;
  * This is not to imply that I am excluding them, but it's to act as a measurement to make sure nothing in the save would conflict with other versions. Heavily consider saving under
  * this format for collab purposes if a build is not settled on.
  * 
+ * At the moment, SOL support will not be implemented. We've moved on people.
+ * 
  */
 class SaveManager
 {
