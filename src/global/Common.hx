@@ -1,5 +1,6 @@
 package global;
 
+import openfl.utils.Object;
 import file.SaveManager;
 import lr.TextInfo;
 import lr.line.Grid;
@@ -57,6 +58,7 @@ class Common
 	
 	public static var svar_frame_rate:Float;
 	public static var svar_framerate_avg_rate:Int = 60;
+	public static var svar_gridsize:Int = 14;
 	
 	public static var stage_width:Float;
 	public static var stage_height:Float;
@@ -89,5 +91,14 @@ class Common
 	{
 		var _loc1:Point = new Point(_b.y - _a.y, _b.x - _a.x);
 		return(_loc1);
+	}
+	public static function gridPos(x:Float, y:Float):Object
+	{
+		var posObject:Object = new Object();
+		posObject.x = Math.floor(x / Common.svar_gridsize);
+		posObject.y = Math.floor(y / Common.svar_gridsize);
+		posObject.gx = x - Common.svar_gridsize * posObject.x;
+		posObject.gy = y - Common.svar_gridsize * posObject.y;
+		return(posObject);
 	}
 }
