@@ -59,6 +59,7 @@ class Common
 	public static var svar_frame_rate:Float;
 	public static var svar_framerate_avg_rate:Int = 60;
 	public static var svar_gridsize:Int = 14;
+	public static var svar_eraser_size:Int = 5;
 	
 	public static var stage_width:Float;
 	public static var stage_height:Float;

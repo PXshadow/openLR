@@ -31,12 +31,18 @@ class LineBase extends MovieClip
 	public var inv:Bool = false;
 	public var type:Int = -1;
 	public var ID:Int;
+	public var gridList:Array<Array<Int>>;
 	
 	public function new() 
 	{
 		super();
+		this.gridList = new Array();
 	}
-	
+	public function inject_grid_loc(a:Array<Int>)
+	{
+		this.gridList.push(a);
+		trace(this.gridList.length);
+	}
 	function calculateConstants() 
 	{
 		d = Common.get_distance_point(a, b);

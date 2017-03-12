@@ -134,10 +134,37 @@ class Grid
 			_loc4.storage2 = new Array<Dynamic>();
 			grid[_x][_y] = _loc4;
 		}
+		var a = new Array<Int>();
+		a = [_x, _y];
+		line.inject_grid_loc(a);
 		if (line.type != 2)
 		{
 			grid[_x][_y].storage2[line.ID] = line;
 		}
 		grid[_x][_y].storage[line.ID] = line;
+	}
+	public function remove_line(line:Dynamic, _x:Int, _y:Int) {
+		this.remove_from_grid(line);
+		Common.gTrack.remove_line(line);
+		this.lines[line.ID] = null;
+		
+		if (line.type == 0) {
+			--Common.sBLueLineCount;
+		} else if (line.type == 1) {
+			--Common.sRedLineCount;
+		} else if (line.type == 2) {
+			--Common.sGreenLineCount;
+		}
+		--Common.sLineCount;
+		
+		Common.gTextInfo.update();
+	}
+	function remove_from_grid(line:Dynamic)
+	{
+		for (i in 0...line.gridList.length) 
+		{
+			Grid.grid[line.gridList[i][0]][line.gridList[i][1]].storage[line.ID] = null;
+			Grid.grid[line.gridList[i][0]][line.gridList[i][1]].storage2[line.ID] = null;
+		}
 	}
 }

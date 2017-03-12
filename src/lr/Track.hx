@@ -72,4 +72,7 @@ class Track extends MovieClip
 		}
 		Common.gGrid.new_grid();
 	}
+	public function remove_line(_line) {
+		this.removeChild(Common.gGrid.lines[_line.ID]);
+	}
 }
