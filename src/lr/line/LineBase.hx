@@ -16,14 +16,21 @@ import global.Common;
  */
 class LineBase extends MovieClip
 {
-	public var a:Point;
-	public var b:Point;
-	private var d:Point;
+	static var zone = 10;
+	public var x1:Float;
+	public var y1:Float;
+	public var x2:Float;
+	public var y2:Float;
+	private var dx:Float;
+	private var dy:Float;
+	private var hx:Float;
+	private var hy:Float;
 	private var C:Float;
 	private var invSqrDis:Float;
 	private var dst:Float;
 	private var invDst:Float;
-	private var n:Point;
+	private var nx:Float;
+	private var ny:Float;
 	private var LIM:Float;
 	private var _lim:Float;
 	private var _lim1:Float;
@@ -41,18 +48,21 @@ class LineBase extends MovieClip
 	public function inject_grid_loc(a:Array<Int>)
 	{
 		this.gridList.push(a);
-		trace(this.gridList.length);
 	}
 	function calculateConstants() 
 	{
-		d = Common.get_distance_point(a, b);
-		C = d.y * a.x - d.x * a.y;
-		var sqrDis = d.x * d.x + d.y * d.y;
-		invSqrDis = 1 / sqrDis;
-        dst = Math.sqrt(sqrDis);
+		dx = x2 - x1;
+        dy = y2 - y1;
+        C = dy * x1 - dx * y1;
+        var _loc2 = Math.pow(dx, 2) + Math.pow(dy, 2);
+        invSqrDis = 1 / _loc2;
+        dst = Math.sqrt(_loc2);
         invDst = 1 / dst;
-		n = new Point(d.y * invDst * (inv ? (1) : ( -1)), d.x * invDst * (inv ? ( -1) : (1)));
-		LIM = Math.min(0.25, 10 / dst);
+        nx = dy * invDst * (inv ? (1) : (-1));
+        ny = dx * invDst * (inv ? ( -1) : (1));
+        hx = Math.abs(dx) * 0.500000;
+        hy = Math.abs(dy) * 0.500000;
+        LIM = Math.min(0.250000, LineBase.zone / dst);
 	}
 	function set_lim(input)
 	{

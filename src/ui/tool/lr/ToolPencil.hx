@@ -14,8 +14,10 @@ import ui.tool.ToolBase;
  */
 class ToolPencil extends ToolBase
 {
-	private var a:Point;
-	private var b:Point;
+	private var x1:Float;
+	private var y1:Float;
+	private var x2:Float;
+	private var y2:Float;
 	private var c:Point;
 	private var d:Point;
 	public function new() 
@@ -23,29 +25,32 @@ class ToolPencil extends ToolBase
 		super();
 	}
 	override public function mouseDown(e:MouseEvent) {
-		a = new Point(Common.gTrack.mouseX, Common.gTrack.mouseY);
+		x1 = Common.gTrack.mouseX;
+		y1 = Common.gTrack.mouseY;
 		c = new Point(Common.gStage.mouseX, Common.gStage.mouseY);
 		Common.gStage.addEventListener(MouseEvent.MOUSE_MOVE, pencil_move);
 	}
 	
 	private function pencil_move(e:MouseEvent):Void 
 	{
-		b = new Point(Common.gTrack.mouseX, Common.gTrack.mouseY);
+		x2 = Common.gTrack.mouseX;
+		y2 = Common.gTrack.mouseY;
 		d = new Point(Common.gStage.mouseX, Common.gStage.mouseY);
-		Common.gTrack.render_preview_line(a, b);
+		Common.gTrack.render_preview_line(new Point(x1, y1), new Point(x2, y2));
 		if (Common.get_distance(c, d) >= Common.line_minLength) {
 			var _loc1:Dynamic;
 			if (Common.line_type == 0) {
-				_loc1 = new LineFloor(a, b, this.mod_shift);
+				_loc1 = new LineFloor(x1, y1, x2, y2, this.mod_shift);
 				Common.gTrack.add_vis_line(_loc1);
 			} else if (Common.line_type == 1) {
-				_loc1 = new LineAccel(a, b, this.mod_shift);
+				_loc1 = new LineAccel(x1, y1, x2, y2, this.mod_shift);
 				Common.gTrack.add_vis_line(_loc1);
 			} else if (Common.line_type == 2) {
-				_loc1 = new LineScene(a, b, this.mod_shift);
+				_loc1 = new LineScene(x1, y1, x2, y2, this.mod_shift);
 				Common.gTrack.add_vis_line(_loc1);
 			}
-			a = new Point(Common.gTrack.mouseX, Common.gTrack.mouseY);
+			x1 = Common.gTrack.mouseX;
+			y1 = Common.gTrack.mouseY;
 			c = new Point(Common.gStage.mouseX, Common.gStage.mouseY);
 		}
 	}
