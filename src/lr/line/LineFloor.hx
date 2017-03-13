@@ -37,14 +37,5 @@ class LineFloor extends LineBase
         this.graphics.lineStyle(2, 0, 1, true, "normal", "round");
         this.graphics.moveTo(x1, y1);
         this.graphics.lineTo(x2, y2);
-		this.graphics.lineStyle(2, 0xCC00CC, 1);
-		for (i in 0...gridList.length) {
-			this.graphics.drawCircle(gridList[i][0] * 14, gridList[i][1] * 14, 3);
-			this.graphics.moveTo((gridList[i][0] * 14 - 7), (gridList[i][1] * 14 - 7));
-			this.graphics.lineTo((gridList[i][0] * 14 + 7), (gridList[i][1] * 14 - 7));
-			this.graphics.lineTo((gridList[i][0] * 14 + 7), (gridList[i][1] * 14 + 7));
-			this.graphics.lineTo((gridList[i][0] * 14 - 7), (gridList[i][1] * 14 + 7));
-			this.graphics.lineTo((gridList[i][0] * 14 - 7), (gridList[i][1] * 14 - 7));
-		}
 	}
 }
