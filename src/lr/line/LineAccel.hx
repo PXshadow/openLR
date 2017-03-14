@@ -36,11 +36,10 @@ class LineAccel extends LineBase
 			this.graphics.moveTo(x1 + _loc_3, y1 + _loc_4);
 			this.graphics.lineTo(x2 + _loc_3, y2 + _loc_4);
 			this.graphics.lineTo(x2 + (nx * 4 - dx * invDst * 5), y2 + (ny * 4 - dy * invDst * 5));
-            this.graphics.lineTo(x2 - dx * invDst * 5, y2 - dy * invDst * 5);
+            this.graphics.lineTo(x2 - dx * invDst * 5, y2 - dy * invDst * 4);
 		}
         this.graphics.lineStyle(2, 0, 1, true, "normal", "round");
         this.graphics.moveTo(x1, y1);
         this.graphics.lineTo(x2, y2);
-		this.graphics.lineStyle(2, 0xCC00CC, 1);
 	}
 }

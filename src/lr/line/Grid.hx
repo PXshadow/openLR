@@ -42,6 +42,9 @@ class Grid
 	{
 		this.lines = new Array();
 		Common.sLineCount = 0;
+		Common.sBLueLineCount = 0;
+		Common.sRedLineCount = 0;
+		Common.sGreenLineCount = 0;
 		Common.sLineID = 0;
 		Common.gTextInfo.update();
 		Grid.grid = new Map();

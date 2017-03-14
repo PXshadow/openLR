@@ -41,6 +41,9 @@ import ui.inter.SingleButton;
  * 		-- Windows: Yes!
  * 		-- Linux: Yes! (Debian)
  * 		-- OSX: Yes! (Built in Yosemite)
+ * --Need to clean up some of the "rabbit hole" functions. Starting to get lost in my own code.
+ * --Need to make some UI classes. Check boxes, radio buttons, lists.
+ * --Need to work on defaults for settings. Alpha 0.0.4 will probably be that
  * 
  * /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
  * //To do

@@ -25,10 +25,12 @@ import global.Common;
  * 
  * The JSON format will be added for legacy saving. This will allow cross support for other versions that support it as well. However as a downside, it will not support exclusive features.
  * This is not to imply that I am excluding them, but it's to act as a measurement to make sure nothing in the save would conflict with other versions. Heavily consider saving under
- * this format for collab purposes if a build is not settled on.
+ * this format for collab purposes if a build is not settled on. If other builds implement features originally exclusive, I'll tack them into the JSON legavy parser.
  * 
- * At the moment, SOL support will not be implemented. We've moved on people. Until Beta release, this will also use JSON as default to maintain testing purposes. Once the project
- * is ready to start using newer features that may need special save data, focus will be put towards this arbitrary save format file.
+ * At the moment, SOL/AMF support will not be implemented. We've moved on people, some time in the distant future I'll add it after overlooking the parsing code Conun and Mhenr have. 
+ * Until Beta release, this will also use JSON as default to maintain testing purposes. Once the project is ready to start using newer features that may need special save data, 
+ * focus will be put towards this arbitrary save format file. This may be another fancy JSON format for other builds, but I do not expect this format to work with other builds
+ * and have no plans to make sure they do work.
  * 
  */
 class SaveManager
@@ -102,7 +104,7 @@ class SaveManager
 		
 		return(this.trackData);
 	}
-	public function generate_save_json() //Top function for generating JSON file
+	public function generate_save_json() //Top function for generating JSON legacy file
 	{
 		var track:Object = parse_json();
 		var time:String = Date.now().getDate() + "_" + Date.now().getMonth() + "_" + Date.now().getFullYear() + "_" + Date.now().getHours() + "_" + Date.now().getMinutes();
