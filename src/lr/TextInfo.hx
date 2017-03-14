@@ -2,6 +2,7 @@ package lr;
 
 import openfl.Lib;
 import openfl.Assets;
+import openfl.display.GraphicsStroke;
 import openfl.display.MovieClip;
 import openfl.text.TextField;
 import openfl.text.TextFormat;
@@ -70,5 +71,13 @@ class TextInfo extends MovieClip
 	public function update_textInfo_E()
 	{
 		textInfo_E.text = Common.svar_frame_rate + " FPS";
+	}
+	public function update_sim() {
+		var _locTime:String = Common.time(Common.sim_frames);
+		
+		textInfo_A.text = Common.cvar_track_name;
+		textInfo_B.text = _locTime;
+		textInfo_C.text = "Speed PPF";
+		textInfo_D.text = "Top Kek";
 	}
 }

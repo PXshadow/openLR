@@ -53,15 +53,19 @@ class Common
 	public static var track_scale_max:Float = 12;
 	public static var track_scale_min:Float = 0.6;
 	
+	public static var sim_frames:Int = 0;
+	
 	public static var cvar_icon_hit_display:Bool = false;
 	public static var cvar_line_render_mode:Int = 0; //0 = color, 1 = black, 2 = color play, 3 = preview
 	public static var cvar_track_author:String = "Unknown";
+	public static var cvar_track_name:String = "Untitled";
 	public static var cvar_save_mode:String = "openLR"; //openLR will be the native file which will support theoretical features exclusive here, while the second option of JSON will be the bare minimum
 	
 	public static var svar_frame_rate:Float;
 	public static var svar_framerate_avg_rate:Int = 60;
 	public static var svar_gridsize:Int = 14;
 	public static var svar_eraser_size:Int = 5;
+	public static var svar_sim_running:Bool = false;
 	
 	public static var stage_width:Float;
 	public static var stage_height:Float;
@@ -103,5 +107,56 @@ class Common
 		posObject.gx = x - Common.svar_gridsize * posObject.x;
 		posObject.gy = y - Common.svar_gridsize * posObject.y;
 		return(posObject);
+	}
+	public static function time(_loc0:Int):String 
+	{
+		var _loc2:Int = _loc0;
+		var _loc3:Int = Std.int(_loc2 / 40);
+		var _loc8:Int = _loc2;
+		var _loc7:Int = _loc3;
+		var _loc6:Int = Std.int(_loc3 / 60);
+		var _loc1:Int = _loc2 - _loc3 * 40;
+		var _loc11:String = "";
+		var _loc5:Int = _loc3 - _loc6 * 60;
+		var _loc4:String = "";
+		var _loc15:String = "";
+		if (_loc2 < 40)
+		{
+			if (_loc2 < 10)
+			{
+				_loc4 = "0:0" + _loc2;
+			}
+			else
+			{
+				_loc4 = "0:" + _loc2;
+			}
+		}
+		else if (_loc2 >= 40 && _loc3 < 60)
+		{
+			if (_loc1 < 10)
+			{
+				_loc11 = "0" + _loc1;
+				_loc4 = _loc3 + ":" + _loc11;
+			} else {
+				_loc4 = _loc3 + ":" + _loc1;
+			}
+		}
+		else if (_loc3 >= 60)
+		{
+			if (_loc1 < 10)
+			{
+				_loc11 = "0" + _loc1;
+			} else {
+				_loc11 = _loc1 + "";
+			}
+			if (_loc5 < 10)
+			{
+				_loc15 = "0" + _loc5;
+			} else {
+				_loc15 = _loc5 + "";
+			}
+			_loc4 = _loc6 + ":" + _loc15 + ":" + _loc11;
+		}
+		return (_loc4);
 	}
 }

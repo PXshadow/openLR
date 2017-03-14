@@ -2,6 +2,7 @@ package;
 
 import file.SaveManager;
 import global.FrameRate;
+import global.SimManager;
 import haxe.Timer;
 import lr.TextInfo;
 import lr.Toolbar;

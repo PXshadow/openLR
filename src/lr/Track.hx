@@ -1,4 +1,5 @@
 package lr;
+import global.SimManager;
 import lr.line.Grid;
 import lr.line.LineBase;
 import openfl.display.MovieClip;
@@ -16,6 +17,7 @@ import global.Common;
 class Track extends MovieClip
 {
 	private var grid:Grid;
+	private var simManager:SimManager;
 	public function new() 
 	{
 		super();
@@ -53,7 +55,10 @@ class Track extends MovieClip
 	public function set_rendermode_play() {
 		if (Common.cvar_line_render_mode == 0) {
 			for (a in 0...grid.lines.length) {
-				grid.lines[a].render("play");
+				if (grid.lines[a] != null)
+				{
+					grid.lines[a].render("play");
+				}
 			}
 			Common.cvar_line_render_mode = 1;
 		}
@@ -61,7 +66,9 @@ class Track extends MovieClip
 	public function set_rendermode_edit() {
 		if (Common.cvar_line_render_mode == 1) {
 			for (a in 0...grid.lines.length) {
-				grid.lines[a].render("edit");
+				if (grid.lines[a] != null) {
+					grid.lines[a].render("edit");
+				}
 			}
 			Common.cvar_line_render_mode = 0;
 		}
@@ -75,5 +82,21 @@ class Track extends MovieClip
 	}
 	public function remove_line(_line) {
 		this.removeChild(Common.gGrid.lines[_line.ID]);
+	}
+	public function set_simmode_play() {
+		this.simManager = new SimManager();
+		Common.gToolBase.disable();
+		Common.svar_sim_running = true;
+	}
+	public function set_simmode_resume() {
+		
+	}
+	public function set_simmode_pause() {
+		this.simManager.pause_sim();
+	}
+	public function set_simmode_stop() {
+		this.simManager.end_sim();
+		Common.gToolBase.enable();
+		Common.svar_sim_running = false;
 	}
 }

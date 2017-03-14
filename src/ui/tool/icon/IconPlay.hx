@@ -25,6 +25,7 @@ class IconPlay extends IconBase
 	override public function down(e:MouseEvent) {
 		Common.gTrack.set_rendermode_play();
 		Common.gToolbar.set_play_mode();
+		Common.gTrack.set_simmode_play();
 	}
 	
 }

@@ -54,14 +54,18 @@ class IconBase extends MovieClip
 	
 	private function enable_tool(e:MouseEvent):Void 
 	{
-		Common.gToolBase.enable();
-		this.alpha = 1;
+		if (!Common.svar_sim_running) {
+			Common.gToolBase.enable();
+			this.alpha = 1;
+		}
 	}
 	
 	private function disable_tool(e:MouseEvent):Void 
 	{
-		Common.gToolBase.disable();
-		this.alpha = 0.75;
+		if (!Common.svar_sim_running) {
+			Common.gToolBase.disable();
+			this.alpha = 0.75;
+		}
 	}
 	
 	public function enable() {

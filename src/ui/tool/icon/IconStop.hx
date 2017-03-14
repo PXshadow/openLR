@@ -25,6 +25,7 @@ class IconStop extends IconBase
 	override public function down(e:MouseEvent) {
 		Common.gTrack.set_rendermode_edit();
 		Common.gToolbar.set_edit_mode();
+		Common.gTrack.set_simmode_stop();
 	}
 	
 }
