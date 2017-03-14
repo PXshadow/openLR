@@ -21,6 +21,9 @@ class Toolbar extends MovieClip
 	private var line:IconLine;
 	private var save:IconSave;
 	private var eraser:IconEraser;
+	private var swBlue:SwatchBlue;
+	private var swRed:SwatchRed;
+	private var swGreen:SwatchGreen;
 	
 	private var playB:IconPlay;
 	public function new() 
@@ -48,5 +51,26 @@ class Toolbar extends MovieClip
 		this.addChild(save);
 		this.save.x = 120;
 		
+		this.graphics.clear();
+		this.graphics.beginFill(0xFFFFFF, 1);
+		this.graphics.moveTo(0, 0);
+		this.graphics.lineTo(this.width, 0);
+		this.graphics.lineTo(this.width, this.height);
+		this.graphics.lineTo(0, this.height);
+		this.graphics.lineTo(0, 0);
+		
+		this.swBlue = new SwatchBlue();
+		this.addChild(swBlue);
+		this.swBlue.y = 33;
+		
+		this.swRed = new SwatchRed();
+		this.addChild(swRed);
+		this.swRed.y = 33;
+		this.swRed.x = 30;
+		
+		this.swGreen = new SwatchGreen();
+		this.addChild(swGreen);
+		this.swGreen.y = 33;
+		this.swGreen.x = 60;
 	}
 }

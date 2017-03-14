@@ -66,8 +66,6 @@ class Main extends Sprite
 		this.mainFileInit = new FileStart();
 		this.init_env();
 		this.init_track();
-		
-		this.stage.addEventListener(Event.RESIZE, resize);
 	}
 	
 	public function init_env() //Initialize enviornment
@@ -77,6 +75,8 @@ class Main extends Sprite
 		
 		Common.stage_height = this.stage.stageHeight;
 		Common.stage_width = this.stage.stageWidth;
+		
+		this.stage.addEventListener(Event.RESIZE, resize);
 		
 		this.FPS = new FrameRate();
 	}
@@ -89,6 +89,8 @@ class Main extends Sprite
 		
 		this.track = new Track();
 		this.visContainer.addChild(this.track);
+		this.track.x = this.stage.stageWidth * 0.5;
+		this.track.y = this.stage.stageHeight * 0.5;
 		
 		this.toolBar = new Toolbar();
 		this.visContainer.addChild(this.toolBar);

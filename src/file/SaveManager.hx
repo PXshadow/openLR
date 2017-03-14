@@ -136,10 +136,10 @@ class SaveManager
 			a[i] = {
 				"id": lines[i].ID,
 				"type": lines[i].type,
-				"x1": lines[i].a.x,
-				"y1": lines[i].a.y,
-				"x2": lines[i].b.x,
-				"y2": lines[i].b.y,
+				"x1": lines[i].x1,
+				"y1": lines[i].y1,
+				"x2": lines[i].x2,
+				"y2": lines[i].y2,
 				"flipped": lines[i].inv,
 				"leftExtended": false,
 				"rightExtended": false
