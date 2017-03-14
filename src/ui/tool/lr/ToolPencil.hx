@@ -58,4 +58,38 @@ class ToolPencil extends ToolBase
 		Common.gStage.removeEventListener(MouseEvent.MOUSE_MOVE, pencil_move);
 		Common.gTrack.clear_preview();
 	}
+	override public function rMouseDown(e:MouseEvent) {
+		x1 = Common.gTrack.mouseX;
+		y1 = Common.gTrack.mouseY;
+		c = new Point(Common.gStage.mouseX, Common.gStage.mouseY);
+		Common.gStage.addEventListener(MouseEvent.MOUSE_MOVE, pencil_move_reverse);
+	}
+	
+	private function pencil_move_reverse(e:MouseEvent):Void 
+	{
+		x2 = Common.gTrack.mouseX;
+		y2 = Common.gTrack.mouseY;
+		d = new Point(Common.gStage.mouseX, Common.gStage.mouseY);
+		Common.gTrack.render_preview_line(new Point(x1, y1), new Point(x2, y2));
+		if (Common.get_distance(c, d) >= Common.line_minLength) {
+			var _loc1:Dynamic;
+			if (Common.line_type == 0) {
+				_loc1 = new LineFloor(x2, y2, x1, y1, !this.mod_shift);
+				Common.gTrack.add_vis_line(_loc1);
+			} else if (Common.line_type == 1) {
+				_loc1 = new LineAccel(x2, y2, x1, y1, !this.mod_shift);
+				Common.gTrack.add_vis_line(_loc1);
+			} else if (Common.line_type == 2) {
+				_loc1 = new LineScene(x2, y2, x1, y1, !this.mod_shift);
+				Common.gTrack.add_vis_line(_loc1);
+			}
+			x1 = Common.gTrack.mouseX;
+			y1 = Common.gTrack.mouseY;
+			c = new Point(Common.gStage.mouseX, Common.gStage.mouseY);
+		}
+	}
+	override public function rMouseUp(e:MouseEvent) {
+		Common.gStage.removeEventListener(MouseEvent.MOUSE_MOVE, pencil_move_reverse);
+		Common.gTrack.clear_preview();
+	}
 }
