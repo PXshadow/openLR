@@ -1,5 +1,6 @@
 package global;
 
+import lr.Toolbar;
 import openfl.utils.Object;
 import file.SaveManager;
 import lr.TextInfo;
@@ -37,6 +38,7 @@ class Common
 	public static var gGrid:Grid;
 	public static var gSaveManager:SaveManager;
 	public static var gTextInfo:TextInfo;
+	public static var gToolbar:Toolbar;
 	
 	public static var line_minLength:Int = 14;
 	public static var line_type:Int = 0;

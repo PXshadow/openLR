@@ -67,5 +67,12 @@ class IconBase extends MovieClip
 	public function enable() {
 		this.addEventListener(MouseEvent.MOUSE_OVER, disable_tool);
 		this.addEventListener(MouseEvent.MOUSE_OUT, enable_tool);
+		this.alpha = 1;
+	}
+	
+	public function disable() {
+		this.removeEventListener(MouseEvent.MOUSE_OVER, disable_tool);
+		this.removeEventListener(MouseEvent.MOUSE_OUT, enable_tool);
+		this.alpha = 0.25;
 	}
 }

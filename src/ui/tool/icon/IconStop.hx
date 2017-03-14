@@ -13,18 +13,18 @@ import lr.Toolbar;
  * ...
  * @author Kaelan Evans
  */
-class IconPlay extends IconBase
+class IconStop extends IconBase
 {
 
 	public function new() 
 	{
 		super();
-		this.icon = new Bitmap(Assets.getBitmapData("icon/play.png"));
+		this.icon = new Bitmap(Assets.getBitmapData("icon/stop.png"));
 		this.addChild(this.icon);
 	}
 	override public function down(e:MouseEvent) {
-		Common.gTrack.set_rendermode_play();
-		Common.gToolbar.set_play_mode();
+		Common.gTrack.set_rendermode_edit();
+		Common.gToolbar.set_edit_mode();
 	}
 	
 }

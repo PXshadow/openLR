@@ -8,23 +8,24 @@ import openfl.net.URLRequest;
 
 import global.Common;
 import lr.Toolbar;
+import ui.tool.lr.ToolPan;
 
 /**
  * ...
  * @author Kaelan Evans
  */
-class IconPlay extends IconBase
+class IconPan extends IconBase
 {
 
 	public function new() 
 	{
 		super();
-		this.icon = new Bitmap(Assets.getBitmapData("icon/play.png"));
+		this.icon = new Bitmap(Assets.getBitmapData("icon/pan.png"));
 		this.addChild(this.icon);
 	}
 	override public function down(e:MouseEvent) {
-		Common.gTrack.set_rendermode_play();
-		Common.gToolbar.set_play_mode();
+		Common.gToolBase.disable();
+		Toolbar.tool = new ToolPan();
 	}
 	
 }

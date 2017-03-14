@@ -50,17 +50,18 @@ class Track extends MovieClip
 	{
 		this.graphics.clear();
 	}
-	public function update_render() //toggles render mode. IE if lines appear black, or colored.
-	{
-		var con = Common.cvar_line_render_mode;
-		if (con == 0) {
+	public function set_rendermode_play() {
+		if (Common.cvar_line_render_mode == 0) {
 			for (a in 0...grid.lines.length) {
 				grid.lines[a].render("play");
 			}
 			Common.cvar_line_render_mode = 1;
-		} else if (con == 1) {
-			for (b in 0...grid.lines.length) {
-				grid.lines[b].render("edit");
+		}
+	}
+	public function set_rendermode_edit() {
+		if (Common.cvar_line_render_mode == 1) {
+			for (a in 0...grid.lines.length) {
+				grid.lines[a].render("edit");
 			}
 			Common.cvar_line_render_mode = 0;
 		}

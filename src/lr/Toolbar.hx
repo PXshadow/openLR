@@ -21,14 +21,18 @@ class Toolbar extends MovieClip
 	private var line:IconLine;
 	private var save:IconSave;
 	private var eraser:IconEraser;
+	private var pan:IconPan;
 	private var swBlue:SwatchBlue;
 	private var swRed:SwatchRed;
 	private var swGreen:SwatchGreen;
 	
 	private var playB:IconPlay;
+	private var stopB:IconStop;
+	
 	public function new() 
 	{
 		super();
+		Common.gToolbar = this;
 		
 		tool = new ToolPencil();
 		
@@ -43,13 +47,21 @@ class Toolbar extends MovieClip
 		this.addChild(eraser);
 		this.eraser.x = 60;
 		
+		pan = new IconPan();
+		this.addChild(pan);
+		this.pan.x = 90;
+		
 		playB = new IconPlay();
 		this.addChild(playB);
-		this.playB.x = 90;
+		this.playB.x = 120;
+		
+		stopB = new IconStop();
+		this.addChild(stopB);
+		this.stopB.x = 150;
 		
 		save = new IconSave();
 		this.addChild(save);
-		this.save.x = 120;
+		this.save.x = 180;
 		
 		this.graphics.clear();
 		this.graphics.beginFill(0xFFFFFF, 1);
@@ -72,5 +84,23 @@ class Toolbar extends MovieClip
 		this.addChild(swGreen);
 		this.swGreen.y = 33;
 		this.swGreen.x = 60;
+	}
+	public function set_play_mode() {
+		this.pencil.disable();
+		this.line.disable();
+		this.eraser.disable();
+		this.pan.disable();
+		this.swBlue.disable();
+		this.swGreen.disable();
+		this.swRed.disable();
+	}
+	public function set_edit_mode() {
+		this.pencil.enable();
+		this.line.enable();
+		this.eraser.enable();
+		this.pan.enable();
+		this.swBlue.enable();
+		this.swRed.enable();
+		this.swGreen.enable();
 	}
 }
