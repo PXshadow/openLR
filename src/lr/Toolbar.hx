@@ -28,6 +28,7 @@ class Toolbar extends MovieClip
 	
 	private var playB:IconPlay;
 	private var stopB:IconStop;
+	private var flag:IconFlag;
 	
 	public function new() 
 	{
@@ -59,9 +60,13 @@ class Toolbar extends MovieClip
 		this.addChild(stopB);
 		this.stopB.x = 150;
 		
+		flag = new IconFlag();
+		this.addChild(flag);
+		this.flag.x = 180;
+		
 		save = new IconSave();
 		this.addChild(save);
-		this.save.x = 180;
+		this.save.x = 210;
 		
 		this.graphics.clear();
 		this.graphics.beginFill(0xFFFFFF, 1);

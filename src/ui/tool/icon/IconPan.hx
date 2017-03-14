@@ -27,5 +27,7 @@ class IconPan extends IconBase
 		Common.gToolBase.disable();
 		Toolbar.tool = new ToolPan();
 	}
-	
+	override private function double_click(e:MouseEvent) {
+		Common.gCode.return_to_origin();
+	}
 }

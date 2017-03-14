@@ -114,4 +114,8 @@ class Main extends Sprite
 		this.textInfo.x = (this.stage.stageWidth - this.textInfo.width) - 5;
 		this.textInfo.y = 5;
 	}
+	public function return_to_origin() {
+		this.track.x = this.stage.stageWidth * 0.5;
+		this.track.y = this.stage.stageHeight * 0.5;
+	}
 }

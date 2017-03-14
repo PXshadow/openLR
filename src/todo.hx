@@ -45,6 +45,7 @@
  * 		--Camera focus and general pan boundaries
  * 	--Fast Forward and rewind
  * 		--under separate tick as it's probably going to need it's own class to function
+ *  --Loading, saving, file browsing.
  * 
  * Beta 1:
  * 	--Pointer tool
@@ -52,5 +53,7 @@
  * 		--Right click to edit properties
  * 	--Sim updating function for live editing
  *  --Audio importing and syncing
+ *  --Sim ticker and slider
+ *  --Screen shot definitely if not done in 0.0.3
  * 	
 */

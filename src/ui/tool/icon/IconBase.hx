@@ -40,6 +40,13 @@ class IconBase extends MovieClip
 		this.addEventListener(MouseEvent.MOUSE_OUT, enable_tool);
 		this.addEventListener(MouseEvent.MOUSE_DOWN, down);
 		this.addEventListener(MouseEvent.RIGHT_MOUSE_DOWN, alt);
+		this.addEventListener(MouseEvent.DOUBLE_CLICK, double_click);
+		this.doubleClickEnabled = true;
+	}
+	
+	private function double_click(e:MouseEvent):Void 
+	{
+		trace ("Double click action not yet set");
 	}
 	
 	public function alt(e:MouseEvent):Void 
