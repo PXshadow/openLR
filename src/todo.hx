@@ -4,8 +4,9 @@
  * 0.0.3:
  * 	--Rider base
  * 		--Start point
- * 		--Contact points
- * 		--Bones
+ * 		--Contact points - Done
+ * 		--Bones - Done
+ * 		--Rigging - done
  * 		--Rider Iterator
  * 		--Svars
  * 	--UI
@@ -22,13 +23,14 @@
  * 	--Flag tool
  * 		--Playing sim marks position
  * 		--Editor only toggles on and off, faded flag indicates it is off
- * 		--Double click to toggle flag lock
+ * 		--Double click to toggle flag lock - Done
  * 	--Pause tool
  * 		--Replaces pan tool when paused
  * 		--allow for live line editing
  *  --Camera
  * 		--Repurpose old LRMB "SFM Camera" and have ready for later update
  * 		--Screenshot function? Could be used to set up base for built in recording
+ * 	--This update should function at least like Beta 2 to a degree
  * 
  * 0.0.4:
  * 	--Icons
@@ -46,6 +48,11 @@
  * 	--Fast Forward and rewind
  * 		--under separate tick as it's probably going to need it's own class to function
  *  --Loading, saving, file browsing.
+ * 	--This release must function like 3.4.X;
+ * 
+ * 0.0.5
+ * 	--Major source code overhaul (maybe). This should be where I convert the code from copy and paste into original code. Will need to check out lr core.
+ * 	--Also make sure everything is well commented and explained.
  * 
  * Beta 1:
  * 	--Pointer tool

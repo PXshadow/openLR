@@ -104,7 +104,6 @@ class Main extends Sprite
 	}
 	private function resize(e:Event):Void
 	{
-		trace(this.stage.stageWidth, this.stage.stageHeight);
 		this.visContainer.x = this.visContainer.y = 0;
 		this.toolBar.x = (this.stage.stageWidth / 2) - (this.toolBar.width / 2); 
 		

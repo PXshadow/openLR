@@ -108,7 +108,7 @@ class Grid
 		return;
 		}
 	}
-	public function register(line:Dynamic, _x:Int, _y:Int) //This is where the line gets indexed in a 2D array
+	public function register(line:LineBase, _x:Int, _y:Int) //This is where the line gets indexed in a 2D array
 	{
 		var _loc4 = new Object();
 		if (grid[_x] == null)
@@ -130,7 +130,7 @@ class Grid
 		}
 		grid[_x][_y].storage[line.ID] = line;
 	}
-	public function remove_line(line:Dynamic, _x:Int, _y:Int) {
+	public function remove_line(line:LineBase, _x:Int, _y:Int) {
 		this.remove_from_grid(line);
 		Common.gTrack.remove_line(line);
 		this.lines[line.ID] = null;
@@ -146,7 +146,7 @@ class Grid
 		
 		Common.gTextInfo.update();
 	}
-	function remove_from_grid(line:Dynamic)
+	function remove_from_grid(line:LineBase)
 	{
 		for (i in 0...line.gridList.length) 
 		{
