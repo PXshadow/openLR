@@ -1,10 +1,12 @@
 package lr.rider;
 
 import haxe.ds.Vector;
+import lr.line.LineBase;
 import lr.rider.phys.*;
 import openfl.display.MovieClip;
 import openfl.utils.Object;
 import global.Common;
+import lr.line.Grid;
 
 /**
  * ...
@@ -29,6 +31,8 @@ class RiderBase
 	}
 	public function init_rider() 
 	{
+		Stick.crash = false;
+		
 		this.anchors = new Vector(10);
 		
 		this.anchors[0] = new CPoint(0, 0, 0.8, 0); //2nd Peg
@@ -41,6 +45,11 @@ class RiderBase
 		this.anchors[7] = new CPoint(23, -10, 0.1, 7); //hand
 		this.anchors[8] = new CPoint(20, 10, 0, 8); //Foot
 		this.anchors[9] = new CPoint(20, 10, 0, 9); //Foot
+		
+		for (a in 0...anchors.length) {
+			anchors[a].x *= 0.5;
+			anchors[a].y *= 0.5;
+		}
 		
 		this.edges = new Vector(22);
 		
@@ -82,11 +91,53 @@ class RiderBase
 		}
 		for (a in 0...6) {
 			for (b in 0...edges.length) {
-				edges[b].constrain();
-				//collision function
+				if (edges[b].constrain()) {}
 			}
+			this.collision();
 		}
 		this.render_bones();
+	}
+	public function collision() 
+	{
+		for (_loc7 in 0...anchors.length)
+		{
+			var _loc5 = anchors[_loc7];
+			var _loc6 = Common.gridPos(_loc5.x, _loc5.y);
+			for (_loc4 in -1...2)
+			{
+				var _loc1 = (_loc6.x + _loc4);
+				if (Grid.grid[_loc1] == null)
+				{
+					continue;
+				} // end if
+				for (_loc3 in -1...2)
+				{
+					var _loc2 = (_loc6.y + _loc3);
+					if (Grid.grid[_loc1][_loc2] == null)
+					{
+						continue;
+					} // end if
+					var tempStorage:Array<LineBase>;
+					tempStorage = new Array();
+					for (_loc8 in 0...Grid.grid[_loc1][_loc2].storage2.length)
+					{
+						if (Grid.grid[_loc1][_loc2].storage2[_loc8] != null)
+						{
+							tempStorage.push(Grid.grid[_loc1][_loc2].storage2[_loc8]);
+						} else {
+							continue;
+						}
+					} // end of for...in
+					if (tempStorage.length == 0) {
+						continue;
+					} else {
+						for (i in 0...tempStorage.length) {
+							tempStorage[i].collide(_loc5);
+						}
+					}
+				} // end of for
+			} // end of for
+		} // end of for
 	}
 	public function save_rider() {
 		this.saveFrame = new Vector(10);

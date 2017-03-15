@@ -1,5 +1,6 @@
 package lr.line;
 
+import lr.rider.phys.CPoint;
 import openfl.geom.Point;
 
 /**
@@ -16,7 +17,7 @@ class LineScene extends LineBase
 	public function new(_x1:Float, _y1:Float, _x2:Float, _y2:Float, _inv:Bool, _lim = -1) 
 	{
 		super();
-		this.type = 0;
+		this.type = 2;
 		x1 = _x1;
 		y1 = _y1;
 		x2 = _x2;
@@ -36,5 +37,9 @@ class LineScene extends LineBase
 		}
         this.graphics.moveTo(x1, y1);
         this.graphics.lineTo(x2, y2);
+	}
+	override public function collide(dot:CPoint) 
+	{
+		
 	}
 }

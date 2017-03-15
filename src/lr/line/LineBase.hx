@@ -1,6 +1,7 @@
 package lr.line;
 
 import init.Defaults;
+import lr.rider.phys.CPoint;
 import openfl.display.MovieClip;
 import openfl.geom.Point;
 
@@ -90,5 +91,8 @@ class LineBase extends MovieClip
             } 
         }
         _lim = input;
+	}
+	public function collide(dot:CPoint) {
+		
 	}
 }

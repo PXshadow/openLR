@@ -27,14 +27,12 @@
  * 	--Pause tool
  * 		--Replaces pan tool when paused
  * 		--allow for live line editing
- *  --Camera
+ *	--Camera
  * 		--Repurpose old LRMB "SFM Camera" and have ready for later update
  * 		--Screenshot function? Could be used to set up base for built in recording
  * 	--This update should function at least like Beta 2 to a degree
  * 
  * 0.0.4:
- * 	--Icons
- * 		--Use custom made icons instead of repurposing Beta 2 icons. Check SVG haxelib for updates
  * 	-- 3.4.X QOL features
  * 		--Color playback
  * 		--Hit test
@@ -53,6 +51,7 @@
  * 0.0.5
  * 	--Major source code overhaul (maybe). This should be where I convert the code from copy and paste into original code. Will need to check out lr core.
  * 	--Also make sure everything is well commented and explained.
+ *	--Use custom made icons instead of repurposing Beta 2 icons. Check SVG haxelib for updates
  * 
  * Beta 1:
  * 	--Pointer tool

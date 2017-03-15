@@ -11,7 +11,7 @@ class RepellStick extends Stick
 	{
 		super(_a, _b);
 	}
-	override public function constrain() 
+	override public function constrain():Bool 
 	{
 		var _loc3:Float = a.x - b.x;
         var _loc4:Float = a.y - b.y;
@@ -26,6 +26,8 @@ class RepellStick extends Stick
             a.y = a.y - _loc7;
             b.x = b.x + _loc6;
             b.y = b.y + _loc7;
+			return(false);
         } // end if
+		return(true);
 	}
 }

@@ -117,8 +117,8 @@ class Grid
 		}
 		if (grid[_x][_y] == null)
 		{
-			_loc4.storage = new Array<Dynamic>();
-			_loc4.storage2 = new Array<Dynamic>();
+			_loc4.storage = new Array<LineBase>();
+			_loc4.storage2 = new Array<LineBase>();
 			grid[_x][_y] = _loc4;
 		}
 		var a = new Array<Int>();
