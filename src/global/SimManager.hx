@@ -1,6 +1,7 @@
 package global;
 
 import haxe.Timer;
+import lr.rider.RiderBase;
 /**
  * ...
  * @author ...
@@ -9,8 +10,14 @@ class SimManager
 {
 	var iterator:Timer;
 	var desired_rate:Int = 40;
+	var rider:RiderBase;
+	var riderMade:Bool = false;
 	public function new() 
 	{
+		this.rider = new RiderBase();
+	}
+	public function start_sim() {
+		this.rider.init_rider();
 		this.iterator = new Timer(1000 * (1 / this.desired_rate));
 		this.iterator.run = function():Void {
 			this.update_sim();
@@ -19,6 +26,7 @@ class SimManager
 	}
 	function update_sim()
 	{
+		this.rider.step_rider();
 		++Common.sim_frames;
 	}
 	public function end_sim()

@@ -24,6 +24,7 @@ class Track extends MovieClip
 		Common.gTrack = this;
 		Common.track_scale = 1;
 		this.grid = new Grid();
+		this.simManager = new SimManager();
 	}
 	public function add_vis_line(line:Dynamic) //This is the function that must be called when adding a line. Do not take shortcuts!
 	{
@@ -84,7 +85,7 @@ class Track extends MovieClip
 		this.removeChild(Common.gGrid.lines[_line.ID]);
 	}
 	public function set_simmode_play() {
-		this.simManager = new SimManager();
+		this.simManager.start_sim();
 		Common.gToolBase.disable();
 		Common.svar_sim_running = true;
 	}

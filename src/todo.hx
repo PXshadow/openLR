@@ -15,7 +15,7 @@
  * 		--Needs collide function
  * 		--Soften colors maybe
  * 	--Pencil/Line
- * 		--Lines snapping
+ * 		--Line snapping
  * 		--Angle snap
  * 	--Eraser
  * 		--Color eraser
