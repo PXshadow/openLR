@@ -135,8 +135,12 @@ class SaveManager
 		var a:Array<Object> = new Array();
 		var line_ID_Override:Int = 0;
 		for (i in 0...lines.length) {
-			a[i] = new Object();
-			a[i] = {
+			if (lines[i] == null) {
+				continue;
+			}
+			trace(i);
+			a[line_ID_Override] = new Object();
+			a[line_ID_Override] = {
 				"id": line_ID_Override,
 				"type": lines[i].type,
 				"x1": lines[i].x1,
