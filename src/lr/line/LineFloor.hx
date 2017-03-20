@@ -13,7 +13,7 @@ class LineFloor extends LineBase
 	public function new(_x1:Float, _y1:Float, _x2:Float, _y2:Float, _inv:Bool, _lim = -1) 
 	{
 		super();
-		this.type = 1;
+		this.type = 0;
 		x1 = _x1;
 		y1 = _y1;
 		x2 = _x2;

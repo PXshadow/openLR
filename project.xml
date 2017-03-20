@@ -21,6 +21,7 @@
 	<icon path="assets/icon.ico" />
 	<assets path="assets/icons" rename="icon" />
 	<assets path="assets/fonts" rename="fonts" />
+	<assets path="assets/flash" rename="swf" />
 	
 	<!-- optimize output
 	<haxeflag name="-dce full" /> -->

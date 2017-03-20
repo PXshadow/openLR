@@ -9,11 +9,12 @@
  * 		--Rigging - done
  * 		--Rider Iterator
  * 		--Svars
+ * 		--Crash detection
  * 	--UI
  * 		--Indicators to highlight which tools are active
  * 		--Scroll zoom in on mouse instead of center of screen.
  *	--Lines
- * 		--Needs collide function
+ * 		--Needs collide function - Done
  * 		--Soften colors maybe
  * 	--Pencil/Line
  * 		--Line snapping

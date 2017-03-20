@@ -16,7 +16,6 @@ class BindStick extends Stick
 		var _loc2:Float = a.x - b.x;
         var _loc3:Float = a.y - b.y;
         var _loc4:Float = Math.sqrt(_loc2 * _loc2 + _loc3 * _loc3);
-		trace(_loc4, this.endurance);
 		if (_loc4 >= this.endurance || Stick.crash) {
 			Stick.crash = true;
 			return(true);

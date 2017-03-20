@@ -1,5 +1,16 @@
 package;
 
+import openfl.display.Loader;
+import openfl.display.MovieClip;
+import openfl.display.Sprite;
+import openfl.Lib;
+import openfl.events.Event;
+import openfl.net.URLRequest;
+import openfl.Assets.AssetLibrary;
+
+import init.FileStart;
+import global.Common;
+import ui.inter.SingleButton;
 import file.SaveManager;
 import global.FrameRate;
 import global.SimManager;
@@ -7,14 +18,6 @@ import haxe.Timer;
 import lr.TextInfo;
 import lr.Toolbar;
 import lr.Track;
-import openfl.display.MovieClip;
-import openfl.display.Sprite;
-import openfl.Lib;
-import openfl.events.Event;
-
-import init.FileStart;
-import global.Common;
-import ui.inter.SingleButton;
 
 /**
  * ...
@@ -63,6 +66,8 @@ class Main extends Sprite
 	private var textInfo:TextInfo;
 	private var FPS:FrameRate;
 	
+	private var loader:Loader;
+	
 	public function new() 
 	{
 		super(); //In Haxe, a super must be called when classes inherit
@@ -95,6 +100,7 @@ class Main extends Sprite
 		this.visContainer.addChild(this.track);
 		this.track.x = this.stage.stageWidth * 0.5;
 		this.track.y = this.stage.stageHeight * 0.5;
+		this.track.scaleX = this.track.scaleY = 2;
 		
 		this.toolBar = new Toolbar();
 		this.visContainer.addChild(this.toolBar);
@@ -116,5 +122,7 @@ class Main extends Sprite
 	public function return_to_origin() {
 		this.track.x = this.stage.stageWidth * 0.5;
 		this.track.y = this.stage.stageHeight * 0.5;
+		this.track.scaleX = this.track.scaleY = 2;
 	}
+	
 }

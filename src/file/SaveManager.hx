@@ -133,10 +133,11 @@ class SaveManager
 	{
 		var lines = Common.gGrid.lines;
 		var a:Array<Object> = new Array();
+		var line_ID_Override:Int = 0;
 		for (i in 0...lines.length) {
 			a[i] = new Object();
 			a[i] = {
-				"id": lines[i].ID,
+				"id": line_ID_Override,
 				"type": lines[i].type,
 				"x1": lines[i].x1,
 				"y1": lines[i].y1,
@@ -145,7 +146,8 @@ class SaveManager
 				"flipped": lines[i].inv,
 				"leftExtended": false,
 				"rightExtended": false
-			}
+			};
+			++line_ID_Override;
 		}
 		return(a);
 	}

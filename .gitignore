@@ -4,3 +4,11 @@ bin/
 \.idea/
 
 \.DS_Store
+
+assets/flash/components\.fla
+
+assets/flash/components\.swf
+
+*.fla
+
+*.swf

@@ -1,12 +1,17 @@
 package lr.rider;
 
+import cpp.net.Poll;
 import haxe.ds.Vector;
-import lr.line.LineBase;
-import lr.rider.phys.*;
 import openfl.display.MovieClip;
+import openfl.geom.Point;
 import openfl.utils.Object;
+import openfl.Assets.AssetLibrary;
+import openfl.events.IOErrorEvent;
+
 import global.Common;
 import lr.line.Grid;
+import lr.line.LineBase;
+import lr.rider.phys.*;
 
 /**
  * ...
@@ -20,6 +25,14 @@ class RiderBase
 	public var saveFrame:Vector<CPoint>;
 	public var g:Object;
 	public var bosh:MovieClip;
+	
+	private var body:MovieClip;
+	private var leftArm:MovieClip;
+	private var rightArm:MovieClip;
+	private var leftLeg:MovieClip;
+	private var rightLeg:MovieClip;
+	private var sled:MovieClip;
+	
 	public function new() 
 	{
 		g = new Object();
@@ -28,6 +41,12 @@ class RiderBase
 		
 		this.bosh = new MovieClip();
 		Common.gTrack.addChild(this.bosh);
+		
+		this.getAssets();
+	}
+	private function getAssets() {
+		var swfLibBody = AssetLibrary.loadFromFile("swf/body.bundle");
+		swfLibBody.onComplete(bodyClip);
 	}
 	public function init_rider() 
 	{
@@ -84,6 +103,7 @@ class RiderBase
 			anchors[i].vx = anchors[i].x - 0.4;
 			anchors[i].vy = anchors[i].y;
 		}
+		//this.render_bones();
 	}
 	public function step_rider() {
 		for (i in 0...anchors.length) {
@@ -95,7 +115,20 @@ class RiderBase
 			}
 			this.collision();
 		}
+		var _loc4:Float = anchors[3].x - anchors[0].x; //98 - 103; Tail fakie counter measure. "Bug" that existed in Beta 1 that was was patched in Rev 5.
+		var _loc5:Float = anchors[3].y - anchors[0].y;
+		if (_loc4 * (anchors[1].y - anchors[0].y) - _loc5 * (anchors[1].x - anchors[0].x) < 0)
+		{
+			Stick.crash = true;
+		}
 		this.render_bones();
+		this.render_body();
+	}
+	private function render_body()
+	{
+		this.body.x = this.anchors[4].x;
+		this.body.y = this.anchors[4].y;
+		this.body.rotation = Common.get_angle_degrees(new Point(anchors[5].x, anchors[5].y), new Point(anchors[4].x, anchors[4].y)) - 180;
 	}
 	public function collision() 
 	{
@@ -154,5 +187,16 @@ class RiderBase
 			this.bosh.graphics.moveTo(edges[b].a.x, edges[b].a.y);
 			this.bosh.graphics.lineTo(edges[b].b.x, edges[b].b.y);
 		}
+	}
+	function bodyClip(lib:AssetLibrary) 
+	{
+		var innerClip:MovieClip;
+		innerClip = lib.getMovieClip("");
+		body = new MovieClip();
+		body.addChild(innerClip);
+		innerClip.y = -5.40;
+		body.scaleX = body.scaleY = 0.5;
+		trace(innerClip.height);
+		bosh.addChild(body);
 	}
 }
