@@ -14,7 +14,9 @@ class Stick
 	{
 		this.a = _a;
 		this.b = _b;
-		this.rest = Math.sqrt(Math.pow(a.x - b.x, 2) + Math.pow(a.y - b.y, 2));
+		var _loc2 = a.x - b.x;
+        var _loc3 = a.y - b.y;
+        rest = Math.sqrt(_loc2 * _loc2 + _loc3 * _loc3);
 	}
 	public function constrain():Bool {
 		var _loc2:Float = a.x - b.x;

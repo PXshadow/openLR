@@ -45,6 +45,9 @@ class RiderBase
 		this.getAssets();
 	}
 	private function getAssets() {
+		var swfLibSled = AssetLibrary.loadFromFile("swf/sled.bundle");
+		swfLibSled.onComplete(sledClip);
+		
 		var swfLibBody = AssetLibrary.loadFromFile("swf/body.bundle");
 		swfLibBody.onComplete(bodyClip);
 	}
@@ -80,8 +83,8 @@ class RiderBase
 		this.edges[5] = new Stick(anchors[3], anchors[1]);//
 		
 		this.edges[6] = new BindStick(anchors[0], anchors[4]);// Sled to butt
-		this.edges[7] = new BindStick(anchors[0], anchors[4]);//
-		this.edges[8] = new BindStick(anchors[0], anchors[4]);//
+		this.edges[7] = new BindStick(anchors[1], anchors[4]);//
+		this.edges[8] = new BindStick(anchors[2], anchors[4]);//
 		
 		this.edges[9] = new Stick(anchors[5], anchors[4]); // Body
 		this.edges[10] = new Stick(anchors[5], anchors[6]);//
@@ -99,10 +102,14 @@ class RiderBase
 		this.edges[20] = new RepellStick(anchors[5], anchors[8]);// Keeps shoulder from getting too close to feet
 		this.edges[21] = new RepellStick(anchors[5], anchors[9]);//
 		
-		for (i in 0...anchors.length) { //this shift is necesarry as it heeps the rider from flying the second the sim starts. 
+		this.edges[20].rest *= 0.5;
+		this.edges[21].rest *= 0.5;
+		
+		for (i in 0...anchors.length) { //this shift is necesarry as it keeps the rider from flying the second the sim starts. 
 			anchors[i].vx = anchors[i].x - 0.4;
 			anchors[i].vy = anchors[i].y;
 		}
+		trace("test");
 		//this.render_bones();
 	}
 	public function step_rider() {
@@ -128,7 +135,11 @@ class RiderBase
 	{
 		this.body.x = this.anchors[4].x;
 		this.body.y = this.anchors[4].y;
-		this.body.rotation = Common.get_angle_degrees(new Point(anchors[5].x, anchors[5].y), new Point(anchors[4].x, anchors[4].y)) - 180;
+		this.body.rotation = Common.get_angle_degrees(new Point(anchors[4].x, anchors[4].y), new Point(anchors[5].x, anchors[5].y));
+		
+		this.sled.x = anchors[0].x;
+		this.sled.y = anchors[0].y;
+		this.sled.rotation = Common.get_angle_degrees(new Point(anchors[0].x, anchors[0].y), new Point(anchors[3].x, anchors[3].y));
 	}
 	public function collision() 
 	{
@@ -178,7 +189,7 @@ class RiderBase
 	}
 	public function render_bones() {
 		this.bosh.graphics.clear();
-		this.bosh.graphics.lineStyle(2, 0xFF0000, 1);
+		this.bosh.graphics.lineStyle(1, 0xFF0000, 1);
 		for (i in 0...anchors.length) {
 			this.bosh.graphics.drawCircle(anchors[i].x, anchors[i].y, 1);
 		}
@@ -194,9 +205,19 @@ class RiderBase
 		innerClip = lib.getMovieClip("");
 		body = new MovieClip();
 		body.addChild(innerClip);
-		innerClip.y = -5.40;
+		innerClip.y = -5.40; //X/Y values are obtained from the raw .fla and are not provided in the source
 		body.scaleX = body.scaleY = 0.5;
-		trace(innerClip.height);
-		bosh.addChild(body);
+		bosh.addChild(this.body);
+	}
+	function sledClip(lib:AssetLibrary) 
+	{
+		var innerClip:MovieClip;
+		innerClip = lib.getMovieClip("");
+		sled = new MovieClip();
+		sled.addChild(innerClip);
+		innerClip.y = -4.5;
+		innerClip.x = -1.3;
+		sled.scaleX = sled.scaleY = 0.5;
+		bosh.addChild(this.sled);
 	}
 }
