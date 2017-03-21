@@ -51,4 +51,8 @@ class SimManager
 			Common.gTextInfo.update_sim();
 		}
 	}
+	public function set_rider_start(_x:Float, _y:Float)
+	{
+		this.rider.moveToStart(_x, _y);
+	}
 }

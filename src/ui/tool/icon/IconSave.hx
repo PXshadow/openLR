@@ -1,5 +1,6 @@
 package ui.tool.icon;
 
+import file.LoadManager;
 import openfl.display.Bitmap;
 import openfl.display.MovieClip;
 import openfl.events.MouseEvent;
@@ -23,6 +24,8 @@ class IconSave extends IconBase
 	private var new_track:SingleButton;
 	private var save_track:SingleButton;
 	private var saveManager:SaveManager;
+	private var load_track:SingleButton;
+	private var loadManager:LoadManager;
 	public function new() 
 	{
 		super();
@@ -40,10 +43,12 @@ class IconSave extends IconBase
 	{
 		if (open) {
 			this.menu.removeChild(this.new_track);
+			this.menu.removeChild(this.load_track);
 			this.removeChild(this.menu);
 			this.open = false;
 		} else if (!open) {
 			this.saveManager = new SaveManager();
+			this.loadManager = new LoadManager();
 			
 			this.menu = new MovieClip();
 			this.addChild(menu);
@@ -60,6 +65,10 @@ class IconSave extends IconBase
 			this.save_track = new SingleButton("Save Track", Common.gSaveManager.generate_save_json);
 			this.menu.addChild(this.save_track);
 			this.save_track.y = this.new_track.height;
+			
+			this.load_track = new SingleButton("Load JSON", Common.gLoadMaganer.browse);
+			this.menu.addChild(this.load_track);
+			this.load_track.y = this.save_track.y + this.load_track.height;
 			
 			this.open = true;
 		}

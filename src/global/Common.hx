@@ -1,5 +1,6 @@
 package global;
 
+import file.LoadManager;
 import lr.Toolbar;
 import openfl.utils.Object;
 import file.SaveManager;
@@ -37,6 +38,7 @@ class Common
 	public static var gToolCurrent:Any;
 	public static var gGrid:Grid;
 	public static var gSaveManager:SaveManager;
+	public static var gLoadMaganer:LoadManager;
 	public static var gTextInfo:TextInfo;
 	public static var gToolbar:Toolbar;
 	
@@ -52,6 +54,8 @@ class Common
 	public static var track_scale:Float;
 	public static var track_scale_max:Float = 12;
 	public static var track_scale_min:Float = 0.6;
+	public static var track_start_x:Float = 0;
+	public static var track_start_y:Float = 0;
 	
 	public static var sim_frames:Int = 0;
 	

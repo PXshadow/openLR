@@ -100,4 +100,8 @@ class Track extends MovieClip
 		Common.gToolBase.enable();
 		Common.svar_sim_running = false;
 	}
+	public function set_rider_start(_x:Float, _y:Float)
+	{
+		this.simManager.set_rider_start(_x, _y);
+	}
 }

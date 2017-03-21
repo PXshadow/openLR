@@ -106,11 +106,23 @@ class RiderBase
 		this.edges[21].rest *= 0.5;
 		
 		for (i in 0...anchors.length) { //this shift is necesarry as it keeps the rider from flying the second the sim starts. 
+			anchors[i].x = anchors[i].x + Common.track_start_x;
+			anchors[i].y = anchors[i].y + Common.track_start_y;
 			anchors[i].vx = anchors[i].x - 0.4;
 			anchors[i].vy = anchors[i].y;
 		}
-		trace("test");
 		//this.render_bones();
+	}
+	public function moveToStart(_x:Float, _y:Float) {
+		this.init_rider();
+		trace(_x, _y);
+		for (i in 0...anchors.length) {
+			anchors[i].x = anchors[i].x + _x;
+			anchors[i].y = anchors[i].y + _y;
+			anchors[i].vx = anchors[i].x - 0.4;
+			anchors[i].vy = anchors[i].y;
+		}
+		this.render_body();
 	}
 	public function step_rider() {
 		for (i in 0...anchors.length) {
