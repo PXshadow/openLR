@@ -1,5 +1,4 @@
 # openLR, an open source alternative desktop app for Line Rider.
-======
 
 ### Original game by Boštjan "fšk" Čadež
 
@@ -10,8 +9,7 @@
 ## Haxelibs used:
 	
 	openFL: http://www.openfl.org/
-======
-
+	
 ## How to compile (Instructions may not work as is):
 	
 Run in terminal the following commands:
