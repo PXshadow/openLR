@@ -1,6 +1,9 @@
 package file;
 
+import file.ui.FileWindow;
+import openfl.display.MovieClip;
 import sys.io.File;
+import sys.FileSystem;
 import haxe.Json;
 import openfl.utils.Object;
 import lr.line.*;
@@ -14,18 +17,47 @@ import global.Common;
 class LoadManager 
 {
 	var trackData:Object;
+	private var visBGMC:MovieClip;
+	private var itemWindow:FileWindow;
+	public var selected_item:String;
 	public function new() 
 	{
-		Common.gLoadMaganer = this;
+		Common.gLoadManager = this;
 	}
-	public function browse() {
-		trace("init loading");
-		var file = File.getContent("saves/Sleepyhead.json");
-		trackData = Json.parse(file);
+	public function displayTrackListVis() {
+		this.visBGMC = new MovieClip();
+		Common.gStage.addChild(this.visBGMC);
+		this.visBGMC.graphics.clear();
+		this.visBGMC.graphics.lineStyle(2, 0, 1);
+		this.visBGMC.graphics.beginFill(0xFFFFFF, 1);
+		this.visBGMC.graphics.moveTo(0, 0);
+		this.visBGMC.graphics.lineTo(400, 0);
+		this.visBGMC.graphics.lineTo(400, 420);
+		this.visBGMC.graphics.lineTo(0, 420);
+		this.visBGMC.graphics.lineTo(0, 0);
 		
-		Common.gTrack.set_rider_start(trackData.startPosition.x, trackData.startPosition.y);
-		Common.track_start_x = trackData.startPosition.x;
-		Common.track_start_y = trackData.startPosition.y;
+		this.parseSaveDirecotry();
+	}
+	function parseSaveDirecotry() {
+		itemWindow = new FileWindow(FileSystem.readDirectory("saves/"));
+		this.visBGMC.addChild(this.itemWindow);
+		var _locDir = FileSystem.readDirectory("saves/");
+		if (_locDir.length > 13) {
+			this.visBGMC.graphics.beginFill(0xFFFFFF, 1);
+			this.visBGMC.graphics.moveTo(10, 10);
+			this.visBGMC.graphics.lineTo(390, 10);
+			this.visBGMC.graphics.lineTo(390, 410);
+			this.visBGMC.graphics.lineTo(10, 410);
+			this.visBGMC.graphics.lineTo(10, 10);
+		}
+	}
+	function loadFromArray() 
+	{
+		trace("Save not supported!");
+	}
+	
+	function loadFromObject() 
+	{
 		trackData.lines.reverse();
 		for (i in 0...trackData.lines.length) {
 			var _loc1:Dynamic;

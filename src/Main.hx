@@ -1,5 +1,6 @@
 package;
 
+import file.LoadManager;
 import openfl.display.Loader;
 import openfl.display.MovieClip;
 import openfl.display.Sprite;
@@ -66,15 +67,21 @@ class Main extends Sprite
 	private var textInfo:TextInfo;
 	private var FPS:FrameRate;
 	
-	private var loader:Loader;
+	private var loadManager:LoadManager;
 	
 	public function new() 
 	{
 		super(); //In Haxe, a super must be called when classes inherit
 		
-		this.mainFileInit = new FileStart();
-		this.init_env();
-		this.init_track();
+		//this.mainFileInit = new FileStart();
+		//this.init_env();
+		//this.init_track();
+		
+		Common.gCode = this; //This class
+		Common.gStage = this.stage; //The stage, not to be comfused with main.hx
+		
+		this.loadManager = new LoadManager();
+		this.loadManager.displayTrackListVis();
 	}
 	
 	public function init_env() //Initialize enviornment

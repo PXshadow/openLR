@@ -66,7 +66,7 @@ class IconSave extends IconBase
 			this.menu.addChild(this.save_track);
 			this.save_track.y = this.new_track.height;
 			
-			this.load_track = new SingleButton("Load JSON", Common.gLoadMaganer.browse);
+			this.load_track = new SingleButton("Load JSON");
 			this.menu.addChild(this.load_track);
 			this.load_track.y = this.save_track.y + this.load_track.height;
 			

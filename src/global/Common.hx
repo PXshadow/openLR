@@ -38,7 +38,7 @@ class Common
 	public static var gToolCurrent:Any;
 	public static var gGrid:Grid;
 	public static var gSaveManager:SaveManager;
-	public static var gLoadMaganer:LoadManager;
+	public static var gLoadManager:LoadManager;
 	public static var gTextInfo:TextInfo;
 	public static var gToolbar:Toolbar;
 	
