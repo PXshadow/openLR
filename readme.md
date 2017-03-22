@@ -4,11 +4,15 @@
 
 ### Build by Kaelan "Kevans" Evans
 
-### The language used is Haxe: http://haxe.org/
+### The language used is Haxe: http://haxe.org/ (Running Haxe 3.4.2)
 
 ## Haxelibs used:
 	
-	openFL: http://www.openfl.org/
+	
+	openFL 4.9.1: http://www.openfl.org/
+	lime 4.0.2
+	
+	(If possible, openLR will always use the latest update for Haxe, openFL, and Lime)
 	
 ## How to compile (Instructions may not work as is):
 	
@@ -19,6 +23,7 @@ Run in terminal the following commands:
 	haxelib install openfl
 	
 	haxelib run openfl setup
+	(Running this command will install the latest version of lime for you, and othe haxelibs necesary)
 
 Run the command 'openfl' to verify it was installed correctly.
 
