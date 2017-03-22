@@ -107,8 +107,8 @@ class SaveManager
 	public function generate_save_json() //Top function for generating JSON legacy file
 	{
 		var track:Object = parse_json();
-		var time:String = Date.now().getDate() + "_" + Date.now().getMonth() + "_" + Date.now().getFullYear() + "_" + Date.now().getHours() + "_" + Date.now().getMinutes();
-		var file = File.write("./saves/test_save_" + time + ".json", true); //.json = legacy format
+		var time:String = Date.now().getDate() + "D_" + Date.now().getMonth() + "M_" + Date.now().getFullYear() + "Y_" + Date.now().getHours() + "h_" + Date.now().getMinutes() + "m_" + Date.now().getSeconds() + "s";
+		var file = File.write("./saves/alpha003_save_" + time + ".json", true); //.json = legacy format
 		file.writeString(Json.stringify(track));
 		file.close();
 	}
