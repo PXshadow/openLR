@@ -108,7 +108,11 @@ class SaveManager
 	{
 		var track:Object = parse_json();
 		var time:String = Date.now().getDate() + "D_" + Date.now().getMonth() + "M_" + Date.now().getFullYear() + "Y_" + Date.now().getHours() + "h_" + Date.now().getMinutes() + "m_" + Date.now().getSeconds() + "s";
-		var file = File.write("./saves/alpha003_save_" + time + ".json", true); //.json = legacy format
+		var name:String = "alpha003_save_" + time;
+		if (Common.cvar_track_name != "") {
+			name = Common.cvar_track_name;
+		}
+		var file = File.write("./saves/" + name + ".json", true); //.json = legacy format
 		file.writeString(Json.stringify(track));
 		file.close();
 	}

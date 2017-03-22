@@ -91,6 +91,7 @@ class LoadManager
 			trace("assume 6.2");
 			this.trackData.lines.reverse();
 		}
+		Common.gTrack.set_rider_start(this.trackData.startPosition.x, this.trackData.startPosition.y);
 		for (i in 0...trackData.lines.length) {
 			var _loc1:Dynamic;
 			if (trackData.lines[i].type == 0) {
