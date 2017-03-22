@@ -107,15 +107,17 @@ class ToolBase
 		Common.gStage.removeEventListener(KeyboardEvent.KEY_UP, keyShiftUp);
 	}
 	public function enable() {
-		Common.gStage.addEventListener(MouseEvent.MOUSE_DOWN, mouseDown);
-		Common.gStage.addEventListener(MouseEvent.MOUSE_UP, mouseUp);
-		Common.gStage.addEventListener(MouseEvent.RIGHT_MOUSE_DOWN, rMouseDown);
-		Common.gStage.addEventListener(MouseEvent.RIGHT_MOUSE_UP, rMouseUp);
-		Common.gStage.addEventListener(MouseEvent.MIDDLE_MOUSE_DOWN, mMouseDown);
-		Common.gStage.addEventListener(MouseEvent.MIDDLE_MOUSE_UP, mMouseUp);
-		Common.gStage.addEventListener(MouseEvent.MOUSE_WHEEL, mouseScroll);
-		Common.gStage.addEventListener(KeyboardEvent.KEY_DOWN, keyShiftDown);
-		Common.gStage.addEventListener(KeyboardEvent.KEY_UP, keyShiftUp);
+		if (Common.svar_game_mode == "edit") {
+			Common.gStage.addEventListener(MouseEvent.MOUSE_DOWN, mouseDown);
+			Common.gStage.addEventListener(MouseEvent.MOUSE_UP, mouseUp);
+			Common.gStage.addEventListener(MouseEvent.RIGHT_MOUSE_DOWN, rMouseDown);
+			Common.gStage.addEventListener(MouseEvent.RIGHT_MOUSE_UP, rMouseUp);
+			Common.gStage.addEventListener(MouseEvent.MIDDLE_MOUSE_DOWN, mMouseDown);
+			Common.gStage.addEventListener(MouseEvent.MIDDLE_MOUSE_UP, mMouseUp);
+			Common.gStage.addEventListener(MouseEvent.MOUSE_WHEEL, mouseScroll);
+			Common.gStage.addEventListener(KeyboardEvent.KEY_DOWN, keyShiftDown);
+			Common.gStage.addEventListener(KeyboardEvent.KEY_UP, keyShiftUp);
+		}
 	}
 	
 	private function mouseScroll(e:MouseEvent):Void 

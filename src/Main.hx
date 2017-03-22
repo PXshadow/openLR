@@ -1,6 +1,5 @@
 package;
 
-import file.LoadManager;
 import openfl.display.Loader;
 import openfl.display.MovieClip;
 import openfl.display.Sprite;
@@ -8,14 +7,15 @@ import openfl.Lib;
 import openfl.events.Event;
 import openfl.net.URLRequest;
 import openfl.Assets.AssetLibrary;
+import haxe.Timer;
 
 import init.FileStart;
+import file.LoadManager;
 import global.Common;
 import ui.inter.SingleButton;
 import file.SaveManager;
 import global.FrameRate;
 import global.SimManager;
-import haxe.Timer;
 import lr.TextInfo;
 import lr.Toolbar;
 import lr.Track;
@@ -73,15 +73,9 @@ class Main extends Sprite
 	{
 		super(); //In Haxe, a super must be called when classes inherit
 		
-		//this.mainFileInit = new FileStart();
-		//this.init_env();
-		//this.init_track();
-		
-		Common.gCode = this; //This class
-		Common.gStage = this.stage; //The stage, not to be comfused with main.hx
-		
-		this.loadManager = new LoadManager();
-		this.loadManager.displayTrackListVis();
+		this.mainFileInit = new FileStart();
+		this.init_env();
+		this.init_track();
 	}
 	
 	public function init_env() //Initialize enviornment
@@ -113,7 +107,7 @@ class Main extends Sprite
 		this.visContainer.addChild(this.toolBar);
 		
 		this.textInfo = new TextInfo();
-		this.addChild(this.textInfo);
+		this.visContainer.addChild(this.textInfo);
 	}
 	private function resize(e:Event):Void
 	{
@@ -131,5 +125,18 @@ class Main extends Sprite
 		this.track.y = this.stage.stageHeight * 0.5;
 		this.track.scaleX = this.track.scaleY = 2;
 	}
-	
+	public function init_Loader() {
+		Common.svar_game_mode = "loader";
+		this.loadManager = new LoadManager();
+		this.loadManager.displayTrackListVis();
+		this.visContainer.visible = false;
+	}
+	public function cancel_load() {
+		Common.svar_game_mode = "edit";
+		this.loadManager.destroy_self();
+		this.visContainer.visible = true;
+		Common.gToolBase.enable();
+		this.stage.mouseEnabled = true;
+		Toolbar.tool.enable();
+	}
 }

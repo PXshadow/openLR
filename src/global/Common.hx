@@ -70,6 +70,7 @@ class Common
 	public static var svar_gridsize:Int = 14;
 	public static var svar_eraser_size:Int = 5;
 	public static var svar_sim_running:Bool = false;
+	public static var svar_game_mode:String = "edit";
 	
 	public static var stage_width:Float;
 	public static var stage_height:Float;

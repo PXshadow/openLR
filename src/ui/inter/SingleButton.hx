@@ -36,7 +36,7 @@ class SingleButton extends Sprite
 		
 		this.addChild(this.vis_box);
 		this.vis_box.graphics.clear();
-		this.vis_box.graphics.lineStyle(2, 0, 0);
+		this.vis_box.graphics.lineStyle(2, 0, 1);
 		this.vis_box.graphics.beginFill(0xFFFFFF, 1);
 		this.vis_box.graphics.moveTo(0, 0);
 		this.vis_box.graphics.lineTo(this.textContainer.width + 5, 0);
@@ -62,7 +62,7 @@ class SingleButton extends Sprite
 	private function mouse_out(e:MouseEvent):Void 
 	{
 		this.vis_box.graphics.clear();
-		this.vis_box.graphics.lineStyle(2, 0, 0);
+		this.vis_box.graphics.lineStyle(2, 0, 1);
 		this.vis_box.graphics.beginFill(0xFFFFFF, 1);
 		this.vis_box.graphics.moveTo(0, 0);
 		this.vis_box.graphics.lineTo(this.textContainer.width + 5, 0);
@@ -74,7 +74,7 @@ class SingleButton extends Sprite
 	private function mouse_over(e:MouseEvent):Void 
 	{
 		this.vis_box.graphics.clear();
-		this.vis_box.graphics.lineStyle(2, 0, 0);
+		this.vis_box.graphics.lineStyle(2, 0, 1);
 		this.vis_box.graphics.beginFill(0xDDDDDD, 1);
 		this.vis_box.graphics.moveTo(0, 0);
 		this.vis_box.graphics.lineTo(this.textContainer.width + 5, 0);

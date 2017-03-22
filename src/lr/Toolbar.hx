@@ -2,7 +2,7 @@ package lr;
 
 import global.Common;
 import openfl.display.MovieClip;
-import ui.tool.icon.IconBase;
+import ui.tool.ToolBase;
 import ui.tool.lr.*;
 import ui.tool.icon.*;
 
@@ -16,7 +16,7 @@ import ui.tool.icon.*;
 class Toolbar extends MovieClip
 {
 
-	public static var tool:Any;
+	public static var tool:ToolBase;
 	private var pencil:IconPencil;
 	private var line:IconLine;
 	private var save:IconSave;

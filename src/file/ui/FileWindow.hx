@@ -10,7 +10,8 @@ import global.Common;
  */
 class FileWindow extends MovieClip
 {
-	var currentList:Array<String>;
+	public static var selectedIndex:Int = -1;
+	public var currentList:Array<String>;
 	var displayList:Array<FileItem>;
 	public function new(_list:Array<String>) 
 	{
@@ -29,6 +30,11 @@ class FileWindow extends MovieClip
 					displayList[i].visible = false;
 				} else {
 					displayList[i].visible = true;
+				}
+				if (i == selectedIndex) {
+					displayList[i].selected();
+				} else {
+					displayList[i].deselect();
 				}
 			}
 		}
@@ -62,7 +68,19 @@ class FileWindow extends MovieClip
 			this.addChild(this.displayList[i]);
 			this.displayList[i].x = 10;
 			this.displayList[i].y = (i * 30) + 10;
+			this.displayList[i].ID = i;
+			this.displayList[i].addEventListener(MouseEvent.CLICK, change_selected_index);
 		}
+	}
+	
+	private function change_selected_index(e:MouseEvent):Void 
+	{
+		var item = cast(e.target, FileItem);
+		if (FileWindow.selectedIndex != -1) {
+			this.displayList[FileWindow.selectedIndex].deselect();
+		}
+		FileWindow.selectedIndex = item.ID;
+		item.selected();
 	}
 	
 }
