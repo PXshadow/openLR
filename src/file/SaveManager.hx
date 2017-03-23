@@ -136,6 +136,7 @@ class SaveManager
 	private function json_line_aray_parse():Array<Object> //parses line array and organizes data
 	{
 		var lines = Common.gGrid.lines;
+		lines.reverse();
 		var a:Array<Object> = new Array();
 		var line_ID_Override:Int = 0;
 		for (i in 0...lines.length) {
@@ -145,7 +146,7 @@ class SaveManager
 			trace(i);
 			a[line_ID_Override] = new Object();
 			a[line_ID_Override] = {
-				"id": line_ID_Override,
+				"id": lines[i].ID,
 				"type": lines[i].type,
 				"x1": lines[i].x1,
 				"y1": lines[i].y1,
@@ -157,7 +158,6 @@ class SaveManager
 			};
 			++line_ID_Override;
 		}
-		a.reverse();
 		return(a);
 	}
 }

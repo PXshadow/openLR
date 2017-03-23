@@ -50,6 +50,12 @@ class RiderBase
 		
 		var swfLibBody = AssetLibrary.loadFromFile("swf/body.bundle");
 		swfLibBody.onComplete(bodyClip);
+		
+		var swfLibLeg = AssetLibrary.loadFromFile("swf/leg.bundle");
+		swfLibLeg.onComplete(legClip);
+		
+		var swfLibArm = AssetLibrary.loadFromFile("swf/arm.bundle");
+		swfLibArm.onComplete(armClip);
 	}
 	public function init_rider() 
 	{
@@ -111,7 +117,7 @@ class RiderBase
 			anchors[i].vx = anchors[i].x - 0.4;
 			anchors[i].vy = anchors[i].y;
 		}
-		//this.render_bones();
+		this.render_body();
 	}
 	public function moveToStart(_x:Float, _y:Float) {
 		this.init_rider();
@@ -134,13 +140,12 @@ class RiderBase
 			}
 			this.collision();
 		}
-		var _loc4:Float = anchors[3].x - anchors[0].x; //98 - 103; Tail fakie counter measure. "Bug" that existed in Beta 1 that was was patched in Rev 5.
+		var _loc4:Float = anchors[3].x - anchors[0].x;
 		var _loc5:Float = anchors[3].y - anchors[0].y;
 		if (_loc4 * (anchors[1].y - anchors[0].y) - _loc5 * (anchors[1].x - anchors[0].x) < 0)
 		{
-			Stick.crash = true;
+			Stick.crash = true; //Tail fakie counter measure. "Bug" that existed in Beta 1 that was was patched in Rev 5 (presumably);
 		}
-		this.render_bones();
 		this.render_body();
 	}
 	private function render_body()
@@ -152,6 +157,25 @@ class RiderBase
 		this.sled.x = anchors[0].x;
 		this.sled.y = anchors[0].y;
 		this.sled.rotation = Common.get_angle_degrees(new Point(anchors[0].x, anchors[0].y), new Point(anchors[3].x, anchors[3].y));
+		
+		this.leftArm.x = this.rightArm.x = anchors[5].x;
+		this.leftArm.y = this.rightArm.y = anchors[5].y;
+		this.leftArm.rotation = Common.get_angle_degrees(new Point(anchors[5].x, anchors[5].y), new Point(anchors[7].x, anchors[7].y));
+		this.rightArm.rotation = Common.get_angle_degrees(new Point(anchors[5].x, anchors[5].y), new Point(anchors[6].x, anchors[6].y));
+		
+		this.leftLeg.x = this.rightLeg.x = this.anchors[4].x;
+		this.leftLeg.y = this.rightLeg.y = this.anchors[4].y;
+		this.leftLeg.rotation = Common.get_angle_degrees(new Point(anchors[4].x, anchors[4].y), new Point(anchors[8].x, anchors[8].y));
+		this.rightLeg.rotation = Common.get_angle_degrees(new Point(anchors[4].x, anchors[4].y), new Point(anchors[9].x, anchors[9].y));
+		
+		this.bosh.graphics.clear();
+		if (!Stick.crash) {
+			this.bosh.graphics.lineStyle(0.5, 0, 1);
+			this.bosh.graphics.moveTo(anchors[6].x, anchors[6].y);
+			this.bosh.graphics.lineTo(anchors[3].x, anchors[3].y);
+			this.bosh.graphics.lineTo(anchors[7].x, anchors[7].y);
+		}
+		
 	}
 	public function collision() 
 	{
@@ -219,7 +243,7 @@ class RiderBase
 		body.addChild(innerClip);
 		innerClip.y = -5.40; //X/Y values are obtained from the raw .fla and are not provided in the source
 		body.scaleX = body.scaleY = 0.5;
-		bosh.addChild(this.body);
+		this.load_clips();
 	}
 	function sledClip(lib:AssetLibrary) 
 	{
@@ -230,6 +254,47 @@ class RiderBase
 		innerClip.y = -4.5;
 		innerClip.x = -1.3;
 		sled.scaleX = sled.scaleY = 0.5;
-		bosh.addChild(this.sled);
+		this.load_clips();
+	}
+	function legClip(lib:AssetLibrary) 
+	{
+		var innerClip:MovieClip;
+		innerClip = lib.getMovieClip("");
+		leftLeg = new MovieClip();
+		rightLeg = new MovieClip();
+		leftLeg.addChild(innerClip);
+		rightLeg.addChild(innerClip);
+		innerClip.x = -1.7;
+		innerClip.y = -4.05;
+		leftLeg.scaleX = leftLeg.scaleY = rightLeg.scaleX = rightLeg.scaleY = 0.5;
+		this.load_clips();
+		this.load_clips();
+	}
+	function armClip(lib:AssetLibrary) 
+	{
+		var innerClip:MovieClip;
+		innerClip = lib.getMovieClip("");
+		leftArm = new MovieClip();
+		rightArm = new MovieClip();
+		leftArm.addChild(innerClip);
+		rightArm.addChild(innerClip);
+		innerClip.x = -1.5;
+		innerClip.y = -2.55;
+		leftArm.scaleX = leftArm.scaleY = rightArm.scaleX = rightArm.scaleY = 0.5;
+		this.load_clips();
+		this.load_clips();
+	}
+	var clips:Int = 0;
+	function load_clips()
+	{
+		++clips;
+		if (clips == 6) {
+			bosh.addChild(this.leftLeg);
+			bosh.addChild(this.leftArm);
+			bosh.addChild(this.sled);
+			bosh.addChild(this.rightLeg);
+			bosh.addChild(this.body);
+			bosh.addChild(this.rightArm);
+		}
 	}
 }

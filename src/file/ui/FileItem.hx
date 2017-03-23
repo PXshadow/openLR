@@ -19,7 +19,7 @@ class FileItem extends MovieClip
 	public var ID:Int = 0;
 	var filePath:String;
 	var msg:TextField;
-	var font:TextFormat = new TextFormat(Assets.getFont("fonts/Verdana Bold.ttf").fontName, 16, 0, null, null, null, null, null, TextFormatAlign.LEFT);
+	var font:TextFormat = new TextFormat(Assets.getFont("fonts/Verdana.ttf").fontName, 16, 0, null, null, null, null, null, TextFormatAlign.LEFT);
 	public function new(_path:String) 
 	{
 		super();
