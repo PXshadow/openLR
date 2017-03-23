@@ -33,6 +33,8 @@ class RiderBase
 	private var rightLeg:MovieClip;
 	private var sled:MovieClip;
 	
+	private var camera:RiderCamera;
+	
 	public function new() 
 	{
 		g = new Object();
@@ -40,9 +42,10 @@ class RiderBase
 		g.y = 0.175;
 		
 		this.bosh = new MovieClip();
-		Common.gTrack.addChild(this.bosh);
+		Common.gTrack.rider_layer.addChild(this.bosh);
 		
 		this.getAssets();
+		this.camera = new RiderCamera();
 	}
 	private function getAssets() {
 		var swfLibSled = AssetLibrary.loadFromFile("swf/sled.bundle");
@@ -147,6 +150,7 @@ class RiderBase
 			Stick.crash = true; //Tail fakie counter measure. "Bug" that existed in Beta 1 that was was patched in Rev 5 (presumably);
 		}
 		this.render_body();
+		this.camera.pan(anchors[4]);
 	}
 	private function render_body()
 	{
@@ -160,8 +164,8 @@ class RiderBase
 		
 		this.leftArm.x = this.rightArm.x = anchors[5].x;
 		this.leftArm.y = this.rightArm.y = anchors[5].y;
-		this.leftArm.rotation = Common.get_angle_degrees(new Point(anchors[5].x, anchors[5].y), new Point(anchors[7].x, anchors[7].y));
-		this.rightArm.rotation = Common.get_angle_degrees(new Point(anchors[5].x, anchors[5].y), new Point(anchors[6].x, anchors[6].y));
+		this.leftArm.rotation = Common.get_angle_degrees(new Point(anchors[5].x, anchors[5].y), new Point(anchors[6].x, anchors[6].y));
+		this.rightArm.rotation = Common.get_angle_degrees(new Point(anchors[5].x, anchors[5].y), new Point(anchors[7].x, anchors[7].y));
 		
 		this.leftLeg.x = this.rightLeg.x = this.anchors[4].x;
 		this.leftLeg.y = this.rightLeg.y = this.anchors[4].y;
@@ -258,28 +262,36 @@ class RiderBase
 	}
 	function legClip(lib:AssetLibrary) 
 	{
-		var innerClip:MovieClip;
-		innerClip = lib.getMovieClip("");
+		var innerClipA:MovieClip;
+		var innerClipB:MovieClip;
+		innerClipA = lib.getMovieClip("");
+		innerClipB = lib.getMovieClip("");
 		leftLeg = new MovieClip();
 		rightLeg = new MovieClip();
-		leftLeg.addChild(innerClip);
-		rightLeg.addChild(innerClip);
-		innerClip.x = -1.7;
-		innerClip.y = -4.05;
+		leftLeg.addChild(innerClipA);
+		rightLeg.addChild(innerClipB);
+		innerClipA.x = -1.7;
+		innerClipA.y = -4.05;
+		innerClipB.x = -1.7;
+		innerClipB.y = -4.05;
 		leftLeg.scaleX = leftLeg.scaleY = rightLeg.scaleX = rightLeg.scaleY = 0.5;
 		this.load_clips();
 		this.load_clips();
 	}
 	function armClip(lib:AssetLibrary) 
 	{
-		var innerClip:MovieClip;
-		innerClip = lib.getMovieClip("");
+		var innerClipA:MovieClip;
+		var innerClipB:MovieClip;
+		innerClipA = lib.getMovieClip("");
+		innerClipB = lib.getMovieClip("");
 		leftArm = new MovieClip();
 		rightArm = new MovieClip();
-		leftArm.addChild(innerClip);
-		rightArm.addChild(innerClip);
-		innerClip.x = -1.5;
-		innerClip.y = -2.55;
+		leftArm.addChild(innerClipA);
+		rightArm.addChild(innerClipB);
+		innerClipA.x = -1.5;
+		innerClipA.y = -2.55;
+		innerClipB.x = -1.5;
+		innerClipB.y = -2.55;
 		leftArm.scaleX = leftArm.scaleY = rightArm.scaleX = rightArm.scaleY = 0.5;
 		this.load_clips();
 		this.load_clips();

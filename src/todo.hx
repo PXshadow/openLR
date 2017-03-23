@@ -9,7 +9,7 @@
  * 		--Rigging - done
  * 		--Rider Iterator
  * 		--Svars
- * 		--Crash detection
+ * 		--Crash detection - Done
  * 	--UI
  * 		--Indicators to highlight which tools are active
  * 		--Scroll zoom in on mouse instead of center of screen.
@@ -29,9 +29,8 @@
  * 		--Replaces pan tool when paused
  * 		--allow for live line editing
  *	--Camera
- * 		--Repurpose old LRMB "SFM Camera" and have ready for later update
- * 		--Screenshot function? Could be used to set up base for built in recording
- * 	--This update should function at least like Beta 2 to a degree
+ * 		--Camera pan - done
+ * 	--This update should function at least like Beta 2 to a degree, around 6.7
  * 
  * 0.0.4:
  * 	-- 3.4.X QOL features
@@ -44,6 +43,8 @@
  * 		--Autosave
  * 		--Watermark
  * 		--Camera focus and general pan boundaries
+ * 			--Repurpose old LRMB "SFM Camera" and have ready for later updaten
+ * 		--Screenshot function? Could be used to set up base for built in recording
  * 	--Fast Forward and rewind
  * 		--under separate tick as it's probably going to need it's own class to function
  *  --Loading, saving, file browsing.

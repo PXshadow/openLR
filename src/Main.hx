@@ -119,11 +119,19 @@ class Main extends Sprite
 		
 		this.textInfo.x = (this.stage.stageWidth - this.textInfo.width) - 5;
 		this.textInfo.y = 5;
+		
+		if (Common.gCamera != null) {
+			Common.gCamera.update_pan_bounds();
+		}
 	}
 	public function return_to_origin() {
 		this.track.x = this.stage.stageWidth * 0.5;
 		this.track.y = this.stage.stageHeight * 0.5;
 		this.track.scaleX = this.track.scaleY = 2;
+	}
+	public function return_to_origin_sim() {
+		this.track.x = this.stage.stageWidth * 0.5;
+		this.track.y = this.stage.stageHeight * 0.5;
 	}
 	public function init_Loader() {
 		Common.svar_game_mode = "loader";

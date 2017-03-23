@@ -1,5 +1,8 @@
 package lr.rider.phys;
+import openfl.geom.Point;
 import openfl.utils.Object;
+
+import global.Common;
 
 /**
  * ...
@@ -7,6 +10,7 @@ import openfl.utils.Object;
  */
 class CPoint 
 {
+	public var loc:Point;
 	public var x:Float;
 	public var y:Float;
 	public var vx:Float;
@@ -23,6 +27,7 @@ class CPoint
 		this.vx = this.vy = 0;
 		this.fr = _fr;
 		this.ID = _id;
+		this.loc = new Point(x, y);
 	}
 	public function verlet(grav:Object) {
 		this.dx = this.x - this.vx + grav.x;
@@ -31,5 +36,6 @@ class CPoint
 		this.vy = this.y;
 		this.x = this.x + this.dx;
 		this.y = this.y + this.dy;
+		this.loc = Common.gStage.localToGlobal(new Point(x, y));
 	}
 }

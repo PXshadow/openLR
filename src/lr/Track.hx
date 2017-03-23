@@ -18,18 +18,25 @@ class Track extends MovieClip
 {
 	private var grid:Grid;
 	private var simManager:SimManager;
+	public var back_layer:MovieClip;
+	public var rider_layer:MovieClip;
+	public var front_layer:MovieClip;
 	public function new() 
 	{
 		super();
 		Common.gTrack = this;
 		Common.track_scale = 1;
+		this.back_layer = new MovieClip();
+		this.rider_layer = new MovieClip();
+		this.addChild(this.back_layer);
+		this.addChild(this.rider_layer);
 		this.grid = new Grid();
 		this.simManager = new SimManager();
 	}
 	public function add_vis_line(line:Dynamic) //This is the function that must be called when adding a line. Do not take shortcuts!
 	{
 		Common.gGrid.massLineIndex(line);
-		Common.gTrack.addChild(grid.lines[grid.lines.length - 1]);
+		this.back_layer.addChild(grid.lines[grid.lines.length - 1]);
 		if (Common.cvar_line_render_mode == 0 || Common.cvar_line_render_mode == 2)
 		{
 			grid.lines[grid.lines.length - 1].render("edit");
@@ -77,12 +84,12 @@ class Track extends MovieClip
 	public function clear_stage()
 	{
 		for (i in 0...Common.gGrid.lines.length) {
-			this.removeChild(Common.gGrid.lines[i]);
+			this.back_layer.removeChild(Common.gGrid.lines[i]);
 		}
 		Common.gGrid.new_grid();
 	}
 	public function remove_line(_line) {
-		this.removeChild(Common.gGrid.lines[_line.ID]);
+		this.back_layer.removeChild(Common.gGrid.lines[_line.ID]);
 	}
 	public function set_simmode_play() {
 		this.simManager.start_sim();

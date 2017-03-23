@@ -27,6 +27,7 @@ class SimManager
 			}
 			this.sim_running = true;
 		}
+		Common.gCode.return_to_origin_sim();
 	}
 	function update_sim()
 	{
