@@ -87,10 +87,7 @@ class LoadManager
 	public function load_track(_file) {
 		this.trackData = new Object();
 		this.trackData = Json.parse(_file);
-		if (this.trackData.version != "openLR") {
-			trace("assume 6.2");
-			this.trackData.lines.reverse();
-		}
+		this.trackData.lines.reverse();
 		Common.gTrack.set_rider_start(this.trackData.startPosition.x, this.trackData.startPosition.y);
 		for (i in 0...trackData.lines.length) {
 			var _loc1:Dynamic;

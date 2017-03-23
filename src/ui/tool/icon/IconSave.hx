@@ -1,18 +1,21 @@
 package ui.tool.icon;
 
-import file.LoadManager;
 import openfl.display.Bitmap;
 import openfl.display.MovieClip;
 import openfl.events.MouseEvent;
 import openfl.Lib;
 import openfl.Assets;
 import openfl.net.URLRequest;
-import ui.inter.InputText;
+import sys.io.File;
+import sys.FileSystem;
 
 import global.Common;
 import lr.Toolbar;
 import ui.inter.SingleButton;
 import file.SaveManager;
+import file.LoadManager;
+import file.ui.ConfirmDialog;
+import ui.inter.InputText;
 
 /**
  * ...
@@ -28,6 +31,7 @@ class IconSave extends IconBase
 	private var load_track:SingleButton;
 	private var loadManager:LoadManager;
 	private var save_name_input:InputText;
+	private var safety_dialog:ConfirmDialog;
 	public function new() 
 	{
 		super();
@@ -85,7 +89,6 @@ class IconSave extends IconBase
 		this.show_menu();
 		Common.gCode.init_Loader();
 	}
-	
 	function make_new_track() 
 	{
 		this.show_menu();
@@ -96,7 +99,29 @@ class IconSave extends IconBase
 	{
 		this.show_menu();
 		Common.cvar_track_name = this.save_name_input.input_field.text;
+		if (!FileSystem.exists("saves/" + Common.cvar_track_name + ".json")) {
+			Common.gSaveManager.generate_save_json();
+			trace("safe to save");
+		} else {
+			this.prompt_user();
+			trace("not safe to save");
+		}
+	}
+	function prompt_user() {
+		this.safety_dialog = new ConfirmDialog("A save with the name \"" + Common.cvar_track_name +"\" already exists." + "\n" + "Do you want to overwite this file?", this.confirm_save, this.cancel_save);
+		Common.gStage.addChild(this.safety_dialog);
+		this.safety_dialog.x = (Common.stage_width * 0.5) - (this.safety_dialog.width * 0.5);
+		this.safety_dialog.y = (Common.stage_height * 0.5) - (this.safety_dialog.height * 0.5);
+	}
+	
+	function confirm_save() 
+	{
 		Common.gSaveManager.generate_save_json();
+		Common.gStage.removeChild(this.safety_dialog);
+	}
+	function cancel_save()
+	{
+		Common.gStage.removeChild(this.safety_dialog);
 	}
 	override private function disable_tool(e:MouseEvent):Void 
 	{

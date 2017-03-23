@@ -16,7 +16,7 @@ import global.Common;
 class InputText extends MovieClip
 {
 	public var input_field:TextField;
-	var font:TextFormat = new TextFormat(Assets.getFont("fonts/Verdana Bold.ttf").fontName, 16, 0, null, null, null, null, null, TextFormatAlign.LEFT);
+	var font:TextFormat = new TextFormat(Assets.getFont("fonts/Verdana.ttf").fontName, 14, 0, null, null, null, null, null, TextFormatAlign.LEFT);
 	public function new(_msg:String = "") 
 	{
 		super();
@@ -35,6 +35,7 @@ class InputText extends MovieClip
 		this.input_field.defaultTextFormat = font;
 		this.input_field.text = _msg;
 		this.input_field.width = 195;
+		this.input_field.height = 24;
 	}
 	
 }

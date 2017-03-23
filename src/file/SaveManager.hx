@@ -157,6 +157,7 @@ class SaveManager
 			};
 			++line_ID_Override;
 		}
+		a.reverse();
 		return(a);
 	}
 }
