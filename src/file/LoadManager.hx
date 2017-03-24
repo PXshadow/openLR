@@ -6,6 +6,10 @@ import sys.io.File;
 import sys.FileSystem;
 import haxe.Json;
 import openfl.utils.Object;
+import haxe.io.Bytes;
+import lime.utils.compress.GZip;
+import haxe.Utf8;
+import lime.utils.compress.Zlib;
 
 import global.Common;
 import lr.line.*;
@@ -82,15 +86,26 @@ class LoadManager
 	{
 		var _locPath = this.itemWindow.currentList[FileWindow.selectedIndex];
 		var _locFile = File.getContent("saves/" + _locPath);
-		this.load_track(_locFile);
-	}
-	public function load_track(_file) {
 		this.trackData = new Object();
-		this.trackData = Json.parse(_file);
+		this.trackData = Json.parse(_locFile);
+		if (this.trackData.lines != null) {
+			this.load_non_compressed();
+		}
+		if (this.trackData.linesArrayCompressed != null) {
+			this.load_compressed();
+		}
+	}
+	
+	function load_compressed() 
+	{
+		//insert LZ-String decompression code here
+	}
+	function load_non_compressed() {
 		this.trackData.lines.reverse();
 		Common.track_start_x = this.trackData.startPosition.x;
 		Common.track_start_y = this.trackData.startPosition.y;
 		Common.gTrack.set_rider_start(this.trackData.startPosition.x, this.trackData.startPosition.y);
+		Common.gCode.return_to_origin(this.trackData.startPosition.x, this.trackData.startPosition.y);
 		for (i in 0...trackData.lines.length) {
 			var _loc1:Dynamic;
 			if (trackData.lines[i].type == 0) {

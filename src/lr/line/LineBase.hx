@@ -1,6 +1,6 @@
 package lr.line;
 
-import init.Defaults;
+import file.Defaults;
 import lr.rider.phys.CPoint;
 import openfl.display.MovieClip;
 import openfl.geom.Point;

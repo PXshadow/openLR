@@ -53,7 +53,7 @@
  * 0.0.5
  * 	--Major source code overhaul (maybe). This should be where I convert the code from copy and paste into original code. Will need to check out lr core.
  * 	--Also make sure everything is well commented and explained.
- *	--Use custom made icons instead of repurposing Beta 2 icons. Check SVG haxelib for updates
+ *	--Use custom made icons instead of repurposing Beta 2 icons. Check SVG haxelib for updates, or use new swf runtime assets.
  * 
  * Beta 1:
  * 	--Pointer tool

@@ -1,10 +1,12 @@
-package file.ui;
+package ui.inter;
+
 import openfl.display.MovieClip;
 import openfl.text.TextField;
 import openfl.text.TextFieldType;
 import openfl.text.TextFormat;
 import openfl.text.TextFormatAlign;
 import openfl.Assets;
+
 import ui.inter.SingleButton;
 
 /**

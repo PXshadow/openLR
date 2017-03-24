@@ -14,7 +14,7 @@ import lr.Toolbar;
 import ui.inter.SingleButton;
 import file.SaveManager;
 import file.LoadManager;
-import file.ui.ConfirmDialog;
+import ui.inter.ConfirmDialog;
 import ui.inter.InputText;
 
 /**
@@ -68,7 +68,7 @@ class IconSave extends IconBase
 			this.menu.y = this.height + 5;
 			this.menu.x = 5;
 			
-			this.save_track = new SingleButton("Save Track", this.getSaveInfo);
+			this.save_track = new SingleButton("Save Track", this.getSaveInfo, -3);
 			this.menu.addChild(this.save_track);
 			this.save_track.y = this.new_track.height;
 			this.save_name_input = new InputText(Common.cvar_track_name);

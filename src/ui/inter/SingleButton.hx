@@ -18,11 +18,11 @@ class SingleButton extends Sprite
 	var textContainer:Sprite;
 	var msg:TextField;
 	var vis_box:Sprite;
-	var font:TextFormat = new TextFormat(Assets.getFont("fonts/Verdana Bold.ttf").fontName, 16, 0, null, null, null, null, null, TextFormatAlign.LEFT);
+	var font:TextFormat = new TextFormat(Assets.getFont("fonts/Verdana Bold.ttf").fontName, 16, 0, null, null, null, null, null, TextFormatAlign.CENTER);
 	var action:Dynamic;
 	var yAdjust:Int;
 	var xAdjust:Int;
-	public function new(_msg:String, _action:Dynamic = null,_xvalue:Int = 0, _yvalue:Int = 0)
+	public function new(_msg:String, _action:Dynamic = null, _xvalue:Int = 0, _yvalue:Int = 0)
 	{
 		super();
 		
@@ -49,6 +49,8 @@ class SingleButton extends Sprite
 		this.vis_box.graphics.lineTo(this.textContainer.width + 5 + _xvalue, this.textContainer.height + 5 + _yvalue);
 		this.vis_box.graphics.lineTo(0, this.textContainer.height + 5 + _yvalue);
 		this.vis_box.graphics.lineTo(0, 0);
+		
+		//this.msg.width = this.width + this.xAdjust;
 		
 		this.addChild(this.textContainer);
 		

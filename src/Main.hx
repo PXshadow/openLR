@@ -1,5 +1,6 @@
 package;
 
+//import com.lz.LZString;
 import openfl.display.Loader;
 import openfl.display.MovieClip;
 import openfl.display.Sprite;
@@ -8,8 +9,9 @@ import openfl.events.Event;
 import openfl.net.URLRequest;
 import openfl.Assets.AssetLibrary;
 import haxe.Timer;
+import ui.inter.AlertBox;
 
-import init.FileStart;
+import file.FileStart;
 import file.LoadManager;
 import global.Common;
 import ui.inter.SingleButton;
@@ -66,18 +68,24 @@ class Main extends Sprite
 	private var toolBar:Toolbar;
 	private var textInfo:TextInfo;
 	private var FPS:FrameRate;
+	private var welcome_alert:AlertBox;
 	
 	private var loadManager:LoadManager;
 	
 	public function new() 
 	{
 		super(); //In Haxe, a super must be called when classes inherit
-		
-		this.mainFileInit = new FileStart();
 		this.init_env();
 		this.init_track();
+		this.mainFileInit = new FileStart();
+		this.welcome_alert = new AlertBox("Welcome to OpenLR " + Common.version + "! This is an early build, however I hope you find this version useful as it is intended to be. You can report bugs to:" + "\n \n" + "https://github.com/kevansevans/openLR/issues" + "\n \n" + "Happy riding!", this.start, "Continue");
+		this.addChild(this.welcome_alert);
+		this.welcome_alert.x = (this.stage.stageWidth * 0.5) - (this.welcome_alert.width * 0.5);
+		this.welcome_alert.y = (this.stage.stageHeight * 0.5) - (this.welcome_alert.height * 0.5);
 	}
-	
+	function start() {
+		this.removeChild(this.welcome_alert);
+	}
 	public function init_env() //Initialize enviornment
 	{
 		Common.gCode = this; //This class
@@ -124,9 +132,9 @@ class Main extends Sprite
 			Common.gCamera.update_pan_bounds();
 		}
 	}
-	public function return_to_origin() {
-		this.track.x = this.stage.stageWidth * 0.5;
-		this.track.y = this.stage.stageHeight * 0.5;
+	public function return_to_origin(_x:Float = 0, _y:Float = 0) {
+		this.track.x = this.stage.stageWidth * 0.5 - _x;
+		this.track.y = this.stage.stageHeight * 0.5 - _y;
 		this.track.scaleX = this.track.scaleY = 2;
 	}
 	public function return_to_origin_sim() {
