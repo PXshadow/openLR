@@ -10,6 +10,7 @@ import haxe.io.Bytes;
 import lime.utils.compress.GZip;
 import haxe.Utf8;
 import lime.utils.compress.Zlib;
+import ui.inter.AlertBox;
 
 import global.Common;
 import lr.line.*;
@@ -28,6 +29,7 @@ class LoadManager
 	public var selected_item:String;
 	private var load_button:SingleButton;
 	private var cancel_button:SingleButton;
+	private var error_alert:AlertBox;
 	public function new() 
 	{
 		Common.gLoadManager = this;
@@ -85,20 +87,43 @@ class LoadManager
 	function invoke_loader() 
 	{
 		var _locPath = this.itemWindow.currentList[FileWindow.selectedIndex];
-		var _locFile = File.getContent("saves/" + _locPath);
-		this.trackData = new Object();
-		this.trackData = Json.parse(_locFile);
+		try {
+			var _locFile = File.getContent("saves/" + _locPath);
+			this.trackData = new Object();
+			this.trackData = Json.parse(_locFile);
+		} catch (_msg:String) {
+			this.visBGMC.visible = false;
+			this.error_alert = new AlertBox("Error! Are you sure that was a compatable JSON file?" + "\n" + "If it was, copy this error and provide a save if possible!" + "\n \n" + _msg, this.hide_error, "Silly Goose!");
+			Common.gStage.addChild(this.error_alert);
+			this.error_alert.x = (Common.stage_width * 0.5) - (this.error_alert.width * 0.5);
+			this.error_alert.y = (Common.stage_height * 0.5) - (this.error_alert.height * 0.5);
+			return;
+		}
 		if (this.trackData.lines != null) {
 			this.load_non_compressed();
-		}
-		if (this.trackData.linesArrayCompressed != null) {
+		} else if (this.trackData.linesArrayCompressed != null) {
 			this.load_compressed();
+		} else {
+			this.visBGMC.visible = false;
+			this.error_alert = new AlertBox("Error! Failed to load the save!" + "\n" + "We're not exactly sure what the problem is. This might be an unsuported JSON save type, no line data contained in the file, or not a JSON at all. If you are old school, sorry to inform that SOL saves are currently unsupported.", this.hide_error, ":(");
+			Common.gStage.addChild(this.error_alert);
+			this.error_alert.x = (Common.stage_width * 0.5) - (this.error_alert.width * 0.5);
+			this.error_alert.y = (Common.stage_height * 0.5) - (this.error_alert.height * 0.5);
 		}
 	}
 	
 	function load_compressed() 
 	{
 		//insert LZ-String decompression code here
+		this.visBGMC.visible = false;
+		this.error_alert = new AlertBox("Error! This save type is currently unsupported!" + "\n" + "trackData.linesArrayCommpressed needs to be trackData.lines \n" + "Support for this save type is currently in dvelopment.", this.hide_error);
+		Common.gStage.addChild(this.error_alert);
+		this.error_alert.x = (Common.stage_width * 0.5) - (this.error_alert.width * 0.5);
+		this.error_alert.y = (Common.stage_height * 0.5) - (this.error_alert.height * 0.5);
+	}
+	private function hide_error() {
+		Common.gStage.removeChild(this.error_alert);
+		this.visBGMC.visible = true;
 	}
 	function load_non_compressed() {
 		this.trackData.lines.reverse();

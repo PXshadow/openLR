@@ -40,6 +40,7 @@ class Common
 	public static var gGrid:Grid;
 	public static var gSaveManager:SaveManager;
 	public static var gLoadManager:LoadManager;
+	public static var gSimManager:SimManager;
 	public static var gTextInfo:TextInfo;
 	public static var gToolbar:Toolbar;
 	public static var gCamera:RiderCamera;

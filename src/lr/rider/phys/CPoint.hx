@@ -19,6 +19,14 @@ class CPoint
 	public var dy:Float;
 	public var fr:Float;
 	public var ID:Int;
+	
+	public var sx:Float;
+	public var sy:Float;
+	public var svx:Float;
+	public var svy:Float;
+	public var sdx:Float;
+	public var sdy:Float;
+	
 	public function new(_x:Float, _y:Float, _fr:Float, _id:Int) 
 	{
 		this.x = _x;
@@ -37,5 +45,21 @@ class CPoint
 		this.x = this.x + this.dx;
 		this.y = this.y + this.dy;
 		this.loc = Common.gStage.localToGlobal(new Point(x, y));
+	}
+	public function save() {
+		this.sx = this.x;
+		this.sy = this.y;
+		this.svx = this.vx;
+		this.svy = this.vy;
+		this.sdx = this.dx;
+		this.sdy = this.dy;
+	}
+	public function restore() {
+		this.x = this.sx;
+		this.y = this.sy;
+		this.vx = this.svx;
+		this.vy = this.svy;
+		this.dx = this.sdx;
+		this.dy = this.sdy;
 	}
 }

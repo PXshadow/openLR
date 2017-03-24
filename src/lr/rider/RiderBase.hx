@@ -309,4 +309,14 @@ class RiderBase
 			bosh.addChild(this.rightArm);
 		}
 	}
+	public function flag_location() {
+		for (i in anchors) {
+			i.save();
+		}
+	}
+	public function return_to_flag() {
+		for (i in anchors) {
+			i.restore();
+		}
+	}
 }

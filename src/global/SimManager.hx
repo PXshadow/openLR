@@ -12,13 +12,19 @@ class SimManager
 	var desired_rate:Int = 40;
 	var rider:RiderBase;
 	var sim_running:Bool = false;
+	public var flagged:Bool = false;
 	public function new() 
 	{
+		Common.gSimManager = this;
 		this.rider = new RiderBase();
 	}
 	public function start_sim() {
-		this.rider.init_rider();
-		Common.sim_frames = 0;
+		if (!flagged) {
+			this.rider.init_rider();
+			Common.sim_frames = 0;
+		} else if (flagged) {
+			this.rider.return_to_flag();
+		}
 		if (!sim_running) {
 			this.iterator = new Timer(1000 * (1 / this.desired_rate));
 			this.iterator.run = function():Void {
@@ -55,5 +61,9 @@ class SimManager
 	public function set_rider_start(_x:Float, _y:Float)
 	{
 		this.rider.moveToStart(_x, _y);
+	}
+	public function mark_rider_position() {
+		this.rider.flag_location();
+		this.flagged = true;
 	}
 }

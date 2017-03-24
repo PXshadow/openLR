@@ -27,18 +27,18 @@ class IconFlag extends IconBase
 	override public function down(e:MouseEvent) {
 		if (!flagLock) {
 			if (Common.svar_sim_running) {
-				
+				Common.gSimManager.mark_rider_position();
 			} else if (!Common.svar_sim_running) {
-				
+				Common.gSimManager.flagged = false;
 			}
 		}
 	}
 	override public function alt(e:MouseEvent) {
 		if (flagLock) {
 			if (Common.svar_sim_running) {
-				
+				Common.gSimManager.mark_rider_position();
 			} else if (!Common.svar_sim_running) {
-				
+				Common.gSimManager.flagged = false;
 			}
 		}
 	}
