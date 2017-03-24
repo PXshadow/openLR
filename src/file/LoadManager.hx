@@ -105,7 +105,7 @@ class LoadManager
 			this.load_compressed();
 		} else {
 			this.visBGMC.visible = false;
-			this.error_alert = new AlertBox("Error! Failed to load the save!" + "\n" + "We're not exactly sure what the problem is. This might be an unsuported JSON save type, no line data contained in the file, or not a JSON at all. If you are old school, sorry to inform that SOL saves are currently unsupported.", this.hide_error, ":(");
+			this.error_alert = new AlertBox("Error! Failed to load the save!" + "\n" + "Are you sure this was a save made in a compatible line rider version? If so, please send a copy to the developers so they may inspect it", this.hide_error, ":(");
 			Common.gStage.addChild(this.error_alert);
 			this.error_alert.x = (Common.stage_width * 0.5) - (this.error_alert.width * 0.5);
 			this.error_alert.y = (Common.stage_height * 0.5) - (this.error_alert.height * 0.5);
