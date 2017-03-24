@@ -61,6 +61,9 @@ class Common
 	public static var track_start_y:Float = 0;
 	
 	public static var sim_frames:Int = 0;
+	public static var simfl_frames:Int = 0;
+	public static var sim_rider_speed:Float = 0;
+	public static var sim_rider_speed_top:Float = 0;
 	
 	public static var cvar_icon_hit_display:Bool = false;
 	public static var cvar_line_render_mode:Int = 0; //0 = color, 1 = black, 2 = color play, 3 = preview

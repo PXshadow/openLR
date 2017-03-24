@@ -13,6 +13,7 @@ class SimManager
 	var rider:RiderBase;
 	var sim_running:Bool = false;
 	public var flagged:Bool = false;
+	private var flag_av:Bool = false;
 	public function new() 
 	{
 		Common.gSimManager = this;
@@ -20,8 +21,12 @@ class SimManager
 	}
 	public function start_sim() {
 		if (!flagged) {
-			this.rider.init_rider();
 			Common.sim_frames = 0;
+			if (flag_av) {
+				this.rider.reset();
+			} else {
+				this.rider.init_rider();
+			}
 		} else if (flagged) {
 			this.rider.return_to_flag();
 		}
@@ -65,5 +70,21 @@ class SimManager
 	public function mark_rider_position() {
 		this.rider.flag_location();
 		this.flagged = true;
+		this.flag_av = true;
+	}
+	public function hide_flag() {
+		try {
+			this.rider.flag.alpha = 0.2;
+		} catch (e:String) {}
+	}
+	public function show_flag() {
+		try {
+			this.rider.flag.alpha = 1;
+		} catch (e:String) {}
+	}
+	public function reset() {
+		this.rider.destroy_flag();
+		this.flagged = false;
+		this.flag_av = false;
 	}
 }

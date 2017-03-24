@@ -77,7 +77,7 @@ class TextInfo extends MovieClip
 		
 		textInfo_A.text = Common.cvar_track_name;
 		textInfo_B.text = _locTime;
-		textInfo_C.text = "Speed PPF";
-		textInfo_D.text = "Top Kek";
+		textInfo_C.text = Common.sim_rider_speed + " PPF";
+		textInfo_D.text = Common.sim_rider_speed_top + " Top";
 	}
 }

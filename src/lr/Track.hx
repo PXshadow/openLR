@@ -87,6 +87,7 @@ class Track extends MovieClip
 			this.back_layer.removeChild(Common.gGrid.lines[i]);
 		}
 		Common.gGrid.new_grid();
+		Common.gSimManager.reset();
 	}
 	public function remove_line(_line) {
 		this.back_layer.removeChild(Common.gGrid.lines[_line.ID]);

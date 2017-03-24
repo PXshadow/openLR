@@ -28,8 +28,15 @@ class IconFlag extends IconBase
 		if (!flagLock) {
 			if (Common.svar_sim_running) {
 				Common.gSimManager.mark_rider_position();
+				Common.gSimManager.show_flag();
 			} else if (!Common.svar_sim_running) {
-				Common.gSimManager.flagged = false;
+				if (Common.gSimManager.flagged == false) {
+					Common.gSimManager.show_flag();
+					Common.gSimManager.flagged = true;
+				} else if (Common.gSimManager.flagged == true) {
+					Common.gSimManager.hide_flag();
+					Common.gSimManager.flagged = false;
+				}
 			}
 		}
 	}
@@ -37,8 +44,15 @@ class IconFlag extends IconBase
 		if (flagLock) {
 			if (Common.svar_sim_running) {
 				Common.gSimManager.mark_rider_position();
+				Common.gSimManager.show_flag();
 			} else if (!Common.svar_sim_running) {
-				Common.gSimManager.flagged = false;
+				if (Common.gSimManager.flagged == false) {
+					Common.gSimManager.show_flag();
+					Common.gSimManager.flagged = true;
+				} else if (Common.gSimManager.flagged == true) {
+					Common.gSimManager.hide_flag();
+					Common.gSimManager.flagged = false;
+				}
 			}
 		}
 	}

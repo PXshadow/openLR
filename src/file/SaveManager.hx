@@ -120,7 +120,7 @@ class SaveManager
 	{
 		var _locArray = this.json_line_aray_parse();
 		var json_object:Object = {
-			"label": "test_track",
+			"label": Common.cvar_track_name,
 			"creator": " ",
 			"description": Common.cvar_author_comment,
 			"version": "openLR",

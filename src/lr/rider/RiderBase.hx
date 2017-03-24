@@ -35,6 +35,11 @@ class RiderBase
 	
 	private var camera:RiderCamera;
 	
+	public var flag:FlagMarker;
+	public var Start:StartPointVis;
+	
+	private var crashed:Bool = false;
+	
 	public function new() 
 	{
 		g = new Object();
@@ -46,6 +51,10 @@ class RiderBase
 		
 		this.getAssets();
 		this.camera = new RiderCamera();
+		this.Start = new StartPointVis();
+		Common.gTrack.back_layer.addChild(this.Start);
+		
+		this.init_rider();
 	}
 	private function getAssets() {
 		var swfLibSled = AssetLibrary.loadFromFile("swf/sled.bundle");
@@ -120,34 +129,73 @@ class RiderBase
 			anchors[i].vx = anchors[i].x - 0.4;
 			anchors[i].vy = anchors[i].y;
 		}
-		this.render_body();
 	}
 	public function moveToStart(_x:Float, _y:Float) {
 		this.init_rider();
-		trace(_x, _y);
 		for (i in 0...anchors.length) {
 			anchors[i].x = anchors[i].x + _x;
 			anchors[i].y = anchors[i].y + _y;
 			anchors[i].vx = anchors[i].x - 0.4;
 			anchors[i].vy = anchors[i].y;
 		}
+		this.Start.x = _x;
+		this.Start.y = _y;
 		this.render_body();
 	}
-	public function step_rider() {
+	public function reset() //this reset is necesary so it doesn't break the saved flag location, otherwise we get a NaN rider.
+	{
+		this.anchors[0].x = 0;
+		this.anchors[0].y = 0;
+		this.anchors[1].x = 0;
+		this.anchors[1].y = 10;
+		this.anchors[2].x = 30;
+		this.anchors[2].y = 10;
+		this.anchors[3].x = 35;
+		this.anchors[3].y = 0;
+		this.anchors[4].x = 10;
+		this.anchors[4].y = 0;
+		this.anchors[5].x = 10;
+		this.anchors[5].y = -11;
+		this.anchors[6].x = 23;
+		this.anchors[6].y = -10;
+		this.anchors[7].x = 23;
+		this.anchors[7].y = -10;
+		this.anchors[8].x = 20;
+		this.anchors[8].y = 10;
+		this.anchors[9].x = 20;
+		this.anchors[9].y = 10;
+		
+		
+		for (i in anchors) {
+			i.x *= 0.5;
+			i.y *= 0.5;
+			i.x += Common.track_start_x;
+			i.y += Common.track_start_y;
+			i.vx = i.x - 0.4;
+			i.vy = i.y;
+		}
+		
+		Stick.crash = false;
+	}
+	public function step_rider() { //This is called every time the timer goes off in SimManaher.hx
 		for (i in 0...anchors.length) {
-			anchors[i].verlet(this.g);
+			anchors[i].verlet(this.g); //Apply speed and gravity to the rider
 		}
 		for (a in 0...6) {
 			for (b in 0...edges.length) {
-				if (edges[b].constrain()) {}
+				if (edges[b].constrain()) {} //Adjust all of the riders bones (edges)
 			}
-			this.collision();
+			this.collision(); //check for line collision
 		}
 		var _loc4:Float = anchors[3].x - anchors[0].x;
 		var _loc5:Float = anchors[3].y - anchors[0].y;
 		if (_loc4 * (anchors[1].y - anchors[0].y) - _loc5 * (anchors[1].x - anchors[0].x) < 0)
 		{
 			Stick.crash = true; //Tail fakie counter measure. "Bug" that existed in Beta 1 that was was patched in Rev 5 (presumably);
+		}
+		Common.sim_rider_speed = Math.floor((Math.sqrt(Math.pow(anchors[5].dx - g.x, 2)) + Math.sqrt(Math.pow(anchors[5].dy - g.y, 2))) * 100) / 100;
+		if (Common.sim_rider_speed > Common.sim_rider_speed_top) {
+			Common.sim_rider_speed_top = Common.sim_rider_speed;
 		}
 		this.render_body();
 		this.camera.pan(anchors[4]);
@@ -222,10 +270,6 @@ class RiderBase
 				} // end of for
 			} // end of for
 		} // end of for
-	}
-	public function save_rider() {
-		this.saveFrame = new Vector(10);
-		this.saveFrame = this.anchors;
 	}
 	public function render_bones() {
 		this.bosh.graphics.clear();
@@ -307,16 +351,46 @@ class RiderBase
 			bosh.addChild(this.rightLeg);
 			bosh.addChild(this.body);
 			bosh.addChild(this.rightArm);
+			this.render_body();
 		}
 	}
 	public function flag_location() {
 		for (i in anchors) {
 			i.save();
 		}
+		this.markFlag();
+	}
+	
+	function markFlag() 
+	{
+		try {
+			Common.gTrack.back_layer.removeChild(this.flag);
+		} catch (_msg:String) {
+			
+		}
+		try {
+			Common.simfl_frames = Common.sim_frames;
+			this.flag = new FlagMarker(Common.sim_frames);
+			Common.gTrack.back_layer.addChild(this.flag);
+			this.flag.x = anchors[0].x;
+			this.flag.y = anchors[0].y;
+			this.crashed = Stick.crash;
+		} catch (_msg:String) {}
 	}
 	public function return_to_flag() {
 		for (i in anchors) {
 			i.restore();
+		}
+		Stick.crash = this.crashed;
+		Common.sim_frames = Common.simfl_frames;
+	}
+	
+	public function destroy_flag() 
+	{
+		try {
+			Common.gTrack.back_layer.removeChild(this.flag);
+		} catch (_msg:String) {
+			
 		}
 	}
 }

@@ -93,7 +93,7 @@ class LoadManager
 			this.trackData = Json.parse(_locFile);
 		} catch (_msg:String) {
 			this.visBGMC.visible = false;
-			this.error_alert = new AlertBox("Error! Are you sure that was a compatable JSON file?" + "\n" + "If it was, copy this error and provide a save if possible!" + "\n \n" + _msg, this.hide_error, "Silly Goose!");
+			this.error_alert = new AlertBox("Error! Are you sure that was a compatable JSON file?" + "\n" + "If it was, copy this error and provide a save if possible!" + "\n \n" + _msg + "\n" + this.itemWindow.currentList[FileWindow.selectedIndex], this.hide_error, "Silly Goose!");
 			Common.gStage.addChild(this.error_alert);
 			this.error_alert.x = (Common.stage_width * 0.5) - (this.error_alert.width * 0.5);
 			this.error_alert.y = (Common.stage_height * 0.5) - (this.error_alert.height * 0.5);
@@ -116,7 +116,7 @@ class LoadManager
 	{
 		//insert LZ-String decompression code here
 		this.visBGMC.visible = false;
-		this.error_alert = new AlertBox("Error! This save type is currently unsupported!" + "\n" + "trackData.linesArrayCommpressed needs to be trackData.lines \n" + "Support for this save type is currently in dvelopment.", this.hide_error);
+		this.error_alert = new AlertBox("Error! A small discrepancy is making this save difficult." + "\n" + "\"linesArrayCommpressed\"" + "\n" + "needs to be \"lines\"" +  "\n \n" + "Save type unsupported... for now.", this.hide_error, "D:<");
 		Common.gStage.addChild(this.error_alert);
 		this.error_alert.x = (Common.stage_width * 0.5) - (this.error_alert.width * 0.5);
 		this.error_alert.y = (Common.stage_height * 0.5) - (this.error_alert.height * 0.5);
@@ -127,6 +127,7 @@ class LoadManager
 	}
 	function load_non_compressed() {
 		this.trackData.lines.reverse();
+		Common.cvar_track_name = this.trackData.label;
 		Common.track_start_x = this.trackData.startPosition.x;
 		Common.track_start_y = this.trackData.startPosition.y;
 		Common.gTrack.set_rider_start(this.trackData.startPosition.x, this.trackData.startPosition.y);
