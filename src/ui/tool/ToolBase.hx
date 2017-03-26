@@ -21,6 +21,7 @@ class ToolBase
 
 	public var type:String = "Null";
 	public var mod_shift:Bool = false;
+	public var mod_x:Bool = false;
 
 	public function new() 
 	{
@@ -34,8 +35,23 @@ class ToolBase
 		Common.gStage.addEventListener(KeyboardEvent.KEY_DOWN, keyShiftDown);
 		Common.gStage.addEventListener(KeyboardEvent.KEY_UP, keyShiftUp);
 		Common.gStage.addEventListener(KeyboardEvent.KEY_DOWN, KeyNumDown);
+		Common.gStage.addEventListener(KeyboardEvent.KEY_DOWN, KeyModifierDown);
+		Common.gStage.addEventListener(KeyboardEvent.KEY_UP, KeyModifierUp);
 		
 		Common.gToolBase = this;
+	}
+	
+	private function KeyModifierDown(e:KeyboardEvent):Void 
+	{
+		if (e.keyCode == Keyboard.X) {
+			mod_x = true;
+		}
+	}
+	private function KeyModifierUp(e:KeyboardEvent):Void 
+	{
+		if (e.keyCode == Keyboard.X) {
+			mod_x = false;
+		}
 	}
 	
 	private function KeyNumDown(e:KeyboardEvent):Void //Line type switcher
@@ -105,6 +121,8 @@ class ToolBase
 		Common.gStage.removeEventListener(MouseEvent.MOUSE_WHEEL, mouseScroll);
 		Common.gStage.removeEventListener(KeyboardEvent.KEY_DOWN, keyShiftDown);
 		Common.gStage.removeEventListener(KeyboardEvent.KEY_UP, keyShiftUp);
+		Common.gStage.removeEventListener(KeyboardEvent.KEY_DOWN, KeyModifierDown);
+		Common.gStage.removeEventListener(KeyboardEvent.KEY_UP, KeyModifierUp);
 	}
 	public function enable() {
 		if (Common.svar_game_mode == "edit") {
@@ -117,6 +135,8 @@ class ToolBase
 			Common.gStage.addEventListener(MouseEvent.MOUSE_WHEEL, mouseScroll);
 			Common.gStage.addEventListener(KeyboardEvent.KEY_DOWN, keyShiftDown);
 			Common.gStage.addEventListener(KeyboardEvent.KEY_UP, keyShiftUp);
+			Common.gStage.addEventListener(KeyboardEvent.KEY_DOWN, KeyModifierDown);
+		Common.gStage.addEventListener(KeyboardEvent.KEY_UP, KeyModifierUp);
 		}
 	}
 	
@@ -147,5 +167,34 @@ class ToolBase
 			Common.gTrack.y = Common.stage_height * 0.5 + (_locPrevLoc.y - Common.stage_height * 0.5) * _locRatio - 0 * (e.delta * 0.2);
 			Common.gTrack.scaleX = Common.gTrack.scaleY = Common.track_scale;
 		}
+	}
+	public function angle_snap(_x1:Float, _y1:Float, _x2:Float, _y2:Float):Array<Float> {
+		var angle = Common.get_angle_degrees(new Point(_x1, _y1), new Point(_x2, _y2));
+		var angles:Array<Int> = [0, 15, 30, 45, 60, 75, 90, 105, 120, 135, 150, 165, 180, 195, 210, 225, 240, 255, 270, 285, 300, 315, 320, 345, 360];
+		var angleToSnap:Int = 0;
+		var x:Float = _x2;
+		var y:Float = _y2;
+		if (angle < 0) {
+			angle += 360;
+		}
+		for (i in 0...angles.length) {
+			if (angle > angles[i] && angle < angles[i + 1]) {
+				if (angle < angles[i] + 7.5) {
+					angleToSnap = angles[i];
+					break;
+				} else if (angle > angles[i] + 7.5) {
+					angleToSnap = angles[i + 1];
+					break;
+				}
+			} else {
+				continue;
+			}
+		}
+		var _locDis = Common.get_distance(new Point(_x1, _y1), new Point(_x2, _y2));
+		x = _x1 + (_locDis * Math.cos(angleToSnap * 0.0174533));
+		y = _y1 + (_locDis * Math.sin(angleToSnap * 0.0174533));
+		var _locReturn:Array<Float> = new Array();
+		_locReturn = [x, y];
+		return(_locReturn);
 	}
 }

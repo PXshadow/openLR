@@ -223,7 +223,6 @@ class Grid
 			}
 			var _locArray:Array<Dynamic> = new Array();
 			_locArray = [_loc10, _loc11, _loc9];
-			trace(_locArray);
 		return (_locArray);
 	} // End of the function
 }
