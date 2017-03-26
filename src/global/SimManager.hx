@@ -12,6 +12,7 @@ class SimManager
 	var desired_rate:Int = 40;
 	var rider:RiderBase;
 	var sim_running:Bool = false;
+	public var paused:Bool = false;
 	public var flagged:Bool = false;
 	private var flag_av:Bool = false;
 	public function new() 
@@ -29,6 +30,9 @@ class SimManager
 			}
 		} else if (flagged) {
 			this.rider.return_to_flag();
+		}
+		if (paused) {
+			paused = false;
 		}
 		if (!sim_running) {
 			this.iterator = new Timer(1000 * (1 / this.desired_rate));
@@ -55,6 +59,7 @@ class SimManager
 	{
 		this.sim_running = false;
 		this.iterator.stop();
+		this.paused = true;
 	}
 	public function resume_sim() {
 		this.iterator = new Timer(1000 / this.desired_rate);
@@ -62,6 +67,8 @@ class SimManager
 			this.update_sim();
 			Common.gTextInfo.update_sim();
 		}
+		this.paused = false;
+		this.sim_running = true;
 	}
 	public function set_rider_start(_x:Float, _y:Float)
 	{

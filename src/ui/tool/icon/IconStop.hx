@@ -7,7 +7,7 @@ import openfl.Assets;
 import openfl.net.URLRequest;
 
 import global.Common;
-import lr.Toolbar;
+import ui.tool.Toolbar;
 
 /**
  * ...
@@ -25,6 +25,8 @@ class IconStop extends IconBase
 	override public function down(e:MouseEvent) {
 		Common.gTrack.set_rendermode_edit();
 		Common.gToolbar.set_edit_mode();
+		Common.gToolbar.pan.visible = true;
+		Common.gToolbar.pause.visible = false;
 		Common.gTrack.set_simmode_stop();
 	}
 	

@@ -2,6 +2,7 @@ package file;
 
 import file.ui.FileWindow;
 import openfl.display.MovieClip;
+import openfl.utils.ByteArray.ByteArrayData;
 import sys.io.File;
 import sys.FileSystem;
 import haxe.Json;
@@ -15,7 +16,8 @@ import ui.inter.AlertBox;
 import global.Common;
 import lr.line.*;
 import ui.inter.SingleButton;
-import lr.Toolbar;
+import ui.tool.Toolbar;
+//import src.com.LZString;
 
 /**
  * ...
@@ -110,6 +112,11 @@ class LoadManager
 			this.error_alert.x = (Common.stage_width * 0.5) - (this.error_alert.width * 0.5);
 			this.error_alert.y = (Common.stage_height * 0.5) - (this.error_alert.height * 0.5);
 		}
+	}
+	
+	function parse_sol() 
+	{
+
 	}
 	
 	function load_compressed() 

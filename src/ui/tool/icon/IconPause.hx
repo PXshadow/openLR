@@ -8,26 +8,28 @@ import openfl.net.URLRequest;
 
 import global.Common;
 import ui.tool.Toolbar;
-import ui.tool.lr.ToolPan;
 
 /**
  * ...
  * @author Kaelan Evans
  */
-class IconPan extends IconBase
+class IconPause extends IconBase
 {
-
+	var paused:Bool = false;
 	public function new() 
 	{
 		super();
-		this.icon = new Bitmap(Assets.getBitmapData("icon/pan.png"));
+		this.icon = new Bitmap(Assets.getBitmapData("icon/pause.png"));
 		this.addChild(this.icon);
 	}
 	override public function down(e:MouseEvent) {
-		Common.gToolBase.disable();
-		Toolbar.tool = new ToolPan();
+		if (Common.gSimManager.paused) {
+			Common.gSimManager.resume_sim();
+			Common.gToolbar.set_play_mode();
+		} else if (!Common.gSimManager.paused) {
+			Common.gSimManager.pause_sim();
+			Common.gToolbar.set_edit_mode();
+		}
 	}
-	override private function double_click(e:MouseEvent) {
-		Common.gCode.return_to_origin();
-	}
+	
 }

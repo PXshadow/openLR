@@ -1,6 +1,5 @@
 package;
 
-//import com.lz.LZString;
 import openfl.display.Loader;
 import openfl.display.MovieClip;
 import openfl.display.Sprite;
@@ -19,7 +18,7 @@ import file.SaveManager;
 import global.FrameRate;
 import global.SimManager;
 import lr.TextInfo;
-import lr.Toolbar;
+import ui.tool.Toolbar;
 import lr.Track;
 
 /**
@@ -27,7 +26,7 @@ import lr.Track;
  * @author Kaelan Evans
  * 
  * /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
- * //OpenLR Project Release Alpha 0.0.3
+ * //OpenLR Project Release Alpha 0.0.4
  * /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
  * 
  * This program was built using HaxeDevelop IDE, with haxe and openFL. Other libraries if used can be found in project.xml
@@ -42,11 +41,6 @@ import lr.Track;
  * //Notes
  * /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
  * 
- * -- GitKraken test: Success!
- * -- Supported platforms
- * 		-- Windows: Yes!
- * 		-- Linux: Yes! (Debian)
- * 		-- OSX: Yes! (Built in Yosemite)
  * --Need to clean up some of the "rabbit hole" functions. Starting to get lost in my own code.
  * --Need to make some UI classes. Check boxes, radio buttons, lists.
  * --Need to work on defaults for settings. Alpha 0.0.4 will probably be that
@@ -55,7 +49,8 @@ import lr.Track;
  * //To do
  * /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
  * 
- * -- Arbitrary save parser. Will allow for saves to be incomplete and future proof
+ * -- Arbitrary save parser. Will allow for saves to be incomplete and future proof //maybe? Just use my own JSON format probably. Maybe use a similar format to LRA
+ * -- LZ-String port, this is needed if compatibility with .com must happen
  * -- UI system. Menus, checkboxes, radio buttons, arbitrarily sized buttons, fonts, blah blah blah
  * -- Better file management. Save with name support, save as (arbitrary location), load from saves folder, and browse.
  * 

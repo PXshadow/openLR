@@ -8,7 +8,7 @@ import openfl.net.URLRequest;
 import ui.tool.lr.ToolEraser;
 
 import global.Common;
-import lr.Toolbar;
+import ui.tool.Toolbar;
 
 /**
  * ...

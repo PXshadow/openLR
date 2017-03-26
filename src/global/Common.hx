@@ -1,7 +1,7 @@
 package global;
 
 import file.LoadManager;
-import lr.Toolbar;
+import ui.tool.Toolbar;
 import lr.rider.RiderCamera;
 import openfl.utils.Object;
 import file.SaveManager;
@@ -29,7 +29,7 @@ class Common
 	//variables
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	public static var version:String = "0.0.3";
+	public static var version:String = "0.0.4";
 	
 	public static var gStage:Stage;
 	public static var gCode:Main;

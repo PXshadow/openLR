@@ -7,7 +7,7 @@ import openfl.Assets;
 import openfl.net.URLRequest;
 
 import global.Common;
-import lr.Toolbar;
+import ui.tool.Toolbar;
 
 /**
  * ...
@@ -25,6 +25,8 @@ class IconPlay extends IconBase
 	override public function down(e:MouseEvent) {
 		Common.gTrack.set_rendermode_play();
 		Common.gToolbar.set_play_mode();
+		Common.gToolbar.pan.visible = false;
+		Common.gToolbar.pause.visible = true;
 		Common.gTrack.set_simmode_play();
 	}
 	

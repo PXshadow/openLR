@@ -10,7 +10,7 @@ import sys.io.File;
 import sys.FileSystem;
 
 import global.Common;
-import lr.Toolbar;
+import ui.tool.Toolbar;
 import ui.inter.SingleButton;
 import file.SaveManager;
 import file.LoadManager;
