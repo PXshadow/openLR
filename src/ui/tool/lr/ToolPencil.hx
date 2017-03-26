@@ -27,6 +27,11 @@ class ToolPencil extends ToolBase
 	override public function mouseDown(e:MouseEvent) {
 		x1 = Common.gTrack.mouseX;
 		y1 = Common.gTrack.mouseY;
+		var _locSnapCheck:Array<Dynamic> = Common.gGrid.snap(x1, y1, 1, this.mod_shift);
+		if (_locSnapCheck[2] == true && Common.line_type != 2) {
+			x1 = _locSnapCheck[0];
+			y1 = _locSnapCheck[1];
+		}
 		c = new Point(Common.gStage.mouseX, Common.gStage.mouseY);
 		Common.gStage.addEventListener(MouseEvent.MOUSE_MOVE, pencil_move);
 	}
@@ -61,6 +66,11 @@ class ToolPencil extends ToolBase
 	override public function rMouseDown(e:MouseEvent) {
 		x1 = Common.gTrack.mouseX;
 		y1 = Common.gTrack.mouseY;
+		var _locSnapCheck:Array<Dynamic> = Common.gGrid.snap(x1, y1, 1, this.mod_shift);
+		if (_locSnapCheck[2] == true && Common.line_type != 2) {
+			x1 = _locSnapCheck[0];
+			y1 = _locSnapCheck[1];
+		}
 		c = new Point(Common.gStage.mouseX, Common.gStage.mouseY);
 		Common.gStage.addEventListener(MouseEvent.MOUSE_MOVE, pencil_move_reverse);
 	}

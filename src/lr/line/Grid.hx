@@ -154,4 +154,76 @@ class Grid
 			Grid.grid[line.gridList[i][0]][line.gridList[i][1]].storage2[line.ID] = null;
 		}
 	}
+	public function snap(x:Float, y:Float, vert:Int, invert:Bool):Array<Dynamic>
+	{
+		var _loc2:Float = Math.pow(Common.svar_snap_distance / Common.gTrack.scaleX, 2);
+		var _loc10:Float = x;
+		var _loc11:Float = y;
+		var _loc17:Bool;
+		var _loc18:Bool;
+		var _loc6:Float;
+		var _loc7:Float;
+		var _loc9:Dynamic = null;
+		var _loc15 = Common.gridPos(x, y);
+		var _loc8:LineBase = null;
+			for (_loc14 in -1...2)
+			{
+				var _loc4 = (_loc15.x + _loc14);
+				if (grid[_loc4] == null)
+				{
+					continue;
+				} // end if
+				for (_loc5 in -1...2)
+				{
+					var _loc3 = (_loc15.y + _loc5);
+					if (grid[_loc4][_loc3] == null)
+					{
+						continue;
+					} // end if
+					for (_loc16 in 0...grid[_loc4][_loc3].storage2.length)
+					{
+						if (grid[_loc4][_loc3].storage2[_loc16] == null) {continue;}
+						var _loc1:LineBase = grid[_loc4][_loc3].storage2[_loc16];
+						_loc6 = Math.pow(x - _loc1.x1, 2) + Math.pow(y - _loc1.y1, 2);
+						_loc7 = Math.pow(x - _loc1.x2, 2) + Math.pow(y - _loc1.y2, 2);
+						trace(_loc16);
+						if (_loc6 < _loc2)
+						{
+							_loc2 = _loc6;
+							_loc10 = _loc1.x1;
+							_loc11 = _loc1.y1;
+							_loc9 = 1;
+							_loc8 = _loc1;
+						} // end if
+						if (_loc7 < _loc2)
+						{
+							_loc2 = _loc7;
+							_loc10 = _loc1.x2;
+							_loc11 = _loc1.y2;
+							_loc9 = 2;
+							_loc8 = _loc1;
+						} //end if
+					} // end of for...in
+				} // end of for
+			} // end of for
+			if (_loc9 != null && _loc8 != null) {
+				_loc17 = vert == _loc9;
+				_loc18 = invert == _loc8.inv;
+			} else {
+				_loc17 = true;
+				_loc18 = false;
+			}
+			if (!(_loc17 && !_loc18 || !_loc17 && _loc18))
+			{
+				_loc9 = false;
+				_loc10 = x;
+				_loc11 = y;
+			} else {
+				_loc9 = true;
+			}
+			var _locArray:Array<Dynamic> = new Array();
+			_locArray = [_loc10, _loc11, _loc9];
+			trace(_locArray);
+		return (_locArray);
+	} // End of the function
 }

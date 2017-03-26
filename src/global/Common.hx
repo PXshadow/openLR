@@ -59,6 +59,8 @@ class Common
 	public static var track_scale_min:Float = 0.6;
 	public static var track_start_x:Float = 0;
 	public static var track_start_y:Float = 0;
+	public static var track_last_pos_x:Float = 0;
+	public static var track_last_pos_y:Float = 0;
 	
 	public static var sim_frames:Int = 0;
 	public static var simfl_frames:Int = 0;
@@ -77,6 +79,7 @@ class Common
 	public static var svar_eraser_size:Int = 5;
 	public static var svar_sim_running:Bool = false;
 	public static var svar_game_mode:String = "edit";
+	public static var svar_snap_distance:Int = 20;
 	
 	public static var stage_width:Float;
 	public static var stage_height:Float;

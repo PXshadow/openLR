@@ -29,6 +29,11 @@ class ToolLine extends ToolBase
 		y1 = Common.gTrack.mouseY;
 		x2 = Common.gTrack.mouseX;
 		y2 = Common.gTrack.mouseY;
+		var _locSnapCheck:Array<Dynamic> = Common.gGrid.snap(x1, y1, 1, this.mod_shift);
+		if (_locSnapCheck[2] == true && Common.line_type != 2) {
+			x1 = _locSnapCheck[0];
+			y1 = _locSnapCheck[1];
+		}
 		c = new Point(Common.gStage.mouseX, Common.gStage.mouseY);
 		d = new Point(Common.gStage.mouseX, Common.gStage.mouseY);
 		Common.gStage.addEventListener(MouseEvent.MOUSE_MOVE, line_move);
@@ -42,6 +47,11 @@ class ToolLine extends ToolBase
 		Common.gTrack.render_preview_line(new Point(x1, y1), new Point(x2, y2));
 	}
 	override public function mouseUp(e:MouseEvent) {
+		var _locSnapCheck:Array<Dynamic> = Common.gGrid.snap(x2, y2, 2, this.mod_shift);
+		if (_locSnapCheck[2] == true && Common.line_type != 2) {
+			x2 = _locSnapCheck[0];
+			y2 = _locSnapCheck[1];
+		}
 		if (Common.get_distance(c, d) >= Common.line_minLength) {
 			var _loc1:Dynamic;
 			if (Common.line_type == 0) {
@@ -63,6 +73,11 @@ class ToolLine extends ToolBase
 		y1 = Common.gTrack.mouseY;
 		x2 = Common.gTrack.mouseX;
 		y2 = Common.gTrack.mouseY;
+		var _locSnapCheck:Array<Dynamic> = Common.gGrid.snap(x1, y1, 1, this.mod_shift);
+		if (_locSnapCheck[2] == true && Common.line_type != 2) {
+			x1 = _locSnapCheck[0];
+			y1 = _locSnapCheck[1];
+		}
 		c = new Point(Common.gStage.mouseX, Common.gStage.mouseY);
 		d = new Point(Common.gStage.mouseX, Common.gStage.mouseY);
 		Common.gStage.addEventListener(MouseEvent.MOUSE_MOVE, line_move_reverse);

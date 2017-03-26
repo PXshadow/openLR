@@ -23,6 +23,10 @@ class IconPlay extends IconBase
 		this.addChild(this.icon);
 	}
 	override public function down(e:MouseEvent) {
+		if (!Common.gSimManager.paused) {
+			Common.track_last_pos_x = Common.gTrack.x;
+			Common.track_last_pos_y = Common.gTrack.y;
+		}
 		Common.gTrack.set_rendermode_play();
 		Common.gToolbar.set_play_mode();
 		Common.gToolbar.pan.visible = false;
