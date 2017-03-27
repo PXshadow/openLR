@@ -9,6 +9,7 @@ import openfl.net.URLRequest;
 import openfl.Assets.AssetLibrary;
 import haxe.Timer;
 import ui.inter.AlertBox;
+import ui.inter.CheckBox;
 
 import file.FileStart;
 import file.LoadManager;
@@ -80,6 +81,7 @@ class Main extends Sprite
 	}
 	function start() {
 		this.removeChild(this.welcome_alert);
+		this.visContainer.visible = true;
 	}
 	public function init_env() //Initialize enviornment
 	{
@@ -111,6 +113,7 @@ class Main extends Sprite
 		
 		this.textInfo = new TextInfo();
 		this.visContainer.addChild(this.textInfo);
+		this.visContainer.visible = false;
 	}
 	private function resize(e:Event):Void
 	{
