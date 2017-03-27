@@ -66,12 +66,17 @@ class Common
 	public static var simfl_frames:Int = 0;
 	public static var sim_rider_speed:Float = 0;
 	public static var sim_rider_speed_top:Float = 0;
+	public static var sim_slow_motion:Bool = false;
+	public static var sim_slow_motion_rate:Int = 5;
 	
+	public static var cvar_angle_snap_float:Float = 15;
+	public static var cvar_angle_snap_offset:Int = 0;
+	public static var cvar_angle_snap:Bool = false;
 	public static var cvar_icon_hit_display:Bool = false;
 	public static var cvar_line_render_mode:Int = 0; //0 = color, 1 = black, 2 = color play, 3 = preview
 	public static var cvar_track_author:String = "Unknown";
 	public static var cvar_track_name:String = "Untitled";
-	public static var cvar_save_mode:String = "openLR"; //openLR will be the native file which will support theoretical features exclusive here, while the second option of JSON will be the bare minimum
+	public static var cvar_author_comment:String = "This save was made in an alpha version of openLR.";
 	
 	public static var svar_frame_rate:Float;
 	public static var svar_framerate_avg_rate:Int = 60;
@@ -83,8 +88,6 @@ class Common
 	
 	public static var stage_width:Float;
 	public static var stage_height:Float;
-	
-	public static var cvar_author_comment:String = "This save was made in an alpha version of openLR.";
 	
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//functions

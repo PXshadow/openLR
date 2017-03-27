@@ -51,6 +51,13 @@ class ToolBase
 	{
 		if (e.keyCode == Keyboard.X) {
 			mod_x = false;
+			if (e.shiftKey) {
+				if (Common.cvar_angle_snap) {
+					Common.cvar_angle_snap = false;
+				} else if (!Common.cvar_angle_snap) {
+					Common.cvar_angle_snap = true;
+				}
+			}
 		}
 	}
 	

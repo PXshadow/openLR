@@ -1,6 +1,9 @@
 package global;
 
 import haxe.Timer;
+import openfl.ui.Keyboard;
+import openfl.events.KeyboardEvent;
+
 import lr.rider.RiderBase;
 /**
  * ...
@@ -19,6 +22,7 @@ class SimManager
 	{
 		Common.gSimManager = this;
 		this.rider = new RiderBase();
+		Common.gStage.addEventListener(KeyboardEvent.KEY_DOWN, key_toggle_modifiers);
 	}
 	public function start_sim() {
 		if (!flagged) {
@@ -93,5 +97,63 @@ class SimManager
 		this.rider.destroy_flag();
 		this.flagged = false;
 		this.flag_av = false;
+	}
+	private function key_toggle_modifiers(e:KeyboardEvent):Void 
+	{
+		
+		if (e.keyCode == Keyboard.M) {
+			if (Common.svar_sim_running) {
+				if (Common.sim_slow_motion)
+				{
+					Common.sim_slow_motion = false;
+					this.set_reg_speed();
+				} else if (!Common.sim_slow_motion) {
+					Common.sim_slow_motion = true;
+					this.set_slow_speed();
+				}
+			}
+		}
+		if (e.keyCode == Keyboard.Y) {
+			Common.gTrack.set_simmode_play();
+		}
+		if (e.keyCode == Keyboard.U) {
+			Common.gTrack.set_simmode_stop();
+		}
+		if (e.keyCode == Keyboard.I) {
+			if (Common.svar_sim_running) {
+				Common.gSimManager.mark_rider_position();
+				Common.gSimManager.show_flag();
+			} else if (!Common.svar_sim_running) {
+				if (Common.gSimManager.flagged == false) {
+					Common.gSimManager.show_flag();
+					Common.gSimManager.flagged = true;
+				} else if (Common.gSimManager.flagged == true) {
+					Common.gSimManager.hide_flag();
+					Common.gSimManager.flagged = false;
+				}
+			}
+		}
+	}
+	
+	function set_slow_speed() 
+	{
+		this.iterator.stop();
+		this.desired_rate = Common.sim_slow_motion_rate;
+		this.iterator = new Timer(1000 * (1 / this.desired_rate));
+		this.iterator.run = function():Void {
+			this.update_sim();
+			Common.gTextInfo.update_sim();
+		}
+	}
+	
+	function set_reg_speed() 
+	{
+		this.iterator.stop();
+		this.desired_rate = 40;
+		this.iterator = new Timer(1000 * (1 / this.desired_rate));
+		this.iterator.run = function():Void {
+			this.update_sim();
+			Common.gTextInfo.update_sim();
+		}
 	}
 }

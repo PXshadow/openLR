@@ -2,6 +2,9 @@ package ui.tool;
 
 import global.Common;
 import openfl.display.MovieClip;
+import openfl.events.KeyboardEvent;
+import openfl.ui.Keyboard;
+
 import ui.tool.ToolBase;
 import ui.tool.lr.*;
 import ui.tool.icon.*;
@@ -35,6 +38,8 @@ class Toolbar extends MovieClip
 	{
 		super();
 		Common.gToolbar = this;
+		
+		Common.gStage.addEventListener(KeyboardEvent.KEY_UP, key_tool_switch);
 		
 		tool = new ToolPencil();
 		
@@ -96,6 +101,31 @@ class Toolbar extends MovieClip
 		this.swGreen.y = 33;
 		this.swGreen.x = 60;
 	}
+	
+	private function key_tool_switch(e:KeyboardEvent):Void 
+	{
+		if (e.keyCode == Keyboard.Q || e.keyCode == Keyboard.F1) {
+			Common.gToolBase.disable();
+			tool = new ToolPencil();
+		}
+		if (e.keyCode == Keyboard.W || e.keyCode == Keyboard.F2) {
+			Common.gToolBase.disable();
+			tool = new ToolLine();
+		}
+		if (e.keyCode == Keyboard.E || e.keyCode == Keyboard.F3) {
+			Common.gToolBase.disable();
+			tool = new ToolEraser();
+		}
+		if (e.keyCode == Keyboard.NUMBER_1) {
+			Common.line_type = 0;
+		}
+		if (e.keyCode == Keyboard.NUMBER_2) {
+			Common.line_type = 1;
+		}
+		if (e.keyCode == Keyboard.NUMBER_3) {
+			Common.line_type = 2;
+		}
+	}
 	public function set_play_mode() {
 		this.pencil.disable();
 		this.line.disable();
@@ -104,6 +134,7 @@ class Toolbar extends MovieClip
 		this.swBlue.disable();
 		this.swGreen.disable();
 		this.swRed.disable();
+		Common.gStage.removeEventListener(KeyboardEvent.KEY_DOWN, key_tool_switch);
 	}
 	public function set_edit_mode() {
 		this.pencil.enable();
@@ -113,5 +144,6 @@ class Toolbar extends MovieClip
 		this.swBlue.enable();
 		this.swRed.enable();
 		this.swGreen.enable();
+		Common.gStage.addEventListener(KeyboardEvent.KEY_UP, key_tool_switch);
 	}
 }

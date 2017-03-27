@@ -154,7 +154,7 @@ class Grid
 			Grid.grid[line.gridList[i][0]][line.gridList[i][1]].storage2[line.ID] = null;
 		}
 	}
-	public function snap(x:Float, y:Float, vert:Int, invert:Bool):Array<Dynamic>
+	public function snap(x:Float, y:Float, vert:Int, invert:Bool):Array<Dynamic> //if mouse is close enough to line end when mouse down, line will snap to line
 	{
 		var _loc2:Float = Math.pow(Common.svar_snap_distance / Common.gTrack.scaleX, 2);
 		var _loc10:Float = x;
@@ -186,7 +186,6 @@ class Grid
 						var _loc1:LineBase = grid[_loc4][_loc3].storage2[_loc16];
 						_loc6 = Math.pow(x - _loc1.x1, 2) + Math.pow(y - _loc1.y1, 2);
 						_loc7 = Math.pow(x - _loc1.x2, 2) + Math.pow(y - _loc1.y2, 2);
-						trace(_loc16);
 						if (_loc6 < _loc2)
 						{
 							_loc2 = _loc6;
