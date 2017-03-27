@@ -1,5 +1,6 @@
 package;
 
+import lr.settings.SettingsMenu;
 import openfl.display.Loader;
 import openfl.display.MovieClip;
 import openfl.display.Sprite;
@@ -68,6 +69,8 @@ class Main extends Sprite
 	
 	private var loadManager:LoadManager;
 	
+	private var settings_box:SettingsMenu;
+	
 	public function new() 
 	{
 		super(); //In Haxe, a super must be called when classes inherit
@@ -113,7 +116,29 @@ class Main extends Sprite
 		
 		this.textInfo = new TextInfo();
 		this.visContainer.addChild(this.textInfo);
+		
+		this.settings_box = new SettingsMenu();
+		this.visContainer.addChild(this.settings_box);
+		this.settings_box.visible = false;
+		
 		this.visContainer.visible = false;
+	}
+	public function toggleSettings_box()
+	{
+		if (!this.settings_box.visible) {
+			Common.svar_game_mode = "settings";
+			this.settings_box.visible = true;
+			this.track.visible = false;
+			this.toolBar.visible = false;
+			this.textInfo.visible = false;
+		} else {
+			this.settings_box.visible = false;
+			this.track.visible = true;
+			this.toolBar.visible = true;
+			this.textInfo.visible = true;
+			Common.svar_game_mode = "edit";
+			Common.gToolBase.enable();
+		}
 	}
 	private function resize(e:Event):Void
 	{
@@ -129,6 +154,9 @@ class Main extends Sprite
 		if (Common.gCamera != null) {
 			Common.gCamera.update_pan_bounds();
 		}
+		
+		this.settings_box.x = (this.stage.stageWidth * 0.5) - (this.settings_box.width * 0.5);
+		this.settings_box.y = (this.stage.stageHeight * 0.5) - (this.settings_box.height * 0.5);
 	}
 	public function return_to_origin(_x:Float = 0, _y:Float = 0) {
 		this.track.x = this.stage.stageWidth * 0.5 - _x;

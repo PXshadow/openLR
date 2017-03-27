@@ -37,12 +37,20 @@ class Track extends MovieClip
 	{
 		Common.gGrid.massLineIndex(line);
 		this.back_layer.addChild(grid.lines[grid.lines.length - 1]);
-		if (Common.cvar_line_render_mode == 0 || Common.cvar_line_render_mode == 2)
-		{
-			grid.lines[grid.lines.length - 1].render("edit");
-		} else if (Common.cvar_line_render_mode == 1 || Common.cvar_line_render_mode == 3) {
-			grid.lines[grid.lines.length - 1].render("play");
+		if (!Common.svar_sim_running) {
+			if (!Common.cvar_preview_mode) {
+				grid.lines[grid.lines.length - 1].render("edit");
+			} else {
+				grid.lines[grid.lines.length - 1].render("play");
+			}
+		} else {
+			if (!Common.cvar_color_play) {
+				grid.lines[grid.lines.length - 1].render("play");
+			} else {
+				grid.lines[grid.lines.length - 1].render("edit");
+			}
 		}
+		//grid.lines[grid.lines.length - 1].render("play");
 	}
 	public function render_preview_line(_a:Point, _b:Point) 
 	{
@@ -61,24 +69,26 @@ class Track extends MovieClip
 		this.graphics.clear();
 	}
 	public function set_rendermode_play() {
-		if (Common.cvar_line_render_mode == 0) {
-			for (a in 0...grid.lines.length) {
-				if (grid.lines[a] != null)
-				{
+		for (a in 0...grid.lines.length) {
+			if (grid.lines[a] != null)
+			{
+				if (!Common.cvar_color_play) {
 					grid.lines[a].render("play");
-				}
-			}
-			Common.cvar_line_render_mode = 1;
-		}
-	}
-	public function set_rendermode_edit() {
-		if (Common.cvar_line_render_mode == 1) {
-			for (a in 0...grid.lines.length) {
-				if (grid.lines[a] != null) {
+				} else {
 					grid.lines[a].render("edit");
 				}
 			}
-			Common.cvar_line_render_mode = 0;
+		}
+	}
+	public function set_rendermode_edit() {
+		for (a in 0...grid.lines.length) {
+			if (grid.lines[a] != null) {
+				if (!Common.cvar_preview_mode) {
+					grid.lines[a].render("edit");
+				} else {
+					grid.lines[a].render("play");
+				}
+			}
 		}
 	}
 	public function clear_stage()

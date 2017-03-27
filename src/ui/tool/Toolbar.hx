@@ -26,6 +26,7 @@ class Toolbar extends MovieClip
 	private var eraser:IconEraser;
 	public var pan:IconPan;
 	public var pause:IconPause;
+	private var settings:IconSettings;
 	private var swBlue:SwatchBlue;
 	private var swRed:SwatchRed;
 	private var swGreen:SwatchGreen;
@@ -79,6 +80,10 @@ class Toolbar extends MovieClip
 		this.addChild(save);
 		this.save.x = 210;
 		
+		settings = new IconSettings();
+		this.addChild(settings);
+		this.settings.x = 240;
+		
 		this.graphics.clear();
 		this.graphics.beginFill(0xFFFFFF, 1);
 		this.graphics.moveTo(0, 0);
@@ -131,6 +136,8 @@ class Toolbar extends MovieClip
 		this.line.disable();
 		this.eraser.disable();
 		this.pan.disable();
+		this.save.disable();
+		this.settings.disable();
 		this.swBlue.disable();
 		this.swGreen.disable();
 		this.swRed.disable();
@@ -141,6 +148,8 @@ class Toolbar extends MovieClip
 		this.line.enable();
 		this.eraser.enable();
 		this.pan.enable();
+		this.save.disable();
+		this.settings.disable();
 		this.swBlue.enable();
 		this.swRed.enable();
 		this.swGreen.enable();

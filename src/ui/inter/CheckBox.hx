@@ -15,7 +15,7 @@ import openfl.text.TextFormatAlign;
 class CheckBox extends MovieClip
 {
 	var status:Bool = false;
-	var box:MovieClip;
+	public var box:MovieClip;
 	var font:TextFormat = new TextFormat(Assets.getFont("fonts/Verdana.ttf").fontName, 12, 0, null, null, null, null, null, TextFormatAlign.LEFT);
 	var label:TextField;
 	public function new(_label:String = "Check Box", _status:Bool = false) {
@@ -30,6 +30,8 @@ class CheckBox extends MovieClip
 		this.label.x = 16;
 		this.label.y = -2;
 		this.label.text = _label;
+		this.label.height = 18;
+		this.label.mouseEnabled = false;
 		this.render();
 	}
 	public function toggle():Bool
@@ -39,12 +41,12 @@ class CheckBox extends MovieClip
 		} else if (!status) {
 			status = true;
 		}
-		return(status);
 		this.render();
+		return(status);
 	}
 	public function render() {
 		this.box.graphics.clear();
-		this.box.graphics.lineStyle(2, 0x0099FF, 1);
+		this.box.graphics.lineStyle(2, 0, 1);
 		if (!status) {
 			this.box.graphics.beginFill(0xFFFFFF, 1);
 		} else if (status) {

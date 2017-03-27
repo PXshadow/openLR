@@ -75,7 +75,6 @@ class SaveManager
 		file.writeString("\r\n" + "Stage Dimensions: " + Common.stage_width + ", " + Common.stage_height);
 		file.writeString("\r\n" + "Line Count: " + Common.sLineCount + ", " + Common.sBLueLineCount + ", " + Common.sRedLineCount + ", " + Common.sGreenLineCount + ", ");
 		file.writeString("\r\n" + "Line ID: " + Common.sLineID);
-		file.writeString("\r\n" + "Render: " + Common.cvar_line_render_mode);
 		file.writeString("\r\n" + "track info: Scale " + Common.track_scale + ", Position " + Common.gTrack.x + ", " + Common.gTrack.y);
 		file.writeString("\r\n");
 		file.close(); //this is important, otherwise the file is held hostage by the program until it closes

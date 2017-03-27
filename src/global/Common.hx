@@ -73,10 +73,12 @@ class Common
 	public static var cvar_angle_snap_offset:Int = 0;
 	public static var cvar_angle_snap:Bool = false;
 	public static var cvar_icon_hit_display:Bool = false;
-	public static var cvar_line_render_mode:Int = 0; //0 = color, 1 = black, 2 = color play, 3 = preview
 	public static var cvar_track_author:String = "Unknown";
 	public static var cvar_track_name:String = "Untitled";
 	public static var cvar_author_comment:String = "This save was made in an alpha version of openLR.";
+	public static var cvar_color_play:Bool = false;
+	public static var cvar_preview_mode:Bool = false;
+	public static var cvar_hit_test:Bool = false;
 	
 	public static var svar_frame_rate:Float;
 	public static var svar_framerate_avg_rate:Int = 60;
