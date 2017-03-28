@@ -24,6 +24,10 @@ class IconPencil extends IconBase
 	}
 	override public function down(e:MouseEvent) {
 		Common.gToolBase.disable();
+		Toolbar.icon.deselect();
+		Toolbar.icon = this;
+		this.select();
 		Toolbar.tool = new ToolPencil();
+		Toolbar.swatch.select();
 	}
 }

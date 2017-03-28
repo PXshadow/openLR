@@ -20,6 +20,8 @@ class Toolbar extends MovieClip
 {
 
 	public static var tool:ToolBase;
+	public static var icon:IconBase;
+	public static var swatch:IconBase;
 	private var pencil:IconPencil;
 	private var line:IconLine;
 	private var save:IconSave;
@@ -87,9 +89,9 @@ class Toolbar extends MovieClip
 		this.graphics.clear();
 		this.graphics.beginFill(0xFFFFFF, 1);
 		this.graphics.moveTo(0, 0);
-		this.graphics.lineTo(this.width, 0);
-		this.graphics.lineTo(this.width, this.height);
-		this.graphics.lineTo(0, this.height);
+		this.graphics.lineTo(270, 0);
+		this.graphics.lineTo(270, 30);
+		this.graphics.lineTo(0, 30);
 		this.graphics.lineTo(0, 0);
 		
 		this.swBlue = new SwatchBlue();
@@ -105,30 +107,65 @@ class Toolbar extends MovieClip
 		this.addChild(swGreen);
 		this.swGreen.y = 33;
 		this.swGreen.x = 60;
+		
+		Toolbar.icon = pencil;
+		icon.select();
+		Toolbar.swatch = swBlue;
+		swBlue.select();
 	}
 	
 	private function key_tool_switch(e:KeyboardEvent):Void 
 	{
 		if (e.keyCode == Keyboard.Q || e.keyCode == Keyboard.F1) {
 			Common.gToolBase.disable();
+			icon.deselect();
 			tool = new ToolPencil();
+			icon = pencil;
+			icon.select();
+			swatch.select();
 		}
 		if (e.keyCode == Keyboard.W || e.keyCode == Keyboard.F2) {
 			Common.gToolBase.disable();
+			icon.deselect();
 			tool = new ToolLine();
+			icon = line;
+			icon.select();
+			swatch.select();
 		}
 		if (e.keyCode == Keyboard.E || e.keyCode == Keyboard.F3) {
 			Common.gToolBase.disable();
+			icon.deselect();
 			tool = new ToolEraser();
+			icon = eraser;
+			icon.select();
+			swatch.deselect();
+			Common.line_type = -1;
+		}
+		if (e.keyCode == Keyboard.R || e.keyCode == Keyboard.F4) {
+			Common.gToolBase.disable();
+			icon.deselect();
+			tool = new ToolPan();
+			icon = pan;
+			icon.select();
+			swatch.deselect();
 		}
 		if (e.keyCode == Keyboard.NUMBER_1) {
+			swatch.deselect();
 			Common.line_type = 0;
+			swatch = swBlue;
+			swatch.select();
 		}
 		if (e.keyCode == Keyboard.NUMBER_2) {
+			swatch.deselect();
 			Common.line_type = 1;
+			swatch = swRed;
+			swatch.select();
 		}
 		if (e.keyCode == Keyboard.NUMBER_3) {
+			swatch.deselect();
 			Common.line_type = 2;
+			swatch = swGreen;
+			swatch.select();
 		}
 	}
 	public function set_play_mode() {

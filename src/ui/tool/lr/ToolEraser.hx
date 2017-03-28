@@ -1,6 +1,7 @@
 package ui.tool.lr;
 
 import global.Common;
+import lr.line.LineBase;
 import openfl.display.MovieClip;
 import openfl.events.MouseEvent;
 import openfl.utils.Object;
@@ -51,7 +52,7 @@ class ToolEraser extends ToolBase
 				} // end if
 				for (_loc21 in 0...Grid.grid[_loc7][_loc5].storage.length)
 				{
-					var _loc1:Dynamic = Grid.grid[_loc7][_loc5].storage[_loc21];
+					var _loc1:LineBase = Grid.grid[_loc7][_loc5].storage[_loc21];
 					if (_loc1 == null) {
 						continue;
 					}
@@ -63,7 +64,13 @@ class ToolEraser extends ToolBase
 					var _loc4:Float = (_loc3 * _loc1.dx + _loc2 * _loc1.dy) * _loc1.invSqrDis;
 					if (_loc12 < Common.svar_eraser_size * _loc9 || _loc13 < Common.svar_eraser_size * _loc9 || _loc11 < Common.svar_eraser_size * _loc9 && _loc4 >= 0 && _loc4 <= 1)
 					{
-						Common.gGrid.remove_line(_loc1, _loc7, _loc5);
+						if (Common.line_type == -1) {
+							Common.gGrid.remove_line(_loc1, _loc7, _loc5);
+						} else {
+							if (_loc1.type == Common.line_type) {
+								Common.gGrid.remove_line(_loc1, _loc7, _loc5);
+							}
+						}
 						return;
                     }
                 } // end if

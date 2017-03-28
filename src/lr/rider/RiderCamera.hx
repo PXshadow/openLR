@@ -20,7 +20,7 @@ class RiderCamera
 		Common.gCamera = this;
 	}
 	public function pan(dot:CPoint) {
-		var _locPoint:Point = Common.gTrack.localToGlobal(dot.loc);
+		var _locPoint:Point = Common.gTrack.localToGlobal(new Point(dot.x, dot.y));
 		var _locXPan:Float = 0;
 		var _locYPan:Float = 0;
 		if (_locPoint.x > this.right_bound) {

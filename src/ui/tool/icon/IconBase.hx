@@ -85,4 +85,16 @@ class IconBase extends MovieClip
 		this.removeEventListener(MouseEvent.MOUSE_OUT, enable_tool);
 		this.alpha = 0.25;
 	}
+	public function select() {
+		this.graphics.clear();
+		this.graphics.lineStyle(2, 0, 1);
+		this.graphics.moveTo(0, 0);
+		this.graphics.lineTo(30, 0);
+		this.graphics.lineTo(30, 30);
+		this.graphics.lineTo(0, 30);
+		this.graphics.lineTo(0, 0);
+	}
+	public function deselect() {
+		this.graphics.clear();
+	}
 }

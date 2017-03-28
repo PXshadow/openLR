@@ -25,7 +25,7 @@ class RiderBase
 	public var saveFrame:Vector<CPoint>;
 	public var g:Object;
 	public var bosh:MovieClip;
-	public var recorded_frames:Array<Array<Array<Float>>>;
+	public var recorded_frames:Array<Array<Array<Dynamic>>>;
 	
 	private var body:MovieClip;
 	private var leftArm:MovieClip;
@@ -215,6 +215,7 @@ class RiderBase
 			this.recorded_frames[Common.sim_frames][i][3] = anchors[i].vy;
 			this.recorded_frames[Common.sim_frames][i][4] = anchors[i].dx;
 			this.recorded_frames[Common.sim_frames][i][5] = anchors[i].dy;
+			this.recorded_frames[Common.sim_frames][i][6] = Stick.crash;
 		}
 	}
 	public function inject_frame(_frame) {
@@ -225,7 +226,9 @@ class RiderBase
 			anchors[i].vy = this.recorded_frames[_frame][i][3];
 			anchors[i].dx = this.recorded_frames[_frame][i][4];
 			anchors[i].dy = this.recorded_frames[_frame][i][5];
+			Stick.crash = this.recorded_frames[_frame][i][6];
 		}
+		//this.camera.pan(anchors[4]);
 		Common.sim_frames = _frame;
 		this.render_body();
 	}
@@ -240,9 +243,11 @@ class RiderBase
 				anchors[i].vy = this.recorded_frames[Common.sim_frames][i][3];
 				anchors[i].dx = this.recorded_frames[Common.sim_frames][i][4];
 				anchors[i].dy = this.recorded_frames[Common.sim_frames][i][5];
+				Stick.crash = this.recorded_frames[Common.sim_frames][i][6];
 			}
 		}
 		this.render_body();
+		this.camera.pan(anchors[4]);
 	}
 	public function step_forward() {
 		this.step_rider();

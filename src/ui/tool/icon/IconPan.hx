@@ -25,7 +25,11 @@ class IconPan extends IconBase
 	}
 	override public function down(e:MouseEvent) {
 		Common.gToolBase.disable();
+		Toolbar.icon.deselect();
+		Toolbar.icon = this;
+		this.select();
 		Toolbar.tool = new ToolPan();
+		Toolbar.swatch.deselect();
 	}
 	override private function double_click(e:MouseEvent) {
 		Common.gCode.return_to_origin();
