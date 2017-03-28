@@ -25,6 +25,7 @@ class RiderBase
 	public var saveFrame:Vector<CPoint>;
 	public var g:Object;
 	public var bosh:MovieClip;
+	public var recorded_frames:Array<Array<Array<Float>>>;
 	
 	private var body:MovieClip;
 	private var leftArm:MovieClip;
@@ -54,6 +55,7 @@ class RiderBase
 		this.Start = new StartPointVis();
 		Common.gTrack.back_layer.addChild(this.Start);
 		
+		this.recorded_frames = new Array();
 		this.init_rider();
 	}
 	private function getAssets() {
@@ -199,6 +201,51 @@ class RiderBase
 		}
 		this.render_body();
 		this.camera.pan(anchors[4]);
+		this.record_frame();
+	}
+	
+	function record_frame() 
+	{
+		this.recorded_frames[Common.sim_frames] = new Array();
+		for (i in 0...anchors.length) {
+			this.recorded_frames[Common.sim_frames][i] = new Array();
+			this.recorded_frames[Common.sim_frames][i][0] = anchors[i].x;
+			this.recorded_frames[Common.sim_frames][i][1] = anchors[i].y;
+			this.recorded_frames[Common.sim_frames][i][2] = anchors[i].vx;
+			this.recorded_frames[Common.sim_frames][i][3] = anchors[i].vy;
+			this.recorded_frames[Common.sim_frames][i][4] = anchors[i].dx;
+			this.recorded_frames[Common.sim_frames][i][5] = anchors[i].dy;
+		}
+	}
+	public function inject_frame(_frame) {
+		for (i in 0...anchors.length) {
+			anchors[i].x = this.recorded_frames[_frame][i][0];
+			anchors[i].y = this.recorded_frames[_frame][i][1];
+			anchors[i].vx = this.recorded_frames[_frame][i][2];
+			anchors[i].vy = this.recorded_frames[_frame][i][3];
+			anchors[i].dx = this.recorded_frames[_frame][i][4];
+			anchors[i].dy = this.recorded_frames[_frame][i][5];
+		}
+		Common.sim_frames = _frame;
+		this.render_body();
+	}
+	public function step_back()
+	{
+		if (Common.sim_frames > 0) {
+			Common.sim_frames -= 1;
+			for (i in 0...anchors.length) {
+				anchors[i].x = this.recorded_frames[Common.sim_frames][i][0];
+				anchors[i].y = this.recorded_frames[Common.sim_frames][i][1];
+				anchors[i].vx = this.recorded_frames[Common.sim_frames][i][2];
+				anchors[i].vy = this.recorded_frames[Common.sim_frames][i][3];
+				anchors[i].dx = this.recorded_frames[Common.sim_frames][i][4];
+				anchors[i].dy = this.recorded_frames[Common.sim_frames][i][5];
+			}
+		}
+		this.render_body();
+	}
+	public function step_forward() {
+		this.step_rider();
 	}
 	private function render_body()
 	{

@@ -68,10 +68,12 @@ class Common
 	public static var sim_rider_speed_top:Float = 0;
 	public static var sim_slow_motion:Bool = false;
 	public static var sim_slow_motion_rate:Int = 5;
+	public static var sim_default_rate:Int = 40;
 	
 	public static var cvar_angle_snap_float:Float = 15;
 	public static var cvar_angle_snap_offset:Int = 0;
 	public static var cvar_angle_snap:Bool = false;
+	public static var cvar_line_snap:Bool = true;
 	public static var cvar_icon_hit_display:Bool = false;
 	public static var cvar_track_author:String = "Unknown";
 	public static var cvar_track_name:String = "Untitled";

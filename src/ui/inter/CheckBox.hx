@@ -44,6 +44,10 @@ class CheckBox extends MovieClip
 		this.render();
 		return(status);
 	}
+	public function update(_stat:Bool) {
+		this.status = _stat;
+		this.render();
+	}
 	public function render() {
 		this.box.graphics.clear();
 		this.box.graphics.lineStyle(2, 0, 1);

@@ -12,17 +12,19 @@ import lr.rider.RiderBase;
 class SimManager 
 {
 	var iterator:Timer;
-	var desired_rate:Int = 40;
 	var rider:RiderBase;
 	var sim_running:Bool = false;
+	public var fast_forward:Bool = false;
 	public var paused:Bool = false;
 	public var flagged:Bool = false;
+	public var rewind:Bool = false;
 	private var flag_av:Bool = false;
 	public function new() 
 	{
 		Common.gSimManager = this;
 		this.rider = new RiderBase();
 		Common.gStage.addEventListener(KeyboardEvent.KEY_DOWN, key_toggle_modifiers);
+		Common.gStage.addEventListener(KeyboardEvent.KEY_UP, key_toggle_modifiers_up);
 	}
 	public function start_sim() {
 		if (!flagged) {
@@ -39,7 +41,7 @@ class SimManager
 			paused = false;
 		}
 		if (!sim_running) {
-			this.iterator = new Timer(1000 * (1 / this.desired_rate));
+			this.iterator = new Timer(1000 * (1 / Common.sim_default_rate));
 			this.iterator.run = function():Void {
 				this.update_sim();
 				Common.gTextInfo.update_sim();
@@ -50,8 +52,17 @@ class SimManager
 	}
 	function update_sim()
 	{
-		this.rider.step_rider();
-		++Common.sim_frames;
+		if (!this.fast_forward && !this.rewind) {
+			this.rider.step_rider();
+			++Common.sim_frames;
+		} else if (this.fast_forward && !this.rewind) {
+			for (a in 0...4) {
+				this.rider.step_rider();
+				++Common.sim_frames;
+			}
+		} else if (this.rewind) {
+			this.rider.step_back();
+		}
 	}
 	public function end_sim()
 	{
@@ -66,7 +77,7 @@ class SimManager
 		this.paused = true;
 	}
 	public function resume_sim() {
-		this.iterator = new Timer(1000 / this.desired_rate);
+		this.iterator = new Timer(1000 / Common.sim_default_rate);
 		this.iterator.run = function():Void {
 			this.update_sim();
 			Common.gTextInfo.update_sim();
@@ -113,6 +124,21 @@ class SimManager
 				}
 			}
 		}
+		if (e.keyCode == Keyboard.SPACE) {
+			if (Common.svar_sim_running) {
+				if (!this.fast_forward) {
+					this.fast_forward = true;
+				} else {
+					this.fast_forward = false;
+				}
+			}
+		}
+		if (e.keyCode == Keyboard.CONTROL) {
+			if (Common.svar_sim_running) {
+				this.rewind = true;
+				this.fast_forward = false;
+			}
+		}
 		if (e.keyCode == Keyboard.Y) {
 			Common.gTrack.set_simmode_play();
 		}
@@ -134,12 +160,20 @@ class SimManager
 			}
 		}
 	}
-	
+	private function key_toggle_modifiers_up(e:KeyboardEvent):Void 
+	{
+		if (e.keyCode == Keyboard.CONTROL) {
+			this.rewind = false;
+			if (Common.svar_sim_running) {
+				Common.sim_frames += 1; //This is necesary as it prevents desync with the sim
+			}
+		}
+	}
 	function set_slow_speed() 
 	{
 		this.iterator.stop();
-		this.desired_rate = Common.sim_slow_motion_rate;
-		this.iterator = new Timer(1000 * (1 / this.desired_rate));
+		Common.sim_default_rate = Common.sim_slow_motion_rate;
+		this.iterator = new Timer(1000 * (1 / Common.sim_default_rate));
 		this.iterator.run = function():Void {
 			this.update_sim();
 			Common.gTextInfo.update_sim();
@@ -149,8 +183,8 @@ class SimManager
 	function set_reg_speed() 
 	{
 		this.iterator.stop();
-		this.desired_rate = 40;
-		this.iterator = new Timer(1000 * (1 / this.desired_rate));
+		Common.sim_default_rate = 40;
+		this.iterator = new Timer(1000 * (1 / Common.sim_default_rate));
 		this.iterator.run = function():Void {
 			this.update_sim();
 			Common.gTextInfo.update_sim();

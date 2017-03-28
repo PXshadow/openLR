@@ -220,6 +220,9 @@ class Grid
 			} else {
 				_loc9 = true;
 			}
+			if (!Common.cvar_line_snap) {
+				_loc9 = false;
+			}
 			var _locArray:Array<Dynamic> = new Array();
 			_locArray = [_loc10, _loc11, _loc9];
 		return (_locArray);

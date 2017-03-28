@@ -148,8 +148,8 @@ class Toolbar extends MovieClip
 		this.line.enable();
 		this.eraser.enable();
 		this.pan.enable();
-		this.save.disable();
-		this.settings.disable();
+		this.save.enable();
+		this.settings.enable();
 		this.swBlue.enable();
 		this.swRed.enable();
 		this.swGreen.enable();

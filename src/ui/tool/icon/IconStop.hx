@@ -28,6 +28,7 @@ class IconStop extends IconBase
 		Common.gToolbar.pan.visible = true;
 		Common.gToolbar.pause.visible = false;
 		Common.gTrack.set_simmode_stop();
+		Common.gSimManager.fast_forward = false;
 		if (!Common.gSimManager.paused) {
 			Common.gTrack.x = Common.track_last_pos_x;
 			Common.gTrack.y = Common.track_last_pos_y;
