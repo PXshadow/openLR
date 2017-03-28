@@ -57,7 +57,7 @@ class ToolLine extends ToolBase
 			x2 = _locSnapCheck[0];
 			y2 = _locSnapCheck[1];
 		}
-		if (Common.get_distance(c, d) >= Common.line_minLength) {
+		if (Common.get_distance(c, d) >= 1) {
 			var _loc1:Dynamic;
 			if (Common.line_type == 0) {
 				_loc1 = new LineFloor(x1, y1, x2, y2, this.mod_shift);

@@ -129,6 +129,7 @@ class Main extends Sprite
 	{
 		if (!this.settings_box.visible) {
 			Common.svar_game_mode = "settings";
+			this.settings_box.update();
 			this.settings_box.visible = true;
 			this.track.visible = false;
 			this.toolBar.visible = false;

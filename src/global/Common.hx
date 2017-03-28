@@ -81,6 +81,7 @@ class Common
 	public static var cvar_color_play:Bool = false;
 	public static var cvar_preview_mode:Bool = false;
 	public static var cvar_hit_test:Bool = false;
+	public static var cvar_contact_points:Bool = false;
 	
 	public static var svar_frame_rate:Float;
 	public static var svar_framerate_avg_rate:Int = 60;

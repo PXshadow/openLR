@@ -279,6 +279,12 @@ class RiderBase
 			this.bosh.graphics.lineTo(anchors[3].x, anchors[3].y);
 			this.bosh.graphics.lineTo(anchors[7].x, anchors[7].y);
 		}
+		if (Common.cvar_contact_points) {
+			this.body.alpha = this.sled.alpha = this.leftArm.alpha = this.rightArm.alpha = this.leftLeg.alpha = this.rightLeg.alpha = 0.25;
+			this.render_bones();
+		} else {
+			this.body.alpha = this.sled.alpha = this.leftArm.alpha = this.rightArm.alpha = this.leftLeg.alpha = this.rightLeg.alpha = 1;
+		}
 		
 	}
 	public function collision() 
@@ -325,11 +331,11 @@ class RiderBase
 	}
 	public function render_bones() {
 		this.bosh.graphics.clear();
-		this.bosh.graphics.lineStyle(1, 0xFF0000, 1);
+		this.bosh.graphics.lineStyle(0.25, 0xFF0000, 1);
 		for (i in 0...anchors.length) {
 			this.bosh.graphics.drawCircle(anchors[i].x, anchors[i].y, 1);
 		}
-		this.bosh.graphics.lineStyle(1, 0x0000FF, 1);
+		this.bosh.graphics.lineStyle(0.25, 0x0000FF, 1);
 		for (b in 0...edges.length) {
 			this.bosh.graphics.moveTo(edges[b].a.x, edges[b].a.y);
 			this.bosh.graphics.lineTo(edges[b].b.x, edges[b].b.y);
