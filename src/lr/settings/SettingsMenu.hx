@@ -24,6 +24,8 @@ class SettingsMenu extends MovieClip
 	var slow_motion:CheckBox;
 	var contact_points:CheckBox;
 	var slow_rate:StepCounter;
+	var force_zoom:CheckBox;
+	var force_zoom_step:StepCounter;
 	
 	private var exit:SingleButton;
 	public function new() 
@@ -65,13 +67,25 @@ class SettingsMenu extends MovieClip
 		this.addChild(this.slow_motion);
 		this.slow_motion.y = 112;
 		this.slow_motion.box.addEventListener(MouseEvent.CLICK, toggle_slow_motion);
-		
 		this.slow_rate = new StepCounter();
 		this.addChild(this.slow_rate);
 		this.slow_rate.y = 128;
 		this.slow_rate.set_numeric_mode(1, 39, 1, 5, " FPS");
 		this.slow_rate.stepUp.addEventListener(MouseEvent.CLICK, increase_slow_rate);
 		this.slow_rate.stepDown.addEventListener(MouseEvent.CLICK, decrease_slow_rate);
+		
+		this.force_zoom = new CheckBox("Force Zoom", Common.cvar_force_zoom);
+		this.addChild(this.force_zoom);
+		this.force_zoom.x = 128;
+		this.force_zoom.y = 112;
+		this.force_zoom.box.addEventListener(MouseEvent.CLICK, toggle_force_zoom);
+		this.force_zoom_step = new StepCounter();
+		this.addChild(this.force_zoom_step);
+		this.force_zoom_step.x = 128;
+		this.force_zoom_step.y = 128;
+		this.force_zoom_step.set_numeric_mode(1, 24, 0.5, 2, "");
+		this.force_zoom_step.stepUp.addEventListener(MouseEvent.CLICK, inc_force_zoom);
+		this.force_zoom_step.stepDown.addEventListener(MouseEvent.CLICK, dec_force_zoom);
 		
 		this.sWidth = this.width;
 		this.sHeight = this.height;
@@ -88,6 +102,21 @@ class SettingsMenu extends MovieClip
 		this.exit = new SingleButton("Close", Common.gCode.toggleSettings_box);
 		this.addChild(exit);
 		this.exit.x = this.width + 5;
+	}
+	
+	private function dec_force_zoom(e:MouseEvent):Void 
+	{
+		Common.cvar_force_zoom_ammount = this.force_zoom_step.dec();
+	}
+	
+	private function inc_force_zoom(e:MouseEvent):Void 
+	{
+		Common.cvar_force_zoom_ammount = this.force_zoom_step.inc();
+	}
+	
+	private function toggle_force_zoom(e:MouseEvent):Void 
+	{
+		Common.cvar_force_zoom = this.force_zoom.toggle();
 	}
 	
 	private function decrease_slow_rate(e:MouseEvent):Void 

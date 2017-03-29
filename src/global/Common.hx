@@ -82,6 +82,9 @@ class Common
 	public static var cvar_preview_mode:Bool = false;
 	public static var cvar_hit_test:Bool = false;
 	public static var cvar_contact_points:Bool = false;
+	public static var cvar_force_zoom:Bool = false;
+	public static var cvar_force_zoom_ammount:Float = 2;
+	public static var cvar_prev_zoom_ammount:Float;
 	
 	public static var svar_frame_rate:Float;
 	public static var svar_framerate_avg_rate:Int = 60;

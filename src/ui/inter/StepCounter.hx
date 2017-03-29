@@ -114,15 +114,15 @@ class StepButton extends MovieClip
 		this.graphics.lineTo(26, 12);
 		this.graphics.lineTo(0, 12);
 		this.graphics.lineTo(0, 0);
+		this.graphics.endFill();
 		
-		this.graphics.beginFill(0, 1);
 		if (dir == 0) {
-			this.graphics.moveTo(10, 5);
-			this.graphics.lineTo(13, 1);
-			this.graphics.lineTo(16, 5);
+			this.graphics.moveTo(10, 7);
+			this.graphics.lineTo(13, 3);
+			this.graphics.lineTo(16, 7);
 		} else if (dir == 1) {
 			this.graphics.moveTo(10, 5);
-			this.graphics.lineTo(13, 11);
+			this.graphics.lineTo(13, 9);
 			this.graphics.lineTo(16, 5);
 		}
 		
@@ -140,15 +140,15 @@ class StepButton extends MovieClip
 		this.graphics.lineTo(26, 12);
 		this.graphics.lineTo(0, 12);
 		this.graphics.lineTo(0, 0);
+		this.graphics.endFill();
 		
-		this.graphics.beginFill(0, 1);
 		if (dir == 0) {
-			this.graphics.moveTo(10, 5);
-			this.graphics.lineTo(13, 1);
-			this.graphics.lineTo(16, 5);
+			this.graphics.moveTo(10, 7);
+			this.graphics.lineTo(13, 3);
+			this.graphics.lineTo(16, 7);
 		} else if (dir == 1) {
 			this.graphics.moveTo(10, 5);
-			this.graphics.lineTo(13, 11);
+			this.graphics.lineTo(13, 9);
 			this.graphics.lineTo(16, 5);
 		}
 	}
@@ -163,15 +163,15 @@ class StepButton extends MovieClip
 		this.graphics.lineTo(26, 12);
 		this.graphics.lineTo(0, 12);
 		this.graphics.lineTo(0, 0);
+		this.graphics.endFill();
 		
-		this.graphics.beginFill(0, 1);
 		if (dir == 0) {
-			this.graphics.moveTo(10, 5);
-			this.graphics.lineTo(13, 1);
-			this.graphics.lineTo(16, 5);
+			this.graphics.moveTo(10, 7);
+			this.graphics.lineTo(13, 3);
+			this.graphics.lineTo(16, 7);
 		} else if (dir == 1) {
 			this.graphics.moveTo(10, 5);
-			this.graphics.lineTo(13, 11);
+			this.graphics.lineTo(13, 9);
 			this.graphics.lineTo(16, 5);
 		}
 	}

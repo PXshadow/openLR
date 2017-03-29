@@ -143,14 +143,21 @@ class LoadManager
 			var _loc1:Dynamic;
 			if (trackData.lines[i].type == 0) {
 				_loc1 = new LineFloor(trackData.lines[i].x1, trackData.lines[i].y1, trackData.lines[i].x2, trackData.lines[i].y2, trackData.lines[i].flipped);
+				_loc1.ID = Common.sLineID;
 				Common.gTrack.add_vis_line(_loc1);
+				Common.gGrid.cache_stroke([_loc1]);
 			} else if (trackData.lines[i].type == 1) {
 				_loc1 = new LineAccel(trackData.lines[i].x1, trackData.lines[i].y1, trackData.lines[i].x2, trackData.lines[i].y2, trackData.lines[i].flipped);
+				_loc1.ID = Common.sLineID;
 				Common.gTrack.add_vis_line(_loc1);
+				Common.gGrid.cache_stroke([_loc1]);
 			} else if (trackData.lines[i].type == 2) {
 				_loc1 = new LineScene(trackData.lines[i].x1, trackData.lines[i].y1, trackData.lines[i].x2, trackData.lines[i].y2, trackData.lines[i].flipped);
+				_loc1.ID = Common.sLineID;
 				Common.gTrack.add_vis_line(_loc1);
+				Common.gGrid.cache_stroke([_loc1]);
 			}
+			Common.sLineID += 1;
 		}
 		Common.gCode.cancel_load();
 	}

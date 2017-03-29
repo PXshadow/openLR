@@ -33,21 +33,21 @@ class Track extends MovieClip
 		this.grid = new Grid();
 		this.simManager = new SimManager();
 	}
-	public function add_vis_line(line:Dynamic) //This is the function that must be called when adding a line. Do not take shortcuts!
+	public function add_vis_line(line:LineBase) //This is the function that must be called when adding a line. Do not take shortcuts!
 	{
 		Common.gGrid.massLineIndex(line);
-		this.back_layer.addChild(grid.lines[grid.lines.length - 1]);
+		this.back_layer.addChild(grid.lines[line.ID]);
 		if (!Common.svar_sim_running) {
 			if (!Common.cvar_preview_mode) {
-				grid.lines[grid.lines.length - 1].render("edit");
+				grid.lines[line.ID].render("edit");
 			} else {
-				grid.lines[grid.lines.length - 1].render("play");
+				grid.lines[line.ID].render("play");
 			}
 		} else {
 			if (!Common.cvar_color_play) {
-				grid.lines[grid.lines.length - 1].render("play");
+				grid.lines[line.ID].render("play");
 			} else {
-				grid.lines[grid.lines.length - 1].render("edit");
+				grid.lines[line.ID].render("edit");
 			}
 		}
 		//grid.lines[grid.lines.length - 1].render("play");

@@ -48,6 +48,10 @@ class SimManager
 			}
 			this.sim_running = true;
 		}
+		if (Common.cvar_force_zoom) {
+			Common.cvar_prev_zoom_ammount = Common.gTrack.scaleX;
+			Common.gTrack.scaleX = Common.gTrack.scaleY = Common.cvar_force_zoom_ammount;
+		}
 		Common.gCode.return_to_origin_sim();
 	}
 	function update_sim()
@@ -69,6 +73,9 @@ class SimManager
 		this.sim_running = false;
 		Common.sim_frames = 0;
 		this.iterator.stop();
+		if (Common.cvar_force_zoom) {
+			Common.gTrack.scaleX = Common.gTrack.scaleY = Common.cvar_prev_zoom_ammount;
+		}
 	}
 	public function pause_sim()
 	{
