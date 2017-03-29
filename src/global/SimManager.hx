@@ -147,7 +147,9 @@ class SimManager
 			}
 		}
 		if (e.keyCode == Keyboard.Y) {
-			Common.gTrack.set_simmode_play();
+			if (!e.controlKey) {
+				Common.gTrack.set_simmode_play();
+			}
 		}
 		if (e.keyCode == Keyboard.U) {
 			Common.gTrack.set_simmode_stop();

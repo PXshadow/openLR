@@ -20,9 +20,8 @@ class Grid
 	public static var grid:Map<Int, Map<Int, Object>>;
 	public static var undo_single:Array<LineBase>;
 	public static var redo_single:Array<LineBase>;
-	public static var undo_stroke:Array<Array<LineBase>>;
-	public static var redo_stroke:Array<Array<LineBase>>;
 	public static var history:Array<Array<Dynamic>>;
+	public static var history_index:Int = -1;
 	public function new()
 	{
 		this.lines = new Array();
@@ -30,8 +29,6 @@ class Grid
 		Grid.grid = new Map();
 		Grid.undo_single = new Array();
 		Grid.redo_single = new Array();
-		Grid.redo_stroke = new Array();
-		Grid.undo_stroke = new Array();
 		Grid.history = new Array();
 		Common.gStage.addEventListener(KeyboardEvent.KEY_UP, undo_redo);
 	}
@@ -40,7 +37,11 @@ class Grid
 	{
 		if (e.controlKey)
 		{
-			
+			if (e.keyCode == Keyboard.Z) {
+				this.undo_action();
+			} else if (e.keyCode == Keyboard.Y) {
+				this.redo_action();
+			}
 		}
 		if (e.keyCode == Keyboard.BACKSPACE)
 		{
@@ -54,6 +55,47 @@ class Grid
 			}
 		}
 	}
+	public function add_to_history(_act:String, _list:Array<LineBase>) {
+		if (Grid.history_index + 1 == Grid.history.length || Grid.history_index == -1) {
+			Grid.history.push([_act, _list]);
+		} else {
+			Grid.history.insert(Grid.history_index, _list);
+		}
+		Grid.history_index += 1;
+		trace(Grid.history[Grid.history_index], _act, _list);
+	}
+	function undo_action() {
+		if (Grid.history_index > -1) {
+			if (Grid.history[Grid.history_index][0] == "add") {
+				this.remove_stroke(Grid.history[Grid.history_index][1]);
+			} else if (Grid.history[Grid.history_index][0] == "sub") {
+				this.redo_stroke(Grid.history[Grid.history_index][1]);
+			}
+			Grid.history_index -= 1;
+		}
+	}
+	function redo_action() {
+		Grid.history_index += 1;
+		if (Grid.history_index < Grid.history.length - 1) {
+			if (Grid.history[Grid.history_index][0] == "add") {
+				this.redo_stroke(Grid.history[Grid.history_index][1]);
+			} else if (Grid.history[Grid.history_index][0] == "sub") {
+				this.remove_stroke(Grid.history[Grid.history_index][1]);
+			}
+		}
+	}
+	function redo_stroke(_list:Array<LineBase>) 
+	{
+		for (i in 0..._list.length) {
+			Common.gTrack.add_vis_line(_list[i]);
+		}
+	}
+	function remove_stroke(_list:Array<LineBase>) 
+	{
+		for (i in 0..._list.length) {
+			this.remove_line(_list[i], 0, 0);
+		}
+	}
 	
 	function redo_line() 
 	{
@@ -62,21 +104,23 @@ class Grid
 			var _loc1:LineBase = Grid.redo_single.pop();
 			Common.gTrack.add_vis_line(_loc1);
 			this.cache_stroke([_loc1]);
+			Common.gGrid.add_to_history("add", [_loc1]);
 		}
 	}
 	function undo_line()
 	{
 		if (lines.length > 0) {
+			Common.gGrid.add_to_history("sub", [Grid.undo_single[Grid.undo_single.length - 1]]);
 			this.remove_line(Grid.undo_single[Grid.undo_single.length - 1], 0, 0);
 		}
 	}
 	public function cache_stroke(_list:Array<LineBase>)
 	{
 		if (_list.length > 0) {
-			Grid.undo_stroke.push(_list);
 			for (i in 0..._list.length) {
 				Grid.undo_single.push(_list[i]);
 			}
+			this.add_to_history("add", _list);
 		}
 	}
 	public function massLineIndex(line:LineBase)
@@ -97,9 +141,6 @@ class Grid
 		Common.sLineCount += 1;
 		Common.gTextInfo.update();
 		this.registerInGrid(line);
-		trace(lines);
-		trace(Grid.redo_single);
-		trace(Grid.undo_single);
 	}
 	public function new_grid()
 	{
@@ -213,15 +254,14 @@ class Grid
 	}
 	public function remove_line(line:LineBase, _x:Int, _y:Int)
 	{
+		if (this.lines[line.ID] == null) {
+			return;
+		}
 		this.remove_from_grid(line);
 		Common.gTrack.remove_line(line);
 		Grid.undo_single.remove(line);
 		Grid.redo_single.push(line);
 		this.lines[line.ID] = null;
-		trace(lines);
-		trace(Grid.redo_single);
-		trace(Grid.undo_single);
-
 		if (line.type == 0)
 		{
 			--Common.sBLueLineCount;

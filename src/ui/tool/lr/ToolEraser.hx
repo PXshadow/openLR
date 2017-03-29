@@ -15,20 +15,21 @@ import lr.line.Grid;
  */
 class ToolEraser extends ToolBase
 {
-	var debug_visualizer:MovieClip;
+	private var list:Array<LineBase>;
 	public function new() 
 	{
 		super();
 	}
 	override public function mouseDown(e:MouseEvent)
 	{
+		this.list = new Array();
 		Common.gStage.addEventListener(MouseEvent.MOUSE_MOVE, erase);
-		this.debug_visualizer = new MovieClip();
-		Common.gTrack.addChild(this.debug_visualizer);
 	}
 	override public function mouseUp(e:MouseEvent) {
+		if (this.list.length > 0) {
+			Common.gGrid.add_to_history("sub", this.list);
+		}
 		Common.gStage.removeEventListener(MouseEvent.MOUSE_MOVE, erase);
-		Common.gTrack.removeChild(this.debug_visualizer);
 	}
 	private function erase(e:MouseEvent):Void 
 	{
@@ -71,6 +72,7 @@ class ToolEraser extends ToolBase
 								Common.gGrid.remove_line(_loc1, _loc7, _loc5);
 							}
 						}
+						this.list.push(_loc1);
 						return;
                     }
                 } // end if
