@@ -12,3 +12,7 @@ assets/flash/components\.swf
 *.fla
 
 *.swf
+
+assets/ffmpeg/
+
+src/com/TBD/
