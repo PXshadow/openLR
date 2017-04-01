@@ -133,12 +133,15 @@ class LoadManager
 		this.visBGMC.visible = true;
 	}
 	function load_non_compressed() {
-		this.trackData.lines.reverse();
+		SaveManager.new_track = false;
+		Common.cvar_author_comment = this.trackData.description;
+		Common.svar_track_date_stamp = this.trackData.dateStamp;
 		Common.cvar_track_name = this.trackData.label;
 		Common.track_start_x = this.trackData.startPosition.x;
 		Common.track_start_y = this.trackData.startPosition.y;
 		Common.gTrack.set_rider_start(this.trackData.startPosition.x, this.trackData.startPosition.y);
 		Common.gCode.return_to_origin(this.trackData.startPosition.x, this.trackData.startPosition.y);
+		this.trackData.lines.reverse();
 		for (i in 0...trackData.lines.length) {
 			var _loc1:Dynamic;
 			if (trackData.lines[i].type == 0) {

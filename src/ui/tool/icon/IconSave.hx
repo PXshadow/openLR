@@ -12,10 +12,10 @@ import sys.FileSystem;
 import global.Common;
 import ui.tool.Toolbar;
 import ui.inter.SingleButton;
-import file.SaveManager;
 import file.LoadManager;
 import ui.inter.ConfirmDialog;
 import ui.inter.InputText;
+import file.SaveManager;
 
 /**
  * ...
@@ -27,10 +27,8 @@ class IconSave extends IconBase
 	private var menu:MovieClip;
 	private var new_track:SingleButton;
 	private var save_track:SingleButton;
-	private var saveManager:SaveManager;
 	private var load_track:SingleButton;
 	private var loadManager:LoadManager;
-	private var save_name_input:InputText;
 	private var safety_dialog:ConfirmDialog;
 	public function new() 
 	{
@@ -53,7 +51,6 @@ class IconSave extends IconBase
 			this.removeChild(this.menu);
 			this.open = false;
 		} else if (!open) {
-			this.saveManager = new SaveManager();
 			this.loadManager = new LoadManager();
 			
 			this.menu = new MovieClip();
@@ -68,15 +65,11 @@ class IconSave extends IconBase
 			this.menu.y = this.height + 5;
 			this.menu.x = 5;
 			
-			this.save_track = new SingleButton("Save Track", this.getSaveInfo);
+			this.save_track = new SingleButton("Save Track", this.open_save_menu);
 			this.menu.addChild(this.save_track);
 			this.save_track.y = this.new_track.height;
-			this.save_name_input = new InputText(Common.cvar_track_name);
-			this.menu.addChild(save_name_input);
-			this.save_name_input.x = this.save_track.width + 5;
-			this.save_name_input.y = this.save_track.y;
 			
-			this.load_track = new SingleButton("Load JSON", this.show_loader);
+			this.load_track = new SingleButton("Load Track", this.show_loader);
 			this.menu.addChild(this.load_track);
 			this.load_track.y = this.save_track.y + this.load_track.height;
 			
@@ -92,42 +85,16 @@ class IconSave extends IconBase
 	function make_new_track() 
 	{
 		this.show_menu();
+		SaveManager.new_track = true;
 		Common.gTrack.clear_stage();
 	}
 	
-	function getSaveInfo() 
+	function open_save_menu() 
 	{
-		this.show_menu();
-		Common.cvar_track_name = this.save_name_input.input_field.text;
-		if (!FileSystem.exists("saves/" + Common.cvar_track_name + ".json")) {
-			Common.gSaveManager.generate_save_json();
-			trace("safe to save");
-		} else {
-			this.prompt_user();
-			trace("not safe to save");
-		}
-	}
-	function prompt_user() {
-		this.safety_dialog = new ConfirmDialog("A save with the name \"" + Common.cvar_track_name +"\" already exists." + "\n" + "Do you want to overwite this file?", this.confirm_save, this.cancel_save);
-		Common.gStage.addChild(this.safety_dialog);
-		this.safety_dialog.x = (Common.stage_width * 0.5) - (this.safety_dialog.width * 0.5);
-		this.safety_dialog.y = (Common.stage_height * 0.5) - (this.safety_dialog.height * 0.5);
-	}
-	
-	function confirm_save() 
-	{
-		Common.gSaveManager.generate_save_json();
-		Common.gStage.removeChild(this.safety_dialog);
-	}
-	function cancel_save()
-	{
-		Common.gStage.removeChild(this.safety_dialog);
+		Common.gCode.toggle_save_menu();
 	}
 	override private function disable_tool(e:MouseEvent):Void 
 	{
 		Common.gToolBase.disable();
-		if (!open) {
-			this.alpha = 0.75;
-		}
 	}
 }

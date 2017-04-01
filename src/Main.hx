@@ -67,6 +67,7 @@ class Main extends Sprite
 	private var textInfo:TextInfo;
 	private var FPS:FrameRate;
 	private var welcome_alert:AlertBox;
+	private var save_manager:SaveManager;
 	
 	private var loadManager:LoadManager;
 	
@@ -75,9 +76,12 @@ class Main extends Sprite
 	public function new() 
 	{
 		super(); //In Haxe, a super must be called when classes inherit
+		
 		this.init_env();
 		this.init_track();
-		this.mainFileInit = new FileStart();
+		
+		this.mainFileInit = new FileStart(); //checks for default folders and saved settings in the track
+		
 		var ranS:Int = Std.random(SplashText.splash.length) - 1;
 		this.welcome_alert = new AlertBox("Welcome to OpenLR " + Common.version + "! This is an early build, however I hope you find this version useful as it is intended to be. You can report bugs to:" + "\n \n" + "https://github.com/kevansevans/openLR/issues" + "\n \n" + SplashText.splash[ranS], this.start, "Continue");
 		this.addChild(this.welcome_alert);
@@ -123,6 +127,10 @@ class Main extends Sprite
 		this.visContainer.addChild(this.settings_box);
 		this.settings_box.visible = false;
 		
+		this.save_manager = new SaveManager();
+		this.visContainer.addChild(this.save_manager);
+		this.save_manager.visible = false;
+		
 		this.visContainer.visible = false;
 	}
 	public function toggleSettings_box()
@@ -136,6 +144,23 @@ class Main extends Sprite
 			this.textInfo.visible = false;
 		} else {
 			this.settings_box.visible = false;
+			this.track.visible = true;
+			this.toolBar.visible = true;
+			this.textInfo.visible = true;
+			Common.svar_game_mode = "edit";
+			Common.gToolBase.enable();
+		}
+	}
+	public function toggle_save_menu() {
+		if (this.save_manager.visible != true) {
+			Common.svar_game_mode = "saving";
+			this.save_manager.visible = true;
+			this.track.visible = false;
+			this.toolBar.visible = false;
+			this.textInfo.visible = false;
+			this.save_manager.update();
+		} else {
+			this.save_manager.visible = false;
 			this.track.visible = true;
 			this.toolBar.visible = true;
 			this.textInfo.visible = true;
@@ -157,6 +182,9 @@ class Main extends Sprite
 		if (Common.gCamera != null) {
 			Common.gCamera.update_pan_bounds();
 		}
+		
+		this.save_manager.x = (this.stage.stageWidth * 0.5) - (this.save_manager.width * 0.5);
+		this.save_manager.y = (this.stage.stageHeight * 0.5) - (this.save_manager.height * 0.5);
 		
 		this.settings_box.x = (this.stage.stageWidth * 0.5) - (this.settings_box.width * 0.5);
 		this.settings_box.y = (this.stage.stageHeight * 0.5) - (this.settings_box.height * 0.5);

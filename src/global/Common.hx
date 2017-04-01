@@ -74,9 +74,9 @@ class Common
 	public static var cvar_angle_snap_offset:Int = 0;
 	public static var cvar_angle_snap:Bool = false;
 	public static var cvar_line_snap:Bool = true;
-	public static var cvar_track_author:String = "Unknown";
+	public static var cvar_track_author:String = "Made by: Anonymous";
 	public static var cvar_track_name:String = "Untitled";
-	public static var cvar_author_comment:String = "This save was made in an alpha version of openLR.";
+	public static var cvar_author_comment:String = "This save was made in an alpha version of openLR. Please respect my rights as a track maker and avoid sharing this save without my permission.";
 	public static var cvar_color_play:Bool = false;
 	public static var cvar_preview_mode:Bool = false;
 	public static var cvar_hit_test:Bool = false;
@@ -84,6 +84,8 @@ class Common
 	public static var cvar_force_zoom:Bool = false;
 	public static var cvar_force_zoom_ammount:Float = 2;
 	public static var cvar_prev_zoom_ammount:Float;
+	public static var cvar_add_time_stamp = false;
+	public static var cvar_author_collab_list:Array<String>;
 	
 	public static var svar_frame_rate:Float;
 	public static var svar_framerate_avg_rate:Int = 60;
@@ -92,6 +94,7 @@ class Common
 	public static var svar_sim_running:Bool = false;
 	public static var svar_game_mode:String = "edit";
 	public static var svar_snap_distance:Int = 20;
+	public static var svar_track_date_stamp:String = "";
 	
 	public static var stage_width:Float;
 	public static var stage_height:Float;
