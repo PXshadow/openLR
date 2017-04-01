@@ -16,7 +16,7 @@
 	
 ## How to compile (Instructions may not work as is):
 	
-Install Haxe from http://haxe.org/
+Install Haxe from http://haxe.org/download/
 	
 Run in terminal the following commands:
 	
@@ -34,7 +34,6 @@ Run the command:
 	openfl build mac/linux/windows
 	
 Project will be compiled into bin folder. Be aware that you can compile to other platforms regardless of the platform you are on,
-However, it will not be a native C++ build and can take performance hits and or not function correctly. Please compile natively
-to your platform for best perfomance.
+however compiling to a non-native platform will not produce a native C++ build, and if distributed, will most like;y not perform correctly.
 
 If possible, on windows platform you can download Haxe Develop and use that as an IDE. OpenFL (and other libraries) will still need to be installed.
