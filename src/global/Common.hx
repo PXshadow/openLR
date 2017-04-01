@@ -74,7 +74,6 @@ class Common
 	public static var cvar_angle_snap_offset:Int = 0;
 	public static var cvar_angle_snap:Bool = false;
 	public static var cvar_line_snap:Bool = true;
-	public static var cvar_icon_hit_display:Bool = false;
 	public static var cvar_track_author:String = "Unknown";
 	public static var cvar_track_name:String = "Untitled";
 	public static var cvar_author_comment:String = "This save was made in an alpha version of openLR.";

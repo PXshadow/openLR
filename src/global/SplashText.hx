@@ -7,7 +7,6 @@ package global;
 class SplashText 
 {
 	public static var splash:Array<String> = [
-		"",
 		"Happy Riding!",
 		"You've met with a terrible fate," + "\n" + "Haven't you?",
 		"Build by {USERNAME}",
