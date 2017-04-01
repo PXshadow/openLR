@@ -9,8 +9,8 @@
 ## Haxelibs used:
 	
 	
-	openFL 4.9.1: http://www.openfl.org/
-	lime 4.0.2
+	openFL 4.9.2:
+	lime 4.0.3
 	
 	(If possible, openLR will always use the latest update for Haxe, openFL, and Lime)
 	
