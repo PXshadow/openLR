@@ -15,21 +15,14 @@ import global.Common;
  */
 class IconBase extends MovieClip
 {
-	var debug_alpha = 0;
 	var icon:Bitmap;
 	public function new() 
 	{
 		super();
-		
-		if (Common.cvar_icon_hit_display) //enable to see boundaries
-		{
-			this.debug_alpha = 1;
-		}
-		
 		//functional hit zone
 		this.graphics.clear();
-		this.graphics.lineStyle(2, 0x000000, debug_alpha);
-		this.graphics.beginFill(0xFFFFFF, debug_alpha);
+		this.graphics.lineStyle(2, 0x000000, 0);
+		this.graphics.beginFill(0xFFFFFF, 0);
 		this.graphics.moveTo(0, 0);
 		this.graphics.lineTo(30, 0);
 		this.graphics.lineTo(30, 30);
