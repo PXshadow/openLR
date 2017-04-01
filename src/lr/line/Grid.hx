@@ -11,8 +11,9 @@ import openfl.ui.Keyboard;
  *
  * This class is the more nitty gritty of line handling. Primarily this class helps break down drawn lines into aproximate groups and helps reduce the size of the loop needed for checking
  * physics collision. This class is also needed to allow the eraser tool to work.
+ * 
+ * This class also handles undo and redo of lines. Few lines of code are called from outside the class, such as ToolEraser calling an add to history when mouse is released.
  *
- * Also truth be told I barely understand how this class works. Only recently I learned that it indexes these lines into the negatives, so Map has to be used instead of Array.
  */
 class Grid
 {
@@ -35,23 +36,25 @@ class Grid
 
 	private function undo_redo(e:KeyboardEvent):Void
 	{
-		if (e.controlKey)
-		{
-			if (e.keyCode == Keyboard.Z) {
-				this.undo_action();
-			} else if (e.keyCode == Keyboard.Y) {
-				this.redo_action();
-			}
-		}
-		if (e.keyCode == Keyboard.BACKSPACE)
-		{
-			if (e.shiftKey)
+		if (Common.svar_sim_running) {
+			if (e.controlKey)
 			{
-				this.redo_line();
+				if (e.keyCode == Keyboard.Z) {
+					this.undo_action();
+				} else if (e.keyCode == Keyboard.Y) {
+					this.redo_action();
+				}
 			}
-			else if (!e.shiftKey)
+			if (e.keyCode == Keyboard.BACKSPACE)
 			{
-				this.undo_line();
+				if (e.shiftKey)
+				{
+					this.redo_line();
+				}
+				else if (!e.shiftKey)
+				{
+					this.undo_line();
+				}
 			}
 		}
 	}
@@ -62,7 +65,6 @@ class Grid
 			Grid.history.insert(Grid.history_index, _list);
 		}
 		Grid.history_index += 1;
-		trace(Grid.history[Grid.history_index], _act, _list);
 	}
 	function undo_action() {
 		if (Grid.history_index > -1) {
@@ -75,8 +77,8 @@ class Grid
 		}
 	}
 	function redo_action() {
-		Grid.history_index += 1;
 		if (Grid.history_index < Grid.history.length - 1) {
+			Grid.history_index += 1;
 			if (Grid.history[Grid.history_index][0] == "add") {
 				this.redo_stroke(Grid.history[Grid.history_index][1]);
 			} else if (Grid.history[Grid.history_index][0] == "sub") {
@@ -99,7 +101,6 @@ class Grid
 	
 	function redo_line() 
 	{
-		trace("Redo line");
 		if (Grid.redo_single.length > 0) {
 			var _loc1:LineBase = Grid.redo_single.pop();
 			Common.gTrack.add_vis_line(_loc1);
