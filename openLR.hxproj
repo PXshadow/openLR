@@ -16,17 +16,17 @@
   </output>
   <!-- Other classes to be compiled into your SWF -->
   <classpaths>
-    <class path="C:\HaxeToolkit\haxe\lib\openfl\4,9,1" />
-    <class path="C:\HaxeToolkit\haxe\lib\lime\4,0,2" />
+    <class path="C:\HaxeToolkit\haxe\lib\openfl\4,9,2" />
+    <class path="C:\HaxeToolkit\haxe\lib\lime\4,0,3" />
     <class path="C:\HaxeToolkit\haxe\lib\actuate\1,8,7" />
     <class path="src" />
-    <class path="C:\HaxeToolkit\haxe\lib\openfl\4,9,1\externs\core\openfl" />
-    <class path="C:\HaxeToolkit\haxe\lib\openfl\4,9,1\externs\extras" />
+    <class path="C:\HaxeToolkit\haxe\lib\openfl\4,9,2\externs\core\openfl" />
+    <class path="C:\HaxeToolkit\haxe\lib\openfl\4,9,2\externs\extras" />
     <class path="bin\windows\cpp\debug\haxe" />
   </classpaths>
   <!-- Build options -->
   <build>
-    <option directives="openfl=4.9.1&#xA;lime=4.0.2&#xA;actuate=1.8.7&#xA;tools=4.0.2&#xA;no-compilation&#xA;native&#xA;lime-native&#xA;lime-vorbis&#xA;openfl-native&#xA;lime-cffi&#xA;windows&#xA;desktop&#xA;display" />
+    <option directives="openfl=4.9.2&#xA;lime=4.0.3&#xA;actuate=1.8.7&#xA;tools=4.0.3&#xA;no-compilation&#xA;native&#xA;lime-native&#xA;lime-vorbis&#xA;openfl-native&#xA;lime-cffi&#xA;windows&#xA;desktop&#xA;display" />
     <option flashStrict="False" />
     <option noInlineOnDebug="False" />
     <option mainClass="ApplicationMain" />
