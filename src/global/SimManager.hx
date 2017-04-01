@@ -70,11 +70,13 @@ class SimManager
 	}
 	public function end_sim()
 	{
-		this.sim_running = false;
-		Common.sim_frames = 0;
-		this.iterator.stop();
-		if (Common.cvar_force_zoom) {
-			Common.gTrack.scaleX = Common.gTrack.scaleY = Common.cvar_prev_zoom_ammount;
+		if (this.sim_running) {
+			this.sim_running = false;
+			Common.sim_frames = 0;
+			this.iterator.stop();
+			if (Common.cvar_force_zoom) {
+				Common.gTrack.scaleX = Common.gTrack.scaleY = Common.cvar_prev_zoom_ammount;
+			}
 		}
 	}
 	public function pause_sim()
@@ -118,7 +120,9 @@ class SimManager
 	}
 	private function key_toggle_modifiers(e:KeyboardEvent):Void 
 	{
-		
+		if (Common.svar_game_mode != "edit") {
+			return;
+		}
 		if (e.keyCode == Keyboard.M) {
 			if (Common.svar_sim_running) {
 				if (Common.sim_slow_motion)
