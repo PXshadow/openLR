@@ -36,7 +36,7 @@ class Grid
 
 	private function undo_redo(e:KeyboardEvent):Void
 	{
-		if (Common.svar_sim_running) {
+		if (!Common.svar_sim_running) {
 			if (e.controlKey)
 			{
 				if (e.keyCode == Keyboard.Z) {
@@ -44,6 +44,7 @@ class Grid
 				} else if (e.keyCode == Keyboard.Y) {
 					this.redo_action();
 				}
+				trace(Grid.history_index);
 			}
 			if (e.keyCode == Keyboard.BACKSPACE)
 			{
@@ -59,10 +60,14 @@ class Grid
 		}
 	}
 	public function add_to_history(_act:String, _list:Array<LineBase>) {
-		if (Grid.history_index + 1 == Grid.history.length || Grid.history_index == -1) {
+		if (Grid.history.length == 0) {
 			Grid.history.push([_act, _list]);
+		} else if (Grid.history_index + 1 == Grid.history.length) {
+			Grid.history.push([_act, _list]);
+		} else if (Grid.history_index == -1 && Grid.history.length > 0) {
+			Grid.history.insert(0, [_act, _list]);
 		} else {
-			Grid.history.insert(Grid.history_index, _list);
+			Grid.history.insert(Grid.history_index, [_act, _list]);
 		}
 		Grid.history_index += 1;
 	}
