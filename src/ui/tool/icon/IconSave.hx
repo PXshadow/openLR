@@ -85,6 +85,7 @@ class IconSave extends IconBase
 	function take_screenshot() 
 	{
 		Common.gCode.take_screencap();
+		this.show_menu();
 	}
 	
 	function show_loader() 
