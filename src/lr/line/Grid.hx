@@ -44,7 +44,6 @@ class Grid
 				} else if (e.keyCode == Keyboard.Y) {
 					this.redo_action();
 				}
-				trace(Grid.history_index);
 			}
 			if (e.keyCode == Keyboard.BACKSPACE)
 			{
