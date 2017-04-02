@@ -70,7 +70,11 @@ class TextInfo extends MovieClip
 	}
 	public function update_textInfo_E()
 	{
-		textInfo_E.text = Common.svar_frame_rate + " FPS";
+		if (Common.svar_frame_rate > 120) {
+			textInfo_E.text = "+120 FPS";
+		} else {
+			textInfo_E.text = Common.svar_frame_rate + " FPS";
+		}
 	}
 	public function update_sim() {
 		var _locTime:String = Common.time(Common.sim_frames);

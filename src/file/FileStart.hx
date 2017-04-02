@@ -20,10 +20,10 @@ class FileStart
 	
 	function loadSettings() 
 	{
-		if (FileSystem.exists("./settings.dat")) {
-			trace("settings found");
+		if (FileSystem.exists("defaults.json")) {
+			//new defaults file
 		} else {
-			trace("settings non-existant");
+			//load defaults file
 		}
 	}
 	

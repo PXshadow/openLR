@@ -86,6 +86,7 @@ class Common
 	public static var cvar_prev_zoom_ammount:Float;
 	public static var cvar_add_time_stamp = false;
 	public static var cvar_author_collab_list:Array<String>;
+	public static var cvar_universal_author_name:String = "Anonymous";
 	
 	public static var svar_frame_rate:Float;
 	public static var svar_framerate_avg_rate:Int = 60;
