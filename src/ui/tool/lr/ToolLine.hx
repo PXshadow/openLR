@@ -108,20 +108,32 @@ class ToolLine extends ToolBase
 		Common.gTrack.render_preview_line(new Point(x1, y1), new Point(x2, y2));
 	}
 	override public function rMouseUp(e:MouseEvent) {
-		if (Common.get_distance(c, d) >= Common.line_minLength) {
-			var _loc1:Dynamic;
+		var _locSnapCheck:Array<Dynamic> = Common.gGrid.snap(x2, y2, 2, this.mod_shift);
+		if (_locSnapCheck[2] == true && Common.line_type != 2) {
+			x2 = _locSnapCheck[0];
+			y2 = _locSnapCheck[1];
+		}
+		if (Common.get_distance(c, d) >= 1) {
+			var _loc1:LineBase;
 			if (Common.line_type == 0) {
 				_loc1 = new LineFloor(x2, y2, x1, y1, !this.mod_shift);
+				_loc1.ID = Common.sLineID;
 				Common.gTrack.add_vis_line(_loc1);
+				Common.gGrid.cache_stroke([_loc1]);
 			} else if (Common.line_type == 1) {
 				_loc1 = new LineAccel(x2, y2, x1, y1, !this.mod_shift);
+				_loc1.ID = Common.sLineID;
 				Common.gTrack.add_vis_line(_loc1);
+				Common.gGrid.cache_stroke([_loc1]);
 			} else if (Common.line_type == 2) {
 				_loc1 = new LineScene(x2, y2, x1, y1, !this.mod_shift);
+				_loc1.ID = Common.sLineID;
 				Common.gTrack.add_vis_line(_loc1);
+				Common.gGrid.cache_stroke([_loc1]);
 			}
+			Common.sLineID += 1;
 		}
 		Common.gTrack.clear_preview();
-		Common.gStage.removeEventListener(MouseEvent.MOUSE_MOVE, line_move_reverse);
+		Common.gStage.removeEventListener(MouseEvent.MOUSE_MOVE, line_move);
 	}
 }
