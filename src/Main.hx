@@ -127,6 +127,10 @@ class Main extends Sprite
 		this.visContainer.addChild(this.settings_box);
 		this.settings_box.visible = false;
 		
+		this.loadManager = new LoadManager();
+		this.addChild(this.loadManager);
+		this.loadManager.visible = false;
+		
 		this.save_manager = new SaveManager();
 		this.visContainer.addChild(this.save_manager);
 		this.save_manager.visible = false;
@@ -188,6 +192,9 @@ class Main extends Sprite
 		
 		this.settings_box.x = (this.stage.stageWidth * 0.5) - (this.settings_box.width * 0.5);
 		this.settings_box.y = (this.stage.stageHeight * 0.5) - (this.settings_box.height * 0.5);
+		
+		this.loadManager.x = (this.stage.stageWidth * 0.5) - (this.loadManager.width * 0.5);
+		this.loadManager.y = (this.stage.stageHeight * 0.5) - (this.loadManager.height * 0.5);
 	}
 	public function return_to_origin(_x:Float = 0, _y:Float = 0) {
 		this.track.x = this.stage.stageWidth * 0.5 - _x;
@@ -198,18 +205,21 @@ class Main extends Sprite
 		this.track.x = this.stage.stageWidth * 0.5;
 		this.track.y = this.stage.stageHeight * 0.5;
 	}
-	public function init_Loader() {
-		Common.svar_game_mode = "loader";
-		this.loadManager = new LoadManager();
-		this.loadManager.displayTrackListVis();
-		this.visContainer.visible = false;
-	}
-	public function cancel_load() {
-		Common.svar_game_mode = "edit";
-		this.loadManager.destroy_self();
-		this.visContainer.visible = true;
-		Common.gToolBase.enable();
-		this.stage.mouseEnabled = true;
-		Toolbar.tool.enable();
+	public function toggle_Loader() {
+		if (!this.loadManager.visible) {
+			Common.svar_game_mode = "loader";
+			this.loadManager.visible = true;
+			this.loadManager.update();
+			this.track.visible = false;
+			this.toolBar.visible = false;
+			this.textInfo.visible = false;
+		} else {
+			this.loadManager.visible = false;
+			this.track.visible = true;
+			this.toolBar.visible = true;
+			this.textInfo.visible = true;
+			Common.svar_game_mode = "edit";
+			Common.gToolBase.enable();
+		}
 	}
 }

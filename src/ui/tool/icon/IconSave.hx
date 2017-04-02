@@ -80,7 +80,7 @@ class IconSave extends IconBase
 	function show_loader() 
 	{
 		this.show_menu();
-		Common.gCode.init_Loader();
+		Common.gCode.toggle_Loader();
 	}
 	function make_new_track() 
 	{

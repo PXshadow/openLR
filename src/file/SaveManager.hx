@@ -5,8 +5,6 @@ import openfl.utils.Object;
 import openfl.geom.Point;
 import sys.FileSystem;
 import sys.io.File;
-import sys.io.FileOutput;
-import sys.io.FileInput;
 import haxe.Json;
 import openfl.Lib;
 import openfl.Assets;
@@ -123,7 +121,7 @@ class SaveManager extends MovieClip
 			this.addChild(this.cancel_button);
 		} else {
 			if (FileSystem.exists("./saves/" + this.fileName)) {
-				if (!SaveManager.new_track) { //check if new track. If not then date stamp is necesary
+				if (!SaveManager.new_track) { //check if new track. If not then compare date stamp is necesary
 					if (this.save_date == Common.svar_track_date_stamp) {
 						this.generate_save_json();
 						this.addChild(this.save_button);
@@ -135,7 +133,7 @@ class SaveManager extends MovieClip
 					}
 				} else {
 					//Alert the user that a file already exists
-					this.confirm_box = new ConfirmDialog("There's a file with the name \"" + this.fileName + "\". Most likely the current track is not the same as this file. Are you sure you want to overwrite?", this.save_override, this.confirm_no);
+					this.confirm_box = new ConfirmDialog("There's a file with the name \"" + this.fileName + "\". Most likely the current track you are trying to save is not the same as this file. Are you sure you want to overwrite?", this.save_override, this.confirm_no);
 					this.addChild(confirm_box);
 				}
 			} else {
@@ -170,7 +168,7 @@ class SaveManager extends MovieClip
 	}
 	public function generate_save_json() //Top function for generating JSON legacy file
 	{
-		//This function should only be called if confirmed to be safe to save
+		//This function should only be called if confirmed to be okay to save
 		
 		Common.cvar_track_name = this.name_input.text;
 		Common.cvar_track_author = this.author_input.text;

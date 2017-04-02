@@ -23,10 +23,9 @@ import ui.tool.Toolbar;
  * ...
  * @author ...
  */
-class LoadManager 
+class LoadManager extends MovieClip
 {
 	var trackData:Object;
-	private var visBGMC:MovieClip;
 	private var itemWindow:FileWindow;
 	public var selected_item:String;
 	private var load_button:SingleButton;
@@ -34,43 +33,41 @@ class LoadManager
 	private var error_alert:AlertBox;
 	public function new() 
 	{
+		super();
 		Common.gLoadManager = this;
-	}
-	public function displayTrackListVis() {
-		this.visBGMC = new MovieClip();
-		Common.gStage.addChild(this.visBGMC);
-		this.visBGMC.graphics.clear();
-		this.visBGMC.graphics.lineStyle(2, 0, 1);
-		this.visBGMC.graphics.beginFill(0xFFFFFF, 1);
-		this.visBGMC.graphics.moveTo(0, 0);
-		this.visBGMC.graphics.lineTo(420, 0);
-		this.visBGMC.graphics.lineTo(420, 420);
-		this.visBGMC.graphics.lineTo(0, 420);
-		this.visBGMC.graphics.lineTo(0, 0);
+		
+		this.graphics.clear();
+		this.graphics.lineStyle(2, 0, 1);
+		this.graphics.beginFill(0xFFFFFF, 1);
+		this.graphics.moveTo(0, 0);
+		this.graphics.lineTo(420, 0);
+		this.graphics.lineTo(420, 420);
+		this.graphics.lineTo(0, 420);
+		this.graphics.lineTo(0, 0);
 		
 		this.parseSaveDirecotry();
 		
 		this.load_button = new SingleButton("Load Track", loadFromObject);
-		this.visBGMC.addChild(this.load_button);
+		this.addChild(this.load_button);
 		this.load_button.x = 10;
 		this.load_button.y = 430;
 		
-		this.cancel_button = new SingleButton("Cancel", Common.gCode.cancel_load);
-		this.visBGMC.addChild(this.cancel_button);
+		this.cancel_button = new SingleButton("Cancel", Common.gCode.toggle_Loader);
+		this.addChild(this.cancel_button);
 		this.cancel_button.x = 300;
 		this.cancel_button.y = 430;
 	}
 	function parseSaveDirecotry() {
 		itemWindow = new FileWindow(FileSystem.readDirectory("saves/"));
-		this.visBGMC.addChild(this.itemWindow);
+		this.addChild(this.itemWindow);
 		var _locDir = FileSystem.readDirectory("saves/");
 		if (_locDir.length > 13) {
-			this.visBGMC.graphics.beginFill(0xFFFFFF, 1);
-			this.visBGMC.graphics.moveTo(10, 10);
-			this.visBGMC.graphics.lineTo(390, 10);
-			this.visBGMC.graphics.lineTo(390, 410);
-			this.visBGMC.graphics.lineTo(10, 410);
-			this.visBGMC.graphics.lineTo(10, 10);
+			this.graphics.beginFill(0xFFFFFF, 1);
+			this.graphics.moveTo(10, 10);
+			this.graphics.lineTo(390, 10);
+			this.graphics.lineTo(390, 410);
+			this.graphics.lineTo(10, 410);
+			this.graphics.lineTo(10, 10);
 		}
 	}
 	function loadFromArray() 
@@ -94,7 +91,7 @@ class LoadManager
 			this.trackData = new Object();
 			this.trackData = Json.parse(_locFile);
 		} catch (_msg:String) {
-			this.visBGMC.visible = false;
+			this.visible = false;
 			this.error_alert = new AlertBox("Error! Are you sure that was a compatable JSON file?" + "\n" + "If it was, copy this error and provide a save if possible!" + "\n \n" + _msg + "\n" + this.itemWindow.currentList[FileWindow.selectedIndex], this.hide_error, "Silly Goose!");
 			Common.gStage.addChild(this.error_alert);
 			this.error_alert.x = (Common.stage_width * 0.5) - (this.error_alert.width * 0.5);
@@ -106,7 +103,7 @@ class LoadManager
 		} else if (this.trackData.linesArrayCompressed != null) {
 			this.load_compressed();
 		} else {
-			this.visBGMC.visible = false;
+			this.visible = false;
 			this.error_alert = new AlertBox("Error! Failed to load the save!" + "\n" + "Are you sure this was a save made in a compatible line rider version? If so, please send a copy to the developers so they may inspect it", this.hide_error, ":(");
 			Common.gStage.addChild(this.error_alert);
 			this.error_alert.x = (Common.stage_width * 0.5) - (this.error_alert.width * 0.5);
@@ -122,7 +119,6 @@ class LoadManager
 	function load_compressed() 
 	{
 		//insert LZ-String decompression code here
-		this.visBGMC.visible = false;
 		this.error_alert = new AlertBox("Error! A small discrepancy is making this save difficult." + "\n" + "\"linesArrayCommpressed\"" + "\n" + "needs to be \"lines\"" +  "\n \n" + "Save type unsupported... for now.", this.hide_error, "D:<");
 		Common.gStage.addChild(this.error_alert);
 		this.error_alert.x = (Common.stage_width * 0.5) - (this.error_alert.width * 0.5);
@@ -130,7 +126,7 @@ class LoadManager
 	}
 	private function hide_error() {
 		Common.gStage.removeChild(this.error_alert);
-		this.visBGMC.visible = true;
+		this.visible = true;
 	}
 	function load_non_compressed() {
 		SaveManager.new_track = false;
@@ -162,9 +158,10 @@ class LoadManager
 			}
 			Common.sLineID += 1;
 		}
-		Common.gCode.cancel_load();
+		Common.gCode.toggle_Loader();
 	}
-	public function destroy_self() {
-		Common.gStage.removeChild(this.visBGMC);
+	public function update() {
+		this.removeChild(this.itemWindow);
+		this.parseSaveDirecotry();
 	}
 }
