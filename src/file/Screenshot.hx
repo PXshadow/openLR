@@ -20,18 +20,16 @@ class Screenshot
 	var container:MovieClip;
 	var bitmap:BitmapData;
 	var data:ByteArray;
+	var timestamp:String = "" + "Y" + Date.now().getFullYear() + "M" + Date.now().getMonth() + "D" + Date.now().getDay() + "H" + Date.now().getHours() + "m" + Date.now().getMinutes() + "S" + Date.now().getSeconds();
 	public function new(_container:MovieClip) 
 	{
 		this.container = _container;
 		this.bitmap = new BitmapData(Std.int(Common.stage_width), Std.int(Common.stage_height));
 		this.bitmap.draw(container);
 		this.data = bitmap.encode(bitmap.rect, new PNGEncoderOptions());
-		var timestamp:String = "" + "Y" + Date.now().getFullYear() + "M" + Date.now().getMonth() + "D" + Date.now().getDay() + "H" + Date.now().getHours() + "m" + Date.now().getMinutes() + "S" + Date.now().getSeconds();
 		var file = File.write("./export/" + timestamp + ".png", true);
 		file.writeBytes(data, 0, data.length);
 		file.close();
-		
 		Common.gCode.end_screencap();
 	}
-	
 }
