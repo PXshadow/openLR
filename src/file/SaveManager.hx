@@ -27,7 +27,7 @@ import ui.inter.SingleButton;
  */
 class SaveManager extends MovieClip
 {
-	public static var new_track:Bool = true; //only ever gets set to false when track is saved initially. Always set to true on new track
+	public static var new_track:Bool = true; //only ever gets set to false when track is saved initially, or if track is loaded. Always set to true on new track
 	var directory:File;
 	var trackData:Object;
 	var font_a:TextFormat = new TextFormat(Assets.getFont("fonts/Verdana Bold.ttf").fontName, 16, 0, null, null, null, null, null, TextFormatAlign.LEFT);
@@ -74,7 +74,11 @@ class SaveManager extends MovieClip
 		this.author_input.type = TextFieldType.INPUT;
 		this.author_input.defaultTextFormat = font_a;
 		this.addChild(this.author_input);
-		this.author_input.text = Common.cvar_track_author;
+		if (SaveManager.new_track) {
+			this.author_input.text = Common.cvar_universal_author_name;
+		} else {
+			this.author_input.text = Common.cvar_track_author;
+		}
 		this.author_input.x = 5;
 		this.author_input.y = 35;
 		this.author_input.width = 400;
@@ -159,10 +163,15 @@ class SaveManager extends MovieClip
 		Common.cvar_add_time_stamp = this.add_timestamp.toggle();
 	}
 	public function update() {
+		trace("Updating", SaveManager.new_track);
 		this.save_date = Date.now().getDate() + Date.now().getHours() + "";
 		if (!SaveManager.new_track) {
 			this.name_input.text = Common.cvar_track_name;
-			this.author_input.text = Common.cvar_track_author;
+			if (SaveManager.new_track) {
+				this.author_input.text = Common.cvar_universal_author_name;
+			} else {
+				this.author_input.text = Common.cvar_track_author;
+			}
 			this.description_input.text = Common.cvar_author_comment;
 		}
 	}
@@ -174,10 +183,13 @@ class SaveManager extends MovieClip
 		Common.cvar_track_author = this.author_input.text;
 		Common.cvar_author_comment = this.description_input.text;
 		
-		SaveManager.new_track = false;
+		if (SaveManager.new_track) {
+			SaveManager.new_track = false;
+			Common.cvar_universal_author_name = this.author_input.text;
+		}
 		var fileNameFinal:String = this.name_input.text;
 		if (Common.cvar_add_time_stamp) {
-			fileNameFinal = fileNameFinal + "Y" + Date.now().getFullYear() + "M" + Date.now().getMonth() + "D" + Date.now().getDay() + "H" + Date.now().getHours() + "m" + Date.now().getMinutes();
+			fileNameFinal = fileNameFinal + "_Y" + Date.now().getFullYear() + "M" + Date.now().getMonth() + "D" + Date.now().getDay() + "H" + Date.now().getHours() + "m" + Date.now().getMinutes();
 		}
 		var track:Object = parse_json();
 		var file = File.write("./saves/" + fileNameFinal + ".json", true); //.json = legacy format

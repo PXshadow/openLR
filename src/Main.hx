@@ -1,5 +1,6 @@
 package;
 
+import file.AutosaveManager;
 import file.Screenshot;
 import lr.settings.SettingsMenu;
 import openfl.display.Loader;
@@ -74,6 +75,8 @@ class Main extends Sprite
 	
 	private var settings_box:SettingsMenu;
 	
+	private var autosave:AutosaveManager;
+	
 	public function new() 
 	{
 		super(); //In Haxe, a super must be called when classes inherit
@@ -104,6 +107,8 @@ class Main extends Sprite
 		this.stage.addEventListener(Event.RESIZE, resize);
 		
 		this.FPS = new FrameRate();
+		
+		this.autosave = new AutosaveManager();
 	}
 	
 	public function init_track() //display minimum items
@@ -159,11 +164,11 @@ class Main extends Sprite
 	public function toggle_save_menu() {
 		if (this.save_manager.visible != true) {
 			Common.svar_game_mode = "saving";
+			this.save_manager.update();
 			this.save_manager.visible = true;
 			this.track.visible = false;
 			this.toolBar.visible = false;
 			this.textInfo.visible = false;
-			this.save_manager.update();
 		} else {
 			this.save_manager.visible = false;
 			this.track.visible = true;

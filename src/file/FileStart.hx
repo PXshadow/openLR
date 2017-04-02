@@ -33,6 +33,10 @@ class FileStart
 		} else{
 			FileSystem.createDirectory("./saves");
 		}
+		if (FileSystem.isDirectory("./autosaves")) {
+		} else{
+			FileSystem.createDirectory("./autosaves");
+		}
 		if (FileSystem.isDirectory("./export")) {
 		} else {
 			FileSystem.createDirectory("./export");
