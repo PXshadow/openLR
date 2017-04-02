@@ -30,6 +30,7 @@ class IconSave extends IconBase
 	private var load_track:SingleButton;
 	private var loadManager:LoadManager;
 	private var safety_dialog:ConfirmDialog;
+	private var screen_cap:SingleButton;
 	public function new() 
 	{
 		super();
@@ -73,8 +74,17 @@ class IconSave extends IconBase
 			this.menu.addChild(this.load_track);
 			this.load_track.y = this.save_track.y + this.load_track.height;
 			
+			this.screen_cap = new SingleButton("Screencap", this.take_screenshot);
+			this.menu.addChild(this.screen_cap);
+			this.screen_cap.y = this.load_track.y + this.screen_cap.height;
+			
 			this.open = true;
 		}
+	}
+	
+	function take_screenshot() 
+	{
+		Common.gCode.take_screencap();
 	}
 	
 	function show_loader() 

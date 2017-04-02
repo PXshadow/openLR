@@ -1,5 +1,6 @@
 package;
 
+import file.Screenshot;
 import lr.settings.SettingsMenu;
 import openfl.display.Loader;
 import openfl.display.MovieClip;
@@ -221,5 +222,12 @@ class Main extends Sprite
 			Common.svar_game_mode = "edit";
 			Common.gToolBase.enable();
 		}
+	}
+	public function take_screencap() {
+		this.toolBar.visible = false;
+		var sc:Screenshot = new Screenshot(this.visContainer);
+	}
+	public function end_screencap() {
+		this.toolBar.visible = true;
 	}
 }

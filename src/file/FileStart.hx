@@ -30,9 +30,12 @@ class FileStart
 	function checkDirectories() 
 	{
 		if (FileSystem.isDirectory("./saves")) {
-			return;
 		} else{
 			FileSystem.createDirectory("./saves");
+		}
+		if (FileSystem.isDirectory("./export")) {
+		} else {
+			FileSystem.createDirectory("./export");
 		}
 	}
 }
