@@ -7,6 +7,7 @@ package global;
 class SplashText 
 {
 	public static var splash:Array<String> = [
+		"",
 		"Happy Riding!",
 		"You've met with a terrible fate," + "\n" + "Haven't you?",
 		"Build by {USERNAME}",
@@ -36,10 +37,10 @@ class SplashText
 		"Original Concept by Boštjan Čadež",
 		"weridethelines.com",
 		"reddit.com/r/linerider",
+		"www.linerider.com",
 		"Pretty good alternative to Freerider 3, I guess...",
 		"They see g-rollin'" + "\n" + "Rotatin'",
-		"Virtuso's Groove-icity Miracle Thorn of Life Clan",
-		""
+		"Virtuso's Groove-icity Miracle Thorn of Life Clan"
 	];
 	public function new() 
 	{
