@@ -253,9 +253,9 @@ class Grid
 		line.inject_grid_loc(a);
 		if (line.type != 2)
 		{
-			grid[_x][_y].storage2[line.ID] = line;
+			grid[_x][_y].storage2.push(line);
 		}
-		grid[_x][_y].storage[line.ID] = line;
+		grid[_x][_y].storage.push(line);
 	}
 	public function remove_line(line:LineBase, _x:Int, _y:Int)
 	{

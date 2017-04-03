@@ -307,24 +307,11 @@ class RiderBase
 					{
 						continue;
 					} // end if
-					var tempStorage:Array<LineBase>;
-					tempStorage = new Array();
-					for (_loc8 in 0...Grid.grid[_loc1][_loc2].storage2.length)
+					var tempList:Array<LineBase> = Grid.grid[_loc1][_loc2].storage2;
+					for (_loc8 in tempList)
 					{
-						if (Grid.grid[_loc1][_loc2].storage2[_loc8] != null)
-						{
-							tempStorage.push(Grid.grid[_loc1][_loc2].storage2[_loc8]);
-						} else {
-							continue;
-						}
+						_loc8.collide(_loc5);
 					} // end of for...in
-					if (tempStorage.length == 0) {
-						continue;
-					} else {
-						for (i in 0...tempStorage.length) {
-							tempStorage[i].collide(_loc5);
-						}
-					}
 				} // end of for
 			} // end of for
 		} // end of for
