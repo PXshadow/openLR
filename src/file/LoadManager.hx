@@ -2,15 +2,13 @@ package file;
 
 import file.ui.FileWindow;
 import openfl.display.MovieClip;
-import openfl.utils.ByteArray.ByteArrayData;
 import sys.io.File;
 import sys.FileSystem;
 import haxe.Json;
 import openfl.utils.Object;
 import haxe.io.Bytes;
-import lime.utils.compress.GZip;
+import haxe.io.BytesInput;
 import haxe.Utf8;
-import lime.utils.compress.Zlib;
 import ui.inter.AlertBox;
 
 import global.Common;
@@ -86,6 +84,17 @@ class LoadManager extends MovieClip
 	function invoke_loader() 
 	{
 		var _locPath = this.itemWindow.currentList[FileWindow.selectedIndex];
+		var _locExt = _locPath.substr(_locPath.length - 5, _locPath.length);
+		if (_locExt == ".json") {
+			this.pre_json_detect();
+		}
+		_locExt = _locPath.substr(_locPath.length - 4, _locPath.length); 
+		if (_locExt == ".sol") {
+			//this.parse_sol();
+		}
+	}
+	function pre_json_detect() {
+		var _locPath = this.itemWindow.currentList[FileWindow.selectedIndex];
 		try {
 			var _locFile = File.getContent("saves/" + _locPath);
 			this.trackData = new Object();
@@ -102,6 +111,8 @@ class LoadManager extends MovieClip
 			this.load_non_compressed();
 		} else if (this.trackData.linesArrayCompressed != null) {
 			this.load_compressed();
+		} else if (this.trackData.linesArray != null){
+			this.load_array();
 		} else {
 			this.visible = false;
 			this.error_alert = new AlertBox("Error! Failed to load the save!" + "\n" + "Are you sure this was a save made in a compatible line rider version? If so, please send a copy to the developers so they may inspect it", this.hide_error, ":(");
@@ -111,11 +122,39 @@ class LoadManager extends MovieClip
 		}
 	}
 	
-	function parse_sol() 
+	function load_array() 
 	{
-
+		SaveManager.new_track = false;
+		Common.cvar_author_comment = this.trackData.description;
+		Common.svar_track_date_stamp = this.trackData.dateStamp;
+		Common.cvar_track_name = this.trackData.label;
+		Common.track_start_x = this.trackData.startPosition.x;
+		Common.track_start_y = this.trackData.startPosition.y;
+		Common.gTrack.set_rider_start(this.trackData.startPosition.x, this.trackData.startPosition.y);
+		Common.gCode.return_to_origin(this.trackData.startPosition.x, this.trackData.startPosition.y);
+		this.trackData.linesArray.reverse();
+		for (i in 0...trackData.linesArray.length) {
+			var _loc1:Dynamic;
+			if (trackData.linesArray[i][0] == 0) {
+				_loc1 = new LineFloor(trackData.linesArray[i][2], trackData.linesArray[i][3], trackData.linesArray[i][4], trackData.linesArray[i][5], trackData.linesArray[i][7]);
+				_loc1.ID = Common.sLineID;
+				Common.gTrack.add_vis_line(_loc1);
+				Common.gGrid.cache_stroke([_loc1]);
+			} else if (trackData.linesArray[i][0] == 1) {
+				_loc1 = new LineAccel(trackData.linesArray[i][2], trackData.linesArray[i][3], trackData.linesArray[i][4], trackData.linesArray[i][5], trackData.linesArray[i][7]);
+				_loc1.ID = Common.sLineID;
+				Common.gTrack.add_vis_line(_loc1);
+				Common.gGrid.cache_stroke([_loc1]);
+			} else if (trackData.linesArray[i][0] == 2) {
+				_loc1 = new LineScene(trackData.linesArray[i][2], trackData.linesArray[i][3], trackData.linesArray[i][4], trackData.linesArray[i][5], trackData.linesArray[i][7]);
+				_loc1.ID = Common.sLineID;
+				Common.gTrack.add_vis_line(_loc1);
+				Common.gGrid.cache_stroke([_loc1]);
+			}
+			Common.sLineID += 1;
+		}
+		Common.gCode.toggle_Loader();
 	}
-	
 	function load_compressed() 
 	{
 		//insert LZ-String decompression code here
