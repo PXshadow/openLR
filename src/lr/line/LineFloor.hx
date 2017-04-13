@@ -10,7 +10,6 @@ import global.Common;
  */
 class LineFloor extends LineBase
 {
-
 	public function new(_x1:Float, _y1:Float, _x2:Float, _y2:Float, _inv:Bool, _lim = -1) 
 	{
 		super();

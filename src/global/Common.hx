@@ -11,6 +11,7 @@ import openfl.display.MovieClip;
 import openfl.display.Stage;
 import openfl.geom.Point;
 import ui.tool.ToolBase;
+import ui.tool.timeline.TimelineControl;
 
 import lr.Track;
 
@@ -44,6 +45,7 @@ class Common
 	public static var gTextInfo:TextInfo;
 	public static var gToolbar:Toolbar;
 	public static var gCamera:RiderCamera;
+	public static var gTimeline:TimelineControl;
 	
 	public static var line_minLength:Int = 14;
 	public static var line_type:Int = 0;
@@ -63,6 +65,7 @@ class Common
 	public static var track_last_pos_y:Float = 0;
 	
 	public static var sim_frames:Int = 0;
+	public static var sim_max_frames:Int = 0;
 	public static var simfl_frames:Int = 0;
 	public static var sim_rider_speed:Float = 0;
 	public static var sim_rider_speed_top:Float = 0;

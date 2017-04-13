@@ -13,6 +13,8 @@ import openfl.Assets.AssetLibrary;
 import haxe.Timer;
 import ui.inter.AlertBox;
 import ui.inter.CheckBox;
+import ui.tool.timeline.Ticker;
+import ui.tool.timeline.TimelineControl;
 
 import global.SplashText;
 import file.FileStart;
@@ -71,6 +73,7 @@ class Main extends Sprite
 	private var FPS:FrameRate;
 	private var welcome_alert:AlertBox;
 	private var save_manager:SaveManager;
+	private var timeline:TimelineControl;
 	
 	private var loadManager:LoadManager;
 	
@@ -142,6 +145,10 @@ class Main extends Sprite
 		this.visContainer.addChild(this.save_manager);
 		this.save_manager.visible = false;
 		
+		this.timeline = new TimelineControl();
+		this.visContainer.addChild(this.timeline);
+		this.timeline.update();
+		
 		this.visContainer.visible = false;
 	}
 	public function toggleSettings_box()
@@ -202,6 +209,9 @@ class Main extends Sprite
 		
 		this.loadManager.x = (this.stage.stageWidth * 0.5) - (this.loadManager.width * 0.5);
 		this.loadManager.y = (this.stage.stageHeight * 0.5) - (this.loadManager.height * 0.5);
+		
+		this.timeline.x = (this.stage.stageWidth * 0.5) - (this.timeline.width * 0.5);
+		this.timeline.y = this.stage.stageHeight - this.timeline.height;
 	}
 	public function return_to_origin(_x:Float = 0, _y:Float = 0) {
 		this.track.x = this.stage.stageWidth * 0.5 - _x;

@@ -134,6 +134,6 @@ class ToolLine extends ToolBase
 			Common.sLineID += 1;
 		}
 		Common.gTrack.clear_preview();
-		Common.gStage.removeEventListener(MouseEvent.MOUSE_MOVE, line_move);
+		Common.gStage.removeEventListener(MouseEvent.MOUSE_MOVE, line_move_reverse);
 	}
 }

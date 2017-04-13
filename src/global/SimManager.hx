@@ -67,6 +67,20 @@ class SimManager
 		} else if (this.rewind) {
 			this.rider.step_back();
 		}
+		if (Common.sim_frames > Common.sim_max_frames) {
+			Common.sim_max_frames = Common.sim_frames;
+		}
+		Common.gTimeline.update();
+	}
+	public function scrubberStepBack() {
+		this.rider.step_back();
+	}
+	public function scrubberStepForward() {
+		this.rider.step_rider();
+		++Common.sim_frames;
+		if (Common.sim_frames > Common.sim_max_frames) {
+			Common.sim_max_frames = Common.sim_frames;
+		}
 	}
 	public function end_sim()
 	{
