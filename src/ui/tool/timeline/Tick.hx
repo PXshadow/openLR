@@ -28,7 +28,7 @@ class Tick extends Sprite
 		this.graphics.moveTo(0, 0);
 		if (this.frame < 0) {
 			this.graphics.lineStyle(4, 0, 0.1);
-			this.graphics.lineTo(0, 10);
+			this.graphics.lineTo(0, 20);
 		} else if (this.frame > Common.sim_max_frames) {
 			this.graphics.lineStyle(4, 0, 0.5);
 			this.graphics.lineTo(0, 20);
@@ -43,7 +43,10 @@ class Tick extends Sprite
 			this.graphics.lineTo(0, 20);
 		}
 		else {
-			this.graphics.lineStyle(4, 0, 0.8);
+			this.graphics.lineStyle(4, 0, 0.4);
+			if (this.frame % 10 == 1) {
+				this.graphics.lineStyle(4, 0, 0.8);
+			}
 			this.graphics.lineTo(0, 20);
 		}
 	}
