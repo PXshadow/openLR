@@ -39,6 +39,7 @@ class SimManager
 		}
 		if (paused) {
 			paused = false;
+			Common.sim_pause_frame = -1;
 		}
 		if (!sim_running) {
 			this.iterator = new Timer(1000 * (1 / Common.sim_default_rate));
