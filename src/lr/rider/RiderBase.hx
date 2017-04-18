@@ -143,6 +143,7 @@ class RiderBase
 		this.Start.x = _x;
 		this.Start.y = _y;
 		this.render_body();
+		this.record_frame();
 	}
 	public function reset() //this reset is necesary so it doesn't break the saved flag location, otherwise we get a NaN rider.
 	{

@@ -73,7 +73,11 @@ class SimManager
 		Common.gTimeline.update();
 	}
 	public function scrubberStepBack() {
-		this.rider.step_back();
+		if (Common.sim_frames > 0) {
+			this.rider.step_back();
+		} else if (Common.sim_frames == 0) {
+			this.rider.reset();
+		}
 	}
 	public function scrubberStepForward() {
 		this.rider.step_rider();
