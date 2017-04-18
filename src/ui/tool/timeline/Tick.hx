@@ -43,9 +43,10 @@ class Tick extends Sprite
 			this.graphics.lineTo(0, 20);
 		}
 		else {
-			this.graphics.lineStyle(4, 0, 0.4);
 			if (this.frame % 10 == 1) {
 				this.graphics.lineStyle(4, 0, 0.8);
+			} else { 
+				this.graphics.lineStyle(4, 0, 0.4);
 			}
 			this.graphics.lineTo(0, 20);
 		}
