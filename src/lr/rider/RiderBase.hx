@@ -421,6 +421,7 @@ class RiderBase
 			this.flag.x = anchors[0].x;
 			this.flag.y = anchors[0].y;
 			this.crashed = Stick.crash;
+			Common.sim_flagged_frame = Common.sim_frames;
 		} catch (_msg:String) {}
 	}
 	public function return_to_flag() {

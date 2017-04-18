@@ -103,6 +103,7 @@ class SimManager
 		this.sim_running = false;
 		this.iterator.stop();
 		this.paused = true;
+		Common.sim_pause_frame = Common.sim_frames;
 	}
 	public function resume_sim() {
 		this.iterator = new Timer(1000 / Common.sim_default_rate);
@@ -112,6 +113,7 @@ class SimManager
 		}
 		this.paused = false;
 		this.sim_running = true;
+		Common.sim_pause_frame = -1;
 	}
 	public function set_rider_start(_x:Float, _y:Float)
 	{

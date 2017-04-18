@@ -11,6 +11,7 @@ import global.Common;
 class Tick extends Sprite
 {
 	public var frame:Int = 0;
+	var color = 0xFFFFFF;
 	public function new(_id:Int) 
 	{
 		super();
@@ -34,7 +35,14 @@ class Tick extends Sprite
 		} else if (this.frame == Common.sim_frames) {
 			this.graphics.lineStyle(4, 0x0066FF, 1);
 			this.graphics.lineTo(0, 20);
-		} else {
+		} else if (this.frame == Common.sim_pause_frame && Common.sim_pause_frame != -1) {
+			this.graphics.lineStyle(4, 0x00CC00, 1);
+			this.graphics.lineTo(0, 20);
+		} else if (this.frame == Common.sim_flagged_frame && Common.sim_flagged_frame != -1) {
+			this.graphics.lineStyle(4, 0xCC0000, 1);
+			this.graphics.lineTo(0, 20);
+		}
+		else {
 			this.graphics.lineStyle(4, 0, 0.8);
 			this.graphics.lineTo(0, 20);
 		}
