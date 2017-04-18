@@ -15,6 +15,7 @@ import global.Common;
 class TimelineControl extends MovieClip
 {
 	var ticker:Ticker;
+	var ticker_pause:Bool = false;
 	public function new() 
 	{
 		super();
@@ -51,8 +52,9 @@ class TimelineControl extends MovieClip
 		this.ticker.addEventListener(MouseEvent.MOUSE_OVER, preScrubSetup);
 		this.ticker.addEventListener(MouseEvent.MOUSE_OUT, resume);
 		Common.gStage.removeEventListener(MouseEvent.MOUSE_MOVE, scrub);
-		if (Common.gSimManager.paused) {
+		if (Common.gSimManager.paused && this.ticker_pause) {
 			Common.gSimManager.resume_sim();
+			this.ticker_pause = false;
 		} else {
 			Common.gToolBase.enable();
 		}
@@ -66,6 +68,7 @@ class TimelineControl extends MovieClip
 		this.prevX = this.mouseX;
 		if (Common.gSimManager.sim_running) {
 			Common.gSimManager.pause_sim();
+			this.ticker_pause = true;
 		}
 	}
 	private var prevX:Float = 0;
