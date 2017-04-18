@@ -211,7 +211,7 @@ class Main extends Sprite
 		this.loadManager.y = (this.stage.stageHeight * 0.5) - (this.loadManager.height * 0.5);
 		
 		this.timeline.x = (this.stage.stageWidth * 0.5) - (this.timeline.width * 0.5);
-		this.timeline.y = this.stage.stageHeight - this.timeline.height;
+		this.timeline.y = this.stage.stageHeight - this.timeline.height + 25;
 	}
 	public function return_to_origin(_x:Float = 0, _y:Float = 0) {
 		this.track.x = this.stage.stageWidth * 0.5 - _x;
