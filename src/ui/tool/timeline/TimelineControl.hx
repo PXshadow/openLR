@@ -35,28 +35,28 @@ class TimelineControl extends MovieClip
 	private function preScrubSetup(e:MouseEvent):Void 
 	{
 		Common.gToolBase.disable();
-		this.addEventListener(MouseEvent.MOUSE_DOWN, downAction);
-		Common.gStage.addEventListener(MouseEvent.MOUSE_UP, releaseAction);
-		this.addEventListener(MouseEvent.MOUSE_UP, releaseAction);
+		this.ticker.addEventListener(MouseEvent.MOUSE_DOWN, downActionScrubber);
+		Common.gStage.addEventListener(MouseEvent.MOUSE_UP, releaseActionScrubber);
+		this.ticker.addEventListener(MouseEvent.MOUSE_UP, releaseActionScrubber);
 	}
 	
-	private function releaseAction(e:MouseEvent):Void 
+	private function releaseActionScrubber(e:MouseEvent):Void 
 	{
-		this.removeEventListener(MouseEvent.MOUSE_DOWN, downAction);
-		Common.gStage.removeEventListener(MouseEvent.MOUSE_DOWN, downAction);
-		this.removeEventListener(MouseEvent.MOUSE_UP, releaseAction);
-		Common.gStage.removeEventListener(MouseEvent.MOUSE_UP, releaseAction);
-		this.addEventListener(MouseEvent.MOUSE_OVER, preScrubSetup);
-		this.addEventListener(MouseEvent.MOUSE_OUT, resume);
+		this.ticker.removeEventListener(MouseEvent.MOUSE_DOWN, downActionScrubber);
+		Common.gStage.removeEventListener(MouseEvent.MOUSE_DOWN, downActionScrubber);
+		this.ticker.removeEventListener(MouseEvent.MOUSE_UP, releaseActionScrubber);
+		Common.gStage.removeEventListener(MouseEvent.MOUSE_UP, releaseActionScrubber);
+		this.ticker.addEventListener(MouseEvent.MOUSE_OVER, preScrubSetup);
+		this.ticker.addEventListener(MouseEvent.MOUSE_OUT, resume);
 		Common.gStage.removeEventListener(MouseEvent.MOUSE_MOVE, scrub);
 		Common.gToolBase.enable();
 	}
 	
-	private function downAction(e:MouseEvent):Void 
+	private function downActionScrubber(e:MouseEvent):Void 
 	{
-		this.removeEventListener(MouseEvent.MOUSE_OUT, resume);
+		this.ticker.removeEventListener(MouseEvent.MOUSE_OUT, resume);
 		Common.gStage.addEventListener(MouseEvent.MOUSE_MOVE, scrub);
-		this.removeEventListener(MouseEvent.MOUSE_OVER, preScrubSetup);
+		this.ticker.removeEventListener(MouseEvent.MOUSE_OVER, preScrubSetup);
 		this.prevX = this.mouseX;
 	}
 	private var prevX:Float = 0;
