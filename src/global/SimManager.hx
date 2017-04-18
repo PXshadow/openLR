@@ -225,4 +225,7 @@ class SimManager
 			Common.gTextInfo.update_sim();
 		}
 	}
+	public function injectRiderPosition(_frame:Int) {
+		this.rider.inject_frame(_frame);
+	}
 }

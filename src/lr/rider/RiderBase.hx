@@ -232,6 +232,7 @@ class RiderBase
 		//this.camera.pan(anchors[4]);
 		Common.sim_frames = _frame;
 		this.render_body();
+		this.camera.pan(anchors[4]);
 	}
 	public function step_back()
 	{
