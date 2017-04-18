@@ -13,7 +13,7 @@ class SimManager
 {
 	var iterator:Timer;
 	var rider:RiderBase;
-	var sim_running:Bool = false;
+	public var sim_running:Bool = false;
 	public var fast_forward:Bool = false;
 	public var paused:Bool = false;
 	public var flagged:Bool = false;
@@ -76,6 +76,7 @@ class SimManager
 		if (Common.sim_frames > 0) {
 			this.rider.step_back();
 		} else if (Common.sim_frames == 0) {
+			this.rider.reset();
 			this.rider.reset();
 		}
 	}

@@ -29,7 +29,9 @@ class TimelineControl extends MovieClip
 	
 	private function resume(e:MouseEvent):Void 
 	{
-		Common.gToolBase.enable();
+		if (!Common.gSimManager.paused && !Common.gSimManager.sim_running) {
+			Common.gToolBase.enable();
+		}
 	}
 	
 	private function preScrubSetup(e:MouseEvent):Void 
@@ -49,7 +51,11 @@ class TimelineControl extends MovieClip
 		this.ticker.addEventListener(MouseEvent.MOUSE_OVER, preScrubSetup);
 		this.ticker.addEventListener(MouseEvent.MOUSE_OUT, resume);
 		Common.gStage.removeEventListener(MouseEvent.MOUSE_MOVE, scrub);
-		Common.gToolBase.enable();
+		if (Common.gSimManager.paused) {
+			Common.gSimManager.resume_sim();
+		} else {
+			Common.gToolBase.enable();
+		}
 	}
 	
 	private function downActionScrubber(e:MouseEvent):Void 
@@ -58,6 +64,9 @@ class TimelineControl extends MovieClip
 		Common.gStage.addEventListener(MouseEvent.MOUSE_MOVE, scrub);
 		this.ticker.removeEventListener(MouseEvent.MOUSE_OVER, preScrubSetup);
 		this.prevX = this.mouseX;
+		if (Common.gSimManager.sim_running) {
+			Common.gSimManager.pause_sim();
+		}
 	}
 	private var prevX:Float = 0;
 	private function scrub(e:MouseEvent):Void 
