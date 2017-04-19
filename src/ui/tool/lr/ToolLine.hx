@@ -20,6 +20,7 @@ class ToolLine extends ToolBase
 	private var y2:Float;
 	private var c:Point;
 	private var d:Point;
+	private var valid:Bool = false;
 	public function new() 
 	{
 		super();
@@ -48,10 +49,16 @@ class ToolLine extends ToolBase
 			x2 = _locSnap[0];
 			y2 = _locSnap[1];
 		}
+		this.valid = true;
 		d = new Point(Common.gStage.mouseX, Common.gStage.mouseY);
 		Common.gTrack.render_preview_line(new Point(x1, y1), new Point(x2, y2));
 	}
 	override public function mouseUp(e:MouseEvent) {
+		Common.gTrack.clear_preview();
+		Common.gStage.removeEventListener(MouseEvent.MOUSE_MOVE, line_move);
+		if (!valid) {
+			return;
+		}
 		var _locSnapCheck:Array<Dynamic> = Common.gGrid.snap(x2, y2, 2, this.mod_shift);
 		if (_locSnapCheck[2] == true && Common.line_type != 2) {
 			x2 = _locSnapCheck[0];
@@ -77,8 +84,7 @@ class ToolLine extends ToolBase
 			}
 			Common.sLineID += 1;
 		}
-		Common.gTrack.clear_preview();
-		Common.gStage.removeEventListener(MouseEvent.MOUSE_MOVE, line_move);
+		valid = false;
 	}
 	override public function rMouseDown(e:MouseEvent) {
 		x1 = Common.gTrack.mouseX;
