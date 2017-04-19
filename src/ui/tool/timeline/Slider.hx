@@ -32,14 +32,13 @@ class Slider extends MovieClip
 		this.playHead.graphics.lineTo( -5, -10);
 		
 		this.playHead.addEventListener(MouseEvent.MOUSE_DOWN, preInitSlider);
-		this.playHead.addEventListener(MouseEvent.MOUSE_UP, endSlider);
-		Common.gStage.addEventListener(MouseEvent.MOUSE_UP, endSlider);
 	}
 	
 	private function endSlider(e:MouseEvent):Void 
 	{
 		Common.gStage.removeEventListener(MouseEvent.MOUSE_MOVE, thisSlide);
-		Common.gStage.removeEventListener(MouseEvent.MOUSE_MOVE, thisSlide);
+		this.playHead.removeEventListener(MouseEvent.MOUSE_UP, endSlider);
+		Common.gStage.removeEventListener(MouseEvent.MOUSE_UP, endSlider);
 		if (Common.gSimManager.paused) {
 			Common.gSimManager.resume_sim();
 		} else {
@@ -52,6 +51,8 @@ class Slider extends MovieClip
 	{
 		Common.gToolBase.disable();
 		Common.gStage.addEventListener(MouseEvent.MOUSE_MOVE, thisSlide);
+		this.playHead.addEventListener(MouseEvent.MOUSE_UP, endSlider);
+		Common.gStage.addEventListener(MouseEvent.MOUSE_UP, endSlider);
 		if (Common.svar_sim_running) {
 			Common.gSimManager.pause_sim();
 		}
