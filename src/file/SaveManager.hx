@@ -238,13 +238,13 @@ class SaveManager extends MovieClip
 		var lines = Common.gGrid.lines;
 		lines.reverse();
 		var a:Array<Object> = new Array();
-		var line_ID_Override:Int = 0;
+		var line_Place_Override:Int = 0;
 		for (i in 0...lines.length) {
 			if (lines[i] == null) {
 				continue;
 			}
-			a[line_ID_Override] = new Object();
-			a[line_ID_Override] = {
+			a[line_Place_Override] = new Object();
+			a[line_Place_Override] = {
 				"id": lines[i].ID,
 				"type": lines[i].type,
 				"x1": lines[i].x1,
@@ -255,8 +255,7 @@ class SaveManager extends MovieClip
 				"leftExtended":  lines[i].lExt,
 				"rightExtended":  lines[i].rExt
 			};
-			++line_ID_Override; //this ID override is important. During Beta 2 builds, this was found to completely prevent tracks from corrupting and being impossible to recover from
-								//Adding this safety feature here to ensure this doesn't happen, even if corruption is unlikely.
+			++line_Place_Override;
 		}
 		return(a);
 	}
