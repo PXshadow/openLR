@@ -39,6 +39,10 @@ class LineBase extends MovieClip
 	public var type:Int = -1;
 	public var ID:Int;
 	public var gridList:Array<Array<Int>>;
+	public var prevLine:Int;
+	public var nextLine:Int;
+	public var lExt:Bool = false;
+	public var rExt:Bool = false;
 	
 	public function new() 
 	{
@@ -64,7 +68,7 @@ class LineBase extends MovieClip
         hy = Math.abs(dy) * 0.500000;
         LIM = Math.min(0.250000, LineBase.zone / dst);
 	}
-	function set_lim(input)
+	public function set_lim(input)
 	{
 		switch (input)
         {
@@ -72,25 +76,73 @@ class LineBase extends MovieClip
             {
                 _lim1 = 0;
                 _lim2 = 1;
+				lExt = false;
+				rExt = false;
             } 
             case 1:
             {
                 _lim1 = -LIM;
                 _lim2 = 1;
+				lExt = true;
+				rExt = false;
             } 
             case 2:
             {
                 _lim1 = 0;
                 _lim2 = 1 + LIM;
+				lExt = false;
+				rExt = true;
             } 
             case 3:
             {
                 _lim1 = -LIM;
                 _lim2 = 1 + LIM;
+				lExt = true;
+				rExt = true;
             } 
         }
         _lim = input;
 	}
+	function addPrevLine(line, extend)
+    {
+        if (extend)
+        {
+            switch (this.get_lim())
+            {
+                case 0:
+                {
+                    this.set_lim(1);
+                } 
+                case 2:
+                {
+                    this.set_lim(3);
+                } 
+            }
+        }
+        prevLine = line.ID;
+    }
+    function addNextLine(line, extend)
+    {
+        if (extend)
+        {
+            switch (this.get_lim())
+            {
+                case 0:
+                {
+                    this.set_lim(2);
+                } 
+                case 1:
+                {
+                    this.set_lim(3);
+                }
+            }
+        }
+        nextLine = line.ID;
+    }
+	function get_lim()
+    {
+        return (_lim);
+    } 
 	public function collide(dot:CPoint) {
 		
 	}

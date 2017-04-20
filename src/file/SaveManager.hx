@@ -252,8 +252,8 @@ class SaveManager extends MovieClip
 				"x2": lines[i].x2,
 				"y2": lines[i].y2,
 				"flipped": lines[i].inv,
-				"leftExtended": false,
-				"rightExtended": false
+				"leftExtended":  lines[i].lExt,
+				"rightExtended":  lines[i].rExt
 			};
 			++line_ID_Override; //this ID override is important. During Beta 2 builds, this was found to completely prevent tracks from corrupting and being impossible to recover from
 								//Adding this safety feature here to ensure this doesn't happen, even if corruption is unlikely.
