@@ -179,6 +179,9 @@ class LoadManager extends MovieClip
 		this.trackData.lines.reverse();
 		for (i in 0...trackData.lines.length) {
 			var _loc1:LineBase;
+			if (trackData.lines[i] == null) {
+				continue;
+			}
 			if (trackData.lines[i].type == 0) {
 				_loc1 = new LineFloor(trackData.lines[i].x1, trackData.lines[i].y1, trackData.lines[i].x2, trackData.lines[i].y2, trackData.lines[i].flipped);
 				_loc1.ID = Common.sLineID;
@@ -203,7 +206,6 @@ class LoadManager extends MovieClip
 		Common.gCode.toggle_Loader();
 	}
 	public function get_lim_to_set(l:Bool, r:Bool):Int {
-		trace(l, r);
 		if (!l && !r) {
 			return(0);
 		} else if (l && !r) {

@@ -115,7 +115,6 @@ class SaveManager extends MovieClip
 		this.cancel_button.y = 260;
 	}
 	private function save_track_pre() {
-		trace(this.save_date, Common.svar_track_date_stamp);
 		this.fileName = this.name_input.text + ".json";
 		this.removeChild(this.save_button);
 		this.removeChild(this.cancel_button);
@@ -163,7 +162,6 @@ class SaveManager extends MovieClip
 		Common.cvar_add_time_stamp = this.add_timestamp.toggle();
 	}
 	public function update() {
-		trace("Updating", SaveManager.new_track);
 		this.save_date = Date.now().getDate() + Date.now().getHours() + "";
 		if (!SaveManager.new_track) {
 			this.name_input.text = Common.cvar_track_name;
@@ -193,7 +191,7 @@ class SaveManager extends MovieClip
 		}
 		var track:Object = parse_json();
 		var file = File.write("./saves/" + fileNameFinal + ".json", true); //.json = legacy format
-		file.writeString(Json.stringify(track));
+		file.writeString(Json.stringify(track, null, "\t"));
 		file.close();
 		
 		Common.gCode.toggle_save_menu();
@@ -239,21 +237,21 @@ class SaveManager extends MovieClip
 		lines.reverse();
 		var a:Array<Object> = new Array();
 		var line_Place_Override:Int = 0;
-		for (i in 0...lines.length) {
-			if (lines[i] == null) {
+		for (i in lines) {
+			if (i == null) {
 				continue;
 			}
 			a[line_Place_Override] = new Object();
 			a[line_Place_Override] = {
-				"id": lines[i].ID,
-				"type": lines[i].type,
-				"x1": lines[i].x1,
-				"y1": lines[i].y1,
-				"x2": lines[i].x2,
-				"y2": lines[i].y2,
-				"flipped": lines[i].inv,
-				"leftExtended":  lines[i].lExt,
-				"rightExtended":  lines[i].rExt
+				"id": line_Place_Override,
+				"type": i.type,
+				"x1": i.x1,
+				"y1": i.y1,
+				"x2": i.x2,
+				"y2": i.y2,
+				"flipped": i.inv,
+				"leftExtended":  i.lExt,
+				"rightExtended":  i.rExt
 			};
 			++line_Place_Override;
 		}
