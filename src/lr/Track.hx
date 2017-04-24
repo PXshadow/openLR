@@ -98,6 +98,13 @@ class Track extends MovieClip
 		}
 		Common.gGrid.new_grid();
 		Common.gSimManager.reset();
+		Common.gCode.reset_timeline();
+		Common.sim_frames = 0;
+		Common.sim_max_frames = 0;
+		Common.sim_pause_frame = 0;
+		Common.sim_rider_speed_top = 0;
+		Common.sim_slow_motion_rate = 5;
+		Common.sim_slow_motion = false;
 	}
 	public function remove_line(_line) {
 		this.back_layer.removeChild(Common.gGrid.lines[_line.ID]);

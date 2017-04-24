@@ -151,6 +151,19 @@ class Main extends Sprite
 		
 		this.visContainer.visible = false;
 	}
+	public function reset_timeline() {
+		Common.sim_frames = 0;
+		Common.sim_max_frames = 0;
+		Common.sim_pause_frame = -1;
+		Common.sim_slow_motion = false;
+		Common.sim_slow_motion_rate = 5;
+		this.visContainer.removeChild(this.timeline);
+		this.timeline = new TimelineControl();
+		this.visContainer.addChild(this.timeline);
+		this.timeline.update();
+		this.timeline.x = (this.stage.stageWidth * 0.5) - (this.timeline.width * 0.5);
+		this.timeline.y = this.stage.stageHeight - this.timeline.height + 25;
+	}
 	public function toggleSettings_box()
 	{
 		if (!this.settings_box.visible) {
