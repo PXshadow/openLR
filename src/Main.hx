@@ -1,8 +1,5 @@
 package;
 
-import file.AutosaveManager;
-import file.Screenshot;
-import lr.settings.SettingsMenu;
 import openfl.display.Loader;
 import openfl.display.MovieClip;
 import openfl.display.Sprite;
@@ -25,9 +22,11 @@ import file.SaveManager;
 import global.FrameRate;
 import global.SimManager;
 import lr.TextInfo;
-
 import ui.tool.Toolbar;
 import lr.Track;
+import file.AutosaveManager;
+import file.Screenshot;
+import lr.settings.SettingsMenu;
 
 /**
  * ...
