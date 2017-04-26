@@ -254,7 +254,7 @@ class RiderBase
 	public function step_forward() {
 		this.step_rider();
 	}
-	private function render_body()
+	public function render_body()
 	{
 		this.body.x = this.anchors[4].x;
 		this.body.y = this.anchors[4].y;

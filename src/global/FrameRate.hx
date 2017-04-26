@@ -18,7 +18,6 @@ class FrameRate
 	{
 		Common.gStage.addEventListener(Event.ENTER_FRAME, calc_fps);
 	}
-	
 	private function calc_fps(e:Event):Void 
 	{
 		var _loc1 = Timer.stamp();

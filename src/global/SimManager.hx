@@ -137,6 +137,8 @@ class SimManager
 	}
 	public function reset() {
 		this.rider.destroy_flag();
+		this.rider.reset();
+		this.rider.render_body();
 		this.flagged = false;
 		this.flag_av = false;
 	}
