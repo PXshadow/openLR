@@ -19,6 +19,7 @@ class Defaults
 		this.settingsData = new Object();
 		this.settingsData = {
 			"uniAuthor" : Common.cvar_universal_author_name;
+			"uniAuthorComment" : Common.cvar_author_comment;
 		}
 	}
 	public function pull_json() {
