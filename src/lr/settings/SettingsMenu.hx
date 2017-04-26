@@ -36,7 +36,7 @@ class SettingsMenu extends MovieClip
 		
 		this.tabFileMenu = new SingleButton("File", this.set_to_file);
 		this.tabTrackSettings = new SingleButton("Track", this.set_to_track);
-		this.tabProfile = new SingleButton("Profile");
+		this.tabProfile = new SingleButton("Profile", this.set_to_profile);
 		
 		this.addChild(this.tabFileMenu);
 		
@@ -62,7 +62,7 @@ class SettingsMenu extends MovieClip
 		} else if (this.state == track) {
 			this.removeChild(this.trackMenu);
 		} else if (this.state == profile) {
-			
+			this.removeChild(this.profileMenu);
 		}
 	}
 	function set_to_track() {
@@ -78,5 +78,12 @@ class SettingsMenu extends MovieClip
 		this.addChild(this.fileMenu);
 		this.fileMenu.y = this.tabFileMenu.height + 5;
 		this.fileMenu.x = 5;
+	}
+	function set_to_profile() {
+		this.clearMenu();
+		this.state = profile;
+		this.addChild(this.profileMenu);
+		this.profileMenu.y = this.tabFileMenu.height + 5;
+		this.profileMenu.x = 5;
 	}
 }
