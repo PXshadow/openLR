@@ -196,6 +196,10 @@ class RiderBase
 		{
 			Stick.crash = true; //Tail fakie counter measure. "Bug" that existed in Beta 1 that was was patched in Rev 5 (presumably);
 		}
+		if (_loc4 * (anchors[5].y - anchors[4].y) - _loc5 * (anchors[5].x - anchors[4].x) > 0)
+		{
+			Stick.crash = true; //headflip check. Defs more of a bug than tail fake, prevents head from being logged beneath the sled.
+		}
 		Common.sim_rider_speed = Math.floor((Math.sqrt(Math.pow(anchors[5].dx - g.x, 2)) + Math.sqrt(Math.pow(anchors[5].dy - g.y, 2))) * 100) / 100;
 		if (Common.sim_rider_speed > Common.sim_rider_speed_top) {
 			Common.sim_rider_speed_top = Common.sim_rider_speed;
