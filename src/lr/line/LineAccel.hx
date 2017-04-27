@@ -62,12 +62,6 @@ class LineAccel extends LineBase
                 dot.y = dot.y - _loc4 * ny;
                 dot.vx = dot.vx + ny * dot.fr * _loc4 * (dot.vx < dot.x ? (1) : (-1)) + this.accx;
                 dot.vy = dot.vy - nx * dot.fr * _loc4 * (dot.vy < dot.y ? ( -1) : (1)) + this.accy;
-				if (Common.cvar_hit_test) {
-					this.graphics.clear();
-					this.graphics.lineStyle(2, 0xCC0000, 1, true, "normal", "round");
-					this.graphics.moveTo(x1, y1);
-					this.graphics.lineTo(x2, y2);
-				}
                 return;
             } // end if
         } // end if

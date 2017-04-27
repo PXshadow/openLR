@@ -43,6 +43,7 @@ class LineBase extends MovieClip
 	public var nextLine:Int;
 	public var lExt:Bool = false;
 	public var rExt:Bool = false;
+	public var lowest_collided_frame:Int = 0;
 	
 	public function new() 
 	{
@@ -144,6 +145,18 @@ class LineBase extends MovieClip
         return (_lim);
     } 
 	public function collide(dot:CPoint) {
-		
+		if (Common.sim_frames == 0 || Common.sim_frames < this.lowest_collided_frame) {
+			this.lowest_collided_frame = Common.sim_frames;
+		}
+		if (Common.cvar_hit_test) {
+			this.graphics.clear();
+			if (this.type == 0) {
+				this.graphics.lineStyle(2, 0x0066FF, 1, true, "normal", "round");
+			} else if (this.type == 1) {
+				this.graphics.lineStyle(2, 0xCC0000, 1, true, "normal", "round");
+			}
+			this.graphics.moveTo(x1, y1);
+			this.graphics.lineTo(x2, y2);
+		}
 	}
 }
