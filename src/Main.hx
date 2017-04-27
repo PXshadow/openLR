@@ -17,8 +17,6 @@ import openfl.Lib;
 import openfl.Assets;
 
 //third party
-import crashdumper.SessionData;
-import crashdumper.CrashDumper;
 
 //openLR
 import global.SplashText;
