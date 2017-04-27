@@ -234,6 +234,25 @@ class RiderBase
 		this.render_body();
 		this.camera.pan(anchors[4]);
 	}
+	public function inject_frame_and_iterate(_frame, _iter) {
+		try {
+			for (i in 0...anchors.length) {
+				anchors[i].x = this.recorded_frames[_frame][i][0];
+				anchors[i].y = this.recorded_frames[_frame][i][1];
+				anchors[i].vx = this.recorded_frames[_frame][i][2];
+				anchors[i].vy = this.recorded_frames[_frame][i][3];
+				anchors[i].dx = this.recorded_frames[_frame][i][4];
+				anchors[i].dy = this.recorded_frames[_frame][i][5];
+				Stick.crash = this.recorded_frames[_frame][i][6];
+			}
+		} catch(e:String) {
+			return;
+		}
+		for (a in 0..._iter) {
+			this.step_forward();
+		}
+		this.render_body();
+	}
 	public function step_back()
 	{
 		if (Common.sim_frames > 0) {

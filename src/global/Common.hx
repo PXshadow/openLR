@@ -65,6 +65,7 @@ class Common
 	public static var track_last_pos_y:Float = 0;
 	
 	public static var sim_frames:Int = 0;
+	public static var sim_frames_alt:Int = 0;
 	public static var sim_max_frames:Int = 0;
 	public static var simfl_frames:Int = 0;
 	public static var sim_rider_speed:Float = 0;
@@ -92,6 +93,7 @@ class Common
 	public static var cvar_add_time_stamp = false;
 	public static var cvar_author_collab_list:Array<String>;
 	public static var cvar_universal_author_name:String = "Anonymous";
+	public static var cvar_track_stepback_update:Int = 10;
 	
 	public static var svar_frame_rate:Float;
 	public static var svar_framerate_avg_rate:Int = 60;

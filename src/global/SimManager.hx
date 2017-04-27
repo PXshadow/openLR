@@ -92,6 +92,7 @@ class SimManager
 	{
 		if (this.sim_running) {
 			this.sim_running = false;
+			Common.sim_frames_alt = Common.sim_frames;
 			Common.sim_frames = 0;
 			this.iterator.stop();
 			if (Common.cvar_force_zoom) {
@@ -101,6 +102,7 @@ class SimManager
 	}
 	public function pause_sim()
 	{
+		Common.sim_frames_alt = Common.sim_frames;
 		this.sim_running = false;
 		this.iterator.stop();
 		this.paused = true;
@@ -134,6 +136,20 @@ class SimManager
 		try {
 			this.rider.flag.alpha = 1;
 		} catch (e:String) {}
+	}
+	public function rider_update() {
+		var _loc1 = Common.sim_frames_alt - Common.cvar_track_stepback_update;
+		var _loc2 = Common.sim_frames_alt - _loc1;
+		if (_loc1 < 0) {
+			_loc1 = _loc2 = Common.cvar_track_stepback_update + _loc1;
+			if (_loc1 == -1) {
+				return;
+			} else {
+				this.rider.inject_frame_and_iterate(0, _loc2);
+			}
+		} else {
+			this.rider.inject_frame_and_iterate(_loc1, Common.cvar_track_stepback_update);
+		}
 	}
 	public function reset() {
 		this.rider.destroy_flag();
