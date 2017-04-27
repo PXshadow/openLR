@@ -25,6 +25,7 @@ class TrackSettings extends MovieClip
 	var line_snap:CheckBox;
 	var slow_motion:CheckBox;
 	var contact_points:CheckBox;
+	var bosh_alpha:StepCounter;
 	var slow_rate:StepCounter;
 	var force_zoom:CheckBox;
 	var force_zoom_step:StepCounter;
@@ -56,6 +57,13 @@ class TrackSettings extends MovieClip
 		this.contact_points.y = 16;
 		this.contact_points.x = 128;
 		this.contact_points.box.addEventListener(MouseEvent.CLICK, toggle_contact_points);
+		this.bosh_alpha = new StepCounter();
+		this.bosh_alpha.set_numeric_mode(0.1, 1, 0.1, 1, " Alpha");
+		this.addChild(this.bosh_alpha);
+		this.bosh_alpha.x = 128;
+		this.bosh_alpha.y = this.contact_points.y + this.contact_points.height;
+		this.bosh_alpha.stepDown.addEventListener(MouseEvent.CLICK, decBoshAlpha);
+		this.bosh_alpha.stepUp.addEventListener(MouseEvent.CLICK, incBoshAlpha);
 		
 		this.angle_snap = new CheckBox("Angle Snap", Common.cvar_angle_snap);
 		this.addChild(this.angle_snap);
@@ -102,6 +110,16 @@ class TrackSettings extends MovieClip
 		this.graphics.lineTo(this.sWidth + 5, this.sHeight + 5);
 		this.graphics.lineTo(-5, this.sHeight + 5);
 		this.graphics.lineTo( -5, -5);
+	}
+	
+	private function incBoshAlpha(e:MouseEvent):Void 
+	{
+		Common.cvar_rider_alpha = this.bosh_alpha.inc();
+	}
+	
+	private function decBoshAlpha(e:MouseEvent):Void 
+	{
+		Common.cvar_rider_alpha = this.bosh_alpha.dec();
 	}
 	private function dec_force_zoom(e:MouseEvent):Void 
 	{

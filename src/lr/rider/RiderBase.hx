@@ -312,11 +312,9 @@ class RiderBase
 			this.bosh.graphics.lineTo(anchors[7].x, anchors[7].y);
 		}
 		if (Common.cvar_contact_points) {
-			this.body.alpha = this.sled.alpha = this.leftArm.alpha = this.rightArm.alpha = this.leftLeg.alpha = this.rightLeg.alpha = 0.25;
 			this.render_bones();
-		} else {
-			this.body.alpha = this.sled.alpha = this.leftArm.alpha = this.rightArm.alpha = this.leftLeg.alpha = this.rightLeg.alpha = 1;
 		}
+		this.bosh.alpha = Common.cvar_rider_alpha;
 		
 	}
 	public function collision() 
