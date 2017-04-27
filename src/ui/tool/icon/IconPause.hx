@@ -29,6 +29,7 @@ class IconPause extends IconBase
 		} else if (!Common.gSimManager.paused) {
 			Common.gSimManager.pause_sim();
 			Common.gToolbar.set_edit_mode();
+			Toolbar.icon.select();
 		}
 	}
 	

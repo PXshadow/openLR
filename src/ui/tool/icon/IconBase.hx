@@ -53,7 +53,7 @@ class IconBase extends MovieClip
 	
 	private function enable_tool(e:MouseEvent):Void 
 	{
-		if (!Common.svar_sim_running) {
+		if (!Common.svar_sim_running || Common.gSimManager.paused) {
 			Common.gToolBase.enable();
 			this.alpha = 1;
 		}
