@@ -69,6 +69,7 @@ class SettingsMenu extends MovieClip
 		this.clearMenu();
 		this.state = track;
 		this.addChild(this.trackMenu);
+		this.trackMenu.update();
 		this.trackMenu.y = this.tabFileMenu.height + 5;
 		this.trackMenu.x = 5;
 	}

@@ -61,7 +61,7 @@ class Slider extends MovieClip
 	private function thisSlide(e:MouseEvent):Void 
 	{
 		if (frame_length == 0) {
-			return;
+			//return;
 		}
 		this.playHead.x = this.mouseX;
 		var frameToInject = Std.int(Math.floor(playHead.x * frameRatio));
