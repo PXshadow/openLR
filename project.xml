@@ -16,18 +16,13 @@
 	<source path="src" />
 	<haxelib name="openfl" />
 	<haxelib name="actuate" />
-	<haxelib name="crashdumper"/>
 	
 	<!-- assets -->
 	<icon path="assets/icon.ico" />
 	<assets path="assets/icons" rename="icon" />
 	<assets path="assets/fonts" rename="fonts" />
 	<assets path="assets/flash" rename="swf" />
-	<assets path="assets/logs" rename="logs" />
 	
-	<!-- flags -->
-	<haxedef name="HXCPP_STACK_LINE" />
-	<haxedef name="HXCPP_STACK_TRACE"/>
 	
 	<!-- optimize output
 	<haxeflag name="-dce full" /> -->

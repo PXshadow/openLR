@@ -1,5 +1,6 @@
 package;
 
+//Primary
 import openfl.display.Loader;
 import openfl.display.MovieClip;
 import openfl.display.Sprite;
@@ -12,7 +13,14 @@ import ui.inter.AlertBox;
 import ui.inter.CheckBox;
 import ui.tool.timeline.Ticker;
 import ui.tool.timeline.TimelineControl;
+import openfl.Lib;
+import openfl.Assets;
 
+//third party
+import crashdumper.SessionData;
+import crashdumper.CrashDumper;
+
+//openLR
 import global.SplashText;
 import file.FileStart;
 import file.LoadManager;
@@ -80,6 +88,8 @@ class Main extends Sprite
 	private var settings_box:SettingsMenu;
 	
 	private var autosave:AutosaveManager;
+	
+	public var unique_id:String; 
 	
 	public function new() 
 	{
