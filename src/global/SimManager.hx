@@ -139,14 +139,8 @@ class SimManager
 	}
 	public function rider_update() {
 		var _loc1 = Common.sim_frames_alt - Common.cvar_track_stepback_update;
-		var _loc2 = Common.sim_frames_alt - _loc1;
-		if (_loc1 < 0) {
-			_loc1 = _loc2 = Common.cvar_track_stepback_update + _loc1;
-			if (_loc1 == -1) {
-				return;
-			} else {
-				this.rider.inject_frame_and_iterate(0, _loc2);
-			}
+		if (_loc1 <= 0) {
+			this.rider.inject_frame_and_iterate(0, Common.sim_frames_alt);
 		} else {
 			this.rider.inject_frame_and_iterate(_loc1, Common.cvar_track_stepback_update);
 		}
