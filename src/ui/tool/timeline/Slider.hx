@@ -57,6 +57,7 @@ class Slider extends MovieClip
 			Common.gSimManager.pause_sim();
 		}
 		Common.sim_pause_frame = Common.sim_frames;
+		Common.sim_frames_alt = Common.sim_frames;
 	}
 	private function thisSlide(e:MouseEvent):Void 
 	{

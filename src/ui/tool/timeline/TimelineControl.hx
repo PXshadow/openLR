@@ -61,6 +61,7 @@ class TimelineControl extends MovieClip
 			this.ticker_pause = false;
 		} else {
 			Common.gToolBase.enable();
+			Common.sim_frames_alt = Common.sim_frames;
 		}
 	}
 	
