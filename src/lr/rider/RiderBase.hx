@@ -190,6 +190,10 @@ class RiderBase
 			}
 			this.collision(); //check for line collision
 		}
+		/*The following two crash checks have no impact on track behavior. Since all tracks have been designed around this limit, enabling (or lack there of) the limit doesn't impact
+		 *backwards compatibility. Tail fakies being enabled has been a consideration as a feature, but was generally panned. V3.4.X offered an option to enable it, but offered the
+		 *limit that tail and nose fakies cannot occur at the same time (prevented sled from displaying weird). Unkown if this was a sucessful compromise.
+		 */
 		var _loc4:Float = anchors[3].x - anchors[0].x;
 		var _loc5:Float = anchors[3].y - anchors[0].y;
 		if (_loc4 * (anchors[1].y - anchors[0].y) - _loc5 * (anchors[1].x - anchors[0].x) < 0)
@@ -209,7 +213,7 @@ class RiderBase
 		this.record_frame();
 	}
 	
-	function record_frame() 
+	function record_frame() //Should be called every time the sim advances forward in any way. Current exception is slider tool as that behaves on skipping ahead and not advancing forward
 	{
 		this.recorded_frames[Common.sim_frames] = new Array();
 		for (i in 0...anchors.length) {
@@ -223,7 +227,7 @@ class RiderBase
 			this.recorded_frames[Common.sim_frames][i][6] = Stick.crash;
 		}
 	}
-	public function inject_frame(_frame) {
+	public function inject_frame(_frame) { //for when you need to skip to an arbitrary frame
 		try {
 			for (i in 0...anchors.length) {
 				anchors[i].x = this.recorded_frames[_frame][i][0];
