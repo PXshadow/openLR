@@ -283,6 +283,7 @@ class Grid
 		--Common.sLineCount;
 
 		Common.gTextInfo.update();
+		Common.gSimManager.rider_update();
 	}
 	function remove_from_grid(line:LineBase)
 	{
