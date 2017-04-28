@@ -181,6 +181,7 @@ class RiderBase
 		Stick.crash = false;
 	}
 	public function step_rider() { //This is called every time the timer goes off in SimManaher.hx
+	public function step_rider(_pan:Bool = true) { //This is called every time the timer goes off in SimManaher.hx
 		for (i in 0...anchors.length) {
 			anchors[i].verlet(this.g); //Apply speed and gravity to the rider
 		}
@@ -209,8 +210,10 @@ class RiderBase
 			Common.sim_rider_speed_top = Common.sim_rider_speed;
 		}
 		this.render_body();
-		this.camera.pan(anchors[4]);
 		this.record_frame();
+		if (_pan) {
+			this.camera.pan(anchors[4]);
+		}
 	}
 	
 	function record_frame() //Should be called every time the sim advances forward in any way. Current exception is slider tool as that behaves on skipping ahead and not advancing forward
@@ -260,9 +263,9 @@ class RiderBase
 			return;
 		}
 		for (a in 0..._iter) {
-			this.step_forward();
+			this.step_rider(false);
 		}
-		this.render_body();
+		//this.render_body();
 	}
 	public function step_back()
 	{
