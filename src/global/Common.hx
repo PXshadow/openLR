@@ -93,7 +93,7 @@ class Common
 	public static var cvar_add_time_stamp = false;
 	public static var cvar_author_collab_list:Array<String>;
 	public static var cvar_universal_author_name:String = "Anonymous";
-	public static var cvar_track_stepback_update:Int = 10;
+	public static var cvar_track_stepback_update:Int = 40;
 	public static var cvar_rider_alpha:Float = 1;
 	
 	public static var svar_frame_rate:Float;

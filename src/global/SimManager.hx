@@ -142,7 +142,7 @@ class SimManager
 		if (_loc1 <= 0) {
 			this.rider.inject_frame_and_iterate(0, Common.sim_frames_alt);
 		} else {
-			this.rider.inject_frame_and_iterate(_loc1, Common.cvar_track_stepback_update);
+			this.rider.inject_frame_and_iterate(_loc1, Common.cvar_track_stepback_update - 1);
 		}
 	}
 	public function reset() {
