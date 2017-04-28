@@ -17,16 +17,21 @@ class KeyBindings
 	public static var line_2:Int = Keyboard.F2;
 	public static var eraser_1:Int = Keyboard.E;
 	public static var eraser_2:Int = Keyboard.F3;
+	public static var pan_1:Int = Keyboard.R;
+	public static var pan_2:Int = Keyboard.F4;
 	public static var swatch_blue:Int = Keyboard.NUMBER_1;
 	public static var swatch_red:Int = Keyboard.NUMBER_2;
 	public static var swatch_green:Int = Keyboard.NUMBER_3;
 	public static var icon_play:Int = Keyboard.Y;
 	public static var icon_stop:Int = Keyboard.U;
 	public static var icon_flag:Int = Keyboard.I;
-	public static var mod_action:Int = Keyboard.SHIFT;
+	public static var mod_action_shift:Int = Keyboard.SHIFT;
+	public static var mod_action_control:Int = Keyboard.CONTROL;
 	public static var angle_snap:Int = Keyboard.X; //Includes lock toggle
 	public static var line_snap:Int = Keyboard.S; //Includes lock toggle
 	public static var ff_toggle:Int = Keyboard.SPACE;
+	public static var sm_toggle:Int = Keyboard.M;
+	public static var rw_toggle:Int = Keyboard.CONTROL; //sim only
 	public static var undo_line:Int = Keyboard.BACKSPACE;
 	
 	//combo strokes
@@ -46,18 +51,23 @@ class KeyBindings
 		KeyBindings.line_2 = Keyboard.F2;
 		KeyBindings.eraser_1 = Keyboard.E;
 		KeyBindings.eraser_2 = Keyboard.F3;
+		KeyBindings.pan_1 = Keyboard.R;
+		KeyBindings.pan_2 = Keyboard.F4;
 		KeyBindings.swatch_blue = Keyboard.NUMBER_1;
 		KeyBindings.swatch_red = Keyboard.NUMBER_2;
 		KeyBindings.swatch_green = Keyboard.NUMBER_3;
 		KeyBindings.icon_play = Keyboard.Y;
 		KeyBindings.icon_stop = Keyboard.U;
 		KeyBindings.icon_flag = Keyboard.I;
-		KeyBindings.shift_action = Keyboard.SHIFT;
+		KeyBindings.mod_action_shift = Keyboard.SHIFT;
+		KeyBindings.mod_action_control = Keyboard.CONTROL;
 		KeyBindings.angle_snap = Keyboard.X;
 		KeyBindings.line_snap = Keyboard.S;
+		KeyBindings.ff_toggle = Keyboard.SPACE;
+		KeyBindings.sm_toggle = Keyboard.M;
 		KeyBindings.undo_line = Keyboard.BACKSPACE;
 		
-		KeyBindings.undo_stroke = Keyboard.Z
+		KeyBindings.undo_stroke = Keyboard.Z;
 		KeyBindings.redo_stroke = Keyboard.Y;
 		KeyBindings.redo_line = Keyboard.BACKSPACE;
 	}
@@ -115,7 +125,7 @@ class KeyBindings
 		KeyBindings.KeyStringList[Keyboard.TAB] = "Tab";
 		KeyBindings.KeyStringList[Keyboard.ALTERNATE] = "Alt";
 		KeyBindings.KeyStringList[Keyboard.ENTER] = "Enter/Return";
-		KeyBindings.KeyStringList[Keyboard.SHIFT] = "Shift";
+		KeyBindings.KeyStringList[Keyboard.SHIFT] = "Shift"; //Might not want to have shift and control rebindable for everything that uses it
 		KeyBindings.KeyStringList[Keyboard.CONTROL] = "Ctrl";
 		KeyBindings.KeyStringList[Keyboard.SPACE] = "Space";
 	}
