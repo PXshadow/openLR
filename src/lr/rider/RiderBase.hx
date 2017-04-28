@@ -20,7 +20,9 @@ import lr.rider.phys.*;
 class RiderBase 
 {
 	public var anchors:Vector<CPoint>;
+	public var anchors_scarf:Vector<SPoint>;
 	public var edges:Vector<Stick>;
+	public var edges_scarf:Vector<ScarfStick>;
 	public var startFrame:Vector<CPoint>;
 	public var saveFrame:Vector<CPoint>;
 	public var g:Object;
@@ -34,6 +36,7 @@ class RiderBase
 	private var rightLeg:MovieClip;
 	private var sled:MovieClip;
 	private var bones:MovieClip;
+	private var scarf:MovieClip;
 	
 	private var camera:RiderCamera;
 	
@@ -76,8 +79,7 @@ class RiderBase
 	{
 		Stick.crash = false;
 		
-		this.anchors = new Vector(10);
-		
+		this.anchors = new Vector(10); //Rider contact points
 		this.anchors[0] = new CPoint(0, 0, 0.8, 0); //2nd Peg
 		this.anchors[1] = new CPoint(0, 10, 0, 1); //Upper Nose
 		this.anchors[2] = new CPoint(30, 10, 0, 2); //Lower Nose
@@ -89,9 +91,21 @@ class RiderBase
 		this.anchors[8] = new CPoint(20, 10, 0, 8); //Foot
 		this.anchors[9] = new CPoint(20, 10, 0, 9); //Foot
 		
+		this.anchors_scarf = new Vector(6); //Scarf contact points
+		anchors_scarf[0] = new SPoint(7, -10);
+		anchors_scarf[1] = new SPoint(3, -10);
+		anchors_scarf[2] = new SPoint(0, -10);
+		anchors_scarf[3] = new SPoint(-4, -10);
+		anchors_scarf[4] = new SPoint(-7, -10);
+		anchors_scarf[5] = new SPoint(-11, -10);
+		
 		for (a in 0...anchors.length) {
 			anchors[a].x *= 0.5;
 			anchors[a].y *= 0.5;
+		}
+		for (b in 0...anchors_scarf.length) {
+			anchors_scarf[b].x *= 0.5;
+			anchors_scarf[b].y *= 0.5;
 		}
 		
 		this.edges = new Vector(22);
@@ -126,11 +140,25 @@ class RiderBase
 		this.edges[20].rest *= 0.5;
 		this.edges[21].rest *= 0.5;
 		
+		this.edges_scarf = new Vector(6);
+		edges_scarf[0] = new ScarfStick(anchors[5], anchors_scarf[0]);
+		edges_scarf[1] = new ScarfStick(anchors_scarf[0], anchors_scarf[1]);
+		edges_scarf[2] = new ScarfStick(anchors_scarf[1], anchors_scarf[2]);
+		edges_scarf[3] = new ScarfStick(anchors_scarf[2], anchors_scarf[3]);
+		edges_scarf[4] = new ScarfStick(anchors_scarf[3], anchors_scarf[4]);
+		edges_scarf[5] = new ScarfStick(anchors_scarf[4], anchors_scarf[5]);
+		
 		for (i in 0...anchors.length) { //this shift is necesarry as it keeps the rider from flying the second the sim starts. 
 			anchors[i].x = anchors[i].x + Common.track_start_x;
 			anchors[i].y = anchors[i].y + Common.track_start_y;
 			anchors[i].vx = anchors[i].x - 0.4;
 			anchors[i].vy = anchors[i].y;
+		}
+		for (j in 0...anchors_scarf.length) { //this shift is necesarry as it keeps the rider from flying the second the sim starts. 
+			anchors_scarf[j].x = anchors_scarf[j].x + Common.track_start_x;
+			anchors_scarf[j].y = anchors_scarf[j].y + Common.track_start_y;
+			anchors_scarf[j].vx = anchors_scarf[j].x - 0.4;
+			anchors_scarf[j].vy = anchors_scarf[j].y;
 		}
 	}
 	public function moveToStart(_x:Float, _y:Float) {
@@ -140,6 +168,12 @@ class RiderBase
 			anchors[i].y = anchors[i].y + _y;
 			anchors[i].vx = anchors[i].x - 0.4;
 			anchors[i].vy = anchors[i].y;
+		}
+		for (j in 0...anchors_scarf.length) {
+			anchors_scarf[j].x = anchors_scarf[j].x + _x;
+			anchors_scarf[j].y = anchors_scarf[j].y + _y;
+			anchors_scarf[j].vx = anchors_scarf[j].x - 0.4;
+			anchors_scarf[j].vy = anchors_scarf[j].y;
 		}
 		this.Start.x = _x;
 		this.Start.y = _y;
@@ -190,6 +224,12 @@ class RiderBase
 				if (edges[b].constrain()) {} //Adjust all of the riders bones (edges)
 			}
 			this.collision(); //check for line collision
+		}
+		for (c in anchors_scarf) {
+			c.verlet(this.g);
+		}
+		for (d in edges_scarf) {
+			d.constrain();
 		}
 		/*The following two crash checks have no impact on track behavior. Since all tracks have been designed around this limit, enabling (or lack there of) the limit doesn't impact
 		 *backwards compatibility. Tail fakies being enabled has been a consideration as a feature, but was generally panned. V3.4.X offered an option to enable it, but offered the
@@ -307,6 +347,7 @@ class RiderBase
 		this.leftLeg.rotation = Common.get_angle_degrees(new Point(anchors[4].x, anchors[4].y), new Point(anchors[8].x, anchors[8].y));
 		this.rightLeg.rotation = Common.get_angle_degrees(new Point(anchors[4].x, anchors[4].y), new Point(anchors[9].x, anchors[9].y));
 		
+		//rider rendering
 		this.bones.graphics.clear();
 		if (!Stick.crash) {
 			this.bones.graphics.lineStyle(0.5, 0, 1);
@@ -317,6 +358,21 @@ class RiderBase
 		if (Common.cvar_contact_points) {
 			this.render_bones();
 		}
+		this.scarf.graphics.clear();
+		this.scarf.graphics.lineStyle(2, 0xFFFFFF, 1, false, "none", "none");
+		this.scarf.graphics.moveTo(edges_scarf[0].a.x, edges_scarf[0].a.y);
+		this.scarf.graphics.lineTo(edges_scarf[0].b.x, edges_scarf[0].b.y);
+		this.scarf.graphics.moveTo(edges_scarf[2].a.x, edges_scarf[2].a.y);
+		this.scarf.graphics.lineTo(edges_scarf[2].b.x, edges_scarf[2].b.y);
+		this.scarf.graphics.moveTo(edges_scarf[4].a.x, edges_scarf[4].a.y);
+		this.scarf.graphics.lineTo(edges_scarf[4].b.x, edges_scarf[4].b.y);
+		this.scarf.graphics.lineStyle(2, 0xD20202, 1, false, "none", "none");
+		this.scarf.graphics.moveTo(edges_scarf[1].a.x, edges_scarf[1].a.y);
+		this.scarf.graphics.lineTo(edges_scarf[1].b.x, edges_scarf[1].b.y);
+		this.scarf.graphics.moveTo(edges_scarf[3].a.x, edges_scarf[3].a.y);
+		this.scarf.graphics.lineTo(edges_scarf[3].b.x, edges_scarf[3].b.y);
+		this.scarf.graphics.moveTo(edges_scarf[5].a.x, edges_scarf[5].a.y);
+		this.scarf.graphics.lineTo(edges_scarf[5].b.x, edges_scarf[5].b.y);
 		this.body.alpha = this.leftArm.alpha = this.rightArm.alpha = this.leftLeg.alpha = this.rightLeg.alpha = this.sled.alpha = Common.cvar_rider_alpha;
 		
 	}
@@ -423,6 +479,8 @@ class RiderBase
 	{
 		++clips;
 		if (clips == 6) {
+			this.scarf = new MovieClip();
+			bosh.addChild(this.scarf);
 			bosh.addChild(this.leftLeg);
 			bosh.addChild(this.leftArm);
 			bosh.addChild(this.sled);

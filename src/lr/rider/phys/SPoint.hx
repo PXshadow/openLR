@@ -24,8 +24,6 @@ class SPoint
 		this.y = _y;
 		this.dx = this.dy = 0;
 		this.vx = this.vy = 0;
-		this.fr = _fr;
-		this.ID = _id;
 	}
 	public function verlet(grav:Object) {
 		this.dx = (this.x - this.vx) * SPoint.airFric + grav.x;
