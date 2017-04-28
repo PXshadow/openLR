@@ -33,6 +33,7 @@ class RiderBase
 	private var leftLeg:MovieClip;
 	private var rightLeg:MovieClip;
 	private var sled:MovieClip;
+	private var bones:MovieClip;
 	
 	private var camera:RiderCamera;
 	
@@ -180,7 +181,6 @@ class RiderBase
 		
 		Stick.crash = false;
 	}
-	public function step_rider() { //This is called every time the timer goes off in SimManaher.hx
 	public function step_rider(_pan:Bool = true) { //This is called every time the timer goes off in SimManaher.hx
 		for (i in 0...anchors.length) {
 			anchors[i].verlet(this.g); //Apply speed and gravity to the rider
@@ -307,17 +307,17 @@ class RiderBase
 		this.leftLeg.rotation = Common.get_angle_degrees(new Point(anchors[4].x, anchors[4].y), new Point(anchors[8].x, anchors[8].y));
 		this.rightLeg.rotation = Common.get_angle_degrees(new Point(anchors[4].x, anchors[4].y), new Point(anchors[9].x, anchors[9].y));
 		
-		this.bosh.graphics.clear();
+		this.bones.graphics.clear();
 		if (!Stick.crash) {
-			this.bosh.graphics.lineStyle(0.5, 0, 1);
-			this.bosh.graphics.moveTo(anchors[6].x, anchors[6].y);
-			this.bosh.graphics.lineTo(anchors[3].x, anchors[3].y);
-			this.bosh.graphics.lineTo(anchors[7].x, anchors[7].y);
+			this.bones.graphics.lineStyle(0.5, 0, 1);
+			this.bones.graphics.moveTo(anchors[6].x, anchors[6].y);
+			this.bones.graphics.lineTo(anchors[3].x, anchors[3].y);
+			this.bones.graphics.lineTo(anchors[7].x, anchors[7].y);
 		}
 		if (Common.cvar_contact_points) {
 			this.render_bones();
 		}
-		this.bosh.alpha = Common.cvar_rider_alpha;
+		this.body.alpha = this.leftArm.alpha = this.rightArm.alpha = this.leftLeg.alpha = this.rightLeg.alpha = this.sled.alpha = Common.cvar_rider_alpha;
 		
 	}
 	public function collision() 
@@ -428,6 +428,8 @@ class RiderBase
 			bosh.addChild(this.sled);
 			bosh.addChild(this.rightLeg);
 			bosh.addChild(this.body);
+			this.bones = new MovieClip();
+			bosh.addChild(this.bones);
 			bosh.addChild(this.rightArm);
 			this.render_body();
 		}
