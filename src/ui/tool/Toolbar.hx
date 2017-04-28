@@ -116,7 +116,7 @@ class Toolbar extends MovieClip
 	
 	private function key_tool_switch(e:KeyboardEvent):Void 
 	{
-		if (e.keyCode == KeyBindings.pencil_1 || KeyBindings.pencil_2) {
+		if (e.keyCode == KeyBindings.pencil_1 || e.keyCode == KeyBindings.pencil_2) {
 			Common.gToolBase.disable();
 			icon.deselect();
 			tool = new ToolPencil();
@@ -124,7 +124,7 @@ class Toolbar extends MovieClip
 			icon.select();
 			swatch.select();
 		}
-		if (e.keyCode == KeyBindings.line_1 || KeyBindings.line_2) {
+		if (e.keyCode == KeyBindings.line_1 || e.keyCode == KeyBindings.line_2) {
 			Common.gToolBase.disable();
 			icon.deselect();
 			tool = new ToolLine();
