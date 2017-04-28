@@ -20,7 +20,7 @@ class FileStart
 	
 	function loadSettings() 
 	{
-		if (FileSystem.exists("defaults.json")) {
+		if (FileSystem.exists("./settings/defaults.json")) {
 			//new defaults file
 		} else {
 			//load defaults file
@@ -40,6 +40,10 @@ class FileStart
 		if (FileSystem.isDirectory("./export")) {
 		} else {
 			FileSystem.createDirectory("./export");
+		}
+		if (FileSystem.isDirectory("./settings")) {
+		} else {
+			FileSystem.createDirectory("./settings");
 		}
 	}
 }
