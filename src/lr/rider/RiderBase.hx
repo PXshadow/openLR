@@ -240,17 +240,19 @@ class RiderBase
 		for (i in 0...anchors.length) {
 			anchors[i].verlet(this.g); //Apply speed and gravity to the rider
 		}
+		anchors_scarf[1].x = anchors_scarf[1].x + Math.random() * 0.300000 * -Math.min(anchors_scarf[5].dx, 125);
+		anchors_scarf[1].y = anchors_scarf[1].y + Math.random() * 0.300000 * -Math.min(anchors_scarf[5].dy, 125);
+		for (c in anchors_scarf) {
+			c.verlet(this.g);
+		}
 		for (a in 0...6) {
 			for (b in 0...edges.length) {
 				if (edges[b].constrain()) {} //Adjust all of the riders bones (edges)
 			}
+			for (d in edges_scarf) {
+				d.constrain(); //need to figure out how to keep slinky scarf
+			}
 			this.collision(); //check for line collision
-		}
-		for (c in anchors_scarf) {
-			c.verlet(this.g);
-		}
-		for (d in edges_scarf) {
-			d.constrain();
 		}
 		/*The following two crash checks have no impact on track behavior. Since all tracks have been designed around this limit, enabling (or lack there of) the limit doesn't impact
 		 *backwards compatibility. Tail fakies being enabled has been a consideration as a feature, but was generally panned. V3.4.X offered an option to enable it, but offered the
