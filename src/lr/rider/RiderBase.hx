@@ -92,12 +92,12 @@ class RiderBase
 		this.anchors[9] = new CPoint(20, 10, 0, 9); //Foot
 		
 		this.anchors_scarf = new Vector(6); //Scarf contact points
-		anchors_scarf[0] = new SPoint(7, -10);
-		anchors_scarf[1] = new SPoint(3, -10);
-		anchors_scarf[2] = new SPoint(0, -10);
-		anchors_scarf[3] = new SPoint(-4, -10);
-		anchors_scarf[4] = new SPoint(-7, -10);
-		anchors_scarf[5] = new SPoint(-11, -10);
+		this.anchors_scarf[0] = new SPoint(7, -10);
+		this.anchors_scarf[1] = new SPoint(3, -10);
+		this.anchors_scarf[2] = new SPoint(0, -10);
+		this.anchors_scarf[3] = new SPoint(-4, -10);
+		this.anchors_scarf[4] = new SPoint(-7, -10);
+		this.anchors_scarf[5] = new SPoint(-11, -10);
 		
 		for (a in 0...anchors.length) {
 			anchors[a].x *= 0.5;
@@ -141,12 +141,12 @@ class RiderBase
 		this.edges[21].rest *= 0.5;
 		
 		this.edges_scarf = new Vector(6);
-		edges_scarf[0] = new ScarfStick(anchors[5], anchors_scarf[0]);
-		edges_scarf[1] = new ScarfStick(anchors_scarf[0], anchors_scarf[1]);
-		edges_scarf[2] = new ScarfStick(anchors_scarf[1], anchors_scarf[2]);
-		edges_scarf[3] = new ScarfStick(anchors_scarf[2], anchors_scarf[3]);
-		edges_scarf[4] = new ScarfStick(anchors_scarf[3], anchors_scarf[4]);
-		edges_scarf[5] = new ScarfStick(anchors_scarf[4], anchors_scarf[5]);
+		this.edges_scarf[0] = new ScarfStick(anchors[5], anchors_scarf[0]);
+		this.edges_scarf[1] = new ScarfStick(anchors_scarf[0], anchors_scarf[1]);
+		this.edges_scarf[2] = new ScarfStick(anchors_scarf[1], anchors_scarf[2]);
+		this.edges_scarf[3] = new ScarfStick(anchors_scarf[2], anchors_scarf[3]);
+		this.edges_scarf[4] = new ScarfStick(anchors_scarf[3], anchors_scarf[4]);
+		this.edges_scarf[5] = new ScarfStick(anchors_scarf[4], anchors_scarf[5]);
 		
 		for (i in 0...anchors.length) { //this shift is necesarry as it keeps the rider from flying the second the sim starts. 
 			anchors[i].x = anchors[i].x + Common.track_start_x;
@@ -203,6 +203,19 @@ class RiderBase
 		this.anchors[9].x = 20;
 		this.anchors[9].y = 10;
 		
+		this.anchors_scarf[0].x = 7;
+		this.anchors_scarf[0].y = -10;
+		this.anchors_scarf[1].x = 3;
+		this.anchors_scarf[1].y = -10;
+		this.anchors_scarf[2].x = 0;
+		this.anchors_scarf[2].y = -10;
+		this.anchors_scarf[3].x = -4;
+		this.anchors_scarf[3].y = -10;
+		this.anchors_scarf[4].x = -7;
+		this.anchors_scarf[4].y = -10;
+		this.anchors_scarf[5].x = -11;
+		this.anchors_scarf[5].y = -10;
+		
 		
 		for (i in anchors) {
 			i.x *= 0.5;
@@ -211,6 +224,14 @@ class RiderBase
 			i.y += Common.track_start_y;
 			i.vx = i.x - 0.4;
 			i.vy = i.y;
+		}
+		for (j in anchors_scarf) {
+			j.x *= 0.5;
+			j.y *= 0.5;
+			j.x += Common.track_start_x;
+			j.y += Common.track_start_y;
+			j.vx = j.x - 0.4;
+			j.vy = j.y;
 		}
 		
 		Stick.crash = false;
