@@ -3,10 +3,10 @@ package ui.tool;
 import openfl.events.Event;
 import openfl.events.MouseEvent;
 import openfl.geom.Point;
-import openfl.ui.Keyboard;
 import openfl.events.KeyboardEvent;
 import openfl.text.TextField;
 
+import global.KeyBindings;
 import global.Common;
 
 /**
@@ -43,13 +43,13 @@ class ToolBase
 	
 	private function KeyModifierDown(e:KeyboardEvent):Void 
 	{
-		if (e.keyCode == Keyboard.X) {
+		if (e.keyCode == KeyBindings.angle_snap) {
 			mod_x = true;
 		}
 	}
 	private function KeyModifierUp(e:KeyboardEvent):Void 
 	{
-		if (e.keyCode == Keyboard.X) {
+		if (e.keyCode == KeyBindings.angle_snap) {
 			mod_x = false;
 			if (e.shiftKey) {
 				if (Common.cvar_angle_snap) {
@@ -63,27 +63,27 @@ class ToolBase
 	
 	private function KeyNumDown(e:KeyboardEvent):Void //Line type switcher
 	{
-		if (e.keyCode == Keyboard.NUMBER_1) {
+		if (e.keyCode == KeyBindings.swatch_blue) {
 			Common.line_type = 0;
 		}
-		if (e.keyCode == Keyboard.NUMBER_2) {
+		if (e.keyCode == KeyBindings.swatch_red) {
 			Common.line_type = 1;
 		}
-		if (e.keyCode == Keyboard.NUMBER_3) {
+		if (e.keyCode == KeyBindings.swatch_green) {
 			Common.line_type = 2;
 		}
 	}
 	
 	private function keyShiftUp(e:KeyboardEvent):Void //Shift modifier
 	{
-		if (e.keyCode == Keyboard.SHIFT) {
+		if (e.keyCode == KeyBindings.mod_action_shift) {
 			this.mod_shift = false;
 		}
 	}
 	
 	private function keyShiftDown(e:KeyboardEvent):Void 
 	{
-		if (e.keyCode == Keyboard.SHIFT) {
+		if (e.keyCode == KeyBindings.mod_action_shift) {
 			this.mod_shift = true;
 		}
 	}

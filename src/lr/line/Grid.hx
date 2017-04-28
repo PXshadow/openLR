@@ -1,9 +1,10 @@
 package lr.line;
 
-import global.Common;
 import openfl.utils.Object;
 import openfl.events.KeyboardEvent;
-import openfl.ui.Keyboard;
+
+import global.Common;
+import global.KeyBindings;
 
 /**
  * ...
@@ -39,13 +40,13 @@ class Grid
 		if (!Common.svar_sim_running) {
 			if (e.controlKey)
 			{
-				if (e.keyCode == Keyboard.Z) {
+				if (e.keyCode == KeyBindings.undo_stroke) {
 					this.undo_action();
-				} else if (e.keyCode == Keyboard.Y) {
+				} else if (e.keyCode == KeyBindings.redo_stroke) {
 					this.redo_action();
 				}
 			}
-			if (e.keyCode == Keyboard.BACKSPACE)
+			if (e.keyCode == KeyBindings.undo_line)
 			{
 				if (e.shiftKey)
 				{

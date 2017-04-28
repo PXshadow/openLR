@@ -3,11 +3,11 @@ package ui.tool;
 import global.Common;
 import openfl.display.MovieClip;
 import openfl.events.KeyboardEvent;
-import openfl.ui.Keyboard;
 
 import ui.tool.ToolBase;
 import ui.tool.lr.*;
 import ui.tool.icon.*;
+import global.KeyBindings;
 
 /**
  * ...
@@ -116,7 +116,7 @@ class Toolbar extends MovieClip
 	
 	private function key_tool_switch(e:KeyboardEvent):Void 
 	{
-		if (e.keyCode == Keyboard.Q || e.keyCode == Keyboard.F1) {
+		if (e.keyCode == KeyBindings.pencil_1 || KeyBindings.pencil_2) {
 			Common.gToolBase.disable();
 			icon.deselect();
 			tool = new ToolPencil();
@@ -124,7 +124,7 @@ class Toolbar extends MovieClip
 			icon.select();
 			swatch.select();
 		}
-		if (e.keyCode == Keyboard.W || e.keyCode == Keyboard.F2) {
+		if (e.keyCode == KeyBindings.line_1 || KeyBindings.line_2) {
 			Common.gToolBase.disable();
 			icon.deselect();
 			tool = new ToolLine();
@@ -132,7 +132,7 @@ class Toolbar extends MovieClip
 			icon.select();
 			swatch.select();
 		}
-		if (e.keyCode == Keyboard.E || e.keyCode == Keyboard.F3) {
+		if (e.keyCode == KeyBindings.eraser_1 || e.keyCode == KeyBindings.eraser_2) {
 			Common.gToolBase.disable();
 			icon.deselect();
 			tool = new ToolEraser();
@@ -141,7 +141,7 @@ class Toolbar extends MovieClip
 			swatch.deselect();
 			Common.line_type = -1;
 		}
-		if (e.keyCode == Keyboard.R || e.keyCode == Keyboard.F4) {
+		if (e.keyCode == KeyBindings.pan_1 || e.keyCode == KeyBindings.pan_2) {
 			Common.gToolBase.disable();
 			icon.deselect();
 			tool = new ToolPan();
@@ -149,19 +149,19 @@ class Toolbar extends MovieClip
 			icon.select();
 			swatch.deselect();
 		}
-		if (e.keyCode == Keyboard.NUMBER_1) {
+		if (e.keyCode == KeyBindings.swatch_blue) {
 			swatch.deselect();
 			Common.line_type = 0;
 			swatch = swBlue;
 			swatch.select();
 		}
-		if (e.keyCode == Keyboard.NUMBER_2) {
+		if (e.keyCode == KeyBindings.swatch_red) {
 			swatch.deselect();
 			Common.line_type = 1;
 			swatch = swRed;
 			swatch.select();
 		}
-		if (e.keyCode == Keyboard.NUMBER_3) {
+		if (e.keyCode == KeyBindings.swatch_green) {
 			swatch.deselect();
 			Common.line_type = 2;
 			swatch = swGreen;

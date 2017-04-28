@@ -1,10 +1,10 @@
 package global;
 
 import haxe.Timer;
-import openfl.ui.Keyboard;
 import openfl.events.KeyboardEvent;
 
 import lr.rider.RiderBase;
+import global.KeyBindings;
 /**
  * ...
  * @author ...
@@ -158,7 +158,7 @@ class SimManager
 		if (Common.svar_game_mode != "edit") {
 			return;
 		}
-		if (e.keyCode == Keyboard.M) {
+		if (e.keyCode == KeyBindings.sm_toggle) {
 			if (Common.svar_sim_running) {
 				if (Common.sim_slow_motion)
 				{
@@ -170,7 +170,7 @@ class SimManager
 				}
 			}
 		}
-		if (e.keyCode == Keyboard.SPACE) {
+		if (e.keyCode == KeyBindings.ff_toggle) {
 			if (Common.svar_sim_running) {
 				if (!this.fast_forward) {
 					this.fast_forward = true;
@@ -179,21 +179,21 @@ class SimManager
 				}
 			}
 		}
-		if (e.keyCode == Keyboard.CONTROL) {
+		if (e.keyCode == KeyBindings.rw_toggle) {
 			if (Common.svar_sim_running) {
 				this.rewind = true;
 				this.fast_forward = false;
 			}
 		}
-		if (e.keyCode == Keyboard.Y) {
+		if (e.keyCode == KeyBindings.icon_play) {
 			if (!e.controlKey) {
 				Common.gTrack.set_simmode_play();
 			}
 		}
-		if (e.keyCode == Keyboard.U) {
+		if (e.keyCode == KeyBindings.icon_stop) {
 			Common.gTrack.set_simmode_stop();
 		}
-		if (e.keyCode == Keyboard.I) {
+		if (e.keyCode == KeyBindings.icon_flag) {
 			if (Common.svar_sim_running) {
 				Common.gSimManager.mark_rider_position();
 				Common.gSimManager.show_flag();
@@ -210,7 +210,7 @@ class SimManager
 	}
 	private function key_toggle_modifiers_up(e:KeyboardEvent):Void 
 	{
-		if (e.keyCode == Keyboard.CONTROL) {
+		if (e.keyCode == KeyBindings.rw_toggle) {
 			this.rewind = false;
 			if (Common.svar_sim_running) {
 				Common.sim_frames += 1; //This is necesary as it prevents desync with the sim
