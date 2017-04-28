@@ -54,13 +54,8 @@ class Track extends MovieClip
 	}
 	public function render_preview_line(_a:Point, _b:Point) 
 	{
-		var _locDis = Common.get_distance(_a, _b);
-		var _locCol = 0xFF0000;
-		if (_locDis > Common.line_minLength) {
-			_locCol = 0x000000;
-		}
 		this.graphics.clear();
-		this.graphics.lineStyle(2, _locCol, 1);
+		this.graphics.lineStyle(2, 0x000000, 1);
 		this.graphics.moveTo(_a.x, _a.y);
 		this.graphics.lineTo(_b.x, _b.y);
 	}
