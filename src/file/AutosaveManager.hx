@@ -18,12 +18,24 @@ class AutosaveManager
 	private var timer:Timer;
 	public function new() 
 	{
+		Common.gAutoSaveManager = this;
+		this.timer = new Timer(interval);
+		this.timer.run = function():Void {
+			this.call_autosave();
+		}
+	}
+	public function update_timer(_inter) {
+		this.timer.stop();
+		AutosaveManager.interval = _inter * 1000 * 60;
 		this.timer = new Timer(interval);
 		this.timer.run = function():Void {
 			this.call_autosave();
 		}
 	}
 	private function call_autosave() {
+		if (!Common.cvar_auto_save) {
+			return;
+		}
 		var stamp:String = Common.cvar_track_name + "_auto_Y" + Date.now().getFullYear() + "M" + Date.now().getMonth() + "D" + Date.now().getDay() + "H" + Date.now().getHours() + "m" + Date.now().getMinutes();
 		var track:Object = parse_json();
 		var file = File.write("./autosaves/" + stamp + ".json", true);

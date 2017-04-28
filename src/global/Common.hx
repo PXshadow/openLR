@@ -1,5 +1,6 @@
 package global;
 
+import file.AutosaveManager;
 import file.LoadManager;
 import ui.tool.Toolbar;
 import lr.rider.RiderCamera;
@@ -46,6 +47,7 @@ class Common
 	public static var gToolbar:Toolbar;
 	public static var gCamera:RiderCamera;
 	public static var gTimeline:TimelineControl;
+	public static var gAutoSaveManager:AutosaveManager;
 	
 	public static var line_minLength:Int = 14;
 	public static var line_type:Int = 0;
@@ -95,6 +97,8 @@ class Common
 	public static var cvar_universal_author_name:String = "Anonymous";
 	public static var cvar_track_stepback_update:Int = 40;
 	public static var cvar_rider_alpha:Float = 1;
+	public static var cvar_auto_save:Bool = true;
+	public static var cvar_auto_save_freq:Int = 10;
 	
 	public static var svar_frame_rate:Float;
 	public static var svar_framerate_avg_rate:Int = 60;
