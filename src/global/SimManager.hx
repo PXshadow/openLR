@@ -138,6 +138,7 @@ class SimManager
 		} catch (e:String) {}
 	}
 	public function rider_update() {
+		return; //this will stay here until it learns to fucking behave
 		var _loc1 = Common.sim_frames_alt - Common.cvar_track_stepback_update;
 		if (_loc1 <= 0) {
 			this.rider.inject_frame_and_iterate(0, Common.sim_frames_alt);
