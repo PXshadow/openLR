@@ -58,6 +58,7 @@ class LineAccel extends LineBase
         {
             if (_loc4 > 0 && _loc4 < LineBase.zone && _loc7 >= _lim1 && _loc7 <= _lim2)
             {
+				super.collide();
                 dot.x = dot.x - _loc4 * nx;
                 dot.y = dot.y - _loc4 * ny;
                 dot.vx = dot.vx + ny * dot.fr * _loc4 * (dot.vx < dot.x ? (1) : (-1)) + this.accx;
