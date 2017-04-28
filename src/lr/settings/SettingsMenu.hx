@@ -38,13 +38,13 @@ class SettingsMenu extends MovieClip
 		this.tabTrackSettings = new SingleButton("Track", this.set_to_track);
 		this.tabProfile = new SingleButton("Profile", this.set_to_profile);
 		
-		this.addChild(this.tabFileMenu);
+		/*this.addChild(this.tabFileMenu);
 		
 		this.addChild(this.tabTrackSettings);
 		this.tabTrackSettings.x = this.tabFileMenu.width;
 		
 		this.addChild(this.tabProfile);
-		this.tabProfile.x = this.tabTrackSettings.x + this.tabTrackSettings.width;
+		this.tabProfile.x = this.tabTrackSettings.x + this.tabTrackSettings.width; */
 		
 		this.exit = new SingleButton("Close", Common.gCode.toggleSettings_box);
 		this.addChild(exit);
