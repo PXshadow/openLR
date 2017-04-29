@@ -112,7 +112,6 @@ class KeyBindings
 	static public function set_bindings(object) 
 	{
 		if (object.defaults == true) {
-			trace("reset keys");
 			KeyBindings.reset();
 			KeyBindings.write_settings();
 			return;
