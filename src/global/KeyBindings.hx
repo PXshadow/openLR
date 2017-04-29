@@ -1,6 +1,10 @@
 package global;
 
+import openfl.utils.Object;
 import openfl.ui.Keyboard;
+import sys.FileSystem;
+import sys.io.File;
+import haxe.Json;
 
 /**
  * ...
@@ -44,6 +48,39 @@ class KeyBindings
 		KeyBindings.KeyStringList = new Array();
 		this.setArrayBinds();
 	}
+	public static function get_json_defaults():Object {
+		var key:Object = new Object();
+		key = {
+			"defaults" : false,
+			"binds" : {
+				"pencil_1" : Keyboard.Q,
+				"pencil_2" : Keyboard.F1,
+				"line_1" : Keyboard.W,
+				"line_2" : Keyboard.F2,
+				"eraser_1" : Keyboard.E,
+				"eraser_2" : Keyboard.F3,
+				"pan_1" : Keyboard.R,
+				"pan_2" : Keyboard.F4,
+				"swatch_blue" : Keyboard.NUMBER_1,
+				"swatch_red" : Keyboard.NUMBER_2,
+				"swatch_green" : Keyboard.NUMBER_3,
+				"icon_play" : Keyboard.Y,
+				"icon_stop" : Keyboard.U,
+				"icon_flag" : Keyboard.I,
+				"mod_action_shift" : Keyboard.SHIFT,
+				"mod_action_control" : Keyboard.CONTROL,
+				"angle_snap" : Keyboard.X,
+				"line_snap" : Keyboard.S,
+				"ff_toggle" : Keyboard.SPACE,
+				"sm_toggle" : Keyboard.M,
+				"undo_stroke" : Keyboard.Z,
+				"redo_stroke" : Keyboard.Y,
+				"redo_line" : Keyboard.BACKSPACE
+			},
+			"reference" : "http://api.openfl.org/openfl/ui/Keyboard.html"
+		}
+		return(key);
+	}
 	public static function reset() {
 		KeyBindings.pencil_1 = Keyboard.Q;
 		KeyBindings.pencil_2 = Keyboard.F3;
@@ -70,6 +107,37 @@ class KeyBindings
 		KeyBindings.undo_stroke = Keyboard.Z;
 		KeyBindings.redo_stroke = Keyboard.Y;
 		KeyBindings.redo_line = Keyboard.BACKSPACE;
+	}
+	
+	static public function set_bindings(object) 
+	{
+		if (object.defaults == true) {
+			trace("reset keys");
+			KeyBindings.reset();
+			KeyBindings.write_settings();
+			return;
+		}
+		KeyBindings.pencil_1 = object.binds.pencil_1;
+		KeyBindings.pencil_2 = object.binds.pencil_2;
+		KeyBindings.line_1 = object.binds.line_1;
+		KeyBindings.line_2 = object.binds.line_2;
+		KeyBindings.eraser_1 = object.binds.eraser_1;
+		KeyBindings.eraser_2 = object.binds.eraser_2;
+		KeyBindings.pan_1 = object.binds.pan_1;
+		KeyBindings.pan_2 = object.binds.pan_2;
+		KeyBindings.swatch_blue = object.binds.swatch_blue;
+		KeyBindings.swatch_red = object.binds.swatch_red;
+		KeyBindings.swatch_green = object.binds.swatch_green;
+		KeyBindings.icon_play = object.binds.icon_play;
+		KeyBindings.icon_stop = object.binds.icon_stop;
+		KeyBindings.icon_flag = object.binds.icon_flag ;
+		KeyBindings.mod_action_shift = object.binds.mod_action_shift;
+		KeyBindings.mod_action_control = object.binds.mod_action_control;
+		KeyBindings.angle_snap = object.binds.angle_snap;
+		KeyBindings.line_snap = object.binds.line_snap;
+		KeyBindings.ff_toggle = object.binds.ff_toggle;
+		KeyBindings.sm_toggle = object.binds.sm_toggle;
+		KeyBindings.undo_line = object.binds.undo_line;
 	}
 	private function setArrayBinds() 
 	{
@@ -128,5 +196,40 @@ class KeyBindings
 		KeyBindings.KeyStringList[Keyboard.SHIFT] = "Shift"; //Might not want to have shift and control rebindable for everything that uses it
 		KeyBindings.KeyStringList[Keyboard.CONTROL] = "Ctrl";
 		KeyBindings.KeyStringList[Keyboard.SPACE] = "Space";
+	}
+	static public function write_settings() {
+		var key:Object = new Object();
+		key = {
+			"defaults" : false,
+			"binds" : {
+				"pencil_1" : KeyBindings.pencil_1,
+				"pencil_2" : KeyBindings.pencil_2,
+				"line_1" : KeyBindings.line_1,
+				"line_2" : KeyBindings.line_2,
+				"eraser_1" : KeyBindings.eraser_1,
+				"eraser_2" : KeyBindings.eraser_2,
+				"pan_1" : KeyBindings.pan_1,
+				"pan_2" : KeyBindings.pan_2,
+				"swatch_blue" : KeyBindings.swatch_blue,
+				"swatch_red" : KeyBindings.swatch_red,
+				"swatch_green" : KeyBindings.swatch_green,
+				"icon_play" : KeyBindings.icon_play,
+				"icon_stop" : KeyBindings.icon_stop,
+				"icon_flag" : KeyBindings.icon_flag,
+				"mod_action_shift" : KeyBindings.mod_action_shift,
+				"mod_action_control" : KeyBindings.mod_action_control,
+				"angle_snap" : KeyBindings.angle_snap,
+				"line_snap" : KeyBindings.line_snap,
+				"ff_toggle" : KeyBindings.ff_toggle,
+				"sm_toggle" : KeyBindings.sm_toggle,
+				"undo_stroke" : KeyBindings.undo_stroke,
+				"redo_stroke" : KeyBindings.redo_stroke,
+				"redo_line" : KeyBindings.redo_line
+			},
+			"reference" : "http://api.openfl.org/openfl/ui/Keyboard.html"
+		}
+		var file = File.write("./settings/KeyBindings.json", true);
+		file.writeString(Json.stringify(key, null, "\t"));
+		file.close();
 	}
 }
