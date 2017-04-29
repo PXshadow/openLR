@@ -15,8 +15,6 @@ import global.Common;
  * @author Kaelan Evans
  * 
  * Settings needed:
- * 	Autosave
- * 		Frequency in minutes + Frequency in lines
  * 	Saving mode: Full, minimum (Changes between remembering every setting unique to the track or not)
  * 	Compress save (add when LZS Compression is implemented)
  * 

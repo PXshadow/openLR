@@ -12,8 +12,6 @@ import global.Common;
  * ...
  * @author Kaelan Evans
  * 
- * 	Too add:
- * 		Slider or stepper for bosh oppacity. Need to make contact points mode not control the oppacity anymore
  * 
  */
 class TrackSettings extends MovieClip
