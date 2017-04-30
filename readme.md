@@ -41,7 +41,12 @@ If possible, on windows platform you can download Haxe Develop and use that as a
 ## Special Thanks
 
 Boštjan "fšk" Čadež for Line Rider
+
 Haxe developers, Lime developers, and OpenFL Developers
+
 FlashDevelop/HaxeDevelop for being such a wonderful IDE
+
 www.reddit.com/r/linerider
+
 www.weridethelines.com
+
