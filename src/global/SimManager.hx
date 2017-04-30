@@ -218,6 +218,14 @@ class SimManager
 				}
 			}
 		}
+		if (e.keyCode == KeyBindings.step_forward) {
+			this.update_sim();
+			Common.gTimeline.update();
+		}
+		if (e.keyCode == KeyBindings.step_backward) {
+			this.rider.step_back();
+			Common.gTimeline.update();
+		}
 	}
 	function set_slow_speed() 
 	{

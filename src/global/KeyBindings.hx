@@ -109,7 +109,7 @@ class KeyBindings
 				"sm_toggle" : KeyBindings.sm_toggle,
 				"rw_toggle" : KeyBindings.rw_toggle,
 				"pp_toggle" : KeyBindings.pp_toggle,
-				"step_forward" : KeyBindings.step_forward.
+				"step_forward" : KeyBindings.step_forward,
 				"step_backward" : KeyBindings.step_backward,
 				"undo_stroke" : KeyBindings.undo_stroke,
 				"redo_stroke" : KeyBindings.redo_stroke,
@@ -240,7 +240,7 @@ class KeyBindings
 			KeyBindings.step_forward = Keyboard.RIGHT;
 		}
 		if (KeyBindings.step_backward == 0) {
-			KeyBindings.step_backward = Keyboard.RIGHT;
+			KeyBindings.step_backward = Keyboard.LEFT;
 		}
 		KeyBindings.write_settings();
 	}
