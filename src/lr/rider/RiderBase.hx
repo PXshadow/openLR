@@ -110,7 +110,7 @@ class RiderBase
 			anchors_scarf[b].y *= 0.5;
 		}
 		
-		this.edges = new Vector(22);
+		this.edges = new Vector(22); //"Bones" that hold the rider together and help retain shape.
 		
 		this.edges[0] = new Stick(anchors[0], anchors[1]);// Sled
 		this.edges[1] = new Stick(anchors[1], anchors[2]);//
@@ -130,13 +130,13 @@ class RiderBase
 		this.edges[13] = new Stick(anchors[4], anchors[9]);//
 		this.edges[14] = new Stick(anchors[5], anchors[7]);//Duplicate of edge 11. Necesary for any compatibility with other builds
 		
-		this.edges[15] = new BindStick(anchors[5], anchors[0]);// other bounds
-		this.edges[16] = new BindStick(anchors[3], anchors[6]);//
-		this.edges[17] = new BindStick(anchors[3], anchors[7]);//
-		this.edges[18] = new BindStick(anchors[8], anchors[2]);//
-		this.edges[19] = new BindStick(anchors[9], anchors[2]);//
+		this.edges[15] = new BindStick(anchors[5], anchors[0]);// Shoulder to second peg
+		this.edges[16] = new BindStick(anchors[3], anchors[6]);// First peg to hand
+		this.edges[17] = new BindStick(anchors[3], anchors[7]);// First peg to hand
+		this.edges[18] = new BindStick(anchors[8], anchors[2]);// Foot to lower nose
+		this.edges[19] = new BindStick(anchors[9], anchors[2]);// Foot to lower nose
 		
-		this.edges[20] = new RepellStick(anchors[5], anchors[8]);// Keeps shoulder from getting too close to feet
+		this.edges[20] = new RepellStick(anchors[5], anchors[8]);// Shoulder to feet. Keeps shoulder from getting too close to feet
 		this.edges[21] = new RepellStick(anchors[5], anchors[9]);//
 		
 		this.edges[20].rest *= 0.5;
@@ -156,7 +156,7 @@ class RiderBase
 			anchors[i].vx = anchors[i].x - 0.4;
 			anchors[i].vy = anchors[i].y;
 		}
-		for (j in 0...anchors_scarf.length) { //this shift is necesarry as it keeps the rider from flying the second the sim starts. 
+		for (j in 0...anchors_scarf.length) {
 			anchors_scarf[j].x = anchors_scarf[j].x + Common.track_start_x;
 			anchors_scarf[j].y = anchors_scarf[j].y + Common.track_start_y;
 			anchors_scarf[j].vx = anchors_scarf[j].x - 0.4;
@@ -417,8 +417,9 @@ class RiderBase
 		if (Common.cvar_contact_points) {
 			this.render_bones();
 		}
+		
 		this.scarf.graphics.clear();
-		this.scarf.graphics.lineStyle(2, 0xFFFFFF, 1, false, "none", "none");
+		this.scarf.graphics.lineStyle(2, 0xFFFFFF, 1, false, "none", "bevel");
 		this.scarf.graphics.moveTo(edges_scarf[0].a.x, edges_scarf[0].a.y);
 		this.scarf.graphics.lineTo(edges_scarf[0].b.x, edges_scarf[0].b.y);
 		this.scarf.graphics.moveTo(edges_scarf[2].a.x, edges_scarf[2].a.y);
@@ -432,6 +433,7 @@ class RiderBase
 		this.scarf.graphics.lineTo(edges_scarf[3].b.x, edges_scarf[3].b.y);
 		this.scarf.graphics.moveTo(edges_scarf[5].a.x, edges_scarf[5].a.y);
 		this.scarf.graphics.lineTo(edges_scarf[5].b.x, edges_scarf[5].b.y);
+		
 		this.body.alpha = this.leftArm.alpha = this.rightArm.alpha = this.leftLeg.alpha = this.rightLeg.alpha = this.sled.alpha = Common.cvar_rider_alpha;
 		
 	}
