@@ -187,6 +187,15 @@ class SimManager
 				this.fast_forward = false;
 			}
 		}
+		if (e.keyCode == KeyBindings.pp_toggle) {
+			if (!Common.svar_sim_running && !this.paused) {
+				this.start_sim();
+			} else if (Common.svar_sim_running && !this.paused) {
+				this.pause_sim();
+			} else if (Common.svar_sim_running && this.paused) {
+				this.resume_sim();
+			}
+		}
 		if (e.keyCode == KeyBindings.icon_play) {
 			if (!e.controlKey) {
 				Common.gTrack.set_simmode_play();
