@@ -32,7 +32,7 @@ class FileStart
 		if (FileSystem.exists("./settings/KeyBindings.json")) {
 			this.set_key_bindings();
 		} else {
-			KeyBindings.write_settings();
+			this.generate_key_binding_json();
 		}
 	}
 	function checkDirectories() 
@@ -53,6 +53,13 @@ class FileStart
 		} else {
 			FileSystem.createDirectory("./settings");
 		}
+	}
+	function generate_key_binding_json() 
+	{
+		var _locJson = KeyBindings.get_json_defaults();
+		var file = File.write("./settings/KeyBindings.json", true);
+		file.writeString(Json.stringify(_locJson, null, "\t"));
+		file.close();
 	}
 	function set_key_bindings() {
 		var _locFile = File.getContent("./settings/KeyBindings.json");
