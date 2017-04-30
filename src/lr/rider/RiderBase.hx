@@ -28,6 +28,7 @@ class RiderBase
 	public var g:Object;
 	public var bosh:MovieClip;
 	public var recorded_frames:Array<Array<Array<Dynamic>>>;
+	public var recorded_frames_scarf:Array<Array<Array<Dynamic>>>;
 	
 	private var body:MovieClip;
 	private var leftArm:MovieClip;
@@ -60,6 +61,7 @@ class RiderBase
 		Common.gTrack.back_layer.addChild(this.Start);
 		
 		this.recorded_frames = new Array();
+		this.recorded_frames_scarf = new Array();
 		this.init_rider();
 	}
 	private function getAssets() {
@@ -292,6 +294,16 @@ class RiderBase
 			this.recorded_frames[Common.sim_frames][i][5] = anchors[i].dy;
 			this.recorded_frames[Common.sim_frames][i][6] = Stick.crash;
 		}
+		this.recorded_frames_scarf[Common.sim_frames] = new Array();
+		for (j in 0...anchors_scarf.length) {
+			this.recorded_frames_scarf[Common.sim_frames][j] = new Array();
+			this.recorded_frames_scarf[Common.sim_frames][j][0] = anchors_scarf[j].x;
+			this.recorded_frames_scarf[Common.sim_frames][j][1] = anchors_scarf[j].y;
+			this.recorded_frames_scarf[Common.sim_frames][j][2] = anchors_scarf[j].vx;
+			this.recorded_frames_scarf[Common.sim_frames][j][3] = anchors_scarf[j].vy;
+			this.recorded_frames_scarf[Common.sim_frames][j][4] = anchors_scarf[j].dx;
+			this.recorded_frames_scarf[Common.sim_frames][j][5] = anchors_scarf[j].dy;
+		}
 	}
 	public function inject_frame(_frame) { //for when you need to skip to an arbitrary frame
 		try {
@@ -303,6 +315,14 @@ class RiderBase
 				anchors[i].dx = this.recorded_frames[_frame][i][4];
 				anchors[i].dy = this.recorded_frames[_frame][i][5];
 				Stick.crash = this.recorded_frames[_frame][i][6];
+			}
+			for (j in 0...anchors_scarf.length) {
+				anchors_scarf[j].x = this.recorded_frames_scarf[_frame][j][0];
+				anchors_scarf[j].y = this.recorded_frames_scarf[_frame][j][1];
+				anchors_scarf[j].vx = this.recorded_frames_scarf[_frame][j][2];
+				anchors_scarf[j].vy = this.recorded_frames_scarf[_frame][j][3];
+				anchors_scarf[j].dx = this.recorded_frames_scarf[_frame][j][4];
+				anchors_scarf[j].dy = this.recorded_frames_scarf[_frame][j][5];
 			}
 		} catch(e:String) {
 			return;
@@ -321,6 +341,14 @@ class RiderBase
 				anchors[i].dx = this.recorded_frames[_frame][i][4];
 				anchors[i].dy = this.recorded_frames[_frame][i][5];
 				Stick.crash = this.recorded_frames[_frame][i][6];
+			}
+			for (j in 0...anchors_scarf.length) {
+				anchors_scarf[j].x = this.recorded_frames_scarf[_frame][j][0];
+				anchors_scarf[j].y = this.recorded_frames_scarf[_frame][j][1];
+				anchors_scarf[j].vx = this.recorded_frames_scarf[_frame][j][2];
+				anchors_scarf[j].vy = this.recorded_frames_scarf[_frame][j][3];
+				anchors_scarf[j].dx = this.recorded_frames_scarf[_frame][j][4];
+				anchors_scarf[j].dy = this.recorded_frames_scarf[_frame][j][5];
 			}
 		} catch(e:String) {
 			return;
@@ -342,6 +370,14 @@ class RiderBase
 				anchors[i].dx = this.recorded_frames[Common.sim_frames][i][4];
 				anchors[i].dy = this.recorded_frames[Common.sim_frames][i][5];
 				Stick.crash = this.recorded_frames[Common.sim_frames][i][6];
+			}
+			for (j in 0...anchors_scarf.length) {
+				anchors_scarf[j].x = this.recorded_frames_scarf[Common.sim_frames][j][0];
+				anchors_scarf[j].y = this.recorded_frames_scarf[Common.sim_frames][j][1];
+				anchors_scarf[j].vx = this.recorded_frames_scarf[Common.sim_frames][j][2];
+				anchors_scarf[j].vy = this.recorded_frames_scarf[Common.sim_frames][j][3];
+				anchors_scarf[j].dx = this.recorded_frames_scarf[Common.sim_frames][j][4];
+				anchors_scarf[j].dy = this.recorded_frames_scarf[Common.sim_frames][j][5];
 			}
 		}
 		this.render_body();
