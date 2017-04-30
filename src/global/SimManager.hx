@@ -24,7 +24,6 @@ class SimManager
 		Common.gSimManager = this;
 		this.rider = new RiderBase();
 		Common.gStage.addEventListener(KeyboardEvent.KEY_DOWN, key_toggle_modifiers);
-		Common.gStage.addEventListener(KeyboardEvent.KEY_UP, key_toggle_modifiers_up);
 	}
 	public function start_sim() {
 		if (!flagged) {
@@ -205,15 +204,6 @@ class SimManager
 					Common.gSimManager.hide_flag();
 					Common.gSimManager.flagged = false;
 				}
-			}
-		}
-	}
-	private function key_toggle_modifiers_up(e:KeyboardEvent):Void 
-	{
-		if (e.keyCode == KeyBindings.rw_toggle) {
-			this.rewind = false;
-			if (Common.svar_sim_running) {
-				Common.sim_frames += 1; //This is necesary as it prevents desync with the sim
 			}
 		}
 	}
