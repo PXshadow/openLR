@@ -1,4 +1,4 @@
-# openLR, an open source alternative desktop app for Line Rider.
+# OpenLR, an open source alternative desktop app for Line Rider.
 
 ### Original game by Boštjan "fšk" Čadež
 
@@ -34,6 +34,14 @@ Run the command:
 	openfl build mac/linux/windows
 	
 Project will be compiled into bin folder. Be aware that you can compile to other platforms regardless of the platform you are on,
-however compiling to a non-native platform will not produce a native C++ build, and if distributed, will most likely not perform correctly.
+however compiling to a non-native platform will not produce a native C++ build, and if distributed, will most likely suffer from performance hits.
 
 If possible, on windows platform you can download Haxe Develop and use that as an IDE. OpenFL (and other libraries) will still need to be installed.
+
+## Special Thanks
+
+Boštjan "fšk" Čadež for Line Rider
+Haxe developers, Lime developers, and OpenFL Developers
+FlashDevelop/HaxeDevelop for being such a wonderful IDE
+www.reddit.com/r/linerider
+www.weridethelines.com
