@@ -179,8 +179,11 @@ class SimManager
 			}
 		}
 		if (e.keyCode == KeyBindings.rw_toggle) {
-			if (Common.svar_sim_running) {
+			if (Common.svar_sim_running && this.rewind == false) {
 				this.rewind = true;
+				this.fast_forward = false;
+			} else if (!Common.svar_sim_running && this.rewind != false){
+				this.rewind = false;
 				this.fast_forward = false;
 			}
 		}
