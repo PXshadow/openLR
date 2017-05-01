@@ -85,7 +85,6 @@ class KeyBindings
 	static public function write_settings() {
 		var key:Object = new Object();
 		key = {
-			"defaults" : false,
 			"binds" : {
 				"pencil_1" : KeyBindings.pencil_1,
 				"pencil_2" : KeyBindings.pencil_2,
@@ -123,11 +122,6 @@ class KeyBindings
 	}
 	static public function set_bindings(object) 
 	{
-		if (object.defaults == true) {
-			KeyBindings.reset();
-			KeyBindings.write_settings();
-			return;
-		}
 		KeyBindings.pencil_1 = object.binds.pencil_1;
 		KeyBindings.pencil_2 = object.binds.pencil_2;
 		KeyBindings.line_1 = object.binds.line_1;
@@ -154,95 +148,6 @@ class KeyBindings
 		KeyBindings.step_backward = object.binds.step_backward;
 		KeyBindings.undo_line = object.binds.undo_line;
 		KeyBindings.check_null();
-	}
-	static public function check_null() 
-	{
-		if (KeyBindings.pencil_1 == 0) {
-			KeyBindings.pencil_1 = Keyboard.Q;
-		}
-		if (KeyBindings.pencil_2 == 0) {
-			KeyBindings.pencil_2 = Keyboard.F3;
-		}
-		if (KeyBindings.line_1 == 0) {
-			KeyBindings.line_1 = Keyboard.W;
-		}
-		if (KeyBindings.line_2 == 0) {
-			KeyBindings.line_2 = Keyboard.F2;
-		}
-		if (KeyBindings.eraser_1 == 0) {
-			KeyBindings.eraser_1 = Keyboard.E;
-		}
-		if (KeyBindings.eraser_2 == 0) {
-			KeyBindings.eraser_2 = Keyboard.F3;
-		}
-		if (KeyBindings.pan_1 == 0) {
-			KeyBindings.pan_1 = Keyboard.R;
-		}
-		if (KeyBindings.pan_2 == 0) {
-			KeyBindings.pan_2 = Keyboard.F4;
-		}
-		if (KeyBindings.swatch_blue == 0) {
-			KeyBindings.swatch_blue = Keyboard.NUMBER_1;
-		}
-		if (KeyBindings.swatch_red == 0) {
-			KeyBindings.swatch_red = Keyboard.NUMBER_2;
-		}
-		if (KeyBindings.swatch_green == 0) {
-			KeyBindings.swatch_green = Keyboard.NUMBER_3;
-		}
-		if (KeyBindings.icon_play == 0) {
-			KeyBindings.icon_play = Keyboard.Y;
-		}
-		if (KeyBindings.icon_stop == 0) {
-			KeyBindings.icon_stop = Keyboard.U;
-		}
-		if (KeyBindings.icon_flag == 0) {
-			KeyBindings.icon_flag = Keyboard.I;
-		}
-		if (KeyBindings.mod_action_shift == 0) {
-			KeyBindings.mod_action_shift = Keyboard.SHIFT;
-		}
-		if (KeyBindings.mod_action_control == 0) {
-			KeyBindings.mod_action_control = Keyboard.CONTROL;
-		}
-		if (KeyBindings.angle_snap == 0) {
-			KeyBindings.angle_snap = Keyboard.X;
-		}
-		if (KeyBindings.line_snap == 0) {
-			KeyBindings.line_snap = Keyboard.S;
-		}
-		if (KeyBindings.ff_toggle == 0) {
-			KeyBindings.ff_toggle = Keyboard.N;
-		}
-		if (KeyBindings.sm_toggle == 0) {
-			KeyBindings.sm_toggle = Keyboard.M;
-		}
-		if (KeyBindings.rw_toggle == 0) {
-			KeyBindings.rw_toggle = Keyboard.B;
-		}
-		if (KeyBindings.pp_toggle == 0) {
-			KeyBindings.pp_toggle = Keyboard.SPACE;
-		}
-		if (KeyBindings.undo_line == 0) {
-			KeyBindings.undo_line = Keyboard.BACKSPACE;
-		}
-		
-		if (KeyBindings.undo_stroke == 0) {
-			KeyBindings.undo_stroke = Keyboard.Z;
-		}
-		if (KeyBindings.redo_stroke == 0) {
-			KeyBindings.redo_stroke = Keyboard.Y;
-		}
-		if (KeyBindings.redo_line == 0) {
-			KeyBindings.redo_line = Keyboard.BACKSPACE;
-		}
-		if (KeyBindings.step_forward == 0) {
-			KeyBindings.step_forward = Keyboard.RIGHT;
-		}
-		if (KeyBindings.step_backward == 0) {
-			KeyBindings.step_backward = Keyboard.LEFT;
-		}
-		KeyBindings.write_settings();
 	}
 	private function setArrayBinds() 
 	{

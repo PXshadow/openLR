@@ -63,7 +63,6 @@ class FileStart
 	function get_and_write_defaults() {
 		var _locDef:Object = new Object();
 		_locDef = {
-			"defaults" : false,
 			"settings" : {
 				"autosave" : Common.cvar_auto_save,
 				"autosave_freq" : Common.cvar_auto_save_freq,
@@ -87,10 +86,6 @@ class FileStart
 	{
 		var _locFile = File.getContent("./settings/Settings.json");
 		var _locJson = Json.parse(_locFile);
-		if (_locJson.defaults == true) {
-			this.get_and_write_defaults();
-			return;
-		}
 		Common.cvar_auto_save = _locJson.settings.autosave;
 		Common.cvar_auto_save_freq  = _locJson.settings.autosave_freq;
 		Common.cvar_angle_snap = _locJson.settings.angle_snap;
@@ -103,9 +98,5 @@ class FileStart
 		Common.cvar_color_play = _locJson.settings.color_play;
 		Common.cvar_preview_mode  = _locJson.settings.preview_mode;
 		this.check_null();
-	}
-	function check_null() 
-	{
-		
 	}
 }
