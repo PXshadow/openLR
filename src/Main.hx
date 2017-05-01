@@ -93,10 +93,10 @@ class Main extends Sprite
 	{
 		super(); //In Haxe, a super must be called when classes inherit
 		
+		this.mainFileInit = new FileStart(); //checks for default folders and saved settings in the track
+		
 		this.init_env();
 		this.init_track();
-		
-		this.mainFileInit = new FileStart(); //checks for default folders and saved settings in the track
 		
 		var ranS:Int = Std.random(SplashText.splash.length) - 1;
 		this.welcome_alert = new AlertBox("Welcome to OpenLR " + Common.version + "! This is an early build, however I hope you find this version useful as it is intended to be. You can report bugs to:" + "\n \n" + "https://github.com/kevansevans/openLR/issues" + "\n \n" + SplashText.splash[ranS], this.start, "Continue");
