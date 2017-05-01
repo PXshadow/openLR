@@ -167,7 +167,7 @@ class ToolBase
 			}
 		}
 		var _locNewScale = Common.track_scale;
-		var _locRatio = (Math.min(Math.max(_locNewScale + _locNewScale * 0.004 * (e.delta * 0.2), 0.4), 24 ) / _locPrevScale);
+		var _locRatio = (Math.min(Math.max(_locNewScale + _locNewScale * 0.004 * (e.delta * 0.2), 0.2), 30 ) / _locPrevScale);
 		if (_locNewScale != _locPrevScale)
 		{
 			Common.gTrack.x = Common.stage_width * 0.5 + (_locPrevLoc.x - Common.stage_width * 0.5) * _locRatio - 0 * (e.delta * 0.2);
