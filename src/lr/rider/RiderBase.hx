@@ -379,7 +379,10 @@ class RiderBase
 				anchors_scarf[j].dx = this.recorded_frames_scarf[Common.sim_frames][j][4];
 				anchors_scarf[j].dy = this.recorded_frames_scarf[Common.sim_frames][j][5];
 			}
+		} else if (Common.sim_frames == 0) {
+			this.reset();
 		}
+		Common.sim_frames_alt = Common.sim_frames;
 		this.render_body();
 		this.camera.pan(anchors[4]);
 	}
