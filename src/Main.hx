@@ -180,11 +180,13 @@ class Main extends Sprite
 			this.track.visible = false;
 			this.toolBar.visible = false;
 			this.textInfo.visible = false;
+			this.timeline.visible = false;
 		} else {
 			this.settings_box.visible = false;
 			this.track.visible = true;
 			this.toolBar.visible = true;
 			this.textInfo.visible = true;
+			this.timeline.visible = true;
 			Common.svar_game_mode = "edit";
 			Common.gToolBase.enable();
 		}
@@ -197,11 +199,32 @@ class Main extends Sprite
 			this.track.visible = false;
 			this.toolBar.visible = false;
 			this.textInfo.visible = false;
+			this.timeline.visible = false;
 		} else {
 			this.save_manager.visible = false;
 			this.track.visible = true;
 			this.toolBar.visible = true;
 			this.textInfo.visible = true;
+			this.timeline.visible = true;
+			Common.svar_game_mode = "edit";
+			Common.gToolBase.enable();
+		}
+	}
+	public function toggle_Loader() {
+		if (!this.loadManager.visible) {
+			Common.svar_game_mode = "loader";
+			this.loadManager.visible = true;
+			this.loadManager.update();
+			this.track.visible = false;
+			this.toolBar.visible = false;
+			this.textInfo.visible = false;
+			this.timeline.visible = false;
+		} else {
+			this.loadManager.visible = false;
+			this.track.visible = true;
+			this.toolBar.visible = true;
+			this.textInfo.visible = true;
+			this.timeline.visible = true;
 			Common.svar_game_mode = "edit";
 			Common.gToolBase.enable();
 		}
@@ -228,7 +251,7 @@ class Main extends Sprite
 		this.settings_box.y = (this.stage.stageHeight * 0.5) - (this.settings_box.height * 0.5);
 		
 		this.loadManager.x = (this.stage.stageWidth * 0.5) - (this.loadManager.width * 0.5);
-		this.loadManager.y = (this.stage.stageHeight * 0.5) - (this.loadManager.height * 0.5);
+		this.loadManager.y = (this.stage.stageHeight * 0.5) - 300;
 		
 		this.timeline.x = (this.stage.stageWidth * 0.5) - (this.timeline.width * 0.5);
 		this.timeline.y = this.stage.stageHeight - this.timeline.height + 25;
@@ -241,23 +264,6 @@ class Main extends Sprite
 	public function return_to_origin_sim() {
 		this.track.x = this.stage.stageWidth * 0.5;
 		this.track.y = this.stage.stageHeight * 0.5;
-	}
-	public function toggle_Loader() {
-		if (!this.loadManager.visible) {
-			Common.svar_game_mode = "loader";
-			this.loadManager.visible = true;
-			this.loadManager.update();
-			this.track.visible = false;
-			this.toolBar.visible = false;
-			this.textInfo.visible = false;
-		} else {
-			this.loadManager.visible = false;
-			this.track.visible = true;
-			this.toolBar.visible = true;
-			this.textInfo.visible = true;
-			Common.svar_game_mode = "edit";
-			Common.gToolBase.enable();
-		}
 	}
 	public function take_screencap() {
 		this.toolBar.visible = false;
