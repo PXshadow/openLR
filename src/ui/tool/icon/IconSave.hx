@@ -63,7 +63,7 @@ class IconSave extends IconBase
 			
 			this.new_track = new SingleButton("New Track", this.make_new_track);
 			this.menu.addChild(this.new_track);
-			this.menu.y = this.height + 5;
+			this.menu.y = 35;
 			this.menu.x = 5;
 			
 			this.save_track = new SingleButton("Save Track", this.open_save_menu);
@@ -96,10 +96,11 @@ class IconSave extends IconBase
 	function make_new_track() 
 	{
 		this.show_menu();
-		SaveManager.new_track = true;
-		Common.gTrack.clear_stage();
+		this.safety_dialog = new ConfirmDialog("Are you sure you want to make a new track? All unsaved changes will be lost!", this.confirmed_new, this.negative_new);
+		this.addChild(this.safety_dialog);
+		this.safety_dialog.x = -320;
+		this.safety_dialog.y = 180;
 	}
-	
 	function open_save_menu() 
 	{
 		Common.gCode.toggle_save_menu();
@@ -107,5 +108,15 @@ class IconSave extends IconBase
 	override private function disable_tool(e:MouseEvent):Void 
 	{
 		Common.gToolBase.disable();
+	}
+	function confirmed_new() {
+		this.removeChild(this.safety_dialog);
+		SaveManager.new_track = true;
+		Common.gTrack.clear_stage();
+		Common.gToolBase.enable();
+	}
+	function negative_new() {
+		this.show_menu();
+		this.removeChild(this.safety_dialog);
 	}
 }
