@@ -60,7 +60,7 @@ class FileStart
 		var _locJson = Json.parse(_locFile);
 		KeyBindings.set_bindings(_locJson);
 	}
-	function get_and_write_defaults() {
+	public function get_and_write_defaults() {
 		var _locDef:Object = new Object();
 		_locDef = {
 			"settings" : {
@@ -77,7 +77,6 @@ class FileStart
 				"preview_mode" : Common.cvar_preview_mode
 			}
 		}
-		trace("saving");
 		var file = File.write("./settings/Settings.json", true);
 		file.writeString(Json.stringify(_locDef, null, "\t"));
 		file.close();
