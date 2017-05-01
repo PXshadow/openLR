@@ -57,7 +57,9 @@ class FileMenu extends MovieClip
 		this.graphics.lineTo(-5, this.sHeight + 5);
 		this.graphics.lineTo( -5, -5);
 	}
-	
+	public function update() {
+		this.auto_save.update(Common.cvar_auto_save);
+	}
 	private function incAutoSaveFreq(e:MouseEvent):Void 
 	{
 		Common.cvar_auto_save_freq = this.auto_save_freq.inc();

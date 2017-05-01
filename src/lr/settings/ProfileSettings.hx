@@ -41,4 +41,9 @@ class ProfileSettings extends MovieClip
 		this.graphics.lineTo( -5, -5);
 	}
 	
+	public function update() 
+	{
+		
+	}
+	
 }

@@ -181,7 +181,9 @@ class Main extends Sprite
 			this.toolBar.visible = false;
 			this.textInfo.visible = false;
 			this.timeline.visible = false;
+			this.settings_box.update();
 		} else {
+			this.mainFileInit.get_and_write_defaults();
 			this.settings_box.visible = false;
 			this.track.visible = true;
 			this.toolBar.visible = true;

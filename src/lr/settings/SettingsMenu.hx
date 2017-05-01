@@ -56,6 +56,11 @@ class SettingsMenu extends MovieClip
 		
 		this.set_to_track();
 	}
+	public function update() {
+		this.fileMenu.update();
+		this.trackMenu.update();
+		//this.profileMenu.update();
+	}
 	function clearMenu() {
 		if (this.state == file) {
 			this.removeChild(this.fileMenu);
