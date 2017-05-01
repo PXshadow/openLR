@@ -583,6 +583,7 @@ class RiderBase
 		}
 		Stick.crash = this.crashed;
 		Common.sim_frames = Common.simfl_frames;
+		this.inject_frame(Common.simfl_frames);
 	}
 	
 	public function destroy_flag() 
