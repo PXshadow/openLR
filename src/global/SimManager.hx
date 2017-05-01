@@ -104,6 +104,12 @@ class SimManager
 			if (Common.cvar_force_zoom) {
 				Common.gTrack.scaleX = Common.gTrack.scaleY = Common.cvar_prev_zoom_ammount;
 			}
+			if (this.flagged) {
+				this.rider.return_to_flag();
+			} else {
+				this.rider.reset();
+			}
+			this.rider.render_body();
 		}
 	}
 	public function pause_sim()
