@@ -182,7 +182,7 @@ class SimManager
 			if (Common.svar_sim_running && this.rewind == false) {
 				this.rewind = true;
 				this.fast_forward = false;
-			} else if (!Common.svar_sim_running && this.rewind != false){
+			} else if (Common.svar_sim_running && this.rewind != false){
 				this.rewind = false;
 				this.fast_forward = false;
 			}
