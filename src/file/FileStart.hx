@@ -97,6 +97,5 @@ class FileStart
 		Common.cvar_track_author = _locJson.settings.author;
 		Common.cvar_color_play = _locJson.settings.color_play;
 		Common.cvar_preview_mode  = _locJson.settings.preview_mode;
-		this.check_null();
 	}
 }

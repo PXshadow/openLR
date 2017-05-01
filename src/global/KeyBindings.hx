@@ -147,7 +147,6 @@ class KeyBindings
 		KeyBindings.step_forward = object.binds.step_forward;
 		KeyBindings.step_backward = object.binds.step_backward;
 		KeyBindings.undo_line = object.binds.undo_line;
-		KeyBindings.check_null();
 	}
 	private function setArrayBinds() 
 	{
