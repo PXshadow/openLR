@@ -419,7 +419,7 @@ class RiderBase
 		}
 		
 		this.scarf.graphics.clear();
-		this.scarf.graphics.lineStyle(2, 0xFFFFFF, 1, false, "none", "bevel");
+		this.scarf.graphics.lineStyle(2, 0xFFFFFF, 1, false, "none", "none");
 		this.scarf.graphics.moveTo(edges_scarf[0].a.x, edges_scarf[0].a.y);
 		this.scarf.graphics.lineTo(edges_scarf[0].b.x, edges_scarf[0].b.y);
 		this.scarf.graphics.moveTo(edges_scarf[2].a.x, edges_scarf[2].a.y);
