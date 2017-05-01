@@ -26,6 +26,13 @@ class SimManager
 		Common.gStage.addEventListener(KeyboardEvent.KEY_DOWN, key_toggle_modifiers);
 	}
 	public function start_sim() {
+		if (Common.sim_auto_slow_motion) {
+			Common.sim_slow_motion = true;
+			Common.sim_default_rate = Common.sim_slow_motion_rate;
+		} else {
+			Common.sim_slow_motion = false;
+			Common.sim_default_rate = 40;
+		}
 		if (!flagged) {
 			Common.sim_frames = 0;
 			if (flag_av) {

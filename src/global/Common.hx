@@ -73,6 +73,7 @@ class Common
 	public static var sim_rider_speed:Float = 0;
 	public static var sim_rider_speed_top:Float = 0;
 	public static var sim_slow_motion:Bool = false;
+	public static var sim_auto_slow_motion:Bool = false;
 	public static var sim_slow_motion_rate:Int = 5;
 	public static var sim_default_rate:Int = 40;
 	public static var sim_pause_frame:Int = -1;
