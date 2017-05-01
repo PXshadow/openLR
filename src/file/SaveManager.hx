@@ -211,10 +211,6 @@ class SaveManager extends MovieClip
 			},
 			"duration": 0,
 			"lines": _locArray,
-			"dateStamp": this.save_date,
-			"OLRsettings": _locSettings,
-			"Collab": false,
-			"AuthorList": null
 		}
 		return(json_object);
 	}
