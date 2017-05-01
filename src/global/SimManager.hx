@@ -157,6 +157,9 @@ class SimManager
 		if (Common.svar_game_mode != "edit") {
 			return;
 		}
+		if (e.shiftKey || e.controlKey) {
+			return;
+		}
 		if (e.keyCode == KeyBindings.sm_toggle) {
 			if (Common.svar_sim_running) {
 				if (Common.sim_slow_motion)
