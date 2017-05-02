@@ -1,4 +1,4 @@
-![](http://i.imgur.com/tfI0Lk2.gifv)
+![](http://i.imgur.com/tfI0Lk2.gif)
 
 # OpenLR, an open source alternative desktop app for Line Rider.
 
