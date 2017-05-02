@@ -1,6 +1,5 @@
 package lr.rider;
 
-import cpp.net.Poll;
 import haxe.ds.Vector;
 import openfl.display.MovieClip;
 import openfl.geom.Point;
@@ -452,22 +451,22 @@ class RiderBase
 				if (Grid.grid[_loc1] == null)
 				{
 					continue;
-				} // end if
+				}
 				for (_loc3 in -1...2)
 				{
 					var _loc2 = (_loc6.y + _loc3);
 					if (Grid.grid[_loc1][_loc2] == null)
 					{
 						continue;
-					} // end if
+					}
 					var tempList:Array<LineBase> = Grid.grid[_loc1][_loc2].storage2;
 					for (_loc8 in tempList)
 					{
 						_loc8.collide(_loc5);
-					} // end of for...in
-				} // end of for
-			} // end of for
-		} // end of for
+					}
+				}
+			}
+		} 
 	}
 	public function render_bones() {
 		this.bosh.graphics.clear();

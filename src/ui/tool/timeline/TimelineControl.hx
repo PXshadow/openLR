@@ -1,6 +1,5 @@
 package ui.tool.timeline;
 
-import cpp.Pointer;
 import openfl.display.MovieClip;
 import openfl.events.MouseEvent;
 import openfl.geom.Point;
