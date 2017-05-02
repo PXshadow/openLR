@@ -31,7 +31,7 @@ Change terminal directory to root openLR folder.
 
 Run the command:
 	
-	openfl build mac/linux/windows
+	openfl build cpp
 	
 Project will be compiled into bin folder. Be aware that you can compile to other platforms regardless of the platform you are on,
 however compiling to a non-native platform will not produce a native C++ build, and if distributed, will most likely suffer from performance hits.
