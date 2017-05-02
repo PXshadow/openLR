@@ -1,3 +1,5 @@
+![](http://i.imgur.com/tfI0Lk2.gifv)
+
 # OpenLR, an open source alternative desktop app for Line Rider.
 
 ### Original game by Boštjan "fšk" Čadež
