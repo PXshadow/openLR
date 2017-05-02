@@ -5,6 +5,8 @@
 ### Build by Kaelan "Kevans" Evans
 
 ### The language used is Haxe: http://haxe.org/ (Running Haxe 3.4.2)
+	
+Binaries can be downloaded here: https://github.com/kevansevans/openLR/releases
 
 ## Haxelibs used:
 	
