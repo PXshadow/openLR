@@ -1,6 +1,5 @@
 package file;
 
-import openfl.display.MovieClip;
 import openfl.utils.Object;
 import openfl.geom.Point;
 import sys.FileSystem;
@@ -25,7 +24,7 @@ import ui.inter.SingleButton;
  * @author Kaelan Evans
  * 
  */
-class SaveManager extends MovieClip
+class SaveManager extends Sprite
 {
 	public static var new_track:Bool = true; //only ever gets set to false when track is saved initially, or if track is loaded. Always set to true on new track
 	var directory:File;

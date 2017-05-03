@@ -1,6 +1,6 @@
 package ui.tool.icon;
 
-import openfl.display.MovieClip;
+import openfl.display.Sprite;
 import openfl.events.MouseEvent;
 import openfl.display.Bitmap;
 
@@ -13,7 +13,7 @@ import global.Common;
  * Base functions and variables for icons. Default behavior disables mosue tools on rollover and reenables on roll out.
  * 
  */
-class IconBase extends MovieClip
+class IconBase extends Sprite
 {
 	var icon:Bitmap;
 	public function new() 

@@ -143,7 +143,7 @@ class ToolBase
 			Common.gStage.addEventListener(KeyboardEvent.KEY_DOWN, keyShiftDown);
 			Common.gStage.addEventListener(KeyboardEvent.KEY_UP, keyShiftUp);
 			Common.gStage.addEventListener(KeyboardEvent.KEY_DOWN, KeyModifierDown);
-		Common.gStage.addEventListener(KeyboardEvent.KEY_UP, KeyModifierUp);
+			Common.gStage.addEventListener(KeyboardEvent.KEY_UP, KeyModifierUp);
 		}
 	}
 	

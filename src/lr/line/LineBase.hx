@@ -1,7 +1,7 @@
 package lr.line;
 
 import lr.rider.phys.CPoint;
-import openfl.display.MovieClip;
+import openfl.display.Shape;
 import openfl.geom.Point;
 
 import global.Common;
@@ -14,7 +14,7 @@ import global.Common;
  * Base variables for all lines
  * 
  */
-class LineBase extends MovieClip
+class LineBase extends Shape
 {
 	static var zone = 10;
 	public var x1:Float;
