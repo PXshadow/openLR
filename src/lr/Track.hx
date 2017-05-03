@@ -1,10 +1,11 @@
 package lr;
-import global.SimManager;
+
 import lr.line.Grid;
 import lr.line.LineBase;
-import openfl.display.MovieClip;
+import openfl.display.Sprite;
 import openfl.geom.Point;
 
+import global.SimManager;
 import global.Common;
 
 /**
@@ -14,29 +15,22 @@ import global.Common;
  * Track movie clip with track specific functions and variables
  * 
  */
-class Track extends MovieClip
+class Track extends Sprite
 {
 	private var grid:Grid;
 	private var simManager:SimManager;
-	public var back_layer:MovieClip;
-	public var rider_layer:MovieClip;
-	public var front_layer:MovieClip;
 	public function new() 
 	{
 		super();
 		Common.gTrack = this;
 		Common.track_scale = 1;
-		this.back_layer = new MovieClip();
-		this.rider_layer = new MovieClip();
-		this.addChild(this.back_layer);
-		this.addChild(this.rider_layer);
 		this.grid = new Grid();
 		this.simManager = new SimManager();
 	}
 	public function add_vis_line(line:LineBase) //This is the function that must be called when adding a line. Do not take shortcuts!
 	{
 		Common.gGrid.massLineIndex(line);
-		this.back_layer.addChild(grid.lines[line.ID]);
+		this.addChild(grid.lines[line.ID]);
 		if (!Common.svar_sim_running) {
 			if (!Common.cvar_preview_mode) {
 				grid.lines[line.ID].render("edit");
@@ -89,7 +83,7 @@ class Track extends MovieClip
 	public function clear_stage()
 	{
 		for (i in 0...Common.gGrid.lines.length) {
-			this.back_layer.removeChild(Common.gGrid.lines[i]);
+			this.removeChild(Common.gGrid.lines[i]);
 		}
 		Common.gGrid.new_grid();
 		Common.gSimManager.reset();
@@ -102,7 +96,7 @@ class Track extends MovieClip
 		Common.sim_slow_motion = false;
 	}
 	public function remove_line(_line) {
-		this.back_layer.removeChild(Common.gGrid.lines[_line.ID]);
+		this.removeChild(Common.gGrid.lines[_line.ID]);
 	}
 	public function set_simmode_play() {
 		this.simManager.start_sim();

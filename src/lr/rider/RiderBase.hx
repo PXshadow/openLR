@@ -2,6 +2,7 @@ package lr.rider;
 
 import haxe.ds.Vector;
 import openfl.display.MovieClip;
+import openfl.display.Sprite;
 import openfl.geom.Point;
 import openfl.utils.Object;
 import openfl.Assets.AssetLibrary;
@@ -16,7 +17,7 @@ import lr.rider.phys.*;
  * ...
  * @author ...
  */
-class RiderBase 
+class RiderBase extends Sprite
 {
 	public var anchors:Vector<CPoint>;
 	public var anchors_scarf:Vector<SPoint>;
@@ -47,17 +48,19 @@ class RiderBase
 	
 	public function new() 
 	{
+		super();
+		
 		g = new Object();
 		g.x = 0;
 		g.y = 0.175;
 		
-		this.bosh = new MovieClip();
-		Common.gTrack.rider_layer.addChild(this.bosh);
-		
 		this.getAssets();
 		this.camera = new RiderCamera();
 		this.Start = new StartPointVis();
-		Common.gTrack.back_layer.addChild(this.Start);
+		
+		this.bosh = new MovieClip();
+		Common.gTrack.addChild(this.Start);
+		Common.gTrack.addChild(this.bosh);
 		
 		this.recorded_frames = new Array();
 		this.recorded_frames_scarf = new Array();
@@ -552,6 +555,7 @@ class RiderBase
 			this.bones = new MovieClip();
 			bosh.addChild(this.bones);
 			bosh.addChild(this.rightArm);
+			this.addChild(this.bosh);
 			this.render_body();
 		}
 	}
@@ -565,14 +569,14 @@ class RiderBase
 	function markFlag() 
 	{
 		try {
-			Common.gTrack.back_layer.removeChild(this.flag);
+			Common.gTrack.removeChild(this.flag);
 		} catch (_msg:String) {
 			
 		}
 		try {
 			Common.simfl_frames = Common.sim_frames;
 			this.flag = new FlagMarker(Common.sim_frames);
-			Common.gTrack.back_layer.addChild(this.flag);
+			Common.gTrack.addChild(this.flag);
 			this.flag.x = anchors[0].x;
 			this.flag.y = anchors[0].y;
 			this.crashed = Stick.crash;
@@ -591,7 +595,7 @@ class RiderBase
 	public function destroy_flag() 
 	{
 		try {
-			Common.gTrack.back_layer.removeChild(this.flag);
+			Common.gTrack.removeChild(this.flag);
 		} catch (_msg:String) {
 			
 		}

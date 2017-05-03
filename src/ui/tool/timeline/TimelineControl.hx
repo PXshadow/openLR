@@ -1,6 +1,6 @@
 package ui.tool.timeline;
 
-import openfl.display.MovieClip;
+import openfl.display.Sprite;
 import openfl.events.MouseEvent;
 import openfl.geom.Point;
 
@@ -11,7 +11,7 @@ import global.Common;
  * ...
  * @author Kaelan Evans
  */
-class TimelineControl extends MovieClip
+class TimelineControl extends Sprite
 {
 	var ticker:Ticker;
 	var ticker_pause:Bool = false;

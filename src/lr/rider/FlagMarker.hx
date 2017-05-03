@@ -16,7 +16,7 @@ import global.Common;
  * ...
  * @author Kaelan Evans
  */
-class FlagMarker extends MovieClip
+class FlagMarker extends Sprite
 {
 	private var time:TextField;
 	var font:TextFormat = new TextFormat(Assets.getFont("fonts/Verdana.ttf").fontName, 5, 0, null, null, null, null, null, TextFormatAlign.RIGHT);
