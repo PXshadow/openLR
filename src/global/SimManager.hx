@@ -35,12 +35,10 @@ class SimManager
 		if (!flagged) {
 			Common.sim_frames = 0;
 			if (flag_av) {
-				//this.rider.reset();
-			} else {
-				//this.rider.init_rider();
+				Common.gRiderManager.restore_start();
 			}
 		} else if (flagged) {
-			//this.rider.return_to_flag();
+			Common.gRiderManager.restore_flag();
 		}
 		if (paused) {
 			paused = false;
@@ -56,7 +54,6 @@ class SimManager
 		}
 		if (Common.cvar_force_zoom) {
 			Common.cvar_prev_zoom_ammount = Common.gTrack.scaleX;
-			Common.gTrack.scaleX = Common.gTrack.scaleY = Common.cvar_force_zoom_ammount;
 			Common.gTrack.scaleX = Common.gTrack.scaleY = Common.gRiderManager.scaleX = Common.gRiderManager.scaleY = Common.cvar_force_zoom_ammount;
 		}
 		Common.gCode.return_to_origin_sim();
@@ -64,15 +61,15 @@ class SimManager
 	function update_sim()
 	{
 		if (!this.fast_forward && !this.rewind) {
-			//this.rider.step_rider();
+			Common.gRiderManager.advance_riders();
 			++Common.sim_frames;
 		} else if (this.fast_forward && !this.rewind) {
 			for (a in 0...4) {
-				//this.rider.step_rider();
+				Common.gRiderManager.advance_riders();
 				++Common.sim_frames;
 			}
 		} else if (this.rewind) {
-			//this.rider.step_back();
+			Common.gRiderManager.rewind_riders();
 		}
 		if (Common.sim_frames > Common.sim_max_frames) {
 			Common.sim_max_frames = Common.sim_frames;
@@ -81,13 +78,13 @@ class SimManager
 	}
 	public function scrubberStepBack() {
 		if (Common.sim_frames > 0) {
-			//this.rider.step_back();
+			Common.gRiderManager.rewind_riders();
 		} else if (Common.sim_frames == 0) {
-			//this.rider.reset();
+			Common.gRiderManager.restore_start();
 		}
 	}
 	public function scrubberStepForward() {
-		//this.rider.step_rider();
+		Common.gRiderManager.advance_riders();
 		++Common.sim_frames;
 		if (Common.sim_frames > Common.sim_max_frames) {
 			Common.sim_max_frames = Common.sim_frames;
@@ -104,11 +101,11 @@ class SimManager
 				Common.gTrack.scaleX = Common.gTrack.scaleY = Common.cvar_prev_zoom_ammount;
 			}
 			if (this.flagged) {
-				//this.rider.return_to_flag();
+				Common.gRiderManager.restore_flag();
 			} else {
-				//this.rider.reset();
+				Common.gRiderManager.restore_start();
 			}
-			//this.rider.render_body();
+			Common.gRiderManager.update_render();
 		}
 	}
 	public function pause_sim()
@@ -131,22 +128,18 @@ class SimManager
 	}
 	public function set_rider_start(_x:Float, _y:Float)
 	{
-		//this.rider.moveToStart(_x, _y);
+		Common.gRiderManager.set_start(_x, _y);
 	}
 	public function mark_rider_position() {
-		//this.rider.flag_location();
+		Common.gRiderManager.set_flag();
 		this.flagged = true;
 		this.flag_av = true;
 	}
 	public function hide_flag() {
-		try {
-			//this.rider.flag.alpha = 0.2;
-		} catch (e:String) {}
+		Common.gRiderManager.disable_flag();
 	}
 	public function show_flag() {
-		try {
-			//this.rider.flag.alpha = 1;
-		} catch (e:String) {}
+		Common.gRiderManager.enable_flag();
 	}
 	public function rider_update() {
 		return; //this will stay here until it learns to fucking behave
@@ -158,9 +151,9 @@ class SimManager
 		}
 	}
 	public function reset() {
-		//this.rider.destroy_flag();
-		//this.rider.reset();
-		//this.rider.render_body();
+		Common.gRiderManager.destroy_flag();
+		Common.gRiderManager.restore_start();
+		Common.gRiderManager.update_render();
 		this.flagged = false;
 		this.flag_av = false;
 	}
@@ -238,7 +231,7 @@ class SimManager
 			Common.gTimeline.update();
 		}
 		if (e.keyCode == KeyBindings.step_backward) {
-			//this.rider.step_back();
+			Common.gRiderManager.rewind_riders();
 			Common.gTimeline.update();
 		}
 	}
@@ -264,6 +257,6 @@ class SimManager
 		}
 	}
 	public function injectRiderPosition(_frame:Int) {
-		//this.rider.inject_frame(_frame);
+		Common.gRiderManager.inject_frame(_frame);
 	}
 }

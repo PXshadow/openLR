@@ -582,6 +582,20 @@ class RiderBase extends Sprite
 			Common.sim_flagged_frame = Common.sim_frames;
 		} catch (_msg:String) {}
 	}
+	public function show_flag() {
+		try {
+			this.flag.alpha = 1;
+		} catch (_msg:String) {
+			
+		}
+	}
+	public function hide_flag() {
+		try {
+			this.flag.alpha = 0.1;
+		} catch (_msg:String) {
+			
+		}
+	}
 	public function return_to_flag() {
 		for (i in anchors) {
 			i.restore();
