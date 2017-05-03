@@ -57,6 +57,7 @@ class SimManager
 		if (Common.cvar_force_zoom) {
 			Common.cvar_prev_zoom_ammount = Common.gTrack.scaleX;
 			Common.gTrack.scaleX = Common.gTrack.scaleY = Common.cvar_force_zoom_ammount;
+			Common.gTrack.scaleX = Common.gTrack.scaleY = Common.gRiderManager.scaleX = Common.gRiderManager.scaleY = Common.cvar_force_zoom_ammount;
 		}
 		Common.gCode.return_to_origin_sim();
 	}
