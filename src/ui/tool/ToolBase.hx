@@ -91,13 +91,18 @@ class ToolBase
 	public function mMouseUp(e:MouseEvent):Void 
 	{
 		Common.gTrack.stopDrag();
+		Common.gStage.removeEventListener(MouseEvent.MOUSE_MOVE, mMouseMove);
 	}
 	
 	public function mMouseDown(e:MouseEvent):Void 
 	{
 		Common.gTrack.startDrag();
+		Common.gStage.addEventListener(MouseEvent.MOUSE_MOVE, mMouseMove);
 	}
-	
+	public function mMouseMove(e:MouseEvent) {
+		Common.gRiderManager.x = Common.gTrack.x;
+		Common.gRiderManager.y = Common.gTrack.y;
+	}
 	public function rMouseUp(e:MouseEvent):Void 
 	{
 		trace(Common.gStage.mouseX, Common.gStage.mouseY); //default behavior for any mouse tool that hasn't had an action assigned
@@ -173,6 +178,9 @@ class ToolBase
 			Common.gTrack.x = Common.stage_width * 0.5 + (_locPrevLoc.x - Common.stage_width * 0.5) * _locRatio - 0 * (e.delta * 0.2);
 			Common.gTrack.y = Common.stage_height * 0.5 + (_locPrevLoc.y - Common.stage_height * 0.5) * _locRatio - 0 * (e.delta * 0.2);
 			Common.gTrack.scaleX = Common.gTrack.scaleY = Common.track_scale;
+			Common.gRiderManager.scaleX = Common.gRiderManager.scaleY = Common.track_scale;
+			Common.gRiderManager.x = Common.gTrack.x;
+			Common.gRiderManager.y = Common.gTrack.y;
 		}
 	}
 	public function angle_snap(_x1:Float, _y1:Float, _x2:Float, _y2:Float):Array<Float> {
