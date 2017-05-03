@@ -12,7 +12,7 @@ import global.KeyBindings;
 class SimManager 
 {
 	var iterator:Timer;
-	var rider:RiderBase;
+	//var rider:RiderBase;
 	public var sim_running:Bool = false;
 	public var fast_forward:Bool = false;
 	public var paused:Bool = false;
@@ -22,7 +22,6 @@ class SimManager
 	public function new() 
 	{
 		Common.gSimManager = this;
-		this.rider = new RiderBase();
 		Common.gStage.addEventListener(KeyboardEvent.KEY_DOWN, key_toggle_modifiers);
 	}
 	public function start_sim() {
@@ -36,12 +35,12 @@ class SimManager
 		if (!flagged) {
 			Common.sim_frames = 0;
 			if (flag_av) {
-				this.rider.reset();
+				//this.rider.reset();
 			} else {
-				this.rider.init_rider();
+				//this.rider.init_rider();
 			}
 		} else if (flagged) {
-			this.rider.return_to_flag();
+			//this.rider.return_to_flag();
 		}
 		if (paused) {
 			paused = false;
@@ -64,15 +63,15 @@ class SimManager
 	function update_sim()
 	{
 		if (!this.fast_forward && !this.rewind) {
-			this.rider.step_rider();
+			//this.rider.step_rider();
 			++Common.sim_frames;
 		} else if (this.fast_forward && !this.rewind) {
 			for (a in 0...4) {
-				this.rider.step_rider();
+				//this.rider.step_rider();
 				++Common.sim_frames;
 			}
 		} else if (this.rewind) {
-			this.rider.step_back();
+			//this.rider.step_back();
 		}
 		if (Common.sim_frames > Common.sim_max_frames) {
 			Common.sim_max_frames = Common.sim_frames;
@@ -81,14 +80,13 @@ class SimManager
 	}
 	public function scrubberStepBack() {
 		if (Common.sim_frames > 0) {
-			this.rider.step_back();
+			//this.rider.step_back();
 		} else if (Common.sim_frames == 0) {
-			this.rider.reset();
-			this.rider.reset();
+			//this.rider.reset();
 		}
 	}
 	public function scrubberStepForward() {
-		this.rider.step_rider();
+		//this.rider.step_rider();
 		++Common.sim_frames;
 		if (Common.sim_frames > Common.sim_max_frames) {
 			Common.sim_max_frames = Common.sim_frames;
@@ -105,11 +103,11 @@ class SimManager
 				Common.gTrack.scaleX = Common.gTrack.scaleY = Common.cvar_prev_zoom_ammount;
 			}
 			if (this.flagged) {
-				this.rider.return_to_flag();
+				//this.rider.return_to_flag();
 			} else {
-				this.rider.reset();
+				//this.rider.reset();
 			}
-			this.rider.render_body();
+			//this.rider.render_body();
 		}
 	}
 	public function pause_sim()
@@ -132,36 +130,36 @@ class SimManager
 	}
 	public function set_rider_start(_x:Float, _y:Float)
 	{
-		this.rider.moveToStart(_x, _y);
+		//this.rider.moveToStart(_x, _y);
 	}
 	public function mark_rider_position() {
-		this.rider.flag_location();
+		//this.rider.flag_location();
 		this.flagged = true;
 		this.flag_av = true;
 	}
 	public function hide_flag() {
 		try {
-			this.rider.flag.alpha = 0.2;
+			//this.rider.flag.alpha = 0.2;
 		} catch (e:String) {}
 	}
 	public function show_flag() {
 		try {
-			this.rider.flag.alpha = 1;
+			//this.rider.flag.alpha = 1;
 		} catch (e:String) {}
 	}
 	public function rider_update() {
 		return; //this will stay here until it learns to fucking behave
 		var _loc1 = Common.sim_frames_alt - Common.cvar_track_stepback_update;
 		if (_loc1 <= 0) {
-			this.rider.inject_frame_and_iterate(0, Common.sim_frames_alt);
+			//this.rider.inject_frame_and_iterate(0, Common.sim_frames_alt);
 		} else {
-			this.rider.inject_frame_and_iterate(_loc1, Common.cvar_track_stepback_update - 1);
+			//this.rider.inject_frame_and_iterate(_loc1, Common.cvar_track_stepback_update - 1);
 		}
 	}
 	public function reset() {
-		this.rider.destroy_flag();
-		this.rider.reset();
-		this.rider.render_body();
+		//this.rider.destroy_flag();
+		//this.rider.reset();
+		//this.rider.render_body();
 		this.flagged = false;
 		this.flag_av = false;
 	}
@@ -239,7 +237,7 @@ class SimManager
 			Common.gTimeline.update();
 		}
 		if (e.keyCode == KeyBindings.step_backward) {
-			this.rider.step_back();
+			//this.rider.step_back();
 			Common.gTimeline.update();
 		}
 	}
@@ -265,6 +263,6 @@ class SimManager
 		}
 	}
 	public function injectRiderPosition(_frame:Int) {
-		this.rider.inject_frame(_frame);
+		//this.rider.inject_frame(_frame);
 	}
 }

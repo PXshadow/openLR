@@ -2,6 +2,7 @@ package global;
 
 import file.AutosaveManager;
 import file.LoadManager;
+import global.RiderManager;
 import ui.tool.Toolbar;
 import lr.rider.RiderCamera;
 import openfl.utils.Object;
@@ -36,6 +37,7 @@ class Common
 	public static var gStage:Stage;
 	public static var gCode:Main;
 	public static var gTrack:Track;
+	public static var gRiderManager:RiderManager;
 	public static var gVisContainer:MovieClip;
 	public static var gToolBase:ToolBase;
 	public static var gToolCurrent:Any;

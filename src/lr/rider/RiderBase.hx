@@ -59,8 +59,7 @@ class RiderBase extends Sprite
 		this.Start = new StartPointVis();
 		
 		this.bosh = new MovieClip();
-		Common.gTrack.addChild(this.Start);
-		Common.gTrack.addChild(this.bosh);
+		this.addChild(this.Start);
 		
 		this.recorded_frames = new Array();
 		this.recorded_frames_scarf = new Array();
