@@ -33,6 +33,8 @@ class IconStop extends IconBase
 		if (!Common.gSimManager.paused) {
 			Common.gTrack.x = Common.track_last_pos_x;
 			Common.gTrack.y = Common.track_last_pos_y;
+			Common.gRiderManager.x = Common.gTrack.x;
+			Common.gRiderManager.y = Common.gTrack.y;
 		}
 	}
 	

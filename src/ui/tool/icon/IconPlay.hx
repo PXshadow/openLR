@@ -32,6 +32,9 @@ class IconPlay extends IconBase
 		Common.gToolbar.pan.visible = false;
 		Common.gToolbar.pause.visible = true;
 		Common.gTrack.set_simmode_play();
+		
+		Common.gRiderManager.x = Common.gTrack.x;
+		Common.gRiderManager.y = Common.gTrack.y;
 	}
 	
 }
