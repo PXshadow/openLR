@@ -111,6 +111,7 @@ class Common
 	public static var svar_game_mode:String = "edit";
 	public static var svar_snap_distance:Int = 20;
 	public static var svar_track_date_stamp:String = "";
+	public static var svar_rider_count = 0;
 	
 	public static var stage_width:Float;
 	public static var stage_height:Float;
