@@ -568,14 +568,14 @@ class RiderBase extends Sprite
 	function markFlag() 
 	{
 		try {
-			Common.gTrack.removeChild(this.flag);
+			this.removeChild(this.flag);
 		} catch (_msg:String) {
 			
 		}
 		try {
 			Common.simfl_frames = Common.sim_frames;
 			this.flag = new FlagMarker(Common.sim_frames);
-			Common.gTrack.addChild(this.flag);
+			this.addChild(this.flag);
 			this.flag.x = anchors[0].x;
 			this.flag.y = anchors[0].y;
 			this.crashed = Stick.crash;
