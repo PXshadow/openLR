@@ -33,6 +33,7 @@ import lr.Track;
 import file.AutosaveManager;
 import file.Screenshot;
 import lr.settings.SettingsMenu;
+import global.RiderManager;
 
 /**
  * ...
@@ -74,6 +75,7 @@ class Main extends Sprite
 	private var mainFileInit:FileStart; //this class controls settings
 	private var visContainer:MovieClip; //simple display container. This will make it easier to take screenshots and record video without having to move a matrix all around
 	private var track:Track;
+	private var riders:RiderManager;
 	private var toolBar:Toolbar;
 	private var textInfo:TextInfo;
 	private var FPS:FrameRate;
@@ -134,6 +136,12 @@ class Main extends Sprite
 		this.track.x = this.stage.stageWidth * 0.5;
 		this.track.y = this.stage.stageHeight * 0.5;
 		this.track.scaleX = this.track.scaleY = 2;
+		
+		this.riders = new RiderManager();
+		this.visContainer.addChild(this.riders);
+		this.riders.x = this.track.x;
+		this.riders.y = this.track.y;
+		this.riders.scaleX = this.riders.scaleY = this.track.scaleY;
 		
 		this.toolBar = new Toolbar();
 		this.visContainer.addChild(this.toolBar);
