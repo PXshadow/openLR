@@ -98,7 +98,7 @@ class SimManager
 			Common.sim_frames = 0;
 			this.iterator.stop();
 			if (Common.cvar_force_zoom) {
-				Common.gTrack.scaleX = Common.gTrack.scaleY = Common.cvar_prev_zoom_ammount;
+				Common.gTrack.scaleX = Common.gTrack.scaleY = Common.gRiderManager.scaleX = Common.gRiderManager.scaleY = Common.cvar_prev_zoom_ammount;
 			}
 			if (this.flagged) {
 				Common.gRiderManager.restore_flag();
