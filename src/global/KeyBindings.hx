@@ -110,6 +110,7 @@ class KeyBindings
 				"pp_toggle" : KeyBindings.pp_toggle,
 				"step_forward" : KeyBindings.step_forward,
 				"step_backward" : KeyBindings.step_backward,
+				"undo_line" : KeyBindings.undo_line,
 				"undo_stroke" : KeyBindings.undo_stroke,
 				"redo_stroke" : KeyBindings.redo_stroke,
 				"redo_line" : KeyBindings.redo_line
