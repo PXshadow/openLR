@@ -1,6 +1,6 @@
 package lr.settings;
 
-import openfl.display.MovieClip;
+import openfl.display.Sprite;
 import openfl.events.MouseEvent;
 
 import ui.inter.SingleButton;
@@ -17,7 +17,7 @@ enum PanelMode
  * ...
  * @author Kaelan Evans
  */
-class SettingsMenu extends MovieClip
+class SettingsMenu extends Sprite
 {
 	var state:PanelMode = file;
 	

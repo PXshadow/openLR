@@ -1,6 +1,6 @@
 package lr.settings;
 
-import openfl.display.MovieClip;
+import openfl.display.Sprite;
 import openfl.events.MouseEvent;
 
 import ui.inter.SingleButton;
@@ -14,7 +14,7 @@ import global.Common;
  * 
  * 
  */
-class TrackSettings extends MovieClip
+class TrackSettings extends Sprite
 {
 	var color_playback:CheckBox;
 	var preview_mode:CheckBox;

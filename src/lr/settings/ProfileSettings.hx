@@ -1,6 +1,6 @@
 package lr.settings;
 
-import openfl.display.MovieClip;
+import openfl.display.Sprite;
 import openfl.events.MouseEvent;
 
 import ui.inter.SingleButton;
@@ -19,7 +19,7 @@ import global.Common;
  * 	
  * 
  */
-class ProfileSettings extends MovieClip
+class ProfileSettings extends Sprite
 {
 	var sWidth:Float = 0;
 	var sHeight:Float = 0;

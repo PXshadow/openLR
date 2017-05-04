@@ -1,7 +1,7 @@
 package file;
 
 import file.ui.FileWindow;
-import openfl.display.MovieClip;
+import openfl.display.Sprite;
 import sys.io.File;
 import sys.FileSystem;
 import haxe.Json;
@@ -15,13 +15,11 @@ import global.Common;
 import lr.line.*;
 import ui.inter.SingleButton;
 import ui.tool.Toolbar;
-//import src.com.LZString;
-
 /**
  * ...
  * @author ...
  */
-class LoadManager extends MovieClip
+class LoadManager extends Sprite
 {
 	var trackData:Object;
 	private var itemWindow:FileWindow;
