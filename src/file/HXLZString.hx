@@ -1,10 +1,8 @@
 package file;
 
 /**
- * ...
- * @author Kaelan Evans
  * 
- * Haxe implementation of LZString http://pieroxy.net/blog/pages/lz-string/index.html
+ * Haxe implementation of LZString http://pieroxy.net/blog/pages/lz-string/index.html https://github.com/pieroxy/lz-string/
  * This is needed to correctly load www.linerider.com saves that compress the saves it generates.
  * Will upload as own library when finished
  * 
