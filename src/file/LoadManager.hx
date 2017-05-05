@@ -132,6 +132,9 @@ class LoadManager extends Sprite
 		Common.gCode.return_to_origin(this.trackData.startPosition.x, this.trackData.startPosition.y);
 		this.trackData.linesArray.reverse();
 		for (i in 0...trackData.linesArray.length) {
+			if (trackData.linesArray[i] == null) {
+				continue;
+			}
 			var _loc1:Dynamic;
 			if (trackData.linesArray[i][0] == 0) {
 				_loc1 = new LineFloor(trackData.linesArray[i][2], trackData.linesArray[i][3], trackData.linesArray[i][4], trackData.linesArray[i][5], trackData.linesArray[i][7]);

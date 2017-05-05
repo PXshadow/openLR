@@ -236,8 +236,8 @@ class SaveManager extends Sprite
 			if (i == null) {
 				continue;
 			}
-			a[line_Place_Override] = new Object();
-			a[line_Place_Override] = {
+			a[i] = new Object();
+			a[i] = {
 				"id": line_Place_Override,
 				"type": i.type,
 				"x1": i.x1,
