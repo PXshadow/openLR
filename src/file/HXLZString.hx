@@ -1,5 +1,4 @@
 package file;
-import openfl.utils.Object;
 
 /**
  * ...
