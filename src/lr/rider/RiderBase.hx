@@ -5,8 +5,8 @@ import openfl.display.MovieClip;
 import openfl.display.Sprite;
 import openfl.geom.Point;
 import openfl.utils.Object;
-import openfl.Assets.AssetLibrary;
 import openfl.events.IOErrorEvent;
+import openfl.utils.AssetLibrary;
 
 import global.Common;
 import lr.line.Grid;
