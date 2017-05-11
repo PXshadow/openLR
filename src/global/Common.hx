@@ -40,7 +40,7 @@ class Common
 	public static var gRiderManager:RiderManager;
 	public static var gVisContainer:MovieClip;
 	public static var gToolBase:ToolBase;
-	public static var gToolCurrent:Any;
+	public static var gToolCurrent:ToolBase;
 	public static var gGrid:Grid;
 	public static var gSaveManager:SaveManager;
 	public static var gLoadManager:LoadManager;
