@@ -34,7 +34,7 @@ Running the above commands should install all the needed libraries to compile, i
 
 Run the command `openfl` to verify it was installed correctly. You should see the OpenFL logo appear in your terminal.
 
-Change terminal directory to root openLR folder.
+Change terminal directory to root openLR folder. It should contain the `openLR.hxproj` or `project.xml` files inside of it.
 
 Run the command:
 	
