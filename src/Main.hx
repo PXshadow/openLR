@@ -7,7 +7,6 @@ import openfl.display.Sprite;
 import openfl.Lib;
 import openfl.events.Event;
 import openfl.net.URLRequest;
-import openfl.Assets.AssetLibrary;
 import haxe.Timer;
 import ui.inter.AlertBox;
 import ui.inter.CheckBox;
@@ -34,6 +33,8 @@ import file.AutosaveManager;
 import file.Screenshot;
 import lr.settings.SettingsMenu;
 import global.RiderManager;
+
+import file.HXLZString;
 
 /**
  * ...
@@ -105,6 +106,8 @@ class Main extends Sprite
 		this.addChild(this.welcome_alert);
 		this.welcome_alert.x = (this.stage.stageWidth * 0.5) - (this.welcome_alert.width * 0.5);
 		this.welcome_alert.y = (this.stage.stageHeight * 0.5) - (this.welcome_alert.height * 0.5);
+		
+		trace(HXLZString.compress("Hello, my name is Kevansevans"));
 	}
 	function start() {
 		this.removeChild(this.welcome_alert);
