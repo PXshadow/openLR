@@ -30,7 +30,7 @@ Run in terminal the following commands:
 	
 Running the above commands should install all the needed libraries to compile, including Lime,
 
-Run the command 'openfl' to verify it was installed correctly. You should see the OpenFL logo appear in your terminal.
+Run the command `openfl` to verify it was installed correctly. You should see the OpenFL logo appear in your terminal.
 
 Change terminal directory to root openLR folder.
 
