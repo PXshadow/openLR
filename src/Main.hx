@@ -245,7 +245,7 @@ class Main extends Sprite
 	private function resize(e:Event):Void
 	{
 		this.visContainer.x = this.visContainer.y = 0;
-		this.toolBar.x = (this.stage.stageWidth / 2) - (this.toolBar.width / 2); 
+		this.toolBar.x = (this.stage.stageWidth * 0.5) - (this.toolBar.width * 0.25); 
 		
 		Common.stage_height = this.stage.stageHeight;
 		Common.stage_width = this.stage.stageWidth;
