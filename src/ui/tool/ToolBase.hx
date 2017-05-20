@@ -185,7 +185,7 @@ class ToolBase
 	}
 	public function angle_snap(_x1:Float, _y1:Float, _x2:Float, _y2:Float):Array<Float> {
 		var angle = Common.get_angle_degrees(new Point(_x1, _y1), new Point(_x2, _y2));
-		var angles:Array<Int> = [0, 15, 30, 45, 60, 75, 90, 105, 120, 135, 150, 165, 180, 195, 210, 225, 240, 255, 270, 285, 300, 315, 320, 345, 360];
+		var angles:Array<Int> = [0, 15, 30, 45, 60, 75, 90, 105, 120, 135, 150, 165, 180, 195, 210, 225, 240, 255, 270, 285, 300, 315, 330, 345, 360];
 		var angleToSnap:Int = 0;
 		var x:Float = _x2;
 		var y:Float = _y2;
