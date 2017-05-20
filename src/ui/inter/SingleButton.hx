@@ -22,6 +22,8 @@ class SingleButton extends Sprite
 	var action:Dynamic;
 	var yAdjust:Int;
 	var xAdjust:Int;
+	var boxWidth:Float;
+	var boxHeight:Float;
 	public function new(_msg:String, _action:Dynamic = null, _xvalue:Int = 0, _yvalue:Int = 0)
 	{
 		super();
@@ -39,15 +41,18 @@ class SingleButton extends Sprite
 		this.msg.width = (_msg.length * 11.5) + _xvalue;
 		this.textContainer.addChild(this.msg);
 		this.textContainer.x = this.textContainer.y = 4;
-		
 		this.addChild(this.vis_box);
+		
+		this.boxWidth = this.textContainer.width;
+		this.boxHeight = this.textContainer.height;
+		
 		this.vis_box.graphics.clear();
 		this.vis_box.graphics.lineStyle(2, 0, 1);
 		this.vis_box.graphics.beginFill(0xFFFFFF, 1);
 		this.vis_box.graphics.moveTo(0, 0);
-		this.vis_box.graphics.lineTo(this.textContainer.width + 5 + _xvalue, 0);
-		this.vis_box.graphics.lineTo(this.textContainer.width + 5 + _xvalue, this.textContainer.height + 5 + _yvalue);
-		this.vis_box.graphics.lineTo(0, this.textContainer.height + 5 + _yvalue);
+		this.vis_box.graphics.lineTo(this.boxWidth + 5 + _xvalue, 0);
+		this.vis_box.graphics.lineTo(this.boxWidth + 5 + _xvalue, this.boxHeight + 5 + _yvalue);
+		this.vis_box.graphics.lineTo(0, this.boxHeight + 5 + _yvalue);
 		this.vis_box.graphics.lineTo(0, 0);
 		
 		//this.msg.width = this.width + this.xAdjust;
@@ -73,9 +78,9 @@ class SingleButton extends Sprite
 		this.vis_box.graphics.lineStyle(2, 0, 1);
 		this.vis_box.graphics.beginFill(0xFFFFFF, 1);
 		this.vis_box.graphics.moveTo(0, 0);
-		this.vis_box.graphics.lineTo(this.textContainer.width + 5 + this.xAdjust, 0);
-		this.vis_box.graphics.lineTo(this.textContainer.width + 5 + this.xAdjust, this.textContainer.height + 5 + this.yAdjust);
-		this.vis_box.graphics.lineTo(0, this.textContainer.height + 5 + this.yAdjust);
+		this.vis_box.graphics.lineTo(this.boxWidth + 5 + xAdjust, 0);
+		this.vis_box.graphics.lineTo(this.boxWidth + 5 + xAdjust, this.boxHeight + 5 + yAdjust);
+		this.vis_box.graphics.lineTo(0, this.boxHeight + 5 + yAdjust);
 		this.vis_box.graphics.lineTo(0, 0);
 	}
 	
@@ -85,9 +90,9 @@ class SingleButton extends Sprite
 		this.vis_box.graphics.lineStyle(2, 0, 1);
 		this.vis_box.graphics.beginFill(0xDDDDDD, 1);
 		this.vis_box.graphics.moveTo(0, 0);
-		this.vis_box.graphics.lineTo(this.textContainer.width + 5 + this.xAdjust, 0);
-		this.vis_box.graphics.lineTo(this.textContainer.width + 5 + this.xAdjust, this.textContainer.height + 5 + this.yAdjust);
-		this.vis_box.graphics.lineTo(0, this.textContainer.height + 5 + this.yAdjust);
+		this.vis_box.graphics.lineTo(this.boxWidth + 5 + xAdjust, 0);
+		this.vis_box.graphics.lineTo(this.boxWidth + 5 + xAdjust, this.boxHeight + 5 + yAdjust);
+		this.vis_box.graphics.lineTo(0, this.boxHeight + 5 + yAdjust);
 		this.vis_box.graphics.lineTo(0, 0);
 	}
 }
