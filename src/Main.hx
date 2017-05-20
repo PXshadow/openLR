@@ -34,6 +34,7 @@ import file.Screenshot;
 import lr.settings.SettingsMenu;
 import global.RiderManager;
 
+//TBD
 import file.HXLZString;
 
 /**
@@ -65,10 +66,9 @@ import file.HXLZString;
  * //To do
  * /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
  * 
- * -- Arbitrary save parser. Will allow for saves to be incomplete and future proof //maybe? Just use my own JSON format probably. Maybe use a similar format to LRA
  * -- LZ-String port, this is needed if compatibility with .com must happen
  * -- UI system. Menus, checkboxes, radio buttons, arbitrarily sized buttons, fonts, blah blah blah
- * -- Better file management. Save with name support, save as (arbitrary location), load from saves folder, and browse.
+ * -- Better file management. Save with name support, save as (arbitrary location), load from saves folder, and browse. Look into Lime API.
  * 
  */
 class Main extends Sprite 
@@ -107,7 +107,7 @@ class Main extends Sprite
 		this.welcome_alert.x = (this.stage.stageWidth * 0.5) - (this.welcome_alert.width * 0.5);
 		this.welcome_alert.y = (this.stage.stageHeight * 0.5) - (this.welcome_alert.height * 0.5);
 		
-		trace(HXLZString.compress("Hello, my name is Kevansevans"));
+		//trace(HXLZString.compress("Hello, my name is Kevansevans"));
 	}
 	function start() {
 		this.removeChild(this.welcome_alert);
