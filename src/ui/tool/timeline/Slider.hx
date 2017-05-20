@@ -16,7 +16,7 @@ class Slider extends MovieClip
 {
 	var frameRatio:Float = 1;
 	var playHead:Sprite;
-	var frame_length = 0;
+	public var frame_length = 0;
 	var max_length:Bool = false;
 	public function new() 
 	{

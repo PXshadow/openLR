@@ -93,7 +93,7 @@ class TimelineControl extends Sprite
 	public function update() {
 		this.ticker.update();
 		this.slider.update();
-		this.slider.x = (this.width * 0.5) - (this.slider.width * 0.5);
+		this.slider.x = (this.width * 0.5) - (this.slider.frame_length * 0.5);
 		this.slider.y = - 20;
 	}
 }
