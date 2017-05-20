@@ -36,8 +36,9 @@ class RiderBase extends Sprite
 	private var leftLeg:MovieClip;
 	private var rightLeg:MovieClip;
 	private var sled:MovieClip;
-	private var bones:MovieClip;
+	private var string:MovieClip;
 	private var scarf:MovieClip;
+	private var skeleton:Sprite;
 	
 	private var camera:RiderCamera;
 	
@@ -413,17 +414,18 @@ class RiderBase extends Sprite
 		//rider rendering
 		this.body.alpha = this.leftArm.alpha = this.rightArm.alpha = this.leftLeg.alpha = this.rightLeg.alpha = this.sled.alpha = Common.cvar_rider_alpha;
 		this.bosh.graphics.clear();
-		this.bones.graphics.clear();
+		this.string.graphics.clear();
+		this.skeleton.graphics.clear();
 		this.scarf.graphics.clear();
+		if (!Stick.crash) {
+			this.string.graphics.lineStyle(0.5, 0, Common.cvar_rider_alpha);
+			this.string.graphics.moveTo(anchors[6].x, anchors[6].y);
+			this.string.graphics.lineTo(anchors[3].x, anchors[3].y);
+			this.string.graphics.lineTo(anchors[7].x, anchors[7].y);
+		}
 		if (Common.cvar_contact_points) {
 			this.render_bones();
 			return;
-		}
-		if (!Stick.crash) {
-			this.bones.graphics.lineStyle(0.5, 0, Common.cvar_rider_alpha);
-			this.bones.graphics.moveTo(anchors[6].x, anchors[6].y);
-			this.bones.graphics.lineTo(anchors[3].x, anchors[3].y);
-			this.bones.graphics.lineTo(anchors[7].x, anchors[7].y);
 		}
 		this.scarf.graphics.lineStyle(2, 0xFFFFFF, Common.cvar_rider_alpha, false, "none", "none");
 		this.scarf.graphics.moveTo(edges_scarf[0].a.x, edges_scarf[0].a.y);
@@ -439,6 +441,25 @@ class RiderBase extends Sprite
 		this.scarf.graphics.lineTo(edges_scarf[3].b.x, edges_scarf[3].b.y);
 		this.scarf.graphics.moveTo(edges_scarf[5].a.x, edges_scarf[5].a.y);
 		this.scarf.graphics.lineTo(edges_scarf[5].b.x, edges_scarf[5].b.y);
+	}
+	public function render_bones() {
+		this.bosh.graphics.clear();
+		this.skeleton.graphics.lineStyle(0.25, 0xFF6600, 1);
+		for (i in 0...4) { //Minimal sled points
+			this.skeleton.graphics.moveTo(this.edges[i].a.x, this.edges[i].a.y);
+			this.skeleton.graphics.lineTo(this.edges[i].b.x, this.edges[i].b.y);
+		}
+		this.skeleton.graphics.lineStyle(0.25, 0xCC0033, 1);
+		for (i in 9...14) { //Minimal body points
+			this.skeleton.graphics.moveTo(this.edges[i].a.x, this.edges[i].a.y);
+			this.skeleton.graphics.lineTo(this.edges[i].b.x, this.edges[i].b.y);
+		}
+		this.skeleton.graphics.lineStyle(0.25, 0x6600ff, 0.1);
+		for (i in 0...anchors.length) {
+			this.skeleton.graphics.beginFill(0x6600ff, 1);
+			this.skeleton.graphics.drawCircle(anchors[i].x, anchors[i].y, 0.5);
+			this.skeleton.graphics.endFill();
+		}
 	}
 	public function collision() 
 	{
@@ -468,20 +489,6 @@ class RiderBase extends Sprite
 				}
 			}
 		} 
-	}
-	public function render_bones() {
-		this.bosh.graphics.clear();
-		this.bosh.graphics.lineStyle(0.25, 0x0000FF, 1);
-		for (b in 0...edges.length) { //need to change this to show the bones that are important.
-			this.bosh.graphics.moveTo(edges[b].a.x, edges[b].a.y);
-			this.bosh.graphics.lineTo(edges[b].b.x, edges[b].b.y);
-		}
-		this.bosh.graphics.lineStyle(0.25, 0x6600ff, 0.1);
-		for (i in 0...anchors.length) {
-			this.bosh.graphics.beginFill(0x6600ff, 1);
-			this.bosh.graphics.drawCircle(anchors[i].x, anchors[i].y, 0.5);
-			this.bosh.graphics.endFill();
-		}
 	}
 	function bodyClip(lib:AssetLibrary) 
 	{
@@ -552,9 +559,11 @@ class RiderBase extends Sprite
 			bosh.addChild(this.sled);
 			bosh.addChild(this.rightLeg);
 			bosh.addChild(this.body);
-			this.bones = new MovieClip();
-			bosh.addChild(this.bones);
+			this.string = new MovieClip();
+			bosh.addChild(this.string);
 			bosh.addChild(this.rightArm);
+			this.skeleton = new Sprite();
+			bosh.addChild(this.skeleton);
 			this.addChild(this.bosh);
 			this.render_body();
 		}
