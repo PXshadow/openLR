@@ -6,8 +6,8 @@ import openfl.Lib;
 import openfl.Assets;
 import openfl.display.Sprite;
 import openfl.text.TextField;
-import openfl.text.TextFormat;
-import openfl.text.TextFormatAlign;
+
+import global.Common;
 
 /**
  * ...
@@ -24,7 +24,6 @@ class StepCounter extends Sprite
 	private var count:Float;
 	public var stepUp:StepButton;
 	public var stepDown:StepButton;
-	var font:TextFormat = new TextFormat(Assets.getFont("fonts/Verdana Bold.ttf").fontName, 16, 0, null, null, null, null, null, TextFormatAlign.RIGHT);
 	var label:TextField;
 	public var unit:String = "";
 	public function new() 
@@ -51,7 +50,7 @@ class StepCounter extends Sprite
 		stepDown.y = 12;
 		
 		this.label = new TextField();
-		this.label.defaultTextFormat = font;
+		this.label.defaultTextFormat = Common.font_vb_right(16);
 		this.label.width = 94;
 		this.label.height = 24;
 		this.label.selectable = false;
