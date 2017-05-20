@@ -425,7 +425,6 @@ class RiderBase extends Sprite
 		}
 		if (Common.cvar_contact_points) {
 			this.render_bones();
-			return;
 		}
 		this.scarf.graphics.lineStyle(2, 0xFFFFFF, Common.cvar_rider_alpha, false, "none", "none");
 		this.scarf.graphics.moveTo(edges_scarf[0].a.x, edges_scarf[0].a.y);
