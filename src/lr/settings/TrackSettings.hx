@@ -56,7 +56,7 @@ class TrackSettings extends Sprite
 		this.contact_points.x = 128;
 		this.contact_points.box.addEventListener(MouseEvent.CLICK, toggle_contact_points);
 		this.bosh_alpha = new StepCounter();
-		this.bosh_alpha.set_numeric_mode(0.0, 1, 0.1, 1, " Alpha");
+		this.bosh_alpha.set_numeric_mode(0.1, 1, 0.1, 1, " Alpha");
 		this.addChild(this.bosh_alpha);
 		this.bosh_alpha.x = 128;
 		this.bosh_alpha.y = this.contact_points.y + this.contact_points.height;
