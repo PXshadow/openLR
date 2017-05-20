@@ -1,21 +1,24 @@
 package global;
 
-import file.AutosaveManager;
-import file.LoadManager;
+import openfl.Assets;
 import global.RiderManager;
-import ui.tool.Toolbar;
-import lr.rider.RiderCamera;
 import openfl.utils.Object;
-import file.SaveManager;
-import lr.TextInfo;
-import lr.line.Grid;
 import openfl.display.MovieClip;
 import openfl.display.Stage;
 import openfl.geom.Point;
-import ui.tool.ToolBase;
-import ui.tool.timeline.TimelineControl;
+import openfl.text.TextFormat;
+import openfl.text.TextFormatAlign;
 
 import lr.Track;
+import file.AutosaveManager;
+import file.LoadManager;
+import ui.tool.ToolBase;
+import ui.tool.timeline.TimelineControl;
+import file.SaveManager;
+import lr.TextInfo;
+import lr.line.Grid;
+import ui.tool.Toolbar;
+import lr.rider.RiderCamera;
 
 /**
  * ...
