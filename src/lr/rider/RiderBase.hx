@@ -411,35 +411,34 @@ class RiderBase extends Sprite
 		this.rightLeg.rotation = Common.get_angle_degrees(new Point(anchors[4].x, anchors[4].y), new Point(anchors[9].x, anchors[9].y));
 		
 		//rider rendering
+		this.body.alpha = this.leftArm.alpha = this.rightArm.alpha = this.leftLeg.alpha = this.rightLeg.alpha = this.sled.alpha = Common.cvar_rider_alpha;
+		this.bosh.graphics.clear();
 		this.bones.graphics.clear();
+		this.scarf.graphics.clear();
+		if (Common.cvar_contact_points) {
+			this.render_bones();
+			return;
+		}
 		if (!Stick.crash) {
-			this.bones.graphics.lineStyle(0.5, 0, 1);
+			this.bones.graphics.lineStyle(0.5, 0, Common.cvar_rider_alpha);
 			this.bones.graphics.moveTo(anchors[6].x, anchors[6].y);
 			this.bones.graphics.lineTo(anchors[3].x, anchors[3].y);
 			this.bones.graphics.lineTo(anchors[7].x, anchors[7].y);
 		}
-		if (Common.cvar_contact_points) {
-			this.render_bones();
-		}
-		
-		this.scarf.graphics.clear();
-		this.scarf.graphics.lineStyle(2, 0xFFFFFF, 1, false, "none", "none");
+		this.scarf.graphics.lineStyle(2, 0xFFFFFF, Common.cvar_rider_alpha, false, "none", "none");
 		this.scarf.graphics.moveTo(edges_scarf[0].a.x, edges_scarf[0].a.y);
 		this.scarf.graphics.lineTo(edges_scarf[0].b.x, edges_scarf[0].b.y);
 		this.scarf.graphics.moveTo(edges_scarf[2].a.x, edges_scarf[2].a.y);
 		this.scarf.graphics.lineTo(edges_scarf[2].b.x, edges_scarf[2].b.y);
 		this.scarf.graphics.moveTo(edges_scarf[4].a.x, edges_scarf[4].a.y);
 		this.scarf.graphics.lineTo(edges_scarf[4].b.x, edges_scarf[4].b.y);
-		this.scarf.graphics.lineStyle(2, 0xD20202, 1, false, "none", "none");
+		this.scarf.graphics.lineStyle(2, 0xD20202, Common.cvar_rider_alpha, false, "none", "none");
 		this.scarf.graphics.moveTo(edges_scarf[1].a.x, edges_scarf[1].a.y);
 		this.scarf.graphics.lineTo(edges_scarf[1].b.x, edges_scarf[1].b.y);
 		this.scarf.graphics.moveTo(edges_scarf[3].a.x, edges_scarf[3].a.y);
 		this.scarf.graphics.lineTo(edges_scarf[3].b.x, edges_scarf[3].b.y);
 		this.scarf.graphics.moveTo(edges_scarf[5].a.x, edges_scarf[5].a.y);
 		this.scarf.graphics.lineTo(edges_scarf[5].b.x, edges_scarf[5].b.y);
-		
-		this.body.alpha = this.leftArm.alpha = this.rightArm.alpha = this.leftLeg.alpha = this.rightLeg.alpha = this.sled.alpha = Common.cvar_rider_alpha;
-		
 	}
 	public function collision() 
 	{
@@ -472,14 +471,16 @@ class RiderBase extends Sprite
 	}
 	public function render_bones() {
 		this.bosh.graphics.clear();
-		this.bosh.graphics.lineStyle(0.25, 0xFF0000, 1);
-		for (i in 0...anchors.length) {
-			this.bosh.graphics.drawCircle(anchors[i].x, anchors[i].y, 1);
-		}
 		this.bosh.graphics.lineStyle(0.25, 0x0000FF, 1);
-		for (b in 0...edges.length) {
+		for (b in 0...edges.length) { //need to change this to show the bones that are important.
 			this.bosh.graphics.moveTo(edges[b].a.x, edges[b].a.y);
 			this.bosh.graphics.lineTo(edges[b].b.x, edges[b].b.y);
+		}
+		this.bosh.graphics.lineStyle(0.25, 0x6600ff, 0.1);
+		for (i in 0...anchors.length) {
+			this.bosh.graphics.beginFill(0x6600ff, 1);
+			this.bosh.graphics.drawCircle(anchors[i].x, anchors[i].y, 0.5);
+			this.bosh.graphics.endFill();
 		}
 	}
 	function bodyClip(lib:AssetLibrary) 
