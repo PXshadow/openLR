@@ -206,4 +206,7 @@ class Common
 		}
 		return (_loc4);
 	}
+	public static function font_vb_right(_size:Int):TextFormat {
+		return(new TextFormat(Assets.getFont("fonts/Verdana Bold.ttf").fontName, _size, 0, null, null, null, null, null, TextFormatAlign.RIGHT));
+	}
 }
