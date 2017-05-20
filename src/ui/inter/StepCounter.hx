@@ -1,6 +1,6 @@
 package ui.inter;
 
-import openfl.display.MovieClip;
+import openfl.display.Sprite;
 import openfl.events.MouseEvent;
 import openfl.Lib;
 import openfl.Assets;
@@ -13,7 +13,7 @@ import openfl.text.TextFormatAlign;
  * ...
  * @author Kaelan Evans
  */
-class StepCounter extends MovieClip
+class StepCounter extends Sprite
 {
 	private var mode:String = "Numerical";
 	private var array:Array<Dynamic>;
@@ -98,7 +98,7 @@ class StepCounter extends MovieClip
 		return(_locReturn);
 	}
 }
-class StepButton extends MovieClip
+class StepButton extends Sprite
 {
 	private var dir:Int = 0;
 	public function new (_dir:Int)
