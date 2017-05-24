@@ -43,6 +43,8 @@ Run the command:
 Project will be compiled into bin folder. Be aware that you can compile to other platforms regardless of the platform you are on,
 however, compiling to a non-native platform will not produce a native C++ build, and will most likely suffer from performance hits.
 
+If running on a debian based linux branch, the file 'openLR' will need to be renamed to 'openLR.sh'. This has been tested on Ubuntu and Lubuntu. Other haxe supported linux branches have not been tested.
+
 Note: If you are running Windows 10 Ubuntu Bash, you will need to update Ubuntu and install G++ if you have not already. 
 Run the command `sudo apt install g++` and the project should correctly compile to the Linux target.
 
