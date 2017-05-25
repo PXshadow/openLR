@@ -186,28 +186,28 @@ class LoadManager extends Sprite
 			}
 			if (trackData.lines[i].type == 0) {
 				_loc1 = new LineFloor(trackData.lines[i].x1, trackData.lines[i].y1, trackData.lines[i].x2, trackData.lines[i].y2, trackData.lines[i].flipped);
-				_loc1.ID = Common.sLineID;
+				_loc1.ID = trackData.lines[i].id;
 				_loc1.set_lim(this.get_lim_to_set(trackData.lines[i].leftExtended, trackData.lines[i].rightExtended));
 				Common.gTrack.add_vis_line(_loc1);
 				Common.gGrid.cache_stroke([_loc1]);
 			} else if (trackData.lines[i].type == 1) {
 				_loc1 = new LineAccel(trackData.lines[i].x1, trackData.lines[i].y1, trackData.lines[i].x2, trackData.lines[i].y2, trackData.lines[i].flipped);
-				_loc1.ID = Common.sLineID;
+				_loc1.ID = trackData.lines[i].id;
 				_loc1.set_lim(this.get_lim_to_set(trackData.lines[i].leftExtended, trackData.lines[i].rightExtended));
 				Common.gTrack.add_vis_line(_loc1);
 				Common.gGrid.cache_stroke([_loc1]);
 			} else if (trackData.lines[i].type == 2) {
 				_loc1 = new LineScene(trackData.lines[i].x1, trackData.lines[i].y1, trackData.lines[i].x2, trackData.lines[i].y2, trackData.lines[i].flipped);
-				_loc1.ID = Common.sLineID;
+				_loc1.ID = trackData.lines[i].id;
 				_loc1.set_lim(this.get_lim_to_set(trackData.lines[i].leftExtended, trackData.lines[i].rightExtended));
 				Common.gTrack.add_vis_line(_loc1);
 				Common.gGrid.cache_stroke([_loc1]);
 			}
-			Common.sLineID += 1;
+			Common.sLineID = Std.int(trackData.lines[i].id + 1);
 		}
 		Common.gCode.toggle_Loader();
 	}
-	public function get_lim_to_set(l:Bool, r:Bool):Int {
+	public function get_lim_to_set(l:Bool = false, r:Bool = false):Int {
 		if (!l && !r) {
 			return(0);
 		} else if (l && !r) {

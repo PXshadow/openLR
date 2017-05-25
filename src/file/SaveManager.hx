@@ -231,14 +231,13 @@ class SaveManager extends Sprite
 		var lines = Common.gGrid.lines;
 		lines.reverse();
 		var a:Array<Object> = new Array();
-		var line_Place_Override:Int = 0;
 		for (i in lines) {
 			if (i == null) {
 				continue;
 			}
-			a[line_Place_Override] = new Object();
-			a[line_Place_Override] = {
-				"id": line_Place_Override,
+			a[i.ID] = new Object();
+			a[i.ID] = {
+				"id": i.ID,
 				"type": i.type,
 				"x1": i.x1,
 				"y1": i.y1,
@@ -248,7 +247,6 @@ class SaveManager extends Sprite
 				"leftExtended":  i.lExt,
 				"rightExtended":  i.rExt
 			};
-			++line_Place_Override;
 		}
 		return(a);
 	}
