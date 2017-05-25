@@ -1,6 +1,5 @@
 package ui.tool.timeline;
 
-import openfl.display.MovieClip;
 import openfl.display.Sprite;
 import openfl.events.MouseEvent;
 
@@ -12,7 +11,7 @@ import global.Common;
  * 
  * permits scrubbing entire track
  */
-class Slider extends MovieClip
+class Slider extends Sprite
 {
 	var frameRatio:Float = 1;
 	var playHead:Sprite;
