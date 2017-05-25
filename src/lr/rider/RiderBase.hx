@@ -1,7 +1,6 @@
 package lr.rider;
 
 import haxe.ds.Vector;
-import openfl.display.MovieClip;
 import openfl.display.Sprite;
 import openfl.geom.Point;
 import openfl.utils.Object;
@@ -26,18 +25,18 @@ class RiderBase extends Sprite
 	public var startFrame:Vector<CPoint>;
 	public var saveFrame:Vector<CPoint>;
 	public var g:Object;
-	public var bosh:MovieClip;
+	public var bosh:Sprite;
 	public var recorded_frames:Array<Array<Array<Dynamic>>>;
 	public var recorded_frames_scarf:Array<Array<Array<Dynamic>>>;
 	
-	private var body:MovieClip;
-	private var leftArm:MovieClip;
-	private var rightArm:MovieClip;
-	private var leftLeg:MovieClip;
-	private var rightLeg:MovieClip;
-	private var sled:MovieClip;
-	private var string:MovieClip;
-	private var scarf:MovieClip;
+	private var body:Sprite;
+	private var leftArm:Sprite;
+	private var rightArm:Sprite;
+	private var leftLeg:Sprite;
+	private var rightLeg:Sprite;
+	private var sled:Sprite;
+	private var string:Sprite;
+	private var scarf:Sprite;
 	private var skeleton:Sprite;
 	
 	private var camera:RiderCamera;
@@ -59,7 +58,7 @@ class RiderBase extends Sprite
 		this.camera = new RiderCamera();
 		this.Start = new StartPointVis();
 		
-		this.bosh = new MovieClip();
+		this.bosh = new Sprite();
 		this.addChild(this.Start);
 		
 		this.recorded_frames = new Array();
@@ -491,9 +490,9 @@ class RiderBase extends Sprite
 	}
 	function bodyClip(lib:AssetLibrary) 
 	{
-		var innerClip:MovieClip;
+		var innerClip:Sprite;
 		innerClip = lib.getMovieClip("");
-		body = new MovieClip();
+		body = new Sprite();
 		body.addChild(innerClip);
 		innerClip.y = -5.40; //X/Y values are obtained from the raw .fla and are not provided in the source
 		body.scaleX = body.scaleY = 0.5;
@@ -501,9 +500,9 @@ class RiderBase extends Sprite
 	}
 	function sledClip(lib:AssetLibrary) 
 	{
-		var innerClip:MovieClip;
+		var innerClip:Sprite;
 		innerClip = lib.getMovieClip("");
-		sled = new MovieClip();
+		sled = new Sprite();
 		sled.addChild(innerClip);
 		innerClip.y = -4.5;
 		innerClip.x = -1.3;
@@ -512,12 +511,12 @@ class RiderBase extends Sprite
 	}
 	function legClip(lib:AssetLibrary) 
 	{
-		var innerClipA:MovieClip;
-		var innerClipB:MovieClip;
+		var innerClipA:Sprite;
+		var innerClipB:Sprite;
 		innerClipA = lib.getMovieClip("");
 		innerClipB = lib.getMovieClip("");
-		leftLeg = new MovieClip();
-		rightLeg = new MovieClip();
+		leftLeg = new Sprite();
+		rightLeg = new Sprite();
 		leftLeg.addChild(innerClipA);
 		rightLeg.addChild(innerClipB);
 		innerClipA.x = -1.7;
@@ -530,12 +529,12 @@ class RiderBase extends Sprite
 	}
 	function armClip(lib:AssetLibrary) 
 	{
-		var innerClipA:MovieClip;
-		var innerClipB:MovieClip;
+		var innerClipA:Sprite;
+		var innerClipB:Sprite;
 		innerClipA = lib.getMovieClip("");
 		innerClipB = lib.getMovieClip("");
-		leftArm = new MovieClip();
-		rightArm = new MovieClip();
+		leftArm = new Sprite();
+		rightArm = new Sprite();
 		leftArm.addChild(innerClipA);
 		rightArm.addChild(innerClipB);
 		innerClipA.x = -1.5;
@@ -551,14 +550,14 @@ class RiderBase extends Sprite
 	{
 		++clips;
 		if (clips == 6) {
-			this.scarf = new MovieClip();
+			this.scarf = new Sprite();
 			bosh.addChild(this.scarf);
 			bosh.addChild(this.leftLeg);
 			bosh.addChild(this.leftArm);
 			bosh.addChild(this.sled);
 			bosh.addChild(this.rightLeg);
 			bosh.addChild(this.body);
-			this.string = new MovieClip();
+			this.string = new Sprite();
 			bosh.addChild(this.string);
 			bosh.addChild(this.rightArm);
 			this.skeleton = new Sprite();
