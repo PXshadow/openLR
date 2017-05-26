@@ -44,6 +44,9 @@ class LineBase extends Shape
 	public var lExt:Bool = false;
 	public var rExt:Bool = false;
 	public var lowest_collided_frame:Int = 0;
+	private var accx:Float;
+	private var accy:Float;
+	private var acc:Float = 0.1;
 	
 	public function new() 
 	{
@@ -68,6 +71,8 @@ class LineBase extends Shape
         hx = Math.abs(dx) * 0.500000;
         hy = Math.abs(dy) * 0.500000;
         LIM = Math.min(0.250000, LineBase.zone / dst);
+		this.accx = ny * this.acc * (this.inv ? (1) : (-1));
+        this.accy = nx * this.acc * (this.inv ? (-1) : (1));
 	}
 	public function set_lim(input)
 	{

@@ -12,9 +12,6 @@ import global.Common;
  */
 class LineAccel extends LineBase
 {
-	private var accx:Float;
-	private var accy:Float;
-	private var acc:Float = 0.1;
 	public function new(_x1:Float, _y1:Float, _x2:Float, _y2:Float, _inv:Bool, _lim = -1) 
 	{
 		super();
@@ -25,8 +22,6 @@ class LineAccel extends LineBase
 		y2 = _y2;
 		inv = _inv;
 		this.calculateConstants();
-		this.accx = ny * this.acc * (this.inv ? (1) : (-1));
-        this.accy = nx * this.acc * (this.inv ? (-1) : (1));
 		this.set_lim(_lim == -1 ? (0) : (_lim));
 	}
 	public function render(con:String)
