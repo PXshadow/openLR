@@ -126,7 +126,7 @@ class VisGrid
 	}
 	var last_x_pos:Float = -5000; //these numbers are on purpose so when the track resumes, it's absolutely impossible (in theory) to have the starting grid be invisible
 	var last_y_pos:Float = -5000;
-	public function checkOcclulsion(_point:CPoint) 
+	public function frustrumCulling(_point:CPoint) 
 	{
 		var _visPos = VisGrid.gridPosVis(_point.x, _point.y);
 		if (_visPos.x == this.last_x_pos && _visPos.y == this.last_y_pos) {

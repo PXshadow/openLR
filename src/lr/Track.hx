@@ -82,7 +82,9 @@ class Track extends Sprite
 				} else {
 					grid.lines[a].render("edit");
 				}
-				grid.lines[a].visible = false;
+				if (Common.cvar_frustrumCulling_enabled) {
+					grid.lines[a].visible = false;
+				}
 			}
 		}
 	}

@@ -27,6 +27,7 @@ class TrackSettings extends Sprite
 	var slow_rate:StepCounter;
 	var force_zoom:CheckBox;
 	var force_zoom_step:StepCounter;
+	var frustrumCulling_toggle:CheckBox;
 	
 	var sWidth:Float = 0;
 	var sHeight:Float = 0;
@@ -97,6 +98,11 @@ class TrackSettings extends Sprite
 		this.force_zoom_step.stepUp.addEventListener(MouseEvent.CLICK, inc_force_zoom);
 		this.force_zoom_step.stepDown.addEventListener(MouseEvent.CLICK, dec_force_zoom);
 		
+		this.frustrumCulling_toggle = new CheckBox("Line Culling", true);
+		this.addChild(this.frustrumCulling_toggle);
+		this.frustrumCulling_toggle.y = 162;
+		this.frustrumCulling_toggle.box.addEventListener(MouseEvent.CLICK, this.toggle_frustrumCulling);
+		
 		this.sWidth = this.width;
 		this.sHeight = this.height;
 	
@@ -108,6 +114,11 @@ class TrackSettings extends Sprite
 		this.graphics.lineTo(this.sWidth + 5, this.sHeight + 5);
 		this.graphics.lineTo(-5, this.sHeight + 5);
 		this.graphics.lineTo( -5, -5);
+	}
+	
+	private function toggle_frustrumCulling(e:MouseEvent):Void 
+	{
+		Common.cvar_frustrumCulling_enabled = this.frustrumCulling_toggle.toggle();
 	}
 	
 	private function incBoshAlpha(e:MouseEvent):Void 

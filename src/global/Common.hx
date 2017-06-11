@@ -107,8 +107,8 @@ class Common
 	public static var cvar_rider_alpha:Float = 1;
 	public static var cvar_auto_save:Bool = true;
 	public static var cvar_auto_save_freq:Int = 10;
-	public static var cvar_occlusion_enabled:Bool = true;
-	public static var cvar_occlusion_value:Int = 1;
+	public static var cvar_frustrumCulling_enabled:Bool = true;
+	public static var cvar_frustrumCulling_value:Int = 1;
 	
 	public static var svar_frame_rate:Float;
 	public static var svar_framerate_avg_rate:Int = 60;
