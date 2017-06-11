@@ -18,7 +18,7 @@ import global.KeyBindings;
  */
 class Grid
 {
-	public var lines:Array<Dynamic>;
+	public var lines:Array<LineBase>;
 	public static var grid:Map<Int, Map<Int, Object>>;
 	public static var undo_single:Array<LineBase>;
 	public static var redo_single:Array<LineBase>;
