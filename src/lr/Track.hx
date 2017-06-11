@@ -54,12 +54,12 @@ class Track extends Sprite
 	}
 	public function removeLinesFromStage(_lines:Array<LineBase>) {
 		for (a in _lines) {
-			this.removeChild(grid.lines[a.ID]);
+			grid.lines[a.ID].visible = false;
 		}
 	}
 	public function addLinesToStage(_lines:Array<LineBase>) {
 		for (a in _lines) {
-			this.addChild(grid.lines[a.ID]);
+			grid.lines[a.ID].visible = true;
 		}
 	}
 	public function render_preview_line(_a:Point, _b:Point) 
@@ -82,7 +82,7 @@ class Track extends Sprite
 				} else {
 					grid.lines[a].render("edit");
 				}
-				this.removeChild(grid.lines[a]);
+				grid.lines[a].visible = false;
 			}
 		}
 	}
@@ -94,7 +94,7 @@ class Track extends Sprite
 				} else {
 					grid.lines[a].render("play");
 				}
-				this.addChild(grid.lines[a]);
+				grid.lines[a].visible = true;
 			}
 		}
 	}
