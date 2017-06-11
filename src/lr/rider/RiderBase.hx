@@ -240,6 +240,12 @@ class RiderBase extends Sprite
 		Stick.crash = false;
 	}
 	public function step_rider(_pan:Bool = true) { //This is called every time the timer goes off in SimManaher.hx
+<<<<<<< Updated upstream
+=======
+		if (Common.cvar_occlusion_enabled) {
+			Common.gVisGrid.checkOcclulsion(this.anchors[4]);
+		}
+>>>>>>> Stashed changes
 		for (i in 0...anchors.length) {
 			anchors[i].verlet(this.g); //Apply speed and gravity to the rider
 		}

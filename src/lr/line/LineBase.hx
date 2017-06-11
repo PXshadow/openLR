@@ -39,6 +39,7 @@ class LineBase extends Shape
 	public var type:Int = -1;
 	public var ID:Int;
 	public var gridList:Array<Array<Int>>;
+	public var gridVisList:Array<Array<Int>>;
 	public var prevLine:Int;
 	public var nextLine:Int;
 	public var lExt:Bool = false;
@@ -52,6 +53,7 @@ class LineBase extends Shape
 	{
 		super();
 		this.gridList = new Array();
+		this.gridVisList = new Array();
 	}
 	public function inject_grid_loc(a:Array<Int>)
 	{
