@@ -7,6 +7,7 @@ import global.Common;
 /**
  * ...
  * @author Kaelan Evans
+ * 
  */
 class Tick extends Sprite
 {
