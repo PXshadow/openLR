@@ -12,7 +12,7 @@ import global.Common;
  */
 class VisGrid 
 {
-	public static var gridSize:Int = 150;
+	public static var gridSize:Int = 500;
 	public static var grid:Map<Int, Map<Int, Object>>;
 	public static var currentVisualIndex:Array<LineBase>;
 	public static var tempVisualIndex:Array<LineBase>;
@@ -112,6 +112,9 @@ class VisGrid
 			_loc4.storage = new Array<LineBase>();
 			VisGrid.grid[_x][_y] = _loc4;
 		}
+		var a = new Array<Int>();
+		a = [_x, _y];
+		line.inject_grid_vis_loc(a);
 		VisGrid.grid[_x][_y].storage.push(line);
 	}
 	public static function gridPosVis(x:Float, y:Float):Object
@@ -121,7 +124,7 @@ class VisGrid
 		posObject.y = Math.floor(y / VisGrid.gridSize);
 		return(posObject);
 	}
-	var last_x_pos:Float = -5000;
+	var last_x_pos:Float = -5000; //these numbers are on purpose so when the track resumes, it's absolutely impossible (in theory) to have the starting grid be invisible
 	var last_y_pos:Float = -5000;
 	public function checkOcclulsion(_point:CPoint) 
 	{
@@ -132,14 +135,14 @@ class VisGrid
 			this.last_x_pos = _visPos.x;
 			this.last_y_pos = _visPos.y;
 			VisGrid.tempVisualIndex = new Array();
-			for (_loc4 in -1...2)
+			for (_loc4 in -2...2)
 			{
 				var _loc1 = (_visPos.x + _loc4);
 				if (VisGrid.grid[_loc1] == null)
 				{
 					continue;
 				}
-				for (_loc3 in -1...2)
+				for (_loc3 in -2...2)
 				{
 					var _loc2 = (_visPos.y + _loc3);
 					if (VisGrid.grid[_loc1][_loc2] == null)

@@ -59,6 +59,10 @@ class LineBase extends Shape
 	{
 		this.gridList.push(a);
 	}
+	public function inject_grid_vis_loc(a:Array<Int>)
+	{
+		this.gridVisList.push(a);
+	}
 	function calculateConstants() 
 	{
 		dx = x2 - x1;

@@ -257,7 +257,6 @@ class Grid
 			grid[_x][_y].storage2.push(line);
 		}
 		grid[_x][_y].storage.push(line);
-		Common.gSimManager.rider_update();
 	}
 	public function remove_line(line:LineBase, _x:Int, _y:Int)
 	{
@@ -292,6 +291,9 @@ class Grid
 		{
 			Grid.grid[line.gridList[i][0]][line.gridList[i][1]].storage.remove(line);
 			Grid.grid[line.gridList[i][0]][line.gridList[i][1]].storage2.remove(line);
+		}
+		for (a in 0...line.gridVisList.length) {
+			VisGrid.grid[line.gridVisList[a][0]][line.gridVisList[a][1]].storage.remove(line);
 		}
 	}
 	public function snap(x:Float, y:Float, vert:Int, invert:Bool):Array<Dynamic> //if mouse is close enough to line end when mouse down, line will snap to line
