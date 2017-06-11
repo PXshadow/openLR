@@ -22,7 +22,7 @@ class LineFloor extends LineBase
 		this.calculateConstants();
 		this.set_lim(_lim == -1 ? (0) : (_lim));
 	}
-	public function render(con:String)
+	override public function render(con:String)
 	{
 		this.graphics.clear();
 		if (con == "edit") {

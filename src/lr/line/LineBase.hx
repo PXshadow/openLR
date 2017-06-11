@@ -63,6 +63,10 @@ class LineBase extends Shape
 	{
 		this.gridVisList.push(a);
 	}
+	public function render(con:String)
+	{
+		
+	}
 	function calculateConstants() 
 	{
 		dx = x2 - x1;
