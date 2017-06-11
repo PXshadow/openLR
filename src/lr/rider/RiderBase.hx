@@ -240,7 +240,6 @@ class RiderBase extends Sprite
 		Stick.crash = false;
 	}
 	public function step_rider(_pan:Bool = true) { //This is called every time the timer goes off in SimManaher.hx
-		Common.gVisGrid.checkOcclulsion(this.anchors[4]);
 		for (i in 0...anchors.length) {
 			anchors[i].verlet(this.g); //Apply speed and gravity to the rider
 		}
@@ -285,13 +284,6 @@ class RiderBase extends Sprite
 	
 	function record_frame() //Should be called every time the sim advances forward in any way. Current exception is slider tool as that behaves on skipping ahead and not advancing forward
 	{
-		/*if (this.recorded_frames[Common.sim_frames] != null) {
-			var different:Bool = checkDifferece();
-			if (different) {
-				//Common.sim_max_frames = Common.sim_frames;
-				//Common.gTimeline.update();
-			}
-		}*/
 		this.recorded_frames[Common.sim_frames] = new Array();
 		for (i in 0...anchors.length) {
 			this.recorded_frames[Common.sim_frames][i] = new Array();
@@ -313,48 +305,6 @@ class RiderBase extends Sprite
 			this.recorded_frames_scarf[Common.sim_frames][j][4] = anchors_scarf[j].dx;
 			this.recorded_frames_scarf[Common.sim_frames][j][5] = anchors_scarf[j].dy;
 		}
-	}
-	
-	function checkDifferece():Bool 
-	{
-		var tempPostion:Array<Array<Array<Dynamic>>>;
-		tempPostion = new Array();
-		tempPostion[Common.sim_frames] = new Array();
-		for (i in 0...anchors.length) {
-			tempPostion[Common.sim_frames][i] = new Array();
-			tempPostion[Common.sim_frames][i][0] = anchors[i].x;
-			tempPostion[Common.sim_frames][i][1] = anchors[i].y;
-			tempPostion[Common.sim_frames][i][2] = anchors[i].vx;
-			tempPostion[Common.sim_frames][i][3] = anchors[i].vy;
-			tempPostion[Common.sim_frames][i][4] = anchors[i].dx;
-			tempPostion[Common.sim_frames][i][5] = anchors[i].dy;
-			tempPostion[Common.sim_frames][i][6] = Stick.crash;
-		}
-		for (a in 0...anchors.length) {
-			//trace(a, Common.sim_frames, tempPostion[Common.sim_frames][a][0], this.recorded_frames[Common.sim_frames][a][0]);
-			if (tempPostion[Common.sim_frames][a][0] != this.recorded_frames[Common.sim_frames][a][0]) {
-				return(true);
-			} else
-			if (tempPostion[Common.sim_frames][a][1] != this.recorded_frames[Common.sim_frames][a][1]) {
-				return(true);
-			} else
-			if (tempPostion[Common.sim_frames][a][2] != this.recorded_frames[Common.sim_frames][a][2]) {
-				return(true);
-			} else 
-			if (tempPostion[Common.sim_frames][a][3] != this.recorded_frames[Common.sim_frames][a][3]) {
-				return(true);
-			} else 
-			if (tempPostion[Common.sim_frames][a][4] != this.recorded_frames[Common.sim_frames][a][4]) {
-				return(true);
-			} else 
-			if (tempPostion[Common.sim_frames][a][5] != this.recorded_frames[Common.sim_frames][a][5]) {
-				return(true);
-			} else 
-			if (tempPostion[Common.sim_frames][a][6] != this.recorded_frames[Common.sim_frames][a][6]) {
-				return(true);
-			}
-		}
-		return(false);
 	}
 	public function inject_frame(_frame) { //for when you need to skip to an arbitrary frame
 		try {

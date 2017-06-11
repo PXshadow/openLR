@@ -12,13 +12,12 @@ import openfl.text.TextFormatAlign;
 import lr.Track;
 import file.AutosaveManager;
 import file.LoadManager;
-import file.SaveManager;
 import ui.tool.ToolBase;
 import ui.tool.timeline.TimelineControl;
-import ui.tool.Toolbar;
+import file.SaveManager;
 import lr.TextInfo;
 import lr.line.Grid;
-import lr.line.VisGrid;
+import ui.tool.Toolbar;
 import lr.rider.RiderCamera;
 
 /**
@@ -46,7 +45,6 @@ class Common
 	public static var gToolBase:ToolBase;
 	public static var gToolCurrent:ToolBase;
 	public static var gGrid:Grid;
-	public static var gVisGrid:VisGrid;
 	public static var gSaveManager:SaveManager;
 	public static var gLoadManager:LoadManager;
 	public static var gSimManager:SimManager;

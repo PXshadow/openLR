@@ -2,7 +2,6 @@ package lr;
 
 import lr.line.Grid;
 import lr.line.LineBase;
-import lr.line.VisGrid;
 import openfl.display.Sprite;
 import openfl.geom.Point;
 
@@ -19,7 +18,6 @@ import global.Common;
 class Track extends Sprite
 {
 	private var grid:Grid;
-	private var visGrid:VisGrid;
 	private var simManager:SimManager;
 	public function new() 
 	{
@@ -27,17 +25,12 @@ class Track extends Sprite
 		Common.gTrack = this;
 		Common.track_scale = 1;
 		this.grid = new Grid();
-		this.visGrid = new VisGrid();
 		this.simManager = new SimManager();
 	}
 	public function add_vis_line(line:LineBase) //This is the function that must be called when adding a line. Do not take shortcuts!
 	{
 		Common.gGrid.massLineIndex(line);
-		Common.gVisGrid.registerInGrid(line);
 		this.addChild(grid.lines[line.ID]);
-		if (Common.svar_sim_running) {
-			return;
-		}
 		if (!Common.svar_sim_running) {
 			if (!Common.cvar_preview_mode) {
 				grid.lines[line.ID].render("edit");
@@ -51,16 +44,7 @@ class Track extends Sprite
 				grid.lines[line.ID].render("edit");
 			}
 		}
-	}
-	public function removeLinesFromStage(_lines:Array<LineBase>) {
-		for (a in _lines) {
-			this.removeChild(grid.lines[a.ID]);
-		}
-	}
-	public function addLinesToStage(_lines:Array<LineBase>) {
-		for (a in _lines) {
-			this.addChild(grid.lines[a.ID]);
-		}
+		//grid.lines[grid.lines.length - 1].render("play");
 	}
 	public function render_preview_line(_a:Point, _b:Point) 
 	{
@@ -82,7 +66,6 @@ class Track extends Sprite
 				} else {
 					grid.lines[a].render("edit");
 				}
-				this.removeChild(grid.lines[a]);
 			}
 		}
 	}
@@ -94,7 +77,6 @@ class Track extends Sprite
 				} else {
 					grid.lines[a].render("play");
 				}
-				this.addChild(grid.lines[a]);
 			}
 		}
 	}
