@@ -15,6 +15,7 @@ import global.KeyBindings;
  * 
  * This class also handles undo and redo of lines. Few lines of code are called from outside the class, such as ToolEraser calling an add to history when mouse is released.
  *
+ * 
  */
 class Grid
 {
