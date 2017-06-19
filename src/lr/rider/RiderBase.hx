@@ -242,7 +242,7 @@ class RiderBase extends Sprite
 	}
 	public function step_rider(_pan:Bool = true) { //This is called every time the timer goes off in SimManaher.hx
 		if (Common.cvar_frustrumCulling_enabled) {
-			Common.gVisGrid.frustrumCulling(this.anchors[4]);
+			Common.gVisGrid.frustrumCulling(this.anchors[4].x, this.anchors[4].y);
 		}
 		for (i in 0...anchors.length) {
 			anchors[i].verlet(this.g); //Apply speed and gravity to the rider

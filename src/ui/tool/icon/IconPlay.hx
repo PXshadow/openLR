@@ -35,6 +35,8 @@ class IconPlay extends IconBase
 		
 		Common.gRiderManager.x = Common.gTrack.x;
 		Common.gRiderManager.y = Common.gTrack.y;
+		
+		Common.gVisGrid.frustrumCulling(Common.gRiderManager.startPoint0.x, Common.gRiderManager.startPoint0.y, true);
 	}
 	
 }
