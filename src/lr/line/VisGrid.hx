@@ -12,7 +12,7 @@ import global.Common;
  */
 class VisGrid 
 {
-	public static var gridSize:Int = 500;
+	public static var gridSize:Int = 1000;
 	public static var grid:Map<Int, Map<Int, Object>>;
 	public static var currentVisualIndex:Array<LineBase>;
 	public static var tempVisualIndex:Array<LineBase>;
@@ -126,23 +126,23 @@ class VisGrid
 	}
 	var last_x_pos:Float = -5000; //these numbers are on purpose so when the track resumes, it's absolutely impossible (in theory) to have the starting grid be invisible
 	var last_y_pos:Float = -5000;
-	public function frustrumCulling(_point:CPoint) 
+	public function frustrumCulling(_x:Float, _y:Float, _override:Bool = false) 
 	{
-		var _visPos = VisGrid.gridPosVis(_point.x, _point.y);
-		if (_visPos.x == this.last_x_pos && _visPos.y == this.last_y_pos) {
+		var _visPos = VisGrid.gridPosVis(_x, _y);
+		if (_visPos.x == this.last_x_pos && _visPos.y == this.last_y_pos && _override == false) {
 			return;
 		} else {
 			this.last_x_pos = _visPos.x;
 			this.last_y_pos = _visPos.y;
 			VisGrid.tempVisualIndex = new Array();
-			for (_loc4 in -2...2)
+			for (_loc4 in -1...1)
 			{
 				var _loc1 = (_visPos.x + _loc4);
 				if (VisGrid.grid[_loc1] == null)
 				{
 					continue;
 				}
-				for (_loc3 in -2...2)
+				for (_loc3 in -1...1)
 				{
 					var _loc2 = (_visPos.y + _loc3);
 					if (VisGrid.grid[_loc1][_loc2] == null)
