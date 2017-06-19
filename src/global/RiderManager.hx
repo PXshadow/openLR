@@ -1,5 +1,6 @@
 package global;
 import openfl.display.Sprite;
+import openfl.geom.Point;
 
 import lr.rider.RiderBase;
 
@@ -10,6 +11,7 @@ import lr.rider.RiderBase;
 class RiderManager extends Sprite
 {
 	private var riderArray:Array<RiderBase>;
+	public var startPoint0:Point = new Point(0, 0);
 	public function new() 
 	{
 		super();
@@ -68,6 +70,7 @@ class RiderManager extends Sprite
 	public function set_start(_x:Float, _y:Float, _id:Int = 0) {
 		//for now we are going to assume setting start always applies to rider 0 since for now there's only one rider
 		this.riderArray[_id].moveToStart(_x, _y);
+		this.startPoint0 = new Point(_x, _y);
 	}
 	public function inject_frame(_frame:Int) {
 		for (rider in this.riderArray) {
