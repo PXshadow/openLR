@@ -135,14 +135,14 @@ class VisGrid
 			this.last_x_pos = _visPos.x;
 			this.last_y_pos = _visPos.y;
 			VisGrid.tempVisualIndex = new Array();
-			for (_loc4 in -1...1)
+			for (_loc4 in -1...2)
 			{
 				var _loc1 = (_visPos.x + _loc4);
 				if (VisGrid.grid[_loc1] == null)
 				{
 					continue;
 				}
-				for (_loc3 in -1...1)
+				for (_loc3 in -1...2)
 				{
 					var _loc2 = (_visPos.y + _loc3);
 					if (VisGrid.grid[_loc1][_loc2] == null)
