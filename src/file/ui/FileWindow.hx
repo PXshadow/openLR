@@ -1,6 +1,7 @@
 package file.ui;
 import openfl.display.MovieClip;
 import openfl.events.MouseEvent;
+import openfl.display.SimpleButton;
 
 import global.Common;
 
@@ -64,23 +65,22 @@ class FileWindow extends MovieClip
 	{
 		this.displayList = new Array();
 		for (i in 0...this.currentList.length) {
-			this.displayList[i] = new FileItem(this.currentList[i]);
+			this.displayList[i] = new FileItem(i, this.currentList[i]);
 			this.addChild(this.displayList[i]);
 			this.displayList[i].x = 10;
 			this.displayList[i].y = (i * 30) + 10;
-			this.displayList[i].ID = i;
-			this.displayList[i].addEventListener(MouseEvent.CLICK, change_selected_index);
+			this.displayList[i].hitBox.addEventListener(MouseEvent.MOUSE_DOWN, change_selected_index);
 		}
 	}
 	
 	private function change_selected_index(e:MouseEvent):Void 
 	{
-		var item = cast(e.target, FileItem);
+		var item = cast(e.target, FileButton);
 		if (FileWindow.selectedIndex != -1) {
 			this.displayList[FileWindow.selectedIndex].deselect();
 		}
 		FileWindow.selectedIndex = item.ID;
-		item.selected();
+		item.file_parent.selected();
 	}
 	
 }
