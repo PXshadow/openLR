@@ -22,6 +22,7 @@
 	<assets path="assets/icons" rename="icon" />
 	<assets path="assets/fonts" rename="fonts" />
 	<assets path="assets/flash" rename="swf" />
+	<assets path="assets/img" rename="img" embed="true" />
 	
 	
 	<!-- optimize output
