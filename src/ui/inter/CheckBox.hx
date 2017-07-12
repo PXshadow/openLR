@@ -1,8 +1,10 @@
 package ui.inter;
 
-import openfl.display.MovieClip;
+import openfl.display.Bitmap;
+import openfl.display.Sprite;
 import openfl.Lib;
 import openfl.Assets;
+import openfl.display.SimpleButton;
 import openfl.display.Sprite;
 import openfl.text.TextField;
 import openfl.text.TextFormat;
@@ -12,16 +14,17 @@ import openfl.text.TextFormatAlign;
  * ...
  * @author Kaelan Evans
  */
-class CheckBox extends MovieClip
+class CheckBox extends Sprite
 {
 	var status:Bool = false;
-	public var box:MovieClip;
+	public var box:Sprite;
+	public var hitBox:SimpleButton;
 	var font:TextFormat = new TextFormat(Assets.getFont("fonts/Verdana.ttf").fontName, 12, 0, null, null, null, null, null, TextFormatAlign.LEFT);
 	var label:TextField;
 	public function new(_label:String = "Check Box", _status:Bool = false) {
 		super();
 		status = _status;
-		box = new MovieClip();
+		box = new Sprite();
 		this.addChild(box);
 		label = new TextField();
 		label.defaultTextFormat = font;
@@ -32,6 +35,9 @@ class CheckBox extends MovieClip
 		this.label.text = _label;
 		this.label.height = 18;
 		this.label.mouseEnabled = false;
+		this.hitBox = new SimpleButton();
+		this.hitBox.hitTestState = new Bitmap(Assets.getBitmapData("img/checkbox_hitzone.png"));
+		this.addChild(this.hitBox);
 		this.render();
 	}
 	public function toggle():Bool
