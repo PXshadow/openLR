@@ -52,6 +52,9 @@ import file.HXLZString;
  * /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
  * 
  *  --Performance drop when too many lines are in memory and track has to pan. This seems to only occur during the simulation, but isn't a problem with the sim itself
+ * 		-Two fold solution
+ * 			-Better frustum culling. Current method tries to toggle visibility per line, need to toggle visibility per node.
+ * 			-Better camera system. Current method is like pushing a piece of paper around.
  *  --Saving track causes physics to break. Once saved, problem is irreversable, but only happens once. Unknown what the cause is. Need to double check on loading and saving.
  * 
  * /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -60,6 +63,7 @@ import file.HXLZString;
  * 
  * --Need to clean up some of the "rabbit hole" functions. Starting to get lost in my own code.
  * --Need to make some UI classes. Check boxes, radio buttons, lists.
+ * 		-OpenFL broke mouse collisions regarding sprites that use vector graphics. Need to incorperate button class.
  * --Need to work on defaults for settings. Alpha 0.0.4 will probably be that
  * 
  * /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
