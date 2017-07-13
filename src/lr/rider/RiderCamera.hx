@@ -15,6 +15,7 @@ class RiderCamera
 	private var right_bound:Float = Common.stage_width * 0.61;
 	private var top_bound:Float = Common.stage_height * 0.38;
 	private var bottom_bound:Float = Common.stage_height * 0.61;
+	
 	public function new() 
 	{
 		Common.gCamera = this;
@@ -37,6 +38,7 @@ class RiderCamera
 		Common.gTrack.y += _locYPan;
 		Common.gRiderManager.x += _locXPan;
 		Common.gRiderManager.y += _locYPan;
+		
 	}
 	public function update_pan_bounds() {
 		this.left_bound = Common.stage_width * 0.38;

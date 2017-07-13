@@ -52,16 +52,6 @@ class Track extends Sprite
 			}
 		}
 	}
-	public function removeLinesFromStage(_lines:Array<LineBase>) {
-		for (a in _lines) {
-			grid.lines[a.ID].visible = false;
-		}
-	}
-	public function addLinesToStage(_lines:Array<LineBase>) {
-		for (a in _lines) {
-			grid.lines[a.ID].visible = true;
-		}
-	}
 	public function render_preview_line(_a:Point, _b:Point) 
 	{
 		this.graphics.clear();
@@ -81,9 +71,6 @@ class Track extends Sprite
 					grid.lines[a].render("play");
 				} else {
 					grid.lines[a].render("edit");
-				}
-				if (Common.cvar_frustrumCulling_enabled) {
-					grid.lines[a].visible = false;
 				}
 			}
 		}

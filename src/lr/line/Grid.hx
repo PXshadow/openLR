@@ -294,7 +294,7 @@ class Grid
 			Grid.grid[line.gridList[i][0]][line.gridList[i][1]].storage2.remove(line);
 		}
 		for (a in 0...line.gridVisList.length) {
-			VisGrid.grid[line.gridVisList[a][0]][line.gridVisList[a][1]].storage.remove(line);
+			VisGrid.grid[line.gridVisList[a][0]][line.gridVisList[a][1]].eject(line);
 		}
 	}
 	public function snap(x:Float, y:Float, vert:Int, invert:Bool):Array<Dynamic> //if mouse is close enough to line end when mouse down, line will snap to line
