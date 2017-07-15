@@ -8,6 +8,7 @@ import haxe.Json;
 
 import global.Common;
 import global.KeyBindings;
+import global.Language;
 
 /**
  * ...
@@ -55,15 +56,18 @@ class FileStart
 		} else {
 			this.get_and_write_default_keys();
 		}
+		if (FileSystem.exists("./settings/language.json")) {
+			this.get_and_set_language();
+		} else {
+			this.get_and_write_language();
+		}
 	}
-	
-	public function write_new_settings() 
-	{
-		
-	}
+	//////////
+	//Keys
+	//////////
 	public function write_new_keys() 
 	{
-		
+		KeyBindings.write_settings();
 	}
 	private function get_and_write_default_keys() { //This is to be exclusively used for DEFAULTS
 		var file = File.write("./settings/KeyBindings.json", true);
@@ -78,6 +82,13 @@ class FileStart
 		} catch (e:String) {
 			
 		}
+	}
+	//////////
+	//settings
+	//////////
+	public function write_new_settings() 
+	{
+		
 	}
 	function get_and_write_settings() { //This is to be exclusively used for DEFAULTS
 		var file = File.write("./settings/Settings.json", true);
@@ -99,5 +110,28 @@ class FileStart
 		Common.cvar_track_author = _locJson.settings.author;
 		Common.cvar_color_play = _locJson.settings.color_play;
 		Common.cvar_preview_mode  = _locJson.settings.preview_mode;
+		Common.cvar_dictionary = _locJson.settings.language;
+	}
+	//////////
+	//Language
+	//////////
+	public function get_and_write_language() 
+	{
+		var file = File.write("./settings/language.json", true);
+		switch(Common.cvar_dictionary) {
+			case "English" :
+				file.writeString(Json.stringify(Json.parse(Assets.getText("defaults/languages/english_us.json")), null, "\t"));
+			default :
+				file.writeString(Json.stringify(Json.parse(Assets.getText("defaults/languages/english_us.json")), null, "\t"));
+		}
+		file.close();
+		this.get_and_set_language();
+	}
+	public function get_and_set_language() {
+		var _locFile = File.getContent("./settings/language.json");
+		var _locJson = Json.parse(_locFile);
+		
+		Language.Welcome = _locJson.dictionary.welcome;
+		Language.Continue = _locJson.dictionary.cont;
 	}
 }
