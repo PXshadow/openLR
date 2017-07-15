@@ -86,6 +86,7 @@ class Common
 	public static var sim_pause_frame:Int = -1;
 	public static var sim_flagged_frame:Int = -1;
 	
+	public static var cvar_dictionary:String = "English";
 	public static var cvar_angle_snap_float:Float = 15;
 	public static var cvar_angle_snap_offset:Int = 0;
 	public static var cvar_angle_snap:Bool = false;
