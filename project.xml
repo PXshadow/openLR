@@ -19,10 +19,12 @@
 	
 	<!-- assets -->
 	<icon path="assets/icon.ico" />
-	<assets path="assets/icons" rename="icon" />
-	<assets path="assets/fonts" rename="fonts" />
-	<assets path="assets/flash" rename="swf" />
+	<assets path="assets/icons" rename="icon" embed="true" />
+	<assets path="assets/fonts" rename="fonts" embed="true" />
+	<assets path="assets/flash" rename="swf" embed="true" />
 	<assets path="assets/img" rename="img" embed="true" />
+	<assets path="assets/lang" rename="lang" />
+	<assets path="assets/defaults" rename="defaults" embed="true" />
 	
 	
 	<!-- optimize output
