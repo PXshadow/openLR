@@ -18,10 +18,10 @@ import openfl.Assets;
 //third party
 
 //openLR
-import global.SplashText;
 import file.FileStart;
 import file.LoadManager;
 import global.Common;
+import global.Language;
 import ui.inter.SingleButton;
 import file.SaveManager;
 import global.FrameRate;
@@ -105,8 +105,7 @@ class Main extends Sprite
 		this.init_env();
 		this.init_track();
 		
-		var ranS:Int = Std.random(SplashText.splash.length) - 1;
-		this.welcome_alert = new AlertBox("Welcome to OpenLR " + Common.version + "! This is an early build, however I hope you find this version useful as it is intended to be. You can report bugs to:" + "\n \n" + "https://github.com/kevansevans/openLR/issues" + "\n \n" + SplashText.splash[ranS], this.start, "Continue");
+		this.welcome_alert = new AlertBox(Language.Welcome + "\n" + "\n" + "Version: " + Common.version, this.start, Language.Continue);
 		this.addChild(this.welcome_alert);
 		this.welcome_alert.x = (this.stage.stageWidth * 0.5) - (this.welcome_alert.width * 0.5);
 		this.welcome_alert.y = (this.stage.stageHeight * 0.5) - (this.welcome_alert.height * 0.5);
