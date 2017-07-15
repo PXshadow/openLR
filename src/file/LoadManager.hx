@@ -67,11 +67,6 @@ class LoadManager extends Sprite
 			this.graphics.lineTo(10, 10);
 		}
 	}
-	function loadFromArray() 
-	{
-		trace("Save not supported!");
-	}
-	
 	function loadFromObject() 
 	{
 		if (FileWindow.selectedIndex != -1) {
