@@ -18,7 +18,7 @@
 	<haxelib name="actuate" />
 	
 	<!-- assets -->
-	<icon path="assets/icon.ico" />
+	<icon path="assets/logo.png" />
 	<assets path="assets/icons" rename="icon" embed="true" />
 	<assets path="assets/fonts" rename="fonts" embed="true" />
 	<assets path="assets/flash" rename="swf" embed="true" />
