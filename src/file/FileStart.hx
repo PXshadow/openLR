@@ -1,6 +1,7 @@
 package file;
 
 import openfl.utils.Object;
+import openfl.Assets;
 import sys.FileSystem;
 import sys.io.File;
 import haxe.Json;
@@ -56,30 +57,17 @@ class FileStart
 		}
 	}
 	function set_key_bindings() {
-		var _locFile = File.getContent("./settings/KeyBindings.json");
-		var _locJson = Json.parse(_locFile);
-		KeyBindings.set_bindings(_locJson);
+		try {
+			var _locFile = File.getContent("./settings/KeyBindings.json");
+			var _locJson = Json.parse(_locFile);
+			KeyBindings.set_bindings(_locJson);
+		} catch (e:String) {
+			
+		}
 	}
 	public function get_and_write_defaults() {
-		var _locDef:Object = new Object();
-		_locDef = {
-			"settings" : {
-				"autosave" : Common.cvar_auto_save,
-				"autosave_freq" : Common.cvar_auto_save_freq,
-				"angle_snap" : Common.cvar_angle_snap,
-				"joint_snap" : Common.cvar_line_snap,
-				"hit_test" : Common.cvar_hit_test,
-				"contact_points" : Common.cvar_contact_points,
-				"force_zoom" : Common.cvar_force_zoom,
-				"zoom_ammount" : Common.cvar_force_zoom_ammount,
-				"author" : Common.cvar_track_author,
-				"color_play" : Common.cvar_color_play,
-				"preview_mode" : Common.cvar_preview_mode
-			}
-		}
-		var file = File.write("./settings/Settings.json", true);
-		file.writeString(Json.stringify(_locDef, null, "\t"));
-		file.close();
+		var file = File.write("./settings/KeyBindings.json", true);
+		file.writeString(Json.stringify(Json.parse(Assets.getText("defaults/settings/KeyBindings.json")), null, "\t"));
 	}
 	function get_and_set_defaults() 
 	{
