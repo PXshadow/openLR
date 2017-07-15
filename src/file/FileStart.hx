@@ -133,5 +133,7 @@ class FileStart
 		
 		Language.Welcome = _locJson.dictionary.welcome;
 		Language.Continue = _locJson.dictionary.cont;
+		Language.Yes = _locJson.dictionary.yes;
+		Language.No = _locJson.dictionary.no;
 	}
 }
