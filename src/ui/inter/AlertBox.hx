@@ -8,6 +8,7 @@ import openfl.text.TextFormatAlign;
 import openfl.Assets;
 
 import ui.inter.SingleButton;
+import global.Language;
 
 /**
  * ...
@@ -19,7 +20,7 @@ class AlertBox extends MovieClip
 	private var alert_message:TextField;
 	private var confirm_button:SingleButton;
 	private var font:TextFormat = new TextFormat(Assets.getFont("fonts/Verdana.ttf").fontName, 14, 0, null, null, null, null, null, TextFormatAlign.CENTER);
-	public function new(_msg:String, _action:Dynamic = null, _confMSG:String = "OK") 
+	public function new(_msg:String, _action:Dynamic = null, _confMSG:String = null) 
 	{
 		super();
 		
@@ -40,6 +41,10 @@ class AlertBox extends MovieClip
 		this.alert_message.defaultTextFormat = font;
 		this.alert_message.text = _msg;
 		
+		var _msg = _confMSG;
+		if (_msg == null) {
+			_msg = Language.Okay;
+		}
 		this.confirm_button = new SingleButton(_confMSG, _action, 20);
 		this.addChild(this.confirm_button);
 		this.confirm_button.x = (this.width * 0.5) - (this.confirm_button.width * 0.5);
