@@ -17,7 +17,7 @@ import openfl.text.TextFormatAlign;
 class CheckBox extends Sprite
 {
 	var status:Bool = false;
-	public var box:Sprite;
+	private var box:Sprite;
 	public var hitBox:SimpleButton;
 	var font:TextFormat = new TextFormat(Assets.getFont("fonts/Verdana.ttf").fontName, 12, 0, null, null, null, null, null, TextFormatAlign.LEFT);
 	var label:TextField;

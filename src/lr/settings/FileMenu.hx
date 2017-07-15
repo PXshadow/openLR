@@ -36,7 +36,7 @@ class FileMenu extends MovieClip
 		this.addChild(this.auto_save);
 		this.auto_save.x = 5;
 		this.auto_save.y = 5;
-		this.auto_save.box.addEventListener(MouseEvent.CLICK, toggle_autosave);
+		this.auto_save.hitBox.addEventListener(MouseEvent.CLICK, toggle_autosave);
 		this.auto_save_freq = new StepCounter();
 		this.addChild(this.auto_save_freq);
 		this.auto_save_freq.x = 5;

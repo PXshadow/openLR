@@ -106,7 +106,7 @@ class SaveManager extends Sprite
 		this.addChild(this.add_timestamp);
 		this.add_timestamp.x = 90;
 		this.add_timestamp.y = 270;
-		this.add_timestamp.box.addEventListener(MouseEvent.CLICK, this.toggle_time_stamp);
+		this.add_timestamp.hitBox.addEventListener(MouseEvent.CLICK, this.toggle_time_stamp);
 		
 		this.cancel_button = new SingleButton("Cancel", Common.gCode.toggle_save_menu, 10);
 		this.addChild(this.cancel_button);
