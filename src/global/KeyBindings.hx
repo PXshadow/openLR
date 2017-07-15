@@ -109,8 +109,10 @@ class KeyBindings
 		KeyBindings.step_forward = object.binds.step_forward;
 		KeyBindings.step_backward = object.binds.step_backward;
 		KeyBindings.undo_line = object.binds.undo_line;
+		
+		KeyBindings.write_settings(); //this is needed, should prevent users having to rebind everything whenever a new key is introduced
 	}
-	static public function write_settings() { 
+	static public function write_settings() {
 		var key:Object = new Object(); 
 		key = { 
 		"binds" : { 
