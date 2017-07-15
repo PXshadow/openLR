@@ -97,7 +97,7 @@ class KeyBindings
 		KeyBindings.swatch_green = object.binds.swatch_green;
 		KeyBindings.icon_play = object.binds.icon_play;
 		KeyBindings.icon_stop = object.binds.icon_stop;
-		KeyBindings.icon_flag = object.binds.icon_flag ;
+		KeyBindings.icon_flag = object.binds.icon_flag;
 		KeyBindings.mod_action_shift = object.binds.mod_action_shift;
 		KeyBindings.mod_action_control = object.binds.mod_action_control;
 		KeyBindings.angle_snap = object.binds.angle_snap;
@@ -110,6 +110,45 @@ class KeyBindings
 		KeyBindings.step_backward = object.binds.step_backward;
 		KeyBindings.undo_line = object.binds.undo_line;
 	}
+	static public function write_settings() { 
+		var key:Object = new Object(); 
+		key = { 
+		"binds" : { 
+			"pencil_1" : KeyBindings.pencil_1, 
+			"pencil_2" : KeyBindings.pencil_2, 
+			"line_1" : KeyBindings.line_1, 
+			"line_2" : KeyBindings.line_2, 
+			"eraser_1" : KeyBindings.eraser_1, 
+			"eraser_2" : KeyBindings.eraser_2, 
+			"pan_1" : KeyBindings.pan_1, 
+			"pan_2" : KeyBindings.pan_2, 
+			"swatch_blue" : KeyBindings.swatch_blue, 
+			"swatch_red" : KeyBindings.swatch_red, 
+			"swatch_green" : KeyBindings.swatch_green, 
+			"icon_play" : KeyBindings.icon_play, 
+			"icon_stop" : KeyBindings.icon_stop, 
+			"icon_flag" : KeyBindings.icon_flag, 
+			"mod_action_shift" : KeyBindings.mod_action_shift, 
+			"mod_action_control" : KeyBindings.mod_action_control, 
+			"angle_snap" : KeyBindings.angle_snap, 
+			"line_snap" : KeyBindings.line_snap, 
+			"ff_toggle" : KeyBindings.ff_toggle, 
+			"sm_toggle" : KeyBindings.sm_toggle, 
+			"rw_toggle" : KeyBindings.rw_toggle, 
+			"pp_toggle" : KeyBindings.pp_toggle, 
+			"step_forward" : KeyBindings.step_forward, 
+			"step_backward" : KeyBindings.step_backward, 
+			"undo_line" : KeyBindings.undo_line, 
+			"undo_stroke" : KeyBindings.undo_stroke, 
+			"redo_stroke" : KeyBindings.redo_stroke, 
+			"redo_line" : KeyBindings.redo_line 
+			}, 
+			"reference" : "http://api.openfl.org/openfl/ui/Keyboard.html" 
+		} 
+		var file = File.write("./settings/KeyBindings.json", true); 
+		file.writeString(Json.stringify(key, null, "\t")); 
+		file.close(); 
+	} 
 	private function setArrayBinds() 
 	{
 		KeyBindings.KeyStringList[Keyboard.NUMBER_0] = "0";
