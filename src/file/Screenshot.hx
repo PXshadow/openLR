@@ -21,7 +21,7 @@ class Screenshot
 	var bitmap:BitmapData;
 	var data:ByteArray;
 	var timestamp:String = "" + "Y" + Date.now().getFullYear() + "M" + Date.now().getMonth() + "D" + Date.now().getDay() + "H" + Date.now().getHours() + "m" + Date.now().getMinutes() + "S" + Date.now().getSeconds();
-	public function new(_container:MovieClip) 
+	public inline function new(_container:MovieClip) 
 	{
 		this.container = _container;
 		this.bitmap = new BitmapData(Std.int(Common.stage_width), Std.int(Common.stage_height));
