@@ -10,6 +10,7 @@
 		"autosave_freq": 10,
 		"autosave": true,
 		"angle_snap": false,
-		"author": "Made by: Anonymous"
+		"author": "Made by: Anonymous",
+		"language" : "English"
 	}
 }
