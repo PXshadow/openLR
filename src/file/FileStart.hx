@@ -53,10 +53,23 @@ class FileStart
 		if (FileSystem.exists("./settings/KeyBindings.json")) {
 			this.set_key_bindings();
 		} else {
-			KeyBindings.write_settings();
+			this.get_and_write_default_keys();
 		}
 	}
-	function set_key_bindings() {
+	
+	public function write_new_settings() 
+	{
+		
+	}
+	public function write_new_keys() 
+	{
+		
+	}
+	private function get_and_write_default_keys() { //This is to be exclusively used for DEFAULTS
+		var file = File.write("./settings/KeyBindings.json", true);
+		file.writeString(Json.stringify(Json.parse(Assets.getText("defaults/settings/KeyBindings.json")), null, "\t"));
+	}
+	public function set_key_bindings() {
 		try {
 			var _locFile = File.getContent("./settings/KeyBindings.json");
 			var _locJson = Json.parse(_locFile);
@@ -64,10 +77,6 @@ class FileStart
 		} catch (e:String) {
 			
 		}
-	}
-	public function get_and_write_defaults() {
-		var file = File.write("./settings/KeyBindings.json", true);
-		file.writeString(Json.stringify(Json.parse(Assets.getText("defaults/settings/KeyBindings.json")), null, "\t"));
 	}
 	function get_and_set_defaults() 
 	{
