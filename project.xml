@@ -23,7 +23,6 @@
 	<assets path="assets/fonts" rename="fonts" embed="true" />
 	<assets path="assets/flash" rename="swf" embed="true" />
 	<assets path="assets/img" rename="img" embed="true" />
-	<assets path="assets/lang" rename="lang" />
 	<assets path="assets/defaults" rename="defaults" embed="true" />
 	
 	
