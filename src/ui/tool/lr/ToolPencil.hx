@@ -2,6 +2,9 @@ package ui.tool.lr;
 
 import lr.line.LineBase;
 import lr.line.*;
+import lr.line.types.LineAccel;
+import lr.line.types.LineFloor;
+import lr.line.types.LineScene;
 import openfl.events.MouseEvent;
 import openfl.geom.Point;
 
