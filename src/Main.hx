@@ -8,10 +8,6 @@ import openfl.Lib;
 import openfl.events.Event;
 import openfl.net.URLRequest;
 import haxe.Timer;
-import ui.inter.AlertBox;
-import ui.inter.CheckBox;
-import ui.tool.timeline.Ticker;
-import ui.tool.timeline.TimelineControl;
 import openfl.Lib;
 import openfl.Assets;
 
@@ -33,6 +29,10 @@ import file.AutosaveManager;
 import file.Screenshot;
 import lr.settings.SettingsMenu;
 import global.RiderManager;
+import ui.inter.AlertBox;
+import ui.inter.CheckBox;
+import ui.tool.timeline.Ticker;
+import ui.tool.timeline.TimelineControl;
 
 //TBD
 import file.HXLZString;
@@ -98,7 +98,7 @@ class Main extends Sprite
 	
 	public function new() 
 	{
-		super(); //In Haxe, a super must be called when classes inherit
+		super();
 		
 		this.mainFileInit = new FileStart(); //checks for default folders and saved settings in the track
 		
@@ -106,8 +106,6 @@ class Main extends Sprite
 		this.addChild(this.welcome_alert);
 		this.welcome_alert.x = (this.stage.stageWidth * 0.5) - (this.welcome_alert.width * 0.5);
 		this.welcome_alert.y = (this.stage.stageHeight * 0.5) - (this.welcome_alert.height * 0.5);
-		
-		//trace(HXLZString.compress("Hello, my name is Kevansevans"));
 	}
 	function start() {
 		this.init_env();
