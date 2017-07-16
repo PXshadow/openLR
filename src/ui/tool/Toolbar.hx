@@ -96,6 +96,7 @@ class Toolbar extends MovieClip
 		
 		this.swBlue = new SwatchBlue();
 		this.addChild(swBlue);
+		this.swBlue.x = -2;
 		this.swBlue.y = 33;
 		
 		this.swRed = new SwatchRed();
@@ -106,7 +107,7 @@ class Toolbar extends MovieClip
 		this.swGreen = new SwatchGreen();
 		this.addChild(swGreen);
 		this.swGreen.y = 33;
-		this.swGreen.x = 60;
+		this.swGreen.x = 62;
 		
 		Toolbar.icon = pencil;
 		icon.select();
