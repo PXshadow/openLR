@@ -12,7 +12,8 @@ import haxe.Json;
  */
 class KeyBindings 
 {
-	public static var KeyStringList:Array<String>;
+	public static var KeyIntList:Array<String>;
+	public static var KeySringList:Map<String, Int>;
 	
 	//single strokes
 	public static var pencil_1:Int = Keyboard.Q;
@@ -28,14 +29,18 @@ class KeyBindings
 	public static var swatch_green:Int = Keyboard.NUMBER_3;
 	public static var icon_play:Int = Keyboard.Y;
 	public static var icon_stop:Int = Keyboard.U;
+	public static var icon_stop_b:Int = Keyboard.F8;
 	public static var icon_flag:Int = Keyboard.I;
 	public static var mod_action_shift:Int = Keyboard.SHIFT;
 	public static var mod_action_control:Int = Keyboard.CONTROL;
 	public static var angle_snap:Int = Keyboard.X; //Includes lock toggle
 	public static var line_snap:Int = Keyboard.S; //Includes lock toggle
 	public static var ff_toggle:Int = Keyboard.N;
+	public static var ff_toggle_b:Int = Keyboard.F6;
 	public static var sm_toggle:Int = Keyboard.M;
+	public static var sm_toggle_b:Int = Keyboard.F7;
 	public static var rw_toggle:Int = Keyboard.B; //sim only
+	public static var rw_toggle_b:Int = Keyboard.F5;
 	public static var pp_toggle:Int = Keyboard.SPACE;
 	public static var step_forward:Int = Keyboard.RIGHT;
 	public static var step_backward:Int = Keyboard.LEFT;
@@ -49,38 +54,8 @@ class KeyBindings
 	public function new() 
 	{
 		KeyBindings.KeyStringList = new Array();
+		KeyBindings.KeyIntList = new Array();
 		this.setArrayBinds();
-	}
-	public static function reset() {
-		KeyBindings.pencil_1 = Keyboard.Q;
-		KeyBindings.pencil_2 = Keyboard.F3;
-		KeyBindings.line_1 = Keyboard.W;
-		KeyBindings.line_2 = Keyboard.F2;
-		KeyBindings.eraser_1 = Keyboard.E;
-		KeyBindings.eraser_2 = Keyboard.F3;
-		KeyBindings.pan_1 = Keyboard.R;
-		KeyBindings.pan_2 = Keyboard.F4;
-		KeyBindings.swatch_blue = Keyboard.NUMBER_1;
-		KeyBindings.swatch_red = Keyboard.NUMBER_2;
-		KeyBindings.swatch_green = Keyboard.NUMBER_3;
-		KeyBindings.icon_play = Keyboard.Y;
-		KeyBindings.icon_stop = Keyboard.U;
-		KeyBindings.icon_flag = Keyboard.I;
-		KeyBindings.mod_action_shift = Keyboard.SHIFT;
-		KeyBindings.mod_action_control = Keyboard.CONTROL;
-		KeyBindings.angle_snap = Keyboard.X;
-		KeyBindings.line_snap = Keyboard.S;
-		KeyBindings.ff_toggle = Keyboard.N;
-		KeyBindings.sm_toggle = Keyboard.M;
-		KeyBindings.rw_toggle = Keyboard.B;
-		KeyBindings.pp_toggle = Keyboard.SPACE;
-		KeyBindings.step_forward = Keyboard.RIGHT;
-		KeyBindings.step_backward = Keyboard.LEFT;
-		KeyBindings.undo_line = Keyboard.BACKSPACE;
-		
-		KeyBindings.undo_stroke = Keyboard.Z;
-		KeyBindings.redo_stroke = Keyboard.Y;
-		KeyBindings.redo_line = Keyboard.BACKSPACE;
 	}
 	static public function set_bindings(object) 
 	{
@@ -153,6 +128,65 @@ class KeyBindings
 	} 
 	private function setArrayBinds() 
 	{
+		KeyBindings.KeyIntList[Keyboard.NUMBER_0] = "0";
+		KeyBindings.KeyIntList[Keyboard.NUMBER_1] = "1";
+		KeyBindings.KeyIntList[Keyboard.NUMBER_2] = "2";
+		KeyBindings.KeyIntList[Keyboard.NUMBER_3] = "3";
+		KeyBindings.KeyIntList[Keyboard.NUMBER_4] = "4";
+		KeyBindings.KeyIntList[Keyboard.NUMBER_5] = "5";
+		KeyBindings.KeyIntList[Keyboard.NUMBER_6] = "6";
+		KeyBindings.KeyIntList[Keyboard.NUMBER_7] = "7";
+		KeyBindings.KeyIntList[Keyboard.NUMBER_8] = "8";
+		KeyBindings.KeyIntList[Keyboard.NUMBER_9] = "9";
+		KeyBindings.KeyIntList[Keyboard.A] = "A";
+		KeyBindings.KeyIntList[Keyboard.B] = "B";
+		KeyBindings.KeyIntList[Keyboard.C] = "C";
+		KeyBindings.KeyIntList[Keyboard.D] = "D";
+		KeyBindings.KeyIntList[Keyboard.E] = "E";
+		KeyBindings.KeyIntList[Keyboard.F] = "F";
+		KeyBindings.KeyIntList[Keyboard.G] = "G";
+		KeyBindings.KeyIntList[Keyboard.H] = "H";
+		KeyBindings.KeyIntList[Keyboard.I] = "I";
+		KeyBindings.KeyIntList[Keyboard.J] = "J";
+		KeyBindings.KeyIntList[Keyboard.K] = "K";
+		KeyBindings.KeyIntList[Keyboard.L] = "L";
+		KeyBindings.KeyIntList[Keyboard.M] = "M";
+		KeyBindings.KeyIntList[Keyboard.N] = "N";
+		KeyBindings.KeyIntList[Keyboard.O] = "O";
+		KeyBindings.KeyIntList[Keyboard.P] = "P";
+		KeyBindings.KeyIntList[Keyboard.Q] = "Q";
+		KeyBindings.KeyIntList[Keyboard.R] = "R";
+		KeyBindings.KeyIntList[Keyboard.S] = "S";
+		KeyBindings.KeyIntList[Keyboard.T] = "T";
+		KeyBindings.KeyIntList[Keyboard.U] = "U";
+		KeyBindings.KeyIntList[Keyboard.V] = "V";
+		KeyBindings.KeyIntList[Keyboard.W] = "W";
+		KeyBindings.KeyIntList[Keyboard.X] = "X";
+		KeyBindings.KeyIntList[Keyboard.Y] = "Y";
+		KeyBindings.KeyIntList[Keyboard.Z] = "Z";
+		KeyBindings.KeyIntList[Keyboard.F1] = "F1";
+		KeyBindings.KeyIntList[Keyboard.F2] = "F2";
+		KeyBindings.KeyIntList[Keyboard.F3] = "F3";
+		KeyBindings.KeyIntList[Keyboard.F4] = "F4";
+		KeyBindings.KeyIntList[Keyboard.F5] = "F5";
+		KeyBindings.KeyIntList[Keyboard.F6] = "F6";
+		KeyBindings.KeyIntList[Keyboard.F7] = "F7";
+		KeyBindings.KeyIntList[Keyboard.F8] = "F8";
+		KeyBindings.KeyIntList[Keyboard.F9] = "F9";
+		KeyBindings.KeyIntList[Keyboard.F10] = "F10";
+		KeyBindings.KeyIntList[Keyboard.F11] = "F11";
+		KeyBindings.KeyIntList[Keyboard.F12] = "F12";
+		KeyBindings.KeyIntList[Keyboard.BACKSPACE] = "Backspace";
+		KeyBindings.KeyIntList[Keyboard.TAB] = "Tab";
+		KeyBindings.KeyIntList[Keyboard.ALTERNATE] = "Alt";
+		KeyBindings.KeyIntList[Keyboard.ENTER] = "Enter/Return";
+		KeyBindings.KeyIntList[Keyboard.SHIFT] = "Shift"; //Might not want to have shift and control rebindable for everything that uses it
+		KeyBindings.KeyIntList[Keyboard.CONTROL] = "Ctrl";
+		KeyBindings.KeyIntList[Keyboard.SPACE] = "Space";
+		KeyBindings.KeyIntList[Keyboard.LEFT] = "Left";
+		KeyBindings.KeyIntList[Keyboard.RIGHT] = "Right";
+	}
+	private function setStingArray() {
 		KeyBindings.KeyStringList[Keyboard.NUMBER_0] = "0";
 		KeyBindings.KeyStringList[Keyboard.NUMBER_1] = "1";
 		KeyBindings.KeyStringList[Keyboard.NUMBER_2] = "2";
