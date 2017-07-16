@@ -304,9 +304,11 @@ class Main extends Sprite
 	}
 	public function take_screencap() {
 		this.toolBar.visible = false;
+		this.timeline.visible = false;
 		var sc:Screenshot = new Screenshot(this.visContainer);
 	}
 	public function end_screencap() {
 		this.toolBar.visible = true;
+		this.timeline.visible = false;
 	}
 }
