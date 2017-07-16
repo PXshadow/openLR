@@ -16,7 +16,6 @@
 	<source path="src" />
 	<haxelib name="openfl" />
 	<haxelib name="actuate" />
-	<haxelib name="svg" />
 	
 	<!-- assets -->
 	<icon path="assets/logo.png" />

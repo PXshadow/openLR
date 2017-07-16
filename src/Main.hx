@@ -94,7 +94,9 @@ class Main extends Sprite
 	
 	private var autosave:AutosaveManager;
 	
-	public var unique_id:String; 
+	public var unique_id:String;
+	
+	var testSVG:SVG;
 	
 	public function new() 
 	{
@@ -106,6 +108,8 @@ class Main extends Sprite
 		this.addChild(this.welcome_alert);
 		this.welcome_alert.x = (this.stage.stageWidth * 0.5) - (this.welcome_alert.width * 0.5);
 		this.welcome_alert.y = (this.stage.stageHeight * 0.5) - (this.welcome_alert.height * 0.5);
+		
+		this.testSVG = new SVG(Assets.getText("img/ui/buttons/150x30up.svg"));
 		
 		//trace(HXLZString.compress("Hello, my name is Kevansevans"));
 	}
