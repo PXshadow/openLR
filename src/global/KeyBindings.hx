@@ -13,7 +13,7 @@ import haxe.Json;
 class KeyBindings 
 {
 	public static var KeyIntList:Array<String>;
-	public static var KeySringList:Map<String, Int>;
+	public static var KeyStringList:Map<String, Int>;
 	
 	//single strokes
 	public static var pencil_1:Int = Keyboard.Q;
@@ -53,7 +53,7 @@ class KeyBindings
 	
 	public function new() 
 	{
-		KeyBindings.KeyStringList = new Array();
+		KeyBindings.KeyStringList = new Map();
 		KeyBindings.KeyIntList = new Array();
 		this.setArrayBinds();
 	}
@@ -186,7 +186,7 @@ class KeyBindings
 		KeyBindings.KeyIntList[Keyboard.LEFT] = "Left";
 		KeyBindings.KeyIntList[Keyboard.RIGHT] = "Right";
 	}
-	private function setStingArray() {
+	/*private function setStingArray() {
 		KeyBindings.KeyStringList[Keyboard.NUMBER_0] = "0";
 		KeyBindings.KeyStringList[Keyboard.NUMBER_1] = "1";
 		KeyBindings.KeyStringList[Keyboard.NUMBER_2] = "2";
@@ -244,5 +244,5 @@ class KeyBindings
 		KeyBindings.KeyStringList[Keyboard.SPACE] = "Space";
 		KeyBindings.KeyStringList[Keyboard.LEFT] = "Left";
 		KeyBindings.KeyStringList[Keyboard.RIGHT] = "Right";
-	}
+	}*/
 }
