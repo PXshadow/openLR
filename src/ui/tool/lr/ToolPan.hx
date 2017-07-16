@@ -17,8 +17,10 @@ class ToolPan extends ToolBase
 	}
 	override public function mouseDown(e:MouseEvent) {
 		Common.gTrack.startDrag();
+		Common.gStage.addEventListener(MouseEvent.MOUSE_MOVE, mMouseMove);
 	}
 	override public function mouseUp(e:MouseEvent) {
 		Common.gTrack.stopDrag();
+		Common.gStage.removeEventListener(MouseEvent.MOUSE_MOVE, mMouseMove);
 	}
 }
