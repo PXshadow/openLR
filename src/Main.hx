@@ -87,14 +87,9 @@ class Main extends Sprite
 	private var welcome_alert:AlertBox;
 	private var save_manager:SaveManager;
 	private var timeline:TimelineControl;
-	
 	private var loadManager:LoadManager;
-	
 	private var settings_box:SettingsMenu;
-	
 	private var autosave:AutosaveManager;
-	
-	public var unique_id:String;
 	
 	public function new() 
 	{
@@ -102,7 +97,7 @@ class Main extends Sprite
 		
 		this.mainFileInit = new FileStart(); //checks for default folders and saved settings in the track
 		
-		this.welcome_alert = new AlertBox(Language.Welcome + "\n" + "\n" + "Version: " + Common.version, this.start, Language.Continue);
+		this.welcome_alert = new AlertBox(Language.Welcome + "\n\n" + "https://github.com/kevansevans/openLR" + "\n\n" + "Version: " + Common.version, this.start, Language.Continue);
 		this.addChild(this.welcome_alert);
 		this.welcome_alert.x = (this.stage.stageWidth * 0.5) - (this.welcome_alert.width * 0.5);
 		this.welcome_alert.y = (this.stage.stageHeight * 0.5) - (this.welcome_alert.height * 0.5);
