@@ -1,6 +1,6 @@
 {
 	"dictionary": {
-		"welcome" : "Welcome to openLR! This is an early build, however I hope you find this version useful as it is intended to be. Please report bugs to: https://github.com/kevansevans/openLR",
+		"welcome" : "Welcome to openLR! This is an early build, however I hope you find this version useful as it is intended to be. Please report bugs to: ",
 		"cont" : "Continue",
 		"yes" : "Yes",
 		"okay" : "OK",
