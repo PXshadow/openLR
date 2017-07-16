@@ -7,6 +7,8 @@ import openfl.text.TextField;
 import openfl.text.TextFormat;
 import openfl.text.TextFormatAlign;
 import openfl.events.MouseEvent;
+import openfl.ui.Mouse;
+import openfl.ui.MouseCursor;
 
 /**
  * ...
@@ -82,6 +84,7 @@ class SingleButton extends Sprite
 		this.vis_box.graphics.lineTo(this.boxWidth + 5 + xAdjust, this.boxHeight + 5 + yAdjust);
 		this.vis_box.graphics.lineTo(0, this.boxHeight + 5 + yAdjust);
 		this.vis_box.graphics.lineTo(0, 0);
+		Mouse.cursor = MouseCursor.AUTO;
 	}
 	
 	private function mouse_over(e:MouseEvent):Void 
@@ -94,5 +97,6 @@ class SingleButton extends Sprite
 		this.vis_box.graphics.lineTo(this.boxWidth + 5 + xAdjust, this.boxHeight + 5 + yAdjust);
 		this.vis_box.graphics.lineTo(0, this.boxHeight + 5 + yAdjust);
 		this.vis_box.graphics.lineTo(0, 0);
+		Mouse.cursor = MouseCursor.BUTTON;
 	}
 }

@@ -6,6 +6,8 @@ import openfl.Lib;
 import openfl.Assets;
 import openfl.display.Sprite;
 import openfl.text.TextField;
+import openfl.ui.Mouse;
+import openfl.ui.MouseCursor;
 
 import global.Common;
 
@@ -150,6 +152,7 @@ class StepButton extends Sprite
 			this.graphics.lineTo(13, 9);
 			this.graphics.lineTo(16, 5);
 		}
+		Mouse.cursor = MouseCursor.AUTO;
 	}
 	
 	private function highlight(e:MouseEvent):Void 
@@ -173,5 +176,7 @@ class StepButton extends Sprite
 			this.graphics.lineTo(13, 9);
 			this.graphics.lineTo(16, 5);
 		}
+		
+		Mouse.cursor = MouseCursor.BUTTON;
 	}
 }
