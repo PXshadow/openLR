@@ -3,6 +3,8 @@ package ui.tool.icon;
 import openfl.display.Sprite;
 import openfl.events.MouseEvent;
 import openfl.display.Bitmap;
+import openfl.ui.Mouse;
+import openfl.ui.MouseCursor;
 
 import global.Common;
 
@@ -16,6 +18,7 @@ import global.Common;
 class IconBase extends Sprite
 {
 	var icon:Bitmap;
+	private var enabled:Bool = true;
 	public function new() 
 	{
 		super();
@@ -57,6 +60,7 @@ class IconBase extends Sprite
 			Common.gToolBase.enable();
 			this.alpha = 1;
 		}
+		Mouse.cursor = MouseCursor.AUTO;
 	}
 	
 	private function disable_tool(e:MouseEvent):Void 
@@ -65,18 +69,23 @@ class IconBase extends Sprite
 			Common.gToolBase.disable();
 			this.alpha = 0.75;
 		}
+		if (enabled) {
+			Mouse.cursor = MouseCursor.BUTTON;
+		}
 	}
 	
 	public function enable() {
 		this.addEventListener(MouseEvent.MOUSE_OVER, disable_tool);
 		this.addEventListener(MouseEvent.MOUSE_OUT, enable_tool);
 		this.alpha = 1;
+		this.enabled = true;
 	}
 	
 	public function disable() {
 		this.removeEventListener(MouseEvent.MOUSE_OVER, disable_tool);
 		this.removeEventListener(MouseEvent.MOUSE_OUT, enable_tool);
 		this.alpha = 0.25;
+		this.enabled = false;
 	}
 	public function select() {
 		this.graphics.clear();
