@@ -15,8 +15,6 @@ class VisNode extends Sprite
 	{
 		super();
 		VisNodeArray.push(this);
-		this.x = _x * VisGrid.gridSize;
-		this.y = _y * VisGrid.gridSize;
 		this.spriteLayer = new Sprite();
 		this.addChild(this.spriteLayer);
 		this.lineCache = new Array();
