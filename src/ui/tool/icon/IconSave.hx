@@ -8,6 +8,8 @@ import openfl.Assets;
 import openfl.net.URLRequest;
 import sys.io.File;
 import sys.FileSystem;
+import openfl.ui.Mouse;
+import openfl.ui.MouseCursor;
 
 import global.Common;
 import ui.tool.Toolbar;
@@ -108,6 +110,9 @@ class IconSave extends IconBase
 	override private function disable_tool(e:MouseEvent):Void 
 	{
 		Common.gToolBase.disable();
+		if (enabled) {
+			Mouse.cursor = MouseCursor.BUTTON;
+		}
 	}
 	function confirmed_new() {
 		this.removeChild(this.safety_dialog);
