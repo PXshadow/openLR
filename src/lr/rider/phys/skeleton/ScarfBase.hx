@@ -4,7 +4,7 @@ import haxe.ds.Vector;
 import openfl.utils.Object;
 
 import lr.rider.phys.skeleton.bones.ScarfStick;
-import lr.rider.phys.contacts.anchors.SPoint;
+import lr.rider.phys.frames.anchors.SPoint;
 
 /**
  * ...

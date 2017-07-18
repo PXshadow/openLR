@@ -1,6 +1,7 @@
 package lr.rider.phys.skeleton;
 
 import haxe.ds.Vector;
+import lr.rider.phys.frames.anchors.CPoint;
 
 import lr.rider.phys.skeleton.bones.*;
 import lr.rider.phys.contacts.anchors.*;

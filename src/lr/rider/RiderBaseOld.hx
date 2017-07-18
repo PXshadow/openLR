@@ -1,11 +1,11 @@
 package lr.rider;
 
 import haxe.ds.Vector;
-import lr.rider.phys.contacts.anchors.CPoint;
-import lr.rider.phys.contacts.anchors.SPoint;
-import lr.rider.phys.objects.FlagMarker;
-import lr.rider.phys.objects.RiderCamera;
-import lr.rider.phys.objects.StartPointVis;
+import lr.rider.phys.frames.anchors.CPoint;
+import lr.rider.phys.frames.anchors.SPoint;
+import lr.rider.objects.FlagMarker;
+import lr.rider.objects.RiderCamera;
+import lr.rider.objects.StartPointVis;
 import lr.rider.phys.skeleton.bones.BindStick;
 import lr.rider.phys.skeleton.bones.RepellStick;
 import lr.rider.phys.skeleton.bones.ScarfStick;

@@ -1,8 +1,8 @@
-package lr.rider.phys.contacts;
+package lr.rider.phys.frames;
 
 import haxe.ds.Vector;
 
-import lr.rider.phys.contacts.anchors.CPoint;
+import lr.rider.phys.frames.anchors.CPoint;
 import lr.rider.phys.skeleton.bones.Stick;
 
 
@@ -10,7 +10,7 @@ import lr.rider.phys.skeleton.bones.Stick;
  * ...
  * @author Kaelan Evans
  */
-class B2Body extends BodyBase
+class B2Frame extends FrameBase
 {
 	public function new(_x:Float, _y:Float) 
 	{

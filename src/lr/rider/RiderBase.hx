@@ -9,9 +9,9 @@ import openfl.utils.AssetLibrary;
 import global.Common;
 import lr.line.nodes.B2Grid;
 import lr.line.LineBase;
-import lr.rider.phys.contacts.anchors.CPoint;
+import lr.rider.phys.frames.anchors.CPoint;
 import lr.rider.phys.skeleton.B2Skeleton;
-import lr.rider.phys.contacts.B2Body;
+import lr.rider.phys.frames.B2Frame;
 import lr.rider.phys.skeleton.bones.Stick;
 import lr.rider.phys.skeleton.B2Scarf;
 
@@ -39,7 +39,7 @@ class RiderBase extends Sprite
 {
 	public var recorded_frames:Array<Array<Array<Dynamic>>>;
 	
-	public var body:B2Body;
+	public var body:B2Frame;
 	public var skeleton:B2Skeleton;
 	public var scarf:B2Scarf;
 	public var grav:Object;
@@ -67,7 +67,7 @@ class RiderBase extends Sprite
 			case 1:
 				//beta 1 rider
 			case 2:
-				this.body = new B2Body(0, 0);
+				this.body = new B2Frame(0, 0);
 				this.skeleton = new B2Skeleton(this.body.anchors);
 				this.scarf = new B2Scarf(this.body.anchors[5]);
 			case 3:
@@ -75,7 +75,7 @@ class RiderBase extends Sprite
 			case 4:
 				//beta 3 rider that falls apart
 			default :
-				this.body = new B2Body(0, 0);
+				this.body = new B2Frame(0, 0);
 				this.skeleton = new B2Skeleton(this.body.anchors);
 				this.scarf = new B2Scarf(this.body.anchors[5]);
 		}

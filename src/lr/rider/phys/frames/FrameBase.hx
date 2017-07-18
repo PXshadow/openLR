@@ -1,15 +1,15 @@
-package lr.rider.phys.contacts;
+package lr.rider.phys.frames;
 
 import haxe.ds.Vector;
 import openfl.utils.Object;
 
-import lr.rider.phys.contacts.anchors.CPoint;
+import lr.rider.phys.frames.anchors.CPoint;
 
 /**
  * ...
  * @author Kaelan Evans
  */
-class BodyBase 
+class FrameBase 
 {
 	public var anchors:Vector<CPoint>;
 

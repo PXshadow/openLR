@@ -1,6 +1,6 @@
-package lr.rider.phys.objects;
+package lr.rider.objects;
 
-import lr.rider.phys.contacts.anchors.CPoint;
+import lr.rider.phys.frames.anchors.CPoint;
 import openfl.geom.Point;
 
 import global.Common;
