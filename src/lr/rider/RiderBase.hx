@@ -72,6 +72,8 @@ class RiderBase extends Sprite
 				//beta 3 rider normal
 			case 4:
 				//beta 3 rider that falls apart
+			case 5 :
+				//JSON Custom Rider
 			default :
 				this.body = new B2Frame(0, 0);
 				this.skeleton = new B2Skeleton(this.body.anchors);
