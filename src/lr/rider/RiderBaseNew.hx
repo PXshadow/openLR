@@ -24,6 +24,7 @@ import lr.rider.phys.skeleton.B2Scarf;
 	public var Beta2:Int = 2;
 	public var Beta3a:Int = 3;
 	public var Beta3b:Int = 4; //this is the one that falls apart
+	public var JSON:Int = 5;
 }
 
 class RiderBaseNew extends Sprite
