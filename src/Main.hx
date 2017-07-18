@@ -18,7 +18,6 @@ import file.FileStart;
 import file.LoadManager;
 import global.Common;
 import global.Language;
-import ui.inter.SingleButton;
 import file.SaveManager;
 import global.FrameRate;
 import global.SimManager;
