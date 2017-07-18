@@ -1,4 +1,5 @@
-package lr.rider.phys;
+package lr.rider.phys.skeleton.bones;
+import lr.rider.phys.anchors.CPoint;
 
 /**
  * ...

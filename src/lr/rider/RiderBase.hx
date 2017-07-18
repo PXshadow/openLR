@@ -1,6 +1,12 @@
 package lr.rider;
 
 import haxe.ds.Vector;
+import lr.rider.phys.anchors.CPoint;
+import lr.rider.phys.anchors.SPoint;
+import lr.rider.phys.skeleton.bones.BindStick;
+import lr.rider.phys.skeleton.bones.RepellStick;
+import lr.rider.phys.skeleton.bones.ScarfStick;
+import lr.rider.phys.skeleton.bones.Stick;
 import openfl.display.Sprite;
 import openfl.geom.Point;
 import openfl.utils.Object;

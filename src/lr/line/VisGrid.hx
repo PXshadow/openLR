@@ -2,7 +2,7 @@ package lr.line;
 
 import openfl.utils.Object;
 
-import lr.rider.phys.CPoint;
+import lr.rider.phys.anchors.CPoint;
 import lr.line.LineBase;
 import global.Common;
 

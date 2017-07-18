@@ -1,6 +1,6 @@
 package lr.line;
 
-import lr.rider.phys.CPoint;
+import lr.rider.phys.anchors.CPoint;
 import openfl.display.Shape;
 import openfl.geom.Point;
 

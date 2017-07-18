@@ -1,6 +1,6 @@
 package lr.line.types;
 
-import lr.rider.phys.CPoint;
+import lr.rider.phys.anchors.CPoint;
 import global.Common;
 
 
