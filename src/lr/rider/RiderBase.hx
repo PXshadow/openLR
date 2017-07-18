@@ -1,6 +1,7 @@
 package lr.rider;
 
 import haxe.ds.Vector;
+import lr.rider.phys.RiderRecorder;
 import openfl.display.Sprite;
 import openfl.geom.Point;
 import openfl.utils.Object;
@@ -42,8 +43,6 @@ import lr.rider.phys.skeleton.SkeletonBase;
 }
 class RiderBase extends Sprite
 {
-	public var recorded_frames:Array<Array<Array<Dynamic>>>;
-	
 	public var body:FrameBase;
 	public var skeleton:SkeletonBase;
 	public var clips:VisBase;
@@ -51,13 +50,13 @@ class RiderBase extends Sprite
 	
 	public var grav:Object;
 	
+	public var recorder:RiderRecorder;
+	
 	var tick_frame = SubFrame.FullTick;
 	
 	public function new(_type:Int) 
 	{
 		super();
-		
-		this.recorded_frames = new Array();
 		
 		switch (_type) {
 			case 1:
@@ -82,6 +81,8 @@ class RiderBase extends Sprite
 		this.grav = new Object();
 		this.grav.x = 0;
 		this.grav.y = 0.175;
+		
+		this.recorder = new RiderRecorder();
 	}
 	public function step_rider()
 	{
@@ -96,13 +97,15 @@ class RiderBase extends Sprite
 			this.collision();
 		}
 		this.body.crash_check();
+		this.recorder.index_frame(Common.sim_frames, this.body.anchors);
 		this.clips.render_body();
 	}
 	public function step_rider_sub() {
 		switch (this.tick_frame) {
 			case 0 :
-				this.body.verlet(this.grav);
-				this.scarf.verlet(this.grav);
+				this.skeleton.constrain();
+				this.scarf.constrain();
+				this.collision();
 				this.clips.render_body();
 				this.tick_frame = SubFrame.Step1;
 			case 1 :
@@ -133,33 +136,18 @@ class RiderBase extends Sprite
 				this.skeleton.constrain();
 				this.scarf.constrain();
 				this.collision();
+				this.body.crash_check();
 				this.clips.render_body();
 				this.tick_frame = SubFrame.FullTick;
 			case 6 :
-				this.skeleton.constrain();
-				this.scarf.constrain();
-				this.collision();
-				this.body.crash_check();
+				this.body.verlet(this.grav);
+				this.scarf.verlet(this.grav);
 				this.clips.render_body();
 				this.tick_frame = SubFrame.Momentum;
 		}
 	}
 	public function return_to_start() {
 		
-	}
-	public function record_frame() {
-		var anchors:Vector<CPoint> = this.body.anchors;
-		this.recorded_frames[Common.sim_frames] = new Array();
-		for (i in 0...anchors.length) {
-			this.recorded_frames[Common.sim_frames][i] = new Array();
-			this.recorded_frames[Common.sim_frames][i][0] = this.body.anchors[i].x;
-			this.recorded_frames[Common.sim_frames][i][1] = this.body.anchors[i].y;
-			this.recorded_frames[Common.sim_frames][i][2] = this.body.anchors[i].vx;
-			this.recorded_frames[Common.sim_frames][i][3] = this.body.anchors[i].vy;
-			this.recorded_frames[Common.sim_frames][i][4] = this.body.anchors[i].dx;
-			this.recorded_frames[Common.sim_frames][i][5] = this.body.anchors[i].dy;
-			this.recorded_frames[Common.sim_frames][i][6] = Stick.crash;
-		}
 	}
 	function collision() 
 	{
