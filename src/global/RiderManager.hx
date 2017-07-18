@@ -18,7 +18,7 @@ class RiderManager extends Sprite
 		Common.gRiderManager = this;
 		
 		this.riderArray = new Array();
-		this.riderArray[0] = new RiderBaseNew();
+		this.riderArray[0] = new RiderBaseNew(RiderType.Beta2);
 		this.addChild(this.riderArray[0]);
 		Common.svar_rider_count += 1;
 	}
