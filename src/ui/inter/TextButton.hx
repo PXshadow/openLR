@@ -54,7 +54,7 @@ class TextButton extends Sprite
 			case 1:
 				this.label.width = 120;
 				this.label.height = 25;
-				this.label.y = 5;
+				this.label.y = 4;
 		}
 	}
 }
