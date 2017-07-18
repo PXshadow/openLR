@@ -3,7 +3,8 @@ package lr.settings;
 import openfl.display.Sprite;
 import openfl.events.MouseEvent;
 
-import ui.inter.SingleButton;
+import ui.inter.TextButton;
+import global.Language;
 import global.Common;
 
 enum PanelMode
@@ -21,22 +22,22 @@ class SettingsMenu extends Sprite
 {
 	var state:PanelMode = file;
 	
-	var tabFileMenu:SingleButton;
-	var tabTrackSettings:SingleButton;
-	var tabProfile:SingleButton;
+	var tabFileMenu:TextButton;
+	var tabTrackSettings:TextButton;
+	var tabProfile:TextButton;
 	
 	var fileMenu:FileMenu;
 	var trackMenu:TrackSettings;
 	var profileMenu:ProfileSettings;
 	
-	private var exit:SingleButton;
+	private var exit:TextButton;
 	public function new() 
 	{
 		super();
 		
-		this.tabFileMenu = new SingleButton("File", this.set_to_file);
-		this.tabTrackSettings = new SingleButton("Track", this.set_to_track);
-		this.tabProfile = new SingleButton("Profile", this.set_to_profile);
+		this.tabFileMenu = new TextButton(Language.File, ButtonSize.b120x30);
+		this.tabTrackSettings = new TextButton(Language.Track, ButtonSize.b120x30);
+		this.tabProfile = new TextButton(Language.Profile, ButtonSize.b120x30);
 		
 		this.addChild(this.tabFileMenu);
 		
@@ -46,7 +47,7 @@ class SettingsMenu extends Sprite
 		//this.addChild(this.tabProfile);
 		//this.tabProfile.x = this.tabTrackSettings.x + this.tabTrackSettings.width;
 		
-		this.exit = new SingleButton("Close", Common.gCode.toggleSettings_box);
+		this.exit = new TextButton(Language.Close, ButtonSize.b120x30);
 		this.addChild(exit);
 		this.exit.x = this.width;
 		
