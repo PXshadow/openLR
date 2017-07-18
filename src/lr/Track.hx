@@ -1,8 +1,8 @@
 package lr;
 
-import lr.line.Grid;
+import lr.line.nodes.Grid;
 import lr.line.LineBase;
-import lr.line.VisGrid;
+import lr.line.nodes.VisGrid;
 import openfl.display.Sprite;
 import openfl.geom.Point;
 

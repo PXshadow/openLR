@@ -17,8 +17,8 @@ import ui.tool.ToolBase;
 import ui.tool.timeline.TimelineControl;
 import ui.tool.Toolbar;
 import lr.TextInfo;
-import lr.line.Grid;
-import lr.line.VisGrid;
+import lr.line.nodes.Grid;
+import lr.line.nodes.VisGrid;
 import lr.rider.phys.objects.RiderCamera;
 
 /**
