@@ -33,11 +33,10 @@ import lr.rider.phys.skeleton.B2Scarf;
 	public var Step3:Int = 3;
 	public var Step4:Int = 4;
 	public var Step5:Int = 5;
+	public var FullTick:Int = 6;
 }
 class RiderBaseNew extends Sprite
 {
-	public static var iteration:Int = 6;
-	
 	public var recorded_frames:Array<Array<Array<Dynamic>>>;
 	
 	public var body:B2Body;
@@ -55,6 +54,8 @@ class RiderBaseNew extends Sprite
 	private var string:Sprite;
 	private var scarf_vis:Sprite;
 	private var skeleton_vis:Sprite;
+	
+	var tick_frame = SubFrame.FullTick;
 	
 	public function new(_type:Int) 
 	{
@@ -87,9 +88,12 @@ class RiderBaseNew extends Sprite
 	}
 	public function step_rider()
 	{
+		while (tick_frame != SubFrame.FullTick) {
+			this.step_rider_sub();
+		}
 		this.body.verlet(this.grav);
 		this.scarf.verlet(this.grav);
-		for (a in 0...RiderBaseNew.iteration) {
+		for (a in 0...6) {
 			this.skeleton.constrain();
 			this.scarf.constrain();
 			this.collision();
@@ -98,7 +102,50 @@ class RiderBaseNew extends Sprite
 		this.render_body();
 	}
 	public function step_rider_sub() {
-		
+		switch (this.tick_frame) {
+			case 0 :
+				this.body.verlet(this.grav);
+				this.scarf.verlet(this.grav);
+				this.render_body();
+				this.tick_frame = SubFrame.Step1;
+			case 1 :
+				this.skeleton.constrain();
+				this.scarf.constrain();
+				this.collision();
+				this.render_body();
+				this.tick_frame = SubFrame.Step2;
+			case 2 :
+				this.skeleton.constrain();
+				this.scarf.constrain();
+				this.collision();
+				this.render_body();
+				this.tick_frame = SubFrame.Step3;
+			case 3 :
+				this.skeleton.constrain();
+				this.scarf.constrain();
+				this.collision();
+				this.render_body();
+				this.tick_frame = SubFrame.Step4;
+			case 4 :
+				this.skeleton.constrain();
+				this.scarf.constrain();
+				this.collision();
+				this.render_body();
+				this.tick_frame = SubFrame.Step5;
+			case 5 :
+				this.skeleton.constrain();
+				this.scarf.constrain();
+				this.collision();
+				this.render_body();
+				this.tick_frame = SubFrame.FullTick;
+			case 6 :
+				this.skeleton.constrain();
+				this.scarf.constrain();
+				this.collision();
+				this.body.crash_check();
+				this.render_body();
+				this.tick_frame = SubFrame.Momentum;
+		}
 	}
 	public function return_to_start() {
 		
