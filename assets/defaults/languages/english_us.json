@@ -1,7 +1,7 @@
 {
 	"dictionary": {
 		"title" : "Build by Kevansevans, original concept by Boštjan Čadež",
-		"splash_a" : "Welcome to openLR! The open source implementation of Line Rider for desktop use! You can view more info about the project here: ",
+		"splash_a" : "Welcome to OpenLR! The open source implementation of Line Rider for desktop use! You can view more info about the project here: ",
 		"splash_b" : "OpenLR uses the Haxe and OpenFL framework. View more info at Haxe.org and Openfl.org. Happy Riding!",
 		"new_track" : "New Track",
 		"load_track" : "Load Track",
