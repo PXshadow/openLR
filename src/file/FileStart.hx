@@ -131,9 +131,13 @@ class FileStart
 		var _locFile = File.getContent("./settings/language.json");
 		var _locJson = Json.parse(_locFile);
 		
-		Language.Welcome = _locJson.dictionary.welcome;
 		Language.Continue = _locJson.dictionary.cont;
 		Language.Yes = _locJson.dictionary.yes;
 		Language.No = _locJson.dictionary.no;
+		Language.Title = _locJson.dictionary.title;
+		Language.Splash_a = _locJson.dictionary.splash_a;
+		Language.Splash_b = _locJson.dictionary.splash_b;
+		Language.New_track = _locJson.dictionary.new_track;
+		Language.Load_track = _locJson.dictionary.load_track;
 	}
 }
