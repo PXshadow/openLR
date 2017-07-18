@@ -52,7 +52,7 @@ class B2Frame extends FrameBase
 			anchors[i].vy = anchors[i].y;
 		}
 	}
-	public function reset() {
+	public override function reset() {
 		this.anchors[0].x = 0;
 		this.anchors[0].y = 0;
 		this.anchors[1].x = 0;

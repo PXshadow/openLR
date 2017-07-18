@@ -29,4 +29,7 @@ class FrameBase
 	{
 		
 	}
+	public function reset() {
+		
+	}
 }

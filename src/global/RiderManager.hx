@@ -33,7 +33,9 @@ class RiderManager extends Sprite
 		}
 	}
 	public function rewind_riders() {
-
+		for (a in riderArray) {
+			a.step_rider_back();
+		}
 	}
 	public function restore_start() {
 
