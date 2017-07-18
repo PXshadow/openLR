@@ -1,9 +1,6 @@
 package lr.rider;
 
 import haxe.ds.Vector;
-import lr.rider.phys.frames.FrameBase;
-import lr.rider.phys.skeleton.ScarfBase;
-import lr.rider.phys.skeleton.SkeletonBase;
 import openfl.display.Sprite;
 import openfl.geom.Point;
 import openfl.utils.Object;
@@ -13,10 +10,10 @@ import global.Common;
 import lr.line.nodes.B2Grid;
 import lr.line.LineBase;
 import lr.rider.phys.frames.anchors.CPoint;
-import lr.rider.phys.skeleton.B2Skeleton;
-import lr.rider.phys.frames.B2Frame;
 import lr.rider.phys.skeleton.bones.Stick;
-import lr.rider.phys.skeleton.B2Scarf;
+import lr.rider.phys.frames.FrameBase;
+import lr.rider.phys.skeleton.ScarfBase;
+import lr.rider.phys.skeleton.SkeletonBase;
 
 /**
  * ...
