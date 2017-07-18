@@ -1,4 +1,4 @@
-package lr.rider.phys.anchors;
+package lr.rider.phys.contacts.anchors;
 import openfl.geom.Point;
 import openfl.utils.Object;
 
