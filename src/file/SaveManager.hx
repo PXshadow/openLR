@@ -105,13 +105,13 @@ class SaveManager extends Sprite
 		
 		this.add_timestamp = new CheckBox("Add time stamp", Common.cvar_add_time_stamp);
 		this.addChild(this.add_timestamp);
-		this.add_timestamp.x = 90;
+		this.add_timestamp.x = 140;
 		this.add_timestamp.y = 270;
 		this.add_timestamp.hitBox.addEventListener(MouseEvent.CLICK, this.toggle_time_stamp);
 		
 		this.cancel_button = new TextButton(Language.Cancel, ButtonSize.b120x30);
 		this.addChild(this.cancel_button);
-		this.cancel_button.x = 495;
+		this.cancel_button.x = 475;
 		this.cancel_button.y = 260;
 	}
 	private function save_track_pre() {
