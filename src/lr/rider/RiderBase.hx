@@ -17,6 +17,7 @@ import lr.rider.phys.frames.anchors.CPoint;
 import lr.rider.phys.skeleton.bones.Stick;
 import lr.rider.phys.skeleton.links.B2Skeleton;
 import lr.rider.phys.frames.B2Frame;
+import lr.rider.phys.frames.B1Frame;
 import lr.rider.phys.frames.FrameBase;
 import lr.rider.phys.skeleton.scarf.B2Scarf;
 import lr.rider.phys.skeleton.ScarfBase;
@@ -66,7 +67,11 @@ class RiderBase extends Sprite
 		
 		switch (_type) {
 			case 1:
-				//beta 1 rider
+				this.body = new B1Frame(0, 0);
+				this.skeleton = new B2Skeleton(this.body.anchors);
+				this.scarf = new B2Scarf(this.body.anchors[5]);
+				this.clips = new B2Bosh(this.body, this.scarf, this.skeleton, this);
+				this.addChild(this.clips);
 			case 2:
 				this.body = new B2Frame(0, 0);
 				this.skeleton = new B2Skeleton(this.body.anchors);
