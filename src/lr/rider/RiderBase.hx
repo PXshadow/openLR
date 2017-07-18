@@ -1,6 +1,9 @@
 package lr.rider;
 
 import haxe.ds.Vector;
+import lr.rider.phys.frames.FrameBase;
+import lr.rider.phys.skeleton.ScarfBase;
+import lr.rider.phys.skeleton.SkeletonBase;
 import openfl.display.Sprite;
 import openfl.geom.Point;
 import openfl.utils.Object;
@@ -39,9 +42,9 @@ class RiderBase extends Sprite
 {
 	public var recorded_frames:Array<Array<Array<Dynamic>>>;
 	
-	public var body:B2Frame;
-	public var skeleton:B2Skeleton;
-	public var scarf:B2Scarf;
+	public var body:FrameBase;
+	public var skeleton:SkeletonBase;
+	public var scarf:ScarfBase;
 	public var grav:Object;
 	
 	public var bosh:Sprite;
