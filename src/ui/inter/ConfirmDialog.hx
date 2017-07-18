@@ -49,7 +49,7 @@ class ConfirmDialog extends MovieClip
 		
 		this.no_button = new TextButton(Language.No, ButtonSize.b120x30);
 		this.addChild(this.no_button);
-		this.no_button.x = 360;
+		this.no_button.x = 260;
 		this.no_button.y = 140;
 	}
 	
