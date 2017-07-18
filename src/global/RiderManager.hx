@@ -38,7 +38,9 @@ class RiderManager extends Sprite
 		}
 	}
 	public function restore_start() {
-
+		for (a in riderArray) {
+			a.inject_postion(0);
+		}
 	}
 	public function set_flag() {
 
