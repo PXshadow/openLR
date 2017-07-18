@@ -28,7 +28,9 @@ class RiderManager extends Sprite
 		}
 	}
 	public function sub_step_riders() {
-		
+		for (a in riderArray) {
+			a.step_rider_sub();
+		}
 	}
 	public function rewind_riders() {
 

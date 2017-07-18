@@ -1,4 +1,4 @@
-package lr.line;
+package lr.line.nodes;
 
 import openfl.display.Sprite;
 

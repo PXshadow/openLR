@@ -76,6 +76,9 @@ class SimManager
 		}
 		Common.gTimeline.update();
 	}
+	function sup_frame_update() {
+		Common.gRiderManager.sub_step_riders();
+	}
 	public function scrubberStepBack() {
 		if (Common.sim_frames > 0) {
 			Common.gRiderManager.rewind_riders();
@@ -162,9 +165,6 @@ class SimManager
 		if (Common.svar_game_mode != "edit") {
 			return;
 		}
-		if (e.shiftKey || e.controlKey) {
-			return;
-		}
 		if (e.keyCode == KeyBindings.sm_toggle) {
 			if (Common.svar_sim_running) {
 				if (Common.sim_slow_motion)
@@ -227,8 +227,12 @@ class SimManager
 			}
 		}
 		if (e.keyCode == KeyBindings.step_forward) {
-			this.update_sim();
-			Common.gTimeline.update();
+			if (!e.shiftKey) {
+				this.update_sim();
+				Common.gTimeline.update();
+			} else if (e.shiftKey) {
+				this.sup_frame_update();
+			}
 		}
 		if (e.keyCode == KeyBindings.step_backward) {
 			Common.gRiderManager.rewind_riders();
