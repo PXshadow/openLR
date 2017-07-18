@@ -7,7 +7,7 @@ import openfl.text.TextFormat;
 import openfl.text.TextFormatAlign;
 import openfl.Assets;
 
-import ui.inter.SingleButton;
+import ui.inter.TextButton;
 import global.Language;
 
 /**
@@ -17,8 +17,8 @@ import global.Language;
 class ConfirmDialog extends MovieClip
 {
 	private var alert_message:TextField;
-	private var yes_button:SingleButton;
-	private var no_button:SingleButton;
+	private var yes_button:TextButton;
+	private var no_button:TextButton;
 	var font:TextFormat = new TextFormat(Assets.getFont("fonts/Verdana.ttf").fontName, 14, 0, null, null, null, null, null, TextFormatAlign.CENTER);
 	public function new(_msg:String = "Message not set", _yes:Dynamic = null, _no:Dynamic = null) 
 	{
@@ -42,12 +42,12 @@ class ConfirmDialog extends MovieClip
 		this.alert_message.width = this.width;
 		this.alert_message.y = 40;
 		
-		this.yes_button = new SingleButton(Language.Yes, _yes, 4);
+		this.yes_button = new TextButton(Language.Yes, ButtonSize.b120x30);
 		this.addChild(this.yes_button);
 		this.yes_button.x = 40;
 		this.yes_button.y = 140;
 		
-		this.no_button = new SingleButton(Language.No, _no, 5);
+		this.no_button = new TextButton(Language.No, ButtonSize.b120x30);
 		this.addChild(this.no_button);
 		this.no_button.x = 360;
 		this.no_button.y = 140;
