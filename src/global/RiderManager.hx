@@ -62,6 +62,8 @@ class RiderManager extends Sprite
 
 	}
 	public function inject_frame(_frame:Int) {
-
+		for (a in riderArray) {
+			a.inject_postion(_frame);
+		}
 	}
 }

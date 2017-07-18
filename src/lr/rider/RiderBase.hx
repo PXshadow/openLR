@@ -116,7 +116,17 @@ class RiderBase extends Sprite
 		this.camera.pan(this.body.anchors[5]);
 		this.clips.render_body();
 	}
-	
+	public function inject_postion(_frame:Int) {
+		while (tick_frame != SubFrame.FullTick) {
+			this.step_rider_sub();
+		}
+		recorder.inject_frame(_frame, this.body.anchors, this.scarf.anchors);
+		if (Common.sim_frames == 0) {
+			this.reset();
+		}
+		this.camera.pan(this.body.anchors[5]);
+		this.clips.render_body();
+	}
 	function reset() 
 	{
 		this.body.reset();
@@ -169,7 +179,7 @@ class RiderBase extends Sprite
 		}
 	}
 	public function return_to_start() {
-		
+		this.inject_postion(0);
 	}
 	function collision() 
 	{

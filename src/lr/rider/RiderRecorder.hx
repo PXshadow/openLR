@@ -62,7 +62,7 @@ class RiderRecorder
 				_scarf[j].dx = this.scarf_array[_frame][j][4];
 				_scarf[j].dy = this.scarf_array[_frame][j][5];
 			}
-			Common.sim_frames -= 1;
+			Common.sim_frames = _frame;
 		} catch(e:String) {
 			return;
 		}
