@@ -25,5 +25,8 @@ class BodyBase
 			a.verlet(_gravity);
 		}
 	}
-	
+	public function crash_check()
+	{
+		
+	}
 }

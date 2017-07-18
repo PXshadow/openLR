@@ -47,5 +47,4 @@ class B2Skeleton extends SkeletonBase
 		this.edges[20].rest *= 0.5;
 		this.edges[21].rest *= 0.5;
 	}
-	
 }

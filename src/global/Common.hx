@@ -19,7 +19,7 @@ import ui.tool.Toolbar;
 import lr.TextInfo;
 import lr.line.Grid;
 import lr.line.VisGrid;
-import lr.rider.RiderCamera;
+import lr.rider.phys.objects.RiderCamera;
 
 /**
  * ...

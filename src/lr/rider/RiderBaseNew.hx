@@ -67,8 +67,8 @@ class RiderBaseNew extends Sprite
 				//beta 3 rider that falls apart
 			default :
 				this.body = new B2Body(0, 0);
-			this.skeleton = new B2Skeleton(this.body.anchors);
-			this.scarf = new B2Scarf(this.body.anchors[5]);
+				this.skeleton = new B2Skeleton(this.body.anchors);
+				this.scarf = new B2Scarf(this.body.anchors[5]);
 		}
 		this.bosh = new Sprite();
 		this.getAssets();
@@ -86,6 +86,7 @@ class RiderBaseNew extends Sprite
 			this.scarf.constrain();
 			this.collision();
 		}
+		this.body.crash_check();
 		this.render_body();
 	}
 	public function step_rider_sub() {

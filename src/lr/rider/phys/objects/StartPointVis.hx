@@ -1,4 +1,4 @@
-package lr.rider;
+package lr.rider.phys.objects;
 import openfl.display.MovieClip;
 
 /**

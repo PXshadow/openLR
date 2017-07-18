@@ -3,6 +3,7 @@ package lr.rider.phys.contacts;
 import haxe.ds.Vector;
 
 import lr.rider.phys.contacts.anchors.CPoint;
+import lr.rider.phys.skeleton.bones.Stick;
 
 
 /**
@@ -80,6 +81,18 @@ class B2Body extends BodyBase
 			i.y += this.start_y;
 			i.vx = i.x - 0.4;
 			i.vy = i.y;
+		}
+	}
+	override public function crash_check() {
+		var _loc4:Float = this.anchors[3].x - this.anchors[0].x;
+		var _loc5:Float = this.anchors[3].y - this.anchors[0].y;
+		if (_loc4 * (this.anchors[1].y - this.anchors[0].y) - _loc5 * (this.anchors[1].x - this.anchors[0].x) < 0)
+		{
+			Stick.crash = true; //Tail fakie counter measure. "Bug" that existed in Beta 1 that was was patched in Rev 5 (presumably);
+		}
+		if (_loc4 * (this.anchors[5].y - this.anchors[4].y) - _loc5 * (this.anchors[5].x - this.anchors[4].x) > 0)
+		{
+			Stick.crash = true; //headflip check. Defs more of a bug than tail fake, prevents head from being logged beneath the sled.
 		}
 	}
 }
