@@ -1,6 +1,7 @@
 package lr.rider.phys.skeleton;
 
-import lr.rider.phys.anchors.CPoint;
+import lr.rider.phys.skeleton.bones.*;
+import lr.rider.phys.contacts.anchors.*;
 
 /**
  * ...
@@ -8,10 +9,10 @@ import lr.rider.phys.anchors.CPoint;
  */
 class B2Skeleton 
 {
-	private var anchors:Array<CPoint>;
+	private var bones:Array<Stick>
 	public function new(_anchors:Array<CPoint>)
 	{
-		this.anchors = _anchors;
+		
 	}
 	
 }

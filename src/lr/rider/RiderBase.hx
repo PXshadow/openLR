@@ -1,8 +1,8 @@
 package lr.rider;
 
 import haxe.ds.Vector;
-import lr.rider.phys.anchors.CPoint;
-import lr.rider.phys.anchors.SPoint;
+import lr.rider.phys.contacts.anchors.CPoint;
+import lr.rider.phys.contacts.anchors.SPoint;
 import lr.rider.phys.skeleton.bones.BindStick;
 import lr.rider.phys.skeleton.bones.RepellStick;
 import lr.rider.phys.skeleton.bones.ScarfStick;
