@@ -51,6 +51,7 @@ class RiderBase extends Sprite
 	public var grav:Object;
 	
 	public var recorder:RiderRecorder;
+	public var camera:RiderCamera;
 	
 	var tick_frame = SubFrame.FullTick;
 	
@@ -83,6 +84,7 @@ class RiderBase extends Sprite
 		this.grav.y = 0.175;
 		
 		this.recorder = new RiderRecorder();
+		this.camera = new RiderCamera();
 	}
 	public function step_rider()
 	{
@@ -99,6 +101,7 @@ class RiderBase extends Sprite
 		this.body.crash_check();
 		this.recorder.index_frame(Common.sim_frames, this.body.anchors, this.scarf.anchors);
 		this.clips.render_body();
+		this.camera.pan(this.body.anchors[5]);
 	}
 	public function step_rider_back() {
 		while (tick_frame != SubFrame.FullTick) {
@@ -108,6 +111,7 @@ class RiderBase extends Sprite
 		if (Common.sim_frames == 0) {
 			this.reset();
 		}
+		this.camera.pan(this.body.anchors[5]);
 		this.clips.render_body();
 	}
 	
