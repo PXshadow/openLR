@@ -46,9 +46,11 @@ class TextButton extends Sprite
 			default:
 			case 0:
 				this.label.width = 230;
+				this.label.height = 30;
 				this.label.y = 10;
 			case 1:
 				this.label.width = 120;
+				this.label.height = 25;
 				this.label.y = 5;
 		}
 	}
