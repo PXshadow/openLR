@@ -1,4 +1,4 @@
-package lr.rider.phys.skeleton;
+package lr.rider.phys.skeleton.scarf;
 
 import haxe.ds.Vector;
 import lr.rider.phys.frames.anchors.CPoint;
