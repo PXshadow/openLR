@@ -118,7 +118,7 @@ class RiderBase extends Sprite
 		if (Common.sim_frames == 0) {
 			this.reset();
 		}
-		this.camera.pan(this.body.anchors[4]);
+		this.camera.pan(this.body.anchors[5]);
 		this.clips.render_body();
 	}
 	public function inject_postion(_frame:Int) {
@@ -129,7 +129,7 @@ class RiderBase extends Sprite
 		if (Common.sim_frames == 0) {
 			this.reset();
 		}
-		this.camera.pan(this.body.anchors[4]);
+		this.camera.pan(this.body.anchors[5]);
 		this.clips.render_body();
 	}
 	function reset() 
