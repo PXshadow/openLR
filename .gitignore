@@ -9,10 +9,10 @@ assets/flash/components\.fla
 
 assets/flash/components\.swf
 
-*.fla
-
 *.swf
 
 assets/ffmpeg/
 
 src/com/TBD/
+
+assets/flash/swf files/
