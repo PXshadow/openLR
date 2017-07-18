@@ -19,6 +19,13 @@ import lr.rider.phys.skeleton.B2Scarf;
  * ...
  * @author Kaelan Evans
  */
+@:enum abstract RiderType(Int) from Int to Int {
+	public var Beta1:Int = 1;
+	public var Beta2:Int = 2;
+	public var Beta3a:Int = 3;
+	public var Beta3b:Int = 4; //this is the one that falls apart
+}
+
 class RiderBaseNew extends Sprite
 {
 	public static var iteration:Int = 6;
@@ -41,18 +48,30 @@ class RiderBaseNew extends Sprite
 	private var scarf_vis:Sprite;
 	private var skeleton_vis:Sprite;
 	
-	public function new() 
+	public function new(_type:Int) 
 	{
 		super();
 		
-		this.bosh = new Sprite();
-		this.getAssets();
-		
 		this.recorded_frames = new Array();
 		
-		this.body = new B2Body(0, 0);
-		this.skeleton = new B2Skeleton(this.body.anchors);
-		this.scarf = new B2Scarf(this.body.anchors[5]);
+		switch (_type) {
+			case 1:
+				//beta 1 rider
+			case 2:
+				this.body = new B2Body(0, 0);
+				this.skeleton = new B2Skeleton(this.body.anchors);
+				this.scarf = new B2Scarf(this.body.anchors[5]);
+			case 3:
+				//beta 3 rider normal
+			case 4:
+				//beta 3 rider that falls apart
+			default :
+				this.body = new B2Body(0, 0);
+			this.skeleton = new B2Skeleton(this.body.anchors);
+			this.scarf = new B2Scarf(this.body.anchors[5]);
+		}
+		this.bosh = new Sprite();
+		this.getAssets();
 		
 		this.grav = new Object();
 		this.grav.x = 0;
