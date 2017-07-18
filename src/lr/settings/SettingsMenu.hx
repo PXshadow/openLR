@@ -40,16 +40,19 @@ class SettingsMenu extends Sprite
 		this.tabProfile = new TextButton(Language.Profile, ButtonSize.b120x30);
 		
 		this.addChild(this.tabFileMenu);
+		this.tabFileMenu.x = -140;
 		
 		this.addChild(this.tabTrackSettings);
-		this.tabTrackSettings.x = this.tabFileMenu.width;
+		this.tabTrackSettings.x = -140;
+		this.tabTrackSettings.y = 35;
 		
 		//this.addChild(this.tabProfile);
 		//this.tabProfile.x = this.tabTrackSettings.x + this.tabTrackSettings.width;
 		
 		this.exit = new TextButton(Language.Close, ButtonSize.b120x30);
 		this.addChild(exit);
-		this.exit.x = this.width;
+		this.exit.x = -140;
+		this.exit.y = 70;
 		
 		this.fileMenu = new FileMenu();
 		this.trackMenu = new TrackSettings();
@@ -76,21 +79,15 @@ class SettingsMenu extends Sprite
 		this.state = track;
 		this.addChild(this.trackMenu);
 		this.trackMenu.update();
-		this.trackMenu.y = this.tabFileMenu.height + 5;
-		this.trackMenu.x = 5;
 	}
 	function set_to_file() {
 		this.clearMenu();
 		this.state = file;
 		this.addChild(this.fileMenu);
-		this.fileMenu.y = this.tabFileMenu.height + 5;
-		this.fileMenu.x = 5;
 	}
 	function set_to_profile() {
 		this.clearMenu();
 		this.state = profile;
 		this.addChild(this.profileMenu);
-		this.profileMenu.y = this.tabFileMenu.height + 5;
-		this.profileMenu.x = 5;
 	}
 }
