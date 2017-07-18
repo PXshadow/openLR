@@ -139,5 +139,11 @@ class FileStart
 		Language.Splash_b = _locJson.dictionary.splash_b;
 		Language.New_track = _locJson.dictionary.new_track;
 		Language.Load_track = _locJson.dictionary.load_track;
+		Language.Save_track = _locJson.dictionary.save_track;
+		Language.Screencap = _locJson.dictionary.screencap;
+		Language.File = _locJson.dictionary.file;
+		Language.Track = _locJson.dictionary.track;
+		Language.Profile = _locJson.dictionary.profile;
+		Language.Close = _locJson.dictionary.close;
 	}
 }
