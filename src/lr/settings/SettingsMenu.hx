@@ -35,9 +35,9 @@ class SettingsMenu extends Sprite
 	{
 		super();
 		
-		this.tabFileMenu = new TextButton(Language.File, ButtonSize.b120x30);
-		this.tabTrackSettings = new TextButton(Language.Track, ButtonSize.b120x30);
-		this.tabProfile = new TextButton(Language.Profile, ButtonSize.b120x30);
+		this.tabFileMenu = new TextButton(Language.File, this.set_to_file, ButtonSize.b120x30);
+		this.tabTrackSettings = new TextButton(Language.Track, this.set_to_track, ButtonSize.b120x30);
+		this.tabProfile = new TextButton(Language.Profile, this.set_to_profile, ButtonSize.b120x30);
 		
 		this.addChild(this.tabFileMenu);
 		this.tabFileMenu.x = -140;
@@ -49,7 +49,7 @@ class SettingsMenu extends Sprite
 		//this.addChild(this.tabProfile);
 		//this.tabProfile.x = this.tabTrackSettings.x + this.tabTrackSettings.width;
 		
-		this.exit = new TextButton(Language.Close, ButtonSize.b120x30);
+		this.exit = new TextButton(Language.Close, Common.gCode.toggleSettings_box, ButtonSize.b120x30);
 		this.addChild(exit);
 		this.exit.x = -140;
 		this.exit.y = 70;
