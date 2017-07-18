@@ -48,12 +48,12 @@ class LoadManager extends Sprite
 		
 		this.parseSaveDirecotry();
 		
-		this.load_button = new TextButton(Language.Load, ButtonSize.b120x30);
+		this.load_button = new TextButton(Language.Load, this.loadFromObject, ButtonSize.b120x30);
 		this.addChild(this.load_button);
 		this.load_button.x = 10;
 		this.load_button.y = 430;
 		
-		this.cancel_button = new TextButton(Language.Cancel, ButtonSize.b120x30);
+		this.cancel_button = new TextButton(Language.Cancel, Common.gCode.toggle_Loader, ButtonSize.b120x30);
 		this.addChild(this.cancel_button);
 		this.cancel_button.x = 300;
 		this.cancel_button.y = 430;
