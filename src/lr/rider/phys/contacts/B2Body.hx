@@ -13,6 +13,8 @@ class B2Body extends BodyBase
 {
 	public function new(_x:Float, _y:Float) 
 	{
+		super();
+		
 		this.start_x = _x;
 		this.start_y = _y;
 		
