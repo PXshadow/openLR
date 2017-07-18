@@ -1,7 +1,7 @@
 package lr.rider;
 
 import haxe.ds.Vector;
-import lr.rider.phys.RiderRecorder;
+import lr.rider.RiderRecorder;
 import openfl.display.Sprite;
 import openfl.geom.Point;
 import openfl.utils.Object;

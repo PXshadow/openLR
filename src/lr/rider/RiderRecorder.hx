@@ -1,4 +1,4 @@
-package lr.rider.phys;
+package lr.rider;
 
 import haxe.ds.Vector;
 
