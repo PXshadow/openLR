@@ -12,8 +12,9 @@ import openfl.ui.Mouse;
 import openfl.ui.MouseCursor;
 
 import global.Common;
+import global.Language;
 import ui.tool.Toolbar;
-import ui.inter.SingleButton;
+import ui.inter.TextButton;
 import file.LoadManager;
 import ui.inter.ConfirmDialog;
 import ui.inter.InputText;
@@ -27,12 +28,12 @@ class IconSave extends IconBase
 {
 	private var open:Bool = false;
 	private var menu:MovieClip;
-	private var new_track:SingleButton;
-	private var save_track:SingleButton;
-	private var load_track:SingleButton;
+	private var new_track:TextButton;
+	private var save_track:TextButton;
+	private var load_track:TextButton;
 	private var loadManager:LoadManager;
 	private var safety_dialog:ConfirmDialog;
-	private var screen_cap:SingleButton;
+	private var screen_cap:TextButton;
 	public function new() 
 	{
 		super();
@@ -63,20 +64,20 @@ class IconSave extends IconBase
 			this.menu.graphics.beginFill(0xCCCCCC, 1);
 			this.menu.graphics.lineTo(0, 0);
 			
-			this.new_track = new SingleButton("New Track", this.make_new_track);
+			this.new_track = new TextButton(Language.New_track, ButtonSize.b120x30);
 			this.menu.addChild(this.new_track);
 			this.menu.y = 35;
 			this.menu.x = 5;
 			
-			this.save_track = new SingleButton("Save Track", this.open_save_menu);
+			this.save_track = new TextButton(Language.Save_track, ButtonSize.b120x30);
 			this.menu.addChild(this.save_track);
 			this.save_track.y = this.new_track.height;
 			
-			this.load_track = new SingleButton("Load Track", this.show_loader);
+			this.load_track = new TextButton(Language.Load_track, ButtonSize.b120x30);
 			this.menu.addChild(this.load_track);
 			this.load_track.y = this.save_track.y + this.load_track.height;
 			
-			this.screen_cap = new SingleButton("Screencap", this.take_screenshot);
+			this.screen_cap = new TextButton(Language.Screencap, ButtonSize.b120x30);
 			this.menu.addChild(this.screen_cap);
 			this.screen_cap.y = this.load_track.y + this.screen_cap.height;
 			
