@@ -67,6 +67,7 @@ class RiderBase extends Sprite
 		this.init_rider();
 	}
 	private function getAssets() {
+		//These are used to preserve the resolution quality of the rider when scaling.
 		var swfLibSled = AssetLibrary.loadFromFile("swf/sled.bundle");
 		swfLibSled.onComplete(sledClip);
 		
