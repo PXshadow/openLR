@@ -26,7 +26,14 @@ import lr.rider.phys.skeleton.B2Scarf;
 	public var Beta3b:Int = 4; //this is the one that falls apart
 	public var JSON:Int = 5;
 }
-
+@:enum abstract SubFrame(Int) from Int to Int {
+	public var Momentum:Int = 0;
+	public var Step1:Int = 1;
+	public var Step2:Int = 2;
+	public var Step3:Int = 3;
+	public var Step4:Int = 4;
+	public var Step5:Int = 5;
+}
 class RiderBaseNew extends Sprite
 {
 	public static var iteration:Int = 6;
