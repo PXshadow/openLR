@@ -23,4 +23,10 @@ class Language
 	public static var Save:String;
 	public static var New_track:String;
 	public static var Load_track:String;
+	public static var Save_track:String;
+	public static var Screencap:String;
+	public static var File:String;
+	public static var Track:String;
+	public static var Profile:String;
+	public static var Close:String;
 }
