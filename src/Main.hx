@@ -312,6 +312,6 @@ class Main extends Sprite
 	}
 	public function end_screencap() {
 		this.toolBar.visible = true;
-		this.timeline.visible = false;
+		this.timeline.visible = true;
 	}
 }
