@@ -55,6 +55,9 @@ class RiderBase extends Sprite
 	public var camera:RiderCamera;
 	public var flag:FlagMarker;
 	
+	public var flagged:Bool = false;
+	public var flag_vis:Bool = false;
+	
 	var tick_frame = SubFrame.FullTick;
 	
 	public function new(_type:Int) 
@@ -115,7 +118,7 @@ class RiderBase extends Sprite
 		if (Common.sim_frames == 0) {
 			this.reset();
 		}
-		this.camera.pan(this.body.anchors[5]);
+		this.camera.pan(this.body.anchors[4]);
 		this.clips.render_body();
 	}
 	public function inject_postion(_frame:Int) {
@@ -126,7 +129,7 @@ class RiderBase extends Sprite
 		if (Common.sim_frames == 0) {
 			this.reset();
 		}
-		this.camera.pan(this.body.anchors[5]);
+		this.camera.pan(this.body.anchors[4]);
 		this.clips.render_body();
 	}
 	function reset() 
@@ -184,9 +187,25 @@ class RiderBase extends Sprite
 		this.inject_postion(0);
 	}
 	public function store_location() {
+		if (flagged) {
+			this.removeChild(this.flag);
+		} else {
+			this.flagged = true;
+			this.flag_vis = true;
+		}
 		Common.sim_flagged_frame = Common.sim_frames;
 		this.flag = new FlagMarker(Common.sim_frames);
+		this.addChild(this.flag);
+		this.flag.x = this.body.anchors[4].x;
+		this.flag.y = this.body.anchors[4].y;
+		this.flag.alpha = 1;
 		this.body.save_position();
+	}
+	public function enable_flag() {
+		this.flag.alpha = 1;
+	}
+	public function disable_flag() {
+		this.flag.alpha = 0.2;
 	}
 	function collision() 
 	{

@@ -48,10 +48,14 @@ class RiderManager extends Sprite
 		}
 	}
 	public function enable_flag() {
-
+		for (a in riderArray) {
+			a.enable_flag();
+		}
 	}
 	public function disable_flag() {
-
+		for (a in riderArray) {
+			a.disable_flag();
+		}
 	}
 	public function restore_flag() {
 		for (a in riderArray) {
