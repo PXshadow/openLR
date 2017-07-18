@@ -1,7 +1,6 @@
 package lr.rider;
 
 import haxe.ds.Vector;
-import lr.rider.RiderRecorder;
 import openfl.display.Sprite;
 import openfl.geom.Point;
 import openfl.utils.Object;
@@ -10,6 +9,8 @@ import openfl.utils.AssetLibrary;
 import global.Common;
 import lr.line.LineBase;
 import lr.line.nodes.B2Grid;
+import lr.rider.RiderRecorder;
+import lr.rider.objects.FlagMarker;
 import lr.rider.objects.VisBase;
 import lr.rider.objects.visual.B2Bosh;
 import lr.rider.phys.frames.anchors.CPoint;
@@ -52,6 +53,7 @@ class RiderBase extends Sprite
 	
 	public var recorder:RiderRecorder;
 	public var camera:RiderCamera;
+	public var flag:FlagMarker;
 	
 	var tick_frame = SubFrame.FullTick;
 	
@@ -180,6 +182,11 @@ class RiderBase extends Sprite
 	}
 	public function return_to_start() {
 		this.inject_postion(0);
+	}
+	public function store_location() {
+		Common.sim_flagged_frame = Common.sim_frames;
+		this.flag = new FlagMarker(Common.sim_frames);
+		this.body.save_position();
 	}
 	function collision() 
 	{

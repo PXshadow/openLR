@@ -25,6 +25,16 @@ class FrameBase
 			a.verlet(_gravity);
 		}
 	}
+	public function save_position() {
+		for (a in anchors) {
+			a.save();
+		}
+	}
+	public function restore_position() {
+		for (a in anchors) {
+			a.restore();
+		}
+	}
 	public function crash_check()
 	{
 		

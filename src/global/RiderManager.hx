@@ -43,7 +43,9 @@ class RiderManager extends Sprite
 		}
 	}
 	public function set_flag() {
-
+		for (a in riderArray) {
+			a.store_location();
+		}
 	}
 	public function enable_flag() {
 
@@ -52,7 +54,9 @@ class RiderManager extends Sprite
 
 	}
 	public function restore_flag() {
-
+		for (a in riderArray) {
+			a.inject_postion(Common.sim_flagged_frame);
+		}
 	}
 	public function destroy_flag() {
 
