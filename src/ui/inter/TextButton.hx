@@ -16,6 +16,7 @@ import ui.inter.BTNVisual;
  */
 @:enum abstract ButtonSize(Int) from Int to Int {
 	public var b230x40:Int = 0;
+	public var b120x30:Int = 1;
 }
 class TextButton extends Sprite
 {
@@ -46,6 +47,9 @@ class TextButton extends Sprite
 			case 0:
 				this.label.width = 230;
 				this.label.y = 10;
+			case 1:
+				this.label.width = 120;
+				this.label.y = 5;
 		}
 	}
 }
