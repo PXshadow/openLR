@@ -3,7 +3,6 @@ package lr.settings;
 import openfl.display.Sprite;
 import openfl.events.MouseEvent;
 
-import ui.inter.SingleButton;
 import ui.inter.StepCounter;
 import ui.inter.CheckBox;
 import global.Common;
