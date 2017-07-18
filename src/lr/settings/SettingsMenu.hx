@@ -20,6 +20,8 @@ enum PanelMode
  */
 class SettingsMenu extends Sprite
 {
+	 var state:PanelMode = file; 
+	  
 	var tabFileMenu:TextButton;
 	var tabTrackSettings:TextButton;
 	var tabProfile:TextButton;
