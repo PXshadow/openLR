@@ -7,6 +7,13 @@ import ui.inter.TextButton;
 import global.Language;
 import global.Common;
 
+enum PanelMode
+{
+	file;
+	track;
+	profile;
+}
+
 /**
  * ...
  * @author Kaelan Evans
