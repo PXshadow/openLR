@@ -1,6 +1,6 @@
 package lr;
 
-import lr.line.nodes.Grid;
+import lr.line.nodes.B2Grid;
 import lr.line.LineBase;
 import lr.line.nodes.VisGrid;
 import openfl.display.Sprite;
@@ -18,7 +18,7 @@ import global.Common;
  */
 class Track extends Sprite
 {
-	private var grid:Grid;
+	private var grid:B2Grid;
 	private var visGrid:VisGrid;
 	private var simManager:SimManager;
 	public function new() 
@@ -26,7 +26,7 @@ class Track extends Sprite
 		super();
 		Common.gTrack = this;
 		Common.track_scale = 1;
-		this.grid = new Grid();
+		this.grid = new B2Grid();
 		this.visGrid = new VisGrid();
 		this.simManager = new SimManager();
 	}

@@ -1,79 +1,168 @@
 package lr.rider;
 
 import haxe.ds.Vector;
-import lr.rider.phys.contacts.anchors.CPoint;
-import lr.rider.phys.contacts.anchors.SPoint;
-import lr.rider.phys.objects.FlagMarker;
-import lr.rider.phys.objects.RiderCamera;
-import lr.rider.phys.objects.StartPointVis;
-import lr.rider.phys.skeleton.bones.BindStick;
-import lr.rider.phys.skeleton.bones.RepellStick;
-import lr.rider.phys.skeleton.bones.ScarfStick;
-import lr.rider.phys.skeleton.bones.Stick;
 import openfl.display.Sprite;
 import openfl.geom.Point;
 import openfl.utils.Object;
-import openfl.events.IOErrorEvent;
 import openfl.utils.AssetLibrary;
 
 import global.Common;
-import lr.line.nodes.Grid;
-import lr.line.nodes.VisGrid;
+import lr.line.nodes.B2Grid;
 import lr.line.LineBase;
-import lr.rider.phys.*;
+import lr.rider.phys.contacts.anchors.CPoint;
+import lr.rider.phys.skeleton.B2Skeleton;
+import lr.rider.phys.contacts.B2Body;
+import lr.rider.phys.skeleton.bones.Stick;
+import lr.rider.phys.skeleton.B2Scarf;
 
 /**
  * ...
- * @author ...
+ * @author Kaelan Evans
  */
+@:enum abstract RiderType(Int) from Int to Int {
+	public var Beta1:Int = 1;
+	public var Beta2:Int = 2;
+	public var Beta3a:Int = 3;
+	public var Beta3b:Int = 4; //this is the one that falls apart
+	public var JSON:Int = 5;
+}
+@:enum abstract SubFrame(Int) from Int to Int {
+	public var Momentum:Int = 0;
+	public var Step1:Int = 1;
+	public var Step2:Int = 2;
+	public var Step3:Int = 3;
+	public var Step4:Int = 4;
+	public var Step5:Int = 5;
+	public var FullTick:Int = 6;
+}
 class RiderBase extends Sprite
 {
-	public var anchors:Vector<CPoint>;
-	public var anchors_scarf:Vector<SPoint>;
-	public var edges:Vector<Stick>;
-	public var edges_scarf:Vector<ScarfStick>;
-	public var startFrame:Vector<CPoint>;
-	public var saveFrame:Vector<CPoint>;
-	public var g:Object;
-	public var bosh:Sprite;
 	public var recorded_frames:Array<Array<Array<Dynamic>>>;
-	public var recorded_frames_scarf:Array<Array<Array<Dynamic>>>;
 	
-	private var body:Sprite;
+	public var body:B2Body;
+	public var skeleton:B2Skeleton;
+	public var scarf:B2Scarf;
+	public var grav:Object;
+	
+	public var bosh:Sprite;
+	private var body_vis:Sprite;
 	private var leftArm:Sprite;
 	private var rightArm:Sprite;
 	private var leftLeg:Sprite;
 	private var rightLeg:Sprite;
 	private var sled:Sprite;
 	private var string:Sprite;
-	private var scarf:Sprite;
-	private var skeleton:Sprite;
+	private var scarf_vis:Sprite;
+	private var skeleton_vis:Sprite;
 	
-	private var camera:RiderCamera;
+	var tick_frame = SubFrame.FullTick;
 	
-	public var flag:FlagMarker;
-	public var Start:StartPointVis;
-	
-	private var crashed:Bool = false;
-	
-	public function new() 
+	public function new(_type:Int) 
 	{
 		super();
 		
-		g = new Object();
-		g.x = 0;
-		g.y = 0.175;
-		
-		this.getAssets();
-		this.camera = new RiderCamera();
-		this.Start = new StartPointVis();
-		
-		this.bosh = new Sprite();
-		this.addChild(this.Start);
-		
 		this.recorded_frames = new Array();
-		this.recorded_frames_scarf = new Array();
-		this.init_rider();
+		
+		switch (_type) {
+			case 1:
+				//beta 1 rider
+			case 2:
+				this.body = new B2Body(0, 0);
+				this.skeleton = new B2Skeleton(this.body.anchors);
+				this.scarf = new B2Scarf(this.body.anchors[5]);
+			case 3:
+				//beta 3 rider normal
+			case 4:
+				//beta 3 rider that falls apart
+			default :
+				this.body = new B2Body(0, 0);
+				this.skeleton = new B2Skeleton(this.body.anchors);
+				this.scarf = new B2Scarf(this.body.anchors[5]);
+		}
+		this.bosh = new Sprite();
+		this.getAssets();
+		
+		this.grav = new Object();
+		this.grav.x = 0;
+		this.grav.y = 0.175;
+	}
+	public function step_rider()
+	{
+		while (tick_frame != SubFrame.FullTick) {
+			this.step_rider_sub();
+		}
+		this.body.verlet(this.grav);
+		this.scarf.verlet(this.grav);
+		for (a in 0...6) {
+			this.skeleton.constrain();
+			this.scarf.constrain();
+			this.collision();
+		}
+		this.body.crash_check();
+		this.render_body();
+	}
+	public function step_rider_sub() {
+		switch (this.tick_frame) {
+			case 0 :
+				this.body.verlet(this.grav);
+				this.scarf.verlet(this.grav);
+				this.render_body();
+				this.tick_frame = SubFrame.Step1;
+			case 1 :
+				this.skeleton.constrain();
+				this.scarf.constrain();
+				this.collision();
+				this.render_body();
+				this.tick_frame = SubFrame.Step2;
+			case 2 :
+				this.skeleton.constrain();
+				this.scarf.constrain();
+				this.collision();
+				this.render_body();
+				this.tick_frame = SubFrame.Step3;
+			case 3 :
+				this.skeleton.constrain();
+				this.scarf.constrain();
+				this.collision();
+				this.render_body();
+				this.tick_frame = SubFrame.Step4;
+			case 4 :
+				this.skeleton.constrain();
+				this.scarf.constrain();
+				this.collision();
+				this.render_body();
+				this.tick_frame = SubFrame.Step5;
+			case 5 :
+				this.skeleton.constrain();
+				this.scarf.constrain();
+				this.collision();
+				this.render_body();
+				this.tick_frame = SubFrame.FullTick;
+			case 6 :
+				this.skeleton.constrain();
+				this.scarf.constrain();
+				this.collision();
+				this.body.crash_check();
+				this.render_body();
+				this.tick_frame = SubFrame.Momentum;
+		}
+	}
+	public function return_to_start() {
+		
+	}
+	public function record_frame() {
+		var anchors:Vector<CPoint> = this.body.anchors;
+		this.recorded_frames[Common.sim_frames] = new Array();
+		for (i in 0...anchors.length) {
+			this.recorded_frames[Common.sim_frames][i] = new Array();
+			this.recorded_frames[Common.sim_frames][i][0] = this.body.anchors[i].x;
+			this.recorded_frames[Common.sim_frames][i][1] = this.body.anchors[i].y;
+			this.recorded_frames[Common.sim_frames][i][2] = this.body.anchors[i].vx;
+			this.recorded_frames[Common.sim_frames][i][3] = this.body.anchors[i].vy;
+			this.recorded_frames[Common.sim_frames][i][4] = this.body.anchors[i].dx;
+			this.recorded_frames[Common.sim_frames][i][5] = this.body.anchors[i].dy;
+			this.recorded_frames[Common.sim_frames][i][6] = Stick.crash;
+		}
 	}
 	private function getAssets() {
 		//These are used to preserve the resolution quality of the rider when scaling.
@@ -89,471 +178,14 @@ class RiderBase extends Sprite
 		var swfLibArm = AssetLibrary.loadFromFile("swf/arm.bundle");
 		swfLibArm.onComplete(armClip);
 	}
-	public function init_rider() 
-	{
-		Stick.crash = false;
-		
-		this.anchors = new Vector(10); //Rider contact points
-		this.anchors[0] = new CPoint(0, 0, 0.8, 0); //2nd Peg
-		this.anchors[1] = new CPoint(0, 10, 0, 1); //Upper Nose
-		this.anchors[2] = new CPoint(30, 10, 0, 2); //Lower Nose
-		this.anchors[3] = new CPoint(35, 0, 0, 3); //1st peg
-		this.anchors[4] = new CPoint(10, 0, 0.8, 4); //Butt
-		this.anchors[5] = new CPoint(10, -11, 0.8, 5); //Shoulder
-		this.anchors[6] = new CPoint(23, -10, 0.1, 6); //hand
-		this.anchors[7] = new CPoint(23, -10, 0.1, 7); //hand
-		this.anchors[8] = new CPoint(20, 10, 0, 8); //Foot
-		this.anchors[9] = new CPoint(20, 10, 0, 9); //Foot
-		
-		this.anchors_scarf = new Vector(6); //Scarf contact points
-		this.anchors_scarf[0] = new SPoint(7, -10);
-		this.anchors_scarf[1] = new SPoint(3, -10);
-		this.anchors_scarf[2] = new SPoint(0, -10);
-		this.anchors_scarf[3] = new SPoint(-4, -10);
-		this.anchors_scarf[4] = new SPoint(-7, -10);
-		this.anchors_scarf[5] = new SPoint(-11, -10);
-		
-		for (a in 0...anchors.length) {
-			anchors[a].x *= 0.5;
-			anchors[a].y *= 0.5;
-		}
-		for (b in 0...anchors_scarf.length) {
-			anchors_scarf[b].x *= 0.5;
-			anchors_scarf[b].y *= 0.5;
-		}
-		
-		this.edges = new Vector(22); //"Bones" that hold the rider together and help retain shape.
-		
-		this.edges[0] = new Stick(anchors[0], anchors[1]);// Sled
-		this.edges[1] = new Stick(anchors[1], anchors[2]);//
-		this.edges[2] = new Stick(anchors[2], anchors[3]);//
-		this.edges[3] = new Stick(anchors[3], anchors[0]);//
-		this.edges[4] = new Stick(anchors[0], anchors[2]);//
-		this.edges[5] = new Stick(anchors[3], anchors[1]);//
-		
-		this.edges[6] = new BindStick(anchors[0], anchors[4]);// Sled to butt
-		this.edges[7] = new BindStick(anchors[1], anchors[4]);//
-		this.edges[8] = new BindStick(anchors[2], anchors[4]);//
-		
-		this.edges[9] = new Stick(anchors[5], anchors[4]); // Body
-		this.edges[10] = new Stick(anchors[5], anchors[6]);//
-		this.edges[11] = new Stick(anchors[5], anchors[7]);//
-		this.edges[12] = new Stick(anchors[4], anchors[8]);//
-		this.edges[13] = new Stick(anchors[4], anchors[9]);//
-		this.edges[14] = new Stick(anchors[5], anchors[7]);//Duplicate of edge 11. Necesary for any compatibility with other builds
-		
-		this.edges[15] = new BindStick(anchors[5], anchors[0]);// Shoulder to second peg
-		this.edges[16] = new BindStick(anchors[3], anchors[6]);// First peg to hand
-		this.edges[17] = new BindStick(anchors[3], anchors[7]);// First peg to hand
-		this.edges[18] = new BindStick(anchors[8], anchors[2]);// Foot to lower nose
-		this.edges[19] = new BindStick(anchors[9], anchors[2]);// Foot to lower nose
-		
-		this.edges[20] = new RepellStick(anchors[5], anchors[8]);// Shoulder to feet. Keeps shoulder from getting too close to feet
-		this.edges[21] = new RepellStick(anchors[5], anchors[9]);//
-		
-		this.edges[20].rest *= 0.5;
-		this.edges[21].rest *= 0.5;
-		
-		this.edges_scarf = new Vector(6);
-		this.edges_scarf[0] = new ScarfStick(anchors[5], anchors_scarf[0]);
-		this.edges_scarf[1] = new ScarfStick(anchors_scarf[0], anchors_scarf[1]);
-		this.edges_scarf[2] = new ScarfStick(anchors_scarf[1], anchors_scarf[2]);
-		this.edges_scarf[3] = new ScarfStick(anchors_scarf[2], anchors_scarf[3]);
-		this.edges_scarf[4] = new ScarfStick(anchors_scarf[3], anchors_scarf[4]);
-		this.edges_scarf[5] = new ScarfStick(anchors_scarf[4], anchors_scarf[5]);
-		
-		for (i in 0...anchors.length) { //this shift is necesarry as it keeps the rider from flying the second the sim starts. 
-			anchors[i].x = anchors[i].x + Common.track_start_x;
-			anchors[i].y = anchors[i].y + Common.track_start_y;
-			anchors[i].vx = anchors[i].x - 0.4;
-			anchors[i].vy = anchors[i].y;
-		}
-		for (j in 0...anchors_scarf.length) {
-			anchors_scarf[j].x = anchors_scarf[j].x + Common.track_start_x;
-			anchors_scarf[j].y = anchors_scarf[j].y + Common.track_start_y;
-			anchors_scarf[j].vx = anchors_scarf[j].x - 0.4;
-			anchors_scarf[j].vy = anchors_scarf[j].y;
-		}
-	}
-	public function moveToStart(_x:Float, _y:Float) {
-		this.init_rider();
-		for (i in 0...anchors.length) {
-			anchors[i].x = anchors[i].x + _x;
-			anchors[i].y = anchors[i].y + _y;
-			anchors[i].vx = anchors[i].x - 0.4;
-			anchors[i].vy = anchors[i].y;
-		}
-		for (j in 0...anchors_scarf.length) {
-			anchors_scarf[j].x = anchors_scarf[j].x + _x;
-			anchors_scarf[j].y = anchors_scarf[j].y + _y;
-			anchors_scarf[j].vx = anchors_scarf[j].x - 0.4;
-			anchors_scarf[j].vy = anchors_scarf[j].y;
-		}
-		this.Start.x = _x;
-		this.Start.y = _y;
-		this.render_body();
-		this.record_frame();
-	}
-	public function reset() //this reset is necesary so it doesn't break the saved flag location, otherwise we get a NaN rider.
-	{
-		this.anchors[0].x = 0;
-		this.anchors[0].y = 0;
-		this.anchors[1].x = 0;
-		this.anchors[1].y = 10;
-		this.anchors[2].x = 30;
-		this.anchors[2].y = 10;
-		this.anchors[3].x = 35;
-		this.anchors[3].y = 0;
-		this.anchors[4].x = 10;
-		this.anchors[4].y = 0;
-		this.anchors[5].x = 10;
-		this.anchors[5].y = -11;
-		this.anchors[6].x = 23;
-		this.anchors[6].y = -10;
-		this.anchors[7].x = 23;
-		this.anchors[7].y = -10;
-		this.anchors[8].x = 20;
-		this.anchors[8].y = 10;
-		this.anchors[9].x = 20;
-		this.anchors[9].y = 10;
-		
-		this.anchors_scarf[0].x = 7;
-		this.anchors_scarf[0].y = -10;
-		this.anchors_scarf[1].x = 3;
-		this.anchors_scarf[1].y = -10;
-		this.anchors_scarf[2].x = 0;
-		this.anchors_scarf[2].y = -10;
-		this.anchors_scarf[3].x = -4;
-		this.anchors_scarf[3].y = -10;
-		this.anchors_scarf[4].x = -7;
-		this.anchors_scarf[4].y = -10;
-		this.anchors_scarf[5].x = -11;
-		this.anchors_scarf[5].y = -10;
-		
-		
-		for (i in anchors) {
-			i.x *= 0.5;
-			i.y *= 0.5;
-			i.x += Common.track_start_x;
-			i.y += Common.track_start_y;
-			i.vx = i.x - 0.4;
-			i.vy = i.y;
-		}
-		for (j in anchors_scarf) {
-			j.x *= 0.5;
-			j.y *= 0.5;
-			j.x += Common.track_start_x;
-			j.y += Common.track_start_y;
-			j.vx = j.x - 0.4;
-			j.vy = j.y;
-		}
-		
-		Stick.crash = false;
-	}
-	public function step_rider(_pan:Bool = true) { //This is called every time the timer goes off in SimManaher.hx
-		for (i in 0...anchors.length) {
-			anchors[i].verlet(this.g); //Apply speed and gravity to the rider
-		}
-		for (c in anchors_scarf) {
-			c.verlet(this.g);
-		}
-		for (a in 0...6) {
-			for (b in 0...edges.length) {
-				if (edges[b].constrain()) {} //Adjust all of the riders bones (edges)
-			}
-			for (d in edges_scarf) {
-				d.constrain(); //need to figure out how to keep slinky scarf
-			}
-			this.collision(); //check for line collision
-		}
-		/*The following two crash checks have no impact on track behavior. Since all tracks have been designed around this limit, enabling (or lack there of) the limit doesn't impact
-		 *backwards compatibility. Tail fakies being enabled has been a consideration as a feature, but was generally panned. V3.4.X offered an option to enable it, but offered the
-		 *limit that tail and nose fakies cannot occur at the same time (prevented sled from displaying weird). Unkown if this was a sucessful compromise.
-		 */
-		var _loc4:Float = anchors[3].x - anchors[0].x;
-		var _loc5:Float = anchors[3].y - anchors[0].y;
-		if (_loc4 * (anchors[1].y - anchors[0].y) - _loc5 * (anchors[1].x - anchors[0].x) < 0)
-		{
-			Stick.crash = true; //Tail fakie counter measure. "Bug" that existed in Beta 1 that was was patched in Rev 5 (presumably);
-		}
-		if (_loc4 * (anchors[5].y - anchors[4].y) - _loc5 * (anchors[5].x - anchors[4].x) > 0)
-		{
-			Stick.crash = true; //headflip check. Defs more of a bug than tail fake, prevents head from being logged beneath the sled.
-		}
-		Common.sim_rider_speed = Math.floor((Math.sqrt(Math.pow(anchors[5].dx - g.x, 2)) + Math.sqrt(Math.pow(anchors[5].dy - g.y, 2))) * 100) / 100;
-		if (Common.sim_rider_speed > Common.sim_rider_speed_top) {
-			Common.sim_rider_speed_top = Common.sim_rider_speed;
-		}
-		this.render_body();
-		this.record_frame();
-		if (_pan) {
-			this.camera.pan(anchors[4]);
-		}
-	}
-	
-	function record_frame() //Should be called every time the sim advances forward in any way. Current exception is slider tool as that behaves on skipping ahead and not advancing forward
-	{
-		/*if (this.recorded_frames[Common.sim_frames] != null) {
-			var different:Bool = checkDifferece();
-			if (different) {
-				//Common.sim_max_frames = Common.sim_frames;
-				//Common.gTimeline.update();
-			}
-		}*/
-		this.recorded_frames[Common.sim_frames] = new Array();
-		for (i in 0...anchors.length) {
-			this.recorded_frames[Common.sim_frames][i] = new Array();
-			this.recorded_frames[Common.sim_frames][i][0] = anchors[i].x;
-			this.recorded_frames[Common.sim_frames][i][1] = anchors[i].y;
-			this.recorded_frames[Common.sim_frames][i][2] = anchors[i].vx;
-			this.recorded_frames[Common.sim_frames][i][3] = anchors[i].vy;
-			this.recorded_frames[Common.sim_frames][i][4] = anchors[i].dx;
-			this.recorded_frames[Common.sim_frames][i][5] = anchors[i].dy;
-			this.recorded_frames[Common.sim_frames][i][6] = Stick.crash;
-		}
-		this.recorded_frames_scarf[Common.sim_frames] = new Array();
-		for (j in 0...anchors_scarf.length) {
-			this.recorded_frames_scarf[Common.sim_frames][j] = new Array();
-			this.recorded_frames_scarf[Common.sim_frames][j][0] = anchors_scarf[j].x;
-			this.recorded_frames_scarf[Common.sim_frames][j][1] = anchors_scarf[j].y;
-			this.recorded_frames_scarf[Common.sim_frames][j][2] = anchors_scarf[j].vx;
-			this.recorded_frames_scarf[Common.sim_frames][j][3] = anchors_scarf[j].vy;
-			this.recorded_frames_scarf[Common.sim_frames][j][4] = anchors_scarf[j].dx;
-			this.recorded_frames_scarf[Common.sim_frames][j][5] = anchors_scarf[j].dy;
-		}
-	}
-	
-	function checkDifferece():Bool 
-	{
-		var tempPostion:Array<Array<Array<Dynamic>>>;
-		tempPostion = new Array();
-		tempPostion[Common.sim_frames] = new Array();
-		for (i in 0...anchors.length) {
-			tempPostion[Common.sim_frames][i] = new Array();
-			tempPostion[Common.sim_frames][i][0] = anchors[i].x;
-			tempPostion[Common.sim_frames][i][1] = anchors[i].y;
-			tempPostion[Common.sim_frames][i][2] = anchors[i].vx;
-			tempPostion[Common.sim_frames][i][3] = anchors[i].vy;
-			tempPostion[Common.sim_frames][i][4] = anchors[i].dx;
-			tempPostion[Common.sim_frames][i][5] = anchors[i].dy;
-			tempPostion[Common.sim_frames][i][6] = Stick.crash;
-		}
-		for (a in 0...anchors.length) {
-			//trace(a, Common.sim_frames, tempPostion[Common.sim_frames][a][0], this.recorded_frames[Common.sim_frames][a][0]);
-			if (tempPostion[Common.sim_frames][a][0] != this.recorded_frames[Common.sim_frames][a][0]) {
-				return(true);
-			} else
-			if (tempPostion[Common.sim_frames][a][1] != this.recorded_frames[Common.sim_frames][a][1]) {
-				return(true);
-			} else
-			if (tempPostion[Common.sim_frames][a][2] != this.recorded_frames[Common.sim_frames][a][2]) {
-				return(true);
-			} else 
-			if (tempPostion[Common.sim_frames][a][3] != this.recorded_frames[Common.sim_frames][a][3]) {
-				return(true);
-			} else 
-			if (tempPostion[Common.sim_frames][a][4] != this.recorded_frames[Common.sim_frames][a][4]) {
-				return(true);
-			} else 
-			if (tempPostion[Common.sim_frames][a][5] != this.recorded_frames[Common.sim_frames][a][5]) {
-				return(true);
-			} else 
-			if (tempPostion[Common.sim_frames][a][6] != this.recorded_frames[Common.sim_frames][a][6]) {
-				return(true);
-			}
-		}
-		return(false);
-	}
-	public function inject_frame(_frame) { //for when you need to skip to an arbitrary frame
-		try {
-			for (i in 0...anchors.length) {
-				anchors[i].x = this.recorded_frames[_frame][i][0];
-				anchors[i].y = this.recorded_frames[_frame][i][1];
-				anchors[i].vx = this.recorded_frames[_frame][i][2];
-				anchors[i].vy = this.recorded_frames[_frame][i][3];
-				anchors[i].dx = this.recorded_frames[_frame][i][4];
-				anchors[i].dy = this.recorded_frames[_frame][i][5];
-				Stick.crash = this.recorded_frames[_frame][i][6];
-			}
-			for (j in 0...anchors_scarf.length) {
-				anchors_scarf[j].x = this.recorded_frames_scarf[_frame][j][0];
-				anchors_scarf[j].y = this.recorded_frames_scarf[_frame][j][1];
-				anchors_scarf[j].vx = this.recorded_frames_scarf[_frame][j][2];
-				anchors_scarf[j].vy = this.recorded_frames_scarf[_frame][j][3];
-				anchors_scarf[j].dx = this.recorded_frames_scarf[_frame][j][4];
-				anchors_scarf[j].dy = this.recorded_frames_scarf[_frame][j][5];
-			}
-		} catch(e:String) {
-			return;
-		}
-		Common.sim_frames = _frame;
-		this.render_body();
-		this.camera.pan(anchors[4]);
-	}
-	public function inject_frame_and_iterate(_frame, _iter) {
-		try {
-			for (i in 0...anchors.length) {
-				anchors[i].x = this.recorded_frames[_frame][i][0];
-				anchors[i].y = this.recorded_frames[_frame][i][1];
-				anchors[i].vx = this.recorded_frames[_frame][i][2];
-				anchors[i].vy = this.recorded_frames[_frame][i][3];
-				anchors[i].dx = this.recorded_frames[_frame][i][4];
-				anchors[i].dy = this.recorded_frames[_frame][i][5];
-				Stick.crash = this.recorded_frames[_frame][i][6];
-			}
-			for (j in 0...anchors_scarf.length) {
-				anchors_scarf[j].x = this.recorded_frames_scarf[_frame][j][0];
-				anchors_scarf[j].y = this.recorded_frames_scarf[_frame][j][1];
-				anchors_scarf[j].vx = this.recorded_frames_scarf[_frame][j][2];
-				anchors_scarf[j].vy = this.recorded_frames_scarf[_frame][j][3];
-				anchors_scarf[j].dx = this.recorded_frames_scarf[_frame][j][4];
-				anchors_scarf[j].dy = this.recorded_frames_scarf[_frame][j][5];
-			}
-		} catch(e:String) {
-			return;
-		}
-		for (a in 0..._iter) {
-			this.step_rider(false);
-		}
-		//this.render_body();
-	}
-	public function step_back()
-	{
-		if (Common.sim_frames > 0) {
-			Common.sim_frames -= 1;
-			for (i in 0...anchors.length) {
-				anchors[i].x = this.recorded_frames[Common.sim_frames][i][0];
-				anchors[i].y = this.recorded_frames[Common.sim_frames][i][1];
-				anchors[i].vx = this.recorded_frames[Common.sim_frames][i][2];
-				anchors[i].vy = this.recorded_frames[Common.sim_frames][i][3];
-				anchors[i].dx = this.recorded_frames[Common.sim_frames][i][4];
-				anchors[i].dy = this.recorded_frames[Common.sim_frames][i][5];
-				Stick.crash = this.recorded_frames[Common.sim_frames][i][6];
-			}
-			for (j in 0...anchors_scarf.length) {
-				anchors_scarf[j].x = this.recorded_frames_scarf[Common.sim_frames][j][0];
-				anchors_scarf[j].y = this.recorded_frames_scarf[Common.sim_frames][j][1];
-				anchors_scarf[j].vx = this.recorded_frames_scarf[Common.sim_frames][j][2];
-				anchors_scarf[j].vy = this.recorded_frames_scarf[Common.sim_frames][j][3];
-				anchors_scarf[j].dx = this.recorded_frames_scarf[Common.sim_frames][j][4];
-				anchors_scarf[j].dy = this.recorded_frames_scarf[Common.sim_frames][j][5];
-			}
-		} else if (Common.sim_frames == 0) {
-			this.reset();
-		}
-		Common.sim_frames_alt = Common.sim_frames;
-		this.render_body();
-		this.camera.pan(anchors[4]);
-	}
-	public function step_forward() {
-		this.step_rider();
-	}
-	public function render_body()
-	{
-		this.body.x = this.anchors[4].x;
-		this.body.y = this.anchors[4].y;
-		this.body.rotation = Common.get_angle_degrees(new Point(anchors[4].x, anchors[4].y), new Point(anchors[5].x, anchors[5].y));
-		
-		this.sled.x = anchors[0].x;
-		this.sled.y = anchors[0].y;
-		this.sled.rotation = Common.get_angle_degrees(new Point(anchors[0].x, anchors[0].y), new Point(anchors[3].x, anchors[3].y));
-		
-		this.leftArm.x = this.rightArm.x = anchors[5].x;
-		this.leftArm.y = this.rightArm.y = anchors[5].y;
-		this.leftArm.rotation = Common.get_angle_degrees(new Point(anchors[5].x, anchors[5].y), new Point(anchors[6].x, anchors[6].y));
-		this.rightArm.rotation = Common.get_angle_degrees(new Point(anchors[5].x, anchors[5].y), new Point(anchors[7].x, anchors[7].y));
-		
-		this.leftLeg.x = this.rightLeg.x = this.anchors[4].x;
-		this.leftLeg.y = this.rightLeg.y = this.anchors[4].y;
-		this.leftLeg.rotation = Common.get_angle_degrees(new Point(anchors[4].x, anchors[4].y), new Point(anchors[8].x, anchors[8].y));
-		this.rightLeg.rotation = Common.get_angle_degrees(new Point(anchors[4].x, anchors[4].y), new Point(anchors[9].x, anchors[9].y));
-		
-		//rider rendering
-		this.body.alpha = this.leftArm.alpha = this.rightArm.alpha = this.leftLeg.alpha = this.rightLeg.alpha = this.sled.alpha = Common.cvar_rider_alpha;
-		this.bosh.graphics.clear();
-		this.string.graphics.clear();
-		this.skeleton.graphics.clear();
-		this.scarf.graphics.clear();
-		if (!Stick.crash) {
-			this.string.graphics.lineStyle(0.5, 0, Common.cvar_rider_alpha);
-			this.string.graphics.moveTo(anchors[6].x, anchors[6].y);
-			this.string.graphics.lineTo(anchors[3].x, anchors[3].y);
-			this.string.graphics.lineTo(anchors[7].x, anchors[7].y);
-		}
-		if (Common.cvar_contact_points) {
-			this.render_bones();
-		}
-		this.scarf.graphics.lineStyle(2, 0xFFFFFF, Common.cvar_rider_alpha, false, "none", "none");
-		this.scarf.graphics.moveTo(edges_scarf[0].a.x, edges_scarf[0].a.y);
-		this.scarf.graphics.lineTo(edges_scarf[0].b.x, edges_scarf[0].b.y);
-		this.scarf.graphics.moveTo(edges_scarf[2].a.x, edges_scarf[2].a.y);
-		this.scarf.graphics.lineTo(edges_scarf[2].b.x, edges_scarf[2].b.y);
-		this.scarf.graphics.moveTo(edges_scarf[4].a.x, edges_scarf[4].a.y);
-		this.scarf.graphics.lineTo(edges_scarf[4].b.x, edges_scarf[4].b.y);
-		this.scarf.graphics.lineStyle(2, 0xD20202, Common.cvar_rider_alpha, false, "none", "none");
-		this.scarf.graphics.moveTo(edges_scarf[1].a.x, edges_scarf[1].a.y);
-		this.scarf.graphics.lineTo(edges_scarf[1].b.x, edges_scarf[1].b.y);
-		this.scarf.graphics.moveTo(edges_scarf[3].a.x, edges_scarf[3].a.y);
-		this.scarf.graphics.lineTo(edges_scarf[3].b.x, edges_scarf[3].b.y);
-		this.scarf.graphics.moveTo(edges_scarf[5].a.x, edges_scarf[5].a.y);
-		this.scarf.graphics.lineTo(edges_scarf[5].b.x, edges_scarf[5].b.y);
-	}
-	public function render_bones() {
-		this.bosh.graphics.clear();
-		this.skeleton.graphics.lineStyle(0.25, 0xFF6600, 1);
-		for (i in 0...4) { //Minimal sled points
-			this.skeleton.graphics.moveTo(this.edges[i].a.x, this.edges[i].a.y);
-			this.skeleton.graphics.lineTo(this.edges[i].b.x, this.edges[i].b.y);
-		}
-		this.skeleton.graphics.lineStyle(0.25, 0xCC0033, 1);
-		for (i in 9...14) { //Minimal body points
-			this.skeleton.graphics.moveTo(this.edges[i].a.x, this.edges[i].a.y);
-			this.skeleton.graphics.lineTo(this.edges[i].b.x, this.edges[i].b.y);
-		}
-		this.skeleton.graphics.lineStyle(0.25, 0x6600ff, 0.1);
-		for (i in 0...anchors.length) {
-			this.skeleton.graphics.beginFill(0x6600ff, 1);
-			this.skeleton.graphics.drawCircle(anchors[i].x, anchors[i].y, 0.5);
-			this.skeleton.graphics.endFill();
-		}
-	}
-	public function collision() 
-	{
-		for (_loc7 in 0...anchors.length)
-		{
-			var _loc5 = anchors[_loc7];
-			var _loc6 = Common.gridPos(_loc5.x, _loc5.y);
-			for (_loc4 in -1...2)
-			{
-				var _loc1 = (_loc6.x + _loc4);
-				if (Grid.grid[_loc1] == null)
-				{
-					continue;
-				}
-				for (_loc3 in -1...2)
-				{
-					var _loc2 = (_loc6.y + _loc3);
-					if (Grid.grid[_loc1][_loc2] == null)
-					{
-						continue;
-					}
-					var tempList:Array<LineBase> = Grid.grid[_loc1][_loc2].storage2;
-					for (_loc8 in tempList)
-					{
-						_loc8.collide(_loc5);
-					}
-				}
-			}
-		} 
-	}
 	function bodyClip(lib:AssetLibrary) 
 	{
 		var innerClip:Sprite;
 		innerClip = lib.getMovieClip("");
-		body = new Sprite();
-		body.addChild(innerClip);
+		body_vis = new Sprite();
+		body_vis.addChild(innerClip);
 		innerClip.y = -5.40; //X/Y values are obtained from the raw .fla and are not provided in the source
-		body.scaleX = body.scaleY = 0.5;
+		body_vis.scaleX = body_vis.scaleY = 0.5;
 		this.load_clips();
 	}
 	function sledClip(lib:AssetLibrary) 
@@ -608,75 +240,118 @@ class RiderBase extends Sprite
 	{
 		++clips;
 		if (clips == 6) {
-			this.scarf = new Sprite();
-			bosh.addChild(this.scarf);
+			this.scarf_vis = new Sprite();
+			bosh.addChild(this.scarf_vis);
 			bosh.addChild(this.leftLeg);
 			bosh.addChild(this.leftArm);
 			bosh.addChild(this.sled);
 			bosh.addChild(this.rightLeg);
-			bosh.addChild(this.body);
+			bosh.addChild(this.body_vis);
 			this.string = new Sprite();
 			bosh.addChild(this.string);
 			bosh.addChild(this.rightArm);
-			this.skeleton = new Sprite();
-			bosh.addChild(this.skeleton);
+			this.skeleton_vis = new Sprite();
+			bosh.addChild(this.skeleton_vis);
 			this.addChild(this.bosh);
 			this.render_body();
 		}
 	}
-	public function flag_location() {
-		for (i in anchors) {
-			i.save();
-		}
-		this.markFlag();
-	}
-	
-	function markFlag() 
+	public function render_body()
 	{
-		try {
-			this.removeChild(this.flag);
-		} catch (_msg:String) {
-			
+		this.body_vis.x = this.body.anchors[4].x;
+		this.body_vis.y = this.body.anchors[4].y;
+		this.body_vis.rotation = Common.get_angle_degrees(new Point(this.body.anchors[4].x, this.body.anchors[4].y), new Point(this.body.anchors[5].x, this.body.anchors[5].y));
+		
+		this.sled.x = this.body.anchors[0].x;
+		this.sled.y = this.body.anchors[0].y;
+		this.sled.rotation = Common.get_angle_degrees(new Point(this.body.anchors[0].x, this.body.anchors[0].y), new Point(this.body.anchors[3].x, this.body.anchors[3].y));
+		
+		this.leftArm.x = this.rightArm.x = this.body.anchors[5].x;
+		this.leftArm.y = this.rightArm.y = this.body.anchors[5].y;
+		this.leftArm.rotation = Common.get_angle_degrees(new Point(this.body.anchors[5].x, this.body.anchors[5].y), new Point(this.body.anchors[6].x, this.body.anchors[6].y));
+		this.rightArm.rotation = Common.get_angle_degrees(new Point(this.body.anchors[5].x, this.body.anchors[5].y), new Point(this.body.anchors[7].x, this.body.anchors[7].y));
+		
+		this.leftLeg.x = this.rightLeg.x = this.body.anchors[4].x;
+		this.leftLeg.y = this.rightLeg.y = this.body.anchors[4].y;
+		this.leftLeg.rotation = Common.get_angle_degrees(new Point(this.body.anchors[4].x, this.body.anchors[4].y), new Point(this.body.anchors[8].x, this.body.anchors[8].y));
+		this.rightLeg.rotation = Common.get_angle_degrees(new Point(this.body.anchors[4].x, this.body.anchors[4].y), new Point(this.body.anchors[9].x, this.body.anchors[9].y));
+		
+		//rider rendering
+		this.body_vis.alpha = this.leftArm.alpha = this.rightArm.alpha = this.leftLeg.alpha = this.rightLeg.alpha = this.sled.alpha = Common.cvar_rider_alpha;
+		this.bosh.graphics.clear();
+		this.string.graphics.clear();
+		this.skeleton_vis.graphics.clear();
+		this.scarf_vis.graphics.clear();
+		if (!Stick.crash) {
+			this.string.graphics.lineStyle(0.5, 0, Common.cvar_rider_alpha);
+			this.string.graphics.moveTo(this.body.anchors[6].x, this.body.anchors[6].y);
+			this.string.graphics.lineTo(this.body.anchors[3].x, this.body.anchors[3].y);
+			this.string.graphics.lineTo(this.body.anchors[7].x, this.body.anchors[7].y);
 		}
-		try {
-			Common.simfl_frames = Common.sim_frames;
-			this.flag = new FlagMarker(Common.sim_frames);
-			this.addChild(this.flag);
-			this.flag.x = anchors[0].x;
-			this.flag.y = anchors[0].y;
-			this.crashed = Stick.crash;
-			Common.sim_flagged_frame = Common.sim_frames;
-		} catch (_msg:String) {}
+		if (Common.cvar_contact_points) {
+			this.render_bones();
+		}
+		this.scarf_vis.graphics.lineStyle(2, 0xFFFFFF, Common.cvar_rider_alpha, false, "none", "none");
+		this.scarf_vis.graphics.moveTo(this.scarf.edges[0].a.x, this.scarf.edges[0].a.y);
+		this.scarf_vis.graphics.lineTo(this.scarf.edges[0].b.x, this.scarf.edges[0].b.y);
+		this.scarf_vis.graphics.moveTo(this.scarf.edges[2].a.x, this.scarf.edges[2].a.y);
+		this.scarf_vis.graphics.lineTo(this.scarf.edges[2].b.x, this.scarf.edges[2].b.y);
+		this.scarf_vis.graphics.moveTo(this.scarf.edges[4].a.x, this.scarf.edges[4].a.y);
+		this.scarf_vis.graphics.lineTo(this.scarf.edges[4].b.x, this.scarf.edges[4].b.y);
+		this.scarf_vis.graphics.lineStyle(2, 0xD20202, Common.cvar_rider_alpha, false, "none", "none");
+		this.scarf_vis.graphics.moveTo(this.scarf.edges[1].a.x, this.scarf.edges[1].a.y);
+		this.scarf_vis.graphics.lineTo(this.scarf.edges[1].b.x, this.scarf.edges[1].b.y);
+		this.scarf_vis.graphics.moveTo(this.scarf.edges[3].a.x, this.scarf.edges[3].a.y);
+		this.scarf_vis.graphics.lineTo(this.scarf.edges[3].b.x, this.scarf.edges[3].b.y);
+		this.scarf_vis.graphics.moveTo(this.scarf.edges[5].a.x, this.scarf.edges[5].a.y);
+		this.scarf_vis.graphics.lineTo(this.scarf.edges[5].b.x, this.scarf.edges[5].b.y);
 	}
-	public function show_flag() {
-		try {
-			this.flag.alpha = 1;
-		} catch (_msg:String) {
-			
+	public function render_bones() {
+		this.bosh.graphics.clear();
+		this.skeleton_vis.graphics.lineStyle(0.25, 0xFF6600, 1);
+		for (i in 0...4) { //Minimal sled points
+			this.skeleton_vis.graphics.moveTo(this.skeleton.edges[i].a.x, this.skeleton.edges[i].a.y);
+			this.skeleton_vis.graphics.lineTo(this.skeleton.edges[i].b.x, this.skeleton.edges[i].b.y);
+		}
+		this.skeleton_vis.graphics.lineStyle(0.25, 0xCC0033, 1);
+		for (i in 9...14) { //Minimal body_vis points
+			this.skeleton_vis.graphics.moveTo(this.skeleton.edges[i].a.x, this.skeleton.edges[i].a.y);
+			this.skeleton_vis.graphics.lineTo(this.skeleton.edges[i].b.x, this.skeleton.edges[i].b.y);
+		}
+		this.skeleton_vis.graphics.lineStyle(0.25, 0x6600ff, 0.1);
+		for (i in 0...this.body.anchors.length) {
+			this.skeleton_vis.graphics.beginFill(0x6600ff, 1);
+			this.skeleton_vis.graphics.drawCircle(this.body.anchors[i].x, this.body.anchors[i].y, 0.5);
+			this.skeleton_vis.graphics.endFill();
 		}
 	}
-	public function hide_flag() {
-		try {
-			this.flag.alpha = 0.1;
-		} catch (_msg:String) {
-			
-		}
-	}
-	public function return_to_flag() {
-		for (i in anchors) {
-			i.restore();
-		}
-		Stick.crash = this.crashed;
-		Common.sim_frames = Common.simfl_frames;
-		this.inject_frame(Common.simfl_frames);
-	}
-	
-	public function destroy_flag() 
+	function collision() 
 	{
-		try {
-			Common.gTrack.removeChild(this.flag);
-		} catch (_msg:String) {
-			
-		}
+		for (_loc7 in 0...this.body.anchors.length)
+		{
+			var _loc5 = this.body.anchors[_loc7];
+			var _loc6 = Common.gridPos(_loc5.x, _loc5.y);
+			for (_loc4 in -1...2)
+			{
+				var _loc1 = (_loc6.x + _loc4);
+				if (B2Grid.grid[_loc1] == null)
+				{
+					continue;
+				}
+				for (_loc3 in -1...2)
+				{
+					var _loc2 = (_loc6.y + _loc3);
+					if (B2Grid.grid[_loc1][_loc2] == null)
+					{
+						continue;
+					}
+					var tempList:Array<LineBase> = B2Grid.grid[_loc1][_loc2].storage2;
+					for (_loc8 in tempList)
+					{
+						_loc8.collide(_loc5);
+					}
+				}
+			}
+		} 
 	}
 }

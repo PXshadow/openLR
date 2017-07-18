@@ -17,7 +17,7 @@ import ui.tool.ToolBase;
 import ui.tool.timeline.TimelineControl;
 import ui.tool.Toolbar;
 import lr.TextInfo;
-import lr.line.nodes.Grid;
+import lr.line.nodes.B2Grid;
 import lr.line.nodes.VisGrid;
 import lr.rider.phys.objects.RiderCamera;
 
@@ -45,7 +45,7 @@ class Common
 	public static var gVisContainer:MovieClip;
 	public static var gToolBase:ToolBase;
 	public static var gToolCurrent:ToolBase;
-	public static var gGrid:Grid;
+	public static var gGrid:B2Grid;
 	public static var gVisGrid:VisGrid;
 	public static var gSaveManager:SaveManager;
 	public static var gLoadManager:LoadManager;

@@ -7,7 +7,7 @@ import openfl.events.MouseEvent;
 import openfl.utils.Object;
 import ui.tool.ToolBase;
 import openfl.events.Event;
-import lr.line.nodes.Grid;
+import lr.line.nodes.B2Grid;
 
 /**
  * ...
@@ -40,20 +40,20 @@ class ToolEraser extends ToolBase
 		for (_loc19 in -1...2)
 		{
 			var _loc7 = (_loc20.x + _loc19);
-			if (Grid.grid[_loc7] == null)
+			if (B2Grid.grid[_loc7] == null)
 			{
 				continue;
 			} // end if
 			for (_loc8 in -1...2)
 			{
 				var _loc5 = (_loc20.y + _loc8);
-				if (Grid.grid[_loc7][_loc5] == null)
+				if (B2Grid.grid[_loc7][_loc5] == null)
 				{
 					continue;
 				} // end if
-				for (_loc21 in 0...Grid.grid[_loc7][_loc5].storage.length)
+				for (_loc21 in 0...B2Grid.grid[_loc7][_loc5].storage.length)
 				{
-					var _loc1:LineBase = Grid.grid[_loc7][_loc5].storage[_loc21];
+					var _loc1:LineBase = B2Grid.grid[_loc7][_loc5].storage[_loc21];
 					if (_loc1 == null) {
 						continue;
 					}

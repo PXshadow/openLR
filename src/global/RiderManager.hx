@@ -2,7 +2,7 @@ package global;
 import openfl.display.Sprite;
 import openfl.geom.Point;
 
-import lr.rider.RiderBaseNew;
+import lr.rider.RiderBase;
 
 /**
  * ...
@@ -10,7 +10,7 @@ import lr.rider.RiderBaseNew;
  */
 class RiderManager extends Sprite
 {
-	private var riderArray:Array<RiderBaseNew>;
+	private var riderArray:Array<RiderBase>;
 	public var startPoint0:Point = new Point(0, 0);
 	public function new() 
 	{
@@ -18,7 +18,7 @@ class RiderManager extends Sprite
 		Common.gRiderManager = this;
 		
 		this.riderArray = new Array();
-		this.riderArray[0] = new RiderBaseNew(RiderType.Beta2);
+		this.riderArray[0] = new RiderBase(RiderType.Beta2);
 		this.addChild(this.riderArray[0]);
 		Common.svar_rider_count += 1;
 	}
