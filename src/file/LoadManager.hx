@@ -16,9 +16,10 @@ import ui.inter.AlertBox;
 
 import global.Common;
 import lr.line.*;
-import ui.inter.SingleButton;
+import ui.inter.TextButton;
 import ui.tool.Toolbar;
-import file.HXLZString;
+import global.Language;
+
 /**
  * ...
  * @author ...
@@ -28,8 +29,8 @@ class LoadManager extends Sprite
 	var trackData:Object;
 	private var itemWindow:FileWindow;
 	public var selected_item:String;
-	private var load_button:SingleButton;
-	private var cancel_button:SingleButton;
+	private var load_button:TextButton;
+	private var cancel_button:TextButton;
 	private var error_alert:AlertBox;
 	public function new() 
 	{
@@ -47,12 +48,12 @@ class LoadManager extends Sprite
 		
 		this.parseSaveDirecotry();
 		
-		this.load_button = new SingleButton("Load Track", loadFromObject);
+		this.load_button = new TextButton(Language.Load, ButtonSize.b120x30);
 		this.addChild(this.load_button);
 		this.load_button.x = 10;
 		this.load_button.y = 430;
 		
-		this.cancel_button = new SingleButton("Cancel", Common.gCode.toggle_Loader);
+		this.cancel_button = new TextButton(Language.Cancel, ButtonSize.b120x30);
 		this.addChild(this.cancel_button);
 		this.cancel_button.x = 300;
 		this.cancel_button.y = 430;
