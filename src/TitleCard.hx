@@ -73,12 +73,12 @@ class TitleCard extends Sprite
 		this.splash.height = 246;
 		this.splash.text = Language.Splash_a + "\n\n" + "https://github.com/kevansevans/openLR" + "\n\n" + Language.Splash_b;
 		
-		this.new_track = new TextButton(Language.New_track, this.new_track_func, ButtonSize.b230x40);
+		this.new_track = new TextButton(Language.New_track, this.new_track_func, ButtonSize.b120x30);
 		this.addChild(this.new_track);
 		this.new_track.x = 8;
 		this.new_track.y = 200;
 		
-		this.load_track = new TextButton(Language.Load_track, this.load_track_func, ButtonSize.b230x40);
+		this.load_track = new TextButton(Language.Load_track, this.load_track_func, ButtonSize.b120x30);
 		this.addChild(this.load_track);
 		this.load_track.x = 8;
 		this.load_track.y = 245;
