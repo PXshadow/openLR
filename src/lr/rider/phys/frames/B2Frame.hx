@@ -88,7 +88,7 @@ class B2Frame extends FrameBase
 		var _loc5:Float = this.anchors[3].y - this.anchors[0].y;
 		if (_loc4 * (this.anchors[1].y - this.anchors[0].y) - _loc5 * (this.anchors[1].x - this.anchors[0].x) < 0)
 		{
-			Stick.crash = true; //Tail fakie counter measure. "Bug" that existed in Beta 1 that was was patched in Rev 5 (presumably);
+			Stick.crash = true; //Tail fakie counter measure.
 		}
 		if (_loc4 * (this.anchors[5].y - this.anchors[4].y) - _loc5 * (this.anchors[5].x - this.anchors[4].x) > 0)
 		{
