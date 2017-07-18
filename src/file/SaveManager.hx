@@ -98,7 +98,7 @@ class SaveManager extends Sprite
 		this.description_input.width = 590;
 		this.description_input.height = 200;
 		
-		this.save_button = new TextButton(Language.Save, ButtonSize.b120x30);
+		this.save_button = new TextButton(Language.Save, this.save_track_pre, ButtonSize.b120x30);
 		this.addChild(this.save_button);
 		this.save_button.x = 10;
 		this.save_button.y = 260;
@@ -109,7 +109,7 @@ class SaveManager extends Sprite
 		this.add_timestamp.y = 270;
 		this.add_timestamp.hitBox.addEventListener(MouseEvent.CLICK, this.toggle_time_stamp);
 		
-		this.cancel_button = new TextButton(Language.Cancel, ButtonSize.b120x30);
+		this.cancel_button = new TextButton(Language.Cancel, Common.gCode.toggle_save_menu, ButtonSize.b120x30);
 		this.addChild(this.cancel_button);
 		this.cancel_button.x = 475;
 		this.cancel_button.y = 260;
