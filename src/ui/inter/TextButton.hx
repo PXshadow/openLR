@@ -8,6 +8,7 @@ import openfl.utils.Assets;
 import openfl.display.Bitmap;
 import openfl.display.BitmapData;
 import openfl.display.SimpleButton;
+import openfl.events.MouseEvent;
 
 /**
  * ...
@@ -23,7 +24,8 @@ class TextButton extends Sprite
 	var font:TextFormat = new TextFormat(Assets.getFont("fonts/Verdana Bold.ttf").fontName, 16, 0, null, null, null, null, null, TextFormatAlign.CENTER);
 	var msg:String;
 	var label:TextField;
-	public function new(_msg:String, _size:Int = -1) 
+	var action:Dynamic;
+	public function new(_msg:String, _action:Dynamic, _size:Int = -1) 
 	{
 		super();
 		
@@ -37,6 +39,8 @@ class TextButton extends Sprite
 		this.label.text = _msg;
 		this.label.selectable = false;
 		this.label.mouseEnabled = false;
+		
+		this.btn.addEventListener(MouseEvent.CLICK, _action);
 	}
 	
 	function setSize(_size:Int) 
