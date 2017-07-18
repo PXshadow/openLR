@@ -21,6 +21,11 @@ class BTNVisual extends SimpleButton
 				this.overState = new Bitmap(Assets.getBitmapData("img/ui/230x40over.png"));
 				this.downState = new Bitmap(Assets.getBitmapData("img/ui/230x40down.png"));
 				this.hitTestState = new Bitmap(Assets.getBitmapData("img/ui/230x40up.png"));
+			case 1:
+				this.upState = new Bitmap(Assets.getBitmapData("img/ui/120x30up.png"));
+				this.overState = new Bitmap(Assets.getBitmapData("img/ui/120x30over.png"));
+				this.downState = new Bitmap(Assets.getBitmapData("img/ui/120x30down.png"));
+				this.hitTestState = new Bitmap(Assets.getBitmapData("img/ui/120x30up.png"));
 		}
 	}
 	
