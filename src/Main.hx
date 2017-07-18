@@ -84,7 +84,7 @@ class Main extends Sprite
 	private var toolBar:Toolbar;
 	private var textInfo:TextInfo;
 	private var FPS:FrameRate;
-	private var welcome_alert:AlertBox;
+	private var title_card:TitleCard;
 	private var save_manager:SaveManager;
 	private var timeline:TimelineControl;
 	private var loadManager:LoadManager;
@@ -95,25 +95,29 @@ class Main extends Sprite
 	{
 		super();
 		
+		Common.gCode = this; //This class
+		Common.gStage = this.stage; //The stage, not to be comfused with main.hx
+		
 		this.mainFileInit = new FileStart(); //checks for default folders and saved settings in the track
 		
-		this.welcome_alert = new AlertBox(Language.Welcome + "\n\n" + "https://github.com/kevansevans/openLR" + "\n\n" + "Version: " + Common.version, this.start, Language.Continue);
-		this.addChild(this.welcome_alert);
-		this.welcome_alert.x = (this.stage.stageWidth * 0.5) - (this.welcome_alert.width * 0.5);
-		this.welcome_alert.y = (this.stage.stageHeight * 0.5) - (this.welcome_alert.height * 0.5);
+		this.title_card = new TitleCard();
+		this.addChild(this.title_card);
+		
+		this.title_card.x = (this.stage.stageWidth * 0.5) - (this.title_card.width * 0.5);
+		this.title_card.y = (this.stage.stageHeight * 0.5) - (this.title_card.height * 0.5);
 	}
-	function start() {
+	public function start(_load:Bool = false) {
 		this.init_env();
 		this.init_track();
-		this.removeChild(this.welcome_alert);
 		this.visContainer.visible = true;
+		if (_load) {
+			this.toggle_Loader();
+		}
+		this.removeChild(this.title_card);
 	}
 	public function init_env() //Initialize enviornment
 	{
 		this.stage.addEventListener(Event.RESIZE, resize);
-		
-		Common.gCode = this; //This class
-		Common.gStage = this.stage; //The stage, not to be comfused with main.hx
 		
 		Common.stage_height = this.stage.stageHeight;
 		Common.stage_width = this.stage.stageWidth;
