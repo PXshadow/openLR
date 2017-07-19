@@ -1,6 +1,6 @@
 ![](http://i.imgur.com/tfI0Lk2.gif)
 
-# OpenLR, an open source alternative desktop app for Line Rider.
+# OpenLR, an open source desktop app for Line Rider.
 
 ### Original game by Boštjan "fšk" Čadež
 
@@ -49,6 +49,24 @@ Note: If you are running Windows 10 Ubuntu Bash, you will need to update Ubuntu 
 Run the command `sudo apt install g++` and the project should correctly compile to the Linux target.
 
 If possible, on windows platform you can download Haxe Develop and use that as an IDE. OpenFL (and other libraries) will still need to be installed. Other IDE's can be used, and will most likely support a Haxe plugin that can compile for you without using the terminal.
+
+## Future plans
+
+Better save format
+
+Compatibility with other save formats (SOL, JSON, TRK)
+
+Mehanics across verious LR builds and titles
+
+Infinite rider support
+
+Custom Rider support through JSON
+
+Full rebindables keys
+
+Multiple Language support
+
+Modding support with cppia and hscript
 
 ## Special Thanks
 
