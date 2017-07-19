@@ -56,7 +56,7 @@ Better save format
 
 Compatibility with other save formats (SOL, JSON, TRK)
 
-Mehanics across verious LR builds and titles
+Mechanics across verious LR builds and titles
 
 Infinite rider support
 
