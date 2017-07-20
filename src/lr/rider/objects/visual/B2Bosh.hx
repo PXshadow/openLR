@@ -1,12 +1,12 @@
 package lr.rider.objects.visual;
 
-import lr.rider.RiderBase;
-import lr.rider.phys.skeleton.SkeletonBase;
 import openfl.display.Sprite;
 import openfl.utils.AssetLibrary;
 import openfl.geom.Point;
 
 import global.Common;
+import lr.rider.RiderBase;
+import lr.rider.phys.skeleton.SkeletonBase;
 import lr.rider.objects.VisBase;
 import lr.rider.phys.frames.FrameBase;
 import lr.rider.phys.frames.B2Frame;
