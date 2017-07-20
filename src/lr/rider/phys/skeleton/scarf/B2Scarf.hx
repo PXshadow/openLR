@@ -62,6 +62,7 @@ class B2Scarf extends ScarfBase
 		this.anchors[4].y = -10;
 		this.anchors[5].x = -11;
 		this.anchors[5].y = -10;
+		
 		for (a in anchors) {
 			a.x *= 0.5;
 			a.y *= 0.5;
