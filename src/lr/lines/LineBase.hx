@@ -14,6 +14,11 @@ import global.Common;
  * Base variables for all lines
  * 
  */
+@:enum abstract LineType(Int) from Int to Int {
+	public var Floor:Int = 0;
+	public var Accel:Int = 1;
+	public var Scene:Int = 2;
+}
 class LineBase extends Shape
 {
 	static var zone = 10;
