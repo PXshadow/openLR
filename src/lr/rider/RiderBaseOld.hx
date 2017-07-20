@@ -48,6 +48,7 @@ class RiderBaseOld extends Sprite
 	private var string:Sprite;
 	private var scarf:Sprite;
 	private var skeleton:Sprite;
+	private var start_point:Sprite;
 	
 	private var camera:RiderCamera;
 	
@@ -65,8 +66,6 @@ class RiderBaseOld extends Sprite
 		g.y = 0.175;
 		
 		this.getAssets();
-		this.camera = new RiderCamera();
-		this.Start = new StartPointVis();
 		
 		this.bosh = new Sprite();
 		this.addChild(this.Start);
@@ -88,6 +87,9 @@ class RiderBaseOld extends Sprite
 		
 		var swfLibArm = AssetLibrary.loadFromFile("swf/arm.bundle");
 		swfLibArm.onComplete(armClip);
+		
+		var swfLibStart = AssetLibrary.loadFromFile("swf/start.bundle");
+		swfLibStart.onComplete(startClip);
 	}
 	public function init_rider() 
 	{
@@ -556,6 +558,15 @@ class RiderBaseOld extends Sprite
 		body.scaleX = body.scaleY = 0.5;
 		this.load_clips();
 	}
+	function startClip(lib:AssetLibrary) 
+	{
+		var innerClip:Sprite;
+		innerClip = lib.getMovieClip("start");
+		start_point = new Sprite();
+		start_point.addChild(innerClip);
+		innerClip.x = innerClip.y = -9.20;
+		this.load_clips();
+	}
 	function sledClip(lib:AssetLibrary) 
 	{
 		var innerClip:Sprite;
@@ -607,7 +618,7 @@ class RiderBaseOld extends Sprite
 	function load_clips()
 	{
 		++clips;
-		if (clips == 6) {
+		if (clips == 7) {
 			this.scarf = new Sprite();
 			bosh.addChild(this.scarf);
 			bosh.addChild(this.leftLeg);

@@ -19,16 +19,16 @@ class RiderManager extends Sprite
 		
 		this.riderArray = new Array();
 	}
-	public function add_rider(_type:Int) {
+	public function add_rider(_type:Int, _x:Float, _y:Float) {
 		switch(_type) {
 			case 1 :
-				this.riderArray[Common.svar_rider_count] = new RiderBase(RiderType.Beta1);
+				this.riderArray[Common.svar_rider_count] = new RiderBase(RiderType.Beta1, _x, _y);
 			case 2 :
-				this.riderArray[Common.svar_rider_count] = new RiderBase(RiderType.Beta2);
+				this.riderArray[Common.svar_rider_count] = new RiderBase(RiderType.Beta2, _x, _y);
 			case 3 :
-				this.riderArray[Common.svar_rider_count] = new RiderBase(RiderType.Beta3a);
+				this.riderArray[Common.svar_rider_count] = new RiderBase(RiderType.Beta3a, _x, _y);
 			default:
-				this.riderArray[Common.svar_rider_count] = new RiderBase(RiderType.Beta2);
+				this.riderArray[Common.svar_rider_count] = new RiderBase(RiderType.Beta2, _x, _y);
 		}
 		this.addChild(this.riderArray[Common.svar_rider_count]);
 		Common.svar_rider_count += 1;
