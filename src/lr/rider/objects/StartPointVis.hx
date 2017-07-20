@@ -21,7 +21,6 @@ class StartPointVis extends Sprite
 	}
 	function loadAsset() 
 	{
-		trace("Asset loading");
 		var swfclip = AssetLibrary.loadFromFile("swf/start.bundle");
 		swfclip.onComplete(this.attach);
 	}
