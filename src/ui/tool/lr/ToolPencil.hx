@@ -5,6 +5,7 @@ import lr.line.*;
 import lr.lines.types.LineAccel;
 import lr.lines.types.LineFloor;
 import lr.lines.types.LineScene;
+import lr.lines.types.LinePreview;
 import openfl.events.MouseEvent;
 import openfl.geom.Point;
 
@@ -46,7 +47,7 @@ class ToolPencil extends ToolBase
 		x2 = Common.gTrack.mouseX;
 		y2 = Common.gTrack.mouseY;
 		d = new Point(Common.gStage.mouseX, Common.gStage.mouseY);
-		Common.gTrack.render_preview_line(new Point(x1, y1), new Point(x2, y2));
+		Common.gTrack.render_preview_line(new LinePreview(x1, y1, x2, y2, this.mod_shift, Common.line_type));
 		if (Common.get_distance(c, d) >= Common.line_minLength) {
 			var _loc1:LineBase;
 			if (Common.line_type == 0) {
@@ -94,7 +95,7 @@ class ToolPencil extends ToolBase
 		x2 = Common.gTrack.mouseX;
 		y2 = Common.gTrack.mouseY;
 		d = new Point(Common.gStage.mouseX, Common.gStage.mouseY);
-		Common.gTrack.render_preview_line(new Point(x1, y1), new Point(x2, y2));
+		Common.gTrack.render_preview_line(new LinePreview(x1, y1, x2, y2, this.mod_shift, Common.line_type));
 		if (Common.get_distance(c, d) >= Common.line_minLength) {
 			var _loc1:LineBase;
 			if (Common.line_type == 0) {

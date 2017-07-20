@@ -3,6 +3,7 @@ package ui.tool.lr;
 import lr.lines.LineBase;
 import lr.lines.types.LineAccel;
 import lr.lines.types.LineFloor;
+import lr.lines.types.LinePreview;
 import lr.lines.types.LineScene;
 import openfl.events.MouseEvent;
 import openfl.geom.Point;
@@ -54,7 +55,7 @@ class ToolLine extends ToolBase
 		}
 		this.valid = true;
 		d = new Point(Common.gStage.mouseX, Common.gStage.mouseY);
-		Common.gTrack.render_preview_line(new Point(x1, y1), new Point(x2, y2));
+		Common.gTrack.render_preview_line(new LinePreview(x1, y1, x2, y2, this.mod_shift, Common.line_type));
 	}
 	override public function mouseUp(e:MouseEvent) {
 		Common.gTrack.clear_preview();
@@ -114,7 +115,7 @@ class ToolLine extends ToolBase
 			y2 = _locSnap[1];
 		}
 		d = new Point(Common.gStage.mouseX, Common.gStage.mouseY);
-		Common.gTrack.render_preview_line(new Point(x1, y1), new Point(x2, y2));
+		Common.gTrack.render_preview_line(new LinePreview(x1, y1, x2, y2, this.mod_shift, Common.line_type));
 	}
 	override public function rMouseUp(e:MouseEvent) {
 		var _locSnapCheck:Array<Dynamic> = Common.gGrid.snap(x2, y2, 2, this.mod_shift);
