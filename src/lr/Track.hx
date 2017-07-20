@@ -1,8 +1,8 @@
 package lr;
 
-import lr.lines.nodes.B2Grid;
+import lr.nodes.B2Grid;
 import lr.lines.LineBase;
-import lr.lines.nodes.VisGrid;
+import lr.nodes.VisGrid;
 import openfl.display.Sprite;
 import openfl.geom.Point;
 

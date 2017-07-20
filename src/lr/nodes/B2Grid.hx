@@ -1,4 +1,4 @@
-package lr.lines.nodes;
+package lr.nodes;
 
 import lr.lines.LineBase;
 import openfl.utils.Object;

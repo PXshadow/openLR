@@ -7,7 +7,7 @@ import openfl.events.MouseEvent;
 import openfl.utils.Object;
 import ui.tool.ToolBase;
 import openfl.events.Event;
-import lr.lines.nodes.B2Grid;
+import lr.nodes.B2Grid;
 
 /**
  * ...

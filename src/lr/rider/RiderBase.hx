@@ -9,7 +9,7 @@ import openfl.utils.AssetLibrary;
 
 import global.Common;
 import lr.lines.LineBase;
-import lr.lines.nodes.B2Grid;
+import lr.nodes.B2Grid;
 import lr.rider.RiderRecorder;
 import lr.rider.objects.FlagMarker;
 import lr.rider.objects.VisBase;

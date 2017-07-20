@@ -17,8 +17,8 @@ import openfl.events.IOErrorEvent;
 import openfl.utils.AssetLibrary;
 
 import global.Common;
-import lr.lines.nodes.B2Grid;
-import lr.lines.nodes.VisGrid;
+import lr.nodes.B2Grid;
+import lr.nodes.VisGrid;
 import lr.lines.LineBase;
 import lr.rider.phys.*;
 

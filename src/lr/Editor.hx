@@ -1,10 +1,10 @@
-package lr.lines.nodes;
+package lr;
 
 /**
  * ...
  * @author Kaelan Evans
  */
-class B3Grid 
+class Editor 
 {
 
 	public function new() 

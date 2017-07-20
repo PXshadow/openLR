@@ -1,10 +1,10 @@
-package lr;
+package lr.nodes;
 
 /**
  * ...
  * @author Kaelan Evans
  */
-class TrackNew 
+class B3Grid 
 {
 
 	public function new() 

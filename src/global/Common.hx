@@ -16,9 +16,9 @@ import file.SaveManager;
 import ui.tool.ToolBase;
 import ui.tool.timeline.TimelineControl;
 import ui.tool.Toolbar;
-import lr.TextInfo;
-import lr.lines.nodes.B2Grid;
-import lr.lines.nodes.VisGrid;
+import lr.track.TextInfo;
+import lr.nodes.B2Grid;
+import lr.nodes.VisGrid;
 import lr.rider.RiderCamera;
 
 /**
