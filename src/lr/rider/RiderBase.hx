@@ -1,6 +1,7 @@
 package lr.rider;
 
 import haxe.ds.Vector;
+import lr.rider.objects.StartPointVis;
 import openfl.display.Sprite;
 import openfl.geom.Point;
 import openfl.utils.Object;
@@ -49,6 +50,7 @@ class RiderBase extends Sprite
 	public var skeleton:SkeletonBase;
 	public var clips:VisBase;
 	public var scarf:ScarfBase;
+	public var start_point:StartPointVis;
 	
 	public var grav:Object;
 	
@@ -65,17 +67,20 @@ class RiderBase extends Sprite
 	{
 		super();
 		
+		this.start_point = new StartPointVis();
+		this.addChild(this.start_point);
+		
 		switch (_type) {
 			case 1:
 				this.body = new B1Frame(0, 0);
 				this.skeleton = new B2Skeleton(this.body.anchors);
-				this.scarf = new B2Scarf(this.body.anchors[5]);
+				this.scarf = new B2Scarf(this.body.anchors[5], 0, 0);
 				this.clips = new B2Bosh(this.body, this.scarf, this.skeleton, this);
 				this.addChild(this.clips);
 			case 2:
 				this.body = new B2Frame(0, 0);
 				this.skeleton = new B2Skeleton(this.body.anchors);
-				this.scarf = new B2Scarf(this.body.anchors[5]);
+				this.scarf = new B2Scarf(this.body.anchors[5], 0, 0);
 				this.clips = new B2Bosh(this.body, this.scarf, this.skeleton, this);
 				this.addChild(this.clips);
 			case 3:
@@ -87,13 +92,17 @@ class RiderBase extends Sprite
 			default :
 				this.body = new B2Frame(0, 0);
 				this.skeleton = new B2Skeleton(this.body.anchors);
-				this.scarf = new B2Scarf(this.body.anchors[5]);
+				this.scarf = new B2Scarf(this.body.anchors[5], 0, 0);
 				this.clips = new B2Bosh(this.body, this.scarf, this.skeleton, this);
 				this.addChild(this.clips);
 		}
+		
 		this.grav = new Object();
 		this.grav.x = 0;
 		this.grav.y = 0.175;
+		
+		//this.start_point.x = this.body.anchors[0].x;
+		//this.start_point.y = this.body.anchors[0].y;
 		
 		this.recorder = new RiderRecorder();
 		this.camera = new RiderCamera();
@@ -113,7 +122,7 @@ class RiderBase extends Sprite
 		this.body.crash_check();
 		this.recorder.index_frame(Common.sim_frames, this.body.anchors, this.scarf.anchors);
 		this.clips.render_body();
-		this.camera.pan(this.body.anchors[5]);
+		this.camera.pan(this.body.anchors[4]);
 	}
 	public function step_rider_back() {
 		while (tick_frame != SubFrame.FullTick) {
@@ -123,7 +132,7 @@ class RiderBase extends Sprite
 		if (Common.sim_frames == 0) {
 			this.reset();
 		}
-		this.camera.pan(this.body.anchors[5]);
+		this.camera.pan(this.body.anchors[4]);
 		this.clips.render_body();
 	}
 	public function inject_postion(_frame:Int) {
@@ -134,7 +143,7 @@ class RiderBase extends Sprite
 		if (Common.sim_frames == 0) {
 			this.reset();
 		}
-		this.camera.pan(this.body.anchors[5]);
+		this.camera.pan(this.body.anchors[4]);
 		this.clips.render_body();
 	}
 	function reset() 
