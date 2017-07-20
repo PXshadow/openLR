@@ -21,7 +21,7 @@ import global.Language;
 import file.SaveManager;
 import global.FrameRate;
 import global.SimManager;
-import lr.track.TextInfo;
+import lr.scene.TextInfo;
 import ui.tool.Toolbar;
 import lr.Track;
 import file.AutosaveManager;

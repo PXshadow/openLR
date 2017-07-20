@@ -1,4 +1,4 @@
-package lr.track;
+package lr.scene;
 
 import openfl.Lib;
 import openfl.Assets;
