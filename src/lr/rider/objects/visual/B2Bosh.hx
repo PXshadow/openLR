@@ -56,13 +56,13 @@ class B2Bosh extends VisBase
 		var swfLibSled = AssetLibrary.loadFromFile("swf/sled.bundle");
 		swfLibSled.onComplete(sledClip);
 		
-		var swfLibBody = AssetLibrary.loadFromFile("swf/body.bundle");
+		var swfLibBody = AssetLibrary.loadFromFile("swf/bosh/body.bundle");
 		swfLibBody.onComplete(bodyClip);
 		
-		var swfLibLeg = AssetLibrary.loadFromFile("swf/leg.bundle");
+		var swfLibLeg = AssetLibrary.loadFromFile("swf/bosh/leg.bundle");
 		swfLibLeg.onComplete(legClip);
 		
-		var swfLibArm = AssetLibrary.loadFromFile("swf/arm.bundle");
+		var swfLibArm = AssetLibrary.loadFromFile("swf/bosh/arm.bundle");
 		swfLibArm.onComplete(armClip);
 	}
 	function bodyClip(lib:AssetLibrary) 
