@@ -1,4 +1,4 @@
-package lr;
+package lr.track;
 
 import openfl.Lib;
 import openfl.Assets;

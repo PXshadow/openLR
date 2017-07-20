@@ -146,6 +146,7 @@ class FileStart
 		Language.Profile = _locJson.dictionary.profile;
 		Language.Close = _locJson.dictionary.close;
 		Language.Save = _locJson.dictionary.save;
+		Language.Load = _locJson.dictionary.load;
 		Language.Cancel = _locJson.dictionary.cancel;
 	}
 }
