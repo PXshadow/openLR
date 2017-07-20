@@ -3,7 +3,6 @@ package global;
 import haxe.Timer;
 import openfl.events.KeyboardEvent;
 
-import lr.rider.RiderBaseOld;
 import global.KeyBindings;
 /**
  * ...
