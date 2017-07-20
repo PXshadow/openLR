@@ -105,8 +105,8 @@ class RiderBase extends Sprite
 		this.grav.x = 0;
 		this.grav.y = 0.175;
 		
-		//this.start_point.x = this.body.anchors[0].x;
-		//this.start_point.y = this.body.anchors[0].y;
+		this.start_point.x = this.body.anchors[0].x;
+		this.start_point.y = this.body.anchors[0].y;
 		
 		this.recorder = new RiderRecorder(_id);
 		this.camera = new RiderCamera();
