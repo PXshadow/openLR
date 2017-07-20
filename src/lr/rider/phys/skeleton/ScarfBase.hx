@@ -14,6 +14,8 @@ class ScarfBase
 {
 	public var anchors:Vector<SPoint>;
 	public var edges:Vector<ScarfStick>;
+	private var start_x:Float;
+	private var start_y:Float;
 	public function new() 
 	{
 		
