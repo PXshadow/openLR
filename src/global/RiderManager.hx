@@ -25,6 +25,8 @@ class RiderManager extends Sprite
 				this.riderArray[Common.svar_rider_count] = new RiderBase(RiderType.Beta1);
 			case 2 :
 				this.riderArray[Common.svar_rider_count] = new RiderBase(RiderType.Beta2);
+			case 3 :
+				this.riderArray[Common.svar_rider_count] = new RiderBase(RiderType.Beta3a);
 			default:
 				this.riderArray[Common.svar_rider_count] = new RiderBase(RiderType.Beta2);
 		}
