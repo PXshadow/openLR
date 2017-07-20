@@ -8,8 +8,8 @@ import openfl.utils.Object;
 import openfl.utils.AssetLibrary;
 
 import global.Common;
-import lr.line.LineBase;
-import lr.line.nodes.B2Grid;
+import lr.lines.LineBase;
+import lr.lines.nodes.B2Grid;
 import lr.rider.RiderRecorder;
 import lr.rider.objects.FlagMarker;
 import lr.rider.objects.VisBase;

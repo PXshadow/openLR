@@ -1,9 +1,9 @@
-package lr.line.nodes;
+package lr.lines.nodes;
 
 import openfl.utils.Object;
 
 import lr.rider.phys.frames.anchors.CPoint;
-import lr.line.LineBase;
+import lr.lines.LineBase;
 import global.Common;
 
 /**

@@ -1,4 +1,4 @@
-package lr.line.types;
+package lr.lines.types;
 
 /**
  * ...

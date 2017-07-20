@@ -1,5 +1,6 @@
-package lr.line.types;
+package lr.lines.types;
 
+import lr.lines.LineBase;
 import lr.rider.phys.frames.anchors.CPoint;
 import openfl.geom.Point;
 

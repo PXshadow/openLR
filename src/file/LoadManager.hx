@@ -1,9 +1,10 @@
 package file;
 
 import file.ui.FileWindow;
-import lr.line.types.LineAccel;
-import lr.line.types.LineFloor;
-import lr.line.types.LineScene;
+import lr.lines.types.LineAccel;
+import lr.lines.types.LineFloor;
+import lr.lines.types.LineScene;
+import lr.lines.LineBase;
 import openfl.display.Sprite;
 import sys.io.File;
 import sys.FileSystem;

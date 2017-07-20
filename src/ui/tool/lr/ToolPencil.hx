@@ -1,10 +1,10 @@
 package ui.tool.lr;
 
-import lr.line.LineBase;
+import lr.lines.LineBase;
 import lr.line.*;
-import lr.line.types.LineAccel;
-import lr.line.types.LineFloor;
-import lr.line.types.LineScene;
+import lr.lines.types.LineAccel;
+import lr.lines.types.LineFloor;
+import lr.lines.types.LineScene;
 import openfl.events.MouseEvent;
 import openfl.geom.Point;
 

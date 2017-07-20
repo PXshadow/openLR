@@ -1,13 +1,13 @@
 package ui.tool.lr;
 
 import global.Common;
-import lr.line.LineBase;
+import lr.lines.LineBase;
 import openfl.display.MovieClip;
 import openfl.events.MouseEvent;
 import openfl.utils.Object;
 import ui.tool.ToolBase;
 import openfl.events.Event;
-import lr.line.nodes.B2Grid;
+import lr.lines.nodes.B2Grid;
 
 /**
  * ...

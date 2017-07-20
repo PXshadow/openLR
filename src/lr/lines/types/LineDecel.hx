@@ -1,10 +1,10 @@
-package lr.line.nodes;
+package lr.lines.types;
 
 /**
  * ...
  * @author Kaelan Evans
  */
-class B3Grid 
+class LineDecel 
 {
 
 	public function new() 

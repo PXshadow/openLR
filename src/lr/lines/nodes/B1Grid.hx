@@ -1,4 +1,4 @@
-package lr.line.nodes;
+package lr.lines.nodes;
 
 /**
  * ...
