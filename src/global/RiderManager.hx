@@ -11,26 +11,28 @@ import lr.rider.RiderBase;
 class RiderManager extends Sprite
 {
 	private var riderArray:Array<RiderBase>;
-	public var startPoint0:Point = new Point(0, 0);
+	public static var crash:Array<Bool>;
 	public function new() 
 	{
 		super();
 		Common.gRiderManager = this;
 		
 		this.riderArray = new Array();
+		RiderManager.crash = new Array();
 	}
 	public function add_rider(_type:Int, _x:Float, _y:Float) {
 		switch(_type) {
 			case 1 :
-				this.riderArray[Common.svar_rider_count] = new RiderBase(RiderType.Beta1, _x, _y);
+				this.riderArray[Common.svar_rider_count] = new RiderBase(RiderType.Beta1, _x, _y, Common.svar_rider_count);
 			case 2 :
-				this.riderArray[Common.svar_rider_count] = new RiderBase(RiderType.Beta2, _x, _y);
+				this.riderArray[Common.svar_rider_count] = new RiderBase(RiderType.Beta2, _x, _y, Common.svar_rider_count);
 			case 3 :
-				this.riderArray[Common.svar_rider_count] = new RiderBase(RiderType.Beta3a, _x, _y);
+				this.riderArray[Common.svar_rider_count] = new RiderBase(RiderType.Beta3a, _x, _y, Common.svar_rider_count);
 			default:
-				this.riderArray[Common.svar_rider_count] = new RiderBase(RiderType.Beta2, _x, _y);
+				this.riderArray[Common.svar_rider_count] = new RiderBase(RiderType.Beta2, _x, _y, Common.svar_rider_count);
 		}
 		this.addChild(this.riderArray[Common.svar_rider_count]);
+		RiderManager.crash[Common.svar_rider_count] = false;
 		Common.svar_rider_count += 1;
 	}
 	public function advance_riders() {

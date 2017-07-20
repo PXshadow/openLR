@@ -63,25 +63,29 @@ class RiderBase extends Sprite
 	
 	var tick_frame = SubFrame.FullTick;
 	
-	public function new(_type:Int, _x:Float, _y:Float) 
+	private var riderID:Int;
+	
+	public function new(_type:Int, _x:Float, _y:Float, _id:Int) 
 	{
 		super();
 		
 		this.start_point = new StartPointVis();
 		this.addChild(this.start_point);
 		
+		this.riderID = _id;
+		
 		switch (_type) {
 			case 1:
-				this.body = new B1Frame(_x, _y);
-				this.skeleton = new B2Skeleton(this.body.anchors);
-				this.scarf = new B2Scarf(this.body.anchors[5], _x, _y);
-				this.clips = new B2Bosh(this.body, this.scarf, this.skeleton, this);
+				this.body = new B1Frame(_x, _y, this.riderID);
+				this.skeleton = new B2Skeleton(this.body.anchors, this.riderID);
+				this.scarf = new B2Scarf(this.body.anchors[5], _x, _y, this.riderID);
+				this.clips = new B2Bosh(this.body, this.scarf, this.skeleton, this, this.riderID);
 				this.addChild(this.clips);
 			case 2:
-				this.body = new B2Frame(_x, _y);
-				this.skeleton = new B2Skeleton(this.body.anchors);
-				this.scarf = new B2Scarf(this.body.anchors[5], _x, _y);
-				this.clips = new B2Bosh(this.body, this.scarf, this.skeleton, this);
+				this.body = new B2Frame(_x, _y, this.riderID);
+				this.skeleton = new B2Skeleton(this.body.anchors, this.riderID);
+				this.scarf = new B2Scarf(this.body.anchors[5], _x, _y, this.riderID);
+				this.clips = new B2Bosh(this.body, this.scarf, this.skeleton, this, this.riderID);
 				this.addChild(this.clips);
 			case 3:
 				//beta 3 rider normal
@@ -90,10 +94,10 @@ class RiderBase extends Sprite
 			case 5 :
 				//JSON Custom Rider
 			default :
-				this.body = new B2Frame(_x, _y);
-				this.skeleton = new B2Skeleton(this.body.anchors);
-				this.scarf = new B2Scarf(this.body.anchors[5], _x, _y);
-				this.clips = new B2Bosh(this.body, this.scarf, this.skeleton, this);
+				this.body = new B2Frame(_x, _y, this.riderID);
+				this.skeleton = new B2Skeleton(this.body.anchors, this.riderID);
+				this.scarf = new B2Scarf(this.body.anchors[5], _x, _y, this.riderID);
+				this.clips = new B2Bosh(this.body, this.scarf, this.skeleton, this, this.riderID);
 				this.addChild(this.clips);
 		}
 		
@@ -104,7 +108,7 @@ class RiderBase extends Sprite
 		//this.start_point.x = this.body.anchors[0].x;
 		//this.start_point.y = this.body.anchors[0].y;
 		
-		this.recorder = new RiderRecorder();
+		this.recorder = new RiderRecorder(_id);
 		this.camera = new RiderCamera();
 	}
 	public function step_rider()

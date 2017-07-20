@@ -9,6 +9,7 @@ import lr.rider.phys.skeleton.bones.Stick;
  */
 class SkeletonBase 
 {
+	private var riderID:Int;
 	public var edges:Vector<Stick>;
 	public function new() 
 	{

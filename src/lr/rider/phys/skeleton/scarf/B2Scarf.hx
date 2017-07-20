@@ -13,9 +13,11 @@ import lr.rider.phys.skeleton.bones.ScarfStick;
 class B2Scarf extends ScarfBase
 {
 	var shoulder:CPoint;
-	public function new(_shoulder:CPoint, _x:Float, _y:Float) 
+	public function new(_shoulder:CPoint, _x:Float, _y:Float, _id:Int) 
 	{
 		super();
+		
+		this.riderID = _id;
 		
 		this.start_x = _x;
 		this.start_y = _y;

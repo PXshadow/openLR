@@ -16,6 +16,8 @@ class ScarfBase
 	public var edges:Vector<ScarfStick>;
 	private var start_x:Float;
 	private var start_y:Float;
+	private var riderID:Int;
+	
 	public function new() 
 	{
 		

@@ -5,6 +5,7 @@ import openfl.utils.AssetLibrary;
 import openfl.geom.Point;
 
 import global.Common;
+import global.RiderManager;
 import lr.rider.RiderBase;
 import lr.rider.phys.skeleton.SkeletonBase;
 import lr.rider.objects.VisBase;
@@ -38,9 +39,13 @@ class B2Bosh extends VisBase
 	private var skeleton:SkeletonBase;
 	private var base:RiderBase;
 	
-	public function new(_body:FrameBase, _scarf:ScarfBase, _skeleton:SkeletonBase, _base:RiderBase) 
+	private var riderID:Int;
+	
+	public function new(_body:FrameBase, _scarf:ScarfBase, _skeleton:SkeletonBase, _base:RiderBase, _id:Int) 
 	{
 		super();
+		
+		this.riderID = _id;
 		
 		this.body = _body;
 		this.scarf = _scarf;
@@ -168,7 +173,7 @@ class B2Bosh extends VisBase
 		this.string.graphics.clear();
 		this.skeleton_vis.graphics.clear();
 		this.scarf_vis.graphics.clear();
-		if (!Stick.crash) {
+		if (!RiderManager.crash[this.riderID]) {
 			this.string.graphics.lineStyle(0.5, 0, Common.cvar_rider_alpha);
 			this.string.graphics.moveTo(this.body.anchors[6].x, this.body.anchors[6].y);
 			this.string.graphics.lineTo(this.body.anchors[3].x, this.body.anchors[3].y);

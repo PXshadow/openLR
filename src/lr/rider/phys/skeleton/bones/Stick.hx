@@ -10,7 +10,7 @@ class Stick
 	public var a:CPoint;
 	public var b:CPoint;
 	public var rest:Float;
-	public static var crash:Bool = false;
+	private var riderID:Int;
 	public function new(_a:CPoint, _b:CPoint) 
 	{
 		this.a = _a;

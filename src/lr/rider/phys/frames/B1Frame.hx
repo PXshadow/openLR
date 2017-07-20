@@ -2,6 +2,7 @@ package lr.rider.phys.frames;
 
 import haxe.ds.Vector;
 
+import global.RiderManager;
 import lr.rider.phys.frames.anchors.CPoint;
 import lr.rider.phys.skeleton.bones.Stick;
 
@@ -12,9 +13,11 @@ import lr.rider.phys.skeleton.bones.Stick;
 class B1Frame extends FrameBase
 {
 
-	public function new(_x:Float, _y:Float) 
+	public function new(_x:Float, _y:Float, _id:Int) 
 	{
 		super();
+		
+		this.riderID = _id;
 		
 		this.start_x = _x;
 		this.start_y = _y;
@@ -89,7 +92,7 @@ class B1Frame extends FrameBase
 		var _loc5:Float = this.anchors[3].y - this.anchors[0].y;
 		if (_loc4 * (this.anchors[1].y - this.anchors[0].y) - _loc5 * (this.anchors[1].x - this.anchors[0].x) < 0)
 		{
-			Stick.crash = true; //Tail fakie counter measure.
+			RiderManager.crash[this.riderID] = false; //Tail fakie counter measure.
 		}
 	}
 }

@@ -3,6 +3,7 @@ package lr.rider;
 import haxe.ds.Vector;
 
 import global.Common;
+import global.RiderManager;
 import lr.rider.phys.frames.anchors.CPoint;
 import lr.rider.phys.frames.anchors.SPoint;
 import lr.rider.phys.skeleton.bones.Stick;
@@ -15,10 +16,12 @@ class RiderRecorder
 {
 	private var frame_array:Array<Array<Array<Dynamic>>>;
 	private var scarf_array:Array<Array<Array<Dynamic>>>;
-	public function new() 
+	private var riderID:Int;
+	public function new(_id:Int) 
 	{
 		this.frame_array = new Array();
 		this.scarf_array = new Array();
+		this.riderID = _id;
 	}
 	public function index_frame(_frame:Int, _anchors:Vector<CPoint>, _scarf:Vector<SPoint>) {
 		this.frame_array[_frame] = new Array();
@@ -31,7 +34,7 @@ class RiderRecorder
 			this.frame_array[_frame][i][3] = _anchors[i].vy;
 			this.frame_array[_frame][i][4] = _anchors[i].dx;
 			this.frame_array[_frame][i][5] = _anchors[i].dy;
-			this.frame_array[_frame][i][6] = Stick.crash;
+			this.frame_array[_frame][i][6] = RiderManager.crash[this.riderID];
 		}
 		for (j in 0..._scarf.length) {
 			this.scarf_array[_frame][j] = new Array();
@@ -52,7 +55,7 @@ class RiderRecorder
 				_anchors[i].vy = this.frame_array[_frame][i][3];
 				_anchors[i].dx = this.frame_array[_frame][i][4];
 				_anchors[i].dy = this.frame_array[_frame][i][5];
-				Stick.crash = this.frame_array[_frame][i][6];
+				RiderManager.crash[this.riderID] = this.frame_array[_frame][i][6];
 			}
 			for (j in 0..._scarf.length) {
 				_scarf[j].x = this.scarf_array[_frame][j][0];
