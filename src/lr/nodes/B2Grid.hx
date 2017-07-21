@@ -249,6 +249,7 @@ class B2Grid
 		{
 			_loc4.storage = new Array<LineBase>();
 			_loc4.storage2 = new Array<LineBase>();
+			_loc4.lowFrame = -1;
 			grid[_x][_y] = _loc4;
 		}
 		var a = new Array<Int>();

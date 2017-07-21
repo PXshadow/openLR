@@ -250,6 +250,11 @@ class RiderBase extends Sprite
 					{
 						_loc8.collide(_loc5);
 					}
+					if (B2Grid.grid[_loc1][_loc2].lowFrame == - 1) {
+						B2Grid.grid[_loc1][_loc2].lowFrame = Common.sim_frames;
+					} else if (Common.sim_frames <  B2Grid.grid[_loc1][_loc2].lowFrame) {
+						B2Grid.grid[_loc1][_loc2].lowFrame = Common.sim_frames;
+					}
 				}
 			}
 		} 
