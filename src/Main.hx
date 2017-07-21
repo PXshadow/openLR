@@ -23,7 +23,7 @@ import global.FrameRate;
 import global.SimManager;
 import lr.scene.TextInfo;
 import ui.tool.Toolbar;
-import lr.Track;
+import lr.scene.Track;
 import file.AutosaveManager;
 import file.Screenshot;
 import lr.settings.SettingsMenu;

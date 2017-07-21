@@ -9,7 +9,7 @@ import openfl.geom.Point;
 import openfl.text.TextFormat;
 import openfl.text.TextFormatAlign;
 
-import lr.Track;
+import lr.scene.Track;
 import file.AutosaveManager;
 import file.LoadManager;
 import file.SaveManager;
