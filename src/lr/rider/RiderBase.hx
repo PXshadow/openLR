@@ -116,6 +116,11 @@ class RiderBase extends Sprite
 		while (tick_frame != SubFrame.FullTick) {
 			this.step_rider_sub();
 		}
+		this.iterate();
+		this.clips.render_body();
+		this.camera.pan(this.body.anchors[4]);
+	}
+	public function iterate() {
 		this.body.verlet(this.grav);
 		this.scarf.verlet(this.grav);
 		for (a in 0...6) {
@@ -125,8 +130,6 @@ class RiderBase extends Sprite
 		}
 		this.body.crash_check();
 		this.recorder.index_frame(Common.sim_frames, this.body.anchors, this.scarf.anchors);
-		this.clips.render_body();
-		this.camera.pan(this.body.anchors[4]);
 	}
 	public function step_rider_back() {
 		while (tick_frame != SubFrame.FullTick) {
