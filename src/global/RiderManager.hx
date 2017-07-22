@@ -75,6 +75,11 @@ class RiderManager extends Sprite
 			a.inject_postion(Common.sim_flagged_frame);
 		}
 	}
+	public function update_riders(_frame:Int) {
+		for (a in riderArray) {
+			a.inject_and_update(_frame);
+		}
+	}
 	public function destroy_flag() {
 
 	}

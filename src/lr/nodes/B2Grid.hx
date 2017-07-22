@@ -235,6 +235,10 @@ class B2Grid
 				register(line, _loc1.x, _loc1.y);
 				continue;
 			} // end if
+			if (GridBase.lowFrame != -1) {
+				Common.gRiderManager.update_riders(GridBase.lowFrame);
+				GridBase.lowFrame = -1;
+			}
 			return;
 		}
 	}
@@ -258,6 +262,13 @@ class B2Grid
 		if (line.type != 2)
 		{
 			grid[_x][_y].storage2.push(line);
+		}
+		if (_loc4.lowFrame != -1) {
+			if (GridBase.lowFrame == -1) {
+				GridBase.lowFrame = _loc4.lowFrame;
+			} else if (_loc4.lowFrame < GridBase.lowFrame ) {
+				GridBase.lowFrame = _loc4.lowFrame;
+			}
 		}
 		grid[_x][_y].storage.push(line);
 	}

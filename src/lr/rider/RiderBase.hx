@@ -158,6 +158,14 @@ class RiderBase extends Sprite
 		this.body.reset();
 		this.scarf.reset();
 	}
+	public function inject_and_update(_frame:Int) {
+		var _loc1 = Common.sim_frames;
+		recorder.inject_frame(_frame, this.body.anchors, this.scarf.anchors);
+		for (a in _frame..._loc1) {
+			this.iterate();
+		}
+		this.clips.render_body();
+	}
 	public function step_rider_sub() {
 		switch (this.tick_frame) {
 			case 0 :
