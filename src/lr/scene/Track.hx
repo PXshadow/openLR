@@ -34,7 +34,7 @@ class Track extends Sprite
 	{
 		Common.gGrid.massLineIndex(line);
 		Common.gVisGrid.registerInGrid(line);
-		this.addChild(grid.lines[line.ID]);
+		//this.addChild(grid.lines[line.ID]);
 		if (Common.svar_sim_running) {
 			return;
 		}

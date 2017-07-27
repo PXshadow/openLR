@@ -1,6 +1,7 @@
 package lr.nodes;
 
 import openfl.utils.Object;
+import openfl.geom.Point;
 
 import lr.rider.phys.frames.anchors.CPoint;
 import lr.lines.LineBase;
@@ -12,10 +13,12 @@ import global.Common;
  */
 class VisGrid 
 {
-	public static var gridSize:Int = 1000;
+	public static var gridSize:Int = 500;
 	public static var grid:Map<Int, Map<Int, VisNode>>;
-	public static var currentVisualIndex:Array<LineBase>;
+	public static var currentVisualIndex:Array<VisNode>;
 	public static var tempVisualIndex:Array<LineBase>;
+	private static var current_x:Int = -500000;
+	private static var current_y:Int = -500000;
 	public function new() 
 	{
 		VisGrid.grid = new Map();
@@ -111,6 +114,7 @@ class VisGrid
 		{
 			VisGrid.grid[_x][_y] = new VisNode(_x, _y);
 			Common.gTrack.addChild(VisGrid.grid[_x][_y]);
+			VisGrid.grid[_x][_y].visible = false;
 		}
 		var a = new Array<Int>();
 		a = [_x, _y];
@@ -123,5 +127,40 @@ class VisGrid
 		posObject.x = Math.floor(x / VisGrid.gridSize);
 		posObject.y = Math.floor(y / VisGrid.gridSize);
 		return(posObject);
+	}
+	public static function updateVisuals() {
+		var tl_track:Point = Common.gTrack.localToGlobal(Common.tl_point);
+		var br_track:Point = Common.gTrack.localToGlobal(Common.br_point);
+		
+		var _locX = VisGrid.gridPosVis(tl_track.x, tl_track.y);
+		var _locY = VisGrid.gridPosVis(br_track.x, br_track.y);
+		
+		if (_locX.x == VisGrid.current_x && _locY.y == VisGrid.current_y) {
+			return;
+		} else if (_locX.x != VisGrid.current_x || _locY.y != VisGrid.current_y) {
+			for (i in VisGrid.currentVisualIndex) {
+				i.visible = false;
+			}
+			VisGrid.currentVisualIndex = new Array();
+			
+			VisGrid.current_x = _locX.x;
+			VisGrid.current_y = _locY.y;
+			
+			for (a in _locX.x..._locY.x) {
+				if (VisGrid.grid[a] == null) {
+					continue;
+				}
+				for (b in _locX.y..._locY.y) {
+					if (VisGrid.grid[a][b] == null) {
+						continue;
+					}
+					VisGrid.currentVisualIndex.push(VisGrid.grid[a][b]);
+				}
+			}
+			for (j in VisGrid.currentVisualIndex) {
+				j.visible = true;
+				j.switchToBitmap();
+			}
+		}
 	}
 }

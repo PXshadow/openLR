@@ -6,6 +6,7 @@ import openfl.display.MovieClip;
 import openfl.display.Sprite;
 import openfl.Lib;
 import openfl.events.Event;
+import openfl.geom.Point;
 import openfl.net.URLRequest;
 import haxe.Timer;
 import openfl.Lib;
@@ -16,16 +17,16 @@ import openfl.Assets;
 //openLR
 import file.FileStart;
 import file.LoadManager;
+import file.SaveManager;
+import file.AutosaveManager;
+import file.Screenshot;
 import global.Common;
 import global.Language;
-import file.SaveManager;
 import global.FrameRate;
 import global.SimManager;
 import lr.scene.TextInfo;
 import ui.tool.Toolbar;
 import lr.scene.Track;
-import file.AutosaveManager;
-import file.Screenshot;
 import lr.settings.SettingsMenu;
 import global.RiderManager;
 import ui.inter.AlertBox;
@@ -124,6 +125,9 @@ class Main extends Sprite
 		this.FPS = new FrameRate();
 		
 		this.autosave = new AutosaveManager();
+		
+		Common.tl_point = new Point(0, 0);
+		Common.br_point = new Point(this.stage.stageWidth, this.stage.stageHeight);
 	}
 	
 	public function init_track() //display minimum items
@@ -270,6 +274,8 @@ class Main extends Sprite
 		
 		this.timeline.x = (this.stage.stageWidth * 0.5) - (this.timeline.width * 0.5);
 		this.timeline.y = this.stage.stageHeight - this.timeline.height + 25;
+		
+		Common.br_point = new Point(this.stage.stageWidth, this.stage.stageHeight);
 	}
 	public function align() {
 		this.visContainer.x = this.visContainer.y = 0;

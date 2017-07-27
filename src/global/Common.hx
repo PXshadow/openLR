@@ -73,6 +73,9 @@ class Common
 	public static var track_last_pos_x:Float = 0;
 	public static var track_last_pos_y:Float = 0;
 	
+	public static var tl_point:Point;
+	public static var br_point:Point;
+	
 	public static var sim_frames:Int = 0;
 	public static var sim_frames_alt:Int = 0;
 	public static var sim_max_frames:Int = 0;
