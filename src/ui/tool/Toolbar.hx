@@ -86,14 +86,6 @@ class Toolbar extends MovieClip
 		this.addChild(settings);
 		this.settings.x = 248;
 		
-		this.graphics.clear();
-		this.graphics.beginFill(0xFFFFFF, 1);
-		this.graphics.moveTo(0, 0);
-		this.graphics.lineTo(270, 0);
-		this.graphics.lineTo(270, 30);
-		this.graphics.lineTo(0, 30);
-		this.graphics.lineTo(0, 0);
-		
 		this.swBlue = new SwatchBlue();
 		this.addChild(swBlue);
 		this.swBlue.x = -2;
