@@ -34,9 +34,6 @@ import ui.inter.CheckBox;
 import ui.tool.timeline.Ticker;
 import ui.tool.timeline.TimelineControl;
 
-//TBD
-import file.HXLZString;
-
 /**
  * ...
  * @author Kaelan Evans
@@ -194,7 +191,7 @@ class Main extends Sprite
 			Common.svar_game_mode = "settings";
 			this.settings_box.visible = true;
 			this.track.visible = false;
-			this.toolBar.visible = false;
+			this.toolBar.mouseChildren = false;
 			this.textInfo.visible = false;
 			this.timeline.visible = false;
 			this.settings_box.update();
@@ -203,7 +200,7 @@ class Main extends Sprite
 			this.mainFileInit.write_new_keys();
 			this.settings_box.visible = false;
 			this.track.visible = true;
-			this.toolBar.visible = true;
+			this.toolBar.mouseChildren = true;
 			this.textInfo.visible = true;
 			this.timeline.visible = true;
 			Common.svar_game_mode = "edit";
@@ -216,13 +213,13 @@ class Main extends Sprite
 			this.save_manager.update();
 			this.save_manager.visible = true;
 			this.track.visible = false;
-			this.toolBar.visible = false;
+			this.toolBar.mouseChildren = false;
 			this.textInfo.visible = false;
 			this.timeline.visible = false;
 		} else {
 			this.save_manager.visible = false;
 			this.track.visible = true;
-			this.toolBar.visible = true;
+			this.toolBar.mouseChildren = true;
 			this.textInfo.visible = true;
 			this.timeline.visible = true;
 			Common.svar_game_mode = "edit";
@@ -251,6 +248,8 @@ class Main extends Sprite
 	private function resize(e:Event):Void
 	{
 		this.visContainer.x = this.visContainer.y = 0;
+		
+		this.toolBar.scaleX = this.toolBar.scaleY = Common.cvar_toolbar_scale;
 		this.toolBar.x = (this.stage.stageWidth * 0.5) - (this.toolBar.width * 0.5); 
 		
 		Common.stage_height = this.stage.stageHeight;
@@ -266,8 +265,8 @@ class Main extends Sprite
 		this.save_manager.x = (this.stage.stageWidth * 0.5) - (this.save_manager.width * 0.5);
 		this.save_manager.y = (this.stage.stageHeight * 0.5) - (this.save_manager.height * 0.5);
 		
-		this.settings_box.x = (this.stage.stageWidth * 0.5) - (this.settings_box.width * 0.5);
-		this.settings_box.y = (this.stage.stageHeight * 0.5) - (this.settings_box.height * 0.5);
+		this.settings_box.x = 200;
+		this.settings_box.y = 200;
 		
 		this.loadManager.x = (this.stage.stageWidth * 0.5) - (this.loadManager.width * 0.5);
 		this.loadManager.y = (this.stage.stageHeight * 0.5) - 300;
@@ -279,6 +278,8 @@ class Main extends Sprite
 	}
 	public function align() {
 		this.visContainer.x = this.visContainer.y = 0;
+		
+		this.toolBar.scaleX = this.toolBar.scaleY = Common.cvar_toolbar_scale;
 		this.toolBar.x = (this.stage.stageWidth * 0.5) - (this.toolBar.width * 0.5); 
 		
 		Common.stage_height = this.stage.stageHeight;
@@ -294,8 +295,8 @@ class Main extends Sprite
 		this.save_manager.x = (this.stage.stageWidth * 0.5) - (this.save_manager.width * 0.5);
 		this.save_manager.y = (this.stage.stageHeight * 0.5) - (this.save_manager.height * 0.5);
 		
-		this.settings_box.x = (this.stage.stageWidth * 0.5) - (this.settings_box.width * 0.5);
-		this.settings_box.y = (this.stage.stageHeight * 0.5) - (this.settings_box.height * 0.5);
+		this.settings_box.x = 200;
+		this.settings_box.y = 200;
 		
 		this.loadManager.x = (this.stage.stageWidth * 0.5) - (this.loadManager.width * 0.5);
 		this.loadManager.y = (this.stage.stageHeight * 0.5) - 300;

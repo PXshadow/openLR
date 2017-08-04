@@ -27,6 +27,7 @@ class TrackSettings extends Sprite
 	var force_zoom:CheckBox;
 	var force_zoom_step:StepCounter;
 	var frustrumCulling_toggle:CheckBox;
+	var toolbar_scale:StepCounter;
 	
 	var sWidth:Float = 0;
 	var sHeight:Float = 0;
@@ -102,6 +103,13 @@ class TrackSettings extends Sprite
 		this.frustrumCulling_toggle.y = 162;
 		this.frustrumCulling_toggle.hitBox.addEventListener(MouseEvent.CLICK, this.toggle_frustrumCulling);
 		
+		this.toolbar_scale = new StepCounter();
+		this.addChild(this.toolbar_scale);
+		this.toolbar_scale.y = 192;
+		this.toolbar_scale.set_numeric_mode(0.2, 4, 0.2, 1, " Scale");
+		this.toolbar_scale.stepUp.addEventListener(MouseEvent.CLICK, inc_ui_scale);
+		this.toolbar_scale.stepDown.addEventListener(MouseEvent.CLICK, dec_ui_scale);
+		
 		this.sWidth = this.width;
 		this.sHeight = this.height;
 	
@@ -113,6 +121,18 @@ class TrackSettings extends Sprite
 		this.graphics.lineTo(this.sWidth + 5, this.sHeight + 5);
 		this.graphics.lineTo(-5, this.sHeight + 5);
 		this.graphics.lineTo( -5, -5);
+	}
+	
+	private function dec_ui_scale(e:MouseEvent):Void 
+	{
+		Common.cvar_toolbar_scale = this.toolbar_scale.dec();
+		Common.gCode.align();
+	}
+	
+	private function inc_ui_scale(e:MouseEvent):Void 
+	{
+		Common.cvar_toolbar_scale = this.toolbar_scale.inc();
+		Common.gCode.align();
 	}
 	
 	private function toggle_frustrumCulling(e:MouseEvent):Void 
