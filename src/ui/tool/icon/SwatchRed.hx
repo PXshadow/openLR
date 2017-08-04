@@ -13,7 +13,7 @@ class SwatchRed extends IconBase
 
 	public function new() 
 	{
-		super();
+		super("");
 		this.graphics.clear();
 		this.graphics.beginFill(0xCC0000);
 		this.graphics.moveTo(0, 0);

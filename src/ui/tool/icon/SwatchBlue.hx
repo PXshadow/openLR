@@ -12,7 +12,7 @@ class SwatchBlue  extends IconBase
 
 	public function new() 
 	{
-		super();
+		super("");
 		this.graphics.clear();
 		this.graphics.beginFill(0x0066FF);
 		this.graphics.moveTo(0, 0);

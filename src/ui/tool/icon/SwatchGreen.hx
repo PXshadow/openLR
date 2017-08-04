@@ -13,7 +13,7 @@ class SwatchGreen extends IconBase
 
 	public function new() 
 	{
-		super();
+		super("");
 		this.graphics.clear();
 		this.graphics.beginFill(0x00CC00);
 		this.graphics.moveTo(0, 0);
