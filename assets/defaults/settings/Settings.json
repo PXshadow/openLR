@@ -11,6 +11,7 @@
 		"autosave": true,
 		"angle_snap": false,
 		"author": "Made by: Anonymous",
-		"language" : "English"
+		"language" : "English",
+		"uiscale" : 1
 	}
 }

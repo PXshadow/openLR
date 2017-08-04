@@ -111,6 +111,7 @@ class FileStart
 		Common.cvar_color_play = _locJson.settings.color_play;
 		Common.cvar_preview_mode  = _locJson.settings.preview_mode;
 		Common.cvar_dictionary = _locJson.settings.language;
+		Common.cvar_toolbar_scale = _locJson.settings.uiscale;
 	}
 	//////////
 	//Language
