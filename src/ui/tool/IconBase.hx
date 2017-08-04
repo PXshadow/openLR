@@ -28,6 +28,9 @@ import global.Common;
 	public var flag:String = "flag";
 	public var file:String = "file";
 	public var settings:String = "settings";
+	public var swBlue:String = "sBlue";
+	public var swRed:String = "sRed";
+	public var swGreen:String = "sGreen";
 }
 class IconBase extends Sprite
 {
