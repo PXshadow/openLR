@@ -5,6 +5,7 @@ import openfl.events.MouseEvent;
 import openfl.Lib;
 import openfl.Assets;
 import openfl.net.URLRequest;
+import ui.tool.IconBase;
 import ui.tool.lr.ToolEraser;
 
 import global.Common;
@@ -19,9 +20,7 @@ class IconEraser extends IconBase
 
 	public function new() 
 	{
-		super();
-		this.icon = new Bitmap(Assets.getBitmapData("icon/eraser.png"));
-		this.addChild(this.icon);
+		super("swf/ui/IconEraser.bundle");
 	}
 	override public function down(e:MouseEvent) {
 		Common.gToolBase.disable();

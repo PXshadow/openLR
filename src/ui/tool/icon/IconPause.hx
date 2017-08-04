@@ -18,9 +18,7 @@ class IconPause extends IconBase
 	var paused:Bool = false;
 	public function new() 
 	{
-		super();
-		this.icon = new Bitmap(Assets.getBitmapData("icon/pause.png"));
-		this.addChild(this.icon);
+		super("swf/ui/IconPause.bundle");
 	}
 	override public function down(e:MouseEvent) {
 		if (Common.gSimManager.paused) {

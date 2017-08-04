@@ -31,7 +31,7 @@ import lr.rider.phys.skeleton.SkeletonBase;
 @:enum abstract RiderType(Int) from Int to Int {
 	public var Beta1:Int = 1;
 	public var Beta2:Int = 2;
-	public var Beta3a:Int = 3;
+	public var Beta3a:Int = 3; //Female Rider
 	public var Beta3b:Int = 4; //this is the one that falls apart
 	public var JSON:Int = 5;
 }

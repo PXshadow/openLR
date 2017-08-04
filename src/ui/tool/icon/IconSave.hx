@@ -10,6 +10,7 @@ import sys.io.File;
 import sys.FileSystem;
 import openfl.ui.Mouse;
 import openfl.ui.MouseCursor;
+import ui.tool.IconBase;
 
 import global.Common;
 import global.Language;
@@ -36,9 +37,7 @@ class IconSave extends IconBase
 	private var screen_cap:TextButton;
 	public function new() 
 	{
-		super();
-		this.icon = new Bitmap(Assets.getBitmapData("icon/save.png"));
-		this.addChild(this.icon);
+		super("swf/ui/IconSave.bundle");
 	}
 	override public function down(e:MouseEvent) {
 		if (this.mouseY < 30)

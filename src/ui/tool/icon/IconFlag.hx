@@ -19,10 +19,7 @@ class IconFlag extends IconBase
 	private var lock:Bitmap;
 	public function new() 
 	{
-		super();
-		this.icon = new Bitmap(Assets.getBitmapData("icon/flag.png"));
-		this.lock = new Bitmap(Assets.getBitmapData("icon/lock.png"));
-		this.addChild(this.icon);
+		super("swf/ui/IconFlag.bundle");
 	}
 	override public function down(e:MouseEvent) {
 		if (Common.svar_sim_running) {

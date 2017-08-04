@@ -51,40 +51,40 @@ class Toolbar extends MovieClip
 		
 		line = new IconLine();
 		this.addChild(line);
-		this.line.x = 30;
+		this.line.x = 31;
 		
 		eraser = new IconEraser();
 		this.addChild(eraser);
-		this.eraser.x = 60;
+		this.eraser.x = 62;
 		
 		pan = new IconPan();
 		this.addChild(pan);
-		this.pan.x = 90;
+		this.pan.x = 93;
 		
 		pause = new IconPause();
 		this.addChild(pause);
-		this.pause.x = 90;
+		this.pause.x = 93;
 		this.pause.visible = false;
 		
 		playB = new IconPlay();
 		this.addChild(playB);
-		this.playB.x = 120;
+		this.playB.x = 124;
 		
 		stopB = new IconStop();
 		this.addChild(stopB);
-		this.stopB.x = 150;
+		this.stopB.x = 155;
 		
 		flag = new IconFlag();
 		this.addChild(flag);
-		this.flag.x = 180;
+		this.flag.x = 186;
 		
 		save = new IconSave();
 		this.addChild(save);
-		this.save.x = 210;
+		this.save.x = 217;
 		
 		settings = new IconSettings();
 		this.addChild(settings);
-		this.settings.x = 240;
+		this.settings.x = 248;
 		
 		this.graphics.clear();
 		this.graphics.beginFill(0xFFFFFF, 1);

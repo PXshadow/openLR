@@ -18,9 +18,7 @@ class IconSettings extends IconBase
 
 	public function new() 
 	{
-		super();
-		this.icon = new Bitmap(Assets.getBitmapData("icon/settings.png"));
-		this.addChild(this.icon);
+		super("swf/ui/IconSettings.bundle");
 	}
 	override public function down(e:MouseEvent) {
 		Common.gCode.toggleSettings_box();

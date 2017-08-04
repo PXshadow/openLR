@@ -5,6 +5,7 @@ import openfl.events.MouseEvent;
 import openfl.Lib;
 import openfl.Assets;
 import openfl.net.URLRequest;
+import ui.tool.IconBase;
 import ui.tool.lr.ToolLine;
 
 import global.Common;
@@ -20,9 +21,7 @@ class IconLine extends IconBase
 
 	public function new() 
 	{
-		super();
-		this.icon = new Bitmap(Assets.getBitmapData("icon/line.png"));
-		this.addChild(this.icon);
+		super("swf/ui/IconLine.bundle");
 	}
 	override public function down(e:MouseEvent) {
 		Common.gToolBase.disable();

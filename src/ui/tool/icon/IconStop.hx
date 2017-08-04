@@ -18,9 +18,7 @@ class IconStop extends IconBase
 
 	public function new() 
 	{
-		super();
-		this.icon = new Bitmap(Assets.getBitmapData("icon/stop.png"));
-		this.addChild(this.icon);
+		super("swf/ui/IconStop.bundle");
 	}
 	override public function down(e:MouseEvent) {
 		Common.gTrack.set_rendermode_edit();

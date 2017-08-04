@@ -19,9 +19,7 @@ class IconPan extends IconBase
 
 	public function new() 
 	{
-		super();
-		this.icon = new Bitmap(Assets.getBitmapData("icon/pan.png"));
-		this.addChild(this.icon);
+		super("swf/ui/IconPan.bundle");
 	}
 	override public function down(e:MouseEvent) {
 		Common.gToolBase.disable();
