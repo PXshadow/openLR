@@ -20,7 +20,7 @@ class IconEraser extends IconBase
 
 	public function new() 
 	{
-		super("swf/ui/IconEraser.bundle");
+		super(Icon.eraser);
 	}
 	override public function down(e:MouseEvent) {
 		Common.gToolBase.disable();

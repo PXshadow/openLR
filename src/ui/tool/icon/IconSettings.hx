@@ -8,6 +8,7 @@ import openfl.net.URLRequest;
 
 import global.Common;
 import ui.tool.Toolbar;
+import ui.tool.IconBase;
 
 /**
  * ...
@@ -18,7 +19,7 @@ class IconSettings extends IconBase
 
 	public function new() 
 	{
-		super("swf/ui/IconSettings.bundle");
+		super(Icon.settings);
 	}
 	override public function down(e:MouseEvent) {
 		Common.gCode.toggleSettings_box();

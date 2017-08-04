@@ -3,6 +3,7 @@ package ui.tool.icon;
 import openfl.display.SimpleButton;
 import openfl.display.Sprite;
 import openfl.utils.AssetLibrary;
+import ui.tool.IconBase;
 
 /**
  * ...
@@ -11,36 +12,25 @@ import openfl.utils.AssetLibrary;
 class IconButton extends SimpleButton
 {
 	var selected:Dynamic;
-	public function new() 
+	public function new(_icon = Icon.undefined) 
 	{
 		super();
 		
-		var swfUp = AssetLibrary.loadFromFile("swf/ui/IconUp.bundle");
-		swfUp.onComplete(this.attachUpAndHit);
-		
-		var swfOver = AssetLibrary.loadFromFile("swf/ui/IconOver.bundle");
-		swfOver.onComplete(this.attachOver);
-		
-		var swfDown = AssetLibrary.loadFromFile("swf/ui/IconDown.bundle");
-		swfDown.onComplete(this.attachDown);
-		
-		selected = AssetLibrary.loadFromFile("swf/ui/IconSelected.bundle");
+		var swfLib = AssetLibrary.loadFromFile("swf/ui/icons/" + _icon + ".bundle");
+		swfLib.onComplete(this.attachClips);
+		swfLib.onError(this.iconFailed);
 	}
-	function fail(lib:AssetLibrary) 
+	
+	function iconFailed(lib:AssetLibrary) 
 	{
-		trace("fail");
+		trace("failed Icon");
 	}
-	function attachDown(lib:AssetLibrary) 
+	
+	function attachClips(lib:AssetLibrary) 
 	{
-		this.downState = lib.getMovieClip("");
-	}
-	function attachOver(lib:AssetLibrary) 
-	{
-		this.overState = lib.getMovieClip("");
-	}
-	function attachUpAndHit(lib:AssetLibrary) 
-	{
-		this.upState = lib.getMovieClip("");
-		this.hitTestState = lib.getMovieClip("");
+		this.upState = lib.getMovieClip("up");
+		this.hitTestState = lib.getMovieClip("up");
+		this.overState = lib.getMovieClip("over");
+		this.downState = lib.getMovieClip("down");
 	}
 }

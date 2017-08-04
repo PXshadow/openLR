@@ -21,7 +21,7 @@ class IconLine extends IconBase
 
 	public function new() 
 	{
-		super("swf/ui/IconLine.bundle");
+		super(Icon.line);
 	}
 	override public function down(e:MouseEvent) {
 		Common.gToolBase.disable();

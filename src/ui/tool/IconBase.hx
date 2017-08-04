@@ -16,34 +16,30 @@ import global.Common;
  * Base functions and variables for icons. Default behavior disables mosue tools on rollover and reenables on roll out.
  * 
  */
+@:enum abstract Icon(String) from String to String {
+	public var undefined:String = "undefined";
+	public var pencil:String = "pencil";
+	public var line:String = "line";
+	public var eraser:String = "eraser";
+	public var pan:String = "pan";
+	public var play:String = "play";
+	public var pause:String = "pause";
+	public var stop:String = "stop";
+	public var flag:String = "flag";
+	public var file:String = "file";
+	public var settings:String = "settings";
+}
 class IconBase extends Sprite
 {
 	private var enabled:Bool = true;
 	private var iconButton:IconButton;
 	private var icon:Sprite;
-	public function new(_path:String = "swf/ui/IconUndefined.bundle") 
+	public function new(_path:String = Icon.undefined) 
 	{
 		super();
-		
-		this.iconButton = new IconButton();
+
+		this.iconButton = new IconButton(_path);
 		this.addChild(this.iconButton);
-		if (_path == "") {
-			this.attach_listeners();
-			this.iconButton.alpha = 0;
-			this.iconButton.height = 15;
-			return; 
-		}
-		var swfIcon = AssetLibrary.loadFromFile(_path);
-		swfIcon.onComplete(this.attachIcon);
-		swfIcon.onError(this.attachNull);
-	}
-	function attachIcon(lib:AssetLibrary) 
-	{
-		var innerClip = lib.getMovieClip("");
-		this.icon = new Sprite();
-		this.icon.addChild(innerClip);
-		this.addChild(this.icon);
-		this.icon.mouseEnabled = false;
 		this.attach_listeners();
 	}
 	function attachNull(lib:AssetLibrary) 
@@ -95,6 +91,7 @@ class IconBase extends Sprite
 	public function enable() {
 		this.iconButton.addEventListener(MouseEvent.MOUSE_OVER, disable_tool);
 		this.iconButton.addEventListener(MouseEvent.MOUSE_OUT, enable_tool);
+		this.iconButton.addEventListener(MouseEvent.MOUSE_DOWN, down);
 		this.alpha = 1;
 		this.enabled = true;
 	}
@@ -102,6 +99,7 @@ class IconBase extends Sprite
 	public function disable() {
 		this.iconButton.removeEventListener(MouseEvent.MOUSE_OVER, disable_tool);
 		this.iconButton.removeEventListener(MouseEvent.MOUSE_OUT, enable_tool);
+		this.iconButton.removeEventListener(MouseEvent.MOUSE_DOWN, down);
 		this.alpha = 0.25;
 		this.enabled = false;
 	}

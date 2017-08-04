@@ -8,6 +8,7 @@ import openfl.net.URLRequest;
 
 import global.Common;
 import ui.tool.Toolbar;
+import ui.tool.IconBase;
 
 /**
  * ...
@@ -18,7 +19,7 @@ class IconPlay extends IconBase
 
 	public function new() 
 	{
-		super("swf/ui/IconStop.bundle");
+		super(Icon.play);
 	}
 	override public function down(e:MouseEvent) {
 		if (!Common.gSimManager.paused) {

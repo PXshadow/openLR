@@ -17,7 +17,7 @@ class IconPencil extends IconBase
 {
 	public function new() 
 	{
-		super("swf/ui/IconPencilGrey.bundle");
+		super(Icon.pencil);
 	}
 	override public function down(e:MouseEvent) {
 		Common.gToolBase.disable();

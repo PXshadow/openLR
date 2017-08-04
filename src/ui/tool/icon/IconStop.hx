@@ -8,6 +8,7 @@ import openfl.net.URLRequest;
 
 import global.Common;
 import ui.tool.Toolbar;
+import ui.tool.IconBase;
 
 /**
  * ...
@@ -18,7 +19,7 @@ class IconStop extends IconBase
 
 	public function new() 
 	{
-		super("swf/ui/IconStop.bundle");
+		super(Icon.stop);
 	}
 	override public function down(e:MouseEvent) {
 		Common.gTrack.set_rendermode_edit();

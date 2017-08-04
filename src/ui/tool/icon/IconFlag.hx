@@ -8,6 +8,7 @@ import openfl.net.URLRequest;
 
 import global.Common;
 import ui.tool.Toolbar;
+import ui.tool.IconBase;
 
 /**
  * ...
@@ -19,7 +20,7 @@ class IconFlag extends IconBase
 	private var lock:Bitmap;
 	public function new() 
 	{
-		super("swf/ui/IconFlag.bundle");
+		super(Icon.flag);
 	}
 	override public function down(e:MouseEvent) {
 		if (Common.svar_sim_running) {
