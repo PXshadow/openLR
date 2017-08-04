@@ -72,7 +72,6 @@ class IconBase extends Sprite
 	{
 		if (!Common.svar_sim_running || Common.gSimManager.paused) {
 			Common.gToolBase.enable();
-			this.alpha = 1;
 		}
 		Mouse.cursor = MouseCursor.AUTO;
 	}
@@ -81,7 +80,6 @@ class IconBase extends Sprite
 	{
 		if (!Common.svar_sim_running) {
 			Common.gToolBase.disable();
-			this.alpha = 0.75;
 		}
 		if (enabled) {
 			Mouse.cursor = MouseCursor.BUTTON;
