@@ -76,7 +76,6 @@ class IconBase extends Sprite
 		if (!Common.svar_sim_running || Common.gSimManager.paused) {
 			Common.gToolBase.enable();
 		}
-		Mouse.cursor = MouseCursor.AUTO;
 	}
 	
 	private function disable_tool(e:MouseEvent):Void 
@@ -84,15 +83,13 @@ class IconBase extends Sprite
 		if (!Common.svar_sim_running) {
 			Common.gToolBase.disable();
 		}
-		if (enabled) {
-			Mouse.cursor = MouseCursor.BUTTON;
-		}
 	}
 	
 	public function enable() {
 		this.iconButton.addEventListener(MouseEvent.MOUSE_OVER, disable_tool);
 		this.iconButton.addEventListener(MouseEvent.MOUSE_OUT, enable_tool);
 		this.iconButton.addEventListener(MouseEvent.MOUSE_DOWN, down);
+		this.mouseChildren = true;
 		this.alpha = 1;
 		this.enabled = true;
 	}
@@ -101,6 +98,7 @@ class IconBase extends Sprite
 		this.iconButton.removeEventListener(MouseEvent.MOUSE_OVER, disable_tool);
 		this.iconButton.removeEventListener(MouseEvent.MOUSE_OUT, enable_tool);
 		this.iconButton.removeEventListener(MouseEvent.MOUSE_DOWN, down);
+		this.mouseChildren = false;
 		this.alpha = 0.25;
 		this.enabled = false;
 	}
