@@ -5,7 +5,7 @@ import openfl.display.Sprite;
 import openfl.events.MouseEvent;
 import openfl.ui.Mouse;
 import openfl.ui.MouseCursor;
-import ui.tool.icon.IconButton;
+import ui.tool.IconButton;
 
 import global.Common;
 

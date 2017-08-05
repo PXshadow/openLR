@@ -1,4 +1,4 @@
-package ui.tool.icon;
+package ui.tool;
 
 import openfl.display.SimpleButton;
 import openfl.display.Sprite;
