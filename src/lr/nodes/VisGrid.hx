@@ -129,38 +129,6 @@ class VisGrid
 		return(posObject);
 	}
 	public static function updateVisuals() {
-		var tl_track:Point = Common.gTrack.localToGlobal(Common.tl_point);
-		var br_track:Point = Common.gTrack.localToGlobal(Common.br_point);
-		
-		var _locX = VisGrid.gridPosVis(tl_track.x, tl_track.y);
-		var _locY = VisGrid.gridPosVis(br_track.x, br_track.y);
-		
-		if (_locX.x == VisGrid.current_x && _locY.y == VisGrid.current_y) {
-			return;
-		} else if (_locX.x != VisGrid.current_x || _locY.y != VisGrid.current_y) {
-			for (i in VisGrid.currentVisualIndex) {
-				i.visible = false;
-			}
-			VisGrid.currentVisualIndex = new Array();
-			
-			VisGrid.current_x = _locX.x;
-			VisGrid.current_y = _locY.y;
-			
-			for (a in _locX.x..._locY.x) {
-				if (VisGrid.grid[a] == null) {
-					continue;
-				}
-				for (b in _locX.y..._locY.y) {
-					if (VisGrid.grid[a][b] == null) {
-						continue;
-					}
-					VisGrid.currentVisualIndex.push(VisGrid.grid[a][b]);
-				}
-			}
-			for (j in VisGrid.currentVisualIndex) {
-				j.visible = true;
-				j.switchToBitmap();
-			}
-		}
+		//tbd
 	}
 }
