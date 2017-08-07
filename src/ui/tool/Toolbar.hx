@@ -51,55 +51,54 @@ class Toolbar extends MovieClip
 		
 		line = new IconLine();
 		this.addChild(line);
-		this.line.x = 31;
+		this.line.x = 32;
 		
 		eraser = new IconEraser();
 		this.addChild(eraser);
-		this.eraser.x = 62;
+		this.eraser.x = 64;
 		
 		pan = new IconPan();
 		this.addChild(pan);
-		this.pan.x = 93;
+		this.pan.x = 96;
 		
 		pause = new IconPause();
 		this.addChild(pause);
-		this.pause.x = 93;
+		this.pause.x = 96;
 		this.pause.visible = false;
 		
 		playB = new IconPlay();
 		this.addChild(playB);
-		this.playB.x = 124;
+		this.playB.x = 128;
 		
 		stopB = new IconStop();
 		this.addChild(stopB);
-		this.stopB.x = 155;
+		this.stopB.x = 160;
 		
 		flag = new IconFlag();
 		this.addChild(flag);
-		this.flag.x = 186;
+		this.flag.x = 192;
 		
 		save = new IconSave();
 		this.addChild(save);
-		this.save.x = 217;
+		this.save.x = 224;
 		
 		settings = new IconSettings();
 		this.addChild(settings);
-		this.settings.x = 248;
+		this.settings.x = 256;
 		
 		this.swBlue = new SwatchBlue();
 		this.addChild(swBlue);
-		this.swBlue.x = -2;
 		this.swBlue.y = 33;
 		
 		this.swRed = new SwatchRed();
 		this.addChild(swRed);
 		this.swRed.y = 33;
-		this.swRed.x = 30;
+		this.swRed.x = 32;
 		
 		this.swGreen = new SwatchGreen();
 		this.addChild(swGreen);
 		this.swGreen.y = 33;
-		this.swGreen.x = 62;
+		this.swGreen.x = 64;
 		
 		Toolbar.icon = pencil;
 		icon.select();
