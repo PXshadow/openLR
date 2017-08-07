@@ -126,12 +126,14 @@ class TrackSettings extends Sprite
 	private function dec_ui_scale(e:MouseEvent):Void 
 	{
 		Common.cvar_toolbar_scale = this.toolbar_scale.dec();
+		Common.gCode.setScale();
 		Common.gCode.align();
 	}
 	
 	private function inc_ui_scale(e:MouseEvent):Void 
 	{
 		Common.cvar_toolbar_scale = this.toolbar_scale.inc();
+		Common.gCode.setScale();
 		Common.gCode.align();
 	}
 	
