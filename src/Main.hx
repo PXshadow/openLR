@@ -249,8 +249,8 @@ class Main extends Sprite
 	{
 		this.visContainer.x = this.visContainer.y = 0;
 		
-		this.toolBar.scaleX = this.toolBar.scaleY = Common.cvar_toolbar_scale;
-		this.toolBar.x = (this.stage.stageWidth * 0.5) - (this.toolBar.width * 0.5); 
+		var toolBounds = this.toolBar.getBounds(this);
+		this.toolBar.x = (this.stage.stageWidth / 2) - (128 * Common.cvar_toolbar_scale);
 		
 		Common.stage_height = this.stage.stageHeight;
 		Common.stage_width = this.stage.stageWidth;
@@ -279,8 +279,7 @@ class Main extends Sprite
 	public function align() {
 		this.visContainer.x = this.visContainer.y = 0;
 		
-		this.toolBar.scaleX = this.toolBar.scaleY = Common.cvar_toolbar_scale;
-		this.toolBar.x = (this.stage.stageWidth * 0.5) - (this.toolBar.width * 0.5); 
+		this.toolBar.x = (this.stage.stageWidth / 2) - (128 * Common.cvar_toolbar_scale);
 		
 		Common.stage_height = this.stage.stageHeight;
 		Common.stage_width = this.stage.stageWidth;
