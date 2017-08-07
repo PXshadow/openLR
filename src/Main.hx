@@ -304,6 +304,10 @@ class Main extends Sprite
 		this.timeline.x = (this.stage.stageWidth * 0.5) - (this.timeline.width * 0.5);
 		this.timeline.y = this.stage.stageHeight - this.timeline.height + 25;
 	}
+	public function setScale() {
+		this.timeline.scaleX = this.timeline.scaleY = Common.cvar_toolbar_scale;
+		this.toolBar.scaleX = this.toolBar.scaleY = Common.cvar_toolbar_scale;
+	}
 	public function return_to_origin(_x:Float = 0, _y:Float = 0) {
 		this.track.x = this.stage.stageWidth * 0.5 - _x;
 		this.track.y = this.stage.stageHeight * 0.5 - _y;
