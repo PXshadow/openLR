@@ -1,16 +1,9 @@
 package;
 
 //Primary
-import openfl.display.Loader;
-import openfl.display.MovieClip;
+import openfl.Lib;
 import openfl.display.Sprite;
-import openfl.Lib;
 import openfl.events.Event;
-import openfl.geom.Point;
-import openfl.net.URLRequest;
-import haxe.Timer;
-import openfl.Lib;
-import openfl.Assets;
 
 //third party
 
@@ -75,7 +68,7 @@ import ui.tool.timeline.TimelineControl;
 class Main extends Sprite 
 {
 	private var mainFileInit:FileStart; //this class controls settings
-	private var visContainer:MovieClip; //simple display container. This will make it easier to take screenshots and record video without having to move a matrix all around
+	private var visContainer:Sprite; //simple display container. This will make it easier to take screenshots and record video without having to move a matrix all around
 	private var track:Track;
 	private var riders:RiderManager;
 	private var toolBar:Toolbar;
@@ -122,14 +115,11 @@ class Main extends Sprite
 		this.FPS = new FrameRate();
 		
 		this.autosave = new AutosaveManager();
-		
-		Common.tl_point = new Point(0, 0);
-		Common.br_point = new Point(this.stage.stageWidth, this.stage.stageHeight);
 	}
 	
 	public function init_track() //display minimum items
 	{
-		this.visContainer = new MovieClip();
+		this.visContainer = new Sprite();
 		this.addChild(visContainer);
 		Common.gVisContainer = this.visContainer;
 		
@@ -273,8 +263,6 @@ class Main extends Sprite
 		
 		this.timeline.x = (this.stage.stageWidth * 0.5) - (this.timeline.width * 0.5);
 		this.timeline.y = this.stage.stageHeight - this.timeline.height + 25;
-		
-		Common.br_point = new Point(this.stage.stageWidth, this.stage.stageHeight);
 	}
 	public function align() {
 		this.visContainer.x = this.visContainer.y = 0;

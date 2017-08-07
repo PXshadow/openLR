@@ -3,7 +3,7 @@ package file;
 import openfl.geom.Rectangle;
 import openfl.display.Bitmap;
 import openfl.display.BitmapData;
-import openfl.display.MovieClip;
+import openfl.display.Sprite;
 import openfl.geom.Matrix;
 import openfl.display.PNGEncoderOptions;
 import openfl.utils.ByteArray;
@@ -17,11 +17,11 @@ import global.Common;
  */
 class Screenshot 
 {
-	var container:MovieClip;
+	var container:Sprite;
 	var bitmap:BitmapData;
 	var data:ByteArray;
 	var timestamp:String = "" + "Y" + Date.now().getFullYear() + "M" + Date.now().getMonth() + "D" + Date.now().getDay() + "H" + Date.now().getHours() + "m" + Date.now().getMinutes() + "S" + Date.now().getSeconds();
-	public inline function new(_container:MovieClip) 
+	public inline function new(_container:Sprite) 
 	{
 		this.container = _container;
 		this.bitmap = new BitmapData(Std.int(Common.stage_width), Std.int(Common.stage_height));

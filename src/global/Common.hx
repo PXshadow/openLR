@@ -3,11 +3,11 @@ package global;
 import openfl.Assets;
 import global.RiderManager;
 import openfl.utils.Object;
-import openfl.display.MovieClip;
 import openfl.display.Stage;
 import openfl.geom.Point;
 import openfl.text.TextFormat;
 import openfl.text.TextFormatAlign;
+import openfl.display.Sprite;
 
 import lr.scene.Track;
 import file.AutosaveManager;
@@ -42,7 +42,7 @@ class Common
 	public static var gCode:Main;
 	public static var gTrack:Track;
 	public static var gRiderManager:RiderManager;
-	public static var gVisContainer:MovieClip;
+	public static var gVisContainer:Sprite;
 	public static var gToolBase:ToolBase;
 	public static var gToolCurrent:ToolBase;
 	public static var gGrid:B2Grid;
