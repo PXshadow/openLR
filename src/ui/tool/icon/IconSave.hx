@@ -110,9 +110,6 @@ class IconSave extends IconBase
 	override private function disable_tool(e:MouseEvent):Void 
 	{
 		Common.gToolBase.disable();
-		if (enabled) {
-			Mouse.cursor = MouseCursor.BUTTON;
-		}
 	}
 	function confirmed_new() {
 		this.removeChild(this.safety_dialog);
