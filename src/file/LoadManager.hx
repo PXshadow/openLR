@@ -33,6 +33,7 @@ class LoadManager extends Sprite
 	private var load_button:TextButton;
 	private var cancel_button:TextButton;
 	private var error_alert:AlertBox;
+	private var listMask:Sprite;
 	public function new() 
 	{
 		super();
@@ -47,6 +48,17 @@ class LoadManager extends Sprite
 		this.graphics.lineTo(0, 420);
 		this.graphics.lineTo(0, 0);
 		
+		this.listMask = new Sprite();
+		this.listMask.graphics.clear();
+		this.listMask.graphics.beginFill(0, 0);
+		this.listMask.graphics.moveTo(-1, -1);
+		this.listMask.graphics.lineTo(381, 0);
+		this.listMask.graphics.lineTo(381, 391);
+		this.listMask.graphics.lineTo(-1, 391);
+		this.listMask.graphics.lineTo(-1, -1);
+		this.listMask.x = 10;
+		this.listMask.y = 10;
+		
 		this.parseSaveDirecotry();
 		
 		this.load_button = new TextButton(Language.Load, this.loadFromObject, ButtonSize.b120x30);
@@ -60,17 +72,11 @@ class LoadManager extends Sprite
 		this.cancel_button.y = 430;
 	}
 	function parseSaveDirecotry() {
-		itemWindow = new FileWindow(FileSystem.readDirectory("saves/"));
+		var _locDir = FileSystem.readDirectory("./saves/");
+		itemWindow = new FileWindow(_locDir);
+		this.addChild(this.listMask);
 		this.addChild(this.itemWindow);
-		var _locDir = FileSystem.readDirectory("saves/");
-		if (_locDir.length > 13) {
-			this.graphics.beginFill(0xFFFFFF, 1);
-			this.graphics.moveTo(10, 10);
-			this.graphics.lineTo(390, 10);
-			this.graphics.lineTo(390, 410);
-			this.graphics.lineTo(10, 410);
-			this.graphics.lineTo(10, 10);
-		}
+		this.itemWindow.mask = this.listMask;
 	}
 	function loadFromObject() 
 	{

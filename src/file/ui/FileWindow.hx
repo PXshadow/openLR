@@ -17,27 +17,13 @@ class FileWindow extends Sprite
 	public function new(_list:Array<String>) 
 	{
 		super();
+		
 		this.currentList = new Array();
 		this.currentList = _list;
-		
 		this.generateList();
+		
 		if (this.currentList.length > 13) {
 			Common.gStage.addEventListener(MouseEvent.MOUSE_WHEEL, scrollList);
-			for (i in 0...displayList.length) {
-				var yPos = this.y + (i * 30);
-				if (yPos < 0) {
-					displayList[i].visible = false;
-				} else if (yPos > 370) {
-					displayList[i].visible = false;
-				} else {
-					displayList[i].visible = true;
-				}
-				if (i == selectedIndex) {
-					displayList[i].selected();
-				} else {
-					displayList[i].deselect();
-				}
-			}
 		}
 	}
 	
@@ -48,16 +34,6 @@ class FileWindow extends Sprite
 			this.y = 0;
 		} else if (this.y <= (((currentList.length * 30) - 390) * -1)) {
 			this.y = (((currentList.length * 30) - 390) * -1);
-		}
-		for (i in 0...displayList.length) {
-			var yPos = this.y + (i * 30);
-			if (yPos < 0) {
-				displayList[i].visible = false;
-			} else if (yPos > 370) {
-				displayList[i].visible = false;
-			} else {
-				displayList[i].visible = true;
-			}
 		}
 	}
 	
