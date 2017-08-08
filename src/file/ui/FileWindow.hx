@@ -1,5 +1,5 @@
 package file.ui;
-import openfl.display.MovieClip;
+import openfl.display.Sprite;
 import openfl.events.MouseEvent;
 import openfl.display.SimpleButton;
 
@@ -9,7 +9,7 @@ import global.Common;
  * ...
  * @author ...
  */
-class FileWindow extends MovieClip
+class FileWindow extends Sprite
 {
 	public static var selectedIndex:Int = -1;
 	public var currentList:Array<String>;
