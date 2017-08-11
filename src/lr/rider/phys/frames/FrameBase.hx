@@ -47,4 +47,28 @@ class FrameBase
 	public function set_start(_x:Float, _y:Float) {
 		
 	}
+	public function set_frame_angle(_angle:Float) {
+		if (_angle == 0) {
+			return;
+		}
+		this.reset();
+		var _locRad = _angle * (Math.PI / 180);
+		for (a in 0...anchors.length) {
+			var x1 = anchors[a].x - anchors[0].x;
+			var y1 = anchors[a].y - anchors[0].y;
+			var x2 = (x1 * Math.cos(_locRad)) - (y1 * Math.sin(_locRad));
+			var y2 = (y1 * Math.cos(_locRad)) + (x1 * Math.sin(_locRad));
+			anchors[a].x = x2; 
+			anchors[a].y = y2; 
+		}
+		this.adjust_velocity_start();
+	}
+	public function adjust_velocity_start(_vx:Float = 0.4, _vy:Float = 0) {
+		for (i in 0...anchors.length) {
+			anchors[i].x = anchors[i].x + this.start_x;
+			anchors[i].y = anchors[i].y + this.start_y;
+			anchors[i].vx = anchors[i].x - _vx;
+			anchors[i].vy = anchors[i].y - _vy;
+		}
+	}
 }

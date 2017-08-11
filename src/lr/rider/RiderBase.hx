@@ -6,8 +6,11 @@ import openfl.display.Sprite;
 import openfl.geom.Point;
 import openfl.utils.Object;
 import openfl.utils.AssetLibrary;
+import openfl.ui.Keyboard;
+import openfl.events.KeyboardEvent;
 
 import global.Common;
+import global.RiderManager;
 import lr.lines.LineBase;
 import lr.nodes.B2Grid;
 import lr.rider.RiderRecorder;
@@ -61,6 +64,11 @@ class RiderBase extends Sprite
 	public var flagged:Bool = false;
 	public var flag_vis:Bool = false;
 	
+	public var rider_angle:Float = 0;
+	public var rider_y_flip:Bool = false;
+	public var rider_x_flip:Bool = false;
+	public var rider_scale:Float = 0.5;
+	
 	var tick_frame = SubFrame.FullTick;
 	
 	private var riderID:Int;
@@ -78,13 +86,13 @@ class RiderBase extends Sprite
 			case 1:
 				this.body = new B1Frame(_x, _y, this.riderID);
 				this.skeleton = new B2Skeleton(this.body.anchors, this.riderID);
-				this.scarf = new B2Scarf(this.body.anchors[5], _x, _y, this.riderID);
+				this.scarf = new B2Scarf(this.body.anchors[5], this.body.anchors[0], _x, _y, this.riderID);
 				this.clips = new B2Bosh(this.body, this.scarf, this.skeleton, this, this.riderID);
 				this.addChild(this.clips);
 			case 2:
 				this.body = new B2Frame(_x, _y, this.riderID);
 				this.skeleton = new B2Skeleton(this.body.anchors, this.riderID);
-				this.scarf = new B2Scarf(this.body.anchors[5], _x, _y, this.riderID);
+				this.scarf = new B2Scarf(this.body.anchors[5], this.body.anchors[0], _x, _y, this.riderID);
 				this.clips = new B2Bosh(this.body, this.scarf, this.skeleton, this, this.riderID);
 				this.addChild(this.clips);
 			case 3:
@@ -96,7 +104,7 @@ class RiderBase extends Sprite
 			default :
 				this.body = new B2Frame(_x, _y, this.riderID);
 				this.skeleton = new B2Skeleton(this.body.anchors, this.riderID);
-				this.scarf = new B2Scarf(this.body.anchors[5], _x, _y, this.riderID);
+				this.scarf = new B2Scarf(this.body.anchors[5], this.body.anchors[0], _x, _y, this.riderID);
 				this.clips = new B2Bosh(this.body, this.scarf, this.skeleton, this, this.riderID);
 				this.addChild(this.clips);
 		}
@@ -108,8 +116,14 @@ class RiderBase extends Sprite
 		this.start_point.x = this.body.anchors[0].x;
 		this.start_point.y = this.body.anchors[0].y;
 		
+		this.adjust_rider_dimensions();
+		
 		this.recorder = new RiderRecorder(_id);
 		this.camera = new RiderCamera();
+	}
+	public function adjust_rider_dimensions() {
+		this.body.set_frame_angle(this.rider_angle);
+		this.scarf.set_frame_angle(this.rider_angle);
 	}
 	public function step_rider()
 	{
@@ -157,12 +171,26 @@ class RiderBase extends Sprite
 	{
 		this.body.reset();
 		this.scarf.reset();
+		RiderManager.crash[this.riderID] = false;
+		this.adjust_rider_dimensions();
 	}
 	public function inject_and_update(_frame:Int) {
 		var _loc1 = Common.sim_frames;
+		trace(_loc1);
 		recorder.inject_frame(_frame, this.body.anchors, this.scarf.anchors);
-		for (a in _frame..._loc1) {
-			this.iterate();
+		if (_loc1 != 0) {
+			for (a in _frame..._loc1) {
+				this.iterate();
+				trace("sim frames was not 0");
+			}
+		} else {
+			for (a in 0..._frame) {
+				this.iterate();
+				this.inject_postion(0);
+				Common.sim_max_frames = _frame;
+				Common.gTimeline.update();
+				trace("sim frames was 0");
+			}
 		}
 		this.clips.render_body();
 	}

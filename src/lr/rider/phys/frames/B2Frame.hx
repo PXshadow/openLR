@@ -38,7 +38,7 @@ class B2Frame extends FrameBase
 			anchors[a].x *= 0.5;
 			anchors[a].y *= 0.5;
 		}
-		for (i in 0...anchors.length) { //this shift is necesarry as it keeps the rider from flying the second the sim starts. 
+		for (i in 0...anchors.length) { 
 			anchors[i].x = anchors[i].x + this.start_x;
 			anchors[i].y = anchors[i].y + this.start_y;
 			anchors[i].vx = anchors[i].x - 0.4;
@@ -49,7 +49,7 @@ class B2Frame extends FrameBase
 		this.reset();
 		this.start_x = _x;
 		this.start_y = _y;
-		for (i in 0...anchors.length) { //this shift is necesarry as it keeps the rider from flying the second the sim starts. 
+		for (i in 0...anchors.length) {
 			anchors[i].x = anchors[i].x + this.start_x;
 			anchors[i].y = anchors[i].y + this.start_y;
 			anchors[i].vx = anchors[i].x - 0.4;
