@@ -216,8 +216,8 @@ class B2Bosh extends VisBase
 			this.skeleton_vis.graphics.endFill();
 		}this.skeleton_vis.graphics.lineStyle(0.25, 0x0000FF, 1);
 		for (i in 0...this.body.anchors.length) {
-			this.skeleton_vis.graphics.moveTo(this.skeleton.edges[i].a.x, this.skeleton.edges[i].a.y);
-			this.skeleton_vis.graphics.lineTo(this.skeleton.edges[i].a.nx , this.skeleton.edges[i].a.ny);
+			this.skeleton_vis.graphics.moveTo(this.body.anchors[i].x, this.body.anchors[i].y);
+			this.skeleton_vis.graphics.lineTo(this.body.anchors[i].nx , this.body.anchors[i].ny);
 		}
 	}
 }
