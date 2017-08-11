@@ -76,4 +76,14 @@ class B2Scarf extends ScarfBase
 			anchors[i].vy = anchors[i].y;
 		}
 	}
+	public override function set_start(_x:Float, _y:Float) {
+		this.start_x = _x;
+		this.start_y = _y;
+		for (i in 0...anchors.length) {
+			anchors[i].x = anchors[i].x + this.start_x;
+			anchors[i].y = anchors[i].y + this.start_y;
+			anchors[i].vx = anchors[i].x - 0.4;
+			anchors[i].vy = anchors[i].y;
+		}
+	}
 }

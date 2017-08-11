@@ -45,7 +45,8 @@ class B2Frame extends FrameBase
 			anchors[i].vy = anchors[i].y;
 		}
 	}
-	public function set_start(_x:Float, _y:Float) {
+	public override function set_start(_x:Float, _y:Float) {
+		this.reset();
 		this.start_x = _x;
 		this.start_y = _y;
 		for (i in 0...anchors.length) { //this shift is necesarry as it keeps the rider from flying the second the sim starts. 

@@ -36,4 +36,7 @@ class ScarfBase
 			a.verlet(_grav);
 		}
 	}
+	public function set_start(_x:Float, _y:Float) {
+		
+	}
 }

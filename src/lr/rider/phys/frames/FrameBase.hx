@@ -44,4 +44,7 @@ class FrameBase
 	public function reset() {
 		
 	}
+	public function set_start(_x:Float, _y:Float) {
+		
+	}
 }

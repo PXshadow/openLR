@@ -135,7 +135,7 @@ class LoadManager extends Sprite
 		Common.cvar_track_name = this.trackData.label;
 		Common.track_start_x = this.trackData.startPosition.x;
 		Common.track_start_y = this.trackData.startPosition.y;
-		Common.gTrack.set_rider_start(this.trackData.startPosition.x, this.trackData.startPosition.y);
+		Common.gRiderManager.set_single_rider_start(this.trackData.startPosition.x, this.trackData.startPosition.y);
 		Common.gCode.return_to_origin(this.trackData.startPosition.x, this.trackData.startPosition.y);
 		this.trackData.linesArray.reverse();
 		for (i in 0...trackData.linesArray.length) {
@@ -182,7 +182,7 @@ class LoadManager extends Sprite
 		Common.cvar_track_name = this.trackData.label;
 		Common.track_start_x = this.trackData.startPosition.x;
 		Common.track_start_y = this.trackData.startPosition.y;
-		Common.gTrack.set_rider_start(this.trackData.startPosition.x, this.trackData.startPosition.y);
+		Common.gRiderManager.set_single_rider_start(this.trackData.startPosition.x, this.trackData.startPosition.y);
 		Common.gCode.return_to_origin(this.trackData.startPosition.x, this.trackData.startPosition.y);
 		this.trackData.lines.reverse();
 		for (i in 0...trackData.lines.length) {

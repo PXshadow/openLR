@@ -215,6 +215,14 @@ class RiderBase extends Sprite
 	public function return_to_start() {
 		this.inject_postion(0);
 	}
+	public function set_start(_x:Float, _y:Float) {
+		this.inject_postion(0);
+		this.body.set_start(_x, _y);
+		this.scarf.set_start(_x, _y);
+		this.inject_and_update(0);
+		this.start_point.x = this.body.anchors[0].x;
+		this.start_point.y = this.body.anchors[0].y;
+	}
 	public function store_location() {
 		if (flagged) {
 			this.removeChild(this.flag);

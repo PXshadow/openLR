@@ -80,6 +80,13 @@ class RiderManager extends Sprite
 			a.inject_and_update(_frame);
 		}
 	}
+	public function set_single_rider_start(_x:Float, _y:Float) {
+		//this function assumes the only rider is the default one
+		this.riderArray[0].set_start(_x, _y);
+	}
+	public function set_multiple_rider_start(_list:Array<Int>) {
+		
+	}
 	public function destroy_flag() {
 
 	}
