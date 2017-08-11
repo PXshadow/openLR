@@ -10,6 +10,7 @@ import global.Common;
  */
 class CPoint 
 {
+	public var lgrav:Object;
 	public var loc:Point;
 	public var x:Float;
 	public var y:Float;
@@ -17,6 +18,8 @@ class CPoint
 	public var vy:Float;
 	public var dx:Float;
 	public var dy:Float;
+	public var nx:Float;
+	public var ny:Float;
 	public var fr:Float;
 	public var ID:Int;
 	
@@ -45,6 +48,15 @@ class CPoint
 		this.x = this.x + this.dx;
 		this.y = this.y + this.dy;
 		this.loc = Common.gStage.localToGlobal(new Point(x, y));
+		this.lgrav = grav;
+		this.get_n();
+	}
+	public function get_n() 
+	{
+		var tdx = this.x - this.vx + lgrav.x;
+		var tdy = this.y - this.vy + lgrav.y;
+		this.nx = this.x + tdx;
+		this.ny = this.y + tdy;
 	}
 	public function save() {
 		this.sx = this.x;

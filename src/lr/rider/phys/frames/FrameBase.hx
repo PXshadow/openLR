@@ -69,6 +69,7 @@ class FrameBase
 			anchors[i].y = anchors[i].y + this.start_y;
 			anchors[i].vx = anchors[i].x - _vx;
 			anchors[i].vy = anchors[i].y - _vy;
+			anchors[i].get_n();
 		}
 	}
 }

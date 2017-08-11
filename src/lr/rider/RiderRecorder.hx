@@ -55,6 +55,7 @@ class RiderRecorder
 				_anchors[i].vy = this.frame_array[_frame][i][3];
 				_anchors[i].dx = this.frame_array[_frame][i][4];
 				_anchors[i].dy = this.frame_array[_frame][i][5];
+				_anchors[i].get_n();
 				RiderManager.crash[this.riderID] = this.frame_array[_frame][i][6];
 			}
 			for (j in 0..._scarf.length) {
