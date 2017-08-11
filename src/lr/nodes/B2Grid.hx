@@ -124,11 +124,15 @@ class B2Grid
 	}
 	public function cache_stroke(_list:Array<LineBase>)
 	{
-		if (_list.length > 0) {
-			for (i in 0..._list.length) {
-				B2Grid.undo_single.push(_list[i]);
+		try {
+			if (_list.length > 0) {
+				for (i in 0..._list.length) {
+					B2Grid.undo_single.push(_list[i]);
+				}
+				this.add_to_history("add", _list);
 			}
-			this.add_to_history("add", _list);
+		} catch (e:String) {
+			trace ("failed line cache");
 		}
 	}
 	public function massLineIndex(line:LineBase)
