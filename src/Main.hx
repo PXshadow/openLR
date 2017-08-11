@@ -23,7 +23,6 @@ import lr.scene.TextInfo;
 import lr.scene.Track;
 import lr.settings.SettingsMenu;
 import ui.inter.AlertBox;
-import ui.inter.CheckBox;
 import ui.tool.Toolbar;
 import ui.tool.timeline.Ticker;
 import ui.tool.timeline.TimelineControl;
