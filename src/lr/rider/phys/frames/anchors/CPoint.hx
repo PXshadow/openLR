@@ -39,6 +39,9 @@ class CPoint
 		this.fr = _fr;
 		this.ID = _id;
 		this.loc = new Point(x, y);
+		this.lgrav = new Object();
+		this.lgrav.x = 0;
+		this.lgrav.y = 0.175;
 	}
 	public function verlet(grav:Object) {
 		this.dx = this.x - this.vx + grav.x;
