@@ -120,6 +120,61 @@ class RiderBase extends Sprite
 		
 		this.recorder = new RiderRecorder(_id);
 		this.camera = new RiderCamera();
+		
+		Common.gStage.addEventListener(KeyboardEvent.KEY_DOWN, this.adjust_rider_debug);
+	}
+	private function adjust_rider_debug(e:KeyboardEvent):Void 
+	{
+		if (e.keyCode == Keyboard.NUMPAD_4 || e.keyCode == Keyboard.NUMPAD_6 || e.keyCode == Keyboard.NUMPAD_8 || e.keyCode == Keyboard.NUMPAD_2) {
+			this.adjust_start_velocity(e);
+		}
+		if (e.keyCode == Keyboard.MINUS || e.keyCode == Keyboard.EQUAL) {
+			this.adjust_rider_angle(e);
+		}
+		this.adjust_rider_dimensions();
+		this.clips.render_body();
+	}
+	
+	function adjust_rider_angle(e:KeyboardEvent) 
+	{
+		switch (e.keyCode) {
+			case Keyboard.MINUS:
+				this.rider_angle -= 1;
+			case Keyboard.EQUAL:
+				this.rider_angle += 1;
+		}
+		if (this.rider_angle <= -1) {
+			this.rider_angle = 359;
+		}
+		if (this.rider_angle >= 360) {
+			this.rider_angle = 0;
+		}
+	}
+	
+	function adjust_start_velocity(e:KeyboardEvent) 
+	{
+		switch (e.keyCode) {
+			case Keyboard.NUMPAD_4:
+				this.rider_x_velocity -= 0.2;
+			case Keyboard.NUMPAD_6:
+				this.rider_x_velocity += 0.2;
+			case Keyboard.NUMPAD_8:
+				this.rider_y_velocity -= 0.2;
+			case Keyboard.NUMPAD_2:
+				this.rider_y_velocity += 0.2;
+		}
+		if (this.rider_x_velocity >= 5) {
+			this.rider_x_velocity = 5;
+		}
+		if (this.rider_x_velocity <= -5) {
+			this.rider_x_velocity = -5;
+		}
+		if (this.rider_y_velocity >= 5) {
+			this.rider_y_velocity = 5;
+		}
+		if (this.rider_y_velocity <= -5) {
+			this.rider_y_velocity = -5;
+		}
 	}
 	public function adjust_rider_dimensions() {
 		this.body.set_frame_angle(this.rider_angle);
