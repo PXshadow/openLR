@@ -309,6 +309,9 @@ class B2Grid
 		{
 			B2Grid.grid[line.gridList[i][0]][line.gridList[i][1]].storage.remove(line);
 			B2Grid.grid[line.gridList[i][0]][line.gridList[i][1]].storage2.remove(line);
+			if (B2Grid.grid[line.gridList[i][0]][line.gridList[i][1]].storage.length == 0) {
+				B2Grid.grid[line.gridList[i][0]][line.gridList[i][1]].lowFrame = -1;
+			}
 		}
 		for (a in 0...line.gridVisList.length) {
 			VisGrid.grid[line.gridVisList[a][0]][line.gridVisList[a][1]].eject(line);

@@ -235,7 +235,9 @@ class RiderBase extends Sprite
 	}
 	public function inject_and_update(_frame:Int) {
 		var _loc1 = Common.sim_frames;
-		trace(_loc1);
+		if (_loc1 == 0) {
+			return;
+		}
 		recorder.inject_frame(_frame, this.body.anchors, this.scarf.anchors);
 		if (_loc1 != 0) {
 			for (a in _frame..._loc1) {
