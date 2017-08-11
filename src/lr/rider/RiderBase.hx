@@ -68,6 +68,8 @@ class RiderBase extends Sprite
 	public var rider_y_flip:Bool = false;
 	public var rider_x_flip:Bool = false;
 	public var rider_scale:Float = 0.5;
+	public var rider_x_velocity:Float = 0.4;
+	public var rider_y_velocity:Float = 0;
 	
 	var tick_frame = SubFrame.FullTick;
 	
@@ -179,6 +181,8 @@ class RiderBase extends Sprite
 	public function adjust_rider_dimensions() {
 		this.body.set_frame_angle(this.rider_angle);
 		this.scarf.set_frame_angle(this.rider_angle);
+		this.body.adjust_velocity_start(this.rider_x_velocity, this.rider_y_velocity);
+		this.scarf.adjust_velocity_start(this.rider_x_velocity, this.rider_y_velocity);
 	}
 	public function step_rider()
 	{
