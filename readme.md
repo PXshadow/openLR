@@ -12,9 +12,8 @@ Binaries can be downloaded here: https://github.com/kevansevans/openLR/releases
 
 ## Haxelibs used:
 	
-	
-	openFL 6.0.1
-	lime 5.3.0
+	openFL 6.0.1 (http://www.openfl.org/) (https://github.com/openfl/openfl)
+	lime 5.3.0 (https://github.com/openfl/lime)
 	
 If possible, openLR will always use the latest update for Haxe, openFL, and Lime. This is to ensure the most efficient builds possible, as performance is a major concern.
 	
@@ -56,7 +55,7 @@ Better save format
 
 Compatibility with other save formats (SOL, JSON, TRK)
 
-Mechanics across verious LR builds and titles
+Mechanics across various LR builds and titles
 
 Infinite rider support
 
@@ -71,6 +70,12 @@ Modding support with cppia and hscript
 ## Special Thanks
 
 Boštjan "fšk" Čadež for Line Rider
+
+InXile for not sending a cease and desist (yet) (this has no official endorsement)
+
+LR-Tools https://github.com/conundrumer/lr-core (Thank you for this)
+
+LRA https://github.com/jealouscloud/linerider-advanced (Thank you for this)
 
 Haxe developers, Lime developers, and OpenFL Developers
 
