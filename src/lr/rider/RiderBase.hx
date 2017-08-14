@@ -2,6 +2,7 @@ package lr.rider;
 
 import haxe.ds.Vector;
 import lr.rider.objects.StartPointVis;
+import lr.rider.objects.visual.UBBish;
 import openfl.display.Sprite;
 import openfl.geom.Point;
 import openfl.utils.Object;
@@ -33,10 +34,11 @@ import lr.rider.phys.skeleton.SkeletonBase;
  */
 @:enum abstract RiderType(Int) from Int to Int {
 	public var Beta1:Int = 1;
-	public var Beta2:Int = 2;
+	public var Beta2:Int = 2; 
 	public var Beta3a:Int = 3; //Female Rider
 	public var Beta3b:Int = 4; //this is the one that falls apart
 	public var JSON:Int = 5;
+	public var UBBishReskin:Int = 6;
 }
 @:enum abstract SubFrame(Int) from Int to Int {
 	public var Momentum:Int = 0;
@@ -103,6 +105,12 @@ class RiderBase extends Sprite
 				//beta 3 rider that falls apart
 			case 5 :
 				//JSON Custom Rider
+			case 6:
+				this.body = new B2Frame(_x, _y, this.riderID);
+				this.skeleton = new B2Skeleton(this.body.anchors, this.riderID);
+				this.scarf = new B2Scarf(this.body.anchors[5], this.body.anchors[0], _x, _y, this.riderID);
+				this.clips = new UBBish(this.body, this.scarf, this.skeleton, this, this.riderID);
+				this.addChild(this.clips);
 			default :
 				this.body = new B2Frame(_x, _y, this.riderID);
 				this.skeleton = new B2Skeleton(this.body.anchors, this.riderID);
