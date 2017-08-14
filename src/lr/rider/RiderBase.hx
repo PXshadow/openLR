@@ -1,8 +1,6 @@
 package lr.rider;
 
 import haxe.ds.Vector;
-import lr.rider.objects.StartPointVis;
-import lr.rider.objects.visual.UBBish;
 import openfl.display.Sprite;
 import openfl.geom.Point;
 import openfl.utils.Object;
@@ -17,13 +15,18 @@ import lr.nodes.B2Grid;
 import lr.rider.RiderRecorder;
 import lr.rider.objects.FlagMarker;
 import lr.rider.objects.VisBase;
+import lr.rider.objects.StartPointVis;
 import lr.rider.objects.visual.B2Bosh;
+import lr.rider.objects.visual.UBBish;
 import lr.rider.phys.frames.anchors.CPoint;
 import lr.rider.phys.skeleton.bones.Stick;
+import lr.rider.phys.skeleton.links.B1Skeleton;
 import lr.rider.phys.skeleton.links.B2Skeleton;
+import lr.rider.phys.skeleton.links.UBSkeleton;
 import lr.rider.phys.frames.B2Frame;
 import lr.rider.phys.frames.B1Frame;
 import lr.rider.phys.frames.FrameBase;
+import lr.rider.phys.frames.UBFrame;
 import lr.rider.phys.skeleton.scarf.B2Scarf;
 import lr.rider.phys.skeleton.ScarfBase;
 import lr.rider.phys.skeleton.SkeletonBase;
@@ -106,8 +109,8 @@ class RiderBase extends Sprite
 			case 5 :
 				//JSON Custom Rider
 			case 6:
-				this.body = new B2Frame(_x, _y, this.riderID);
-				this.skeleton = new B2Skeleton(this.body.anchors, this.riderID);
+				this.body = new UBFrame(_x, _y, this.riderID);
+				this.skeleton = new UBSkeleton(this.body.anchors, this.riderID);
 				this.scarf = new B2Scarf(this.body.anchors[5], this.body.anchors[0], _x, _y, this.riderID);
 				this.clips = new UBBish(this.body, this.scarf, this.skeleton, this, this.riderID);
 				this.addChild(this.clips);

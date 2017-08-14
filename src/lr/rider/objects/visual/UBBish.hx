@@ -151,13 +151,13 @@ class UBBish extends VisBase
 		
 		this.leftArm.x = this.rightArm.x = this.body.anchors[5].x;
 		this.leftArm.y = this.rightArm.y = this.body.anchors[5].y;
-		this.leftArm.rotation = Common.get_angle_degrees(new Point(this.body.anchors[5].x, this.body.anchors[5].y), new Point(this.body.anchors[6].x, this.body.anchors[6].y));
-		this.rightArm.rotation = Common.get_angle_degrees(new Point(this.body.anchors[5].x, this.body.anchors[5].y), new Point(this.body.anchors[7].x, this.body.anchors[7].y));
+		this.leftArm.rotation = Common.get_angle_degrees(new Point(this.body.anchors[5].x, this.body.anchors[5].y), new Point(this.body.anchors[7].x, this.body.anchors[7].y));
+		this.rightArm.rotation = Common.get_angle_degrees(new Point(this.body.anchors[5].x, this.body.anchors[5].y), new Point(this.body.anchors[9].x, this.body.anchors[9].y));
 		
 		this.leftLeg.x = this.rightLeg.x = this.body.anchors[4].x;
 		this.leftLeg.y = this.rightLeg.y = this.body.anchors[4].y;
-		this.leftLeg.rotation = Common.get_angle_degrees(new Point(this.body.anchors[4].x, this.body.anchors[4].y), new Point(this.body.anchors[8].x, this.body.anchors[8].y));
-		this.rightLeg.rotation = Common.get_angle_degrees(new Point(this.body.anchors[4].x, this.body.anchors[4].y), new Point(this.body.anchors[9].x, this.body.anchors[9].y));
+		this.leftLeg.rotation = Common.get_angle_degrees(new Point(this.body.anchors[4].x, this.body.anchors[4].y), new Point(this.body.anchors[11].x, this.body.anchors[11].y));
+		this.rightLeg.rotation = Common.get_angle_degrees(new Point(this.body.anchors[4].x, this.body.anchors[4].y), new Point(this.body.anchors[13].x, this.body.anchors[13].y));
 		
 		//rider rendering
 		this.body_vis.alpha = this.leftArm.alpha = this.rightArm.alpha = this.leftLeg.alpha = this.rightLeg.alpha = this.sled.alpha = Common.cvar_rider_alpha;
@@ -167,9 +167,9 @@ class UBBish extends VisBase
 		this.scarf_vis.graphics.clear();
 		if (!RiderManager.crash[this.riderID]) {
 			this.string.graphics.lineStyle(0.5, 0, Common.cvar_rider_alpha);
-			this.string.graphics.moveTo(this.body.anchors[6].x, this.body.anchors[6].y);
+			this.string.graphics.moveTo(this.body.anchors[7].x, this.body.anchors[7].y);
 			this.string.graphics.lineTo(this.body.anchors[3].x, this.body.anchors[3].y);
-			this.string.graphics.lineTo(this.body.anchors[7].x, this.body.anchors[7].y);
+			this.string.graphics.lineTo(this.body.anchors[9].x, this.body.anchors[9].y);
 		}
 		if (Common.cvar_contact_points) {
 			this.render_bones();
@@ -197,7 +197,7 @@ class UBBish extends VisBase
 			this.skeleton_vis.graphics.lineTo(this.skeleton.edges[i].b.x, this.skeleton.edges[i].b.y);
 		}
 		this.skeleton_vis.graphics.lineStyle(0.25, 0xCC0033, 1);
-		for (i in 9...14) { //Minimal body_vis points
+		for (i in 10...21) { //Minimal body_vis points
 			this.skeleton_vis.graphics.moveTo(this.skeleton.edges[i].a.x, this.skeleton.edges[i].a.y);
 			this.skeleton_vis.graphics.lineTo(this.skeleton.edges[i].b.x, this.skeleton.edges[i].b.y);
 		}
