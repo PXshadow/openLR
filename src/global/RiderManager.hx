@@ -35,6 +35,16 @@ class RiderManager extends Sprite
 		RiderManager.crash[Common.svar_rider_count] = false;
 		Common.svar_rider_count += 1;
 	}
+	public function set_rider_visual_start() {
+		for (a in riderArray) {
+			a.set_rider_play_mode();
+		}
+	}
+	public function set_rider_visual_stop() {
+		for (a in riderArray) {
+			a.set_rider_edit_mode();
+		}
+	}
 	public function advance_riders() {
 		for (a in riderArray) {
 			a.step_rider();

@@ -43,6 +43,7 @@ class SimManager
 			paused = false;
 			Common.sim_pause_frame = -1;
 		}
+		Common.gRiderManager.set_rider_visual_start();
 		if (!sim_running) {
 			this.iterator = new Timer(1000 * (1 / Common.sim_default_rate));
 			this.iterator.run = function():Void {
@@ -108,6 +109,7 @@ class SimManager
 				Common.gRiderManager.restore_start();
 			}
 			Common.gRiderManager.update_render();
+			Common.gRiderManager.set_rider_visual_stop();
 		}
 	}
 	public function pause_sim()

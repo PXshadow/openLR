@@ -184,6 +184,12 @@ class RiderBase extends Sprite
 		this.body.adjust_velocity_start(this.rider_x_velocity, this.rider_y_velocity);
 		this.scarf.adjust_velocity_start(this.rider_x_velocity, this.rider_y_velocity);
 	}
+	public function set_rider_play_mode() {
+		this.start_point.visible = false;
+	}
+	public function set_rider_edit_mode() {
+		this.start_point.visible = true;
+	}
 	public function step_rider()
 	{
 		while (tick_frame != SubFrame.FullTick) {
