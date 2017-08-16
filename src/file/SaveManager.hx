@@ -229,6 +229,7 @@ class SaveManager extends Sprite
 	}
 	private function json_line_aray_parse():Array<Object> //parses line array and organizes data
 	{
+		var _locLoopCount = 0;
 		var lines = Common.gGrid.lines;
 		lines.reverse();
 		var a:Array<Object> = new Array();
@@ -236,8 +237,8 @@ class SaveManager extends Sprite
 			if (i == null) {
 				continue;
 			}
-			a[i.ID] = new Object();
-			a[i.ID] = {
+			a[_locLoopCount] = new Object();
+			a[_locLoopCount] = {
 				"id": i.ID,
 				"type": i.type,
 				"x1": i.x1,
@@ -248,6 +249,7 @@ class SaveManager extends Sprite
 				"leftExtended":  i.lExt,
 				"rightExtended":  i.rExt
 			};
+			_locLoopCount += 1;
 		}
 		return(a);
 	}
