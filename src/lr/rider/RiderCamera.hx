@@ -3,7 +3,6 @@ package lr.rider;
 import openfl.geom.Point;
 
 import global.Common;
-import lr.nodes.VisGrid;
 import lr.rider.phys.frames.anchors.CPoint;
 
 /**
@@ -22,8 +21,6 @@ class RiderCamera
 		Common.gCamera = this;
 	}
 	public function pan(dot:CPoint) {
-		VisGrid.updateVisuals();
-		
 		var _locPoint:Point = Common.gTrack.localToGlobal(new Point(dot.x, dot.y));
 		var _locXPan:Float = 0;
 		var _locYPan:Float = 0;

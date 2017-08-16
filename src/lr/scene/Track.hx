@@ -2,7 +2,6 @@ package lr.scene;
 
 import lr.nodes.B2Grid;
 import lr.lines.LineBase;
-import lr.nodes.VisGrid;
 import openfl.display.Sprite;
 import openfl.geom.Point;
 
@@ -19,7 +18,6 @@ import global.Common;
 class Track extends Sprite
 {
 	private var grid:B2Grid;
-	private var visGrid:VisGrid;
 	private var simManager:SimManager;
 	public function new() 
 	{
@@ -27,13 +25,11 @@ class Track extends Sprite
 		Common.gTrack = this;
 		Common.track_scale = 1;
 		this.grid = new B2Grid();
-		this.visGrid = new VisGrid();
 		this.simManager = new SimManager();
 	}
 	public function add_vis_line(line:LineBase) //This is the function that must be called when adding a line. Do not take shortcuts!
 	{
 		Common.gGrid.massLineIndex(line);
-		Common.gVisGrid.registerInGrid(line);
 		this.addChild(grid.lines[line.ID]);
 		if (Common.svar_sim_running) {
 			return;
