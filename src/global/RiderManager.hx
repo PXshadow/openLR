@@ -33,7 +33,7 @@ class RiderManager extends Sprite
 			default:
 				this.riderArray[Common.svar_rider_count] = new RiderBase(RiderType.Beta2, _x, _y, Common.svar_rider_count);
 		}
-		this.addChild(this.riderArray[Common.svar_rider_count]);
+		Common.gTrack.rider.addChild(this.riderArray[Common.svar_rider_count]);
 		RiderManager.crash[Common.svar_rider_count] = false;
 		Common.svar_rider_count += 1;
 	}

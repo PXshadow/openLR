@@ -36,8 +36,6 @@ class RiderCamera
 		}
 		Common.gTrack.x += _locXPan;
 		Common.gTrack.y += _locYPan;
-		Common.gRiderManager.x += _locXPan;
-		Common.gRiderManager.y += _locYPan;
 	}
 	public function update_pan_bounds() {
 		this.left_bound = Common.stage_width * 0.38;

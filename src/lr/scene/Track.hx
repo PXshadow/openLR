@@ -19,6 +19,8 @@ class Track extends Sprite
 {
 	private var grid:B2Grid;
 	private var simManager:SimManager;
+	public var canvas:Sprite;
+	public var rider:Sprite;
 	public function new() 
 	{
 		super();
@@ -26,11 +28,16 @@ class Track extends Sprite
 		Common.track_scale = 1;
 		this.grid = new B2Grid();
 		this.simManager = new SimManager();
+		
+		this.canvas = new Sprite();
+		this.addChild(this.canvas);
+		this.rider = new Sprite();
+		this.addChild(this.rider);
 	}
 	public function add_vis_line(line:LineBase) //This is the function that must be called when adding a line. Do not take shortcuts!
 	{
 		Common.gGrid.massLineIndex(line);
-		this.addChild(grid.lines[line.ID]);
+		this.canvas.addChild(grid.lines[line.ID]);
 		if (Common.svar_sim_running) {
 			return;
 		}
