@@ -115,12 +115,12 @@ class ToolBase
 	
 	public function mouseUp(e:MouseEvent):Void 
 	{
-		trace(Common.gStage.mouseX, Common.gStage.mouseY);
+		Common.gToolbar.enable_keys();
 	}
 	
 	public function mouseDown(e:MouseEvent):Void 
 	{
-		trace(Common.gStage.mouseX, Common.gStage.mouseY);
+		Common.gToolbar.disable_keys();
 	}
 	
 	public function disable() {

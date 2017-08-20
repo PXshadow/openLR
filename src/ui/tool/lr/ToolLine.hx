@@ -29,6 +29,7 @@ class ToolLine extends ToolBase
 		super();
 	}
 	override public function mouseDown(e:MouseEvent) {
+		super.mouseDown(e);
 		x1 = Common.gTrack.mouseX;
 		y1 = Common.gTrack.mouseY;
 		x2 = Common.gTrack.mouseX;
@@ -57,6 +58,7 @@ class ToolLine extends ToolBase
 		Common.gTrack.renderPreview(new LinePreview(x1, y1, x2, y2, this.mod_shift, Common.line_type));
 	}
 	override public function mouseUp(e:MouseEvent) {
+		super.mouseUp(e);
 		Common.gTrack.clear_preview();
 		Common.gStage.removeEventListener(MouseEvent.MOUSE_MOVE, line_move);
 		if (!valid) {

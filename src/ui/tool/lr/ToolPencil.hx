@@ -29,6 +29,7 @@ class ToolPencil extends ToolBase
 		super();
 	}
 	override public function mouseDown(e:MouseEvent) {
+		super.mouseDown(e);
 		x1 = Common.gTrack.mouseX;
 		y1 = Common.gTrack.mouseY;
 		this.stroke = new Array();
@@ -72,6 +73,7 @@ class ToolPencil extends ToolBase
 		}
 	}
 	override public function mouseUp(e:MouseEvent) {
+		super.mouseUp(e);
 		Common.gStage.removeEventListener(MouseEvent.MOUSE_MOVE, pencil_move);
 		Common.gTrack.clear_preview();
 		Common.gGrid.cache_stroke(this.stroke);

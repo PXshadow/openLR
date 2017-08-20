@@ -22,13 +22,14 @@ class ToolEraser extends ToolBase
 	}
 	override public function mouseDown(e:MouseEvent)
 	{
-		this.list = new Array();
+		super.mouseDown(e);
 		Common.gStage.addEventListener(MouseEvent.MOUSE_MOVE, erase);
 	}
 	override public function mouseUp(e:MouseEvent) {
 		if (this.list.length > 0) {
 			Common.gGrid.add_to_history("sub", this.list);
 		}
+		super.mouseUp(e);
 		Common.gStage.removeEventListener(MouseEvent.MOUSE_MOVE, erase);
 	}
 	private function erase(e:MouseEvent):Void 

@@ -113,13 +113,20 @@ class Toolbar extends MovieClip
 	private function enable_stage(e:MouseEvent):Void 
 	{
 		Common.gToolBase.enable();
+		Common.gStage.addEventListener(KeyboardEvent.KEY_UP, key_tool_switch);
 	}
 	
 	private function disable_stage(e:MouseEvent):Void 
 	{
 		Common.gToolBase.disable();
+		Common.gStage.removeEventListener(KeyboardEvent.KEY_UP, key_tool_switch);
 	}
-	
+	public function disable_keys() {
+		Common.gStage.removeEventListener(KeyboardEvent.KEY_UP, key_tool_switch);
+	}
+	public function enable_keys() {
+		Common.gStage.addEventListener(KeyboardEvent.KEY_UP, key_tool_switch);
+	}
 	private function key_tool_switch(e:KeyboardEvent):Void 
 	{
 		if (e.keyCode == KeyBindings.pencil_1 || e.keyCode == KeyBindings.pencil_2) {
