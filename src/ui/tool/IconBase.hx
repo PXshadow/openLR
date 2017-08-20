@@ -52,7 +52,7 @@ class IconBase extends Sprite
 	private function attach_listeners() {
 		this.iconButton.addEventListener(MouseEvent.MOUSE_OVER, disable_tool);
 		this.iconButton.addEventListener(MouseEvent.MOUSE_OUT, enable_tool);
-		this.iconButton.addEventListener(MouseEvent.MOUSE_DOWN, down);
+		this.iconButton.addEventListener(MouseEvent.MOUSE_UP, up);
 		this.iconButton.addEventListener(MouseEvent.RIGHT_MOUSE_DOWN, alt);
 		this.iconButton.addEventListener(MouseEvent.DOUBLE_CLICK, double_click);
 	}
@@ -66,7 +66,7 @@ class IconBase extends Sprite
 		trace("Alt behavior not yet set or not yet overidden");
 	}
 	
-	public function down(e:MouseEvent):Void 
+	public function up(e:MouseEvent):Void 
 	{
 		trace ("action not yet overidden");
 	}
@@ -88,7 +88,7 @@ class IconBase extends Sprite
 	public function enable() {
 		this.iconButton.addEventListener(MouseEvent.MOUSE_OVER, disable_tool);
 		this.iconButton.addEventListener(MouseEvent.MOUSE_OUT, enable_tool);
-		this.iconButton.addEventListener(MouseEvent.MOUSE_DOWN, down);
+		this.iconButton.addEventListener(MouseEvent.MOUSE_DOWN, up);
 		this.mouseChildren = true;
 		this.alpha = 1;
 		this.enabled = true;
@@ -97,7 +97,7 @@ class IconBase extends Sprite
 	public function disable() {
 		this.iconButton.removeEventListener(MouseEvent.MOUSE_OVER, disable_tool);
 		this.iconButton.removeEventListener(MouseEvent.MOUSE_OUT, enable_tool);
-		this.iconButton.removeEventListener(MouseEvent.MOUSE_DOWN, down);
+		this.iconButton.removeEventListener(MouseEvent.MOUSE_DOWN, up);
 		this.mouseChildren = false;
 		this.alpha = 0.25;
 		this.enabled = false;

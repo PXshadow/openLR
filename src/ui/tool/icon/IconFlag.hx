@@ -22,7 +22,7 @@ class IconFlag extends IconBase
 	{
 		super(Icon.flag);
 	}
-	override public function down(e:MouseEvent) {
+	override public function up(e:MouseEvent) {
 		if (Common.svar_sim_running) {
 			Common.gSimManager.mark_rider_position();
 			Common.gSimManager.show_flag();

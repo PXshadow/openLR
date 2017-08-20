@@ -15,7 +15,7 @@ class SwatchRed extends IconBase
 	{
 		super(Icon.swRed);
 	}
-	override public function down(e:MouseEvent) {
+	override public function up(e:MouseEvent) {
 		Common.line_type = 1;
 		Toolbar.swatch.deselect();
 		Toolbar.swatch = this;

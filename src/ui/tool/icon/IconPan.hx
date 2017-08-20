@@ -21,7 +21,7 @@ class IconPan extends IconBase
 	{
 		super("swf/ui/IconPan.bundle");
 	}
-	override public function down(e:MouseEvent) {
+	override public function up(e:MouseEvent) {
 		Common.gToolBase.disable();
 		Toolbar.icon.deselect();
 		Toolbar.icon = this;

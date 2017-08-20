@@ -39,7 +39,7 @@ class IconSave extends IconBase
 	{
 		super(Icon.file);
 	}
-	override public function down(e:MouseEvent) {
+	override public function up(e:MouseEvent) {
 		if (this.mouseY < 30)
 		{
 			this.show_menu();

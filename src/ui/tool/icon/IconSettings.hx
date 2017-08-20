@@ -21,7 +21,7 @@ class IconSettings extends IconBase
 	{
 		super(Icon.settings);
 	}
-	override public function down(e:MouseEvent) {
+	override public function up(e:MouseEvent) {
 		Common.gCode.toggleSettings_box();
 	}
 	

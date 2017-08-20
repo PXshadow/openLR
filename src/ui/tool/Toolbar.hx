@@ -3,6 +3,7 @@ package ui.tool;
 import global.Common;
 import openfl.display.MovieClip;
 import openfl.events.KeyboardEvent;
+import openfl.events.MouseEvent;
 
 import ui.tool.ToolBase;
 import ui.tool.lr.*;
@@ -104,6 +105,19 @@ class Toolbar extends MovieClip
 		icon.select();
 		Toolbar.swatch = swBlue;
 		swBlue.select();
+		
+		this.addEventListener(MouseEvent.MOUSE_OVER, this.disable_stage);
+		this.addEventListener(MouseEvent.MOUSE_OUT, this.enable_stage);
+	}
+	
+	private function enable_stage(e:MouseEvent):Void 
+	{
+		Common.gToolBase.enable();
+	}
+	
+	private function disable_stage(e:MouseEvent):Void 
+	{
+		Common.gToolBase.disable();
 	}
 	
 	private function key_tool_switch(e:KeyboardEvent):Void 

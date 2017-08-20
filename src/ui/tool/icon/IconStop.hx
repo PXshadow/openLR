@@ -21,7 +21,7 @@ class IconStop extends IconBase
 	{
 		super(Icon.stop);
 	}
-	override public function down(e:MouseEvent) {
+	override public function up(e:MouseEvent) {
 		Common.gTrack.set_rendermode_edit();
 		Common.gToolbar.set_edit_mode();
 		Common.gToolbar.pan.visible = true;

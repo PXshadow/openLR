@@ -22,7 +22,7 @@ class IconEraser extends IconBase
 	{
 		super(Icon.eraser);
 	}
-	override public function down(e:MouseEvent) {
+	override public function up(e:MouseEvent) {
 		Common.gToolBase.disable();
 		Toolbar.icon.deselect();
 		Toolbar.icon = this;

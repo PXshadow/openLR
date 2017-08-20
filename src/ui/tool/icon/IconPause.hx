@@ -21,7 +21,7 @@ class IconPause extends IconBase
 	{
 		super(Icon.pause);
 	}
-	override public function down(e:MouseEvent) {
+	override public function up(e:MouseEvent) {
 		if (Common.gSimManager.paused) {
 			Common.gSimManager.resume_sim();
 			Common.gToolbar.set_play_mode();

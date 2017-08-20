@@ -21,7 +21,7 @@ class IconPlay extends IconBase
 	{
 		super(Icon.play);
 	}
-	override public function down(e:MouseEvent) {
+	override public function up(e:MouseEvent) {
 		if (!Common.gSimManager.paused) {
 			Common.track_last_pos_x = Common.gTrack.x;
 			Common.track_last_pos_y = Common.gTrack.y;
