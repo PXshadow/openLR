@@ -63,6 +63,7 @@ import ui.tool.timeline.TimelineControl;
  * -- LZ-String port, this is needed if compatibility with .com must happen
  * -- UI system. Menus, checkboxes, radio buttons, arbitrarily sized buttons, fonts, blah blah blah
  * -- Better file management. Save with name support, save as (arbitrary location), load from saves folder, and browse. Look into Lime API.
+ * -- conditionals
  * 
  */
 class Main extends Sprite 
