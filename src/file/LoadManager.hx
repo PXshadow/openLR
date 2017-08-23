@@ -1,25 +1,28 @@
 package file;
 
-import file.ui.FileWindow;
-import lr.lines.types.LineAccel;
-import lr.lines.types.LineFloor;
-import lr.lines.types.LineScene;
-import lr.lines.LineBase;
 import openfl.display.Sprite;
-import sys.io.File;
-import sys.FileSystem;
-import haxe.Json;
 import openfl.utils.Object;
 import haxe.io.Bytes;
 import haxe.io.BytesInput;
 import haxe.Utf8;
 import ui.inter.AlertBox;
 
+#if (cpp)
+	import sys.io.File;
+	import sys.FileSystem;
+	import haxe.Json;
+#end
+
 import global.Common;
 import lr.line.*;
 import ui.inter.TextButton;
 import ui.tool.Toolbar;
 import global.Language;
+import file.ui.FileWindow;
+import lr.lines.types.LineAccel;
+import lr.lines.types.LineFloor;
+import lr.lines.types.LineScene;
+import lr.lines.LineBase;
 
 /**
  * ...
@@ -72,11 +75,13 @@ class LoadManager extends Sprite
 		this.cancel_button.y = 430;
 	}
 	function parseSaveDirecotry() {
+		#if (cpp)
 		var _locDir = FileSystem.readDirectory("./saves/");
 		itemWindow = new FileWindow(_locDir);
 		this.addChild(this.listMask);
 		this.addChild(this.itemWindow);
 		this.itemWindow.mask = this.listMask;
+		#end
 	}
 	function loadFromObject() 
 	{
@@ -99,6 +104,7 @@ class LoadManager extends Sprite
 		}
 	}
 	function pre_json_detect() {
+		#if (cpp)
 		var _locPath = this.itemWindow.currentList[FileWindow.selectedIndex];
 		try {
 			var _locFile = File.getContent("saves/" + _locPath);
@@ -125,6 +131,7 @@ class LoadManager extends Sprite
 			this.error_alert.x = (Common.stage_width * 0.5) - (this.error_alert.width * 0.5);
 			this.error_alert.y = (Common.stage_height * 0.5) - (this.error_alert.height * 0.5);
 		}
+		#end
 	}
 	
 	function load_array() 

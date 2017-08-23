@@ -45,7 +45,7 @@ class SimManager
 		}
 		Common.gRiderManager.set_rider_visual_start();
 		if (!sim_running) {
-			this.iterator = new Timer(1000 * (1 / Common.sim_default_rate));
+			this.iterator = new Timer(Std.int(1000 * (1 / Common.sim_default_rate)));
 			this.iterator.run = function():Void {
 				this.update_sim();
 				Common.gTextInfo.update_sim();
@@ -121,7 +121,7 @@ class SimManager
 		Common.sim_pause_frame = Common.sim_frames;
 	}
 	public function resume_sim() {
-		this.iterator = new Timer(1000 / Common.sim_default_rate);
+		this.iterator = new Timer(Std.int(1000 * (1 / Common.sim_default_rate)));
 		this.iterator.run = function():Void {
 			this.update_sim();
 			Common.gTextInfo.update_sim();
@@ -244,7 +244,7 @@ class SimManager
 	{
 		this.iterator.stop();
 		Common.sim_default_rate = Common.sim_slow_motion_rate;
-		this.iterator = new Timer(1000 * (1 / Common.sim_default_rate));
+		this.iterator = new Timer(Std.int(1000 * (1 / Common.sim_default_rate)));
 		this.iterator.run = function():Void {
 			this.update_sim();
 			Common.gTextInfo.update_sim();
@@ -255,7 +255,7 @@ class SimManager
 	{
 		this.iterator.stop();
 		Common.sim_default_rate = 40;
-		this.iterator = new Timer(1000 * (1 / Common.sim_default_rate));
+		this.iterator = new Timer(Std.int(1000 * (1 / Common.sim_default_rate)));
 		this.iterator.run = function():Void {
 			this.update_sim();
 			Common.gTextInfo.update_sim();

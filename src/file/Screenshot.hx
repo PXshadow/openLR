@@ -7,8 +7,11 @@ import openfl.display.Sprite;
 import openfl.geom.Matrix;
 import openfl.display.PNGEncoderOptions;
 import openfl.utils.ByteArray;
-import sys.io.FileOutput;
-import sys.io.File;
+
+#if (cpp)
+	import sys.io.FileOutput;
+	import sys.io.File;
+#end
 
 import global.Common;
 /**
@@ -23,6 +26,7 @@ class Screenshot
 	var timestamp:String = "" + "Y" + Date.now().getFullYear() + "M" + Date.now().getMonth() + "D" + Date.now().getDay() + "H" + Date.now().getHours() + "m" + Date.now().getMinutes() + "S" + Date.now().getSeconds();
 	public inline function new(_container:Sprite) 
 	{
+		#if (cpp)
 		this.container = _container;
 		this.bitmap = new BitmapData(Std.int(Common.stage_width), Std.int(Common.stage_height));
 		this.bitmap.draw(container);
@@ -31,5 +35,6 @@ class Screenshot
 		file.writeBytes(data, 0, data.length);
 		file.close();
 		Common.gCode.end_screencap();
+		#end
 	}
 }

@@ -2,9 +2,6 @@ package file;
 
 import openfl.utils.Object;
 import openfl.geom.Point;
-import sys.FileSystem;
-import sys.io.File;
-import haxe.Json;
 import openfl.Lib;
 import openfl.Assets;
 import openfl.display.Sprite;
@@ -15,6 +12,12 @@ import openfl.text.TextFieldType;
 import openfl.events.MouseEvent;
 import ui.inter.CheckBox;
 import ui.inter.ConfirmDialog;
+
+#if (cpp)
+	import sys.FileSystem;
+	import sys.io.File;
+	import haxe.Json;
+#end
 
 import global.Common;
 import ui.inter.TextButton;
@@ -28,7 +31,11 @@ import global.Language;
 class SaveManager extends Sprite
 {
 	public static var new_track:Bool = true; //only ever gets set to false when track is saved initially, or if track is loaded. Always set to true on new track
-	var directory:File;
+	
+	#if (cpp)
+		var directory:File;
+	#end
+	
 	var trackData:Object;
 	var font_a:TextFormat = new TextFormat(Assets.getFont("fonts/Verdana Bold.ttf").fontName, 16, 0, null, null, null, null, null, TextFormatAlign.LEFT);
 	var font_b:TextFormat = new TextFormat(Assets.getFont("fonts/Verdana.ttf").fontName, 14, 0, null, null, null, null, null, TextFormatAlign.LEFT);
@@ -115,6 +122,7 @@ class SaveManager extends Sprite
 		this.cancel_button.y = 260;
 	}
 	private function save_track_pre() {
+		#if (cpp)
 		this.fileName = this.name_input.text + ".json";
 		this.removeChild(this.save_button);
 		this.removeChild(this.cancel_button);
@@ -145,6 +153,9 @@ class SaveManager extends Sprite
 				this.addChild(this.cancel_button);
 			}
 		}
+		#else
+			this.generate_save_json();
+		#end
 	}
 	function save_override() {
 		this.addChild(this.save_button);
@@ -175,6 +186,7 @@ class SaveManager extends Sprite
 	}
 	public function generate_save_json() //Top function for generating JSON legacy file
 	{
+		#if (cpp)
 		//This function should only be called if confirmed to be okay to save
 		
 		Common.cvar_track_name = this.name_input.text;
@@ -193,6 +205,7 @@ class SaveManager extends Sprite
 		var file = File.write("./saves/" + fileNameFinal + ".json", true); //.json = legacy format
 		file.writeString(Json.stringify(track, null, "\t"));
 		file.close();
+		#end
 		
 		Common.gCode.toggle_save_menu();
 	}

@@ -89,13 +89,18 @@ class Main extends Sprite
 		Common.gCode = this; //This class
 		Common.gStage = this.stage; //The stage, not to be comfused with main.hx
 		
-		this.mainFileInit = new FileStart(); //checks for default folders and saved settings in the track
+		#if (cpp)
+			this.mainFileInit = new FileStart(); //checks for default folders and saved settings in the track
+			
+			this.title_card = new TitleCard();
+			this.addChild(this.title_card);
 		
-		this.title_card = new TitleCard();
-		this.addChild(this.title_card);
-		
-		this.title_card.x = (this.stage.stageWidth * 0.5) - (this.title_card.width * 0.5);
-		this.title_card.y = (this.stage.stageHeight * 0.5) - (this.title_card.height * 0.5);
+			this.title_card.x = (this.stage.stageWidth * 0.5) - (this.title_card.width * 0.5);
+			this.title_card.y = (this.stage.stageHeight * 0.5) - (this.title_card.height * 0.5);
+		#elseif (flash)
+			this.start();
+			this.align();
+		#end
 	}
 	public function start(_load:Bool = false) {
 		this.init_env();

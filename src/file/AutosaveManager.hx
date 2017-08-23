@@ -1,10 +1,13 @@
 package file;
 
 import haxe.Timer;
-import sys.FileSystem;
-import sys.io.File;
-import haxe.Json;
 import openfl.utils.Object;
+
+#if (cpp)
+	import sys.FileSystem;
+	import sys.io.File;
+	import haxe.Json;
+#end
 
 import global.Common;
 
@@ -33,6 +36,7 @@ class AutosaveManager
 		}
 	}
 	private function call_autosave() {
+		#if (cpp)
 		if (!Common.cvar_auto_save) {
 			return;
 		}
@@ -41,6 +45,7 @@ class AutosaveManager
 		var file = File.write("./autosaves/" + stamp + ".json", true);
 		file.writeString(Json.stringify(track));
 		file.close();
+		#end
 	}
 	public function parse_json():Object
 	{

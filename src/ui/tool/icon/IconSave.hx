@@ -6,10 +6,13 @@ import openfl.events.MouseEvent;
 import openfl.Lib;
 import openfl.Assets;
 import openfl.net.URLRequest;
-import sys.io.File;
-import sys.FileSystem;
 import openfl.ui.Mouse;
 import openfl.ui.MouseCursor;
+
+#if (cpp)
+	import sys.io.File;
+	import sys.FileSystem;
+#end
 
 import global.Common;
 import global.Language;

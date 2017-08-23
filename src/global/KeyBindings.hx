@@ -2,9 +2,12 @@ package global;
 
 import openfl.utils.Object;
 import openfl.ui.Keyboard;
-import sys.FileSystem;
-import sys.io.File;
-import haxe.Json;
+
+#if (cpp)
+	import sys.FileSystem;
+	import sys.io.File;
+	import haxe.Json;
+#end
 
 /**
  * ...
@@ -88,6 +91,7 @@ class KeyBindings
 		KeyBindings.write_settings(); //this is needed, should prevent users having to rebind everything whenever a new key is introduced
 	}
 	static public function write_settings() {
+		#if (cpp)
 		var key:Object = new Object(); 
 		key = { 
 		"binds" : { 
@@ -125,6 +129,7 @@ class KeyBindings
 		var file = File.write("./settings/KeyBindings.json", true); 
 		file.writeString(Json.stringify(key, null, "\t")); 
 		file.close(); 
+		#end
 	} 
 	private function setArrayBinds() 
 	{
