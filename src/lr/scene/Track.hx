@@ -129,7 +129,7 @@ class Track extends Sprite
 		Common.sim_slow_motion = false;
 	}
 	public function remove_line(_line) {
-		this.removeChild(Common.gGrid.lines[_line.ID]);
+		this.canvas.removeChild(Common.gGrid.lines[_line.ID]);
 	}
 	public function set_simmode_play() {
 		this.simManager.start_sim();
