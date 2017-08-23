@@ -97,7 +97,7 @@ class Main extends Sprite
 		
 			this.title_card.x = (this.stage.stageWidth * 0.5) - (this.title_card.width * 0.5);
 			this.title_card.y = (this.stage.stageHeight * 0.5) - (this.title_card.height * 0.5);
-		#elseif (flash)
+		#elseif (flash || js)
 			this.start();
 			this.align();
 		#end
