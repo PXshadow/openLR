@@ -30,7 +30,7 @@ class Main extends Sprite
 		Common.gStage = this.stage; //The stage, not to be comfused with main.hx
 		
 		#if (cpp)
-			this.core = new NativeCppCore(this.stage);
+			this.core = new CppCore(this.stage);
 		#elseif (flash)
 			this.core = new FlashCore(this.stage);
 		#elseif (js)
