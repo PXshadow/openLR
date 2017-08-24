@@ -30,7 +30,7 @@ import ui.tool.timeline.TimelineControl;
  * ...
  * @author Kaelan Evans
  */
-class NativeCppCore extends CoreBase
+class NativeCPP extends CoreBase
 {
 	private var mainFileInit:FileStart; //this class controls settings
 	private var visContainer:Sprite; //simple display container. This will make it easier to take screenshots and record video without having to move a matrix all around
