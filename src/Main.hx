@@ -1,11 +1,11 @@
 package;
 
-import base.cores.Flash;
-import base.cores.JavaScript;
-import base.cores.NativeCPP;
 import openfl.display.Sprite;
 
 import base.CoreBase;
+import base.cores.NativeCppCore;
+import base.cores.FlashCore;
+import base.cores.JavaScriptCore;
 import global.Common;
 
 /**
@@ -30,11 +30,11 @@ class Main extends Sprite
 		Common.gStage = this.stage; //The stage, not to be comfused with main.hx
 		
 		#if (cpp)
-			this.core = new NativeCPP(this.stage);
+			this.core = new NativeCppCore(this.stage);
 		#elseif (flash)
-			this.core = new Flash(this.stage);
+			this.core = new FlashCore(this.stage);
 		#elseif (js)
-			this.core = new JavaScript(this.stage)
+			this.core = new JavaScriptCore(this.stage)
 		#end
 	}
 }
