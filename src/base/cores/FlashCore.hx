@@ -1,15 +1,14 @@
 package base.cores;
+import base.CoreBase;
 
 import openfl.display.Stage;
-
-import base.CoreBase;
 import global.Common;
 
 /**
  * ...
  * @author Kaelan Evans
  */
-class JavaScript extends CoreBase
+class FlashCore extends CoreBase
 {
 
 	public function new(_stage:Stage) 
