@@ -1,6 +1,5 @@
 package ui.tool;
 
-import global.Common;
 import openfl.display.MovieClip;
 import openfl.events.KeyboardEvent;
 import openfl.events.MouseEvent;
@@ -9,6 +8,7 @@ import ui.tool.ToolBase;
 import ui.tool.lr.*;
 import ui.tool.icon.*;
 import global.KeyBindings;
+import global.Common;
 
 /**
  * ...
