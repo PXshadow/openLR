@@ -1,5 +1,6 @@
 package global;
 
+import base.CoreBase;
 import openfl.Assets;
 import global.RiderManager;
 import openfl.utils.Object;
@@ -38,7 +39,7 @@ class Common
 	public static var version:String = "0.0.5";
 	
 	public static var gStage:Stage;
-	public static var gCode:Main;
+	public static var gCode:CoreBase;
 	public static var gTrack:Track;
 	public static var gRiderManager:RiderManager;
 	public static var gVisContainer:Sprite;
