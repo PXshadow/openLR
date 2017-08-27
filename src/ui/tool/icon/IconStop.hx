@@ -23,8 +23,8 @@ class IconStop extends IconBase
 	}
 	override public function up(e:MouseEvent) {
 		Common.gTrack.set_rendermode_edit();
-		Common.gToolbar.set_edit_mode();
 		Common.gToolbar.pause.visible = false;
+		Common.gToolbar.set_full_edit_mode();
 		Common.gTrack.set_simmode_stop();
 		Common.gSimManager.fast_forward = false;
 		Common.gTimeline.update();

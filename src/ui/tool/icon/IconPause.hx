@@ -25,9 +25,11 @@ class IconPause extends IconBase
 		if (Common.gSimManager.paused) {
 			Common.gSimManager.resume_sim();
 			Common.gToolbar.set_play_mode();
+			Common.gToolBase.destroy();
 		} else if (!Common.gSimManager.paused) {
 			Common.gSimManager.pause_sim();
-			Common.gToolbar.set_edit_mode();
+			Common.gToolBase.destroy();
+			Common.gToolbar.set_live_draw_mode();
 			Toolbar.icon.select();
 		}
 	}

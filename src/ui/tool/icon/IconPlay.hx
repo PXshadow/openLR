@@ -27,9 +27,12 @@ class IconPlay extends IconBase
 			Common.track_last_pos_y = Common.gTrack.y;
 		}
 		Common.gTrack.set_rendermode_play();
-		Common.gToolbar.set_play_mode();
-		Common.gToolbar.pause.visible = true;
 		Common.gTrack.set_simmode_play();
+		
+		Common.gToolbar.pause.visible = true;
+		Common.gToolbar.set_play_mode();
+		
+		Common.gToolBase.destroy();
 		
 		Common.gRiderManager.x = Common.gTrack.x;
 		Common.gRiderManager.y = Common.gTrack.y;
