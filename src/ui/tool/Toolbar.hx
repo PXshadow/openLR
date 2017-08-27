@@ -1,6 +1,6 @@
 package ui.tool;
 
-import openfl.display.MovieClip;
+import openfl.display.Sprite;
 import openfl.events.KeyboardEvent;
 import openfl.events.MouseEvent;
 
@@ -17,7 +17,7 @@ import global.Common;
  * Tool bar seen across top of screen
  * 
  */
-class Toolbar extends MovieClip
+class Toolbar extends Sprite
 {
 
 	public static var tool:ToolBase;
