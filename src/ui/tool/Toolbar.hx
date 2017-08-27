@@ -189,6 +189,12 @@ class Toolbar extends Sprite
 		this.save.enable();
 		this.settings.mouseChildren = true;
 		this.settings.enable();
+		this.swBlue.mouseChildren = true;
+		this.swBlue.enable();
+		this.swRed.mouseChildren = true;
+		this.swRed.enable();
+		this.swGreen.mouseChildren = true;
+		this.swGreen.enable();
 	}
 	public function set_live_draw_mode() {
 		Common.svar_game_mode = "livedraw";
@@ -202,6 +208,12 @@ class Toolbar extends Sprite
 		this.save.enable();
 		this.settings.mouseChildren = true;
 		this.settings.enable();
+		this.swBlue.mouseChildren = true;
+		this.swBlue.enable();
+		this.swRed.mouseChildren = true;
+		this.swRed.enable();
+		this.swGreen.mouseChildren = true;
+		this.swGreen.enable();
 	}
 	public function set_play_mode() {
 		Common.svar_game_mode = "running";
@@ -215,5 +227,11 @@ class Toolbar extends Sprite
 		this.save.disable();
 		this.settings.mouseChildren = false;
 		this.settings.disable();
+		this.swBlue.mouseChildren = false;
+		this.swBlue.disable();
+		this.swRed.mouseChildren = false;
+		this.swRed.disable();
+		this.swGreen.mouseChildren = false;
+		this.swGreen.disable();
 	}
 }
