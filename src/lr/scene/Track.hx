@@ -133,7 +133,6 @@ class Track extends Sprite
 	}
 	public function set_simmode_play() {
 		this.simManager.start_sim();
-		Common.gToolBase.disable();
 		Common.svar_sim_running = true;
 	}
 	public function set_simmode_resume() {
@@ -144,7 +143,6 @@ class Track extends Sprite
 	}
 	public function set_simmode_stop() {
 		this.simManager.end_sim();
-		Common.gToolBase.enable();
 		Common.svar_sim_running = false;
 	}
 }

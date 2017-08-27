@@ -86,18 +86,12 @@ class IconBase extends Sprite
 	}
 	
 	public function enable() {
-		this.iconButton.addEventListener(MouseEvent.MOUSE_OVER, disable_tool);
-		this.iconButton.addEventListener(MouseEvent.MOUSE_OUT, enable_tool);
-		this.iconButton.addEventListener(MouseEvent.MOUSE_DOWN, up);
 		this.mouseChildren = true;
 		this.alpha = 1;
 		this.enabled = true;
 	}
 	
 	public function disable() {
-		this.iconButton.removeEventListener(MouseEvent.MOUSE_OVER, disable_tool);
-		this.iconButton.removeEventListener(MouseEvent.MOUSE_OUT, enable_tool);
-		this.iconButton.removeEventListener(MouseEvent.MOUSE_DOWN, up);
 		this.mouseChildren = false;
 		this.alpha = 0.25;
 		this.enabled = false;
