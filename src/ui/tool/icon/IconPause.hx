@@ -24,12 +24,12 @@ class IconPause extends IconBase
 	override public function up(e:MouseEvent) {
 		if (Common.gSimManager.paused) {
 			Common.gSimManager.resume_sim();
-			//Common.gToolbar.set_play_mode();
+			Common.gToolbar.set_play_mode();
 			Common.gToolBase.destroy();
 		} else if (!Common.gSimManager.paused) {
 			Common.gSimManager.pause_sim();
 			Common.gToolBase.destroy();
-			//Common.gToolbar.set_live_draw_mode();
+			Common.gToolbar.set_live_draw_mode();
 			Toolbar.icon.select();
 		}
 	}

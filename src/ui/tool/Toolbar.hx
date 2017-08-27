@@ -192,7 +192,7 @@ class Toolbar extends Sprite
 	}
 	public function set_live_draw_mode() {
 		Common.svar_game_mode = "livedraw";
-		this.pencil.mouseChildren = true;
+		/*this.pencil.mouseChildren = true;
 		this.pencil.enable();
 		this.line.mouseChildren = true;
 		this.line.enable();
@@ -201,7 +201,7 @@ class Toolbar extends Sprite
 		this.save.mouseChildren = true;
 		this.save.enable();
 		this.settings.mouseChildren = true;
-		this.settings.enable();
+		this.settings.enable(); */
 	}
 	public function set_play_mode() {
 		Common.svar_game_mode = "running";
