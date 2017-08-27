@@ -34,7 +34,7 @@ class Main extends Sprite
 		#elseif (flash)
 			this.core = new FlashCore(this.stage);
 		#elseif (js)
-			this.core = new JavaScriptCore(this.stage)
+			this.core = new JavaScriptCore(this.stage);
 		#end
 	}
 }
