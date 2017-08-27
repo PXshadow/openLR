@@ -1,6 +1,6 @@
 package base.cores;
 
-import base.titlecards.TitleCard;
+import base.titlecards.TitleCardCPP;
 import openfl.Lib;
 import openfl.display.Sprite;
 import openfl.events.Event;
@@ -40,7 +40,7 @@ class FlashCore extends CoreBase
 	private var toolBar:Toolbar;
 	private var textInfo:TextInfo;
 	private var FPS:FrameRate;
-	private var title_card:base.titlecards.TitleCard;
+	private var title_card:base.titlecards.TitleCardCPP;
 	private var save_manager:SaveManager;
 	private var timeline:TimelineControl;
 	private var loadManager:LoadManager;
@@ -55,7 +55,7 @@ class FlashCore extends CoreBase
 		
 		this.start();
 		
-		this.title_card = new base.titlecards.TitleCard();
+		this.title_card = new base.titlecards.TitleCardCPP();
 		this.visContainer.addChild(this.title_card);
 		
 		this.title_card.x = (this.main_stage.stageWidth * 0.5) - (this.title_card.width * 0.5);

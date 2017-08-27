@@ -1,6 +1,5 @@
 package base.cores;
 
-import base.titlecards.TitleCard;
 import openfl.Lib;
 import openfl.display.Sprite;
 import openfl.events.Event;
@@ -9,6 +8,8 @@ import openfl.display.Stage;
 //third party
 
 //openLR
+import base.TitleCardBase;
+import base.titlecards.TitleCardJS;
 import file.FileStart;
 import file.LoadManager;
 import file.SaveManager;
@@ -40,7 +41,7 @@ class JavaScriptCore extends CoreBase
 	private var toolBar:Toolbar;
 	private var textInfo:TextInfo;
 	private var FPS:FrameRate;
-	private var title_card:base.titlecards.TitleCard;
+	private var title_card:TitleCardBase;
 	private var save_manager:SaveManager;
 	private var timeline:TimelineControl;
 	private var loadManager:LoadManager;
@@ -53,13 +54,11 @@ class JavaScriptCore extends CoreBase
 		
 		Common.gCode = this; //This class
 		
-		this.mainFileInit = new FileStart(); //checks for default folders and saved settings in the track
-			
-		this.title_card = new base.titlecards.TitleCard();
+		this.title_card = new TitleCardJS();
 		this.main_stage.addChild(this.title_card);
 		
-		this.title_card.x = (this.main_stage.stageWidth * 0.5) - (this.title_card.width * 0.5);
-		this.title_card.y = (this.main_stage.stageHeight * 0.5) - (this.title_card.height * 0.5);
+		this.title_card.x = (this.main_stage.stageWidth / 2) - (this.title_card.width / 2);
+		this.title_card.y = (this.main_stage.stageHeight / 2) - (this.title_card.height / 2);
 	}
 	override public function start(_load:Bool = false) {
 		this.init_env();
