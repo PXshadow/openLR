@@ -38,9 +38,6 @@ class Track extends Sprite
 	{
 		Common.gGrid.massLineIndex(line);
 		this.canvas.addChild(grid.lines[line.ID]);
-		if (Common.svar_sim_running) {
-			return;
-		}
 		if (!Common.svar_sim_running) {
 			if (!Common.cvar_preview_mode) {
 				grid.lines[line.ID].render("edit");
