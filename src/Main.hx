@@ -27,9 +27,9 @@ class Main extends Sprite
 		
 		super();
 		
-		Common.gStage = this.stage; //The stage, not to be comfused with main.hx
+		Common.gStage = this.stage;
 		
-		#if (cpp)
+		#if (cpp || android)
 			this.core = new CppCore(this.stage);
 		#elseif (flash)
 			this.core = new FlashCore(this.stage);
