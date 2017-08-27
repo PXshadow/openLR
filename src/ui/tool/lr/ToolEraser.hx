@@ -74,7 +74,11 @@ class ToolEraser extends ToolBase
 								Common.gGrid.remove_line(_loc1, _loc7, _loc5);
 							}
 						}
-						this.list.push(_loc1);
+						try {
+							this.list.push(_loc1);
+						} catch (e:String) {
+							
+						}
 						return;
                     }
                 } // end if
