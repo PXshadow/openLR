@@ -1,13 +1,17 @@
 package;
 
-import openfl.display.Sprite;
+#if (cpp || js)
+	import openfl.display.Sprite;
+#elseif (flash)
+	import flash.display.Sprite;
+#end
 import openfl.text.TextField;
 import openfl.text.TextField;
 import openfl.text.TextFieldType;
 import openfl.text.TextFormat;
 import openfl.text.TextFormatAlign;
-import openfl.Assets;
 import openfl.events.MouseEvent;
+import openfl.Assets;
 
 import global.Common;
 import global.Language;
@@ -25,6 +29,7 @@ class TitleCard extends Sprite
 	var title:TextField;
 	var title_info:TextField;
 	var splash:TextField;
+	var version_info:TextField;
 	
 	var new_track:TextButton;
 	var load_track:TextButton;
@@ -82,6 +87,33 @@ class TitleCard extends Sprite
 		this.addChild(this.load_track);
 		this.load_track.x = 8;
 		this.load_track.y = 245;
+		
+		this.version_info = new TextField();
+		this.addChild (this.version_info);
+		this.version_info.width = 584;
+		this.version_info.selectable = false;
+		var _locString0:String = "Version " + Common.version;
+		var _locString1:String = "";
+		#if (cpp)
+			_locString1= Sys.systemName();
+		#end
+		#if (cpp)
+			_locString0 = _locString0 + " C++ " + _locString1;
+		#elseif (flash)
+			_locString0 = _locString0 + " Flash " + _locString1;
+		#elseif (js) 
+			_locString0 = _locString0 + " JavaScript/HTML5 " + _locString1;
+		#else
+			_locString0 = _locString0 + " NaKP " + _locString1;
+		#end
+		#if (debug)
+			_locString0 = _locString0 + " Debug";
+		#else
+			_locString0 = _locString0 + " Release";
+		#end
+		this.version_info.text = _locString0;
+		this.version_info.x = 8;
+		this.version_info.y = 280;
 	}
 	private function load_track_func(e:MouseEvent):Void 
 	{
