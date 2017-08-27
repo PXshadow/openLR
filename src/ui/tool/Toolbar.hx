@@ -37,62 +37,57 @@ class Toolbar extends Sprite
 	private var stopB:IconStop;
 	private var flag:IconFlag;
 	
+	private var tool_list:Array<IconBase>;
+	private var swatch_list:Array<IconBase>;
+	
 	public function new() 
 	{
 		super();
-		Common.gToolbar = this;
 		
+		Common.gToolbar = this;
 		Common.gStage.addEventListener(KeyboardEvent.KEY_UP, key_tool_switch);
+		
+		this.tool_list = new Array();
+		this.swatch_list = new Array();
 		
 		tool = new ToolPencil();
 		
 		pencil = new IconPencil();
-		this.addChild(this.pencil);
+		this.tool_list.push(this.pencil);
 		
 		line = new IconLine();
-		this.addChild(line);
-		this.line.x = 32;
+		this.tool_list.push(this.line);
 		
 		eraser = new IconEraser();
+		this.tool_list.push(this.eraser);
 		
 		pause = new IconPause();
-		this.addChild(pause);
-		this.pause.x = 96;
+		this.tool_list.push(this.pause);
 		this.pause.visible = false;
 		
 		playB = new IconPlay();
-		this.addChild(playB);
-		this.playB.x = 128;
+		this.tool_list.push(this.playB);
 		
 		stopB = new IconStop();
-		this.addChild(stopB);
-		this.stopB.x = 160;
+		this.tool_list.push(this.stopB);
 		
 		flag = new IconFlag();
-		this.addChild(flag);
-		this.flag.x = 192;
+		this.tool_list.push(this.flag);
 		
 		save = new IconSave();
-		this.addChild(save);
-		this.save.x = 224;
+		this.tool_list.push(this.save);
 		
 		settings = new IconSettings();
-		this.addChild(settings);
-		this.settings.x = 256;
+		this.tool_list.push(this.settings);
 		
 		this.swBlue = new SwatchBlue();
-		this.addChild(swBlue);
-		this.swBlue.y = 33;
+		this.swatch_list.push(this.swBlue);
 		
 		this.swRed = new SwatchRed();
-		this.addChild(swRed);
-		this.swRed.y = 33;
-		this.swRed.x = 32;
+		this.swatch_list.push(this.swRed);
 		
 		this.swGreen = new SwatchGreen();
-		this.addChild(swGreen);
-		this.swGreen.y = 33;
-		this.swGreen.x = 64;
+		this.swatch_list.push(this.swGreen);
 		
 		Toolbar.icon = pencil;
 		icon.select();
@@ -101,8 +96,24 @@ class Toolbar extends Sprite
 		
 		this.addEventListener(MouseEvent.MOUSE_OVER, this.disable_stage);
 		this.addEventListener(MouseEvent.MOUSE_OUT, this.enable_stage);
+		
+		this.place_icons();
 	}
-	
+	private function place_icons() {
+		var i = 0;
+		for (a in this.tool_list) {
+			this.addChild(a);
+			a.x = (32 * i);
+			++i;
+		}
+		i = 0;
+		for (b in this.swatch_list) {
+			this.addChild(b);
+			b.y = 32;
+			b.x = (32 * i);
+			++i;
+		}
+	}
 	private function enable_stage(e:MouseEvent):Void 
 	{
 		Common.gToolBase.enable();
