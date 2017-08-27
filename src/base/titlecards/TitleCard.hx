@@ -1,4 +1,4 @@
-package;
+package base.titlecards;
 
 #if (cpp || js)
 	import openfl.display.Sprite;
