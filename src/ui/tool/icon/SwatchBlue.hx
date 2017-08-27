@@ -24,7 +24,7 @@ class SwatchBlue  extends IconBase
 	{
 		Common.line_type = 0;
 		this.graphics.clear();
-		this.graphics.lineStyle(2, 0, 1);
+		this.graphics.lineStyle(4, 0, 1);
 		this.graphics.moveTo(0, 0);
 		this.graphics.lineTo(30, 0);
 		this.graphics.lineTo(30, 15);

@@ -98,7 +98,7 @@ class IconBase extends Sprite
 	}
 	public function select() {
 		this.graphics.clear();
-		this.graphics.lineStyle(3, 0, 1);
+		this.graphics.lineStyle(4, 0, 1);
 		this.graphics.moveTo(0, 0);
 		this.graphics.lineTo(30, 0);
 		this.graphics.lineTo(30, 30);
