@@ -9,6 +9,7 @@ import openfl.geom.Point;
 
 import global.Common;
 import ui.tool.ToolBase;
+import ui.tool.IconBase;
 import lr.line.*;
 
 /**
@@ -26,7 +27,7 @@ class ToolLine extends ToolBase
 	private var valid:Bool = false;
 	public function new() 
 	{
-		super();
+		super(Icon.line);
 	}
 	override public function mouseDown(e:MouseEvent) {
 		super.mouseDown(e);

@@ -27,12 +27,12 @@ class Toolbar extends Sprite
 	private var line:IconLine;
 	private var save:IconSave;
 	private var eraser:IconEraser;
-	public var pause:IconPause;
 	private var settings:IconSettings;
 	private var swBlue:SwatchBlue;
 	private var swRed:SwatchRed;
 	private var swGreen:SwatchGreen;
 	
+	public var pause:IconPause;
 	private var playB:IconPlay;
 	private var stopB:IconStop;
 	private var flag:IconFlag;
@@ -177,26 +177,43 @@ class Toolbar extends Sprite
 			swatch.select();
 		}
 	}
-	public function set_play_mode() {
-		this.pencil.disable();
-		this.line.disable();
-		this.eraser.disable();
-		this.save.disable();
-		this.settings.disable();
-		this.swBlue.disable();
-		this.swGreen.disable();
-		this.swRed.disable();
-		Common.gStage.removeEventListener(KeyboardEvent.KEY_DOWN, key_tool_switch);
-	}
-	public function set_edit_mode() {
+	public function set_full_edit_mode() {
+		Common.svar_game_mode = "edit";
+		this.pencil.mouseChildren = true;
 		this.pencil.enable();
+		this.line.mouseChildren = true;
 		this.line.enable();
+		this.eraser.mouseChildren = true;
 		this.eraser.enable();
+		this.save.mouseChildren = true;
 		this.save.enable();
+		this.settings.mouseChildren = true;
 		this.settings.enable();
-		this.swBlue.enable();
-		this.swRed.enable();
-		this.swGreen.enable();
-		Common.gStage.addEventListener(KeyboardEvent.KEY_UP, key_tool_switch);
+	}
+	public function set_live_draw_mode() {
+		Common.svar_game_mode = "livedraw";
+		this.pencil.mouseChildren = true;
+		this.pencil.enable();
+		this.line.mouseChildren = true;
+		this.line.enable();
+		this.eraser.mouseChildren = true;
+		this.eraser.enable();
+		this.save.mouseChildren = true;
+		this.save.enable();
+		this.settings.mouseChildren = true;
+		this.settings.enable();
+	}
+	public function set_play_mode() {
+		Common.svar_game_mode = "running";
+		this.pencil.mouseChildren = false;
+		this.pencil.disable();
+		this.line.mouseChildren = false;
+		this.line.disable();
+		this.eraser.mouseChildren = false;
+		this.eraser.disable();
+		this.save.mouseChildren = false;
+		this.save.disable();
+		this.settings.mouseChildren = false;
+		this.settings.disable();
 	}
 }

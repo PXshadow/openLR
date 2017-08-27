@@ -19,12 +19,17 @@ import global.Common;
 class ToolBase
 {
 
-	public var type:String = "Null";
 	public var mod_shift:Bool = false;
 	public var mod_x:Bool = false;
 
-	public function new() 
+	public function new(_type:String = "init") 
 	{
+		if (Common.svar_current_tool == _type) {
+			return;
+		} else {
+			this.destroy();
+		}
+		Common.svar_current_tool = _type;
 		Common.gStage.addEventListener(MouseEvent.MOUSE_DOWN, mouseDown);
 		Common.gStage.addEventListener(MouseEvent.MOUSE_UP, mouseUp);
 		Common.gStage.addEventListener(MouseEvent.RIGHT_MOUSE_DOWN, rMouseDown);
@@ -136,8 +141,21 @@ class ToolBase
 		Common.gStage.removeEventListener(KeyboardEvent.KEY_DOWN, KeyModifierDown);
 		Common.gStage.removeEventListener(KeyboardEvent.KEY_UP, KeyModifierUp);
 	}
+	public function destroy() {
+		Common.gStage.removeEventListener(MouseEvent.MOUSE_DOWN, mouseDown);
+		Common.gStage.removeEventListener(MouseEvent.MOUSE_UP, mouseUp);
+		Common.gStage.removeEventListener(MouseEvent.RIGHT_MOUSE_DOWN, rMouseDown);
+		Common.gStage.removeEventListener(MouseEvent.RIGHT_MOUSE_UP, rMouseUp);
+		Common.gStage.removeEventListener(MouseEvent.MIDDLE_MOUSE_DOWN, mMouseDown);
+		Common.gStage.removeEventListener(MouseEvent.MIDDLE_MOUSE_UP, mMouseUp);
+		Common.gStage.removeEventListener(MouseEvent.MOUSE_WHEEL, mouseScroll);
+		Common.gStage.removeEventListener(KeyboardEvent.KEY_DOWN, keyShiftDown);
+		Common.gStage.removeEventListener(KeyboardEvent.KEY_UP, keyShiftUp);
+		Common.gStage.removeEventListener(KeyboardEvent.KEY_DOWN, KeyModifierDown);
+		Common.gStage.removeEventListener(KeyboardEvent.KEY_UP, KeyModifierUp);
+	}
 	public function enable() {
-		if (Common.svar_game_mode == "edit") {
+		if (Common.svar_game_mode == "edit" || Common.svar_game_mode == "livedraw") {
 			Common.gStage.addEventListener(MouseEvent.MOUSE_DOWN, mouseDown);
 			Common.gStage.addEventListener(MouseEvent.MOUSE_UP, mouseUp);
 			Common.gStage.addEventListener(MouseEvent.RIGHT_MOUSE_DOWN, rMouseDown);

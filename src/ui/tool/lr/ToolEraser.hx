@@ -8,6 +8,7 @@ import openfl.utils.Object;
 import ui.tool.ToolBase;
 import openfl.events.Event;
 import lr.nodes.B2Grid;
+import ui.tool.IconBase;
 
 /**
  * ...
@@ -18,7 +19,7 @@ class ToolEraser extends ToolBase
 	private var list:Array<LineBase>;
 	public function new() 
 	{
-		super();
+		super(Icon.eraser);
 	}
 	override public function mouseDown(e:MouseEvent)
 	{

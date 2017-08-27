@@ -1,14 +1,16 @@
 package ui.tool.lr;
 
+import openfl.events.MouseEvent;
+import openfl.geom.Point;
+
 import lr.lines.LineBase;
 import lr.line.*;
 import lr.lines.types.LineAccel;
 import lr.lines.types.LineFloor;
 import lr.lines.types.LineScene;
-import openfl.events.MouseEvent;
-import openfl.geom.Point;
 
 import global.Common;
+import ui.tool.IconBase;
 import ui.tool.ToolBase;
 
 /**
@@ -26,7 +28,7 @@ class ToolPencil extends ToolBase
 	private var stroke:Array<LineBase>;
 	public function new() 
 	{
-		super();
+		super(Icon.pencil);
 	}
 	override public function mouseDown(e:MouseEvent) {
 		super.mouseDown(e);
