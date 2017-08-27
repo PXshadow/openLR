@@ -259,7 +259,6 @@ class RiderBase extends Sprite
 		if (_loc1 != 0) {
 			for (a in _frame..._loc1) {
 				this.iterate();
-				trace("sim frames was not 0");
 			}
 		} else {
 			for (a in 0..._frame) {
@@ -267,7 +266,6 @@ class RiderBase extends Sprite
 				this.inject_postion(0);
 				Common.sim_max_frames = _frame;
 				Common.gTimeline.update();
-				trace("sim frames was 0");
 			}
 		}
 		this.clips.render_body();
