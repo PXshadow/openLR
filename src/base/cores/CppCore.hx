@@ -124,11 +124,7 @@ class CppCore extends CoreBase
 		
 		this.visContainer.visible = false;
 		
-		#if (cpp)
-			this.align();
-		#else
-			this.align_js();
-		#end
+		this.align();
 	}
 	override public function reset_timeline() {
 		Common.sim_frames = 0;
