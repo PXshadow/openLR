@@ -3,7 +3,7 @@ package;
 import openfl.display.Sprite;
 
 import base.CoreBase;
-import base.cores.NativeCppCore;
+import base.cores.CppCore;
 import base.cores.FlashCore;
 import base.cores.JavaScriptCore;
 import global.Common;
