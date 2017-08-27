@@ -27,6 +27,10 @@ class ToolEraser extends ToolBase
 		Common.gStage.addEventListener(MouseEvent.MOUSE_MOVE, erase);
 	}
 	override public function mouseUp(e:MouseEvent) {
+		if (this.list == null || Common.svar_game_mode == "running" || Common.svar_game_mode == "livedraw") {
+			Common.gStage.removeEventListener(MouseEvent.MOUSE_MOVE, erase);
+			return;
+		}
 		if (this.list.length > 0) {
 			Common.gGrid.add_to_history("sub", this.list);
 		}
