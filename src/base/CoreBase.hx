@@ -1,16 +1,24 @@
 package base;
 
-import openfl.display.Stage;
+#if (!flash)
+	import openfl.display.Stage;
+	import openfl.display.Sprite;
+#else
+	import flash.display.Stage;
+	import flash.display.Sprite;
+#end
 
 /**
  * ...
  * @author Kaelan Evans
  */
-class CoreBase 
+class CoreBase extends Sprite
 {
 	private var main_stage:Stage;
+	public var fl_stage:Main;
 	public function new(_stage:Stage) 
 	{
+		super();
 		this.main_stage = _stage;
 	}
 	public function return_to_origin(_x:Float = 0, _y:Float = 0) {
