@@ -27,7 +27,6 @@ class Toolbar extends Sprite
 	private var line:IconLine;
 	private var save:IconSave;
 	private var eraser:IconEraser;
-	public var pan:IconPan;
 	public var pause:IconPause;
 	private var settings:IconSettings;
 	private var swBlue:SwatchBlue;
@@ -55,12 +54,6 @@ class Toolbar extends Sprite
 		this.line.x = 32;
 		
 		eraser = new IconEraser();
-		this.addChild(eraser);
-		this.eraser.x = 64;
-		
-		pan = new IconPan();
-		this.addChild(pan);
-		this.pan.x = 96;
 		
 		pause = new IconPause();
 		this.addChild(pause);
@@ -154,14 +147,6 @@ class Toolbar extends Sprite
 			swatch.deselect();
 			Common.line_type = -1;
 		}
-		if (e.keyCode == KeyBindings.pan_1 || e.keyCode == KeyBindings.pan_2) {
-			Common.gToolBase.disable();
-			icon.deselect();
-			tool = new ToolPan();
-			icon = pan;
-			icon.select();
-			swatch.deselect();
-		}
 		if (e.keyCode == KeyBindings.swatch_blue) {
 			swatch.deselect();
 			Common.line_type = 0;
@@ -185,7 +170,6 @@ class Toolbar extends Sprite
 		this.pencil.disable();
 		this.line.disable();
 		this.eraser.disable();
-		this.pan.disable();
 		this.save.disable();
 		this.settings.disable();
 		this.swBlue.disable();
@@ -197,7 +181,6 @@ class Toolbar extends Sprite
 		this.pencil.enable();
 		this.line.enable();
 		this.eraser.enable();
-		this.pan.enable();
 		this.save.enable();
 		this.settings.enable();
 		this.swBlue.enable();
