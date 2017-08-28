@@ -29,7 +29,7 @@ class Main extends Sprite
 		
 		Common.gStage = this.stage;
 		
-		#if (cpp || android)
+		#if (cpp || android || ios)
 			this.core = new CppCore(this.stage);
 		#elseif (flash)
 			this.core = new FlashCore(this.stage);
