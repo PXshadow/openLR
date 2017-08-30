@@ -25,6 +25,13 @@ import lr.rider.RiderCamera;
  * ...
  * @author Kaelan Evans
  */
+@:enum abstract GameState(Int) from Int to Int {
+	public var title:Int = 0;
+	public var edit:Int = 1;
+	public var playback:Int = 2;
+	public var livedraw:Int = 3;
+	public var inmenu:Int = 4;
+}
 class Common
 {
 
@@ -119,7 +126,7 @@ class Common
 	public static var svar_gridsize:Int = 14;
 	public static var svar_eraser_size:Int = 5;
 	public static var svar_sim_running:Bool = false;
-	public static var svar_game_mode:String = "edit";
+	public static var svar_game_mode:Int = GameState.title;
 	public static var svar_snap_distance:Int = 20;
 	public static var svar_track_date_stamp:String = "";
 	public static var svar_rider_count = 0;
