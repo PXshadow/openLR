@@ -3,6 +3,7 @@ package global;
 import haxe.Timer;
 import openfl.events.KeyboardEvent;
 
+import global.Common;
 import global.KeyBindings;
 /**
  * ...
@@ -163,7 +164,7 @@ class SimManager
 	}
 	private function key_toggle_modifiers(e:KeyboardEvent):Void 
 	{
-		if (Common.svar_game_mode != "edit") {
+		if (Common.svar_game_mode != GameState.edit) {
 			return;
 		}
 		if (e.keyCode == KeyBindings.sm_toggle) {

@@ -155,7 +155,7 @@ class ToolBase
 		Common.gStage.removeEventListener(KeyboardEvent.KEY_UP, KeyModifierUp);
 	}
 	public function enable() {
-		if (Common.svar_game_mode == "edit" || Common.svar_game_mode == "livedraw") {
+		if (Common.svar_game_mode == GameState.edit || Common.svar_game_mode == GameState.livedraw) {
 			Common.gStage.addEventListener(MouseEvent.MOUSE_DOWN, mouseDown);
 			Common.gStage.addEventListener(MouseEvent.MOUSE_UP, mouseUp);
 			Common.gStage.addEventListener(MouseEvent.RIGHT_MOUSE_DOWN, rMouseDown);

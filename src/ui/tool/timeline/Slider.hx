@@ -38,7 +38,7 @@ class Slider extends Sprite
 		Common.gStage.removeEventListener(MouseEvent.MOUSE_MOVE, thisSlide);
 		this.playHead.removeEventListener(MouseEvent.MOUSE_UP, endSlider);
 		Common.gStage.removeEventListener(MouseEvent.MOUSE_UP, endSlider);
-		if (Common.gSimManager.paused && Common.svar_game_mode == "running") {
+		if (Common.gSimManager.paused && Common.svar_game_mode == GameState.playback) {
 			Common.gSimManager.resume_sim();
 		} else {
 			Common.gToolBase.enable();

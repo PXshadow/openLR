@@ -178,7 +178,7 @@ class Toolbar extends Sprite
 		}
 	}
 	public function set_full_edit_mode() {
-		Common.svar_game_mode = "edit";
+		Common.svar_game_mode = GameState.edit;
 		this.pencil.mouseChildren = true;
 		this.pencil.enable();
 		this.line.mouseChildren = true;
@@ -197,7 +197,7 @@ class Toolbar extends Sprite
 		this.swGreen.enable();
 	}
 	public function set_live_draw_mode() {
-		Common.svar_game_mode = "livedraw";
+		Common.svar_game_mode = GameState.livedraw;
 		this.pencil.mouseChildren = true;
 		this.pencil.enable();
 		this.line.mouseChildren = true;
@@ -216,7 +216,7 @@ class Toolbar extends Sprite
 		this.swGreen.enable();
 	}
 	public function set_play_mode() {
-		Common.svar_game_mode = "running";
+		Common.svar_game_mode = GameState.playback;
 		this.pencil.mouseChildren = false;
 		this.pencil.disable();
 		this.line.mouseChildren = false;

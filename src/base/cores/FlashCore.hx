@@ -143,7 +143,7 @@ class FlashCore extends CoreBase
 	override public function toggleSettings_box()
 	{
 		if (!this.settings_box.visible) {
-			Common.svar_game_mode = "settings";
+			Common.svar_game_mode = GameState.inmenu;
 			this.settings_box.visible = true;
 			this.track.visible = false;
 			this.toolBar.mouseChildren = false;
@@ -158,13 +158,13 @@ class FlashCore extends CoreBase
 			this.toolBar.mouseChildren = true;
 			this.textInfo.visible = true;
 			this.timeline.visible = true;
-			Common.svar_game_mode = "edit";
+			Common.svar_game_mode = GameState.edit;
 			Common.gToolBase.enable();
 		}
 	}
 	override public function toggle_save_menu() {
 		if (this.save_manager.visible != true) {
-			Common.svar_game_mode = "saving";
+			Common.svar_game_mode = GameState.inmenu;
 			this.save_manager.update();
 			this.save_manager.visible = true;
 			this.track.visible = false;
@@ -177,13 +177,13 @@ class FlashCore extends CoreBase
 			this.toolBar.mouseChildren = true;
 			this.textInfo.visible = true;
 			this.timeline.visible = true;
-			Common.svar_game_mode = "edit";
+			Common.svar_game_mode = GameState.edit;
 			Common.gToolBase.enable();
 		}
 	}
 	override public function toggle_Loader() {
 		if (!this.loadManager.visible) {
-			Common.svar_game_mode = "loader";
+			Common.svar_game_mode = GameState.inmenu;
 			this.loadManager.visible = true;
 			this.loadManager.update();
 			this.track.visible = false;
@@ -196,7 +196,7 @@ class FlashCore extends CoreBase
 			this.toolBar.visible = true;
 			this.textInfo.visible = true;
 			this.timeline.visible = true;
-			Common.svar_game_mode = "edit";
+			Common.svar_game_mode = GameState.edit;
 			Common.gToolBase.enable();
 		}
 	}
