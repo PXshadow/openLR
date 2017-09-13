@@ -1,11 +1,11 @@
 package lr.nodes;
 
-import lr.lines.LineBase;
 import openfl.utils.Object;
 import openfl.events.KeyboardEvent;
 
 import global.Common;
 import global.KeyBindings;
+import lr.lines.LineBase;
 
 /**
  * ...
