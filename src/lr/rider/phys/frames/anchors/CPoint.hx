@@ -35,7 +35,6 @@ class CPoint
 		this.vx = this.vy = 0;
 		this.fr = _fr;
 		this.ID = _id;
-		this.loc = new Point(x, y);
 		this.lgrav = new Object();
 		this.lgrav.x = 0;
 		this.lgrav.y = 0.175;
