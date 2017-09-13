@@ -1,5 +1,6 @@
 package lr.nodes;
 
+import openfl.Lib;
 import openfl.utils.Object;
 import openfl.events.KeyboardEvent;
 
@@ -34,7 +35,7 @@ class B2Grid
 		B2Grid.undo_single = new Array();
 		B2Grid.redo_single = new Array();
 		B2Grid.history = new Array();
-		Common.gStage.addEventListener(KeyboardEvent.KEY_UP, undo_redo);
+		Lib.current.stage.addEventListener(KeyboardEvent.KEY_UP, undo_redo);
 	}
 
 	private function undo_redo(e:KeyboardEvent):Void

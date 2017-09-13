@@ -45,7 +45,6 @@ class Common
 	
 	public static var version:String = "0.0.5";
 	
-	public static var gStage:Stage;
 	public static var gCode:CoreBase;
 	public static var gTrack:Track;
 	public static var gRiderManager:RiderManager;

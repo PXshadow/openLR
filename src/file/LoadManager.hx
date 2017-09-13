@@ -1,5 +1,6 @@
 package file;
 
+import openfl.Lib;
 import openfl.display.Sprite;
 import openfl.utils.Object;
 import haxe.io.Bytes;
@@ -113,7 +114,7 @@ class LoadManager extends Sprite
 		} catch (_msg:String) {
 			this.visible = false;
 			this.error_alert = new AlertBox("Error! Are you sure that was a compatable JSON file?" + "\n" + "If it was, copy this error and provide a save if possible!" + "\n \n" + _msg + "\n" + this.itemWindow.currentList[FileWindow.selectedIndex], this.hide_error, "Silly Goose!");
-			Common.gStage.addChild(this.error_alert);
+			Lib.current.stage.addChild(this.error_alert);
 			this.error_alert.x = (Common.stage_width * 0.5) - (this.error_alert.width * 0.5);
 			this.error_alert.y = (Common.stage_height * 0.5) - (this.error_alert.height * 0.5);
 			return;
@@ -127,7 +128,7 @@ class LoadManager extends Sprite
 		} else {
 			this.visible = false;
 			this.error_alert = new AlertBox("Error! Failed to load the save!" + "\n" + "Are you sure this was a save made in a compatible line rider version? If so, please send a copy to the developers so they may inspect it", this.hide_error, ":(");
-			Common.gStage.addChild(this.error_alert);
+			Lib.current.stage.addChild(this.error_alert);
 			this.error_alert.x = (Common.stage_width * 0.5) - (this.error_alert.width * 0.5);
 			this.error_alert.y = (Common.stage_height * 0.5) - (this.error_alert.height * 0.5);
 		}
@@ -174,12 +175,12 @@ class LoadManager extends Sprite
 	{
 		//insert LZ-String decompression code here
 		this.error_alert = new AlertBox("Error! A small discrepancy is making this save difficult." + "\n" + "\"linesArrayCommpressed\"" + "\n" + "needs to be \"lines\"" +  "\n \n" + "Save type unsupported... for now.", this.hide_error, "D:<");
-		Common.gStage.addChild(this.error_alert);
+		Lib.current.stage.addChild(this.error_alert);
 		this.error_alert.x = (Common.stage_width * 0.5) - (this.error_alert.width * 0.5);
 		this.error_alert.y = (Common.stage_height * 0.5) - (this.error_alert.height * 0.5);
 	}
 	private function hide_error() {
-		Common.gStage.removeChild(this.error_alert);
+		Lib.current.stage.removeChild(this.error_alert);
 		this.visible = true;
 	}
 	function load_non_compressed() {

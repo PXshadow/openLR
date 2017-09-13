@@ -1,5 +1,6 @@
 package ui.tool.lr;
 
+import openfl.Lib;
 import openfl.events.MouseEvent;
 import openfl.geom.Point;
 
@@ -40,15 +41,15 @@ class ToolPencil extends ToolBase
 			x1 = _locSnapCheck[0];
 			y1 = _locSnapCheck[1];
 		}
-		c = new Point(Common.gStage.mouseX, Common.gStage.mouseY);
-		Common.gStage.addEventListener(MouseEvent.MOUSE_MOVE, pencil_move);
+		c = new Point(Lib.current.stage.mouseX, Lib.current.stage.mouseY);
+		Lib.current.stage.addEventListener(MouseEvent.MOUSE_MOVE, pencil_move);
 	}
 	
 	private function pencil_move(e:MouseEvent):Void 
 	{
 		x2 = Common.gTrack.mouseX;
 		y2 = Common.gTrack.mouseY;
-		d = new Point(Common.gStage.mouseX, Common.gStage.mouseY);
+		d = new Point(Lib.current.stage.mouseX, Lib.current.stage.mouseY);
 		Common.gTrack.renderPreview(new LinePreview(x1, y1, x2, y2, this.mod_shift, Common.line_type));
 		if (Common.get_distance(c, d) >= Common.line_minLength) {
 			var _loc1:LineBase;
@@ -71,12 +72,12 @@ class ToolPencil extends ToolBase
 			Common.sLineID += 1;
 			x1 = Common.gTrack.mouseX;
 			y1 = Common.gTrack.mouseY;
-			c = new Point(Common.gStage.mouseX, Common.gStage.mouseY);
+			c = new Point(Lib.current.stage.mouseX, Lib.current.stage.mouseY);
 		}
 	}
 	override public function mouseUp(e:MouseEvent) {
 		super.mouseUp(e);
-		Common.gStage.removeEventListener(MouseEvent.MOUSE_MOVE, pencil_move);
+		Lib.current.stage.removeEventListener(MouseEvent.MOUSE_MOVE, pencil_move);
 		Common.gTrack.clear_preview();
 		Common.gGrid.cache_stroke(this.stroke);
 	}
@@ -89,15 +90,15 @@ class ToolPencil extends ToolBase
 			x1 = _locSnapCheck[0];
 			y1 = _locSnapCheck[1];
 		}
-		c = new Point(Common.gStage.mouseX, Common.gStage.mouseY);
-		Common.gStage.addEventListener(MouseEvent.MOUSE_MOVE, pencil_move_reverse);
+		c = new Point(Lib.current.stage.mouseX, Lib.current.stage.mouseY);
+		Lib.current.stage.addEventListener(MouseEvent.MOUSE_MOVE, pencil_move_reverse);
 	}
 	
 	private function pencil_move_reverse(e:MouseEvent):Void 
 	{
 		x2 = Common.gTrack.mouseX;
 		y2 = Common.gTrack.mouseY;
-		d = new Point(Common.gStage.mouseX, Common.gStage.mouseY);
+		d = new Point(Lib.current.stage.mouseX, Lib.current.stage.mouseY);
 		Common.gTrack.renderPreview(new LinePreview(x1, y1, x2, y2, this.mod_shift, Common.line_type));
 		if (Common.get_distance(c, d) >= Common.line_minLength) {
 			var _loc1:LineBase;
@@ -120,11 +121,11 @@ class ToolPencil extends ToolBase
 			Common.sLineID += 1;
 			x1 = Common.gTrack.mouseX;
 			y1 = Common.gTrack.mouseY;
-			c = new Point(Common.gStage.mouseX, Common.gStage.mouseY);
+			c = new Point(Lib.current.stage.mouseX, Lib.current.stage.mouseY);
 		}
 	}
 	override public function rMouseUp(e:MouseEvent) {
-		Common.gStage.removeEventListener(MouseEvent.MOUSE_MOVE, pencil_move_reverse);
+		Lib.current.stage.removeEventListener(MouseEvent.MOUSE_MOVE, pencil_move_reverse);
 		Common.gTrack.clear_preview();
 	}
 }

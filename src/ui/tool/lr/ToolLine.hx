@@ -1,5 +1,6 @@
 package ui.tool.lr;
 
+import openfl.Lib;
 import openfl.events.MouseEvent;
 import openfl.geom.Point;
 
@@ -39,9 +40,9 @@ class ToolLine extends ToolBase
 			x1 = _locSnapCheck[0];
 			y1 = _locSnapCheck[1];
 		}
-		c = new Point(Common.gStage.mouseX, Common.gStage.mouseY);
-		d = new Point(Common.gStage.mouseX, Common.gStage.mouseY);
-		Common.gStage.addEventListener(MouseEvent.MOUSE_MOVE, line_move);
+		c = new Point(Lib.current.stage.mouseX, Lib.current.stage.mouseY);
+		d = new Point(Lib.current.stage.mouseX, Lib.current.stage.mouseY);
+		Lib.current.stage.addEventListener(MouseEvent.MOUSE_MOVE, line_move);
 	}
 	
 	private function line_move(e:MouseEvent):Void 
@@ -54,13 +55,13 @@ class ToolLine extends ToolBase
 			y2 = _locSnap[1];
 		}
 		this.valid = true;
-		d = new Point(Common.gStage.mouseX, Common.gStage.mouseY);
+		d = new Point(Lib.current.stage.mouseX, Lib.current.stage.mouseY);
 		Common.gTrack.renderPreview(new LinePreview(x1, y1, x2, y2, this.mod_shift, Common.line_type));
 	}
 	override public function mouseUp(e:MouseEvent) {
 		super.mouseUp(e);
 		Common.gTrack.clear_preview();
-		Common.gStage.removeEventListener(MouseEvent.MOUSE_MOVE, line_move);
+		Lib.current.stage.removeEventListener(MouseEvent.MOUSE_MOVE, line_move);
 		if (!valid) {
 			return;
 		}
@@ -101,9 +102,9 @@ class ToolLine extends ToolBase
 			x1 = _locSnapCheck[0];
 			y1 = _locSnapCheck[1];
 		}
-		c = new Point(Common.gStage.mouseX, Common.gStage.mouseY);
-		d = new Point(Common.gStage.mouseX, Common.gStage.mouseY);
-		Common.gStage.addEventListener(MouseEvent.MOUSE_MOVE, line_move_reverse);
+		c = new Point(Lib.current.stage.mouseX, Lib.current.stage.mouseY);
+		d = new Point(Lib.current.stage.mouseX, Lib.current.stage.mouseY);
+		Lib.current.stage.addEventListener(MouseEvent.MOUSE_MOVE, line_move_reverse);
 	}
 	
 	private function line_move_reverse(e:MouseEvent):Void 
@@ -115,7 +116,7 @@ class ToolLine extends ToolBase
 			x2 = _locSnap[0];
 			y2 = _locSnap[1];
 		}
-		d = new Point(Common.gStage.mouseX, Common.gStage.mouseY);
+		d = new Point(Lib.current.stage.mouseX, Lib.current.stage.mouseY);
 		Common.gTrack.renderPreview(new LinePreview(x1, y1, x2, y2, this.mod_shift, Common.line_type));
 	}
 	override public function rMouseUp(e:MouseEvent) {
@@ -145,6 +146,6 @@ class ToolLine extends ToolBase
 			Common.sLineID += 1;
 		}
 		Common.gTrack.clear_preview();
-		Common.gStage.removeEventListener(MouseEvent.MOUSE_MOVE, line_move_reverse);
+		Lib.current.stage.removeEventListener(MouseEvent.MOUSE_MOVE, line_move_reverse);
 	}
 }

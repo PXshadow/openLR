@@ -1,5 +1,6 @@
 package lr.settings;
 
+import openfl.Lib;
 import openfl.display.Sprite;
 import openfl.events.MouseEvent;
 
@@ -71,11 +72,11 @@ class EngineSettings extends Sprite
 	{
 		this.qual = this.gameQuality.inc();
 		if (this.qual == 2) {
-			Common.gStage.quality = StageQuality.MEDIUM;
+			Lib.current.stage.quality = StageQuality.MEDIUM;
 		} else if (this.qual == 3) {
-			Common.gStage.quality = StageQuality.HIGH;
+			Lib.current.stage.quality = StageQuality.HIGH;
 		} else if (this.qual == 4) {
-			Common.gStage.quality = StageQuality.BEST;
+			Lib.current.stage.quality = StageQuality.BEST;
 		}
 	}
 	
@@ -83,11 +84,11 @@ class EngineSettings extends Sprite
 	{
 		this.qual = this.gameQuality.dec();
 		if (this.qual == 2) {
-			Common.gStage.quality = StageQuality.MEDIUM;
+			Lib.current.stage.quality = StageQuality.MEDIUM;
 		} else if (this.qual == 3) {
-			Common.gStage.quality = StageQuality.HIGH;
+			Lib.current.stage.quality = StageQuality.HIGH;
 		} else if (this.qual == 1) {
-			Common.gStage.quality = StageQuality.LOW;
+			Lib.current.stage.quality = StageQuality.LOW;
 		}
 	}
 	private function dec_ui_scale(e:MouseEvent):Void 

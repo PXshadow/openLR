@@ -1,5 +1,6 @@
 package ui.tool.timeline;
 
+import openfl.Lib;
 import openfl.display.Sprite;
 import openfl.events.MouseEvent;
 
@@ -35,9 +36,9 @@ class Slider extends Sprite
 	
 	private function endSlider(e:MouseEvent):Void 
 	{
-		Common.gStage.removeEventListener(MouseEvent.MOUSE_MOVE, thisSlide);
+		Lib.current.stage.removeEventListener(MouseEvent.MOUSE_MOVE, thisSlide);
 		this.playHead.removeEventListener(MouseEvent.MOUSE_UP, endSlider);
-		Common.gStage.removeEventListener(MouseEvent.MOUSE_UP, endSlider);
+		Lib.current.stage.removeEventListener(MouseEvent.MOUSE_UP, endSlider);
 		if (Common.gSimManager.paused && Common.svar_game_mode == GameState.playback) {
 			Common.gSimManager.resume_sim();
 		} else {
@@ -49,9 +50,9 @@ class Slider extends Sprite
 	private function preInitSlider(e:MouseEvent):Void 
 	{
 		Common.gToolBase.disable();
-		Common.gStage.addEventListener(MouseEvent.MOUSE_MOVE, thisSlide);
+		Lib.current.stage.addEventListener(MouseEvent.MOUSE_MOVE, thisSlide);
 		this.playHead.addEventListener(MouseEvent.MOUSE_UP, endSlider);
-		Common.gStage.addEventListener(MouseEvent.MOUSE_UP, endSlider);
+		Lib.current.stage.addEventListener(MouseEvent.MOUSE_UP, endSlider);
 		if (Common.svar_sim_running) {
 			Common.gSimManager.pause_sim();
 		}

@@ -1,5 +1,6 @@
 package ui.tool.timeline;
 
+import openfl.Lib;
 import openfl.display.Sprite;
 import openfl.events.MouseEvent;
 import openfl.geom.Point;
@@ -42,19 +43,19 @@ class TimelineControl extends Sprite
 	{
 		Common.gToolBase.disable();
 		this.ticker.addEventListener(MouseEvent.MOUSE_DOWN, downActionScrubber);
-		Common.gStage.addEventListener(MouseEvent.MOUSE_UP, releaseActionScrubber);
+		Lib.current.stage.addEventListener(MouseEvent.MOUSE_UP, releaseActionScrubber);
 		this.ticker.addEventListener(MouseEvent.MOUSE_UP, releaseActionScrubber);
 	}
 	
 	private function releaseActionScrubber(e:MouseEvent):Void 
 	{
 		this.ticker.removeEventListener(MouseEvent.MOUSE_DOWN, downActionScrubber);
-		Common.gStage.removeEventListener(MouseEvent.MOUSE_DOWN, downActionScrubber);
+		Lib.current.stage.removeEventListener(MouseEvent.MOUSE_DOWN, downActionScrubber);
 		this.ticker.removeEventListener(MouseEvent.MOUSE_UP, releaseActionScrubber);
-		Common.gStage.removeEventListener(MouseEvent.MOUSE_UP, releaseActionScrubber);
+		Lib.current.stage.removeEventListener(MouseEvent.MOUSE_UP, releaseActionScrubber);
 		this.ticker.addEventListener(MouseEvent.MOUSE_OVER, preScrubSetup);
 		this.ticker.addEventListener(MouseEvent.MOUSE_OUT, resume);
-		Common.gStage.removeEventListener(MouseEvent.MOUSE_MOVE, scrub);
+		Lib.current.stage.removeEventListener(MouseEvent.MOUSE_MOVE, scrub);
 		if (Common.gSimManager.paused && this.ticker_pause) {
 			Common.gSimManager.resume_sim();
 			this.ticker_pause = false;
@@ -67,7 +68,7 @@ class TimelineControl extends Sprite
 	private function downActionScrubber(e:MouseEvent):Void 
 	{
 		this.ticker.removeEventListener(MouseEvent.MOUSE_OUT, resume);
-		Common.gStage.addEventListener(MouseEvent.MOUSE_MOVE, scrub);
+		Lib.current.stage.addEventListener(MouseEvent.MOUSE_MOVE, scrub);
 		this.ticker.removeEventListener(MouseEvent.MOUSE_OVER, preScrubSetup);
 		this.prevX = this.mouseX;
 		if (Common.gSimManager.sim_running) {

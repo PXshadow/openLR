@@ -1,6 +1,7 @@
 package global;
 
 import haxe.Timer;
+import openfl.Lib;
 import openfl.events.Event;
 
 import global.Common;
@@ -16,7 +17,7 @@ class FrameRate
 	private var time_mass:Float = 0;
 	public function new() 
 	{
-		Common.gStage.addEventListener(Event.ENTER_FRAME, calc_fps);
+		Lib.current.stage.addEventListener(Event.ENTER_FRAME, calc_fps);
 	}
 	private function calc_fps(e:Event):Void 
 	{

@@ -1,6 +1,7 @@
 package lr.rider;
 
 import haxe.ds.Vector;
+import openfl.Lib;
 import openfl.display.Sprite;
 import openfl.geom.Point;
 import openfl.utils.Object;
@@ -134,7 +135,7 @@ class RiderBase extends Sprite
 		this.recorder = new RiderRecorder(_id);
 		this.camera = new RiderCamera();
 		
-		Common.gStage.addEventListener(KeyboardEvent.KEY_DOWN, this.adjust_rider_debug);
+		Lib.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, this.adjust_rider_debug);
 	}
 	private function adjust_rider_debug(e:KeyboardEvent):Void 
 	{

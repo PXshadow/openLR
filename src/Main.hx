@@ -27,8 +27,6 @@ class Main extends Sprite
 		
 		super();
 		
-		Common.gStage = this.stage;
-		
 		#if (cpp || android || ios)
 			this.core = new CppCore(this.stage);
 		#elseif (flash)

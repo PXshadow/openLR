@@ -1,5 +1,6 @@
 package ui.tool;
 
+import openfl.Lib;
 import openfl.display.Sprite;
 import openfl.events.KeyboardEvent;
 import openfl.events.MouseEvent;
@@ -45,7 +46,7 @@ class Toolbar extends Sprite
 		super();
 		
 		Common.gToolbar = this;
-		Common.gStage.addEventListener(KeyboardEvent.KEY_UP, key_tool_switch);
+		Lib.current.stage.addEventListener(KeyboardEvent.KEY_UP, key_tool_switch);
 		
 		this.tool_list = new Array();
 		this.swatch_list = new Array();
@@ -117,19 +118,19 @@ class Toolbar extends Sprite
 	private function enable_stage(e:MouseEvent):Void 
 	{
 		Common.gToolBase.enable();
-		Common.gStage.addEventListener(KeyboardEvent.KEY_UP, key_tool_switch);
+		Lib.current.stage.addEventListener(KeyboardEvent.KEY_UP, key_tool_switch);
 	}
 	
 	private function disable_stage(e:MouseEvent):Void 
 	{
 		Common.gToolBase.disable();
-		Common.gStage.removeEventListener(KeyboardEvent.KEY_UP, key_tool_switch);
+		Lib.current.stage.removeEventListener(KeyboardEvent.KEY_UP, key_tool_switch);
 	}
 	public function disable_keys() {
-		Common.gStage.removeEventListener(KeyboardEvent.KEY_UP, key_tool_switch);
+		Lib.current.stage.removeEventListener(KeyboardEvent.KEY_UP, key_tool_switch);
 	}
 	public function enable_keys() {
-		Common.gStage.addEventListener(KeyboardEvent.KEY_UP, key_tool_switch);
+		Lib.current.stage.addEventListener(KeyboardEvent.KEY_UP, key_tool_switch);
 	}
 	private function key_tool_switch(e:KeyboardEvent):Void 
 	{

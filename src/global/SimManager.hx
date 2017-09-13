@@ -1,6 +1,7 @@
 package global;
 
 import haxe.Timer;
+import openfl.Lib;
 import openfl.events.KeyboardEvent;
 
 import global.Common;
@@ -22,7 +23,7 @@ class SimManager
 	public function new() 
 	{
 		Common.gSimManager = this;
-		Common.gStage.addEventListener(KeyboardEvent.KEY_DOWN, key_toggle_modifiers);
+		Lib.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, key_toggle_modifiers);
 	}
 	public function start_sim() {
 		if (Common.sim_auto_slow_motion) {

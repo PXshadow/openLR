@@ -1,5 +1,6 @@
 package ui.tool;
 
+import openfl.Lib;
 import openfl.events.Event;
 import openfl.events.MouseEvent;
 import openfl.geom.Point;
@@ -30,18 +31,18 @@ class ToolBase
 			this.destroy();
 		}
 		Common.svar_current_tool = _type;
-		Common.gStage.addEventListener(MouseEvent.MOUSE_DOWN, mouseDown);
-		Common.gStage.addEventListener(MouseEvent.MOUSE_UP, mouseUp);
-		Common.gStage.addEventListener(MouseEvent.RIGHT_MOUSE_DOWN, rMouseDown);
-		Common.gStage.addEventListener(MouseEvent.RIGHT_MOUSE_UP, rMouseUp);
-		Common.gStage.addEventListener(MouseEvent.MIDDLE_MOUSE_DOWN, mMouseDown);
-		Common.gStage.addEventListener(MouseEvent.MIDDLE_MOUSE_UP, mMouseUp);
-		Common.gStage.addEventListener(MouseEvent.MOUSE_WHEEL, mouseScroll);
-		Common.gStage.addEventListener(KeyboardEvent.KEY_DOWN, keyShiftDown);
-		Common.gStage.addEventListener(KeyboardEvent.KEY_UP, keyShiftUp);
-		Common.gStage.addEventListener(KeyboardEvent.KEY_DOWN, KeyNumDown);
-		Common.gStage.addEventListener(KeyboardEvent.KEY_DOWN, KeyModifierDown);
-		Common.gStage.addEventListener(KeyboardEvent.KEY_UP, KeyModifierUp);
+		Lib.current.stage.addEventListener(MouseEvent.MOUSE_DOWN, mouseDown);
+		Lib.current.stage.addEventListener(MouseEvent.MOUSE_UP, mouseUp);
+		Lib.current.stage.addEventListener(MouseEvent.RIGHT_MOUSE_DOWN, rMouseDown);
+		Lib.current.stage.addEventListener(MouseEvent.RIGHT_MOUSE_UP, rMouseUp);
+		Lib.current.stage.addEventListener(MouseEvent.MIDDLE_MOUSE_DOWN, mMouseDown);
+		Lib.current.stage.addEventListener(MouseEvent.MIDDLE_MOUSE_UP, mMouseUp);
+		Lib.current.stage.addEventListener(MouseEvent.MOUSE_WHEEL, mouseScroll);
+		Lib.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, keyShiftDown);
+		Lib.current.stage.addEventListener(KeyboardEvent.KEY_UP, keyShiftUp);
+		Lib.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, KeyNumDown);
+		Lib.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, KeyModifierDown);
+		Lib.current.stage.addEventListener(KeyboardEvent.KEY_UP, KeyModifierUp);
 		
 		Common.gToolBase = this;
 	}
@@ -96,13 +97,13 @@ class ToolBase
 	public function mMouseUp(e:MouseEvent):Void 
 	{
 		Common.gTrack.stopDrag();
-		Common.gStage.removeEventListener(MouseEvent.MOUSE_MOVE, mMouseMove);
+		Lib.current.stage.removeEventListener(MouseEvent.MOUSE_MOVE, mMouseMove);
 	}
 	
 	public function mMouseDown(e:MouseEvent):Void 
 	{
 		Common.gTrack.startDrag();
-		Common.gStage.addEventListener(MouseEvent.MOUSE_MOVE, mMouseMove);
+		Lib.current.stage.addEventListener(MouseEvent.MOUSE_MOVE, mMouseMove);
 	}
 	public function mMouseMove(e:MouseEvent) {
 		Common.gRiderManager.x = Common.gTrack.x;
@@ -110,12 +111,12 @@ class ToolBase
 	}
 	public function rMouseUp(e:MouseEvent):Void 
 	{
-		trace(Common.gStage.mouseX, Common.gStage.mouseY); //default behavior for any mouse tool that hasn't had an action assigned
+		trace(Lib.current.stage.mouseX, Lib.current.stage.mouseY); //default behavior for any mouse tool that hasn't had an action assigned
 	}
 	
 	public function rMouseDown(e:MouseEvent):Void 
 	{
-		trace(Common.gStage.mouseX, Common.gStage.mouseY);
+		trace(Lib.current.stage.mouseX, Lib.current.stage.mouseY);
 	}
 	
 	public function mouseUp(e:MouseEvent):Void 
@@ -129,51 +130,51 @@ class ToolBase
 	}
 	
 	public function disable() {
-		Common.gStage.removeEventListener(MouseEvent.MOUSE_DOWN, mouseDown);
-		Common.gStage.removeEventListener(MouseEvent.MOUSE_UP, mouseUp);
-		Common.gStage.removeEventListener(MouseEvent.RIGHT_MOUSE_DOWN, rMouseDown);
-		Common.gStage.removeEventListener(MouseEvent.RIGHT_MOUSE_UP, rMouseUp);
-		Common.gStage.removeEventListener(MouseEvent.MIDDLE_MOUSE_DOWN, mMouseDown);
-		Common.gStage.removeEventListener(MouseEvent.MIDDLE_MOUSE_UP, mMouseUp);
-		Common.gStage.removeEventListener(MouseEvent.MOUSE_WHEEL, mouseScroll);
-		Common.gStage.removeEventListener(KeyboardEvent.KEY_DOWN, keyShiftDown);
-		Common.gStage.removeEventListener(KeyboardEvent.KEY_UP, keyShiftUp);
-		Common.gStage.removeEventListener(KeyboardEvent.KEY_DOWN, KeyModifierDown);
-		Common.gStage.removeEventListener(KeyboardEvent.KEY_UP, KeyModifierUp);
+		Lib.current.stage.removeEventListener(MouseEvent.MOUSE_DOWN, mouseDown);
+		Lib.current.stage.removeEventListener(MouseEvent.MOUSE_UP, mouseUp);
+		Lib.current.stage.removeEventListener(MouseEvent.RIGHT_MOUSE_DOWN, rMouseDown);
+		Lib.current.stage.removeEventListener(MouseEvent.RIGHT_MOUSE_UP, rMouseUp);
+		Lib.current.stage.removeEventListener(MouseEvent.MIDDLE_MOUSE_DOWN, mMouseDown);
+		Lib.current.stage.removeEventListener(MouseEvent.MIDDLE_MOUSE_UP, mMouseUp);
+		Lib.current.stage.removeEventListener(MouseEvent.MOUSE_WHEEL, mouseScroll);
+		Lib.current.stage.removeEventListener(KeyboardEvent.KEY_DOWN, keyShiftDown);
+		Lib.current.stage.removeEventListener(KeyboardEvent.KEY_UP, keyShiftUp);
+		Lib.current.stage.removeEventListener(KeyboardEvent.KEY_DOWN, KeyModifierDown);
+		Lib.current.stage.removeEventListener(KeyboardEvent.KEY_UP, KeyModifierUp);
 	}
 	public function destroy() {
-		Common.gStage.removeEventListener(MouseEvent.MOUSE_DOWN, mouseDown);
-		Common.gStage.removeEventListener(MouseEvent.MOUSE_UP, mouseUp);
-		Common.gStage.removeEventListener(MouseEvent.RIGHT_MOUSE_DOWN, rMouseDown);
-		Common.gStage.removeEventListener(MouseEvent.RIGHT_MOUSE_UP, rMouseUp);
-		Common.gStage.removeEventListener(MouseEvent.MIDDLE_MOUSE_DOWN, mMouseDown);
-		Common.gStage.removeEventListener(MouseEvent.MIDDLE_MOUSE_UP, mMouseUp);
-		Common.gStage.removeEventListener(MouseEvent.MOUSE_WHEEL, mouseScroll);
-		Common.gStage.removeEventListener(KeyboardEvent.KEY_DOWN, keyShiftDown);
-		Common.gStage.removeEventListener(KeyboardEvent.KEY_UP, keyShiftUp);
-		Common.gStage.removeEventListener(KeyboardEvent.KEY_DOWN, KeyModifierDown);
-		Common.gStage.removeEventListener(KeyboardEvent.KEY_UP, KeyModifierUp);
+		Lib.current.stage.removeEventListener(MouseEvent.MOUSE_DOWN, mouseDown);
+		Lib.current.stage.removeEventListener(MouseEvent.MOUSE_UP, mouseUp);
+		Lib.current.stage.removeEventListener(MouseEvent.RIGHT_MOUSE_DOWN, rMouseDown);
+		Lib.current.stage.removeEventListener(MouseEvent.RIGHT_MOUSE_UP, rMouseUp);
+		Lib.current.stage.removeEventListener(MouseEvent.MIDDLE_MOUSE_DOWN, mMouseDown);
+		Lib.current.stage.removeEventListener(MouseEvent.MIDDLE_MOUSE_UP, mMouseUp);
+		Lib.current.stage.removeEventListener(MouseEvent.MOUSE_WHEEL, mouseScroll);
+		Lib.current.stage.removeEventListener(KeyboardEvent.KEY_DOWN, keyShiftDown);
+		Lib.current.stage.removeEventListener(KeyboardEvent.KEY_UP, keyShiftUp);
+		Lib.current.stage.removeEventListener(KeyboardEvent.KEY_DOWN, KeyModifierDown);
+		Lib.current.stage.removeEventListener(KeyboardEvent.KEY_UP, KeyModifierUp);
 	}
 	public function enable() {
 		if (Common.svar_game_mode == GameState.edit || Common.svar_game_mode == GameState.livedraw) {
-			Common.gStage.addEventListener(MouseEvent.MOUSE_DOWN, mouseDown);
-			Common.gStage.addEventListener(MouseEvent.MOUSE_UP, mouseUp);
-			Common.gStage.addEventListener(MouseEvent.RIGHT_MOUSE_DOWN, rMouseDown);
-			Common.gStage.addEventListener(MouseEvent.RIGHT_MOUSE_UP, rMouseUp);
-			Common.gStage.addEventListener(MouseEvent.MIDDLE_MOUSE_DOWN, mMouseDown);
-			Common.gStage.addEventListener(MouseEvent.MIDDLE_MOUSE_UP, mMouseUp);
-			Common.gStage.addEventListener(MouseEvent.MOUSE_WHEEL, mouseScroll);
-			Common.gStage.addEventListener(KeyboardEvent.KEY_DOWN, keyShiftDown);
-			Common.gStage.addEventListener(KeyboardEvent.KEY_UP, keyShiftUp);
-			Common.gStage.addEventListener(KeyboardEvent.KEY_DOWN, KeyModifierDown);
-			Common.gStage.addEventListener(KeyboardEvent.KEY_UP, KeyModifierUp);
+			Lib.current.stage.addEventListener(MouseEvent.MOUSE_DOWN, mouseDown);
+			Lib.current.stage.addEventListener(MouseEvent.MOUSE_UP, mouseUp);
+			Lib.current.stage.addEventListener(MouseEvent.RIGHT_MOUSE_DOWN, rMouseDown);
+			Lib.current.stage.addEventListener(MouseEvent.RIGHT_MOUSE_UP, rMouseUp);
+			Lib.current.stage.addEventListener(MouseEvent.MIDDLE_MOUSE_DOWN, mMouseDown);
+			Lib.current.stage.addEventListener(MouseEvent.MIDDLE_MOUSE_UP, mMouseUp);
+			Lib.current.stage.addEventListener(MouseEvent.MOUSE_WHEEL, mouseScroll);
+			Lib.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, keyShiftDown);
+			Lib.current.stage.addEventListener(KeyboardEvent.KEY_UP, keyShiftUp);
+			Lib.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, KeyModifierDown);
+			Lib.current.stage.addEventListener(KeyboardEvent.KEY_UP, KeyModifierUp);
 		}
 	}
 	
 	private function mouseScroll(e:MouseEvent):Void 
 	{
 		var _locPrePoint:Point = new Point(Common.gTrack.x, Common.gTrack.y);
-		var _locPrevLoc:Point = Common.gStage.localToGlobal(_locPrePoint);
+		var _locPrevLoc:Point = Lib.current.stage.localToGlobal(_locPrePoint);
 		var _locPrevScale = Common.track_scale;
 		if (e.delta == 1) {
 			if (Common.track_scale < Common.track_scale_max)

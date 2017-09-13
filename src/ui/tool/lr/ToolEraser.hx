@@ -1,5 +1,6 @@
 package ui.tool.lr;
 
+import openfl.Lib;
 import openfl.display.MovieClip;
 import openfl.events.MouseEvent;
 import openfl.utils.Object;
@@ -25,7 +26,7 @@ class ToolEraser extends ToolBase
 	override public function mouseDown(e:MouseEvent)
 	{
 		super.mouseDown(e);
-		Common.gStage.addEventListener(MouseEvent.MOUSE_MOVE, erase);
+		Lib.current.stage.addEventListener(MouseEvent.MOUSE_MOVE, erase);
 	}
 	override public function mouseUp(e:MouseEvent) {
 		if (this.list == null) {
@@ -35,7 +36,7 @@ class ToolEraser extends ToolBase
 			Common.gGrid.add_to_history("sub", this.list);
 		}
 		super.mouseUp(e);
-		Common.gStage.removeEventListener(MouseEvent.MOUSE_MOVE, erase);
+		Lib.current.stage.removeEventListener(MouseEvent.MOUSE_MOVE, erase);
 	}
 	private function erase(e:MouseEvent):Void 
 	{

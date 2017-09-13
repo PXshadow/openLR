@@ -1,9 +1,9 @@
 package file.ui;
+
+import openfl.Lib;
 import openfl.display.Sprite;
 import openfl.events.MouseEvent;
 import openfl.display.SimpleButton;
-
-import global.Common;
 
 /**
  * ...
@@ -23,7 +23,7 @@ class FileWindow extends Sprite
 		this.generateList();
 		
 		if (this.currentList.length > 13) {
-			Common.gStage.addEventListener(MouseEvent.MOUSE_WHEEL, scrollList);
+			Lib.current.stage.addEventListener(MouseEvent.MOUSE_WHEEL, scrollList);
 		}
 	}
 	
