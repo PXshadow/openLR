@@ -1,16 +1,15 @@
 package ui.tool.lr;
 
-import lr.lines.LineBase;
-import lr.lines.types.LineAccel;
-import lr.lines.types.LineFloor;
-import lr.lines.types.LineScene;
 import openfl.events.MouseEvent;
 import openfl.geom.Point;
 
 import global.Common;
 import ui.tool.ToolBase;
 import ui.tool.IconBase;
-import lr.line.*;
+import lr.lines.LineBase;
+import lr.lines.types.LineAccel;
+import lr.lines.types.LineFloor;
+import lr.lines.types.LineScene;
 
 /**
  * ...
