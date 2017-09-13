@@ -2,8 +2,6 @@ package lr.rider.phys.frames.anchors;
 import openfl.geom.Point;
 import openfl.utils.Object;
 
-import global.Common;
-
 /**
  * ...
  * @author ...
