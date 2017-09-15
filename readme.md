@@ -6,14 +6,14 @@
 
 ### Build by Kaelan "Kevans" Evans
 
-### The language used is Haxe: http://haxe.org/ (Running Haxe 3.4.2)
+### The language used is Haxe: http://haxe.org/download/version/4.0.0-preview.1/ (Running Haxe 4.0.0 preview 1)
 	
 Binaries can be downloaded here: https://github.com/kevansevans/openLR/releases
 
 ## Haxelibs used:
 	
-	HXCPP 3.4.64 (`haxelib set hxcpp 3.4.64`)
-	openFL 6.1.1 (http://www.openfl.org/) (https://github.com/openfl/openfl)
+	HXCPP 3.4.185 (`haxelib set hxcpp 3.4.185`)
+	openFL 6.1.2 (http://www.openfl.org/) (https://github.com/openfl/openfl)
 	lime 5.5.0 (https://github.com/openfl/lime)
 	
 If possible, openLR will always use the latest update for Haxe, openFL, and Lime. This is to ensure the most efficient builds possible, as performance is a major concern.
