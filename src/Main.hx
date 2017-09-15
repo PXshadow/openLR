@@ -27,7 +27,7 @@ class Main extends Sprite
 		
 		super();
 		
-		#if (cpp || android || ios)
+		#if (cpp)
 			this.core = new CppCore(this.stage);
 		#elseif (flash)
 			this.core = new FlashCore(this.stage);
