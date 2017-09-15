@@ -24,7 +24,7 @@
 	<assets path="assets/fonts" rename="fonts" embed="true" />
 	<assets path="assets/flash" rename="swf" />
 	<assets path="assets/img" rename="img" embed="true" unless="flash"/>
-	<assets path="assets/defaults" rename="defaults" embed="true" unless="flash"/>
+	<assets path="assets/defaults" rename="defaults" embed="true" if="cpp"/>
 	
 	
 	<!-- optimize output
