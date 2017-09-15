@@ -12,6 +12,7 @@ import openfl.utils.Assets;
 import base.TitleCardBase;
 import ui.inter.TextButton;
 import global.Common;
+import global.Language;
 
 /**
  * ...
@@ -58,7 +59,7 @@ class TitleCardJS extends TitleCardBase
 		this.title_info.x = 120;
 		this.title_info.y = 16;
 		this.title_info.width = 500;
-		this.title_info.text = "Build by Kevansevans, original concept by Boštjan Čadež";
+		this.title_info.text = Language.Title;
 		
 		this.graphics.moveTo(8, 44);
 		this.graphics.lineTo(592, 44);
@@ -71,7 +72,7 @@ class TitleCardJS extends TitleCardBase
 		this.splash.wordWrap = true;
 		this.splash.width = 592;
 		this.splash.height = 246;
-		this.splash.text = "Welcome to OpenLR! The open source implementation of Line Rider for desktop use! You can view more info about the project here:\n\n" + "https://github.com/kevansevans/openLR" + "\n\nOpenLR uses the Haxe and OpenFL framework. View more info at Haxe.org and Openfl.org. Happy Riding!";
+		this.splash.text = Language.Splash_a + "\n\n" + "https://github.com/kevansevans/openLR" + "\n\n" + Language.Splash_b;
 		
 		this.new_track = new TextButton("New Track", this.new_track_func, ButtonSize.b120x30);
 		this.addChild(this.new_track);
