@@ -3,9 +3,13 @@ package;
 import openfl.display.Sprite;
 
 import base.CoreBase;
-import base.cores.CppCore;
-import base.cores.FlashCore;
-import base.cores.JavaScriptCore;
+#if (cpp)
+	import base.cores.CppCore;
+#elseif (flash)
+	import base.cores.FlashCore;
+#elseif (js)
+	import base.cores.JavaScriptCore;
+#end
 import global.Common;
 
 /**
