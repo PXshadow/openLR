@@ -9,7 +9,9 @@
 	<app main="Main" file="openLR" path="bin" />
 	
 	<window background="#CCCCCC" fps="60" />
-	<window width="1280" height="720" unless="mobile" />
+	<window width="1280" height="720" if="cpp" />
+	<window width="1280" height="720" if="flash" />
+	<window width="1920" height="1080" if="js" />
 	<window orientation="landscape" vsync="true" antialiasing="4" if="cpp" />
 	
 	<!-- classpath, haxe libs -->
