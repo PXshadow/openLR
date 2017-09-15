@@ -8,7 +8,7 @@
 
 ### The language used is Haxe: http://haxe.org
 	
-Binaries can be downloaded here: https://github.com/kevansevans/openLR/releases
+Binaries/Releases can be downloaded here: https://github.com/kevansevans/openLR/releases
 
 ## Haxelibs used:
 	
