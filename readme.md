@@ -6,13 +6,13 @@
 
 ### Build by Kaelan "Kevans" Evans
 
-### The language used is Haxe: http://haxe.org/download/version/4.0.0-preview.1/ (Running Haxe 4.0.0 preview 1)
+### The language used is Haxe: http://haxe.org
 	
 Binaries can be downloaded here: https://github.com/kevansevans/openLR/releases
 
 ## Haxelibs used:
 	
-	HXCPP 3.4.185 (`haxelib set hxcpp 3.4.185`)
+	HXCPP 3.4.185 (haxelib set hxcpp 3.4.185)
 	openFL 6.1.2 (http://www.openfl.org/) (https://github.com/openfl/openfl)
 	lime 5.5.0 (https://github.com/openfl/lime)
 	
@@ -20,17 +20,20 @@ If possible, openLR will always use the latest update for Haxe, openFL, and Lime
 	
 ## How to compile:
 	
-Install Haxe from http://haxe.org/download/
+Install Haxe from http://haxe.org/download/version/4.0.0-preview.1/
 
 (Or use `sudo apt install haxe` through bash)
 	
-Run in terminal the following commands:
+Run in terminal the following commands, select Y to install if prompted:
+	
+	haxelib set hxcpp 3.4.185
 	
 	haxelib install openfl
 	
 	haxelib run openfl setup
 	
-Running the above commands should install all the needed libraries to compile, including Lime,
+Running the above commands should install all the needed libraries to compile, including Lime. You may have to install other
+programs, the commands above assume you already have some form of a development enviornment set up on your system.
 
 Run the command `openfl` to verify it was installed correctly. You should see the OpenFL logo appear in your terminal.
 
@@ -39,6 +42,8 @@ Change terminal directory to root openLR folder. It should contain the `openLR.h
 Run the command:
 	
 	openfl build cpp
+	
+Alternative targets include `openfl build html5`, and `openfl build flash`. More will be added as development progresses.
 	
 Project will be compiled into bin folder. Be aware that you can compile to other platforms regardless of the platform you are on,
 however, compiling to a non-native platform will not produce a native C++ build, and will most likely suffer from performance hits.
