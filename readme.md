@@ -20,7 +20,7 @@ If possible, openLR will always use the latest update for Haxe, openFL, and Lime
 	
 ## How to compile:
 	
-Install Haxe from http://haxe.org/download/version/4.0.0-preview.1/
+Install Haxe from http://haxe.org/download
 
 (Or use `sudo apt install haxe` through bash)
 	
