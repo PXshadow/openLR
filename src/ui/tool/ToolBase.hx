@@ -173,19 +173,13 @@ class ToolBase
 	
 	private function mouseScroll(e:MouseEvent):Void 
 	{
-		var _locPrePoint:Point = new Point(Common.gTrack.x, Common.gTrack.y);
-		var _locPrevLoc:Point = Lib.current.stage.localToGlobal(_locPrePoint);
-		var _locPrevScale = Common.track_scale;
-		var _locNewScale = Common.track_scale;
-		var _locRatio = (Math.min(Math.max(_locNewScale + _locNewScale * 0.004 * (e.delta * 0.2), 0.2), 30 ) / _locPrevScale);
-		if (_locNewScale != _locPrevScale)
-		{
-			Common.gTrack.x = Common.stage_width * 0.5 + (_locPrevLoc.x - Common.stage_width * 0.5) * _locRatio - 0 * (e.delta * 0.2);
-			Common.gTrack.y = Common.stage_height * 0.5 + (_locPrevLoc.y - Common.stage_height * 0.5) * _locRatio - 0 * (e.delta * 0.2);
-			Common.gTrack.scaleX = Common.gTrack.scaleY = Common.track_scale;
-			Common.gRiderManager.scaleX = Common.gRiderManager.scaleY = Common.track_scale;
-			Common.gRiderManager.x = Common.gTrack.x;
-			Common.gRiderManager.y = Common.gTrack.y;
+		if (Common.svar_game_mode == GameState.edit || Common.svar_game_mode == GameState.livedraw) {
+			var trkLoc:Point = new Point(Common.gTrack.x, Common.gTrack.y);
+			var trkScale:Float = Common.gTrack.scaleX;
+			var scaleToSet = Math.min(Math.max(trkScale + (trkScale * 0.1 * e.delta), 0.5), 50);
+			Common.gTrack.x = Lib.current.stage.stageWidth * 0.5 + (trkLoc.x - Lib.current.stage.stageWidth * 0.5) * (scaleToSet / trkScale);
+			Common.gTrack.y = Lib.current.stage.stageHeight * 0.5 + (trkLoc.y - Lib.current.stage.stageHeight * 0.5) * (scaleToSet / trkScale);
+			Common.gTrack.scaleX = Common.gTrack.scaleY = scaleToSet;
 		}
 	}
 	public function angle_snap(_x1:Float, _y1:Float, _x2:Float, _y2:Float):Array<Float> {
