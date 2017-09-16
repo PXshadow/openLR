@@ -6,8 +6,8 @@
     <movie input="" />
     <movie path="project.xml" />
     <movie fps="60" />
-    <movie width="1280" />
-    <movie height="720" />
+    <movie width="800" />
+    <movie height="600" />
     <movie version="0" />
     <movie minorVersion="0" />
     <movie platform="Lime" />
@@ -31,7 +31,7 @@
     <option noInlineOnDebug="False" />
     <option mainClass="ApplicationMain" />
     <option enabledebug="True" />
-    <option additional="--macro openfl._internal.utils.ExtraParams.include()&#xA;--macro lime.Lib.extraParams()&#xA;--remap flash:openfl" />
+    <option additional="--macro openfl._internal.utils.ExtraParams.include()&#xA;--macro lime.Lib.extraParams()&#xA;--remap flash:openfl&#xA;-dce full&#xA;-debug " />
   </build>
   <!-- haxelib libraries -->
   <haxelib>
@@ -46,7 +46,7 @@
     <hidden path="obj" />
   </hiddenPaths>
   <!-- Executed before build -->
-  <preBuildCommand>"$(CompilerPath)/haxelib" run lime build "$(OutputFile)" $(TargetBuild) -$(BuildConfig) -Dfdb -Dtelemetry</preBuildCommand>
+  <preBuildCommand>"$(CompilerPath)/haxelib" run lime build "$(OutputFile)" $(TargetBuild) -$(BuildConfig) -Dfdb</preBuildCommand>
   <!-- Executed after build -->
   <postBuildCommand alwaysRun="False" />
   <!-- Other project options -->
@@ -56,5 +56,7 @@
     <option testMovieCommand="" />
   </options>
   <!-- Plugin storage -->
-  <storage />
+  <storage>
+    <entry key="air-descriptor"><![CDATA[bin\air\application.xml]]></entry>
+  </storage>
 </project>
