@@ -31,6 +31,9 @@ class ToolBase
 			this.destroy();
 		}
 		Common.svar_current_tool = _type;
+		Common.gToolBase = this;
+	}
+	public function set_listeners() {
 		Lib.current.stage.addEventListener(MouseEvent.MOUSE_DOWN, mouseDown);
 		Lib.current.stage.addEventListener(MouseEvent.MOUSE_UP, mouseUp);
 		Lib.current.stage.addEventListener(MouseEvent.RIGHT_MOUSE_DOWN, rMouseDown);
@@ -43,10 +46,7 @@ class ToolBase
 		Lib.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, KeyNumDown);
 		Lib.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, KeyModifierDown);
 		Lib.current.stage.addEventListener(KeyboardEvent.KEY_UP, KeyModifierUp);
-		
-		Common.gToolBase = this;
 	}
-	
 	private function KeyModifierDown(e:KeyboardEvent):Void 
 	{
 		if (e.keyCode == KeyBindings.angle_snap) {
