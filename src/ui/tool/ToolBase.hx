@@ -176,14 +176,14 @@ class ToolBase
 		var _locPrePoint:Point = new Point(Common.gTrack.x, Common.gTrack.y);
 		var _locPrevLoc:Point = Lib.current.stage.localToGlobal(_locPrePoint);
 		var _locPrevScale = Common.track_scale;
-		if (e.delta == 1) {
+		if (e.delta >= 1) {
 			if (Common.track_scale < Common.track_scale_max)
 			{
 				Common.track_scale += 0.2;
 			} else {
 				Common.track_scale = Common.track_scale_max;
 			}
-		} else if (e.delta == -1) {
+		} else if (e.delta <= -1) {
 			if (Common.track_scale > Common.track_scale_min) {
 				Common.track_scale -= 0.2;
 			} else {
