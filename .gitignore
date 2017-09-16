@@ -1,0 +1,18 @@
+
+bin/
+
+\.idea/
+
+\.DS_Store
+
+assets/flash/components\.fla
+
+assets/flash/components\.swf
+
+*.swf
+
+assets/ffmpeg/
+
+src/com/TBD/
+
+assets/flash/swf files/
