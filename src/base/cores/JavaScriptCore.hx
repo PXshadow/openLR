@@ -10,7 +10,6 @@ import openfl.display.Stage;
 //openLR
 import base.TitleCardBase;
 import base.titlecards.TitleCardJS;
-import file.init.FileStartCPP;
 import file.LoadManager;
 import file.SaveManager;
 import file.AutosaveManager;
@@ -34,7 +33,6 @@ import ui.tool.timeline.TimelineControl;
  */
 class JavaScriptCore extends CoreBase
 {
-	private var mainFileInit:FileStartCPP; //this class controls settings
 	private var visContainer:Sprite; //simple display container. This will make it easier to take screenshots and record video without having to move a matrix all around
 	private var track:Track;
 	private var riders:RiderManager;
@@ -152,8 +150,6 @@ class JavaScriptCore extends CoreBase
 			this.timeline.visible = false;
 			this.settings_box.update();
 		} else {
-			this.mainFileInit.write_new_settings();
-			this.mainFileInit.write_new_keys();
 			this.settings_box.visible = false;
 			this.track.visible = true;
 			this.toolBar.mouseChildren = true;
