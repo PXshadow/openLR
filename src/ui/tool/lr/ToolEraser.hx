@@ -26,6 +26,7 @@ class ToolEraser extends ToolBase
 	override public function mouseDown(e:MouseEvent)
 	{
 		super.mouseDown(e);
+		this.list = new Array();
 		Lib.current.stage.addEventListener(MouseEvent.MOUSE_MOVE, erase);
 	}
 	override public function mouseUp(e:MouseEvent) {
