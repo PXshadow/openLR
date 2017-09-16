@@ -174,9 +174,14 @@ class ToolBase
 	private function mouseScroll(e:MouseEvent):Void 
 	{
 		if (Common.svar_game_mode == GameState.edit || Common.svar_game_mode == GameState.livedraw) {
+			#if (cpp || flash)
+				var platDelta = e.delta;
+			#elseif (js)
+				var platDelta = e.delta / 100;
+			#end
 			var trkLoc:Point = new Point(Common.gTrack.x, Common.gTrack.y);
 			var trkScale:Float = Common.gTrack.scaleX;
-			var scaleToSet = Math.min(Math.max(trkScale + (trkScale * 0.1 * e.delta), 0.5), 50);
+			var scaleToSet = Math.min(Math.max(trkScale + (trkScale * 0.1 * platDelta), 0.5), 50);
 			Common.gTrack.x = Lib.current.stage.stageWidth * 0.5 + (trkLoc.x - Lib.current.stage.stageWidth * 0.5) * (scaleToSet / trkScale);
 			Common.gTrack.y = Lib.current.stage.stageHeight * 0.5 + (trkLoc.y - Lib.current.stage.stageHeight * 0.5) * (scaleToSet / trkScale);
 			Common.gTrack.scaleX = Common.gTrack.scaleY = scaleToSet;
