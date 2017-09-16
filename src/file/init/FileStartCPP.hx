@@ -1,13 +1,10 @@
-package file;
+package file.init;
 
 import openfl.utils.Object;
 import openfl.Assets;
-
-#if (cpp)
-	import sys.FileSystem;
-	import sys.io.File;
-	import haxe.Json;
-#end
+import sys.FileSystem;
+import sys.io.File;
+import haxe.Json;
 
 import global.Common;
 import global.KeyBindings;
@@ -20,7 +17,7 @@ import global.Language;
  * makes sure directories are made and default settings are loaded.
  * 
  */
-class FileStart
+class FileStartCPP
 {
 	public var ready:Bool = false;
 	public function new() 
@@ -31,7 +28,6 @@ class FileStart
 	}
 	function checkDirectories() 
 	{
-		#if (cpp)
 		if (FileSystem.isDirectory("./saves")) {
 		} else{
 			FileSystem.createDirectory("./saves");
@@ -48,12 +44,10 @@ class FileStart
 		} else {
 			FileSystem.createDirectory("./settings");
 		}
-		#end
 	}
 	function loadSettings() 
 	{
-		#if (cpp)
-		if (FileSystem.exists("./settings/settings.json")) {
+		if (FileSystem.exists("./settings/Settings.json")) {
 			this.get_and_set_defaults();
 		} else {
 			this.get_and_write_settings();
@@ -68,7 +62,6 @@ class FileStart
 		} else {
 			this.get_and_write_language();
 		}
-		#end
 	}
 	//////////
 	//Keys
@@ -78,14 +71,11 @@ class FileStart
 		KeyBindings.write_settings();
 	}
 	private function get_and_write_default_keys() { //This is to be exclusively used for DEFAULTS
-		#if (cpp)
 		var file = File.write("./settings/KeyBindings.json", true);
 		file.writeString(Json.stringify(Json.parse(Assets.getText("defaults/settings/KeyBindings.json")), null, "\t"));
 		file.close();
-		#end
 	}
 	public function set_key_bindings() {
-		#if (cpp)
 		try {
 			var _locFile = File.getContent("./settings/KeyBindings.json");
 			var _locJson = Json.parse(_locFile);
@@ -93,7 +83,6 @@ class FileStart
 		} catch (e:String) {
 			
 		}
-		#end
 	}
 	//////////
 	//settings
@@ -103,15 +92,12 @@ class FileStart
 		
 	}
 	function get_and_write_settings() { //This is to be exclusively used for DEFAULTS
-		#if (cpp)
 		var file = File.write("./settings/Settings.json", true);
-		file.writeString(Json.stringify(Json.parse(Assets.getText("defaults/settings/Settings.json")), null, "\t"));
+		file.writeString(Json.stringify(Json.parse(File.getContent("defaults/settings/Settings.json")), null, "\t"));
 		file.close();
-		#end
 	}
 	function get_and_set_defaults() 
 	{
-		#if (cpp)
 		var _locFile = File.getContent("./settings/Settings.json");
 		var _locJson = Json.parse(_locFile);
 		Common.cvar_auto_save = _locJson.settings.autosave;
@@ -127,14 +113,12 @@ class FileStart
 		Common.cvar_preview_mode  = _locJson.settings.preview_mode;
 		Common.cvar_dictionary = _locJson.settings.language;
 		Common.cvar_toolbar_scale = _locJson.settings.uiscale;
-		#end
 	}
 	//////////
 	//Language
 	//////////
 	public function get_and_write_language() 
 	{
-		#if (cpp)
 		var file = File.write("./settings/language.json", true);
 		switch(Common.cvar_dictionary) {
 			case "English" :
@@ -144,10 +128,8 @@ class FileStart
 		}
 		file.close();
 		this.get_and_set_language();
-		#end
 	}
 	public function get_and_set_language() {
-		#if (cpp)
 		var _locFile = File.getContent("./settings/language.json");
 		var _locJson = Json.parse(_locFile);
 		
@@ -168,6 +150,5 @@ class FileStart
 		Language.Save = _locJson.dictionary.save;
 		Language.Load = _locJson.dictionary.load;
 		Language.Cancel = _locJson.dictionary.cancel;
-		#end
 	}
 }

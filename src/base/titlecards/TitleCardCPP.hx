@@ -71,7 +71,7 @@ class TitleCardCPP extends TitleCardBase
 		this.splash.defaultTextFormat = this.font_b;
 		this.splash.wordWrap = true;
 		this.splash.width = 592;
-		this.splash.height = 246;
+		this.splash.height = 150;
 		this.splash.text = Language.Splash_a + "\n\n" + "https://github.com/kevansevans/openLR" + "\n\n" + Language.Splash_b;
 		
 		this.new_track = new TextButton(Language.New_track, this.new_track_func, ButtonSize.b120x30);

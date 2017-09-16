@@ -11,7 +11,7 @@ import platform.CoreBase;
 //openLR
 import platform.TitleCard;
 import platform.titlecards.TitleCardJS;
-import file.FileStart;
+import file.init.FileStartCPP;
 import file.LoadManager;
 import file.SaveManager;
 import file.AutosaveManager;
@@ -35,7 +35,7 @@ import ui.tool.timeline.TimelineControl;
  */
 class JavaScriptCore extends CoreBase
 {
-	private var mainFileInit:FileStart; //this class controls settings
+	private var mainFileInit:FileStartCPP; //this class controls settings
 	private var visContainer:Sprite; //simple display container. This will make it easier to take screenshots and record video without having to move a matrix all around
 	private var track:Track;
 	private var riders:RiderManager;

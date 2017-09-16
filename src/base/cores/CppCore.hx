@@ -10,7 +10,7 @@ import openfl.display.Stage;
 //openLR
 import base.TitleCardBase;
 import base.titlecards.TitleCardCPP;
-import file.FileStart;
+import file.init.FileStartCPP;
 import file.LoadManager;
 import file.SaveManager;
 import file.AutosaveManager;
@@ -34,7 +34,7 @@ import ui.tool.timeline.TimelineControl;
  */
 class CppCore extends CoreBase
 {
-	private var mainFileInit:FileStart; //this class controls settings
+	private var mainFileInit:FileStartCPP; //this class controls settings
 	private var visContainer:Sprite; //simple display container. This will make it easier to take screenshots and record video without having to move a matrix all around
 	private var track:Track;
 	private var riders:RiderManager;
@@ -54,7 +54,7 @@ class CppCore extends CoreBase
 		
 		Common.gCode = this; //This class
 		
-		//this.mainFileInit = new FileStart(); //checks for default folders and saved settings in the track
+		this.mainFileInit = new FileStartCPP(); //checks for default folders and saved settings in the track
 			
 		this.title_card = new TitleCardCPP();
 		this.main_stage.addChild(this.title_card);
