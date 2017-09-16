@@ -51,7 +51,7 @@ class Toolbar extends Sprite
 		this.tool_list = new Array();
 		this.swatch_list = new Array();
 		
-		tool = new ToolPencil();
+		Toolbar.tool = new ToolPencil();
 		
 		pencil = new IconPencil();
 		this.tool_list.push(this.pencil);

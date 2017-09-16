@@ -130,7 +130,6 @@ class ToolBase
 	}
 	
 	public function disable() {
-		trace("disabled");
 		Lib.current.stage.removeEventListener(MouseEvent.MOUSE_DOWN, mouseDown);
 		Lib.current.stage.removeEventListener(MouseEvent.MOUSE_UP, mouseUp);
 		Lib.current.stage.removeEventListener(MouseEvent.RIGHT_MOUSE_DOWN, rMouseDown);
@@ -144,7 +143,6 @@ class ToolBase
 		Lib.current.stage.removeEventListener(KeyboardEvent.KEY_UP, KeyModifierUp);
 	}
 	public function destroy() {
-		trace("destroyed");
 		Lib.current.stage.removeEventListener(MouseEvent.MOUSE_DOWN, mouseDown);
 		Lib.current.stage.removeEventListener(MouseEvent.MOUSE_UP, mouseUp);
 		Lib.current.stage.removeEventListener(MouseEvent.RIGHT_MOUSE_DOWN, rMouseDown);

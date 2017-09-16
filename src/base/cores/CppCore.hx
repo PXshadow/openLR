@@ -127,6 +127,8 @@ class CppCore extends CoreBase
 		this.visContainer.visible = false;
 		
 		this.align();
+		
+		Common.svar_game_mode = GameState.edit;
 	}
 	override public function reset_timeline() {
 		Common.sim_frames = 0;
