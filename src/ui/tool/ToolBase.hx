@@ -220,4 +220,3 @@ class ToolBase
 		return(_locReturn);
 	}
 }
-/*"$(CompilerPath)/haxelib" run lime build "$(OutputFile)" $(TargetBuild) -$(BuildConfig) -Dfdb -Dtelemetry*/
