@@ -71,17 +71,19 @@ class IconSave extends IconBase
 			this.menu.y = 35;
 			this.menu.x = 5;
 			
-			this.save_track = new TextButton(Language.Save_track, this.open_save_menu, ButtonSize.b120x30);
-			this.menu.addChild(this.save_track);
-			this.save_track.y = this.new_track.height;
-			
-			this.load_track = new TextButton(Language.Load_track, this.show_loader, ButtonSize.b120x30);
-			this.menu.addChild(this.load_track);
-			this.load_track.y = this.save_track.y + this.load_track.height;
-			
-			this.screen_cap = new TextButton(Language.Screencap, this.take_screenshot, ButtonSize.b120x30);
-			this.menu.addChild(this.screen_cap);
-			this.screen_cap.y = this.load_track.y + this.screen_cap.height;
+			#if (cpp)
+				this.save_track = new TextButton(Language.Save_track, this.open_save_menu, ButtonSize.b120x30);
+				this.menu.addChild(this.save_track);
+				this.save_track.y = this.new_track.height;
+				
+				this.load_track = new TextButton(Language.Load_track, this.show_loader, ButtonSize.b120x30);
+				this.menu.addChild(this.load_track);
+				this.load_track.y = this.save_track.y + this.load_track.height;
+				
+				this.screen_cap = new TextButton(Language.Screencap, this.take_screenshot, ButtonSize.b120x30);
+				this.menu.addChild(this.screen_cap);
+				this.screen_cap.y = this.load_track.y + this.screen_cap.height;
+			#end
 			
 			this.open = true;
 		}
