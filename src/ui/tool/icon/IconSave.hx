@@ -32,15 +32,39 @@ class IconSave extends IconBase
 {
 	private var open:Bool = false;
 	private var menu:MovieClip;
+	private var buttonList:Array<TextButton>;
 	private var new_track:TextButton;
 	private var save_track:TextButton;
 	private var load_track:TextButton;
+	private var about:TextButton;
 	private var loadManager:LoadManager;
 	private var safety_dialog:ConfirmDialog;
 	private var screen_cap:TextButton;
 	public function new() 
 	{
 		super(Icon.file);
+		this.buttonList = new Array();
+		this.set_items();
+	}
+	
+	function set_items() 
+	{
+		this.new_track = new TextButton(Language.New_track, this.make_new_track, ButtonSize.b120x30);
+			this.buttonList.push(this.new_track);
+			
+			#if (cpp)
+				this.save_track = new TextButton(Language.Save_track, this.open_save_menu, ButtonSize.b120x30);
+				this.buttonList.push(this.save_track);
+				
+				this.load_track = new TextButton(Language.Load_track, this.show_loader, ButtonSize.b120x30);
+				this.buttonList.push(this.load_track);
+				
+				this.screen_cap = new TextButton(Language.Screencap, this.take_screenshot, ButtonSize.b120x30);
+				this.buttonList.push(this.screen_cap);
+			#end
+			
+			this.about = new TextButton("About", this.open_github_page, ButtonSize.b120x30);
+			this.buttonList.push(this.about);
 	}
 	override public function up(e:MouseEvent) {
 		if (this.mouseY < 30)
@@ -52,8 +76,7 @@ class IconSave extends IconBase
 	private function show_menu()
 	{
 		if (open) {
-			this.menu.removeChild(this.new_track);
-			this.menu.removeChild(this.load_track);
+			this.hide_list();
 			this.removeChild(this.menu);
 			this.open = false;
 		} else if (!open) {
@@ -66,26 +89,32 @@ class IconSave extends IconBase
 			this.menu.graphics.beginFill(0xCCCCCC, 1);
 			this.menu.graphics.lineTo(0, 0);
 			
-			this.new_track = new TextButton(Language.New_track, this.make_new_track, ButtonSize.b120x30);
-			this.menu.addChild(this.new_track);
-			this.menu.y = 35;
-			this.menu.x = 5;
-			
-			#if (cpp)
-				this.save_track = new TextButton(Language.Save_track, this.open_save_menu, ButtonSize.b120x30);
-				this.menu.addChild(this.save_track);
-				this.save_track.y = this.new_track.height;
-				
-				this.load_track = new TextButton(Language.Load_track, this.show_loader, ButtonSize.b120x30);
-				this.menu.addChild(this.load_track);
-				this.load_track.y = this.save_track.y + this.load_track.height;
-				
-				this.screen_cap = new TextButton(Language.Screencap, this.take_screenshot, ButtonSize.b120x30);
-				this.menu.addChild(this.screen_cap);
-				this.screen_cap.y = this.load_track.y + this.screen_cap.height;
-			#end
+			this.show_list();
 			
 			this.open = true;
+		}
+	}
+	
+	function open_github_page() 
+	{
+		Lib.getURL(new URLRequest("https://github.com/kevansevans/openLR"));
+	}
+	
+	function show_list() 
+	{
+		var b:Int = 0;
+		for (a in this.buttonList) {
+			this.addChild(a);
+			a.x = 5;
+			a.y = 35 + (35 * b);
+			++b;
+		}
+	}
+	
+	function hide_list() 
+	{
+		for (a in this.buttonList) {
+			this.removeChild(a);
 		}
 	}
 	
