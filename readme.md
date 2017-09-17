@@ -1,10 +1,10 @@
-![](http://i.imgur.com/tfI0Lk2.gif)
-
 # OpenLR, an open source desktop app for Line Rider.
 
 ### Original game by Boštjan "fšk" Čadež
 
 ### Build by Kaelan "Kevans" Evans
+
+![](http://i.imgur.com/tfI0Lk2.gif)
 
 ### The language used is Haxe: http://haxe.org
 	
