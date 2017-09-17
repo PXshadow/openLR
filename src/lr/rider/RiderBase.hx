@@ -244,7 +244,7 @@ class RiderBase extends Sprite
 		this.camera.pan(this.body.anchors[4]);
 		this.clips.render_body();
 	}
-	function reset() 
+	public function reset() 
 	{
 		this.body.reset();
 		this.scarf.reset();
