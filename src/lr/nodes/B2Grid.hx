@@ -308,8 +308,13 @@ class B2Grid
 	{
 		for (i in 0...line.gridList.length)
 		{
-			B2Grid.grid[line.gridList[i][0]][line.gridList[i][1]].storage.remove(line);
-			B2Grid.grid[line.gridList[i][0]][line.gridList[i][1]].storage2.remove(line);
+			#if (cpp)
+				B2Grid.grid[line.gridList[i][0]][line.gridList[i][1]].storage.remove(line);
+				B2Grid.grid[line.gridList[i][0]][line.gridList[i][1]].storage2.remove(line);
+			#elseif (js)
+				B2Grid.grid[line.gridList[i][0]][line.gridList[i][1]].storage[line.ID] = null;
+				B2Grid.grid[line.gridList[i][0]][line.gridList[i][1]].storage2[line.ID] = null;
+			#end
 			if (B2Grid.grid[line.gridList[i][0]][line.gridList[i][1]].storage.length == 0) {
 				B2Grid.grid[line.gridList[i][0]][line.gridList[i][1]].lowFrame = -1;
 			}
