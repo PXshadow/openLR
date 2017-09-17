@@ -59,9 +59,9 @@ class ToolEraser extends ToolBase
 				{
 					continue;
 				} // end if
-				for (_loc21 in 0...B2Grid.grid[_loc7][_loc5].storage.length)
+				for (_loc21 in 0...B2Grid.grid[_loc7][_loc5].primary.length)
 				{
-					var _loc1:LineBase = B2Grid.grid[_loc7][_loc5].storage[_loc21];
+					var _loc1:LineBase = B2Grid.grid[_loc7][_loc5].primary[_loc21];
 					if (_loc1 == null) {
 						continue;
 					}

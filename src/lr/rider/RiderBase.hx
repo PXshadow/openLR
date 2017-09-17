@@ -369,7 +369,7 @@ class RiderBase extends Sprite
 					{
 						continue;
 					}
-					var tempList:Array<LineBase> = B2Grid.grid[_loc1][_loc2].storage2;
+					var tempList:Array<LineBase> = B2Grid.grid[_loc1][_loc2].secondary;
 					for (_loc8 in tempList)
 					{
 						if (_loc8 == null) {

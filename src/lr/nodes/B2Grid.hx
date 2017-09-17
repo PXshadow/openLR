@@ -22,7 +22,7 @@ import lr.lines.LineBase;
 class B2Grid
 {
 	public var lines:Array<LineBase>;
-	public static var grid:Map<Int, Map<Int, Object>>;
+	public static var grid:Map<Int, Map<Int, Storage>>;
 	public static var undo_single:Array<LineBase>;
 	public static var redo_single:Array<LineBase>;
 	public static var history:Array<Array<Dynamic>>;
@@ -249,36 +249,30 @@ class B2Grid
 	}
 	public function register(line:LineBase, _x:Int, _y:Int) //This is where the line gets indexed in a 2D array
 	{
-		var _loc4 = new Object();
 		if (grid[_x] == null)
 		{
 			grid[_x] = new Map();
 		}
 		if (grid[_x][_y] == null)
 		{
-			_loc4.storage = new Array<LineBase>();
-			_loc4.storage2 = new Array<LineBase>();
-			_loc4.lowFrame = -1;
-			grid[_x][_y] = _loc4;
+
+			grid[_x][_y] = new Storage();
 		}
 		var a = new Array<Int>();
 		a = [_x, _y];
 		line.inject_grid_loc(a);
-		if (line.type != 2)
-		{
-			grid[_x][_y].storage2.push(line);
-		}
-		if (_loc4.lowFrame != -1) {
+		if (grid[_x][_y].lowFrame != -1) {
 			if (GridBase.lowFrame == -1) {
-				GridBase.lowFrame = _loc4.lowFrame;
-			} else if (_loc4.lowFrame < GridBase.lowFrame ) {
-				GridBase.lowFrame = _loc4.lowFrame;
+				GridBase.lowFrame = grid[_x][_y].lowFrame;
+			} else if (grid[_x][_y].lowFrame < GridBase.lowFrame ) {
+				GridBase.lowFrame = grid[_x][_y].lowFrame;
 			}
 		}
-		grid[_x][_y].storage.push(line);
+		grid[_x][_y].inject_line(line);
 	}
 	public function remove_line(line:LineBase)
 	{
+		Common.gTextInfo.textInfo_F.text = line.ID;
 		if (this.lines[line.ID] == null) {
 			return;
 		}
@@ -308,14 +302,8 @@ class B2Grid
 	{
 		for (i in 0...line.gridList.length)
 		{
-			#if (cpp)
-				B2Grid.grid[line.gridList[i][0]][line.gridList[i][1]].storage.remove(line);
-				B2Grid.grid[line.gridList[i][0]][line.gridList[i][1]].storage2.remove(line);
-			#elseif (js)
-				B2Grid.grid[line.gridList[i][0]][line.gridList[i][1]].storage[line.ID] = null;
-				B2Grid.grid[line.gridList[i][0]][line.gridList[i][1]].storage2[line.ID] = null;
-			#end
-			if (B2Grid.grid[line.gridList[i][0]][line.gridList[i][1]].storage.length == 0) {
+			B2Grid.grid[line.gridList[i][0]][line.gridList[i][1]].remove_line(line);
+			if (B2Grid.grid[line.gridList[i][0]][line.gridList[i][1]].primary.length == 0) {
 				B2Grid.grid[line.gridList[i][0]][line.gridList[i][1]].lowFrame = -1;
 			}
 		}
@@ -346,10 +334,10 @@ class B2Grid
 				{
 					continue;
 				} // end if
-				for (_loc16 in 0...grid[_loc4][_loc3].storage2.length)
+				for (_loc16 in 0...grid[_loc4][_loc3].secondary.length)
 				{
-					if (grid[_loc4][_loc3].storage2[_loc16] == null) {continue;}
-					var _loc1:LineBase = grid[_loc4][_loc3].storage2[_loc16];
+					if (grid[_loc4][_loc3].secondary[_loc16] == null) {continue;}
+					var _loc1:LineBase = grid[_loc4][_loc3].secondary[_loc16];
 					_loc6 = Math.pow(x - _loc1.x1, 2) + Math.pow(y - _loc1.y1, 2);
 					_loc7 = Math.pow(x - _loc1.x2, 2) + Math.pow(y - _loc1.y2, 2);
 					if (_loc6 < _loc2)
