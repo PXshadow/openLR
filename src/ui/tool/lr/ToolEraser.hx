@@ -47,14 +47,14 @@ class ToolEraser extends ToolBase
 		var _loc9:Float = 1 / (Common.gTrack.scaleX);
 		for (_loc19 in -1...2)
 		{
-			var _loc7 = (_loc20.x + _loc19);
+			var _loc7:Int = (_loc20.x + _loc19);
 			if (B2Grid.grid[_loc7] == null)
 			{
 				continue;
 			} // end if
 			for (_loc8 in -1...2)
 			{
-				var _loc5 = (_loc20.y + _loc8);
+				var _loc5:Int = (_loc20.y + _loc8);
 				if (B2Grid.grid[_loc7][_loc5] == null)
 				{
 					continue;
