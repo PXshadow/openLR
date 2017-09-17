@@ -44,7 +44,6 @@ class JavaScriptCore extends CoreBase
 	private var timeline:TimelineControl;
 	private var loadManager:LoadManager;
 	private var settings_box:SettingsMenu;
-	private var autosave:AutosaveManager;
 	
 	public function new(_stage:Stage) 
 	{
@@ -75,8 +74,6 @@ class JavaScriptCore extends CoreBase
 		Common.stage_width = this.main_stage.stageWidth;
 		
 		this.FPS = new FrameRate();
-		
-		this.autosave = new AutosaveManager();
 	}
 	
 	public function init_track() //display minimum items
