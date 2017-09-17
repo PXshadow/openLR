@@ -272,7 +272,6 @@ class B2Grid
 	}
 	public function remove_line(line:LineBase)
 	{
-		Common.gTextInfo.textInfo_F.text = line.ID;
 		if (this.lines[line.ID] == null) {
 			return;
 		}
