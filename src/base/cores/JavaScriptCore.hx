@@ -129,9 +129,9 @@ class JavaScriptCore extends CoreBase
 		Common.sim_pause_frame = -1;
 		Common.sim_slow_motion = false;
 		Common.sim_slow_motion_rate = 5;
-		this.visContainer.removeChild(this.timeline);
+		this.main_stage.removeChild(this.timeline);
 		this.timeline = new TimelineControl();
-		this.visContainer.addChild(this.timeline);
+		this.main_stage.addChild(this.timeline);
 		this.timeline.update();
 		this.timeline.x = (this.main_stage.stageWidth * 0.5) - (this.timeline.width * 0.5);
 		this.timeline.y = this.main_stage.stageHeight - this.timeline.height + 25;
