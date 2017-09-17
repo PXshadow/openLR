@@ -74,10 +74,10 @@ class ToolEraser extends ToolBase
 					if (_loc12 < Common.svar_eraser_size * _loc9 || _loc13 < Common.svar_eraser_size * _loc9 || _loc11 < Common.svar_eraser_size * _loc9 && _loc4 >= 0 && _loc4 <= 1)
 					{
 						if (Common.line_type == -1) {
-							Common.gGrid.remove_line(_loc1, _loc7, _loc5);
+							Common.gGrid.remove_line(_loc1);
 						} else {
 							if (_loc1.type == Common.line_type) {
-								Common.gGrid.remove_line(_loc1, _loc7, _loc5);
+								Common.gGrid.remove_line(_loc1);
 							}
 						}
 						try {

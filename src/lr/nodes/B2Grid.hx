@@ -103,7 +103,7 @@ class B2Grid
 	function remove_stroke(_list:Array<LineBase>) 
 	{
 		for (i in 0..._list.length) {
-			this.remove_line(_list[i], 0, 0);
+			this.remove_line(_list[i]);
 		}
 	}
 	
@@ -120,7 +120,7 @@ class B2Grid
 	{
 		if (lines.length > 0) {
 			Common.gGrid.add_to_history("sub", [B2Grid.undo_single[B2Grid.undo_single.length - 1]]);
-			this.remove_line(B2Grid.undo_single[B2Grid.undo_single.length - 1], 0, 0);
+			this.remove_line(B2Grid.undo_single[B2Grid.undo_single.length - 1]);
 		}
 	}
 	public function cache_stroke(_list:Array<LineBase>)
@@ -277,7 +277,7 @@ class B2Grid
 		}
 		grid[_x][_y].storage.push(line);
 	}
-	public function remove_line(line:LineBase, _x:Int, _y:Int)
+	public function remove_line(line:LineBase)
 	{
 		if (this.lines[line.ID] == null) {
 			return;
