@@ -139,6 +139,7 @@ class Toolbar extends Sprite
 			Common.gToolBase.disable();
 			icon.deselect();
 			tool = new ToolPencil();
+			tool.set_listeners();
 			icon = pencil;
 			icon.select();
 			swatch.select();
@@ -147,6 +148,7 @@ class Toolbar extends Sprite
 			Common.gToolBase.disable();
 			icon.deselect();
 			tool = new ToolLine();
+			tool.set_listeners();
 			icon = line;
 			icon.select();
 			swatch.select();
@@ -155,6 +157,7 @@ class Toolbar extends Sprite
 			Common.gToolBase.disable();
 			icon.deselect();
 			tool = new ToolEraser();
+			tool.set_listeners();
 			icon = eraser;
 			icon.select();
 			swatch.deselect();
