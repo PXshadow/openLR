@@ -372,6 +372,9 @@ class RiderBase extends Sprite
 					var tempList:Array<LineBase> = B2Grid.grid[_loc1][_loc2].storage2;
 					for (_loc8 in tempList)
 					{
+						if (_loc8 == null) {
+							continue;
+						}
 						_loc8.collide(_loc5);
 					}
 					if (B2Grid.grid[_loc1][_loc2].lowFrame == - 1) {
