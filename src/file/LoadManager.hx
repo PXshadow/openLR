@@ -20,9 +20,6 @@ import ui.inter.TextButton;
 import ui.tool.Toolbar;
 import global.Language;
 import file.ui.FileWindow;
-import lr.lines.types.LineAccel;
-import lr.lines.types.LineFloor;
-import lr.lines.types.LineScene;
 import lr.lines.LineBase;
 
 /**
@@ -150,23 +147,10 @@ class LoadManager extends Sprite
 			if (trackData.linesArray[i] == null) {
 				continue;
 			}
-			var _loc1:Dynamic;
-			if (trackData.linesArray[i][0] == 0) {
-				_loc1 = new LineFloor(trackData.linesArray[i][2], trackData.linesArray[i][3], trackData.linesArray[i][4], trackData.linesArray[i][5], trackData.linesArray[i][7]);
-				_loc1.ID = Common.sLineID;
-				Common.gTrack.add_vis_line(_loc1);
-				Common.gGrid.cache_stroke([_loc1]);
-			} else if (trackData.linesArray[i][0] == 1) {
-				_loc1 = new LineAccel(trackData.linesArray[i][2], trackData.linesArray[i][3], trackData.linesArray[i][4], trackData.linesArray[i][5], trackData.linesArray[i][7]);
-				_loc1.ID = Common.sLineID;
-				Common.gTrack.add_vis_line(_loc1);
-				Common.gGrid.cache_stroke([_loc1]);
-			} else if (trackData.linesArray[i][0] == 2) {
-				_loc1 = new LineScene(trackData.linesArray[i][2], trackData.linesArray[i][3], trackData.linesArray[i][4], trackData.linesArray[i][5], trackData.linesArray[i][7]);
-				_loc1.ID = Common.sLineID;
-				Common.gTrack.add_vis_line(_loc1);
-				Common.gGrid.cache_stroke([_loc1]);
-			}
+			var _loc1:LineBase = new LineBase(trackData.linesArray[i][0], trackData.linesArray[i][2], trackData.linesArray[i][3], trackData.linesArray[i][4], trackData.linesArray[i][5], trackData.linesArray[i][7]);
+			_loc1.ID = Common.sLineID;
+			Common.gTrack.add_vis_line(_loc1);
+			Common.gGrid.cache_stroke([_loc1]);
 			Common.sLineID += 1;
 		}
 		Common.gCode.toggle_Loader();
@@ -194,29 +178,14 @@ class LoadManager extends Sprite
 		Common.gCode.return_to_origin(this.trackData.startPosition.x, this.trackData.startPosition.y);
 		this.trackData.lines.reverse();
 		for (i in 0...trackData.lines.length) {
-			var _loc1:LineBase;
 			if (trackData.lines[i] == null) {
 				continue;
 			}
-			if (trackData.lines[i].type == 0) {
-				_loc1 = new LineFloor(trackData.lines[i].x1, trackData.lines[i].y1, trackData.lines[i].x2, trackData.lines[i].y2, trackData.lines[i].flipped);
-				_loc1.ID = trackData.lines[i].id;
-				_loc1.set_lim(this.get_lim_to_set(trackData.lines[i].leftExtended, trackData.lines[i].rightExtended));
-				Common.gTrack.add_vis_line(_loc1);
-				Common.gGrid.cache_stroke([_loc1]);
-			} else if (trackData.lines[i].type == 1) {
-				_loc1 = new LineAccel(trackData.lines[i].x1, trackData.lines[i].y1, trackData.lines[i].x2, trackData.lines[i].y2, trackData.lines[i].flipped);
-				_loc1.ID = trackData.lines[i].id;
-				_loc1.set_lim(this.get_lim_to_set(trackData.lines[i].leftExtended, trackData.lines[i].rightExtended));
-				Common.gTrack.add_vis_line(_loc1);
-				Common.gGrid.cache_stroke([_loc1]);
-			} else if (trackData.lines[i].type == 2) {
-				_loc1 = new LineScene(trackData.lines[i].x1, trackData.lines[i].y1, trackData.lines[i].x2, trackData.lines[i].y2, trackData.lines[i].flipped);
-				_loc1.ID = trackData.lines[i].id;
-				_loc1.set_lim(this.get_lim_to_set(trackData.lines[i].leftExtended, trackData.lines[i].rightExtended));
-				Common.gTrack.add_vis_line(_loc1);
-				Common.gGrid.cache_stroke([_loc1]);
-			}
+			var _loc1 = new LineBase(trackData.lines[i].type, trackData.lines[i].x1, trackData.lines[i].y1, trackData.lines[i].x2, trackData.lines[i].y2, trackData.lines[i].flipped);
+			_loc1.ID = trackData.lines[i].id;
+			_loc1.set_lim(this.get_lim_to_set(trackData.lines[i].leftExtended, trackData.lines[i].rightExtended));
+			Common.gTrack.add_vis_line(_loc1);
+			Common.gGrid.cache_stroke([_loc1]);
 			Common.sLineID = Std.int(trackData.lines[i].id + 1);
 		}
 		Common.gCode.toggle_Loader();

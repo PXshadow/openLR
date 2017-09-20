@@ -5,7 +5,7 @@ import lr.lines.Collision;
  * ...
  * @author Kaelan Evans
  */
-class None extends Collision
+class NoCollision extends Collision
 {
 
 	public function new() 

@@ -22,9 +22,10 @@ class Floor extends Collision
         var _loc7:Float = (_loc5 * parent.dx + _loc6 * parent.dy) * parent.invSqrDis;
         if (dot.dx * parent.nx + dot.dy * parent.ny > 0)
         {
+			trace(_loc7, parent._lim2);
             if (_loc4 > 0 && _loc4 < LineBase.zone && _loc7 >= parent._lim1 && _loc7 <= parent._lim2)
             {
-				super.collide(dot);
+				parent.render_collide();
                 dot.x = dot.x - _loc4 * parent.nx;
                 dot.y = dot.y - _loc4 * parent.ny;
                 dot.vx = dot.vx + parent.ny * dot.fr * _loc4 * (dot.vx < dot.x ? (1) : (-1));

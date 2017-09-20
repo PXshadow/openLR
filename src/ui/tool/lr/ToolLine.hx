@@ -8,9 +8,6 @@ import global.Common;
 import ui.tool.ToolBase;
 import ui.tool.IconBase;
 import lr.lines.LineBase;
-import lr.lines.types.LineAccel;
-import lr.lines.types.LineFloor;
-import lr.lines.types.LineScene;
 
 /**
  * ...
@@ -71,23 +68,10 @@ class ToolLine extends ToolBase
 			y2 = _locSnapCheck[1];
 		}
 		if (Common.get_distance(c, d) >= 1) {
-			var _loc1:LineBase;
-			if (Common.line_type == 0) {
-				_loc1 = new LineFloor(x1, y1, x2, y2, this.mod_shift);
-				_loc1.ID = Common.sLineID;
-				Common.gTrack.add_vis_line(_loc1);
-				Common.gGrid.cache_stroke([_loc1]);
-			} else if (Common.line_type == 1) {
-				_loc1 = new LineAccel(x1, y1, x2, y2, this.mod_shift);
-				_loc1.ID = Common.sLineID;
-				Common.gTrack.add_vis_line(_loc1);
-				Common.gGrid.cache_stroke([_loc1]);
-			} else if (Common.line_type == 2) {
-				_loc1 = new LineScene(x1, y1, x2, y2, this.mod_shift);
-				_loc1.ID = Common.sLineID;
-				Common.gTrack.add_vis_line(_loc1);
-				Common.gGrid.cache_stroke([_loc1]);
-			}
+			var _loc1:LineBase = new LineBase(Common.line_type, x1, y1, x2, y2, this.mod_shift);
+			_loc1.ID = Common.sLineID;
+			Common.gTrack.add_vis_line(_loc1);
+			Common.gGrid.cache_stroke([_loc1]);
 			Common.sLineID += 1;
 		}
 		valid = false;
@@ -126,23 +110,10 @@ class ToolLine extends ToolBase
 			y2 = _locSnapCheck[1];
 		}
 		if (Common.get_distance(c, d) >= 1) {
-			var _loc1:LineBase;
-			if (Common.line_type == 0) {
-				_loc1 = new LineFloor(x2, y2, x1, y1, !this.mod_shift);
-				_loc1.ID = Common.sLineID;
-				Common.gTrack.add_vis_line(_loc1);
-				Common.gGrid.cache_stroke([_loc1]);
-			} else if (Common.line_type == 1) {
-				_loc1 = new LineAccel(x2, y2, x1, y1, !this.mod_shift);
-				_loc1.ID = Common.sLineID;
-				Common.gTrack.add_vis_line(_loc1);
-				Common.gGrid.cache_stroke([_loc1]);
-			} else if (Common.line_type == 2) {
-				_loc1 = new LineScene(x2, y2, x1, y1, !this.mod_shift);
-				_loc1.ID = Common.sLineID;
-				Common.gTrack.add_vis_line(_loc1);
-				Common.gGrid.cache_stroke([_loc1]);
-			}
+			var _loc1:LineBase = new LineBase(Common.line_type, x2, y2, x1, y1, !this.mod_shift);
+			_loc1.ID = Common.sLineID;
+			Common.gTrack.add_vis_line(_loc1);
+			Common.gGrid.cache_stroke([_loc1]);
 			Common.sLineID += 1;
 		}
 		Common.gTrack.clear_preview();
