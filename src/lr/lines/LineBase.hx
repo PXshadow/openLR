@@ -151,8 +151,9 @@ class LineBase extends Shape
 			default :
 				this.phys = new NoCollision();
 		}
+		this.set_lim(_lim == -1 ? (0) : (_lim));
 	}
-	public function set_lim(input)
+	public function set_lim(input:Float)
 	{
 		switch (input)
         {
