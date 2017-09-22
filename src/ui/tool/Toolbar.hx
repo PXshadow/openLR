@@ -3,6 +3,7 @@ package ui.tool;
 import openfl.Lib;
 import openfl.display.Sprite;
 import openfl.events.KeyboardEvent;
+import openfl.ui.Keyboard;
 import openfl.events.MouseEvent;
 
 import ui.tool.ToolBase;
@@ -181,6 +182,11 @@ class Toolbar extends Sprite
 			swatch = swGreen;
 			swatch.select();
 		}
+		/*
+		if (e.keyCode == Keyboard.NUMBER_4) {
+			swatch.deselect();
+			Common.line_type = 3;
+		}*/
 	}
 	public function set_full_edit_mode() {
 		Common.svar_game_mode = GameState.edit;

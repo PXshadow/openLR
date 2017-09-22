@@ -71,6 +71,10 @@ class Track extends Sprite
 					this.graphics.lineTo(_line.x2 + (_line.nx * 5 - _line.dx * _line.invDst * 5), _line.y2 + (_line.ny * 5 - _line.dy * _line.invDst * 5));
 					this.graphics.lineTo(_line.x2 - _line.dx * _line.invDst * 5, _line.y2 - _line.dy * _line.invDst * 5);
 					this.graphics.endFill();
+				case LineType.Deccel :
+					this.graphics.lineStyle(2, 0x663300, 1, true, "normal", "round"); 
+					this.graphics.moveTo(x1 + _loc_3, y1 + _loc_4); 
+					this.graphics.lineTo(x2 + _loc_3, y2 + _loc_4);
 				case LineType.Scene: 
 					this.graphics.lineStyle(2, 0x00CC00, 1);
 					this.graphics.moveTo(_line.x1, _line.y1);

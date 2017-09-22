@@ -1,6 +1,7 @@
 package lr.lines;
 
 import lr.lines.collision.Acceleration;
+import lr.lines.collision.Decceleration;
 import lr.lines.collision.Floor;
 import lr.lines.collision.NoCollision;
 import lr.rider.phys.frames.anchors.CPoint;
@@ -22,6 +23,7 @@ import global.Common;
 	public var Floor:Int = 0;
 	public var Accel:Int = 1;
 	public var Scene:Int = 2;
+	public var Deccel:Int = 3;
 }
 class LineBase extends Shape
 {
@@ -111,7 +113,11 @@ class LineBase extends Shape
 				this.graphics.lineTo(x2 + _loc_3, y2 + _loc_4); 
 				this.graphics.lineTo(x2 + (nx * 5 - dx * invDst * 5), y2 + (ny * 5 - dy * invDst * 5)); 
 				this.graphics.lineTo(x2 - dx * invDst * 5, y2 - dy * invDst * 5); 
-				this.graphics.endFill(); 
+				this.graphics.endFill();
+			case LineType.Deccel :
+				this.graphics.lineStyle(2, 0x663300, 1, true, "normal", "round"); 
+				this.graphics.moveTo(x1 + _loc_3, y1 + _loc_4); 
+				this.graphics.lineTo(x2 + _loc_3, y2 + _loc_4);
 			case LineType.Scene :
 				this.graphics.lineStyle(1, 0x00CC00, 1);
 				this.graphics.moveTo(this.x1, this.y1); 
@@ -146,6 +152,8 @@ class LineBase extends Shape
 				this.phys = new Floor(this);
 			case LineType.Accel :
 				this.phys = new Acceleration(this);
+			case LineType.Deccel :
+				this.phys = new Decceleration(this);
 			case LineType.Scene :
 				return;
 			default :
