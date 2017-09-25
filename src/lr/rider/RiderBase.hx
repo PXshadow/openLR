@@ -344,6 +344,7 @@ class RiderBase extends Sprite
 		this.body.save_position();
 	}
 	public function enable_flag() {
+		this.store_location();
 		this.flag.alpha = 1;
 	}
 	public function disable_flag() {
