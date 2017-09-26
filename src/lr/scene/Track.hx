@@ -1,6 +1,6 @@
 package lr.scene;
 
-import lr.nodes.B2Grid;
+import lr.nodes.Grid;
 import lr.lines.LineBase;
 import openfl.display.Sprite;
 import openfl.geom.Point;
@@ -17,7 +17,7 @@ import global.Common;
  */
 class Track extends Sprite
 {
-	private var grid:B2Grid;
+	private var grid:Grid;
 	private var simManager:SimManager;
 	public var canvas:Sprite;
 	public var rider:Sprite;
@@ -26,7 +26,7 @@ class Track extends Sprite
 		super();
 		Common.gTrack = this;
 		Common.track_scale = 1;
-		this.grid = new B2Grid();
+		this.grid = new Grid();
 		this.simManager = new SimManager();
 		
 		this.canvas = new Sprite();

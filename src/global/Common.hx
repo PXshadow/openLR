@@ -18,7 +18,7 @@ import ui.tool.ToolBase;
 import ui.tool.timeline.TimelineControl;
 import ui.tool.Toolbar;
 import lr.scene.TextInfo;
-import lr.nodes.B2Grid;
+import lr.nodes.Grid;
 import lr.rider.RiderCamera;
 
 /**
@@ -51,7 +51,7 @@ class Common
 	public static var gVisContainer:Sprite;
 	public static var gToolBase:ToolBase;
 	public static var gToolCurrent:ToolBase;
-	public static var gGrid:B2Grid;
+	public static var gGrid:Grid;
 	public static var gSaveManager:SaveManager;
 	public static var gLoadManager:LoadManager;
 	public static var gSimManager:SimManager;

@@ -19,22 +19,27 @@ import lr.lines.LineBase;
  *
  * 
  */
-class B2Grid
+class Grid
 {
 	public var lines:Array<LineBase>;
+	
 	public static var grid:Map<Int, Map<Int, Storage>>;
+	public static var tile:Map<Int, Map<Int, Panel>>;
 	public static var undo_single:Array<LineBase>;
 	public static var redo_single:Array<LineBase>;
 	public static var history:Array<Array<Dynamic>>;
 	public static var history_index:Int = -1;
+	public static var lowFrame:Int = -1;
+	
 	public function new()
 	{
 		this.lines = new Array();
 		Common.gGrid = this;
-		B2Grid.grid = new Map();
-		B2Grid.undo_single = new Array();
-		B2Grid.redo_single = new Array();
-		B2Grid.history = new Array();
+		Grid.grid = new Map();
+		Grid.tile = new Map();
+		Grid.undo_single = new Array();
+		Grid.redo_single = new Array();
+		Grid.history = new Array();
 		Lib.current.stage.addEventListener(KeyboardEvent.KEY_UP, undo_redo);
 	}
 
@@ -63,34 +68,34 @@ class B2Grid
 		}
 	}
 	public function add_to_history(_act:String, _list:Array<LineBase>) {
-		if (B2Grid.history.length == 0) {
-			B2Grid.history.push([_act, _list]);
-		} else if (B2Grid.history_index + 1 == B2Grid.history.length) {
-			B2Grid.history.push([_act, _list]);
-		} else if (B2Grid.history_index == -1 && B2Grid.history.length > 0) {
-			B2Grid.history.insert(0, [_act, _list]);
+		if (Grid.history.length == 0) {
+			Grid.history.push([_act, _list]);
+		} else if (Grid.history_index + 1 == Grid.history.length) {
+			Grid.history.push([_act, _list]);
+		} else if (Grid.history_index == -1 && Grid.history.length > 0) {
+			Grid.history.insert(0, [_act, _list]);
 		} else {
-			B2Grid.history.insert(B2Grid.history_index, [_act, _list]);
+			Grid.history.insert(Grid.history_index, [_act, _list]);
 		}
-		B2Grid.history_index += 1;
+		Grid.history_index += 1;
 	}
 	function undo_action() {
-		if (B2Grid.history_index > -1) {
-			if (B2Grid.history[B2Grid.history_index][0] == "add") {
-				this.remove_stroke(B2Grid.history[B2Grid.history_index][1]);
-			} else if (B2Grid.history[B2Grid.history_index][0] == "sub") {
-				this.redo_stroke(B2Grid.history[B2Grid.history_index][1]);
+		if (Grid.history_index > -1) {
+			if (Grid.history[Grid.history_index][0] == "add") {
+				this.remove_stroke(Grid.history[Grid.history_index][1]);
+			} else if (Grid.history[Grid.history_index][0] == "sub") {
+				this.redo_stroke(Grid.history[Grid.history_index][1]);
 			}
-			B2Grid.history_index -= 1;
+			Grid.history_index -= 1;
 		}
 	}
 	function redo_action() {
-		if (B2Grid.history_index < B2Grid.history.length - 1) {
-			B2Grid.history_index += 1;
-			if (B2Grid.history[B2Grid.history_index][0] == "add") {
-				this.redo_stroke(B2Grid.history[B2Grid.history_index][1]);
-			} else if (B2Grid.history[B2Grid.history_index][0] == "sub") {
-				this.remove_stroke(B2Grid.history[B2Grid.history_index][1]);
+		if (Grid.history_index < Grid.history.length - 1) {
+			Grid.history_index += 1;
+			if (Grid.history[Grid.history_index][0] == "add") {
+				this.redo_stroke(Grid.history[Grid.history_index][1]);
+			} else if (Grid.history[Grid.history_index][0] == "sub") {
+				this.remove_stroke(Grid.history[Grid.history_index][1]);
 			}
 		}
 	}
@@ -109,8 +114,8 @@ class B2Grid
 	
 	function redo_line() 
 	{
-		if (B2Grid.redo_single.length > 0) {
-			var _loc1:LineBase = B2Grid.redo_single.pop();
+		if (Grid.redo_single.length > 0) {
+			var _loc1:LineBase = Grid.redo_single.pop();
 			Common.gTrack.add_vis_line(_loc1);
 			this.cache_stroke([_loc1]);
 			Common.gGrid.add_to_history("add", [_loc1]);
@@ -119,8 +124,8 @@ class B2Grid
 	function undo_line()
 	{
 		if (lines.length > 0) {
-			Common.gGrid.add_to_history("sub", [B2Grid.undo_single[B2Grid.undo_single.length - 1]]);
-			this.remove_line(B2Grid.undo_single[B2Grid.undo_single.length - 1]);
+			Common.gGrid.add_to_history("sub", [Grid.undo_single[Grid.undo_single.length - 1]]);
+			this.remove_line(Grid.undo_single[Grid.undo_single.length - 1]);
 		}
 	}
 	public function cache_stroke(_list:Array<LineBase>)
@@ -128,7 +133,7 @@ class B2Grid
 		try {
 			if (_list.length > 0) {
 				for (i in 0..._list.length) {
-					B2Grid.undo_single.push(_list[i]);
+					Grid.undo_single.push(_list[i]);
 				}
 				this.add_to_history("add", _list);
 			}
@@ -164,7 +169,7 @@ class B2Grid
 		Common.sGreenLineCount = 0;
 		Common.sLineID = 0;
 		Common.gTextInfo.update();
-		B2Grid.grid = new Map();
+		Grid.grid = new Map();
 	}
 	public function registerInGrid(line:LineBase) //This function is where the "boundaries" are produced
 	{
@@ -249,6 +254,22 @@ class B2Grid
 	}
 	public function register(line:LineBase, _x:Int, _y:Int) //This is where the line gets indexed in a 2D array
 	{
+		if (tile[_x] == null)
+		{
+			tile[_x] = new Map();
+		}
+		if (tile[_x][_y] == null)
+		{
+
+			tile[_x][_y] = new Panel(_x, _y);
+		}
+		var a = new Array<Int>();
+		a = [_x, _y];
+		//line.inject_grid_loc(a);
+		tile[_x][_y].inject_line(line);
+	}
+	public function register_visual(line:LineBase, _x:Int, _y:Int) 
+	{
 		if (grid[_x] == null)
 		{
 			grid[_x] = new Map();
@@ -277,8 +298,8 @@ class B2Grid
 		}
 		this.remove_from_grid(line);
 		Common.gTrack.remove_line(line);
-		B2Grid.undo_single.remove(line);
-		B2Grid.redo_single.push(line);
+		Grid.undo_single.remove(line);
+		Grid.redo_single.push(line);
 		this.lines[line.ID] = null;
 		if (line.type == 0)
 		{
@@ -301,9 +322,9 @@ class B2Grid
 	{
 		for (i in 0...line.gridList.length)
 		{
-			B2Grid.grid[line.gridList[i][0]][line.gridList[i][1]].remove_line(line);
-			if (B2Grid.grid[line.gridList[i][0]][line.gridList[i][1]].primary.length == 0) {
-				B2Grid.grid[line.gridList[i][0]][line.gridList[i][1]].lowFrame = -1;
+			Grid.grid[line.gridList[i][0]][line.gridList[i][1]].remove_line(line);
+			if (Grid.grid[line.gridList[i][0]][line.gridList[i][1]].primary.length == 0) {
+				Grid.grid[line.gridList[i][0]][line.gridList[i][1]].lowFrame = -1;
 			}
 		}
 	}

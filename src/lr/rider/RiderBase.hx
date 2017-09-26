@@ -12,7 +12,7 @@ import openfl.events.KeyboardEvent;
 import global.Common;
 import global.RiderManager;
 import lr.lines.LineBase;
-import lr.nodes.B2Grid;
+import lr.nodes.Grid;
 import lr.rider.RiderRecorder;
 import lr.rider.objects.FlagMarker;
 import lr.rider.objects.VisBase;
@@ -359,18 +359,18 @@ class RiderBase extends Sprite
 			for (_loc4 in -1...2)
 			{
 				var _loc1 = (_loc6.x + _loc4);
-				if (B2Grid.grid[_loc1] == null)
+				if (Grid.grid[_loc1] == null)
 				{
 					continue;
 				}
 				for (_loc3 in -1...2)
 				{
 					var _loc2 = (_loc6.y + _loc3);
-					if (B2Grid.grid[_loc1][_loc2] == null)
+					if (Grid.grid[_loc1][_loc2] == null)
 					{
 						continue;
 					}
-					var tempList:Array<LineBase> = B2Grid.grid[_loc1][_loc2].secondary;
+					var tempList:Array<LineBase> = Grid.grid[_loc1][_loc2].secondary;
 					for (_loc8 in tempList)
 					{
 						if (_loc8 == null) {
@@ -378,10 +378,10 @@ class RiderBase extends Sprite
 						}
 						_loc8.collide(_loc5);
 					}
-					if (B2Grid.grid[_loc1][_loc2].lowFrame == - 1) {
-						B2Grid.grid[_loc1][_loc2].lowFrame = Common.sim_frames;
-					} else if (Common.sim_frames <  B2Grid.grid[_loc1][_loc2].lowFrame) {
-						B2Grid.grid[_loc1][_loc2].lowFrame = Common.sim_frames;
+					if (Grid.grid[_loc1][_loc2].lowFrame == - 1) {
+						Grid.grid[_loc1][_loc2].lowFrame = Common.sim_frames;
+					} else if (Common.sim_frames <  Grid.grid[_loc1][_loc2].lowFrame) {
+						Grid.grid[_loc1][_loc2].lowFrame = Common.sim_frames;
 					}
 				}
 			}
