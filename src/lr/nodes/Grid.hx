@@ -245,9 +245,9 @@ class Grid
 				register(line, _loc1.x, _loc1.y);
 				continue;
 			} // end if
-			if (GridBase.lowFrame != -1) {
-				Common.gRiderManager.update_riders(GridBase.lowFrame);
-				GridBase.lowFrame = -1;
+			if (Grid.lowFrame != -1) {
+				Common.gRiderManager.update_riders(Grid.lowFrame);
+				Grid.lowFrame = -1;
 			}
 			return;
 		}
@@ -283,10 +283,10 @@ class Grid
 		a = [_x, _y];
 		line.inject_grid_loc(a);
 		if (grid[_x][_y].lowFrame != -1) {
-			if (GridBase.lowFrame == -1) {
-				GridBase.lowFrame = grid[_x][_y].lowFrame;
-			} else if (grid[_x][_y].lowFrame < GridBase.lowFrame ) {
-				GridBase.lowFrame = grid[_x][_y].lowFrame;
+			if (Grid.lowFrame == -1) {
+				Grid.lowFrame = grid[_x][_y].lowFrame;
+			} else if (grid[_x][_y].lowFrame < Grid.lowFrame ) {
+				Grid.lowFrame = grid[_x][_y].lowFrame;
 			}
 		}
 		grid[_x][_y].inject_line(line);
