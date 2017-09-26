@@ -34,24 +34,6 @@ class Track extends Sprite
 		this.rider = new Sprite();
 		this.addChild(this.rider);
 	}
-	public function add_vis_line(line:LineBase) //This is the function that must be called when adding a line. Do not take shortcuts!
-	{
-		Common.gGrid.massLineIndex(line);
-		this.canvas.addChild(grid.lines[line.ID]);
-		if (!Common.svar_sim_running) {
-			if (!Common.cvar_preview_mode) {
-				grid.lines[line.ID].render("edit");
-			} else {
-				grid.lines[line.ID].render("play");
-			}
-		} else {
-			if (!Common.cvar_color_play) {
-				grid.lines[line.ID].render("play");
-			} else {
-				grid.lines[line.ID].render("edit");
-			}
-		}
-	}
 	public function renderPreview(_line:LineBase)
 	{
 		this.graphics.clear();

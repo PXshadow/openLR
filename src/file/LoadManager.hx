@@ -149,7 +149,7 @@ class LoadManager extends Sprite
 			}
 			var _loc1:LineBase = new LineBase(trackData.linesArray[i][0], trackData.linesArray[i][2], trackData.linesArray[i][3], trackData.linesArray[i][4], trackData.linesArray[i][5], trackData.linesArray[i][7]);
 			_loc1.ID = Common.sLineID;
-			Common.gTrack.add_vis_line(_loc1);
+			Common.gGrid.cacheLine(_loc1);
 			Common.gGrid.cache_stroke([_loc1]);
 			Common.sLineID += 1;
 		}
@@ -184,7 +184,7 @@ class LoadManager extends Sprite
 			var _loc1 = new LineBase(trackData.lines[i].type, trackData.lines[i].x1, trackData.lines[i].y1, trackData.lines[i].x2, trackData.lines[i].y2, trackData.lines[i].flipped);
 			_loc1.ID = trackData.lines[i].id;
 			_loc1.set_lim(this.get_lim_to_set(trackData.lines[i].leftExtended, trackData.lines[i].rightExtended));
-			Common.gTrack.add_vis_line(_loc1);
+			Common.gGrid.cacheLine(_loc1);
 			Common.gGrid.cache_stroke([_loc1]);
 			Common.sLineID = Std.int(trackData.lines[i].id + 1);
 		}

@@ -123,6 +123,7 @@ class Common
 	public static var svar_frame_rate:Float;
 	public static var svar_framerate_avg_rate:Int = 60;
 	public static var svar_gridsize:Int = 14;
+	public static var svar_tilesize:Int = 100;
 	public static var svar_eraser_size:Int = 5;
 	public static var svar_sim_running:Bool = false;
 	public static var svar_game_mode:Int = GameState.title;
@@ -168,6 +169,15 @@ class Common
 		posObject.y = Math.floor(y / Common.svar_gridsize);
 		posObject.gx = x - Common.svar_gridsize * posObject.x;
 		posObject.gy = y - Common.svar_gridsize * posObject.y;
+		return(posObject);
+	}
+	public static function tilePos(x:Float, y:Float):Object
+	{
+		var posObject:Object = new Object();
+		posObject.x = Math.floor(x / Common.svar_tilesize);
+		posObject.y = Math.floor(y / Common.svar_tilesize);
+		posObject.gx = x - Common.svar_tilesize * posObject.x;
+		posObject.gy = y - Common.svar_tilesize * posObject.y;
 		return(posObject);
 	}
 	public static function time(_loc0:Int):String 

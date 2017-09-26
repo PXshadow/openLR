@@ -70,7 +70,7 @@ class ToolLine extends ToolBase
 		if (Common.get_distance(c, d) >= 1) {
 			var _loc1:LineBase = new LineBase(Common.line_type, x1, y1, x2, y2, this.mod_shift);
 			_loc1.ID = Common.sLineID;
-			Common.gTrack.add_vis_line(_loc1);
+			Common.gGrid.cacheLine(_loc1);
 			Common.gGrid.cache_stroke([_loc1]);
 			Common.sLineID += 1;
 		}
@@ -112,7 +112,7 @@ class ToolLine extends ToolBase
 		if (Common.get_distance(c, d) >= 1) {
 			var _loc1:LineBase = new LineBase(Common.line_type, x2, y2, x1, y1, !this.mod_shift);
 			_loc1.ID = Common.sLineID;
-			Common.gTrack.add_vis_line(_loc1);
+			Common.gGrid.cacheLine(_loc1);
 			Common.gGrid.cache_stroke([_loc1]);
 			Common.sLineID += 1;
 		}

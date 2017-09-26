@@ -102,7 +102,7 @@ class Grid
 	function redo_stroke(_list:Array<LineBase>) 
 	{
 		for (i in 0..._list.length) {
-			Common.gTrack.add_vis_line(_list[i]);
+			Common.gGrid.cacheLine(_list[i]);
 		}
 	}
 	function remove_stroke(_list:Array<LineBase>) 
@@ -116,7 +116,7 @@ class Grid
 	{
 		if (Grid.redo_single.length > 0) {
 			var _loc1:LineBase = Grid.redo_single.pop();
-			Common.gTrack.add_vis_line(_loc1);
+			Common.gGrid.cacheLine(_loc1);
 			this.cache_stroke([_loc1]);
 			Common.gGrid.add_to_history("add", [_loc1]);
 		}
@@ -141,25 +141,6 @@ class Grid
 			trace ("failed line cache");
 		}
 	}
-	public function massLineIndex(line:LineBase)
-	{
-		this.lines[line.ID] = line;
-		if (line.type == 0)
-		{
-			Common.sBLueLineCount += 1;
-		}
-		else if (line.type == 1)
-		{
-			Common.sRedLineCount += 1;
-		}
-		else if (line.type == 2)
-		{
-			Common.sGreenLineCount += 1;
-		}
-		Common.sLineCount += 1;
-		Common.gTextInfo.update();
-		this.registerInGrid(line);
-	}
 	public function new_grid()
 	{
 		this.lines = new Array();
@@ -171,7 +152,26 @@ class Grid
 		Common.gTextInfo.update();
 		Grid.grid = new Map();
 	}
-	public function registerInGrid(line:LineBase) //This function is where the "boundaries" are produced
+	public function cacheLine(_line:LineBase) {
+		if (_line.type == LineType.Floor)
+		{
+			Common.sBLueLineCount += 1;
+		}
+		else if (_line.type == LineType.Accel)
+		{
+			Common.sRedLineCount += 1;
+		}
+		else if (_line.type == LineType.Scene)
+		{
+			Common.sGreenLineCount += 1;
+		}
+		Common.sLineCount += 1;
+		this.lines[_line.ID] = _line;
+		this.registerInCollisionGrid(_line);
+		this.registerInTileGrid(_line);
+		Common.gTextInfo.update();
+	}
+	private function registerInCollisionGrid(line:LineBase) //This function is where the "boundaries" are produced
 	{
 		var _loc1:Object = Common.gridPos(line.x1, line.y1);
 		var _loc10:Object = Common.gridPos(line.x2, line.y2);
@@ -252,23 +252,7 @@ class Grid
 			return;
 		}
 	}
-	public function register(line:LineBase, _x:Int, _y:Int) //This is where the line gets indexed in a 2D array
-	{
-		if (tile[_x] == null)
-		{
-			tile[_x] = new Map();
-		}
-		if (tile[_x][_y] == null)
-		{
-
-			tile[_x][_y] = new Panel(_x, _y);
-		}
-		var a = new Array<Int>();
-		a = [_x, _y];
-		//line.inject_grid_loc(a);
-		tile[_x][_y].inject_line(line);
-	}
-	public function register_visual(line:LineBase, _x:Int, _y:Int) 
+	private function register(line:LineBase, _x:Int, _y:Int) 
 	{
 		if (grid[_x] == null)
 		{
@@ -290,6 +274,99 @@ class Grid
 			}
 		}
 		grid[_x][_y].inject_line(line);
+	}
+	private function registerInTileGrid(line:LineBase) //This function is where the "boundaries" are produced
+	{
+		var _loc1:Object = Common.tilePos(line.x1, line.y1);
+		var _loc10:Object = Common.tilePos(line.x2, line.y2);
+		var _loc13:Int = line.dx > 0 ? (_loc10.x) : (_loc1.x);
+		var _loc11:Int = line.dx > 0 ? (_loc1.x) : (_loc10.x);
+		var _loc7:Int = line.dy > 0 ? (_loc10.y) : (_loc1.y);
+		var _loc12:Int = line.dy > 0 ? (_loc1.y) : (_loc10.y);
+		if (line.dx == 0 && line.dy == 0 || _loc1.x == _loc10.x && _loc1.y == _loc10.y)
+		{
+			this.register_visual(line, _loc1.x, _loc1.y);
+			return;
+		}
+		else
+		{
+			this.register_visual(line, _loc1.x, _loc1.y);
+		}
+		var _loc4:Float = line.x1;
+		var _loc3:Float = line.y1;
+		var _loc8:Float = 1 / line.dx;
+		var _loc9:Float = 1 / line.dy;
+		var difX;
+		while (true)
+		{
+			var _loc5;
+			if (_loc1.x < 0)
+			{
+				difX = line.dx > 0 ? (Common.svar_tilesize + _loc1.gx) : (-Common.svar_tilesize - _loc1.gx);
+			}
+			else
+			{
+				difX = line.dx > 0 ? (Common.svar_tilesize - _loc1.gx) : (-(_loc1.gx + 1));
+			}
+			if (_loc1.y < 0)
+			{
+				_loc5 = line.dy > 0 ? (Common.svar_tilesize + _loc1.gy) : (-Common.svar_tilesize - _loc1.gy);
+			}
+			else
+			{
+				_loc5 = line.dy > 0 ? (Common.svar_tilesize - _loc1.gy) : (-(_loc1.gy + 1));
+			}
+			if (line.dx == 0)
+			{
+				_loc3 = _loc3 + _loc5;
+			}
+			else if (line.dy == 0)
+			{
+				_loc4 = _loc4 + difX;
+			}
+			else
+			{
+				var _loc6 = _loc3 + line.dy * difX * _loc8;
+				if (Math.abs(_loc6 - _loc3) < Math.abs(_loc5))
+				{
+					_loc4 = _loc4 + difX;
+					_loc3 = _loc6;
+				}
+				else if (Math.abs(_loc6 - _loc3) == Math.abs(_loc5))
+				{
+					_loc4 = _loc4 + difX;
+					_loc3 = _loc3 + _loc5;
+				}
+				else
+				{
+					_loc4 = _loc4 + line.dx * _loc5 * _loc9;
+					_loc3 = _loc3 + _loc5;
+				} // end else if
+			} // end else if
+			_loc1 = Common.tilePos(_loc4, _loc3);
+			if (_loc1.x >= _loc11 && _loc1.x <= _loc13 && _loc1.y >= _loc12 && _loc1.y <= _loc7)
+			{
+				this.register_visual(line, _loc1.x, _loc1.y);
+				continue;
+			} // end if
+			return;
+		}
+	}
+	private function register_visual(line:LineBase, _x:Int, _y:Int) //This is where the line gets indexed in a 2D array
+	{
+		if (tile[_x] == null)
+		{
+			tile[_x] = new Map();
+		}
+		if (tile[_x][_y] == null)
+		{
+
+			tile[_x][_y] = new Panel(_x, _y);
+		}
+		var a = new Array<Int>();
+		a = [_x, _y];
+		line.inject_grid_vis_loc(a);
+		tile[_x][_y].inject_line(line);
 	}
 	public function remove_line(line:LineBase)
 	{
@@ -323,9 +400,9 @@ class Grid
 		for (i in 0...line.gridList.length)
 		{
 			Grid.grid[line.gridList[i][0]][line.gridList[i][1]].remove_line(line);
-			if (Grid.grid[line.gridList[i][0]][line.gridList[i][1]].primary.length == 0) {
-				Grid.grid[line.gridList[i][0]][line.gridList[i][1]].lowFrame = -1;
-			}
+		}
+		for (j in 0...line.gridVisList.length) {
+			Grid.tile[line.gridVisList[j][0]][line.gridVisList[j][1]].remove_line(line);
 		}
 	}
 	public function snap(x:Float, y:Float, vert:Int, invert:Bool):Array<Dynamic> //if mouse is close enough to line end when mouse down, line will snap to line
