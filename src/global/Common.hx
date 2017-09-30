@@ -71,8 +71,8 @@ class Common
 	public static var sLineID:Int = 0;
 	
 	public static var track_scale:Float;
-	public static var track_scale_max:Float = 24;
-	public static var track_scale_min:Float = 0.4;
+	public static var track_scale_max:Float = 75;
+	public static var track_scale_min:Float = 0.5;
 	public static var track_start_x:Float = 0;
 	public static var track_start_y:Float = 0;
 	public static var track_last_pos_x:Float = 0;
