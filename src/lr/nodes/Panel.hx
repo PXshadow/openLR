@@ -62,7 +62,9 @@ class Panel
 		}
 	}
 	public function remove_line(_line:LineBase) {
-		this.frame.removeChild(_line);
+		for (a in _line.visList) {
+			this.frame.removeChild(a);
+		}
 		this.primary.remove(_line);
 	}
 }
