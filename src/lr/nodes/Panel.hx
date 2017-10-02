@@ -1,5 +1,6 @@
 package lr.nodes;
 
+import lr.lines.LineVis;
 import openfl.display.Sprite;
 
 import global.Common;
@@ -10,7 +11,7 @@ import lr.nodes.Grid;
  * ...
  * @author Kaelan Evans
  */
-class Panel extends Sprite
+class Panel
 {
 	public static var _width:Int = 100;
 	public static var _height:Int = 100;
@@ -18,26 +19,33 @@ class Panel extends Sprite
 	public var primary:Array<LineBase>;
 	public var lowFrame = -1;
 	
-	private var offset_x:Int;
-	private var offset_y:Int;
+	private var offset_x:Int = 0;
+	private var offset_y:Int = 0;
+	
+	private var frame:Sprite;
 	
 	public function new(_x:Int, _y:Int) 
 	{
-		super();
+		this.offset_y = _y * Panel._height;
+		this.offset_x = _x * Panel._width;
 		
-		this.offset_x = _x;
-		this.offset_y = _y;
+		this.frame = new Sprite();
+		Common.gTrack.canvas.addChild(this.frame);
+		
+		this.frame.x = this.offset_x;
+		this.frame.y = this.offset_y;
 		
 		this.primary = new Array();
-		
-		Common.gTrack.canvas.addChild(this);
-		
-		this.cacheAsBitmap = true;
 	}
 	public function inject_line(_line:LineBase) {
-		var _loc1:LineBase = _line;
-		this.addChild(_loc1);
 		
+		var _locVis:LineVis = new LineVis(_line.type, _line.x1, _line.y1, _line.x2, _line.y2, _line.inv, _line.invDst, _line.nx, _line.ny, _line.dx, _line.dy);
+		_line.visList.push(_locVis);
+		
+		this.frame.addChild(_locVis);
+		
+		_locVis.x = _locVis.x - this.offset_x;
+		_locVis.y = _locVis.y - this.offset_y;
 		
 		if (!Common.svar_sim_running) {
 			if (!Common.cvar_preview_mode) {
@@ -54,7 +62,7 @@ class Panel extends Sprite
 		}
 	}
 	public function remove_line(_line:LineBase) {
-		this.removeChild(_line);
+		this.frame.removeChild(_line);
 		this.primary.remove(_line);
 	}
 }

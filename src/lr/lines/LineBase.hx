@@ -28,6 +28,7 @@ import global.Common;
 class LineBase extends Shape
 {
 	public static var zone = 10;
+	public var mov:Int = 0;
 	public var x1:Float;
 	public var y1:Float;
 	public var x2:Float;
@@ -60,10 +61,12 @@ class LineBase extends Shape
 	public var accy:Float;
 	public var acc:Float = 0.1;
 	public var phys:Collision;
+	public var visList:Array<LineVis>;
 	
 	public function new(_type:Int, _x1:Float, _y1:Float, _x2:Float, _y2:Float, _inv:Bool, _lim = -1)
 	{
 		super();
+		this.visList = new Array();
 		this.gridList = new Array();
 		this.gridVisList = new Array();
 		this.type = _type;
@@ -85,49 +88,9 @@ class LineBase extends Shape
 	}
 	public function render(con:String)
 	{
-		this.graphics.clear();
-		if (con != "edit") {
-			this.graphics.lineStyle(1, 0, 1);
-			this.graphics.lineStyle(2, 0, 1, true, "normal", "round"); 
-			this.graphics.moveTo(this.x1, this.y1); 
-			this.graphics.lineTo(this.x2, this.y2);
-			return;
+		for (a in this.visList) {
+			a.render(con);
 		}
-		var _loc_3:Float; 
-		var _loc_4:Float; 
-		_loc_3 = nx > 0 ? (Math.ceil(nx)) : (Math.floor(nx)); 
-		_loc_4 = ny > 0 ? (Math.ceil(ny)) : (Math.floor(ny)); 
-		switch (this.type) {
-			case LineType.None :
-				this.graphics.lineStyle(1, 0xFF0000, 1);
-				this.graphics.moveTo(this.x1, this.y1); 
-				this.graphics.lineTo(this.x2, this.y2);
-				return;
-			case LineType.Floor :
-				this.graphics.lineStyle(2, 0x0066FF, 1, true, "normal", "round"); 
-				this.graphics.moveTo(x1 + _loc_3, y1 + _loc_4); 
-				this.graphics.lineTo(x2 + _loc_3, y2 + _loc_4); 
-			case LineType.Accel :
-				this.graphics.lineStyle(2, 0xCC0000, 1, true, "normal", "round"); 
-				this.graphics.beginFill(0xCC0000, 1); 
-				this.graphics.moveTo(x1 + _loc_3, y1 + _loc_4); 
-				this.graphics.lineTo(x2 + _loc_3, y2 + _loc_4); 
-				this.graphics.lineTo(x2 + (nx * 5 - dx * invDst * 5), y2 + (ny * 5 - dy * invDst * 5)); 
-				this.graphics.lineTo(x2 - dx * invDst * 5, y2 - dy * invDst * 5); 
-				this.graphics.endFill();
-			case LineType.Deccel :
-				this.graphics.lineStyle(2, 0x663300, 1, true, "normal", "round"); 
-				this.graphics.moveTo(x1 + _loc_3, y1 + _loc_4); 
-				this.graphics.lineTo(x2 + _loc_3, y2 + _loc_4);
-			case LineType.Scene :
-				this.graphics.lineStyle(1, 0x00CC00, 1);
-				this.graphics.moveTo(this.x1, this.y1); 
-				this.graphics.lineTo(this.x2, this.y2);
-				return;
-		}
-		this.graphics.lineStyle(2, 0, 1, true, "normal", "round"); 
-		this.graphics.moveTo(x1, y1); 
-		this.graphics.lineTo(x2, y2);
 	}
 	function calculateConstants() 
 	{
