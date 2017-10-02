@@ -365,6 +365,7 @@ class Grid
 			if (_x >= Common.gTrack.tile_tl.x - 1 || _x <= Common.gTrack.tile_br.y + 1) {
 				if (_y >= Common.gTrack.tile_tl.y - 1 || _y <= Common.gTrack.tile_br.y + 1) {
 					Common.gTrack.renderList.push(tile[_x][_y]);
+					tile[_x][_y].addToStage();
 				}
 			}
 		}

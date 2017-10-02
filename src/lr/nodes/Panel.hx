@@ -25,6 +25,8 @@ class Panel
 	public var panelPosX:Int;
 	public var panelPosY:Int;
 	
+	public var onStage:Bool = false;
+	
 	public var frame:Sprite;
 	
 	public function new(_x:Int, _y:Int) 
@@ -35,12 +37,15 @@ class Panel
 		this.offset_x = _x * Panel._width;
 		
 		this.frame = new Sprite();
-		Common.gTrack.canvas.addChild(this.frame);
 		
 		this.frame.x = this.offset_x;
 		this.frame.y = this.offset_y;
 		
 		this.primary = new Array();
+	}
+	public function addToStage() {
+		Common.gTrack.canvas.addChild(this.frame);
+		this.onStage = true;
 	}
 	public function inject_line(_line:LineBase) {
 		

@@ -83,16 +83,20 @@ class Track extends Sprite
 	{
 		for (a in this.renderList) {
 			if (a.panelPosX < this.tile_tl.x - 1) {
-				a.frame.visible = false;
+				Common.gTrack.canvas.removeChild(a.frame);
+				a.onStage = false;
 				this.renderList.remove(a);
 			} else if (a.panelPosX > this.tile_br.x + 1) {
-				a.frame.visible = false;
+				Common.gTrack.canvas.removeChild(a.frame);
+				a.onStage = false;
 				this.renderList.remove(a);
 			} else if (a.panelPosY < this.tile_tl.y - 1) {
-				a.frame.visible = false;
+				Common.gTrack.canvas.removeChild(a.frame);
+				a.onStage = false;
 				this.renderList.remove(a);
 			} else if (a.panelPosY > this.tile_br.y + 1) {
-				a.frame.visible = false;
+				Common.gTrack.canvas.removeChild(a.frame);
+				a.onStage = false;
 				this.renderList.remove(a);
 			}
 		}
@@ -108,11 +112,12 @@ class Track extends Sprite
 				if (Grid.tile[b][c] == null) {
 					continue;
 				}
-				if (Grid.tile[b][c].frame.visible = true) {
+				if (Grid.tile[b][c].onStage == true) {
 					continue;
 				} else {
 					this.renderList.push(Grid.tile[b][c]);
-					Grid.tile[b][c].frame.visible = true;
+					Grid.tile[b][c].onStage = true;
+					Common.gTrack.canvas.addChild(Grid.tile[b][c].frame);
 				}
 			}
 		}
