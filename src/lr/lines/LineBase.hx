@@ -73,6 +73,7 @@ class LineBase extends Shape
 		y2 = _y2;
 		inv = _inv;
 		this.calculateConstants();
+		this.set_lim(_lim == -1 ? (0) : (_lim));
 	}
 	public function inject_grid_loc(a:Array<Int>)
 	{
@@ -159,7 +160,6 @@ class LineBase extends Shape
 			default :
 				this.phys = new NoCollision();
 		}
-		this.set_lim(_lim == -1 ? (0) : (_lim));
 	}
 	public function set_lim(input:Float)
 	{
