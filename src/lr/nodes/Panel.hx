@@ -22,10 +22,15 @@ class Panel
 	private var offset_x:Int = 0;
 	private var offset_y:Int = 0;
 	
-	private var frame:Sprite;
+	public var panelPosX:Int;
+	public var panelPosY:Int;
+	
+	public var frame:Sprite;
 	
 	public function new(_x:Int, _y:Int) 
 	{
+		this.panelPosX = _x;
+		this.panelPosY = _y;
 		this.offset_y = _y * Panel._height;
 		this.offset_x = _x * Panel._width;
 		

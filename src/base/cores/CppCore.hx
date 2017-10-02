@@ -4,6 +4,7 @@ import openfl.Lib;
 import openfl.display.Sprite;
 import openfl.events.Event;
 import openfl.display.Stage;
+import openfl.geom.Point;
 
 //third party
 
@@ -230,6 +231,9 @@ class CppCore extends CoreBase
 		
 		this.timeline.x = (this.main_stage.stageWidth * 0.5) - (this.timeline.width * 0.5);
 		this.timeline.y = this.main_stage.stageHeight - this.timeline.height + 25;
+		
+		Common.stage_tl = new Point(0, 0);
+		Common.stage_br = new Point(Lib.current.stage.stageWidth, Lib.current.stage.stageHeight);
 	}
 	override public function align() {
 		this.visContainer.x = this.visContainer.y = 0;
@@ -257,6 +261,9 @@ class CppCore extends CoreBase
 		
 		this.timeline.x = (this.main_stage.stageWidth * 0.5) - (this.timeline.width * 0.5);
 		this.timeline.y = this.main_stage.stageHeight - this.timeline.height + 25;
+		
+		Common.stage_tl = new Point(0, 0);
+		Common.stage_br = new Point(Lib.current.stage.stageWidth, Lib.current.stage.stageHeight);
 	}
 	override public function setScale() {
 		this.timeline.scaleX = this.timeline.scaleY = Common.cvar_toolbar_scale;
