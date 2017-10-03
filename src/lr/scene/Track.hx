@@ -47,11 +47,9 @@ class Track extends Sprite
 		this.addChild(this.rider);
 		
 		this.renderList = new Array();
-		
-		this.addEventListener(Event.ENTER_FRAME, this.check_visibility);
 	}
 	
-	private function check_visibility(e:Event):Void 
+	public function check_visibility():Void 
 	{
 		var _locStageTL:Point = this.globalToLocal(Common.stage_tl);
 		var _locStageBR:Point = this.globalToLocal(Common.stage_br);

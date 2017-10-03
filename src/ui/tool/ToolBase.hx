@@ -108,6 +108,7 @@ class ToolBase
 	public function mMouseMove(e:MouseEvent) {
 		Common.gRiderManager.x = Common.gTrack.x;
 		Common.gRiderManager.y = Common.gTrack.y;
+		Common.gTrack.check_visibility();
 	}
 	public function rMouseUp(e:MouseEvent):Void 
 	{
