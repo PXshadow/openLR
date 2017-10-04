@@ -61,7 +61,6 @@ class Track extends Sprite
 			this.local_br = _locStageBR;
 			this.tile_tl = new Point(_locTileTL.x, _locTileTL.y);
 			this.tile_br = new Point(_locTileBR.x, _locTileBR.y);
-			trace(this.local_tl, this.local_br, "was null");
 		} else if (_locStageBR.x != this.local_br.x || _locStageBR.y != this.local_br.y || this.local_tl.x != _locStageTL.x || this.local_tl.y != _locStageTL.y) {
 			if (_locTileBR.x != this.tile_br.x || _locTileBR.y != this.tile_br.y || this.tile_tl.x != _locTileTL.x || this.tile_tl.y != _locTileTL.y) {
 				this.local_tl = _locStageTL;
