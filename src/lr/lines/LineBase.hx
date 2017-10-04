@@ -203,18 +203,10 @@ class LineBase extends Shape
 		this.phys.collide(dot);
 	}
 	public function render_collide() {
-		if (Common.sim_frames == 0 || Common.sim_frames < this.lowest_collided_frame) {
-			this.lowest_collided_frame = Common.sim_frames;
-		}
 		if (Common.cvar_hit_test) {
-			this.graphics.clear();
-			if (this.type == 0) {
-				this.graphics.lineStyle(2, 0x0066FF, 1, true, "normal", "round");
-			} else if (this.type == 1) {
-				this.graphics.lineStyle(2, 0xCC0000, 1, true, "normal", "round");
+			for (a in this.visList) {
+				a.renderCollision();
 			}
-			this.graphics.moveTo(x1, y1);
-			this.graphics.lineTo(x2, y2);
 		}
 	}
 }

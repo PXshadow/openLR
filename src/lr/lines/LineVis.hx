@@ -82,4 +82,14 @@ class LineVis extends Shape
 		this.graphics.moveTo(x1, y1); 
 		this.graphics.lineTo(x2, y2);
 	}
+	public function renderCollision() {
+		this.graphics.clear();
+		if (this.type == 0) {
+			this.graphics.lineStyle(2, 0x0066FF, 1, true, "normal", "round");
+		} else if (this.type == 1) {
+			this.graphics.lineStyle(2, 0xCC0000, 1, true, "normal", "round");
+		}
+		this.graphics.moveTo(x1, y1);
+		this.graphics.lineTo(x2, y2);
+	}
 }
