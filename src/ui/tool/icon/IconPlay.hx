@@ -36,6 +36,8 @@ class IconPlay extends IconBase
 		
 		Common.gRiderManager.x = Common.gTrack.x;
 		Common.gRiderManager.y = Common.gTrack.y;
+		
+		Common.gTrack.check_visibility();
 	}
 	
 }
