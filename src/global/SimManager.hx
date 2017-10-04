@@ -62,6 +62,12 @@ class SimManager
 	}
 	function update_sim()
 	{
+		if (Common.cvar_hit_test) {
+			for (a in Common.gGrid.lit_lines) {
+				a.unrender_collide();
+			}
+			Common.gGrid.lit_lines = new Array();
+		}
 		if (!this.fast_forward && !this.rewind) {
 			Common.gRiderManager.advance_riders();
 			++Common.sim_frames;

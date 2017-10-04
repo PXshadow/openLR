@@ -62,6 +62,7 @@ class LineBase extends Shape
 	public var acc:Float = 0.1;
 	public var phys:Collision;
 	public var visList:Array<LineVis>;
+	public var hit:Bool = false;
 	
 	public function new(_type:Int, _x1:Float, _y1:Float, _x2:Float, _y2:Float, _inv:Bool, _lim = -1)
 	{
@@ -207,6 +208,19 @@ class LineBase extends Shape
 			for (a in this.visList) {
 				a.renderCollision();
 			}
+			if (!this.hit) {
+				Common.gGrid.lit_lines.push(this);
+				this.hit = true;
+			}
+		}
+	}
+	public function unrender_collide()
+	{
+		this.hit = false;
+		if (!Common.cvar_color_play) {
+			this.render("play");
+		} else {
+			this.render("edit");
 		}
 	}
 }
