@@ -9,6 +9,8 @@ import base.CoreBase;
 	import base.cores.FlashCore;
 #elseif (js)
 	import base.cores.JavaScriptCore;
+#else
+	import base.cores.CppCore;
 #end
 import global.Common;
 
@@ -37,6 +39,8 @@ class Main extends Sprite
 			this.core = new FlashCore(this.stage);
 		#elseif (js)
 			this.core = new JavaScriptCore(this.stage);
+		#else
+			this.core = new CppCore(this.stage);
 		#end
 	}
 }
