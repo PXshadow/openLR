@@ -13,8 +13,8 @@ Binaries/Releases can be downloaded here: https://github.com/kevansevans/openLR/
 ## Haxelibs used:
 	
 	HXCPP 3.4.185 (haxelib set hxcpp 3.4.185)
-	openFL 6.2.0 (http://www.openfl.org/) (https://github.com/openfl/openfl)
-	lime 5.6.0 (https://github.com/openfl/lime)
+	openFL 6.2.1 (http://www.openfl.org/) (https://github.com/openfl/openfl)
+	lime 5.7.0 (https://github.com/openfl/lime)
 	
 If possible, openLR will always use the latest update for Haxe, openFL, and Lime. This is to ensure the most efficient builds possible, as performance is a major concern.
 	
