@@ -73,7 +73,7 @@ class LineVis extends Shape
 				this.graphics.moveTo(x1 + _loc_3, y1 + _loc_4); 
 				this.graphics.lineTo(x2 + _loc_3, y2 + _loc_4);
 			case LineType.Scene :
-				this.graphics.lineStyle(1, 0x00CC00, 1);
+				this.graphics.lineStyle(2, 0x00CC00, 1);
 				this.graphics.moveTo(this.x1, this.y1); 
 				this.graphics.lineTo(this.x2, this.y2);
 				return;
