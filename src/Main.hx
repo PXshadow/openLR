@@ -4,13 +4,15 @@ import openfl.display.Sprite;
 
 import base.CoreBase;
 #if (cpp)
-	import base.cores.CppCore;
+	#if (!android)
+		import base.cores.CppCore;
+	#else
+		import base.cores.AndroidCore;
+	#end
 #elseif (flash)
 	import base.cores.FlashCore;
 #elseif (js)
 	import base.cores.JavaScriptCore;
-#else
-	import base.cores.CppCore;
 #end
 import global.Common;
 
@@ -34,13 +36,17 @@ class Main extends Sprite
 		super();
 		
 		#if (cpp)
-			this.core = new CppCore(this.stage);
+			#if (!android)
+				this.core = new CppCore(this.stage);
+			#else
+				this.core = new AndroidCore(this.stage);
+			#end
 		#elseif (flash)
 			this.core = new FlashCore(this.stage);
 		#elseif (js)
 			this.core = new JavaScriptCore(this.stage);
 		#else
-			this.core = new CppCore(this.stage);
+			trace("Deployment target not supported");
 		#end
 	}
 }
