@@ -9,6 +9,7 @@ import openfl.display.Shape;
 import openfl.geom.Point;
 
 import global.Common;
+import global.CVar;
 
 /**
  * ...
@@ -204,7 +205,7 @@ class LineBase extends Shape
 		this.phys.collide(dot);
 	}
 	public function render_collide() {
-		if (Common.cvar_hit_test) {
+		if (CVar.hit_test) {
 			for (a in this.visList) {
 				a.renderCollision();
 			}
@@ -217,7 +218,7 @@ class LineBase extends Shape
 	public function unrender_collide()
 	{
 		this.hit = false;
-		if (!Common.cvar_color_play) {
+		if (!CVar.color_play) {
 			this.render("play");
 		} else {
 			this.render("edit");

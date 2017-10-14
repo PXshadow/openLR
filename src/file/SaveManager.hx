@@ -20,6 +20,7 @@ import ui.inter.ConfirmDialog;
 #end
 
 import global.Common;
+import global.CVar;
 import ui.inter.TextButton;
 import global.Language;
 
@@ -68,7 +69,7 @@ class SaveManager extends Sprite
 		this.name_input.type = TextFieldType.INPUT;
 		this.name_input.defaultTextFormat = font_a;
 		this.addChild(this.name_input);
-		this.name_input.text = Common.cvar_track_name;
+		this.name_input.text = CVar.track_name;
 		this.name_input.x = 5;
 		this.name_input.y = 5;
 		this.name_input.width = 400;
@@ -82,9 +83,9 @@ class SaveManager extends Sprite
 		this.author_input.defaultTextFormat = font_a;
 		this.addChild(this.author_input);
 		if (SaveManager.new_track) {
-			this.author_input.text = Common.cvar_universal_author_name;
+			this.author_input.text = CVar.universal_author_name;
 		} else {
-			this.author_input.text = Common.cvar_track_author;
+			this.author_input.text = CVar.track_author;
 		}
 		this.author_input.x = 5;
 		this.author_input.y = 35;
@@ -99,7 +100,7 @@ class SaveManager extends Sprite
 		this.description_input.defaultTextFormat = font_b;
 		this.addChild(this.description_input);
 		this.description_input.wordWrap = true;
-		this.description_input.text = Common.cvar_author_comment;
+		this.description_input.text = CVar.author_comment;
 		this.description_input.x = 5;
 		this.description_input.y = 70;
 		this.description_input.width = 590;
@@ -110,7 +111,7 @@ class SaveManager extends Sprite
 		this.save_button.x = 10;
 		this.save_button.y = 260;
 		
-		this.add_timestamp = new CheckBox("Add time stamp", Common.cvar_add_time_stamp);
+		this.add_timestamp = new CheckBox("Add time stamp", CVar.add_time_stamp);
 		this.addChild(this.add_timestamp);
 		this.add_timestamp.x = 140;
 		this.add_timestamp.y = 270;
@@ -126,7 +127,7 @@ class SaveManager extends Sprite
 		this.fileName = this.name_input.text + ".json";
 		this.removeChild(this.save_button);
 		this.removeChild(this.cancel_button);
-		if (Common.cvar_add_time_stamp) {
+		if (CVar.add_time_stamp) {
 			this.generate_save_json();
 			this.addChild(this.save_button);
 			this.addChild(this.cancel_button);
@@ -170,18 +171,18 @@ class SaveManager extends Sprite
 	}
 	function toggle_time_stamp(e:MouseEvent) 
 	{
-		Common.cvar_add_time_stamp = this.add_timestamp.toggle();
+		CVar.add_time_stamp = this.add_timestamp.toggle();
 	}
 	public function update() {
 		this.save_date = Date.now().getDate() + Date.now().getHours() + "";
 		if (!SaveManager.new_track) {
-			this.name_input.text = Common.cvar_track_name;
+			this.name_input.text = CVar.track_name;
 			if (SaveManager.new_track) {
-				this.author_input.text = Common.cvar_universal_author_name;
+				this.author_input.text = CVar.universal_author_name;
 			} else {
-				this.author_input.text = Common.cvar_track_author;
+				this.author_input.text = CVar.track_author;
 			}
-			this.description_input.text = Common.cvar_author_comment;
+			this.description_input.text = CVar.author_comment;
 		}
 	}
 	public function generate_save_json() //Top function for generating JSON legacy file
@@ -189,16 +190,16 @@ class SaveManager extends Sprite
 		#if (cpp)
 		//This function should only be called if confirmed to be okay to save
 		
-		Common.cvar_track_name = this.name_input.text;
-		Common.cvar_track_author = this.author_input.text;
-		Common.cvar_author_comment = this.description_input.text;
+		CVar.track_name = this.name_input.text;
+		CVar.track_author = this.author_input.text;
+		CVar.author_comment = this.description_input.text;
 		
 		if (SaveManager.new_track) {
 			SaveManager.new_track = false;
-			Common.cvar_universal_author_name = this.author_input.text;
+			CVar.universal_author_name = this.author_input.text;
 		}
 		var fileNameFinal:String = this.name_input.text;
-		if (Common.cvar_add_time_stamp) {
+		if (CVar.add_time_stamp) {
 			fileNameFinal = fileNameFinal + "_Y" + Date.now().getFullYear() + "M" + Date.now().getMonth() + "D" + Date.now().getDay() + "H" + Date.now().getHours() + "m" + Date.now().getMinutes();
 		}
 		var track:Object = parse_json();
@@ -232,11 +233,11 @@ class SaveManager extends Sprite
 	{
 		var settings:Object = new Object();
 		
-		settings.angle_snap = Common.cvar_angle_snap;
-		settings.line_snap = Common.cvar_line_snap;
-		settings.color_play = Common.cvar_color_play;
-		settings.preview_mode = Common.cvar_preview_mode;
-		settings.hit_test = Common.cvar_hit_test;
+		settings.angle_snap = CVar.angle_snap;
+		settings.line_snap = CVar.line_snap;
+		settings.color_play = CVar.color_play;
+		settings.preview_mode = CVar.preview_mode;
+		settings.hit_test = CVar.hit_test;
 		
 		return(settings);
 	}

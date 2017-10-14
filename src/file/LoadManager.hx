@@ -15,6 +15,7 @@ import ui.inter.AlertBox;
 #end
 
 import global.Common;
+import global.CVar;
 import lr.line.*;
 import ui.inter.TextButton;
 import ui.tool.Toolbar;
@@ -135,9 +136,9 @@ class LoadManager extends Sprite
 	function load_array() 
 	{
 		SaveManager.new_track = false;
-		Common.cvar_author_comment = this.trackData.description;
+		CVar.author_comment = this.trackData.description;
 		Common.svar_track_date_stamp = this.trackData.dateStamp;
-		Common.cvar_track_name = this.trackData.label;
+		CVar.track_name = this.trackData.label;
 		Common.track_start_x = this.trackData.startPosition.x;
 		Common.track_start_y = this.trackData.startPosition.y;
 		Common.gRiderManager.set_single_rider_start(this.trackData.startPosition.x, this.trackData.startPosition.y);
@@ -169,9 +170,9 @@ class LoadManager extends Sprite
 	}
 	function load_non_compressed() {
 		SaveManager.new_track = false;
-		Common.cvar_author_comment = this.trackData.description;
+		CVar.author_comment = this.trackData.description;
 		Common.svar_track_date_stamp = this.trackData.dateStamp;
-		Common.cvar_track_name = this.trackData.label;
+		CVar.track_name = this.trackData.label;
 		Common.track_start_x = this.trackData.startPosition.x;
 		Common.track_start_y = this.trackData.startPosition.y;
 		Common.gRiderManager.set_single_rider_start(this.trackData.startPosition.x, this.trackData.startPosition.y);
