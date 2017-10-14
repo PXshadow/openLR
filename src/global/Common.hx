@@ -79,31 +79,6 @@ class Common
 	public static var track_last_pos_x:Float = 0;
 	public static var track_last_pos_y:Float = 0;
 	
-	public static var sim_frames:Int = 0;
-	public static var sim_frames_alt:Int = 0;
-	public static var sim_max_frames:Int = 0;
-	public static var simfl_frames:Int = 0;
-	public static var sim_rider_speed:Float = 0;
-	public static var sim_rider_speed_top:Float = 0;
-	public static var sim_slow_motion:Bool = false;
-	public static var sim_auto_slow_motion:Bool = false;
-	public static var sim_slow_motion_rate:Int = 5;
-	public static var sim_default_rate:Int = 40;
-	public static var sim_pause_frame:Int = -1;
-	public static var sim_flagged_frame:Int = -1;
-	
-	public static var svar_frame_rate:Float;
-	public static var svar_framerate_avg_rate:Int = 60;
-	public static var svar_gridsize:Int = 14;
-	public static var svar_tilesize:Int = 100;
-	public static var svar_eraser_size:Int = 5;
-	public static var svar_sim_running:Bool = false;
-	public static var svar_game_mode:Int = GameState.title;
-	public static var svar_snap_distance:Int = 20;
-	public static var svar_track_date_stamp:String = "";
-	public static var svar_rider_count = 0;
-	public static var svar_current_tool:String = "none set";
-	
 	public static var stage_width:Float;
 	public static var stage_height:Float;
 	public static var stage_tl:Point = new Point(0, 0);
