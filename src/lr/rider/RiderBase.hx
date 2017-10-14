@@ -10,7 +10,7 @@ import openfl.ui.Keyboard;
 import openfl.events.KeyboardEvent;
 
 import global.Common;
-import global.RiderManager;
+import global.engine.RiderManager;
 import lr.lines.LineBase;
 import lr.nodes.Grid;
 import lr.rider.RiderRecorder;

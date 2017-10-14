@@ -1,4 +1,4 @@
-package global;
+package global.engine;
 
 import haxe.Timer;
 import openfl.Lib;

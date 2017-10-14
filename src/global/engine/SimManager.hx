@@ -1,4 +1,4 @@
-package global;
+package global.engine;
 
 import haxe.Timer;
 import openfl.Lib;
@@ -54,15 +54,15 @@ class SimManager
 			}
 			this.sim_running = true;
 		}
-		if (Common.cvar_force_zoom) {
-			Common.cvar_prev_zoom_ammount = Common.gTrack.scaleX;
-			Common.gTrack.scaleX = Common.gTrack.scaleY = Common.gRiderManager.scaleX = Common.gRiderManager.scaleY = Common.cvar_force_zoom_ammount;
+		if (CVar.force_zoom) {
+			CVar.prev_zoom_ammount = Common.gTrack.scaleX;
+			Common.gTrack.scaleX = Common.gTrack.scaleY = Common.gRiderManager.scaleX = Common.gRiderManager.scaleY = CVar.force_zoom_ammount;
 		}
 		Common.gCode.return_to_origin_sim();
 	}
 	function update_sim()
 	{
-		if (Common.cvar_hit_test) {
+		if (CVar.hit_test) {
 			for (a in Common.gGrid.lit_lines) {
 				a.unrender_collide();
 			}
@@ -108,8 +108,8 @@ class SimManager
 			Common.sim_frames_alt = Common.sim_frames;
 			Common.sim_frames = 0;
 			this.iterator.stop();
-			if (Common.cvar_force_zoom) {
-				Common.gTrack.scaleX = Common.gTrack.scaleY = Common.gRiderManager.scaleX = Common.gRiderManager.scaleY = Common.cvar_prev_zoom_ammount;
+			if (CVar.force_zoom) {
+				Common.gTrack.scaleX = Common.gTrack.scaleY = Common.gRiderManager.scaleX = Common.gRiderManager.scaleY = CVar.prev_zoom_ammount;
 			}
 			if (this.flagged) {
 				Common.gRiderManager.restore_flag();
@@ -155,11 +155,11 @@ class SimManager
 	}
 	public function rider_update() {
 		return; //this will stay here until it learns to fucking behave
-		var _loc1 = Common.sim_frames_alt - Common.cvar_track_stepback_update;
+		var _loc1 = Common.sim_frames_alt - CVar.track_stepback_update;
 		if (_loc1 <= 0) {
 			//this.rider.inject_frame_and_iterate(0, Common.sim_frames_alt);
 		} else {
-			//this.rider.inject_frame_and_iterate(_loc1, Common.cvar_track_stepback_update - 1);
+			//this.rider.inject_frame_and_iterate(_loc1, CVar.track_stepback_update - 1);
 		}
 	}
 	public function reset() {

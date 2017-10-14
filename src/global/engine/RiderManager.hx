@@ -1,4 +1,4 @@
-package global;
+package global.engine;
 import openfl.display.Sprite;
 import openfl.geom.Point;
 
