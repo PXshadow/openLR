@@ -36,11 +36,9 @@ class ToolBase
 	public function set_listeners() {
 		Lib.current.stage.addEventListener(MouseEvent.MOUSE_DOWN, mouseDown);
 		Lib.current.stage.addEventListener(MouseEvent.MOUSE_UP, mouseUp);
+		Lib.current.stage.addEventListener(MouseEvent.MOUSE_MOVE, mouseMove);
 		Lib.current.stage.addEventListener(MouseEvent.RIGHT_MOUSE_DOWN, rMouseDown);
 		Lib.current.stage.addEventListener(MouseEvent.RIGHT_MOUSE_UP, rMouseUp);
-		Lib.current.stage.addEventListener(MouseEvent.MIDDLE_MOUSE_DOWN, mMouseDown);
-		Lib.current.stage.addEventListener(MouseEvent.MIDDLE_MOUSE_UP, mMouseUp);
-		Lib.current.stage.addEventListener(MouseEvent.MOUSE_WHEEL, mouseScroll);
 		Lib.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, keyShiftDown);
 		Lib.current.stage.addEventListener(KeyboardEvent.KEY_UP, keyShiftUp);
 		Lib.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, KeyNumDown);
@@ -93,23 +91,6 @@ class ToolBase
 			this.mod_shift = true;
 		}
 	}
-	
-	public function mMouseUp(e:MouseEvent):Void 
-	{
-		Common.gTrack.stopDrag();
-		Lib.current.stage.removeEventListener(MouseEvent.MOUSE_MOVE, mMouseMove);
-	}
-	
-	public function mMouseDown(e:MouseEvent):Void 
-	{
-		Common.gTrack.startDrag();
-		Lib.current.stage.addEventListener(MouseEvent.MOUSE_MOVE, mMouseMove);
-	}
-	public function mMouseMove(e:MouseEvent) {
-		Common.gRiderManager.x = Common.gTrack.x;
-		Common.gRiderManager.y = Common.gTrack.y;
-		Common.gTrack.check_visibility();
-	}
 	public function rMouseUp(e:MouseEvent):Void 
 	{
 		trace(Lib.current.stage.mouseX, Lib.current.stage.mouseY); //default behavior for any mouse tool that hasn't had an action assigned
@@ -129,15 +110,16 @@ class ToolBase
 	{
 		Common.gToolbar.disable_keys();
 	}
-	
+	private function mouseMove(e:MouseEvent):Void 
+	{
+		
+	}
 	public function disable() {
 		Lib.current.stage.removeEventListener(MouseEvent.MOUSE_DOWN, mouseDown);
 		Lib.current.stage.removeEventListener(MouseEvent.MOUSE_UP, mouseUp);
+		Lib.current.stage.removeEventListener(MouseEvent.MOUSE_MOVE, mouseMove);
 		Lib.current.stage.removeEventListener(MouseEvent.RIGHT_MOUSE_DOWN, rMouseDown);
 		Lib.current.stage.removeEventListener(MouseEvent.RIGHT_MOUSE_UP, rMouseUp);
-		Lib.current.stage.removeEventListener(MouseEvent.MIDDLE_MOUSE_DOWN, mMouseDown);
-		Lib.current.stage.removeEventListener(MouseEvent.MIDDLE_MOUSE_UP, mMouseUp);
-		Lib.current.stage.removeEventListener(MouseEvent.MOUSE_WHEEL, mouseScroll);
 		Lib.current.stage.removeEventListener(KeyboardEvent.KEY_DOWN, keyShiftDown);
 		Lib.current.stage.removeEventListener(KeyboardEvent.KEY_UP, keyShiftUp);
 		Lib.current.stage.removeEventListener(KeyboardEvent.KEY_DOWN, KeyModifierDown);
@@ -146,11 +128,9 @@ class ToolBase
 	public function destroy() {
 		Lib.current.stage.removeEventListener(MouseEvent.MOUSE_DOWN, mouseDown);
 		Lib.current.stage.removeEventListener(MouseEvent.MOUSE_UP, mouseUp);
+		Lib.current.stage.removeEventListener(MouseEvent.MOUSE_MOVE, mouseMove);
 		Lib.current.stage.removeEventListener(MouseEvent.RIGHT_MOUSE_DOWN, rMouseDown);
 		Lib.current.stage.removeEventListener(MouseEvent.RIGHT_MOUSE_UP, rMouseUp);
-		Lib.current.stage.removeEventListener(MouseEvent.MIDDLE_MOUSE_DOWN, mMouseDown);
-		Lib.current.stage.removeEventListener(MouseEvent.MIDDLE_MOUSE_UP, mMouseUp);
-		Lib.current.stage.removeEventListener(MouseEvent.MOUSE_WHEEL, mouseScroll);
 		Lib.current.stage.removeEventListener(KeyboardEvent.KEY_DOWN, keyShiftDown);
 		Lib.current.stage.removeEventListener(KeyboardEvent.KEY_UP, keyShiftUp);
 		Lib.current.stage.removeEventListener(KeyboardEvent.KEY_DOWN, KeyModifierDown);
@@ -160,32 +140,13 @@ class ToolBase
 		if (Common.svar_game_mode == GameState.edit || Common.svar_game_mode == GameState.livedraw) {
 			Lib.current.stage.addEventListener(MouseEvent.MOUSE_DOWN, mouseDown);
 			Lib.current.stage.addEventListener(MouseEvent.MOUSE_UP, mouseUp);
+			Lib.current.stage.addEventListener(MouseEvent.MOUSE_MOVE, mouseMove);
 			Lib.current.stage.addEventListener(MouseEvent.RIGHT_MOUSE_DOWN, rMouseDown);
 			Lib.current.stage.addEventListener(MouseEvent.RIGHT_MOUSE_UP, rMouseUp);
-			Lib.current.stage.addEventListener(MouseEvent.MIDDLE_MOUSE_DOWN, mMouseDown);
-			Lib.current.stage.addEventListener(MouseEvent.MIDDLE_MOUSE_UP, mMouseUp);
-			Lib.current.stage.addEventListener(MouseEvent.MOUSE_WHEEL, mouseScroll);
 			Lib.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, keyShiftDown);
 			Lib.current.stage.addEventListener(KeyboardEvent.KEY_UP, keyShiftUp);
 			Lib.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, KeyModifierDown);
 			Lib.current.stage.addEventListener(KeyboardEvent.KEY_UP, KeyModifierUp);
-		}
-	}
-	
-	private function mouseScroll(e:MouseEvent):Void 
-	{
-		if (Common.svar_game_mode == GameState.edit || Common.svar_game_mode == GameState.livedraw) {
-			#if (cpp || flash)
-				var platDelta = e.delta;
-			#elseif (js)
-				var platDelta = e.delta / 100;
-			#end
-			var trkLoc:Point = new Point(Common.gTrack.x, Common.gTrack.y);
-			var trkScale:Float = Common.gTrack.scaleX;
-			var scaleToSet = Math.min(Math.max(trkScale + (trkScale * 0.1 * platDelta), Common.track_scale_min), Common.track_scale_max);
-			Common.gTrack.x = (Lib.current.stage.mouseX) + ((trkLoc.x - Lib.current.stage.mouseX) * (scaleToSet / trkScale));
-			Common.gTrack.y = (Lib.current.stage.mouseY) + ((trkLoc.y - Lib.current.stage.mouseY) * (scaleToSet / trkScale));
-			Common.gTrack.scaleX = Common.gTrack.scaleY = scaleToSet;
 		}
 	}
 	public function angle_snap(_x1:Float, _y1:Float, _x2:Float, _y2:Float):Array<Float> {
