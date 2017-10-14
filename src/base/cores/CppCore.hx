@@ -11,6 +11,8 @@ import openfl.geom.Point;
 //openLR
 import base.TitleCardBase;
 import base.titlecards.TitleCardCPP;
+import base.ControlBase;
+import base.control.Desktop;
 import file.init.FileStartCPP;
 import file.LoadManager;
 import file.SaveManager;
@@ -35,6 +37,7 @@ import ui.tool.timeline.TimelineControl;
  */
 class CppCore extends CoreBase
 {
+	private var controlScheme:ControlBase;
 	private var mainFileInit:FileStartCPP; //this class controls settings
 	private var visContainer:Sprite; //simple display container. This will make it easier to take screenshots and record video without having to move a matrix all around
 	private var track:Track;
@@ -71,6 +74,7 @@ class CppCore extends CoreBase
 			this.toggle_Loader();
 		}
 		this.main_stage.removeChild(this.title_card);
+		this.controlScheme = new Desktop();
 	}
 	public function init_env() //Initialize enviornment
 	{
