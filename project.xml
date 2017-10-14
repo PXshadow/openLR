@@ -6,6 +6,7 @@
 	<meta title="openLR Alpha 0.0.5" package="com.kevansevans.openLR" version="0.0.5" company="Kaelan Evans" />
 	
 	<set name="AIR_SDK" value="C:/AIR_SDK" />
+	<!--- It is important that this value is changed on your personal system wherever the Air SDK was installed -->
 	
 	<!-- output -->
 	<app main="Main" file="openLR" path="bin" />
