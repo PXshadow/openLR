@@ -7,6 +7,7 @@ import file.AutosaveManager;
 import ui.inter.StepCounter;
 import ui.inter.CheckBox;
 import global.Common;
+import global.CVar;
 
 
 /**
@@ -57,20 +58,20 @@ class FileMenu extends MovieClip
 		this.graphics.lineTo( -5, -5);
 	}
 	public function update() {
-		this.auto_save.update(Common.cvar_auto_save);
+		this.auto_save.update(CVar.auto_save);
 	}
 	private function incAutoSaveFreq(e:MouseEvent):Void 
 	{
-		Common.cvar_auto_save_freq = this.auto_save_freq.inc();
-		Common.gAutoSaveManager.update_timer(Common.cvar_auto_save_freq);
+		CVar.auto_save_freq = this.auto_save_freq.inc();
+		Common.gAutoSaveManager.update_timer(CVar.auto_save_freq);
 	}
 	private function decAutoSaveFeq(e:MouseEvent):Void 
 	{
-		Common.cvar_auto_save_freq = this.auto_save_freq.dec();
-		Common.gAutoSaveManager.update_timer(Common.cvar_auto_save_freq);
+		CVar.auto_save_freq = this.auto_save_freq.dec();
+		Common.gAutoSaveManager.update_timer(CVar.auto_save_freq);
 	}
 	private function toggle_autosave(e:MouseEvent):Void 
 	{
-		Common.cvar_auto_save = this.auto_save.toggle();
+		CVar.auto_save = this.auto_save.toggle();
 	}
 }

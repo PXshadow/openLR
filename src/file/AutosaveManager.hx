@@ -10,6 +10,7 @@ import openfl.utils.Object;
 #end
 
 import global.Common;
+import global.CVar;
 
 /**
  * ...
@@ -37,10 +38,10 @@ class AutosaveManager
 	}
 	private function call_autosave() {
 		#if (cpp)
-		if (!Common.cvar_auto_save) {
+		if (!CVar.auto_save) {
 			return;
 		}
-		var stamp:String = Common.cvar_track_name + "_auto_Y" + Date.now().getFullYear() + "M" + Date.now().getMonth() + "D" + Date.now().getDay() + "H" + Date.now().getHours() + "m" + Date.now().getMinutes();
+		var stamp:String = CVar.track_name + "_auto_Y" + Date.now().getFullYear() + "M" + Date.now().getMonth() + "D" + Date.now().getDay() + "H" + Date.now().getHours() + "m" + Date.now().getMinutes();
 		var track:Object = parse_json();
 		var file = File.write("./autosaves/" + stamp + ".json", true);
 		file.writeString(Json.stringify(track));
@@ -52,9 +53,9 @@ class AutosaveManager
 		var _locArray = this.json_line_aray_parse();
 		var _locSettings = this.json_settings_array();
 		var json_object:Object = {
-			"label": Common.cvar_track_name,
-			"creator": Common.cvar_track_author,
-			"description": Common.cvar_author_comment,
+			"label": CVar.track_name,
+			"creator": CVar.track_author,
+			"description": CVar.author_comment,
 			"version": "openLR",
 			"startPosition": {
 				"x": Common.track_start_x,
@@ -74,11 +75,11 @@ class AutosaveManager
 	{
 		var settings:Object = new Object();
 		
-		settings.angle_snap = Common.cvar_angle_snap;
-		settings.line_snap = Common.cvar_line_snap;
-		settings.color_play = Common.cvar_color_play;
-		settings.preview_mode = Common.cvar_preview_mode;
-		settings.hit_test = Common.cvar_hit_test;
+		settings.angle_snap = CVar.angle_snap;
+		settings.line_snap = CVar.line_snap;
+		settings.color_play = CVar.color_play;
+		settings.preview_mode = CVar.preview_mode;
+		settings.hit_test = CVar.hit_test;
 		
 		return(settings);
 	}

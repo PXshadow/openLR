@@ -9,6 +9,7 @@ import openfl.text.TextFormat;
 import openfl.text.TextFormatAlign;
 
 import global.Common;
+import global.CVar;
 
 /**
  * ...
@@ -85,7 +86,7 @@ class TextInfo extends MovieClip
 	public function update_sim() {
 		var _locTime:String = Common.time(Common.sim_frames);
 		
-		textInfo_A.text = Common.cvar_track_name;
+		textInfo_A.text = CVar.track_name;
 		textInfo_B.text = _locTime;
 		textInfo_C.text = Common.sim_rider_speed + " PPF";
 		textInfo_D.text = Common.sim_rider_speed_top + " Top";

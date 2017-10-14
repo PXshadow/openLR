@@ -7,6 +7,7 @@ import sys.io.File;
 import haxe.Json;
 
 import global.Common;
+import global.CVar;
 import global.KeyBindings;
 import global.Language;
 
@@ -100,19 +101,19 @@ class FileStartCPP
 	{
 		var _locFile = File.getContent("./settings/Settings.json");
 		var _locJson = Json.parse(_locFile);
-		Common.cvar_auto_save = _locJson.settings.autosave;
-		Common.cvar_auto_save_freq  = _locJson.settings.autosave_freq;
-		Common.cvar_angle_snap = _locJson.settings.angle_snap;
-		Common.cvar_line_snap = _locJson.settings.joint_snap;
-		Common.cvar_hit_test = _locJson.settings.hit_test;
-		Common.cvar_contact_points = _locJson.settings.contact_points;
-		Common.cvar_force_zoom = _locJson.settings.force_zoom;
-		Common.cvar_force_zoom_ammount = _locJson.settings.zoom_ammount;
-		Common.cvar_track_author = _locJson.settings.author;
-		Common.cvar_color_play = _locJson.settings.color_play;
-		Common.cvar_preview_mode  = _locJson.settings.preview_mode;
-		Common.cvar_dictionary = _locJson.settings.language;
-		Common.cvar_toolbar_scale = _locJson.settings.uiscale;
+		CVar.auto_save = _locJson.settings.autosave;
+		CVar.auto_save_freq  = _locJson.settings.autosave_freq;
+		CVar.angle_snap = _locJson.settings.angle_snap;
+		CVar.line_snap = _locJson.settings.joint_snap;
+		CVar.hit_test = _locJson.settings.hit_test;
+		CVar.contact_points = _locJson.settings.contact_points;
+		CVar.force_zoom = _locJson.settings.force_zoom;
+		CVar.force_zoom_ammount = _locJson.settings.zoom_ammount;
+		CVar.track_author = _locJson.settings.author;
+		CVar.color_play = _locJson.settings.color_play;
+		CVar.preview_mode  = _locJson.settings.preview_mode;
+		CVar.dictionary = _locJson.settings.language;
+		CVar.toolbar_scale = _locJson.settings.uiscale;
 	}
 	//////////
 	//Language
@@ -120,7 +121,7 @@ class FileStartCPP
 	public function get_and_write_language() 
 	{
 		var file = File.write("./settings/language.json", true);
-		switch(Common.cvar_dictionary) {
+		switch(CVar.dictionary) {
 			case "English" :
 				file.writeString(Json.stringify(Json.parse(Assets.getText("defaults/languages/english_us.json")), null, "\t"));
 			default :

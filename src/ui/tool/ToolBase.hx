@@ -9,6 +9,7 @@ import openfl.text.TextField;
 
 import global.KeyBindings;
 import global.Common;
+import global.CVar;
 
 /**
  * ...
@@ -56,10 +57,10 @@ class ToolBase
 		if (e.keyCode == KeyBindings.angle_snap) {
 			mod_x = false;
 			if (e.shiftKey) {
-				if (Common.cvar_angle_snap) {
-					Common.cvar_angle_snap = false;
-				} else if (!Common.cvar_angle_snap) {
-					Common.cvar_angle_snap = true;
+				if (CVar.angle_snap) {
+					CVar.angle_snap = false;
+				} else if (!CVar.angle_snap) {
+					CVar.angle_snap = true;
 				}
 			}
 		}

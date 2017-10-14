@@ -4,6 +4,7 @@ import lr.lines.LineVis;
 import openfl.display.Sprite;
 
 import global.Common;
+import global.CVar;
 import lr.lines.LineBase;
 import lr.nodes.Grid;
 
@@ -58,13 +59,13 @@ class Panel
 		_locVis.y = _locVis.y - this.offset_y;
 		
 		if (!Common.svar_sim_running) {
-			if (!Common.cvar_preview_mode) {
+			if (!CVar.preview_mode) {
 				Common.gGrid.lines[_line.ID].render("edit");
 			} else {
 				Common.gGrid.lines[_line.ID].render("play");
 			}
 		} else {
-			if (!Common.cvar_color_play) {
+			if (!CVar.color_play) {
 				Common.gGrid.lines[_line.ID].render("play");
 			} else {
 				Common.gGrid.lines[_line.ID].render("edit");

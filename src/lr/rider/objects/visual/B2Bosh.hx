@@ -5,7 +5,8 @@ import openfl.utils.AssetLibrary;
 import openfl.geom.Point;
 
 import global.Common;
-import global.RiderManager;
+import global.CVar;
+import global.engine.RiderManager;
 import lr.rider.RiderBase;
 import lr.rider.phys.skeleton.SkeletonBase;
 import lr.rider.objects.VisBase;
@@ -168,28 +169,28 @@ class B2Bosh extends VisBase
 		this.rightLeg.rotation = Common.get_angle_degrees(new Point(this.body.anchors[4].x, this.body.anchors[4].y), new Point(this.body.anchors[9].x, this.body.anchors[9].y));
 		
 		//rider rendering
-		this.body_vis.alpha = this.leftArm.alpha = this.rightArm.alpha = this.leftLeg.alpha = this.rightLeg.alpha = this.sled.alpha = Common.cvar_rider_alpha;
+		this.body_vis.alpha = this.leftArm.alpha = this.rightArm.alpha = this.leftLeg.alpha = this.rightLeg.alpha = this.sled.alpha = CVar.rider_alpha;
 		this.bosh.graphics.clear();
 		this.string.graphics.clear();
 		this.skeleton_vis.graphics.clear();
 		this.scarf_vis.graphics.clear();
 		if (!RiderManager.crash[this.riderID]) {
-			this.string.graphics.lineStyle(0.5, 0, Common.cvar_rider_alpha);
+			this.string.graphics.lineStyle(0.5, 0, CVar.rider_alpha);
 			this.string.graphics.moveTo(this.body.anchors[6].x, this.body.anchors[6].y);
 			this.string.graphics.lineTo(this.body.anchors[3].x, this.body.anchors[3].y);
 			this.string.graphics.lineTo(this.body.anchors[7].x, this.body.anchors[7].y);
 		}
-		if (Common.cvar_contact_points) {
+		if (CVar.contact_points) {
 			this.render_bones();
 		}
-		this.scarf_vis.graphics.lineStyle(2, 0xFFFFFF, Common.cvar_rider_alpha, false, "none", "none");
+		this.scarf_vis.graphics.lineStyle(2, 0xFFFFFF, CVar.rider_alpha, false, "none", "none");
 		this.scarf_vis.graphics.moveTo(this.scarf.edges[0].a.x, this.scarf.edges[0].a.y);
 		this.scarf_vis.graphics.lineTo(this.scarf.edges[0].b.x, this.scarf.edges[0].b.y);
 		this.scarf_vis.graphics.moveTo(this.scarf.edges[2].a.x, this.scarf.edges[2].a.y);
 		this.scarf_vis.graphics.lineTo(this.scarf.edges[2].b.x, this.scarf.edges[2].b.y);
 		this.scarf_vis.graphics.moveTo(this.scarf.edges[4].a.x, this.scarf.edges[4].a.y);
 		this.scarf_vis.graphics.lineTo(this.scarf.edges[4].b.x, this.scarf.edges[4].b.y);
-		this.scarf_vis.graphics.lineStyle(2, 0xD20202, Common.cvar_rider_alpha, false, "none", "none");
+		this.scarf_vis.graphics.lineStyle(2, 0xD20202, CVar.rider_alpha, false, "none", "none");
 		this.scarf_vis.graphics.moveTo(this.scarf.edges[1].a.x, this.scarf.edges[1].a.y);
 		this.scarf_vis.graphics.lineTo(this.scarf.edges[1].b.x, this.scarf.edges[1].b.y);
 		this.scarf_vis.graphics.moveTo(this.scarf.edges[3].a.x, this.scarf.edges[3].a.y);

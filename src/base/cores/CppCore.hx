@@ -19,10 +19,11 @@ import file.SaveManager;
 import file.AutosaveManager;
 import file.Screenshot;
 import global.Common;
-import global.FrameRate;
+import global.CVar;
+import global.engine.FrameRate;
 import global.Language;
-import global.RiderManager;
-import global.SimManager;
+import global.engine.RiderManager;
+import global.engine.SimManager;
 import lr.scene.TextInfo;
 import lr.scene.Track;
 import lr.settings.SettingsMenu;
@@ -212,7 +213,7 @@ class CppCore extends CoreBase
 	{
 		this.visContainer.x = this.visContainer.y = 0;
 		
-		this.toolBar.x = (this.main_stage.stageWidth / 2) - (128 * Common.cvar_toolbar_scale);
+		this.toolBar.x = (this.main_stage.stageWidth / 2) - (128 * CVar.toolbar_scale);
 		
 		Common.stage_height = this.main_stage.stageHeight;
 		Common.stage_width = this.main_stage.stageWidth;
@@ -243,7 +244,7 @@ class CppCore extends CoreBase
 	override public function align() {
 		this.visContainer.x = this.visContainer.y = 0;
 		
-		this.toolBar.x = (this.main_stage.stageWidth / 2) - (128 * Common.cvar_toolbar_scale);
+		this.toolBar.x = (this.main_stage.stageWidth / 2) - (128 * CVar.toolbar_scale);
 		
 		Common.stage_height = this.main_stage.stageHeight;
 		Common.stage_width = this.main_stage.stageWidth;
@@ -272,8 +273,8 @@ class CppCore extends CoreBase
 		Common.gTrack.check_visibility();
 	}
 	override public function setScale() {
-		this.timeline.scaleX = this.timeline.scaleY = Common.cvar_toolbar_scale;
-		this.toolBar.scaleX = this.toolBar.scaleY = Common.cvar_toolbar_scale;
+		this.timeline.scaleX = this.timeline.scaleY = CVar.toolbar_scale;
+		this.toolBar.scaleX = this.toolBar.scaleY = CVar.toolbar_scale;
 	}
 	override public function return_to_origin(_x:Float = 0, _y:Float = 0) {
 		this.track.x = this.main_stage.stageWidth * 0.5 - _x;

@@ -9,6 +9,7 @@ import openfl.display.StageQuality;
 import ui.inter.StepCounter;
 import ui.inter.CheckBox;
 import global.Common;
+import global.CVar;
 
 /**
  * ...
@@ -93,19 +94,15 @@ class EngineSettings extends Sprite
 	}
 	private function dec_ui_scale(e:MouseEvent):Void 
 	{
-		Common.cvar_toolbar_scale = this.toolbar_scale.dec();
+		CVar.toolbar_scale = this.toolbar_scale.dec();
 		Common.gCode.setScale();
 		Common.gCode.align();
 	}
 	
 	private function inc_ui_scale(e:MouseEvent):Void 
 	{
-		Common.cvar_toolbar_scale = this.toolbar_scale.inc();
+		CVar.toolbar_scale = this.toolbar_scale.inc();
 		Common.gCode.setScale();
 		Common.gCode.align();
-	}
-	private function toggle_frustrumCulling(e:MouseEvent):Void 
-	{
-		Common.cvar_frustrumCulling_enabled = this.frustrumCulling_toggle.toggle();
 	}
 }

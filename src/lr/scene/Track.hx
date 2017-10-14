@@ -9,8 +9,9 @@ import lr.lines.LineBase;
 import openfl.display.Sprite;
 import openfl.geom.Point;
 
-import global.SimManager;
+import global.engine.SimManager;
 import global.Common;
+import global.CVar;
 
 /**
  * ...
@@ -122,7 +123,7 @@ class Track extends Sprite
 	public function renderPreview(_line:LineBase)
 	{
 		this.graphics.clear();
-		if (!Common.cvar_preview_mode) {
+		if (!CVar.preview_mode) {
 			var _loc_3:Float = _line.nx > 0 ? (Math.ceil(_line.nx)) : (Math.floor(_line.nx));
 			var _loc_4:Float = _line.ny > 0 ? (Math.ceil(_line.ny)) : (Math.floor(_line.ny));
 			switch(_line.type) {
@@ -161,7 +162,7 @@ class Track extends Sprite
 		for (a in 0...grid.lines.length) {
 			if (grid.lines[a] != null)
 			{
-				if (!Common.cvar_color_play) {
+				if (!CVar.color_play) {
 					grid.lines[a].render("play");
 				} else {
 					grid.lines[a].render("edit");
@@ -172,7 +173,7 @@ class Track extends Sprite
 	public function set_rendermode_edit() {
 		for (a in 0...grid.lines.length) {
 			if (grid.lines[a] != null) {
-				if (!Common.cvar_preview_mode) {
+				if (!CVar.preview_mode) {
 					grid.lines[a].render("edit");
 				} else {
 					grid.lines[a].render("play");

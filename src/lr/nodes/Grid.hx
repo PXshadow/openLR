@@ -5,6 +5,7 @@ import openfl.utils.Object;
 import openfl.events.KeyboardEvent;
 
 import global.Common;
+import global.CVar;
 import global.KeyBindings;
 import lr.lines.LineBase;
 
@@ -482,7 +483,7 @@ class Grid
 		else {
 			_loc9 = true;
 		}
-		if (!Common.cvar_line_snap)
+		if (!CVar.line_snap)
 		{
 			_loc9 = false;
 		}

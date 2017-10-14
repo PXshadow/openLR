@@ -6,6 +6,7 @@ import openfl.events.MouseEvent;
 import ui.inter.StepCounter;
 import ui.inter.CheckBox;
 import global.Common;
+import global.CVar;
 
 /**
  * ...
@@ -34,22 +35,22 @@ class TrackSettings extends Sprite
 	{
 		super();
 		
-		this.color_playback = new CheckBox("Color Play", Common.cvar_color_play);
+		this.color_playback = new CheckBox("Color Play", CVar.color_play);
 		this.addChild(this.color_playback);
 		this.color_playback.hitBox.addEventListener(MouseEvent.CLICK, toggle_color_play);
 		
-		this.preview_mode = new CheckBox("Preview Mode", Common.cvar_preview_mode);
+		this.preview_mode = new CheckBox("Preview Mode", CVar.preview_mode);
 		this.addChild(this.preview_mode);
 		this.preview_mode.y = 16;
 		this.preview_mode.hitBox.addEventListener(MouseEvent.CLICK, toggle_preview_mode);
 		
-		this.hit_test = new CheckBox("Hit Test", Common.cvar_hit_test);
+		this.hit_test = new CheckBox("Hit Test", CVar.hit_test);
 		this.addChild(this.hit_test);
 		this.hit_test.y = 0;
 		this.hit_test.x = 128;
 		this.hit_test.hitBox.addEventListener(MouseEvent.CLICK, toggle_hit_test);
 		
-		this.contact_points = new CheckBox("Contact Points", Common.cvar_contact_points);
+		this.contact_points = new CheckBox("Contact Points", CVar.contact_points);
 		this.addChild(this.contact_points);
 		this.contact_points.y = 16;
 		this.contact_points.x = 128;
@@ -62,12 +63,12 @@ class TrackSettings extends Sprite
 		this.bosh_alpha.stepDown.addEventListener(MouseEvent.CLICK, decBoshAlpha);
 		this.bosh_alpha.stepUp.addEventListener(MouseEvent.CLICK, incBoshAlpha);
 		
-		this.angle_snap = new CheckBox("Angle Snap", Common.cvar_angle_snap);
+		this.angle_snap = new CheckBox("Angle Snap", CVar.angle_snap);
 		this.addChild(this.angle_snap);
 		this.angle_snap.y = 64;
 		this.angle_snap.hitBox.addEventListener(MouseEvent.CLICK, toggle_angle_snap);
 		
-		this.line_snap = new CheckBox("Line Snap", Common.cvar_line_snap);
+		this.line_snap = new CheckBox("Line Snap", CVar.line_snap);
 		this.addChild(this.line_snap);
 		this.line_snap.y = 80;
 		this.line_snap.hitBox.addEventListener(MouseEvent.CLICK, toggle_line_snap);
@@ -83,7 +84,7 @@ class TrackSettings extends Sprite
 		this.slow_rate.stepUp.addEventListener(MouseEvent.CLICK, increase_slow_rate);
 		this.slow_rate.stepDown.addEventListener(MouseEvent.CLICK, decrease_slow_rate);
 		
-		this.force_zoom = new CheckBox("Force Zoom", Common.cvar_force_zoom);
+		this.force_zoom = new CheckBox("Force Zoom", CVar.force_zoom);
 		this.addChild(this.force_zoom);
 		this.force_zoom.x = 128;
 		this.force_zoom.y = 112;
@@ -110,26 +111,26 @@ class TrackSettings extends Sprite
 	}
 	private function incBoshAlpha(e:MouseEvent):Void 
 	{
-		Common.cvar_rider_alpha = this.bosh_alpha.inc();
+		CVar.rider_alpha = this.bosh_alpha.inc();
 	}
 	
 	private function decBoshAlpha(e:MouseEvent):Void 
 	{
-		Common.cvar_rider_alpha = this.bosh_alpha.dec();
+		CVar.rider_alpha = this.bosh_alpha.dec();
 	}
 	private function dec_force_zoom(e:MouseEvent):Void 
 	{
-		Common.cvar_force_zoom_ammount = this.force_zoom_step.dec();
+		CVar.force_zoom_ammount = this.force_zoom_step.dec();
 	}
 	
 	private function inc_force_zoom(e:MouseEvent):Void 
 	{
-		Common.cvar_force_zoom_ammount = this.force_zoom_step.inc();
+		CVar.force_zoom_ammount = this.force_zoom_step.inc();
 	}
 	
 	private function toggle_force_zoom(e:MouseEvent):Void 
 	{
-		Common.cvar_force_zoom = this.force_zoom.toggle();
+		CVar.force_zoom = this.force_zoom.toggle();
 	}
 	
 	private function decrease_slow_rate(e:MouseEvent):Void 
@@ -144,7 +145,7 @@ class TrackSettings extends Sprite
 	
 	private function toggle_contact_points(e:MouseEvent):Void 
 	{
-		Common.cvar_contact_points = this.contact_points.toggle();
+		CVar.contact_points = this.contact_points.toggle();
 	}
 	private function toggle_slow_motion(e:MouseEvent):Void 
 	{
@@ -158,37 +159,37 @@ class TrackSettings extends Sprite
 	
 	private function toggle_line_snap(e:MouseEvent):Void 
 	{
-		Common.cvar_line_snap = this.line_snap.toggle();
+		CVar.line_snap = this.line_snap.toggle();
 	}
 	
 	private function toggle_angle_snap(e:MouseEvent):Void 
 	{
-		Common.cvar_angle_snap = this.angle_snap.toggle();
+		CVar.angle_snap = this.angle_snap.toggle();
 	}
 	
 	private function toggle_hit_test(e:MouseEvent):Void 
 	{
-		Common.cvar_hit_test = this.hit_test.toggle();
+		CVar.hit_test = this.hit_test.toggle();
 	}
 	
 	private function toggle_preview_mode(e:MouseEvent):Void 
 	{
-		Common.cvar_preview_mode = this.preview_mode.toggle();
+		CVar.preview_mode = this.preview_mode.toggle();
 		Common.gTrack.set_rendermode_edit();
 	}
 	
 	private function toggle_color_play(e:MouseEvent):Void 
 	{
-		Common.cvar_color_play = this.color_playback.toggle();
+		CVar.color_play = this.color_playback.toggle();
 	}
 	public function update()
 	{
-		this.color_playback.update(Common.cvar_color_play);
-		this.preview_mode.update(Common.cvar_preview_mode);
-		this.hit_test.update(Common.cvar_hit_test);
-		this.angle_snap.update(Common.cvar_angle_snap);
-		this.line_snap.update(Common.cvar_line_snap);
+		this.color_playback.update(CVar.color_play);
+		this.preview_mode.update(CVar.preview_mode);
+		this.hit_test.update(CVar.hit_test);
+		this.angle_snap.update(CVar.angle_snap);
+		this.line_snap.update(CVar.line_snap);
 		this.slow_motion.update(Common.sim_auto_slow_motion);
-		this.contact_points.update(Common.cvar_contact_points);
+		this.contact_points.update(CVar.contact_points);
 	}
 }
