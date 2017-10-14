@@ -43,12 +43,7 @@ class EngineSettings extends Sprite
 		this.gameQuality.set_numeric_mode(1, 4, 1, 4, " Quality");
 		this.gameQuality.stepDown.addEventListener(MouseEvent.CLICK, this.dec_game_quality);
 		this.gameQuality.stepUp.addEventListener(MouseEvent.CLICK, this.inc_game_quality);
-		
-		this.frustrumCulling_toggle = new CheckBox("Line Culling", true);
-		this.addChild(this.frustrumCulling_toggle);
-		this.frustrumCulling_toggle.y = 35;
-		this.frustrumCulling_toggle.hitBox.addEventListener(MouseEvent.CLICK, this.toggle_frustrumCulling);
-		
+
 		this.toolbar_scale = new StepCounter();
 		this.addChild(this.toolbar_scale);
 		this.toolbar_scale.y = 70;
