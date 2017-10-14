@@ -3,6 +3,8 @@ package global;
 /**
  * ...
  * @author Kaelan Evans
+ * 
+ * Server variables. these variables can not be directly changed through player input.
  */
 class SVar 
 {
