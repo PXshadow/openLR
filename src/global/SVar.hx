@@ -31,6 +31,12 @@ class SVar
 	public static var track_date_stamp:String = "";
 	public static var rider_count = 0;
 	public static var current_tool:String = "none set";
+	public static var LineCount:Int = 0;
+	public static var BLueLineCount:Int = 0;
+	public static var RedLineCount:Int = 0;
+	public static var GreenLineCount:Int = 0;
+	public static var LineID:Int = 0;
+	
 	public function new() 
 	{
 		

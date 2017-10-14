@@ -65,12 +65,6 @@ class Common
 	public static var line_minLength:Int = 14;
 	public static var line_type:Int = 0;
 	
-	public static var sLineCount:Int = 0;
-	public static var sBLueLineCount:Int = 0;
-	public static var sRedLineCount:Int = 0;
-	public static var sGreenLineCount:Int = 0;
-	public static var sLineID:Int = 0;
-	
 	public static var track_scale:Float;
 	public static var track_scale_max:Float = 75;
 	public static var track_scale_min:Float = 0.5;
