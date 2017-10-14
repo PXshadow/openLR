@@ -6,6 +6,7 @@ import openfl.geom.Point;
 
 import global.Common;
 import global.CVar;
+import global.SVar;
 import ui.tool.ToolBase;
 import ui.tool.IconBase;
 import lr.lines.LineBase;
@@ -70,10 +71,10 @@ class ToolLine extends ToolBase
 		}
 		if (Common.get_distance(c, d) >= 1) {
 			var _loc1:LineBase = new LineBase(Common.line_type, x1, y1, x2, y2, this.mod_shift);
-			_loc1.ID = Common.sLineID;
+			_loc1.ID = SVar.lineID;
 			Common.gGrid.cacheLine(_loc1);
 			Common.gGrid.cache_stroke([_loc1]);
-			Common.sLineID += 1;
+			SVar.lineID += 1;
 		}
 		valid = false;
 	}
@@ -112,10 +113,10 @@ class ToolLine extends ToolBase
 		}
 		if (Common.get_distance(c, d) >= 1) {
 			var _loc1:LineBase = new LineBase(Common.line_type, x2, y2, x1, y1, !this.mod_shift);
-			_loc1.ID = Common.sLineID;
+			_loc1.ID = SVar.lineID;
 			Common.gGrid.cacheLine(_loc1);
 			Common.gGrid.cache_stroke([_loc1]);
-			Common.sLineID += 1;
+			SVar.lineID += 1;
 		}
 		Common.gTrack.clear_preview();
 		Lib.current.stage.removeEventListener(MouseEvent.MOUSE_MOVE, line_move_reverse);

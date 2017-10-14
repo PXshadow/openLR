@@ -7,6 +7,7 @@ import ui.inter.StepCounter;
 import ui.inter.CheckBox;
 import global.Common;
 import global.CVar;
+import global.SVar;
 
 /**
  * ...
@@ -73,7 +74,7 @@ class TrackSettings extends Sprite
 		this.line_snap.y = 80;
 		this.line_snap.hitBox.addEventListener(MouseEvent.CLICK, toggle_line_snap);
 		
-		this.slow_motion = new CheckBox("Auto Slow", Common.sim_slow_motion);
+		this.slow_motion = new CheckBox("Auto Slow", SVar.slow_motion);
 		this.addChild(this.slow_motion);
 		this.slow_motion.y = 112;
 		this.slow_motion.hitBox.addEventListener(MouseEvent.CLICK, toggle_slow_motion);
@@ -135,12 +136,12 @@ class TrackSettings extends Sprite
 	
 	private function decrease_slow_rate(e:MouseEvent):Void 
 	{
-		Common.sim_slow_motion_rate = this.slow_rate.dec();
+		SVar.slow_motion_rate = this.slow_rate.dec();
 	}
 	
 	private function increase_slow_rate(e:MouseEvent):Void 
 	{
-		Common.sim_slow_motion_rate = this.slow_rate.inc();
+		SVar.slow_motion_rate = this.slow_rate.inc();
 	}
 	
 	private function toggle_contact_points(e:MouseEvent):Void 
@@ -149,11 +150,11 @@ class TrackSettings extends Sprite
 	}
 	private function toggle_slow_motion(e:MouseEvent):Void 
 	{
-		Common.sim_auto_slow_motion = this.slow_motion.toggle();
-		if (Common.sim_slow_motion) {
-			Common.sim_default_rate = Common.sim_slow_motion_rate;
+		SVar.auto_slow_motion = this.slow_motion.toggle();
+		if (SVar.slow_motion) {
+			SVar.default_rate = SVar.slow_motion_rate;
 		} else {
-			Common.sim_default_rate = 40;
+			SVar.default_rate = 40;
 		}
 	}
 	
@@ -189,7 +190,7 @@ class TrackSettings extends Sprite
 		this.hit_test.update(CVar.hit_test);
 		this.angle_snap.update(CVar.angle_snap);
 		this.line_snap.update(CVar.line_snap);
-		this.slow_motion.update(Common.sim_auto_slow_motion);
+		this.slow_motion.update(SVar.auto_slow_motion);
 		this.contact_points.update(CVar.contact_points);
 	}
 }

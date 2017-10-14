@@ -9,6 +9,7 @@ import openfl.ui.Keyboard;
 import openfl.geom.Point;
 
 import global.Common;
+import global.SVar;
 
 /**
  * ...
@@ -30,14 +31,14 @@ class Desktop extends ControlBase
 	//Mouse
 	private function globalMiddleMouseDown(e:MouseEvent):Void 
 	{
-		if (!Common.svar_sim_running) {
+		if (!SVar.sim_running) {
 			this.mMouseDownPan(e);
 			this.panning = true;
 		}
 	}
 	private function globalMiddleMouseUp(e:MouseEvent):Void 
 	{
-		if (!Common.svar_sim_running && this.panning) {
+		if (!SVar.sim_running && this.panning) {
 			this.mMousePanUp(e);
 			this.panning = false;
 		}
@@ -59,7 +60,7 @@ class Desktop extends ControlBase
 	}
 	private function mouseScroll(e:MouseEvent):Void 
 	{
-		if (Common.svar_game_mode == GameState.edit || Common.svar_game_mode == GameState.livedraw) {
+		if (SVar.game_mode == GameState.edit || SVar.game_mode == GameState.livedraw) {
 			var platDelta:Int;
 			#if (cpp || flash)
 				platDelta = e.delta;

@@ -5,6 +5,7 @@ import openfl.display.Sprite;
 
 import global.Common;
 import global.CVar;
+import global.SVar;
 import lr.lines.LineBase;
 import lr.nodes.Grid;
 
@@ -58,7 +59,7 @@ class Panel
 		_locVis.x = _locVis.x - this.offset_x;
 		_locVis.y = _locVis.y - this.offset_y;
 		
-		if (!Common.svar_sim_running) {
+		if (!SVar.sim_running) {
 			if (!CVar.preview_mode) {
 				Common.gGrid.lines[_line.ID].render("edit");
 			} else {

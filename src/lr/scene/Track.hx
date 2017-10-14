@@ -12,6 +12,7 @@ import openfl.geom.Point;
 import global.engine.SimManager;
 import global.Common;
 import global.CVar;
+import global.SVar;
 
 /**
  * ...
@@ -190,19 +191,19 @@ class Track extends Sprite
 		Common.gGrid.new_grid();
 		Common.gSimManager.reset();
 		Common.gCode.reset_timeline();
-		Common.sim_frames = 0;
-		Common.sim_max_frames = 0;
-		Common.sim_pause_frame = 0;
-		Common.sim_rider_speed_top = 0;
-		Common.sim_slow_motion_rate = 5;
-		Common.sim_slow_motion = false;
+		SVar.frames = 0;
+		SVar.max_frames = 0;
+		SVar.pause_frame = 0;
+		SVar.rider_speed_top = 0;
+		SVar.slow_motion_rate = 5;
+		SVar.slow_motion = false;
 	}
 	public function remove_line(_line) {
 		this.canvas.removeChild(Common.gGrid.lines[_line.ID]);
 	}
 	public function set_simmode_play() {
 		this.simManager.start_sim();
-		Common.svar_sim_running = true;
+		SVar.sim_running = true;
 	}
 	public function set_simmode_resume() {
 		
@@ -212,6 +213,6 @@ class Track extends Sprite
 	}
 	public function set_simmode_stop() {
 		this.simManager.end_sim();
-		Common.svar_sim_running = false;
+		SVar.sim_running = false;
 	}
 }

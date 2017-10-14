@@ -10,6 +10,7 @@ import openfl.text.TextField;
 import global.KeyBindings;
 import global.Common;
 import global.CVar;
+import global.SVar;
 
 /**
  * ...
@@ -26,12 +27,12 @@ class ToolBase
 
 	public function new(_type:String = "init") 
 	{
-		if (Common.svar_current_tool == _type) {
+		if (SVar.current_tool == _type) {
 			return;
 		} else {
 			this.destroy();
 		}
-		Common.svar_current_tool = _type;
+		SVar.current_tool = _type;
 		Common.gToolBase = this;
 	}
 	public function set_listeners() {
@@ -138,7 +139,7 @@ class ToolBase
 		Lib.current.stage.removeEventListener(KeyboardEvent.KEY_UP, KeyModifierUp);
 	}
 	public function enable() {
-		if (Common.svar_game_mode == GameState.edit || Common.svar_game_mode == GameState.livedraw) {
+		if (SVar.game_mode == GameState.edit || SVar.game_mode == GameState.livedraw) {
 			Lib.current.stage.addEventListener(MouseEvent.MOUSE_DOWN, mouseDown);
 			Lib.current.stage.addEventListener(MouseEvent.MOUSE_UP, mouseUp);
 			Lib.current.stage.addEventListener(MouseEvent.MOUSE_MOVE, mouseMove);

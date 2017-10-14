@@ -8,6 +8,7 @@ import openfl.ui.MouseCursor;
 import ui.tool.IconButton;
 
 import global.Common;
+import global.SVar;
 
 /**
  * ...
@@ -73,14 +74,14 @@ class IconBase extends Sprite
 	
 	private function enable_tool(e:MouseEvent):Void 
 	{
-		if (!Common.svar_sim_running || Common.gSimManager.paused) {
+		if (!SVar.sim_running || Common.gSimManager.paused) {
 			Common.gToolBase.enable();
 		}
 	}
 	
 	private function disable_tool(e:MouseEvent):Void 
 	{
-		if (!Common.svar_sim_running) {
+		if (!SVar.sim_running) {
 			Common.gToolBase.disable();
 		}
 	}

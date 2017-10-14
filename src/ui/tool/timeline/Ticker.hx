@@ -5,6 +5,7 @@ import openfl.display.MovieClip;
 import openfl.text.TextField;
 
 import global.Common;
+import global.SVar;
 
 /**
  * ...
@@ -29,7 +30,7 @@ class Ticker extends MovieClip
 	}
 	public function update() {
 		for (i in 0...320) {
-			this.tickArray[i].update(Common.sim_frames + i);
+			this.tickArray[i].update(SVar.frames + i);
 		}
 	}
 }

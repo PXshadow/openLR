@@ -6,6 +6,7 @@ import openfl.events.KeyboardEvent;
 
 import global.Common;
 import global.CVar;
+import global.SVar;
 import global.KeyBindings;
 import lr.lines.LineBase;
 
@@ -48,7 +49,7 @@ class Grid
 
 	private function undo_redo(e:KeyboardEvent):Void
 	{
-		if (!Common.svar_sim_running) {
+		if (!SVar.sim_running) {
 			if (e.controlKey)
 			{
 				if (e.keyCode == KeyBindings.undo_stroke) {
@@ -147,28 +148,28 @@ class Grid
 	public function new_grid()
 	{
 		this.lines = new Array();
-		Common.sLineCount = 0;
-		Common.sBLueLineCount = 0;
-		Common.sRedLineCount = 0;
-		Common.sGreenLineCount = 0;
-		Common.sLineID = 0;
+		SVar.lineCount = 0;
+		SVar.blueLineCount = 0;
+		SVar.redLineCount = 0;
+		SVar.greenLineCount = 0;
+		SVar.lineID = 0;
 		Common.gTextInfo.update();
 		Grid.grid = new Map();
 	}
 	public function cacheLine(_line:LineBase) {
 		if (_line.type == LineType.Floor)
 		{
-			Common.sBLueLineCount += 1;
+			SVar.blueLineCount += 1;
 		}
 		else if (_line.type == LineType.Accel)
 		{
-			Common.sRedLineCount += 1;
+			SVar.redLineCount += 1;
 		}
 		else if (_line.type == LineType.Scene)
 		{
-			Common.sGreenLineCount += 1;
+			SVar.greenLineCount += 1;
 		}
-		Common.sLineCount += 1;
+		SVar.lineID += 1;
 		this.lines[_line.ID] = _line;
 		this.registerInCollisionGrid(_line);
 		this.registerInTileGrid(_line);
@@ -201,19 +202,19 @@ class Grid
 			var _loc5;
 			if (_loc1.x < 0)
 			{
-				difX = line.dx > 0 ? (Common.svar_gridsize + _loc1.gx) : (-Common.svar_gridsize - _loc1.gx);
+				difX = line.dx > 0 ? (SVar.gridsize + _loc1.gx) : (-SVar.gridsize - _loc1.gx);
 			}
 			else
 			{
-				difX = line.dx > 0 ? (Common.svar_gridsize - _loc1.gx) : (-(_loc1.gx + 1));
+				difX = line.dx > 0 ? (SVar.gridsize - _loc1.gx) : (-(_loc1.gx + 1));
 			}
 			if (_loc1.y < 0)
 			{
-				_loc5 = line.dy > 0 ? (Common.svar_gridsize + _loc1.gy) : (-Common.svar_gridsize - _loc1.gy);
+				_loc5 = line.dy > 0 ? (SVar.gridsize + _loc1.gy) : (-SVar.gridsize - _loc1.gy);
 			}
 			else
 			{
-				_loc5 = line.dy > 0 ? (Common.svar_gridsize - _loc1.gy) : (-(_loc1.gy + 1));
+				_loc5 = line.dy > 0 ? (SVar.gridsize - _loc1.gy) : (-(_loc1.gy + 1));
 			}
 			if (line.dx == 0)
 			{
@@ -305,19 +306,19 @@ class Grid
 			var _loc5;
 			if (_loc1.x < 0)
 			{
-				difX = line.dx > 0 ? (Common.svar_tilesize + _loc1.gx) : (-Common.svar_tilesize - _loc1.gx);
+				difX = line.dx > 0 ? (SVar.tilesize + _loc1.gx) : (-SVar.tilesize - _loc1.gx);
 			}
 			else
 			{
-				difX = line.dx > 0 ? (Common.svar_tilesize - _loc1.gx) : (-(_loc1.gx + 1));
+				difX = line.dx > 0 ? (SVar.tilesize - _loc1.gx) : (-(_loc1.gx + 1));
 			}
 			if (_loc1.y < 0)
 			{
-				_loc5 = line.dy > 0 ? (Common.svar_tilesize + _loc1.gy) : (-Common.svar_tilesize - _loc1.gy);
+				_loc5 = line.dy > 0 ? (SVar.tilesize + _loc1.gy) : (-SVar.tilesize - _loc1.gy);
 			}
 			else
 			{
-				_loc5 = line.dy > 0 ? (Common.svar_tilesize - _loc1.gy) : (-(_loc1.gy + 1));
+				_loc5 = line.dy > 0 ? (SVar.tilesize - _loc1.gy) : (-(_loc1.gy + 1));
 			}
 			if (line.dx == 0)
 			{
@@ -389,17 +390,17 @@ class Grid
 		this.lines[line.ID] = null;
 		if (line.type == 0)
 		{
-			--Common.sBLueLineCount;
+			--SVar.blueLineCount;
 		}
 		else if (line.type == 1)
 		{
-			--Common.sRedLineCount;
+			--SVar.redLineCount;
 		}
 		else if (line.type == 2)
 		{
-			--Common.sGreenLineCount;
+			--SVar.greenLineCount;
 		}
-		--Common.sLineCount;
+		--SVar.lineCount;
 
 		Common.gTextInfo.update();
 		Common.gSimManager.rider_update();
@@ -416,7 +417,7 @@ class Grid
 	}
 	public function snap(x:Float, y:Float, vert:Int, invert:Bool):Array<Dynamic> //if mouse is close enough to line end when mouse down, line will snap to line
 	{
-		var _loc2:Float = Math.pow(Common.svar_snap_distance / Common.gTrack.scaleX, 2);
+		var _loc2:Float = Math.pow(SVar.snap_distance / Common.gTrack.scaleX, 2);
 		var _loc10:Float = x;
 		var _loc11:Float = y;
 		var _loc17:Bool;

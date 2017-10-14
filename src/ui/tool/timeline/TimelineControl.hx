@@ -7,6 +7,7 @@ import openfl.geom.Point;
 
 import ui.tool.timeline.Ticker;
 import global.Common;
+import global.SVar;
 
 /**
  * ...
@@ -61,7 +62,7 @@ class TimelineControl extends Sprite
 			this.ticker_pause = false;
 		} else {
 			Common.gToolBase.enable();
-			Common.sim_frames_alt = Common.sim_frames;
+			SVar.frames_alt = SVar.frames;
 		}
 	}
 	

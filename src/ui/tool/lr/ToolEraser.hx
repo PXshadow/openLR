@@ -7,6 +7,7 @@ import openfl.utils.Object;
 import openfl.events.Event;
 
 import global.Common;
+import global.SVar;
 import lr.lines.LineBase;
 import lr.nodes.Grid;
 import ui.tool.IconBase;
@@ -71,7 +72,7 @@ class ToolEraser extends ToolBase
 					var _loc13:Float = Math.sqrt(Math.pow(x - _loc1.x2, 2) + Math.pow(y - _loc1.y2, 2));
 					var _loc11:Float = Math.abs(_loc1.nx * _loc3 + _loc1.ny * _loc2);
 					var _loc4:Float = (_loc3 * _loc1.dx + _loc2 * _loc1.dy) * _loc1.invSqrDis;
-					if (_loc12 < Common.svar_eraser_size * _loc9 || _loc13 < Common.svar_eraser_size * _loc9 || _loc11 < Common.svar_eraser_size * _loc9 && _loc4 >= 0 && _loc4 <= 1)
+					if (_loc12 < SVar.eraser_size * _loc9 || _loc13 < SVar.eraser_size * _loc9 || _loc11 < SVar.eraser_size * _loc9 && _loc4 >= 0 && _loc4 <= 1)
 					{
 						if (Common.line_type == -1) {
 							Common.gGrid.remove_line(_loc1);

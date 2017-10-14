@@ -21,6 +21,7 @@ import ui.inter.ConfirmDialog;
 
 import global.Common;
 import global.CVar;
+import global.SVar;
 import ui.inter.TextButton;
 import global.Language;
 
@@ -134,7 +135,7 @@ class SaveManager extends Sprite
 		} else {
 			if (FileSystem.exists("./saves/" + this.fileName)) {
 				if (!SaveManager.new_track) { //check if new track. If not then compare date stamp is necesary
-					if (this.save_date == Common.svar_track_date_stamp) {
+					if (this.save_date == SVar.track_date_stamp) {
 						this.generate_save_json();
 						this.addChild(this.save_button);
 						this.addChild(this.cancel_button);

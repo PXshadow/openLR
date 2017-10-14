@@ -20,6 +20,7 @@ import file.AutosaveManager;
 import file.Screenshot;
 import global.Common;
 import global.CVar;
+import global.SVar;
 import global.engine.FrameRate;
 import global.Language;
 import global.engine.RiderManager;
@@ -134,14 +135,14 @@ class CppCore extends CoreBase
 		
 		this.align();
 		
-		Common.svar_game_mode = GameState.edit;
+		SVar.game_mode = GameState.edit;
 	}
 	override public function reset_timeline() {
-		Common.sim_frames = 0;
-		Common.sim_max_frames = 0;
-		Common.sim_pause_frame = -1;
-		Common.sim_slow_motion = false;
-		Common.sim_slow_motion_rate = 5;
+		SVar.frames = 0;
+		SVar.max_frames = 0;
+		SVar.pause_frame = -1;
+		SVar.slow_motion = false;
+		SVar.slow_motion_rate = 5;
 		this.visContainer.removeChild(this.timeline);
 		this.timeline = new TimelineControl();
 		this.visContainer.addChild(this.timeline);
@@ -152,7 +153,7 @@ class CppCore extends CoreBase
 	override public function toggleSettings_box()
 	{
 		if (!this.settings_box.visible) {
-			Common.svar_game_mode = GameState.inmenu;
+			SVar.game_mode = GameState.inmenu;
 			this.settings_box.visible = true;
 			this.track.visible = false;
 			this.toolBar.mouseChildren = false;
@@ -167,13 +168,13 @@ class CppCore extends CoreBase
 			this.toolBar.mouseChildren = true;
 			this.textInfo.visible = true;
 			this.timeline.visible = true;
-			Common.svar_game_mode = GameState.edit;
+			SVar.game_mode = GameState.edit;
 			Common.gToolBase.enable();
 		}
 	}
 	override public function toggle_save_menu() {
 		if (this.save_manager.visible != true) {
-			Common.svar_game_mode = GameState.inmenu;
+			SVar.game_mode = GameState.inmenu;
 			this.save_manager.update();
 			this.save_manager.visible = true;
 			this.track.visible = false;
@@ -186,13 +187,13 @@ class CppCore extends CoreBase
 			this.toolBar.mouseChildren = true;
 			this.textInfo.visible = true;
 			this.timeline.visible = true;
-			Common.svar_game_mode = GameState.edit;
+			SVar.game_mode = GameState.edit;
 			Common.gToolBase.enable();
 		}
 	}
 	override public function toggle_Loader() {
 		if (!this.loadManager.visible) {
-			Common.svar_game_mode = GameState.inmenu;
+			SVar.game_mode = GameState.inmenu;
 			this.loadManager.visible = true;
 			this.loadManager.update();
 			this.track.visible = false;
@@ -205,7 +206,7 @@ class CppCore extends CoreBase
 			this.toolBar.visible = true;
 			this.textInfo.visible = true;
 			this.timeline.visible = true;
-			Common.svar_game_mode = GameState.edit;
+			SVar.game_mode = GameState.edit;
 			Common.gToolBase.enable();
 		}
 	}

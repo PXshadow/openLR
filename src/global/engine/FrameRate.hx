@@ -5,6 +5,7 @@ import openfl.Lib;
 import openfl.events.Event;
 
 import global.Common;
+import global.SVar;
 
 /**
  * ...
@@ -25,8 +26,8 @@ class FrameRate
 		this.time_mass += (1/(_loc1 - prevTime));
 		prevTime = Timer.stamp();
 		++tick;
-		if (tick >= Common.svar_framerate_avg_rate) {
-			Common.svar_frame_rate = Math.floor(time_mass / Common.svar_framerate_avg_rate);
+		if (tick >= SVar.framerate_avg_rate) {
+			SVar.frame_rate = Math.floor(time_mass / SVar.framerate_avg_rate);
 			this.time_mass = 0;
 			tick = 0;
 			Common.gTextInfo.update_textInfo_E();

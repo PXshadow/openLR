@@ -5,6 +5,7 @@ import openfl.display.Sprite;
 import openfl.events.MouseEvent;
 
 import global.Common;
+import global.SVar;
 
 /**
  * ...
@@ -39,12 +40,12 @@ class Slider extends Sprite
 		Lib.current.stage.removeEventListener(MouseEvent.MOUSE_MOVE, thisSlide);
 		this.playHead.removeEventListener(MouseEvent.MOUSE_UP, endSlider);
 		Lib.current.stage.removeEventListener(MouseEvent.MOUSE_UP, endSlider);
-		if (Common.gSimManager.paused && Common.svar_game_mode == GameState.playback) {
+		if (Common.gSimManager.paused && SVar.game_mode == GameState.playback) {
 			Common.gSimManager.resume_sim();
 		} else {
 			Common.gToolBase.enable();
 		}
-		Common.sim_pause_frame = -1;
+		SVar.pause_frame = -1;
 	}
 	
 	private function preInitSlider(e:MouseEvent):Void 
@@ -53,11 +54,11 @@ class Slider extends Sprite
 		Lib.current.stage.addEventListener(MouseEvent.MOUSE_MOVE, thisSlide);
 		this.playHead.addEventListener(MouseEvent.MOUSE_UP, endSlider);
 		Lib.current.stage.addEventListener(MouseEvent.MOUSE_UP, endSlider);
-		if (Common.svar_sim_running) {
+		if (SVar.sim_running) {
 			Common.gSimManager.pause_sim();
 		}
-		Common.sim_pause_frame = Common.sim_frames;
-		Common.sim_frames_alt = Common.sim_frames;
+		SVar.pause_frame = SVar.frames;
+		SVar.frames_alt = SVar.frames;
 	}
 	private function thisSlide(e:MouseEvent):Void 
 	{
@@ -71,34 +72,34 @@ class Slider extends Sprite
 			frameToInject = 0;
 		} else if (this.mouseX >= this.frame_length) {
 			this.playHead.x = this.frame_length;
-			frameToInject = Common.sim_max_frames - 1;
+			frameToInject = SVar.max_frames - 1;
 		}
 		Common.gSimManager.injectRiderPosition(frameToInject);
 		Common.gTimeline.update();
 	}
 	public function update() {
-		if (Common.sim_frames > this.frame_length) {
-			this.frame_length = Common.sim_frames;
+		if (SVar.frames > this.frame_length) {
+			this.frame_length = SVar.frames;
 		}
 		if (this.frame_length > 1000) {
 			this.frame_length = 1000;
 			this.max_length = true;
 		}
-		if (Common.sim_max_frames > 1000) {
-			this.frameRatio = Common.sim_max_frames / 1000;
+		if (SVar.max_frames > 1000) {
+			this.frameRatio = SVar.max_frames / 1000;
 		}
 		this.graphics.clear();
 		this.graphics.lineStyle(4, 0, 1);
 		this.graphics.moveTo(0, 0);
 		this.graphics.lineTo(this.frame_length, 0);
 		if (max_length == true) {
-			if (Common.sim_frames / this.frameRatio > 1000) {
+			if (SVar.frames / this.frameRatio > 1000) {
 				this.playHead.x = 1000;
 			} else {
-				this.playHead.x = Common.sim_frames / this.frameRatio;
+				this.playHead.x = SVar.frames / this.frameRatio;
 			}
 		} else {
-			this.playHead.x = Common.sim_frames;
+			this.playHead.x = SVar.frames;
 		}
 	}
 	

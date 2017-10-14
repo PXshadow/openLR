@@ -11,6 +11,7 @@ import ui.tool.lr.*;
 import ui.tool.icon.*;
 import global.KeyBindings;
 import global.Common;
+import global.SVar;
 
 /**
  * ...
@@ -189,7 +190,7 @@ class Toolbar extends Sprite
 		}*/
 	}
 	public function set_full_edit_mode() {
-		Common.svar_game_mode = GameState.edit;
+		SVar.game_mode = GameState.edit;
 		this.pencil.mouseChildren = true;
 		this.pencil.enable();
 		this.line.mouseChildren = true;
@@ -208,7 +209,7 @@ class Toolbar extends Sprite
 		this.swGreen.enable();
 	}
 	public function set_live_draw_mode() {
-		Common.svar_game_mode = GameState.livedraw;
+		SVar.game_mode = GameState.livedraw;
 		this.pencil.mouseChildren = true;
 		this.pencil.enable();
 		this.line.mouseChildren = true;
@@ -227,7 +228,7 @@ class Toolbar extends Sprite
 		this.swGreen.enable();
 	}
 	public function set_play_mode() {
-		Common.svar_game_mode = GameState.playback;
+		SVar.game_mode = GameState.playback;
 		this.pencil.mouseChildren = false;
 		this.pencil.disable();
 		this.line.mouseChildren = false;

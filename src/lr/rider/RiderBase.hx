@@ -10,6 +10,7 @@ import openfl.ui.Keyboard;
 import openfl.events.KeyboardEvent;
 
 import global.Common;
+import global.SVar;
 import global.engine.RiderManager;
 import lr.lines.LineBase;
 import lr.nodes.Grid;
@@ -220,14 +221,14 @@ class RiderBase extends Sprite
 			this.collision();
 		}
 		this.body.crash_check();
-		this.recorder.index_frame(Common.sim_frames, this.body.anchors, this.scarf.anchors);
+		this.recorder.index_frame(SVar.frames, this.body.anchors, this.scarf.anchors);
 	}
 	public function step_rider_back() {
 		while (tick_frame != SubFrame.FullTick) {
 			this.step_rider_sub();
 		}
-		recorder.inject_frame(Common.sim_frames - 1, this.body.anchors, this.scarf.anchors);
-		if (Common.sim_frames == 0) {
+		recorder.inject_frame(SVar.frames - 1, this.body.anchors, this.scarf.anchors);
+		if (SVar.frames == 0) {
 			this.reset();
 		}
 		this.camera.pan(this.body.anchors[4]);
@@ -238,7 +239,7 @@ class RiderBase extends Sprite
 			this.step_rider_sub();
 		}
 		recorder.inject_frame(_frame, this.body.anchors, this.scarf.anchors);
-		if (Common.sim_frames == 0) {
+		if (SVar.frames == 0) {
 			this.reset();
 		}
 		this.camera.pan(this.body.anchors[4]);
@@ -252,7 +253,7 @@ class RiderBase extends Sprite
 		this.adjust_rider_dimensions();
 	}
 	public function inject_and_update(_frame:Int) {
-		var _loc1 = Common.sim_frames;
+		var _loc1 = SVar.frames;
 		if (_loc1 == 0) {
 			return;
 		}
@@ -265,7 +266,7 @@ class RiderBase extends Sprite
 			for (a in 0..._frame) {
 				this.iterate();
 				this.inject_postion(0);
-				Common.sim_max_frames = _frame;
+				SVar.max_frames = _frame;
 				Common.gTimeline.update();
 			}
 		}
@@ -335,8 +336,8 @@ class RiderBase extends Sprite
 			this.flagged = true;
 			this.flag_vis = true;
 		}
-		Common.sim_flagged_frame = Common.sim_frames;
-		this.flag = new FlagMarker(Common.sim_frames);
+		SVar.flagged_frame = SVar.frames;
+		this.flag = new FlagMarker(SVar.frames);
 		this.addChild(this.flag);
 		this.flag.x = this.body.anchors[4].x;
 		this.flag.y = this.body.anchors[4].y;
@@ -379,9 +380,9 @@ class RiderBase extends Sprite
 						_loc8.collide(_loc5);
 					}
 					if (Grid.grid[_loc1][_loc2].lowFrame == - 1) {
-						Grid.grid[_loc1][_loc2].lowFrame = Common.sim_frames;
-					} else if (Common.sim_frames <  Grid.grid[_loc1][_loc2].lowFrame) {
-						Grid.grid[_loc1][_loc2].lowFrame = Common.sim_frames;
+						Grid.grid[_loc1][_loc2].lowFrame = SVar.frames;
+					} else if (SVar.frames <  Grid.grid[_loc1][_loc2].lowFrame) {
+						Grid.grid[_loc1][_loc2].lowFrame = SVar.frames;
 					}
 				}
 			}

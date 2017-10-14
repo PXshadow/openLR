@@ -7,6 +7,7 @@ import openfl.Assets;
 import openfl.net.URLRequest;
 
 import global.Common;
+import global.SVar;
 import ui.tool.Toolbar;
 import ui.tool.IconBase;
 
@@ -23,10 +24,10 @@ class IconFlag extends IconBase
 		super(Icon.flag);
 	}
 	override public function up(e:MouseEvent) {
-		if (Common.svar_sim_running) {
+		if (SVar.sim_running) {
 			Common.gSimManager.mark_rider_position();
 			Common.gSimManager.show_flag();
-		} else if (!Common.svar_sim_running) {
+		} else if (!SVar.sim_running) {
 			if (Common.gSimManager.flagged == false) {
 				Common.gSimManager.show_flag();
 				Common.gSimManager.flagged = true;

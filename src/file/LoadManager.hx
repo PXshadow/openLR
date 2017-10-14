@@ -16,6 +16,7 @@ import ui.inter.AlertBox;
 
 import global.Common;
 import global.CVar;
+import global.SVar;
 import lr.line.*;
 import ui.inter.TextButton;
 import ui.tool.Toolbar;
@@ -137,7 +138,7 @@ class LoadManager extends Sprite
 	{
 		SaveManager.new_track = false;
 		CVar.author_comment = this.trackData.description;
-		Common.svar_track_date_stamp = this.trackData.dateStamp;
+		SVar.track_date_stamp = this.trackData.dateStamp;
 		CVar.track_name = this.trackData.label;
 		Common.track_start_x = this.trackData.startPosition.x;
 		Common.track_start_y = this.trackData.startPosition.y;
@@ -149,10 +150,10 @@ class LoadManager extends Sprite
 				continue;
 			}
 			var _loc1:LineBase = new LineBase(trackData.linesArray[i][0], trackData.linesArray[i][2], trackData.linesArray[i][3], trackData.linesArray[i][4], trackData.linesArray[i][5], trackData.linesArray[i][7]);
-			_loc1.ID = Common.sLineID;
+			_loc1.ID = SVar.lineID;
 			Common.gGrid.cacheLine(_loc1);
 			Common.gGrid.cache_stroke([_loc1]);
-			Common.sLineID += 1;
+			SVar.lineID += 1;
 		}
 		Common.gCode.toggle_Loader();
 	}
@@ -171,7 +172,7 @@ class LoadManager extends Sprite
 	function load_non_compressed() {
 		SaveManager.new_track = false;
 		CVar.author_comment = this.trackData.description;
-		Common.svar_track_date_stamp = this.trackData.dateStamp;
+		SVar.track_date_stamp = this.trackData.dateStamp;
 		CVar.track_name = this.trackData.label;
 		Common.track_start_x = this.trackData.startPosition.x;
 		Common.track_start_y = this.trackData.startPosition.y;
@@ -187,7 +188,7 @@ class LoadManager extends Sprite
 			_loc1.set_lim(this.get_lim_to_set(trackData.lines[i].leftExtended, trackData.lines[i].rightExtended));
 			Common.gGrid.cacheLine(_loc1);
 			Common.gGrid.cache_stroke([_loc1]);
-			Common.sLineID = Std.int(trackData.lines[i].id + 1);
+			SVar.lineID = Std.int(trackData.lines[i].id + 1);
 		}
 		Common.gCode.toggle_Loader();
 	}

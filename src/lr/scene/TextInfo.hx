@@ -10,6 +10,7 @@ import openfl.text.TextFormatAlign;
 
 import global.Common;
 import global.CVar;
+import global.SVar;
 
 /**
  * ...
@@ -69,26 +70,26 @@ class TextInfo extends MovieClip
 	public function update() {
 		if (mode == 0)
 		{
-			textInfo_A.text = Common.sLineCount + " Lines";
-			textInfo_B.text = Common.sBLueLineCount + " Floor";
-			textInfo_C.text = Common.sRedLineCount + " Accel";
-			textInfo_D.text = Common.sGreenLineCount + " Scene";
+			textInfo_A.text = SVar.lineCount + " Lines";
+			textInfo_B.text = SVar.blueLineCount + " Floor";
+			textInfo_C.text = SVar.redLineCount + " Accel";
+			textInfo_D.text = SVar.greenLineCount + " Scene";
 		}
 	}
 	public function update_textInfo_E()
 	{
-		if (Common.svar_frame_rate > 60) {
+		if (SVar.frame_rate > 60) {
 			textInfo_E.text = "+60 FPS";
 		} else {
-			textInfo_E.text = Common.svar_frame_rate + " FPS";
+			textInfo_E.text = SVar.frame_rate + " FPS";
 		}
 	}
 	public function update_sim() {
-		var _locTime:String = Common.time(Common.sim_frames);
+		var _locTime:String = Common.time(SVar.frames);
 		
 		textInfo_A.text = CVar.track_name;
 		textInfo_B.text = _locTime;
-		textInfo_C.text = Common.sim_rider_speed + " PPF";
-		textInfo_D.text = Common.sim_rider_speed_top + " Top";
+		textInfo_C.text = SVar.rider_speed + " PPF";
+		textInfo_D.text = SVar.rider_speed_top + " Top";
 	}
 }
