@@ -5,6 +5,8 @@
 	<!-- metadata, make sure 'package' is at least 3 segments (ie. com.mycompany.myproject) -->
 	<meta title="openLR Alpha 0.0.5" package="com.kevansevans.openLR" version="0.0.5" company="Kaelan Evans" />
 	
+	<set name="AIR_SDK" value="C:/AIR_SDK" />
+	
 	<!-- output -->
 	<app main="Main" file="openLR" path="bin" />
 	
