@@ -1,7 +1,7 @@
 package ui.tool.timeline;
 
 import haxe.ds.Vector;
-import openfl.display.MovieClip;
+import openfl.display.Sprite;
 import openfl.text.TextField;
 
 import global.Common;
@@ -13,7 +13,7 @@ import global.SVar;
  * 
  * permits frame by frame scrubbing on the fly
  */
-class Ticker extends MovieClip
+class Ticker extends Sprite
 {
 	var tickArray:Vector<Tick>;
 	var timeStamp:TextField;
