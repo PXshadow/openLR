@@ -5,6 +5,7 @@ import openfl.events.Event;
 import openfl.events.MouseEvent;
 import openfl.geom.Point;
 import openfl.events.KeyboardEvent;
+import openfl.ui.Keyboard;
 import openfl.text.TextField;
 
 import global.KeyBindings;
@@ -24,6 +25,8 @@ class ToolBase
 
 	public var mod_shift:Bool = false;
 	public var mod_x:Bool = false;
+	public var mod_z:Bool = false;
+	public var mod_ctrl:Bool = false;
 
 	public function new(_type:String = "init") 
 	{
@@ -52,6 +55,12 @@ class ToolBase
 		if (e.keyCode == KeyBindings.angle_snap) {
 			mod_x = true;
 		}
+		if (e.keyCode == Keyboard.Z) {
+			this.mod_z = true;
+		}
+		if (e.keyCode == Keyboard.CONTROL) {
+			this.mod_ctrl = true;
+		}
 	}
 	private function KeyModifierUp(e:KeyboardEvent):Void 
 	{
@@ -64,6 +73,12 @@ class ToolBase
 					CVar.angle_snap = true;
 				}
 			}
+		}
+		if (e.keyCode == Keyboard.Z) {
+			this.mod_z = false;
+		}
+		if (e.keyCode == Keyboard.CONTROL) {
+			this.mod_ctrl = false;
 		}
 	}
 	

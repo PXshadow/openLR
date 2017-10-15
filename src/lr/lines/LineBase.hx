@@ -10,6 +10,7 @@ import openfl.geom.Point;
 
 import global.Common;
 import global.CVar;
+import global.SVar;
 
 /**
  * ...
@@ -25,6 +26,12 @@ import global.CVar;
 	public var Accel:Int = 1;
 	public var Scene:Int = 2;
 	public var Deccel:Int = 3;
+}
+@:enum abstract SwapType(Int) from Int to Int {
+	public var CollisionCycle:Int = 0;
+	public var SceneryToggle:Int = 1;
+	public var InverseToggle:Int = 2;
+	public var DirectionToggle:Int = 3;
 }
 class LineBase extends Shape
 {
@@ -50,6 +57,7 @@ class LineBase extends Shape
 	public var _lim2:Float;
 	public var inv:Bool = false;
 	public var type:Int = -1;
+	public var prevType:Int = -1;
 	public var ID:Int;
 	public var gridList:Array<Array<Int>>;
 	public var gridVisList:Array<Array<Int>>;
@@ -72,6 +80,7 @@ class LineBase extends Shape
 		this.gridList = new Array();
 		this.gridVisList = new Array();
 		this.type = _type;
+		this.prevType = _type;
 		x1 = _x1;
 		y1 = _y1;
 		x2 = _x2;
@@ -111,6 +120,9 @@ class LineBase extends Shape
 		this.accx = ny * this.acc * (this.inv ? (1) : (-1));
         this.accy = nx * this.acc * (this.inv ? ( -1) : (1));
 		
+		if (this.phys != null) {
+			return;
+		}
 		switch(this.type) {
 			case LineType.None :
 				this.phys = new NoCollision();
@@ -223,6 +235,116 @@ class LineBase extends Shape
 		} else {
 			this.render("edit");
 		}
+	}
+	public function changeBehavior(_mode:Int) {
+		switch (_mode) {
+			case SwapType.CollisionCycle : //cycles through all line types
+				trace("performed swap");
+				switch (this.type) {
+					case 0 :
+						this.type = 1;
+						this.prevType = 1;
+						this.phys = new Acceleration(this);
+					case 1 :
+						this.type = 3;
+						this.prevType = 3;
+						this.phys = new Decceleration(this);
+					case 2 :
+						return;
+					case 3 :
+						this.type = 0;
+						this.prevType = 0;
+						this.phys = new Floor(this);
+					default :
+						return;
+				}
+			case SwapType.DirectionToggle : //changes direction behavior
+				switch (this.type) {
+					case 1 :
+						this.quickDirectionFlip();
+						this.phys = new Acceleration(this);
+					default :
+						return;
+				}
+			case SwapType.InverseToggle : //flips collision side
+				switch (this.type) {
+					case 0 :
+						this.inv = !this.inv;
+					case 1 :
+						this.inv = !this.inv;
+					case 2 :
+						return;
+					default :
+						return;
+				}
+			case SwapType.SceneryToggle :
+				if (this.type != 2) {
+					this.type = 2;
+					this.phys = new NoCollision();
+				} else {
+					switch (this.prevType) {
+					case -1 :
+						this.type = 0;
+						this.phys = new Floor(this);
+					case 0 :
+						this.type = 0;
+						this.phys = new Floor(this);
+					case 1 :
+						this.type = 1;
+						this.phys = new Acceleration(this);
+					case 3 :
+						this.type = 3;
+						this.phys = new Decceleration(this);
+					default :
+						this.type = 0;
+						this.phys = new Floor(this);
+					}
+				}
+				Common.gGrid.updateRegistry(this);
+		}
+		this.calculateConstants();
+		this.updateLineVis(_mode);
+		if (!SVar.sim_running) {
+			if (!CVar.preview_mode) {
+				this.render("edit");
+			} else {
+				this.render("play");
+			}
+		} else {
+			if (!CVar.color_play) {
+				this.render("play");
+			} else {
+				this.render("edit");
+			}
+		}
+	}
+	function updateLineVis(_mode:Int) {
+		for (a in this.visList) {
+			a.type = this.type;
+			a.x1 = this.x1;
+			a.y1 = this.y1;
+			a.x2 = this.x2;
+			a.y2 = this.y2;
+			a.inv = this.inv;
+			a.invDst = this.invDst;
+			a.nx = this.nx;
+			a.ny = this.ny;
+			a.dx = this.dx;
+			a.dy = this.dy;
+		}
+	}
+	function quickDirectionFlip() 
+	{
+		var tempX1 = this.x1;
+		var tempY1 = this.y1;
+		var tempX2 = this.x2;
+		var tempY2 = this.y2;
+			
+		this.x1 = tempX2;
+		this.x2 = tempX1;
+		this.y1 = tempY2;
+		this.y2 = tempY1;
+		this.inv = !this.inv;
 	}
 }
 class LinePreview extends LineBase

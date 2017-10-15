@@ -156,6 +156,10 @@ class Grid
 		Common.gTextInfo.update();
 		Grid.grid = new Map();
 	}
+	public function updateRegistry(_line:LineBase) {
+		this.remove_line(_line);
+		this.cacheLine(_line);
+	}
 	public function cacheLine(_line:LineBase) {
 		if (_line.type == LineType.Floor)
 		{
