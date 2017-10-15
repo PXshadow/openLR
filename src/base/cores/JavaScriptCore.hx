@@ -71,6 +71,7 @@ class JavaScriptCore extends CoreBase
 		}
 		this.main_stage.removeChild(this.title_card);
 		this.controlScheme = new Desktop();
+		Lib.current.stage.showDefaultContextMenu = false;
 	}
 	public function init_env() //Initialize enviornment
 	{
