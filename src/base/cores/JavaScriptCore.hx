@@ -10,6 +10,7 @@ import openfl.geom.Point;
 
 //openLR
 import base.TitleCardBase;
+import base.control.Desktop;
 import base.titlecards.TitleCardJS;
 import file.LoadManager;
 import file.SaveManager;
@@ -36,6 +37,7 @@ import ui.tool.timeline.TimelineControl;
  */
 class JavaScriptCore extends CoreBase
 {
+	private var controlScheme:ControlBase;
 	private var visContainer:Sprite; //simple display container. This will make it easier to take screenshots and record video without having to move a matrix all around
 	private var track:Track;
 	private var riders:RiderManager;
@@ -68,6 +70,7 @@ class JavaScriptCore extends CoreBase
 			this.toggle_Loader();
 		}
 		this.main_stage.removeChild(this.title_card);
+		this.controlScheme = new Desktop();
 	}
 	public function init_env() //Initialize enviornment
 	{
