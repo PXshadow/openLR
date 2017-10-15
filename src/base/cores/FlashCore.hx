@@ -14,6 +14,8 @@ import file.SaveManager;
 import file.AutosaveManager;
 import file.Screenshot;
 import global.Common;
+import global.CVar;
+import global.SVar;
 import global.engine.FrameRate;
 import global.Language;
 import global.engine.RiderManager;
@@ -125,14 +127,14 @@ class FlashCore extends CoreBase
 		
 		this.align();
 		
-		Common.svar_game_mode = GameState.edit;
+		SVar.game_mode = GameState.edit;
 	}
 	override public function reset_timeline() {
-		Common.sim_frames = 0;
-		Common.sim_max_frames = 0;
-		Common.sim_pause_frame = -1;
-		Common.sim_slow_motion = false;
-		Common.sim_slow_motion_rate = 5;
+		SVar.frames = 0;
+		SVar.max_frames = 0;
+		SVar.pause_frame = -1;
+		SVar.slow_motion = false;
+		SVar.slow_motion_rate = 5;
 		this.visContainer.removeChild(this.timeline);
 		this.timeline = new TimelineControl();
 		this.visContainer.addChild(this.timeline);
@@ -143,7 +145,7 @@ class FlashCore extends CoreBase
 	override public function toggleSettings_box()
 	{
 		if (!this.settings_box.visible) {
-			Common.svar_game_mode = GameState.inmenu;
+			SVar.game_mode = GameState.inmenu;
 			this.settings_box.visible = true;
 			this.track.visible = false;
 			this.toolBar.mouseChildren = false;
@@ -156,13 +158,13 @@ class FlashCore extends CoreBase
 			this.toolBar.mouseChildren = true;
 			this.textInfo.visible = true;
 			this.timeline.visible = true;
-			Common.svar_game_mode = GameState.edit;
+			SVar.game_mode = GameState.edit;
 			Common.gToolBase.enable();
 		}
 	}
 	override public function toggle_save_menu() {
 		if (this.save_manager.visible != true) {
-			Common.svar_game_mode = GameState.inmenu;
+			SVar.game_mode = GameState.inmenu;
 			this.save_manager.update();
 			this.save_manager.visible = true;
 			this.track.visible = false;
@@ -175,13 +177,13 @@ class FlashCore extends CoreBase
 			this.toolBar.mouseChildren = true;
 			this.textInfo.visible = true;
 			this.timeline.visible = true;
-			Common.svar_game_mode = GameState.edit;
+			SVar.game_mode = GameState.edit;
 			Common.gToolBase.enable();
 		}
 	}
 	override public function toggle_Loader() {
 		if (!this.loadManager.visible) {
-			Common.svar_game_mode = GameState.inmenu;
+			SVar.game_mode = GameState.inmenu;
 			this.loadManager.visible = true;
 			this.loadManager.update();
 			this.track.visible = false;
@@ -194,7 +196,7 @@ class FlashCore extends CoreBase
 			this.toolBar.visible = true;
 			this.textInfo.visible = true;
 			this.timeline.visible = true;
-			Common.svar_game_mode = GameState.edit;
+			SVar.game_mode = GameState.edit;
 			Common.gToolBase.enable();
 		}
 	}
@@ -202,7 +204,7 @@ class FlashCore extends CoreBase
 	{
 		this.visContainer.x = this.visContainer.y = 0;
 		
-		this.toolBar.x = (this.main_stage.stageWidth / 2) - (128 * Common.cvar_toolbar_scale);
+		this.toolBar.x = (this.main_stage.stageWidth / 2) - (128 * CVar.toolbar_scale);
 		
 		Common.stage_height = this.main_stage.stageHeight;
 		Common.stage_width = this.main_stage.stageWidth;
@@ -229,7 +231,7 @@ class FlashCore extends CoreBase
 	override public function align() {
 		this.visContainer.x = this.visContainer.y = 0;
 		
-		this.toolBar.x = (this.main_stage.stageWidth / 2) - (128 * Common.cvar_toolbar_scale);
+		this.toolBar.x = (this.main_stage.stageWidth / 2) - (128 * CVar.toolbar_scale);
 		
 		Common.stage_height = this.main_stage.stageHeight;
 		Common.stage_width = this.main_stage.stageWidth;
@@ -254,8 +256,8 @@ class FlashCore extends CoreBase
 		this.timeline.y = this.main_stage.stageHeight - this.timeline.height + 25;
 	}
 	override public function setScale() {
-		this.timeline.scaleX = this.timeline.scaleY = Common.cvar_toolbar_scale;
-		this.toolBar.scaleX = this.toolBar.scaleY = Common.cvar_toolbar_scale;
+		this.timeline.scaleX = this.timeline.scaleY = CVar.toolbar_scale;
+		this.toolBar.scaleX = this.toolBar.scaleY = CVar.toolbar_scale;
 	}
 	override public function return_to_origin(_x:Float = 0, _y:Float = 0) {
 		this.track.x = this.main_stage.stageWidth * 0.5 - _x;
