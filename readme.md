@@ -73,6 +73,8 @@ Multiple Language support
 
 Modding support with cppia and hscript
 
+Mobile deployment to Android and iOS
+
 ## Special Thanks
 
 Boštjan "fšk" Čadež for Line Rider
