@@ -67,6 +67,10 @@ class SettingsMenu extends Sprite
 		this.engineMenu = new EngineSettings();
 		//this.profileMenu = new ProfileSettings();
 		
+		this.addChild(this.fileMenu);
+		this.addChild(this.trackMenu);
+		this.addChild(this.engineMenu);
+		
 		this.set_to_track();
 	}
 	public function update() {
@@ -75,36 +79,31 @@ class SettingsMenu extends Sprite
 		//this.profileMenu.update();
 	}
 	function clearMenu() {
-		if (this.state == file) {
-			this.removeChild(this.fileMenu);
-		} else if (this.state == track) {
-			this.removeChild(this.trackMenu);
-		} else if (this.state == profile) {
-			this.removeChild(this.profileMenu);
-		} else if (this.state == engine) {
-			this.removeChild(this.engineMenu);
-		}
+		this.fileMenu.visible = false;
+		this.trackMenu.visible = false;
+		//this.profileMenu.visible = false;
+		this.engineMenu.visible = false;
 	}
 	function set_to_engine() 
 	{
 		this.clearMenu();
 		this.state = engine;
-		this.addChild(this.engineMenu);
+		this.engineMenu.visible = true;
 	}
 	function set_to_track() {
 		this.clearMenu();
 		this.state = track;
-		this.addChild(this.trackMenu);
+		this.trackMenu.visible = true;
 		this.trackMenu.update();
 	}
 	function set_to_file() {
 		this.clearMenu();
 		this.state = file;
-		this.addChild(this.fileMenu);
+		this.fileMenu.visible = true;
 	}
 	function set_to_profile() {
 		this.clearMenu();
 		this.state = profile;
-		this.addChild(this.profileMenu);
+		this.profileMenu.visible = true;
 	}
 }
