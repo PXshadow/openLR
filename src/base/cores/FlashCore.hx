@@ -62,13 +62,13 @@ class FlashCore extends CoreBase
 	}
 	override public function start(_load:Bool = false) {
 		Lib.current.stage.removeChild(this.title_card);
-		//this.init_env();
+		this.init_env();
 		this.init_track();
 		if (_load) {
 			this.toggle_Loader();
 		}
-		//this.controlScheme = new Desktop();
-		//this.visContainer.visible = true;
+		this.controlScheme = new Desktop();
+		this.visContainer.visible = true;
 	}
 	public function init_env() //Initialize enviornment
 	{
