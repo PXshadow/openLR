@@ -3,6 +3,7 @@ package base.cores;
 import flash.Lib;
 import flash.display.Sprite;
 import flash.events.Event;
+import openfl.Assets;
 
 //third party
 
@@ -51,6 +52,8 @@ class FlashCore extends CoreBase
 	public function new() 
 	{
 		super();
+		
+		Assets.loadLibrary("olr_fl");
 		
 		Common.gCode = this; //This class
 		

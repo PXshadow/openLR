@@ -31,4 +31,6 @@
 	
 	<haxeflag name="-dce full" />
 	
+	<library path="assets/flash/olr_assets.swf" preload="true" generate="true" id="swf-library" if="flash" />
+	
 </project>

@@ -40,7 +40,7 @@ class Main extends Sprite
         #elseif (windows || linux || osx)
             this.core = new CppCore();
         #elseif (flash || air)
-            this.core = new FlashCore();
+			this.core = new FlashCore();
         #elseif js
             this.core = new JavaScriptCore();
         #else
