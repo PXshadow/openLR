@@ -195,7 +195,7 @@ class Track extends Sprite
 		SVar.max_frames = 0;
 		SVar.pause_frame = 0;
 		SVar.rider_speed_top = 0;
-		SVar.slow_motion_rate = 5;
+		CVar.slow_motion_rate = 5;
 		SVar.slow_motion = false;
 	}
 	public function remove_line(_line) {

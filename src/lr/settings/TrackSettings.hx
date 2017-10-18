@@ -136,12 +136,12 @@ class TrackSettings extends Sprite
 	
 	private function decrease_slow_rate(e:MouseEvent):Void 
 	{
-		SVar.slow_motion_rate = this.slow_rate.dec();
+		CVar.slow_motion_rate = this.slow_rate.dec();
 	}
 	
 	private function increase_slow_rate(e:MouseEvent):Void 
 	{
-		SVar.slow_motion_rate = this.slow_rate.inc();
+		CVar.slow_motion_rate = this.slow_rate.inc();
 	}
 	
 	private function toggle_contact_points(e:MouseEvent):Void 
@@ -150,9 +150,9 @@ class TrackSettings extends Sprite
 	}
 	private function toggle_slow_motion(e:MouseEvent):Void 
 	{
-		SVar.auto_slow_motion = this.slow_motion.toggle();
+		CVar.slow_motion_auto = this.slow_motion.toggle();
 		if (SVar.slow_motion) {
-			SVar.default_rate = SVar.slow_motion_rate;
+			SVar.default_rate = CVar.slow_motion_rate;
 		} else {
 			SVar.default_rate = 40;
 		}
@@ -190,7 +190,7 @@ class TrackSettings extends Sprite
 		this.hit_test.update(CVar.hit_test);
 		this.angle_snap.update(CVar.angle_snap);
 		this.line_snap.update(CVar.line_snap);
-		this.slow_motion.update(SVar.auto_slow_motion);
+		this.slow_motion.update(CVar.slow_motion_auto);
 		this.contact_points.update(CVar.contact_points);
 	}
 }

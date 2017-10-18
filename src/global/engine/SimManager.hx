@@ -26,9 +26,9 @@ class SimManager
 		Lib.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, key_toggle_modifiers);
 	}
 	public function start_sim() {
-		if (SVar.auto_slow_motion) {
+		if (CVar.slow_motion_auto) {
 			SVar.slow_motion = true;
-			SVar.default_rate = SVar.slow_motion_rate;
+			SVar.default_rate = CVar.slow_motion_rate;
 		} else {
 			SVar.slow_motion = false;
 			SVar.default_rate = 40;
@@ -251,7 +251,7 @@ class SimManager
 	function set_slow_speed() 
 	{
 		this.iterator.stop();
-		SVar.default_rate = SVar.slow_motion_rate;
+		SVar.default_rate = CVar.slow_motion_rate;
 		this.iterator = new Timer(Std.int(1000 * (1 / SVar.default_rate)));
 		this.iterator.run = function():Void {
 			this.update_sim();

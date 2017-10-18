@@ -26,12 +26,17 @@ class CVar
 	public static var force_zoom_ammount:Float = 2;
 	
 	public static var hit_test:Bool = false;
+	public static var hit_test_live:Bool = false;
 	
 	public static var line_snap:Bool = true;
 	
 	public static var prev_zoom_ammount:Float;
 	public static var preview_mode:Bool = false;
+	
 	public static var rider_alpha:Float = 1;
+	
+	public static var slow_motion_auto:Bool = false;
+	public static var slow_motion_rate:Int = 5;
 	
 	public static var toolbar_scale:Float = 1;
 	public static var track_author:String = "Made by: Anonymous";
