@@ -1,11 +1,17 @@
 package ui.tool.icon;
 
-import openfl.display.Sprite;
 import openfl.utils.AssetLibrary;
-import openfl.events.MouseEvent;
-import ui.tool.IconBase;
+
+#if (!flash)
+	import openfl.display.Sprite;
+	import openfl.events.MouseEvent;
+#else
+	import flash.display.Sprite;
+	import flash.events.MouseEvent;
+#end
 
 import global.Common;
+import ui.tool.IconBase;
 import ui.tool.Toolbar;
 import ui.tool.lr.ToolPencil;
 

@@ -1,8 +1,15 @@
 package ui.tool;
 
-import openfl.display.SimpleButton;
-import openfl.display.Sprite;
 import openfl.utils.AssetLibrary;
+
+#if (!flash)
+	import openfl.display.SimpleButton;
+	import openfl.display.Sprite;
+#else
+	import flash.display.SimpleButton;
+	import flash.display.Sprite;
+#end
+	
 import ui.tool.IconBase;
 
 /**
@@ -16,9 +23,13 @@ class IconButton extends SimpleButton
 	{
 		super();
 		
-		var swfLib = AssetLibrary.loadFromFile("swf/ui/icons/" + _icon + ".bundle");
-		swfLib.onComplete(this.attachClips);
-		swfLib.onError(this.iconFailed);
+		#if (!flash)
+			var swfLib = AssetLibrary.loadFromFile("swf/ui/icons/" + _icon + ".bundle");
+			swfLib.onComplete(this.attachClips);
+			swfLib.onError(this.iconFailed);
+		#else
+		
+		#end
 	}
 	
 	function iconFailed(lib:AssetLibrary) 

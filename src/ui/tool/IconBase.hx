@@ -1,14 +1,22 @@
 package ui.tool;
 
 import openfl.utils.AssetLibrary;
-import openfl.display.Sprite;
-import openfl.events.MouseEvent;
-import openfl.ui.Mouse;
-import openfl.ui.MouseCursor;
-import ui.tool.IconButton;
+
+#if (!flash)
+	import openfl.display.Sprite;
+	import openfl.events.MouseEvent;
+	import openfl.ui.Mouse;
+	import openfl.ui.MouseCursor;
+#else
+	import flash.display.Sprite;
+	import flash.events.MouseEvent;
+	import flash.ui.Mouse;
+	import flash.ui.MouseCursor;
+#end
 
 import global.Common;
 import global.SVar;
+import ui.tool.IconButton;
 
 /**
  * ...
@@ -41,9 +49,10 @@ class IconBase extends Sprite
 	public function new(_path:String = Icon.undefined) 
 	{
 		super();
-
+		
 		this.iconButton = new IconButton(_path);
 		this.addChild(this.iconButton);
+		
 		this.attach_listeners();
 	}
 	function attachNull(lib:AssetLibrary) 

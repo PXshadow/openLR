@@ -1,14 +1,14 @@
 package base.cores;
 
-import base.titlecards.TitleCardCPP;
-import openfl.Lib;
-import openfl.display.Sprite;
-import openfl.events.Event;
-import openfl.display.Stage;
+import flash.Lib;
+import flash.display.Sprite;
+import flash.events.Event;
 
 //third party
 
 //openLR
+import base.control.Desktop;
+import base.titlecards.TitleCardFL;
 import file.LoadManager;
 import file.SaveManager;
 import file.AutosaveManager;
