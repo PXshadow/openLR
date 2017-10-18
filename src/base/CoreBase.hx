@@ -14,12 +14,9 @@ package base;
  */
 class CoreBase extends Sprite
 {
-	private var main_stage:Stage;
-	public var fl_stage:Main;
-	public function new(_stage:Stage) 
+	public function new() 
 	{
 		super();
-		this.main_stage = _stage;
 	}
 	public function return_to_origin(_x:Float = 0, _y:Float = 0) {
 		

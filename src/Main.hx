@@ -36,13 +36,13 @@ class Main extends Sprite
         super();
         
         #if android
-            this.core = new AndroidCore(this.stage);
+            this.core = new AndroidCore();
         #elseif (windows || linux || osx)
-            this.core = new CppCore(this.stage);
-        #elseif flash
-            this.core = new FlashCore(this.stage);
+            this.core = new CppCore();
+        #elseif (flash || air)
+            this.core = new FlashCore();
         #elseif js
-            this.core = new JavaScriptCore(this.stage);
+            this.core = new JavaScriptCore();
         #else
             trace("Deployment target not supported");
         #end
