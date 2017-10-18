@@ -34,64 +34,61 @@ import ui.tool.timeline.TimelineControl;
  */
 class FlashCore extends CoreBase
 {
-	private var visContainer:Sprite; //simple display container. This will make it easier to take screenshots and record video without having to move a matrix all around
+	private var controlScheme:ControlBase;
+	private var visContainer:Sprite = new Sprite();
 	private var track:Track;
 	private var riders:RiderManager;
 	private var toolBar:Toolbar;
 	private var textInfo:TextInfo;
 	private var FPS:FrameRate;
-	private var title_card:base.titlecards.TitleCardCPP;
+	private var title_card:TitleCardFL;
 	private var save_manager:SaveManager;
 	private var timeline:TimelineControl;
 	private var loadManager:LoadManager;
 	private var settings_box:SettingsMenu;
 	private var autosave:AutosaveManager;
 	
-	public function new(_stage:Stage) 
+	public function new() 
 	{
-		super(_stage);
+		super();
 		
 		Common.gCode = this; //This class
 		
-		this.start();
+		this.title_card = new TitleCardFL();
+		Lib.current.stage.addChild(this.title_card);
 		
-		this.title_card = new base.titlecards.TitleCardCPP();
-		this.visContainer.addChild(this.title_card);
-		
-		this.title_card.x = (this.main_stage.stageWidth * 0.5) - (this.title_card.width * 0.5);
-		this.title_card.y = (this.main_stage.stageHeight * 0.5) - (this.title_card.height * 0.5);
+		this.title_card.x = (Lib.current.stage.stageWidth * 0.5) - (this.title_card.width * 0.5);
+		this.title_card.y = (Lib.current.stage.stageHeight * 0.5) - (this.title_card.height * 0.5);
 	}
 	override public function start(_load:Bool = false) {
-		this.init_env();
+		Lib.current.stage.removeChild(this.title_card);
+		//this.init_env();
 		this.init_track();
-		this.visContainer.visible = true;
 		if (_load) {
 			this.toggle_Loader();
 		}
-		this.main_stage.removeChild(this.title_card);
+		//this.controlScheme = new Desktop();
+		//this.visContainer.visible = true;
 	}
 	public function init_env() //Initialize enviornment
 	{
-		this.main_stage.addEventListener(Event.RESIZE, resize);
+		Lib.current.stage.addEventListener(Event.RESIZE, resize);
 		
-		Common.stage_height = this.main_stage.stageHeight;
-		Common.stage_width = this.main_stage.stageWidth;
+		Common.stage_height = Lib.current.stage.stageHeight;
+		Common.stage_width = Lib.current.stage.stageWidth;
 		
 		this.FPS = new FrameRate();
-		
-		this.autosave = new AutosaveManager();
 	}
 	
 	public function init_track() //display minimum items
 	{
-		this.visContainer = new Sprite();
-		this.main_stage.addChild(visContainer);
+		Lib.current.stage.addChild(visContainer);
 		Common.gVisContainer = this.visContainer;
 		
 		this.track = new Track();
 		this.visContainer.addChild(this.track);
-		this.track.x = this.main_stage.stageWidth * 0.5;
-		this.track.y = this.main_stage.stageHeight * 0.5;
+		this.track.x = Lib.current.stage.stageWidth * 0.5;
+		this.track.y = Lib.current.stage.stageHeight * 0.5;
 		this.track.scaleX = this.track.scaleY = 2;
 		
 		this.riders = new RiderManager();
@@ -108,19 +105,19 @@ class FlashCore extends CoreBase
 		this.visContainer.addChild(this.textInfo);
 		
 		this.settings_box = new SettingsMenu();
-		this.main_stage.addChild(this.settings_box);
+		Lib.current.stage.addChild(this.settings_box);
 		this.settings_box.visible = false;
 		
 		this.loadManager = new LoadManager();
-		this.main_stage.addChild(this.loadManager);
+		Lib.current.stage.addChild(this.loadManager);
 		this.loadManager.visible = false;
 		
 		this.save_manager = new SaveManager();
-		this.main_stage.addChild(this.save_manager);
+		Lib.current.stage.addChild(this.save_manager);
 		this.save_manager.visible = false;
 		
 		this.timeline = new TimelineControl();
-		this.main_stage.addChild(this.timeline);
+		Lib.current.stage.addChild(this.timeline);
 		this.timeline.update();
 		
 		this.visContainer.visible = false;
@@ -134,13 +131,13 @@ class FlashCore extends CoreBase
 		SVar.max_frames = 0;
 		SVar.pause_frame = -1;
 		SVar.slow_motion = false;
-		SVar.slow_motion_rate = 5;
+		CVar.slow_motion_rate = 5;
 		this.visContainer.removeChild(this.timeline);
 		this.timeline = new TimelineControl();
 		this.visContainer.addChild(this.timeline);
 		this.timeline.update();
-		this.timeline.x = (this.main_stage.stageWidth * 0.5) - (this.timeline.width * 0.5);
-		this.timeline.y = this.main_stage.stageHeight - this.timeline.height + 25;
+		this.timeline.x = (Lib.current.stage.stageWidth * 0.5) - (this.timeline.width * 0.5);
+		this.timeline.y = Lib.current.stage.stageHeight - this.timeline.height + 25;
 	}
 	override public function toggleSettings_box()
 	{
@@ -202,71 +199,47 @@ class FlashCore extends CoreBase
 	}
 	private function resize(e:Event):Void
 	{
-		this.visContainer.x = this.visContainer.y = 0;
-		
-		this.toolBar.x = (this.main_stage.stageWidth / 2) - (128 * CVar.toolbar_scale);
-		
-		Common.stage_height = this.main_stage.stageHeight;
-		Common.stage_width = this.main_stage.stageWidth;
-		
-		this.textInfo.x = (this.main_stage.stageWidth - this.textInfo.width) - 5;
-		this.textInfo.y = 5;
-		
-		if (Common.gCamera != null) {
-			Common.gCamera.update_pan_bounds();
-		}
-		
-		this.save_manager.x = (this.main_stage.stageWidth * 0.5) - (this.save_manager.width * 0.5);
-		this.save_manager.y = (this.main_stage.stageHeight * 0.5) - (this.save_manager.height * 0.5);
-		
-		this.settings_box.x = 200;
-		this.settings_box.y = 200;
-		
-		this.loadManager.x = (this.main_stage.stageWidth * 0.5) - (this.loadManager.width * 0.5);
-		this.loadManager.y = (this.main_stage.stageHeight * 0.5) - 300;
-		
-		this.timeline.x = (this.main_stage.stageWidth * 0.5) - (this.timeline.width * 0.5);
-		this.timeline.y = this.main_stage.stageHeight - this.timeline.height + 25;
+		this.align();
 	}
 	override public function align() {
 		this.visContainer.x = this.visContainer.y = 0;
 		
-		this.toolBar.x = (this.main_stage.stageWidth / 2) - (128 * CVar.toolbar_scale);
+		this.toolBar.x = (Lib.current.stage.stageWidth / 2) - (128 * CVar.toolbar_scale);
 		
-		Common.stage_height = this.main_stage.stageHeight;
-		Common.stage_width = this.main_stage.stageWidth;
+		Common.stage_height = Lib.current.stage.stageHeight;
+		Common.stage_width = Lib.current.stage.stageWidth;
 		
-		this.textInfo.x = (this.main_stage.stageWidth - this.textInfo.width) - 5;
+		this.textInfo.x = (Lib.current.stage.stageWidth - this.textInfo.width) - 5;
 		this.textInfo.y = 5;
 		
 		if (Common.gCamera != null) {
 			Common.gCamera.update_pan_bounds();
 		}
 		
-		this.save_manager.x = (this.main_stage.stageWidth * 0.5) - (this.save_manager.width * 0.5);
-		this.save_manager.y = (this.main_stage.stageHeight * 0.5) - (this.save_manager.height * 0.5);
+		this.save_manager.x = (Lib.current.stage.stageWidth * 0.5) - (this.save_manager.width * 0.5);
+		this.save_manager.y = (Lib.current.stage.stageHeight * 0.5) - (this.save_manager.height * 0.5);
 		
 		this.settings_box.x = 200;
 		this.settings_box.y = 200;
 		
-		this.loadManager.x = (this.main_stage.stageWidth * 0.5) - (this.loadManager.width * 0.5);
-		this.loadManager.y = (this.main_stage.stageHeight * 0.5) - 300;
+		this.loadManager.x = (Lib.current.stage.stageWidth * 0.5) - (this.loadManager.width * 0.5);
+		this.loadManager.y = (Lib.current.stage.stageHeight * 0.5) - 300;
 		
-		this.timeline.x = (this.main_stage.stageWidth * 0.5) - (this.timeline.width * 0.5);
-		this.timeline.y = this.main_stage.stageHeight - this.timeline.height + 25;
+		this.timeline.x = (Lib.current.stage.stageWidth * 0.5) - (this.timeline.width * 0.5);
+		this.timeline.y = Lib.current.stage.stageHeight - this.timeline.height + 25;
 	}
 	override public function setScale() {
 		this.timeline.scaleX = this.timeline.scaleY = CVar.toolbar_scale;
 		this.toolBar.scaleX = this.toolBar.scaleY = CVar.toolbar_scale;
 	}
 	override public function return_to_origin(_x:Float = 0, _y:Float = 0) {
-		this.track.x = this.main_stage.stageWidth * 0.5 - _x;
-		this.track.y = this.main_stage.stageHeight * 0.5 - _y;
+		this.track.x = Lib.current.stage.stageWidth * 0.5 - _x;
+		this.track.y = Lib.current.stage.stageHeight * 0.5 - _y;
 		this.track.scaleX = this.track.scaleY = 2;
 	}
 	override public function return_to_origin_sim() {
-		this.track.x = this.main_stage.stageWidth * 0.5;
-		this.track.y = this.main_stage.stageHeight * 0.5;
+		this.track.x = Lib.current.stage.stageWidth * 0.5;
+		this.track.y = Lib.current.stage.stageHeight * 0.5;
 	}
 	override public function take_screencap() {
 		this.toolBar.visible = false;
