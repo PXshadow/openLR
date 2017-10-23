@@ -54,7 +54,7 @@ class CppCore extends CoreBase
 	private var settings_box:SettingsMenu;
 	private var autosave:AutosaveManager;
 	
-	public function new(_stage:Stage) 
+	public function new() 
 	{
 		super();
 		

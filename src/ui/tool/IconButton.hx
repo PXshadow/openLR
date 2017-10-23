@@ -46,6 +46,7 @@ class IconButton extends SimpleButton
 		this.overState = lib.getMovieClip("over");
 		this.downState = lib.getMovieClip("down");
 	}
+	#if (flash)
 	function attachFlashClips(object:String) 
 	{
 		var _locClips = new ClipGrabber(object);
@@ -54,4 +55,5 @@ class IconButton extends SimpleButton
 		this.overState = _locClips.clipArray[1];
 		this.downState = _locClips.clipArray[2];
 	}
+	#end
 }
