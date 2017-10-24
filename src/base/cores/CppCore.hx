@@ -40,7 +40,7 @@ import ui.tool.timeline.TimelineControl;
 class CppCore extends CoreBase
 {
 	private var controlScheme:ControlBase;
-	private var mainFileInit:FileStartCPP; //this class controls settings
+	private var mainFileInit:FileStartCPP;
 	private var visContainer:Sprite; //simple display container. This will make it easier to take screenshots and record video without having to move a matrix all around
 	private var track:Track;
 	private var riders:RiderManager;
