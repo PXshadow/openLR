@@ -19,6 +19,8 @@
     <class path="C:\HaxeToolkit\haxe\lib\openfl\6,3,0" />
     <class path="C:\HaxeToolkit\haxe\lib\lime\5,8,0" />
     <class path="C:\HaxeToolkit\haxe\lib\actuate\1,8,7" />
+    <class path="C:\HaxeToolkit\haxe\lib\haxeui-core\git" />
+    <class path="C:\HaxeToolkit\haxe\lib\haxeui-openfl\git" />
     <class path="src" />
     <class path="bin\flash\haxe" />
     <class path="C:\HaxeToolkit\haxe\lib\openfl\6,3,0\externs\core\openfl" />
