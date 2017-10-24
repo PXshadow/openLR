@@ -1,15 +1,19 @@
-package base.cores;
+package platform.cores;
 
-import flash.Lib;
-import flash.display.Sprite;
-import flash.events.Event;
-import openfl.Assets;
+import openfl.Lib;
+import openfl.display.Sprite;
+import openfl.events.Event;
+import openfl.display.Stage;
+import openfl.geom.Point;
+import platform.ControlBase;
+import platform.CoreBase;
 
 //third party
 
 //openLR
-import base.control.Desktop;
-import base.titlecards.TitleCardFL;
+import platform.TitleCardBase;
+import platform.control.Desktop;
+import platform.titlecards.TitleCardJS;
 import file.LoadManager;
 import file.SaveManager;
 import file.AutosaveManager;
@@ -33,45 +37,43 @@ import ui.tool.timeline.TimelineControl;
  * ...
  * @author Kaelan Evans
  */
-class FlashCore extends CoreBase
+class JavaScriptCore extends CoreBase
 {
 	private var controlScheme:ControlBase;
-	private var visContainer:Sprite = new Sprite();
+	private var visContainer:Sprite; //simple display container. This will make it easier to take screenshots and record video without having to move a matrix all around
 	private var track:Track;
 	private var riders:RiderManager;
 	private var toolBar:Toolbar;
 	private var textInfo:TextInfo;
 	private var FPS:FrameRate;
-	private var title_card:TitleCardFL;
+	private var title_card:TitleCardBase;
 	private var save_manager:SaveManager;
 	private var timeline:TimelineControl;
 	private var loadManager:LoadManager;
 	private var settings_box:SettingsMenu;
-	private var autosave:AutosaveManager;
 	
-	public function new() 
+	public function new(_stage:Stage) 
 	{
 		super();
 		
-		Assets.loadLibrary("olr_fl");
-		
 		Common.gCode = this; //This class
 		
-		this.title_card = new TitleCardFL();
+		this.title_card = new TitleCardJS();
 		Lib.current.stage.addChild(this.title_card);
 		
-		this.title_card.x = (Lib.current.stage.stageWidth * 0.5) - (this.title_card.width * 0.5);
-		this.title_card.y = (Lib.current.stage.stageHeight * 0.5) - (this.title_card.height * 0.5);
+		this.title_card.x = (Lib.current.stage.stageWidth / 2) - (this.title_card.width / 2);
+		this.title_card.y = (Lib.current.stage.stageHeight / 2) - (this.title_card.height / 2);
 	}
 	override public function start(_load:Bool = false) {
-		Lib.current.stage.removeChild(this.title_card);
 		this.init_env();
 		this.init_track();
+		this.visContainer.visible = true;
 		if (_load) {
 			this.toggle_Loader();
 		}
+		Lib.current.stage.removeChild(this.title_card);
 		this.controlScheme = new Desktop();
-		this.visContainer.visible = true;
+		Lib.current.stage.showDefaultContextMenu = false;
 	}
 	public function init_env() //Initialize enviornment
 	{
@@ -85,6 +87,7 @@ class FlashCore extends CoreBase
 	
 	public function init_track() //display minimum items
 	{
+		this.visContainer = new Sprite();
 		Lib.current.stage.addChild(visContainer);
 		Common.gVisContainer = this.visContainer;
 		
@@ -135,9 +138,9 @@ class FlashCore extends CoreBase
 		SVar.pause_frame = -1;
 		SVar.slow_motion = false;
 		CVar.slow_motion_rate = 5;
-		this.visContainer.removeChild(this.timeline);
+		Lib.current.stage.removeChild(this.timeline);
 		this.timeline = new TimelineControl();
-		this.visContainer.addChild(this.timeline);
+		Lib.current.stage.addChild(this.timeline);
 		this.timeline.update();
 		this.timeline.x = (Lib.current.stage.stageWidth * 0.5) - (this.timeline.width * 0.5);
 		this.timeline.y = Lib.current.stage.stageHeight - this.timeline.height + 25;
@@ -230,6 +233,10 @@ class FlashCore extends CoreBase
 		
 		this.timeline.x = (Lib.current.stage.stageWidth * 0.5) - (this.timeline.width * 0.5);
 		this.timeline.y = Lib.current.stage.stageHeight - this.timeline.height + 25;
+		
+		Common.stage_tl = new Point(0, 0);
+		Common.stage_br = new Point(Lib.current.stage.stageWidth, Lib.current.stage.stageHeight);
+		Common.gTrack.check_visibility();
 	}
 	override public function setScale() {
 		this.timeline.scaleX = this.timeline.scaleY = CVar.toolbar_scale;

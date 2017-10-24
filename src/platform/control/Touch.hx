@@ -1,15 +1,15 @@
-package base;
+package platform.control;
 
 /**
  * ...
  * @author Kaelan Evans
  */
-class ControlBase 
+class Touch 
 {
+
 	public function new() 
 	{
 		
 	}
 	
-	private var panning:Bool = false;
 }

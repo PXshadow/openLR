@@ -1,6 +1,6 @@
 package global;
 
-import base.CoreBase;
+import platform.CoreBase;
 import global.engine.SimManager;
 import openfl.Assets;
 import global.engine.RiderManager;

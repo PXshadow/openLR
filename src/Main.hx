@@ -2,16 +2,16 @@ package;
 
 import openfl.display.Sprite;
 
-import base.CoreBase;
+import platform.CoreBase;
 
 #if android
-    import base.cores.AndroidCore;        
+    import platform.cores.AndroidCore;        
 #elseif (windows || linux || osx)
-    import base.cores.CppCore;
+    import platform.cores.CppCore;
 #elseif flash
-    import base.cores.FlashCore;
+    import platform.cores.FlashCore;
 #elseif js
-    import base.cores.JavaScriptCore;
+    import platform.cores.JavaScriptCore;
 #end
 
 import global.Common;

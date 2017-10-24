@@ -1,6 +1,6 @@
-package base.control;
+package platform.control;
 
-import base.ControlBase;
+import platform.ControlBase;
 import openfl.Lib;
 import openfl.events.MouseEvent;
 import openfl.events.KeyboardEvent;

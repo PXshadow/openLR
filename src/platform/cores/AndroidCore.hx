@@ -1,8 +1,8 @@
-package base.cores;
+package platform.cores;
 
 import openfl.display.Stage;
 
-import base.CoreBase;
+import platform.CoreBase;
 
 /**
  * ...

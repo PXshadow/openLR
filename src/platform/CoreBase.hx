@@ -1,4 +1,4 @@
-package base;
+package platform;
 
 #if (!flash)
 	import openfl.display.Stage;

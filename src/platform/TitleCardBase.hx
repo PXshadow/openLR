@@ -1,4 +1,4 @@
-package base;
+package platform;
 
 import openfl.display.Sprite;
 import openfl.text.TextField;

@@ -1,18 +1,19 @@
-package base.cores;
+package platform.cores;
 
 import openfl.Lib;
 import openfl.display.Sprite;
 import openfl.events.Event;
 import openfl.display.Stage;
 import openfl.geom.Point;
+import platform.CoreBase;
 
 //third party
 
 //openLR
-import base.TitleCardBase;
-import base.titlecards.TitleCardCPP;
-import base.ControlBase;
-import base.control.Desktop;
+import platform.TitleCardBase;
+import platform.titlecards.TitleCardCPP;
+import platform.ControlBase;
+import platform.control.Desktop;
 import file.init.FileStartCPP;
 import file.LoadManager;
 import file.SaveManager;

@@ -1,5 +1,4 @@
-package base.titlecards;
-import base.TitleCardBase;
+package platform.titlecards;
 
 import openfl.display.Sprite;
 import openfl.text.TextField;
@@ -10,7 +9,7 @@ import openfl.text.TextFormatAlign;
 import openfl.events.MouseEvent;
 import openfl.utils.Assets;
 
-import base.TitleCardBase;
+import platform.TitleCardBase;
 import ui.inter.TextButton;
 import global.Common;
 import global.Language;
@@ -19,8 +18,11 @@ import global.Language;
  * ...
  * @author Kaelan Evans
  */
-class TitleCardFL extends TitleCardBase
+class TitleCardJS extends TitleCardBase
 {
+	private var font_a:TextFormat = new TextFormat(Assets.getFont("fonts/Verdana Bold.ttf").fontName, 24, 0, null, null, null, null, null, TextFormatAlign.LEFT);
+	private var font_b:TextFormat = new TextFormat(Assets.getFont("fonts/Verdana.ttf").fontName, 14, 0, null, null, null, null, null, TextFormatAlign.LEFT);
+	
 	var title:TextField;
 	var title_info:TextField;
 	var splash:TextField;
@@ -45,12 +47,14 @@ class TitleCardFL extends TitleCardBase
 		this.addChild(this.title);
 		this.title.selectable = false;
 		this.title.x = this.title.y = 6;
+		this.title.defaultTextFormat = this.font_a;
 		this.title.width = 120;
 		this.title.text = "OpenLR";
 		
 		this.title_info = new TextField();
 		this.addChild(this.title_info);
 		this.title_info.selectable = false;
+		this.title_info.defaultTextFormat = this.font_b;
 		this.title_info.x = 120;
 		this.title_info.y = 16;
 		this.title_info.width = 500;
@@ -64,6 +68,7 @@ class TitleCardFL extends TitleCardBase
 		this.addChild(this.splash);
 		this.splash.x = 8;
 		this.splash.y = 54;
+		this.splash.defaultTextFormat = this.font_b;
 		this.splash.wordWrap = true;
 		this.splash.width = 592;
 		this.splash.height = 246;
