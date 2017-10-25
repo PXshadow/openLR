@@ -1,35 +1,47 @@
 package platform.titlecards;
-import platform.TitleCardBase;
 
-import openfl.display.Sprite;
-import openfl.text.TextField;
-import openfl.text.TextField;
-import openfl.text.TextFieldType;
-import openfl.text.TextFormat;
-import openfl.text.TextFormatAlign;
-import openfl.events.MouseEvent;
+//primary
+import flash.text.Font;
+import flash.display.Sprite;
+import flash.text.TextField;
+import flash.text.TextFieldType;
+import flash.text.TextFormat;
+import flash.text.TextFormatAlign;
 import openfl.utils.Assets;
 
+//secondary
 import platform.TitleCardBase;
-import ui.inter.TextButton;
 import global.Common;
 import global.Language;
+
+//third party
+import haxe.ui.Toolkit;
+import haxe.ui.components.Button;
+import haxe.ui.core.MouseEvent;
 
 /**
  * ...
  * @author Kaelan Evans
  */
+
+@:font("assets/fonts/Verdana.ttf") class VerdanaNormal extends Font { }
+class FontsFL {
+	public static var VERDANA;
+}
 class TitleCardFL extends TitleCardBase
 {
 	var title:TextField;
 	var title_info:TextField;
 	var splash:TextField;
 	
-	var new_track:TextButton;
+	var new_track:Button;
 	
 	public function new() 
 	{
 		super();
+		
+		Font.registerFont(VerdanaNormal);
+		FontsFL.VERDANA = new VerdanaNormal().fontName;
 		
 		this.graphics.clear();
 		this.graphics.beginFill(0xFFFFFF, 1);
@@ -47,6 +59,9 @@ class TitleCardFL extends TitleCardBase
 		this.title.x = this.title.y = 6;
 		this.title.width = 120;
 		this.title.text = "OpenLR";
+		this.title.defaultTextFormat = new TextFormat(FontsFL.VERDANA, 24, 0xCC00CC);
+		
+		trace(FontsFL.VERDANA);
 		
 		this.title_info = new TextField();
 		this.addChild(this.title_info);
@@ -69,10 +84,15 @@ class TitleCardFL extends TitleCardBase
 		this.splash.height = 246;
 		this.splash.text = Language.Splash_a + "\n\n" + "https://github.com/kevansevans/openLR" + "\n\n" + Language.Splash_b;
 		
-		this.new_track = new TextButton("New Track", this.new_track_func, ButtonSize.b120x30);
+		this.new_track  = new Button();
+		this.new_track .text = "New Track";
+		this.new_track .fontSize = 16;
 		this.addChild(this.new_track);
 		this.new_track.x = 8;
 		this.new_track.y = 200;
+		this.new_track.onClick = function(e:MouseEvent) { 
+			this.new_track_func();
+		}
 		
 		super.add_version_specs();
 	}
@@ -80,7 +100,7 @@ class TitleCardFL extends TitleCardBase
 	{
 		Common.gCode.start(true);
 	}
-	private function new_track_func(e:MouseEvent):Void 
+	private function new_track_func():Void 
 	{
 		Common.gCode.start();
 	}

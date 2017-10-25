@@ -1,7 +1,9 @@
 package;
 
+//Primary
 import openfl.display.Sprite;
 
+//Secondary
 import platform.CoreBase;
 
 #if android
@@ -14,7 +16,8 @@ import platform.CoreBase;
     import platform.cores.JavaScriptCore;
 #end
 
-import global.Common;
+//third party
+import haxe.ui.Toolkit;
 
 /**
  * ...
@@ -31,9 +34,12 @@ import global.Common;
 class Main extends Sprite 
 {
     private var core:CoreBase;
+	
     public function new() {
         
         super();
+		
+		Toolkit.init();
         
         #if android
             this.core = new AndroidCore();
