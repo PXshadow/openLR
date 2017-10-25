@@ -1,10 +1,10 @@
-package platform.file.exporting.native;
+package platform.file.fileType;
 
 /**
  * ...
  * @author Kaelan Evans
  */
-class LRPK 
+class TRK extends FileBase 
 {
 
 	public function new() 
