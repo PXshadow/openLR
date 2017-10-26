@@ -7,7 +7,7 @@ import flash.text.TextField;
 import flash.text.TextFieldType;
 import flash.text.TextFormat;
 import flash.text.TextFormatAlign;
-import openfl.utils.Assets;
+import openfl.Assets;
 
 //secondary
 import platform.TitleCardBase;
@@ -23,11 +23,6 @@ import haxe.ui.core.MouseEvent;
  * ...
  * @author Kaelan Evans
  */
-
-@:font("assets/fonts/Verdana.ttf") class VerdanaNormal extends Font { }
-class FontsFL {
-	public static var VERDANA;
-}
 class TitleCardFL extends TitleCardBase
 {
 	var title:TextField;
@@ -36,12 +31,12 @@ class TitleCardFL extends TitleCardBase
 	
 	var new_track:Button;
 	
+	private var font_a:TextFormat = new TextFormat(Assets.getFont("fonts/Verdana Bold.ttf").fontName, 24, 0, null, null, null, null, null, TextFormatAlign.LEFT);
+	private var font_b:TextFormat = new TextFormat(Assets.getFont("fonts/Verdana.ttf").fontName, 14, 0, null, null, null, null, null, TextFormatAlign.LEFT);
+	
 	public function new() 
 	{
 		super();
-		
-		Font.registerFont(VerdanaNormal);
-		FontsFL.VERDANA = new VerdanaNormal().fontName;
 		
 		this.graphics.clear();
 		this.graphics.beginFill(0xFFFFFF, 1);
@@ -54,17 +49,16 @@ class TitleCardFL extends TitleCardBase
 		this.graphics.endFill();
 		
 		this.title = new TextField();
+		this.title.defaultTextFormat = font_a;
 		this.addChild(this.title);
 		this.title.selectable = false;
 		this.title.x = this.title.y = 6;
 		this.title.width = 120;
 		this.title.text = "OpenLR";
-		this.title.defaultTextFormat = new TextFormat(FontsFL.VERDANA, 24, 0xCC00CC);
-		
-		trace(FontsFL.VERDANA);
 		
 		this.title_info = new TextField();
 		this.addChild(this.title_info);
+		this.title_info.defaultTextFormat = font_b;
 		this.title_info.selectable = false;
 		this.title_info.x = 120;
 		this.title_info.y = 16;
@@ -77,6 +71,7 @@ class TitleCardFL extends TitleCardBase
 		
 		this.splash = new TextField();
 		this.addChild(this.splash);
+		this.splash.defaultTextFormat = font_b;
 		this.splash.x = 8;
 		this.splash.y = 54;
 		this.splash.wordWrap = true;
