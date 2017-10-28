@@ -51,7 +51,7 @@ class Panel
 	}
 	public function inject_line(_line:LineBase) {
 		
-		var _locVis:LineVis = new LineVis(_line.type, _line.x1, _line.y1, _line.x2, _line.y2, _line.inv, _line.invDst, _line.nx, _line.ny, _line.dx, _line.dy);
+		var _locVis:LineVis = new LineVis(_line.type, _line.x1, _line.y1, _line.x2, _line.y2, _line.inv, _line.invDst, _line.nx, _line.ny, _line.dx, _line.dy, _line.grind);
 		_line.visList.push(_locVis);
 		
 		this.frame.addChild(_locVis);

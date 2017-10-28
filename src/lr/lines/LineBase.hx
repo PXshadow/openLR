@@ -72,6 +72,7 @@ class LineBase extends Shape
 	public var phys:Collision;
 	public var visList:Array<LineVis>;
 	public var hit:Bool = false;
+	public var grind:Bool = true;
 	
 	public function new(_type:Int, _x1:Float, _y1:Float, _x2:Float, _y2:Float, _inv:Bool, _lim = -1)
 	{

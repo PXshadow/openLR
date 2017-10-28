@@ -15,13 +15,14 @@ class LineVis extends Shape
 	public var x2:Float;
 	public var y2:Float;
 	public var inv:Bool = false;
+	public var grind:Bool = false;
 	public var type:Int = -1;
 	public var dx:Float;
 	public var dy:Float;
 	public var nx:Float;
 	public var ny:Float;
 	public var invDst:Float;
-	public function new(_type:Int, _x1:Float, _y1:Float, _x2:Float, _y2:Float, _inv:Bool, _invDst:Float, _nx:Float, _ny:Float, _dx:Float, _dy:Float) 
+	public function new(_type:Int, _x1:Float, _y1:Float, _x2:Float, _y2:Float, _inv:Bool, _invDst:Float, _nx:Float, _ny:Float, _dx:Float, _dy:Float, _grind:Bool) 
 	{
 		super();
 		
@@ -36,12 +37,16 @@ class LineVis extends Shape
 		dy = _dy;
 		inv = _inv;
 		invDst = _invDst;
+		grind = _grind;
 	}
 	public function render(con:String) {
 		this.graphics.clear();
 		if (con != "edit") {
-			this.graphics.lineStyle(1, 0, 1);
-			this.graphics.lineStyle(2, 0, 1, true, "normal", "round"); 
+			if (grind) {
+				this.graphics.lineStyle(1, 0, 1, true, "normal", "round");
+			} else {
+				this.graphics.lineStyle(2, 0, 1, true, "normal", "round");
+			}
 			this.graphics.moveTo(this.x1, this.y1); 
 			this.graphics.lineTo(this.x2, this.y2);
 			return;
