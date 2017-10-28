@@ -1,8 +1,10 @@
 package lr.rider.objects.visual;
 
 import openfl.display.Sprite;
-import openfl.utils.AssetLibrary;
+import openfl.display.LineScaleMode;
 import openfl.geom.Point;
+import openfl.utils.AssetLibrary;
+import openfl.Assets;
 
 import global.Common;
 import global.CVar;
@@ -58,33 +60,49 @@ class B2Bosh extends VisBase
 		this.getAssets();
 	}
 	private function getAssets() {
-		//These are used to preserve the resolution quality of the rider when scaling.
-		var swfLibSled = AssetLibrary.loadFromFile("swf/sled.bundle");
-		swfLibSled.onComplete(sledClip);
+	
+		#if (!flash)
+			//.bundle files are used to preserve the resolution quality of the rider when scaling for non FL targets
+			var swfLibSled = AssetLibrary.loadFromFile("swf/sled.bundle");
+			swfLibSled.onComplete(sledClip);
 		
-		var swfLibBody = AssetLibrary.loadFromFile("swf/bosh/body.bundle");
-		swfLibBody.onComplete(bodyClip);
+			var swfLibBody = AssetLibrary.loadFromFile("swf/bosh/body.bundle");
+			swfLibBody.onComplete(bodyClip);
 		
-		var swfLibLeg = AssetLibrary.loadFromFile("swf/bosh/leg.bundle");
-		swfLibLeg.onComplete(legClip);
+			var swfLibLeg = AssetLibrary.loadFromFile("swf/bosh/leg.bundle");
+			swfLibLeg.onComplete(legClip);
 		
-		var swfLibArm = AssetLibrary.loadFromFile("swf/bosh/arm.bundle");
-		swfLibArm.onComplete(armClip);
+			var swfLibArm = AssetLibrary.loadFromFile("swf/bosh/arm.bundle");
+			swfLibArm.onComplete(armClip);
+		#elseif (flash)
+			this.sledClip();
+			this.bodyClip();
+			this.legClip();
+			this.armClip();
+		#end
 	}
-	function bodyClip(lib:AssetLibrary) 
+	function bodyClip(lib:AssetLibrary = null) 
 	{
 		var innerClip:Sprite;
-		innerClip = lib.getMovieClip("");
+		#if (!flash)
+			innerClip = lib.getMovieClip("");
+		#elseif (flash)
+			innerClip = Assets.getMovieClip("swf-library:olr_body");
+		#end
 		body_vis = new Sprite();
 		body_vis.addChild(innerClip);
 		innerClip.y = -5.40; //X/Y values are obtained from the raw .fla and are not provided in the source
 		body_vis.scaleX = body_vis.scaleY = 0.5;
 		this.load_clips();
 	}
-	function sledClip(lib:AssetLibrary) 
+	function sledClip(lib:AssetLibrary = null) 
 	{
 		var innerClip:Sprite;
-		innerClip = lib.getMovieClip("");
+		#if (!flash)
+			innerClip = lib.getMovieClip("");
+		#elseif (flash)
+			innerClip = Assets.getMovieClip("swf-library:olr_sled");
+		#end
 		sled = new Sprite();
 		sled.addChild(innerClip);
 		innerClip.y = -4.5;
@@ -92,12 +110,17 @@ class B2Bosh extends VisBase
 		sled.scaleX = sled.scaleY = 0.5;
 		this.load_clips();
 	}
-	function legClip(lib:AssetLibrary) 
+	function legClip(lib:AssetLibrary = null) 
 	{
 		var innerClipA:Sprite;
 		var innerClipB:Sprite;
-		innerClipA = lib.getMovieClip("");
-		innerClipB = lib.getMovieClip("");
+		#if (!flash)
+			innerClipA = lib.getMovieClip("");
+			innerClipB = lib.getMovieClip("");
+		#elseif (flash)
+			innerClipA = Assets.getMovieClip("swf-library:olr_leg");
+			innerClipB = Assets.getMovieClip("swf-library:olr_leg");
+		#end
 		leftLeg = new Sprite();
 		rightLeg = new Sprite();
 		leftLeg.addChild(innerClipA);
@@ -110,12 +133,17 @@ class B2Bosh extends VisBase
 		this.load_clips();
 		this.load_clips();
 	}
-	function armClip(lib:AssetLibrary) 
+	function armClip(lib:AssetLibrary = null) 
 	{
 		var innerClipA:Sprite;
 		var innerClipB:Sprite;
-		innerClipA = lib.getMovieClip("");
-		innerClipB = lib.getMovieClip("");
+		#if (!flash)
+			innerClipA = lib.getMovieClip("");
+			innerClipB = lib.getMovieClip("");
+		#elseif (flash)
+			innerClipA = Assets.getMovieClip("swf-library:olr_arm");
+			innerClipB = Assets.getMovieClip("swf-library:olr_arm");
+		#end
 		leftArm = new Sprite();
 		rightArm = new Sprite();
 		leftArm.addChild(innerClipA);
@@ -148,6 +176,7 @@ class B2Bosh extends VisBase
 			this.render_body();
 		}
 	}
+
 	override public function render_body()
 	{
 		this.body_vis.x = this.body.anchors[4].x;
@@ -175,7 +204,11 @@ class B2Bosh extends VisBase
 		this.skeleton_vis.graphics.clear();
 		this.scarf_vis.graphics.clear();
 		if (!RiderManager.crash[this.riderID]) {
-			this.string.graphics.lineStyle(0.5, 0, CVar.rider_alpha);
+			#if (flash)
+				this.string.graphics.lineStyle(1, 0, CVar.rider_alpha, false, LineScaleMode.NONE);
+			#else
+				this.string.graphics.lineStyle(0.5, 0, CVar.rider_alpha, false, LineScaleMode.NONE);
+			#end
 			this.string.graphics.moveTo(this.body.anchors[6].x, this.body.anchors[6].y);
 			this.string.graphics.lineTo(this.body.anchors[3].x, this.body.anchors[3].y);
 			this.string.graphics.lineTo(this.body.anchors[7].x, this.body.anchors[7].y);
@@ -183,14 +216,22 @@ class B2Bosh extends VisBase
 		if (CVar.contact_points) {
 			this.render_bones();
 		}
-		this.scarf_vis.graphics.lineStyle(2, 0xFFFFFF, CVar.rider_alpha, false, "none", "none");
+		#if (flash)
+			this.scarf_vis.graphics.lineStyle(2, 0xFFFFFF, CVar.rider_alpha, false, LineScaleMode.NORMAL, "none");
+		#else
+			this.scarf_vis.graphics.lineStyle(2, 0xFFFFFF, CVar.rider_alpha, false, LineScaleMode.NONE, "none");
+		#end
 		this.scarf_vis.graphics.moveTo(this.scarf.edges[0].a.x, this.scarf.edges[0].a.y);
 		this.scarf_vis.graphics.lineTo(this.scarf.edges[0].b.x, this.scarf.edges[0].b.y);
 		this.scarf_vis.graphics.moveTo(this.scarf.edges[2].a.x, this.scarf.edges[2].a.y);
 		this.scarf_vis.graphics.lineTo(this.scarf.edges[2].b.x, this.scarf.edges[2].b.y);
 		this.scarf_vis.graphics.moveTo(this.scarf.edges[4].a.x, this.scarf.edges[4].a.y);
 		this.scarf_vis.graphics.lineTo(this.scarf.edges[4].b.x, this.scarf.edges[4].b.y);
-		this.scarf_vis.graphics.lineStyle(2, 0xD20202, CVar.rider_alpha, false, "none", "none");
+		#if (flash)
+			this.scarf_vis.graphics.lineStyle(2, 0xD20202, CVar.rider_alpha, false, LineScaleMode.NORMAL, "none");
+		#else
+			this.scarf_vis.graphics.lineStyle(2, 0xD20202, CVar.rider_alpha, false, LineScaleMode.NONE, "none");
+		#end
 		this.scarf_vis.graphics.moveTo(this.scarf.edges[1].a.x, this.scarf.edges[1].a.y);
 		this.scarf_vis.graphics.lineTo(this.scarf.edges[1].b.x, this.scarf.edges[1].b.y);
 		this.scarf_vis.graphics.moveTo(this.scarf.edges[3].a.x, this.scarf.edges[3].a.y);
@@ -200,22 +241,39 @@ class B2Bosh extends VisBase
 	}
 	public function render_bones() {
 		this.bosh.graphics.clear();
-		this.skeleton_vis.graphics.lineStyle(0.25, 0xFF6600, 1);
+		#if (flash)
+			this.skeleton_vis.graphics.lineStyle(0.25, 0xFF6600, 1, false, LineScaleMode.NORMAL);
+		#else
+			this.skeleton_vis.graphics.lineStyle(0.25, 0xFF6600, 1, false, LineScaleMode.NONE);
+		#end
 		for (i in 0...4) { //Minimal sled points
 			this.skeleton_vis.graphics.moveTo(this.skeleton.edges[i].a.x, this.skeleton.edges[i].a.y);
 			this.skeleton_vis.graphics.lineTo(this.skeleton.edges[i].b.x, this.skeleton.edges[i].b.y);
 		}
-		this.skeleton_vis.graphics.lineStyle(0.25, 0xCC0033, 1);
+		#if (flash)
+			this.skeleton_vis.graphics.lineStyle(0.25, 0xCC0033, 1, false, LineScaleMode.NORMAL);
+		#else
+			this.skeleton_vis.graphics.lineStyle(0.25, 0xCC0033, 1, false, LineScaleMode.NONE);
+		#end
 		for (i in 9...14) { //Minimal body_vis points
 			this.skeleton_vis.graphics.moveTo(this.skeleton.edges[i].a.x, this.skeleton.edges[i].a.y);
 			this.skeleton_vis.graphics.lineTo(this.skeleton.edges[i].b.x, this.skeleton.edges[i].b.y);
 		}
-		this.skeleton_vis.graphics.lineStyle(0.25, 0x6600ff, 0.1);
+		#if (flash)
+			this.skeleton_vis.graphics.lineStyle(0.25, 0x6600FF, 0.1, false, LineScaleMode.NORMAL);
+		#else
+			this.skeleton_vis.graphics.lineStyle(0.25, 0x6600FF, 0.1, false, LineScaleMode.NONE);
+		#end
 		for (i in 0...this.body.anchors.length) {
 			this.skeleton_vis.graphics.beginFill(0x6600ff, 1);
 			this.skeleton_vis.graphics.drawCircle(this.body.anchors[i].x, this.body.anchors[i].y, 0.5);
 			this.skeleton_vis.graphics.endFill();
-		}this.skeleton_vis.graphics.lineStyle(0.25, 0x0000FF, 1);
+		}
+		#if (flash)
+			this.skeleton_vis.graphics.lineStyle(0.25, 0x0000FF, 1, false, LineScaleMode.NORMAL);
+		#else
+			this.skeleton_vis.graphics.lineStyle(0.25, 0x0000FF, 1, false, LineScaleMode.NONE);
+		#end
 		for (i in 0...this.body.anchors.length) {
 			this.skeleton_vis.graphics.moveTo(this.body.anchors[i].x, this.body.anchors[i].y);
 			this.skeleton_vis.graphics.lineTo(this.body.anchors[i].nx , this.body.anchors[i].ny);
