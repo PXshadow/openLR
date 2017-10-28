@@ -97,7 +97,7 @@ class IconSave extends IconBase
 	
 	function open_github_page() 
 	{
-		Lib.getURL(new URLRequest("https://github.com/kevansevans/openLR"));
+		Lib.getURL(new URLRequest("https://github.com/kevansevans/openLR#openlr-an-open-source-desktop-app-for-line-rider"));
 	}
 	
 	function show_list() 
