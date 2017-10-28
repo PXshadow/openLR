@@ -9,6 +9,7 @@ import openfl.display.Bitmap;
 import openfl.display.BitmapData;
 import openfl.display.SimpleButton;
 import openfl.events.MouseEvent;
+import openfl.utils.Function;
 
 /**
  * ...
@@ -25,7 +26,7 @@ class TextButton extends Sprite
 	var msg:String;
 	var label:TextField;
 	var action:Dynamic;
-	public function new(_msg:String, _action:Dynamic, _size:Int = -1) 
+	public function new(_msg:String, _action:Function = null, _size:Int = -1)
 	{
 		super();
 		
@@ -40,7 +41,11 @@ class TextButton extends Sprite
 		this.label.selectable = false;
 		this.label.mouseEnabled = false;
 		
-		this.btn.addEventListener(MouseEvent.CLICK, _action);
+		if (_action != null) {
+			this.btn.addEventListener(MouseEvent.CLICK, function(e:MouseEvent) {
+				_action();
+			});
+		}
 	}
 	
 	function setSize(_size:Int) 
