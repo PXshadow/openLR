@@ -1,7 +1,12 @@
 package lr.rider.objects;
 
 import openfl.display.Sprite;
-import openfl.utils.AssetLibrary;
+
+#if (!flash)
+	import openfl.utils.AssetLibrary;
+#elseif (flash)
+	import openfl.Assets;
+#end
 
 import lr.rider.RiderBase;
 
@@ -17,21 +22,39 @@ class StartPointVis extends Sprite
 	public function new() 
 	{
 		super();
-		this.loadAsset();
+		#if (!flash)
+			this.loadAsset();
+		#elseif (flash)
+			this.grabFLClip();
+		#end
 	}
-	function loadAsset() 
-	{
-		var swfclip = AssetLibrary.loadFromFile("swf/start.bundle");
-		swfclip.onComplete(this.attach);
-	}
-	function attach(lib:AssetLibrary) 
-	{
-		var innerClip:Sprite;
-		innerClip = lib.getMovieClip("");
-		innerClip.scaleX = innerClip.scaleY *= 0.5;
-		innerClip.x = innerClip.y = ( -9.2 / 2);
-		this.clip = new Sprite();
-		this.clip.addChild(innerClip);
-		this.addChild(this.clip);
-	}
+	#if (!flash)
+		function loadAsset() 
+		{
+			var swfclip = AssetLibrary.loadFromFile("swf/start.bundle");
+			swfclip.onComplete(this.attach);
+		}
+		function attach(lib:AssetLibrary) 
+		{
+			var innerClip:Sprite;
+			innerClip = lib.getMovieClip("");
+			innerClip.scaleX = innerClip.scaleY *= 0.5;
+			innerClip.x = innerClip.y = ( -9.2 / 2);
+			this.clip = new Sprite();
+			this.clip.addChild(innerClip);
+			this.addChild(this.clip);
+		}
+	#elseif (flash)
+		function grabFLClip() 
+		{
+			var innerClip:Sprite;
+			innerClip = Assets.getMovieClip ("swf-library:start_olr");
+			innerClip.scaleX = innerClip.scaleY *= 0.5;
+			innerClip.x = innerClip.y = ( -9.2 / 2);
+			this.clip = new Sprite();
+			this.clip.addChild(innerClip);
+			this.addChild(this.clip);
+			this.addChild(clip);
+		}
+	#end
 }
