@@ -3,7 +3,7 @@ package lr.scene;
 import openfl.Lib;
 import openfl.Assets;
 import openfl.display.GraphicsStroke;
-import openfl.display.MovieClip;
+import openfl.display.Sprite;
 import openfl.text.TextField;
 import openfl.text.TextFormat;
 import openfl.text.TextFormatAlign;
@@ -19,7 +19,7 @@ import global.SVar;
  * This class controls the text seen on the top right. When sim mode is added, it'll display time. Might switch it to use the color indicators instead of "Floor, Accel, Scene"
  * 
  */
-class TextInfo extends MovieClip
+class TextInfo extends Sprite
 {
 	var font:TextFormat = new TextFormat(Assets.getFont("fonts/Verdana.ttf").fontName, 12, 0, null, null, null, null, null, TextFormatAlign.RIGHT);
 	public var textInfo_A:TextField;
