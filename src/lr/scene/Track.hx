@@ -49,6 +49,7 @@ class Track extends Sprite
 		this.addChild(this.rider);
 		
 		this.renderList = new Array();
+		this.check_visibility();
 	}
 	
 	public function check_visibility():Void 
