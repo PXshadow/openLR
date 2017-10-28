@@ -189,8 +189,11 @@ class Track extends Sprite
 	}
 	public function clear_stage()
 	{
-		for (i in 0...Common.gGrid.lines.length) {
-			this.canvas.removeChild(Common.gGrid.lines[i]);
+		for (a in Common.gGrid.lines) {
+			if (a == null) {
+				continue;
+			}
+			Common.gGrid.remove_line(a);
 		}
 		Common.gGrid.new_grid();
 		Common.gSimManager.reset();
