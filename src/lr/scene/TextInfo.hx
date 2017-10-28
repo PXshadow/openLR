@@ -33,12 +33,22 @@ class TextInfo extends Sprite
 	{
 		super();
 		Common.gTextInfo = this;
+		
 		textInfo_A = new TextField();
 		textInfo_B = new TextField();
 		textInfo_C = new TextField();
 		textInfo_D = new TextField();
 		textInfo_E = new TextField();
 		textInfo_F = new TextField();
+		
+		this.graphics.clear();
+		this.graphics.beginFill(0xCCCCCC, 0.75);
+		this.graphics.moveTo(0, 0);
+		this.graphics.lineTo(100, 0);
+		this.graphics.lineTo(100, 80);
+		this.graphics.lineTo(0, 80);
+		this.graphics.lineTo(0, 0);
+		
 		textInfo_A.selectable = false;
 		textInfo_B.selectable = false;
 		textInfo_C.selectable = false;
