@@ -45,12 +45,12 @@ class TextInfo extends MovieClip
 		textInfo_D.selectable = false;
 		textInfo_E.selectable = false;
 		textInfo_F.selectable = false;
-		textInfo_A.setTextFormat(this.font);
-		textInfo_B.setTextFormat(this.font);
-		textInfo_C.setTextFormat(this.font);
-		textInfo_D.setTextFormat(this.font);
-		textInfo_E.setTextFormat(this.font);
-		textInfo_F.setTextFormat(this.font);
+		textInfo_A.defaultTextFormat = this.font;
+		textInfo_B.defaultTextFormat = this.font;
+		textInfo_C.defaultTextFormat = this.font;
+		textInfo_D.defaultTextFormat = this.font;
+		textInfo_E.defaultTextFormat = this.font;
+		textInfo_F.defaultTextFormat = this.font;
 		
 		this.addChild(this.textInfo_A);
 		this.addChild(this.textInfo_B);
