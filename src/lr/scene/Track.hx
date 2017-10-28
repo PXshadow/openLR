@@ -81,6 +81,9 @@ class Track extends Sprite
 	
 	function update_visibility() 
 	{
+		#if (flash)
+			return;
+		#end
 		for (a in this.renderList) {
 			if (a.panelPosX < this.tile_tl.x - 1) {
 				Common.gTrack.canvas.removeChild(a.frame);
