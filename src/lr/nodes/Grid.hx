@@ -174,6 +174,7 @@ class Grid
 			SVar.greenLineCount += 1;
 		}
 		SVar.lineID += 1;
+		SVar.lineCount += 1;
 		this.lines[_line.ID] = _line;
 		this.registerInCollisionGrid(_line);
 		this.registerInTileGrid(_line);
@@ -368,7 +369,6 @@ class Grid
 		}
 		if (tile[_x][_y] == null)
 		{
-
 			tile[_x][_y] = new Panel(_x, _y);
 			if (_x >= Common.gTrack.tile_tl.x - 1 || _x <= Common.gTrack.tile_br.y + 1) {
 				if (_y >= Common.gTrack.tile_tl.y - 1 || _y <= Common.gTrack.tile_br.y + 1) {
