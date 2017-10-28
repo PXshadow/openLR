@@ -242,7 +242,7 @@ class B2Bosh extends VisBase
 	public function render_bones() {
 		this.bosh.graphics.clear();
 		#if (flash)
-			this.skeleton_vis.graphics.lineStyle(0.25, 0xFF6600, 1, false, LineScaleMode.NORMAL);
+			this.skeleton_vis.graphics.lineStyle(1, 0xFF6600, 0.5, false, LineScaleMode.NORMAL);
 		#else
 			this.skeleton_vis.graphics.lineStyle(0.25, 0xFF6600, 1, false, LineScaleMode.NONE);
 		#end
@@ -251,7 +251,7 @@ class B2Bosh extends VisBase
 			this.skeleton_vis.graphics.lineTo(this.skeleton.edges[i].b.x, this.skeleton.edges[i].b.y);
 		}
 		#if (flash)
-			this.skeleton_vis.graphics.lineStyle(0.25, 0xCC0033, 1, false, LineScaleMode.NORMAL);
+			this.skeleton_vis.graphics.lineStyle(1, 0xCC0033, 0.5, false, LineScaleMode.NORMAL);
 		#else
 			this.skeleton_vis.graphics.lineStyle(0.25, 0xCC0033, 1, false, LineScaleMode.NONE);
 		#end
@@ -260,7 +260,7 @@ class B2Bosh extends VisBase
 			this.skeleton_vis.graphics.lineTo(this.skeleton.edges[i].b.x, this.skeleton.edges[i].b.y);
 		}
 		#if (flash)
-			this.skeleton_vis.graphics.lineStyle(0.25, 0x6600FF, 0.1, false, LineScaleMode.NORMAL);
+			this.skeleton_vis.graphics.lineStyle(0.25, 0x6600FF, 1, false, LineScaleMode.NORMAL);
 		#else
 			this.skeleton_vis.graphics.lineStyle(0.25, 0x6600FF, 0.1, false, LineScaleMode.NONE);
 		#end
@@ -270,7 +270,7 @@ class B2Bosh extends VisBase
 			this.skeleton_vis.graphics.endFill();
 		}
 		#if (flash)
-			this.skeleton_vis.graphics.lineStyle(0.25, 0x0000FF, 1, false, LineScaleMode.NORMAL);
+			this.skeleton_vis.graphics.lineStyle(1, 0x0000FF, 0.5, false, LineScaleMode.NORMAL);
 		#else
 			this.skeleton_vis.graphics.lineStyle(0.25, 0x0000FF, 1, false, LineScaleMode.NONE);
 		#end
