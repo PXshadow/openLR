@@ -83,7 +83,11 @@ class LineVis extends Shape
 				this.graphics.lineTo(this.x2, this.y2);
 				return;
 		}
-		this.graphics.lineStyle(2, 0, 1, true, "normal", "round"); 
+		if (grind) {
+			this.graphics.lineStyle(1, 0, 1, true, "normal", "round");
+		} else {
+			this.graphics.lineStyle(2, 0, 1, true, "normal", "round");
+		}
 		this.graphics.moveTo(x1, y1); 
 		this.graphics.lineTo(x2, y2);
 	}
