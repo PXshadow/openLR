@@ -52,7 +52,7 @@ class JavaScriptCore extends CoreBase
 	private var loadManager:LoadManager;
 	private var settings_box:SettingsMenu;
 	
-	public function new(_stage:Stage) 
+	public function new() 
 	{
 		super();
 		
