@@ -144,9 +144,9 @@ class CppCore extends CoreBase
 		SVar.pause_frame = -1;
 		SVar.slow_motion = false;
 		CVar.slow_motion_rate = 5;
-		this.visContainer.removeChild(this.timeline);
+		Lib.current.stage.removeChild(this.timeline);
 		this.timeline = new TimelineControl();
-		this.visContainer.addChild(this.timeline);
+		Lib.current.stage.addChild(this.timeline);
 		this.timeline.update();
 		this.timeline.x = (Lib.current.stage.stageWidth * 0.5) - (this.timeline.width * 0.5);
 		this.timeline.y = Lib.current.stage.stageHeight - this.timeline.height + 25;
