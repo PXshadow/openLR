@@ -11,6 +11,7 @@
 Play online versions here
 	
 Flash: https://kevansevans.github.io/flash/openLR.swf
+	
 HTML5: https://kevansevans.github.io/openLR-JS/
 	
 Binaries/Releases can be downloaded here: https://github.com/kevansevans/openLR/releases
