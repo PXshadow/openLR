@@ -1,4 +1,4 @@
-package lr.tool.timeline;
+package lr.scene.timeline;
 
 import haxe.ds.Vector;
 import openfl.display.Sprite;

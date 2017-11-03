@@ -30,8 +30,8 @@ import lr.scene.Track;
 import lr.settings.SettingsMenu;
 import ui.inter.AlertBox;
 import lr.tool.Toolbar;
-import lr.tool.timeline.Ticker;
-import lr.tool.timeline.TimelineControl;
+import lr.scene.timeline.Ticker;
+import lr.scene.timeline.TimelineControl;
 
 /**
  * ...

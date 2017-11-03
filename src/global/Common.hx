@@ -16,7 +16,7 @@ import file.AutosaveManager;
 import file.LoadManager;
 import file.SaveManager;
 import lr.tool.ToolBase;
-import lr.tool.timeline.TimelineControl;
+import lr.scene.timeline.TimelineControl;
 import lr.tool.Toolbar;
 import lr.scene.TextInfo;
 import lr.nodes.Grid;

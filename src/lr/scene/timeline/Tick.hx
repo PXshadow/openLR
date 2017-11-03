@@ -1,4 +1,4 @@
-package lr.tool.timeline;
+package lr.scene.timeline;
 
 import openfl.display.Sprite;
 
