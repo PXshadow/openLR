@@ -54,9 +54,6 @@ class SettingsMenu extends Sprite
 		this.tabTrackSettings.x = -140;
 		this.tabTrackSettings.y = 70;
 		
-		//this.addChild(this.tabProfile);
-		//this.tabProfile.x = this.tabTrackSettings.x + this.tabTrackSettings.width;
-		
 		this.exit = new TextButton(Language.Close, Common.gCode.toggleSettings_box, ButtonSize.b120x30);
 		this.addChild(exit);
 		this.exit.x = -140;
@@ -65,7 +62,6 @@ class SettingsMenu extends Sprite
 		this.fileMenu = new FileMenu();
 		this.trackMenu = new TrackSettings();
 		this.engineMenu = new EngineSettings();
-		//this.profileMenu = new ProfileSettings();
 		
 		this.addChild(this.fileMenu);
 		this.addChild(this.trackMenu);
@@ -76,12 +72,10 @@ class SettingsMenu extends Sprite
 	public function update() {
 		this.fileMenu.update();
 		this.trackMenu.update();
-		//this.profileMenu.update();
 	}
 	function clearMenu() {
 		this.fileMenu.visible = false;
 		this.trackMenu.visible = false;
-		//this.profileMenu.visible = false;
 		this.engineMenu.visible = false;
 	}
 	function set_to_engine() 
