@@ -388,7 +388,6 @@ class Grid
 			return;
 		}
 		this.remove_from_grid(line);
-		Common.gTrack.remove_line(line);
 		Grid.undo_single.remove(line);
 		Grid.redo_single.push(line);
 		this.lines[line.ID] = null;
@@ -405,7 +404,6 @@ class Grid
 			--SVar.greenLineCount;
 		}
 		--SVar.lineCount;
-
 		Common.gTextInfo.update();
 		Common.gSimManager.rider_update();
 	}
