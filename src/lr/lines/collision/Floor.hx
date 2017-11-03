@@ -27,7 +27,7 @@ class Floor extends Collision
 				if (!this.parent.grind) {
 					
 				} else {
-					if (!this.checkIntersection(dot) && _loc4 > LineBase.zone * 0.2) {
+					if (!this.checkIntersection(dot) || _loc4 > LineBase.zone * 0.2) {
 						return;
 					}
 				}

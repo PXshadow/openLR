@@ -25,11 +25,11 @@ class Collision
 		b.X = this.parent.x2;
 		b.Y = this.parent.y2;
 		var c:Object = new Object();
-		c.X = dot.x;
-		c.Y = dot.y;
+		c.X = dot.vx;
+		c.Y = dot.vy;
 		var d:Object = new Object();
-		d.X = dot.vx;
-		d.Y = dot.vy;
+		d.X = dot.x;
+		d.Y = dot.y;
 		
 		var denominator = ((b.X - a.X) * (d.Y - c.Y)) - ((b.Y - a.Y) * (d.X - c.X));
 		var numerator1 = ((a.Y - c.Y) * (d.X - c.X)) - ((a.X - c.X) * (d.Y - c.Y));
