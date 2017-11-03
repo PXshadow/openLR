@@ -26,6 +26,7 @@ class Panel
 	
 	public var panelPosX:Int;
 	public var panelPosY:Int;
+	public var panelIDName:String;
 	
 	public var onStage:Bool = false;
 	
@@ -37,6 +38,7 @@ class Panel
 		this.panelPosY = _y;
 		this.offset_y = _y * Panel._height;
 		this.offset_x = _x * Panel._width;
+		this.panelIDName = "x" + _x + "y" + _y;
 		
 		this.frame = new Sprite();
 		
@@ -52,9 +54,9 @@ class Panel
 	public function inject_line(_line:LineBase) {
 		
 		var _locVis:LineVis = new LineVis(_line.type, _line.x1, _line.y1, _line.x2, _line.y2, _line.inv, _line.invDst, _line.nx, _line.ny, _line.dx, _line.dy, _line.grind);
-		_line.visList.push(_locVis);
+		_line.visList[this.panelIDName] = _locVis;
 		
-		this.frame.addChild(_locVis);
+		this.frame.addChild(_line.visList[this.panelIDName]);
 		
 		_locVis.x = _locVis.x - this.offset_x;
 		_locVis.y = _locVis.y - this.offset_y;
@@ -74,9 +76,7 @@ class Panel
 		}
 	}
 	public function remove_line(_line:LineBase) {
-		for (a in _line.visList) {
-			this.frame.removeChild(a);
-		}
+		this.frame.removeChild(_line.visList[this.panelIDName]);
 		this.primary.remove(_line);
 	}
 }

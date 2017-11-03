@@ -70,14 +70,14 @@ class LineBase extends Shape
 	public var accy:Float;
 	public var acc:Float = 0.1;
 	public var phys:Collision;
-	public var visList:Array<LineVis>;
+	public var visList:Map<String, LineVis>;
 	public var hit:Bool = false;
 	public var grind:Bool = false;
 	
 	public function new(_type:Int, _x1:Float, _y1:Float, _x2:Float, _y2:Float, _inv:Bool, _lim = -1)
 	{
 		super();
-		this.visList = new Array();
+		this.visList = new Map();
 		this.gridList = new Array();
 		this.gridVisList = new Array();
 		this.type = _type;
