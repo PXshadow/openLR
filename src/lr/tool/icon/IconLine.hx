@@ -6,7 +6,7 @@ import openfl.Lib;
 import openfl.Assets;
 import openfl.net.URLRequest;
 import lr.tool.IconBase;
-import lr.tool.lr.ToolLine;
+import lr.tool.editing.ToolLine;
 
 import global.Common;
 import lr.tool.Toolbar;

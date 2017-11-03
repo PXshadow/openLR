@@ -13,7 +13,7 @@ import openfl.utils.AssetLibrary;
 import global.Common;
 import lr.tool.IconBase;
 import lr.tool.Toolbar;
-import lr.tool.lr.ToolPencil;
+import lr.tool.editing.ToolPencil;
 
 /**
  * ...

@@ -6,7 +6,7 @@ import openfl.Lib;
 import openfl.Assets;
 import openfl.net.URLRequest;
 import lr.tool.IconBase;
-import lr.tool.lr.ToolEraser;
+import lr.tool.editing.ToolEraser;
 
 import global.Common;
 import lr.tool.Toolbar;

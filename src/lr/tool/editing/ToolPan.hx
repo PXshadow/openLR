@@ -1,4 +1,4 @@
-package lr.tool.lr;
+package lr.tool.editing;
 import openfl.events.MouseEvent;
 import lr.tool.ToolBase;
 

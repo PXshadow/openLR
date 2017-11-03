@@ -9,7 +9,7 @@ import openfl.net.URLRequest;
 
 import global.Common;
 import lr.tool.Toolbar;
-import lr.tool.lr.ToolPan;
+import lr.tool.editing.ToolPan;
 
 /**
  * ...
