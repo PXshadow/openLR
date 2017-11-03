@@ -1,4 +1,4 @@
-package ui.tool.lr;
+package lr.tool.lr;
 
 import openfl.Lib;
 import openfl.display.MovieClip;
@@ -10,8 +10,8 @@ import global.Common;
 import global.SVar;
 import lr.lines.LineBase;
 import lr.nodes.Grid;
-import ui.tool.IconBase;
-import ui.tool.ToolBase;
+import lr.tool.IconBase;
+import lr.tool.ToolBase;
 
 /**
  * ...

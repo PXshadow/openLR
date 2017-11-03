@@ -19,7 +19,7 @@ import global.CVar;
 import global.SVar;
 import lr.line.*;
 import ui.inter.TextButton;
-import ui.tool.Toolbar;
+import lr.tool.Toolbar;
 import global.Language;
 import file.ui.FileWindow;
 import lr.lines.LineBase;

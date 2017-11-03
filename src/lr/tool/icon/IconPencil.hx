@@ -1,4 +1,4 @@
-package ui.tool.icon;
+package lr.tool.icon;
 
 import openfl.utils.AssetLibrary;
 
@@ -11,9 +11,9 @@ import openfl.utils.AssetLibrary;
 #end
 
 import global.Common;
-import ui.tool.IconBase;
-import ui.tool.Toolbar;
-import ui.tool.lr.ToolPencil;
+import lr.tool.IconBase;
+import lr.tool.Toolbar;
+import lr.tool.lr.ToolPencil;
 
 /**
  * ...

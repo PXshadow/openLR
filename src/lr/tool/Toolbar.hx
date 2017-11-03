@@ -1,12 +1,27 @@
-package ui.tool;
+package lr.tool;
 
+import lr.tool.icon.IconEraser;
+import lr.tool.icon.IconFlag;
+import lr.tool.icon.IconLine;
+import lr.tool.icon.IconPause;
+import lr.tool.icon.IconPencil;
+import lr.tool.icon.IconPlay;
+import lr.tool.icon.IconSave;
+import lr.tool.icon.IconSettings;
+import lr.tool.icon.IconStop;
+import lr.tool.icon.SwatchBlue;
+import lr.tool.icon.SwatchGreen;
+import lr.tool.icon.SwatchRed;
+import lr.tool.lr.ToolEraser;
+import lr.tool.lr.ToolLine;
+import lr.tool.lr.ToolPencil;
 import openfl.Lib;
 import openfl.display.Sprite;
 import openfl.events.KeyboardEvent;
 import openfl.ui.Keyboard;
 import openfl.events.MouseEvent;
 
-import ui.tool.ToolBase;
+import lr.tool.ToolBase;
 import ui.tool.lr.*;
 import ui.tool.icon.*;
 import global.KeyBindings;

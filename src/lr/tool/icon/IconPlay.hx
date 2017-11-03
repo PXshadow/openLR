@@ -1,4 +1,4 @@
-package ui.tool.icon;
+package lr.tool.icon;
 
 import openfl.display.Bitmap;
 import openfl.events.MouseEvent;
@@ -7,8 +7,8 @@ import openfl.Assets;
 import openfl.net.URLRequest;
 
 import global.Common;
-import ui.tool.Toolbar;
-import ui.tool.IconBase;
+import lr.tool.Toolbar;
+import lr.tool.IconBase;
 
 /**
  * ...

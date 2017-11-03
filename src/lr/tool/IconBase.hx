@@ -1,4 +1,4 @@
-package ui.tool;
+package lr.tool;
 
 import openfl.utils.AssetLibrary;
 
@@ -16,7 +16,7 @@ import openfl.utils.AssetLibrary;
 
 import global.Common;
 import global.SVar;
-import ui.tool.IconButton;
+import lr.tool.IconButton;
 
 /**
  * ...

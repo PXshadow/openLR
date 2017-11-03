@@ -1,4 +1,4 @@
-package ui.tool;
+package lr.tool;
 
 import openfl.Lib;
 import openfl.events.Event;

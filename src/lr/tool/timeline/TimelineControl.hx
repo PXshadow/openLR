@@ -1,11 +1,11 @@
-package ui.tool.timeline;
+package lr.tool.timeline;
 
 import openfl.Lib;
 import openfl.display.Sprite;
 import openfl.events.MouseEvent;
 import openfl.geom.Point;
 
-import ui.tool.timeline.Ticker;
+import lr.tool.timeline.Ticker;
 import global.Common;
 import global.SVar;
 

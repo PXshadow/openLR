@@ -1,4 +1,4 @@
-package ui.tool.icon;
+package lr.tool.icon;
 
 import openfl.display.Bitmap;
 import openfl.display.MovieClip;
@@ -16,13 +16,13 @@ import openfl.ui.MouseCursor;
 
 import global.Common;
 import global.Language;
-import ui.tool.Toolbar;
+import lr.tool.Toolbar;
 import ui.inter.TextButton;
 import file.LoadManager;
 import ui.inter.ConfirmDialog;
 import ui.inter.InputText;
 import file.SaveManager;
-import ui.tool.IconBase;
+import lr.tool.IconBase;
 
 /**
  * ...

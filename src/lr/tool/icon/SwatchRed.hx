@@ -1,30 +1,30 @@
-package ui.tool.icon;
+package lr.tool.icon;
 
+import lr.tool.Toolbar;
 import openfl.events.MouseEvent;
 import global.Common;
-import ui.tool.IconBase;
+import lr.tool.IconBase;
 
 /**
  * ...
  * @author ...
  */
-class SwatchGreen extends IconBase
+class SwatchRed extends IconBase
 {
 
 	public function new() 
 	{
-		super(Icon.swGreen);
-		this.graphics.clear();
+		super(Icon.swRed);
 	}
 	override public function up(e:MouseEvent) {
-		Common.line_type = 2;
+		Common.line_type = 1;
 		Toolbar.swatch.deselect();
 		Toolbar.swatch = this;
 		this.select();
 	}
 	override public function select() 
 	{
-		Common.line_type = 2;
+		Common.line_type = 1;
 		this.graphics.clear();
 		this.graphics.lineStyle(4, 0, 1);
 		this.graphics.moveTo(0, 0);

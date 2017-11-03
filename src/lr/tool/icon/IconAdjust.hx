@@ -1,10 +1,10 @@
-package ui.tool.lr;
+package lr.tool.icon;
 
 /**
  * ...
  * @author Kaelan Evans
  */
-class ToolAdjust 
+class IconAdjust 
 {
 
 	public function new() 

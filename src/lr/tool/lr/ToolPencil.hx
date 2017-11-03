@@ -1,4 +1,4 @@
-package ui.tool.lr;
+package lr.tool.lr;
 
 import openfl.Lib;
 import openfl.events.MouseEvent;
@@ -8,8 +8,8 @@ import lr.lines.LineBase;
 
 import global.Common;
 import global.SVar;
-import ui.tool.IconBase;
-import ui.tool.ToolBase;
+import lr.tool.IconBase;
+import lr.tool.ToolBase;
 
 /**
  * ...

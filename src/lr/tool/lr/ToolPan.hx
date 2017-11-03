@@ -1,6 +1,6 @@
-package ui.tool.lr;
+package lr.tool.lr;
 import openfl.events.MouseEvent;
-import ui.tool.ToolBase;
+import lr.tool.ToolBase;
 
 import global.Common;
 

@@ -1,4 +1,4 @@
-package ui.tool;
+package lr.tool;
 
 #if (!flash)
 	import openfl.utils.AssetLibrary;
@@ -11,7 +11,7 @@ package ui.tool;
 	import flash.display.MovieClip;
 #end
 	
-import ui.tool.IconBase;
+import lr.tool.IconBase;
 
 /**
  * ...

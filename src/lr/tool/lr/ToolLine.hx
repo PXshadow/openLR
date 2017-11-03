@@ -1,4 +1,4 @@
-package ui.tool.lr;
+package lr.tool.lr;
 
 import openfl.Lib;
 import openfl.events.MouseEvent;
@@ -7,8 +7,8 @@ import openfl.geom.Point;
 import global.Common;
 import global.CVar;
 import global.SVar;
-import ui.tool.ToolBase;
-import ui.tool.IconBase;
+import lr.tool.ToolBase;
+import lr.tool.IconBase;
 import lr.lines.LineBase;
 
 /**
