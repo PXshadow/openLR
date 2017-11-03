@@ -36,6 +36,7 @@ class ExportNative extends ExportBase
 	}
 	override public function getData(_type:Int) 
 	{
+		
 		switch(_type) {
 			case SaveType.LRPK :
 				this._file = new LRPK();
@@ -50,6 +51,6 @@ class ExportNative extends ExportBase
 	}
 	override public function flushData() 
 	{
-		super.flushData();
+		
 	}
 }
