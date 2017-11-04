@@ -45,10 +45,10 @@ class SettingsMenu extends Sprite
 	
 	var checkBox_angleSnap:CheckBox;
 	var checkBox_jointSnap:CheckBox;
-	var checkBox_previewMode:CheckBox;
 	var checkBox_skeleton:CheckBox;
 	var stepper_RiderAlpha:StepCounter;
 	var stepper_guiScale:StepCounter;
+	var checkBox_previewMode:CheckBox;
 	
 	public function new() 
 	{
@@ -58,9 +58,9 @@ class SettingsMenu extends Sprite
 		this.graphics.lineStyle(4, 0, 1);
 		this.graphics.beginFill(0xFFFFFF, 1);
 		this.graphics.moveTo(0, 0);
-		this.graphics.lineTo(400, 0);
-		this.graphics.lineTo(400, 500);
-		this.graphics.lineTo(0, 500);
+		this.graphics.lineTo(350, 0);
+		this.graphics.lineTo(350, 250);
+		this.graphics.lineTo(0, 250);
 		this.graphics.lineTo(0, 0);
 		
 		this.objectList = new Array();
@@ -89,19 +89,25 @@ class SettingsMenu extends Sprite
 		this.objectList.push(this.checkBox_hitTestLive);
 		
 		this.checkBox_forceZoom = new CheckBox("Force Zoom");
+		this.checkBox_forceZoom.hitBox.addEventListener(MouseEvent.MOUSE_UP, this.toggle_forceZoom);
 		this.objectList.push(this.checkBox_forceZoom);
 		
 		this.stepper_forceZoom = new StepCounter();
 		this.stepper_forceZoom.set_numeric_mode(Common.track_scale_min, Common.track_scale_max, 0.5, 2, "x Scale");
+		this.stepper_forceZoom.stepUp.addEventListener(MouseEvent.MOUSE_UP, this.stepper_inc_forceZoom);
+		this.stepper_forceZoom.stepDown.addEventListener(MouseEvent.MOUSE_UP, this.stepper_dec_forceZoom);
 		this.objectList.push(this.stepper_forceZoom);
 		
 		this.objectList.push(this.forceReturn);
 		
 		this.checkBox_autoSlow = new CheckBox("Auto Slow", false);
+		this.checkBox_autoSlow.hitBox.addEventListener(MouseEvent.MOUSE_UP, this.toggle_autoSlow);
 		this.objectList.push (this.checkBox_autoSlow);
 		
 		this.stepper_autoSlowRate = new StepCounter();
 		this.stepper_autoSlowRate.set_numeric_mode(1, 40, 1, 5, " FPS");
+		this.stepper_autoSlowRate.stepUp.addEventListener(MouseEvent.MOUSE_UP, this.stepper_inc_autoSlowRate);
+		this.stepper_autoSlowRate.stepDown.addEventListener(MouseEvent.MOUSE_UP, this.stepper_dec_autoSlowRate);
 		this.objectList.push(this.stepper_autoSlowRate);
 		
 		//Editor Settings
@@ -113,9 +119,11 @@ class SettingsMenu extends Sprite
 		this.objectList.push(this.dividerEditorSettings);
 		
 		this.checkBox_angleSnap = new CheckBox("Angle Snap", false);
+		this.checkBox_angleSnap.hitBox.addEventListener(MouseEvent.MOUSE_UP, this.toggle_angleSnap);
 		this.objectList.push(this.checkBox_angleSnap);
 		
 		this.checkBox_jointSnap = new CheckBox("Joint Snap", true);
+		this.checkBox_jointSnap.hitBox.addEventListener(MouseEvent.MOUSE_UP, this.toggle_jointSnap);
 		this.objectList.push(this.checkBox_jointSnap);
 		
 		this.objectList.push(this.forceReturn);
@@ -126,13 +134,21 @@ class SettingsMenu extends Sprite
 		
 		this.stepper_RiderAlpha = new StepCounter();
 		this.stepper_RiderAlpha.set_numeric_mode(0, 1, 0.1, 1, " Alpha");
+		this.stepper_RiderAlpha.stepDown.addEventListener(MouseEvent.MOUSE_UP, this.stepper_dec_riderAlpha);
+		this.stepper_RiderAlpha.stepUp.addEventListener(MouseEvent.MOUSE_UP, this.stepper_inc_riderAlpha);
 		this.objectList.push(this.stepper_RiderAlpha);
 		
 		this.objectList.push(this.forceReturn);
 		
 		this.stepper_guiScale = new StepCounter();
 		this.stepper_guiScale.set_numeric_mode(0.2, 8, 0.2, 1, " UI Scale");
-		this.objectList.push(this.stepper_guiScale);
+		//this.objectList.push(this.stepper_guiScale);
+		
+		//this.objectList.push(this.forceReturn);
+		
+		this.checkBox_previewMode = new CheckBox("Preview edit", false);
+		this.checkBox_previewMode.hitBox.addEventListener(MouseEvent.MOUSE_UP, this.toggle_previewMode);
+		this.objectList.push(this.checkBox_previewMode);
 		
 		this.attachItems();
 	}
@@ -175,13 +191,57 @@ class SettingsMenu extends Sprite
 
 		this.close = new TextButton("Close", Common.gCode.toggleSettings_box, 1);
 		this.addChild(this.close);
-		this.close.y = 505;
+		this.close.y = 255;
 	}
 	public function update() {
 		
 	}
 	//setting functions
-	
+	private function toggle_previewMode(e:MouseEvent):Void 
+	{
+		CVar.preview_mode = this.checkBox_previewMode.toggle();
+		Common.gTrack.set_rendermode_edit();
+	}
+	private function stepper_dec_autoSlowRate(e:MouseEvent):Void 
+	{
+		CVar.slow_motion_rate = Std.int(this.stepper_autoSlowRate.dec());
+	}
+	private function stepper_inc_autoSlowRate(e:MouseEvent):Void 
+	{
+		CVar.slow_motion_rate = Std.int(this.stepper_autoSlowRate.inc());
+	}
+	private function stepper_inc_riderAlpha(e:MouseEvent):Void 
+	{
+		CVar.rider_alpha = this.stepper_RiderAlpha.inc();
+	}
+	private function stepper_dec_riderAlpha(e:MouseEvent):Void 
+	{
+		CVar.rider_alpha = this.stepper_RiderAlpha.dec();
+	}
+	private function stepper_dec_forceZoom(e:MouseEvent):Void 
+	{
+		CVar.force_zoom_ammount = this.stepper_forceZoom.dec();
+	}
+	private function stepper_inc_forceZoom(e:MouseEvent):Void 
+	{
+		CVar.force_zoom_ammount = this.stepper_forceZoom.inc();
+	}
+	private function toggle_jointSnap(e:MouseEvent):Void 
+	{
+		CVar.line_snap = this.checkBox_jointSnap.toggle();
+	}
+	private function toggle_angleSnap(e:MouseEvent):Void 
+	{
+		CVar.angle_snap = this.checkBox_angleSnap.toggle();
+	}
+	private function toggle_autoSlow(e:MouseEvent):Void 
+	{
+		CVar.slow_motion_auto = this.checkBox_autoSlow.toggle();
+	}
+	private function toggle_forceZoom(e:MouseEvent):Void 
+	{
+		CVar.force_zoom = this.checkBox_forceZoom.toggle();
+	}
 	private function toggle_colorPlay(e:MouseEvent):Void 
 	{
 		CVar.color_play = checkBox_colorPlay.toggle();
