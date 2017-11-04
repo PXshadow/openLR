@@ -68,6 +68,7 @@ class SettingsMenu extends Sprite
 		
 		this.checkBox_hitTestLive = new CheckBox("Live", false);
 		this.checkBox_hitTestLive.visible = false;
+		this.checkBox_hitTestLive.hitBox.addEventListener(MouseEvent.MOUSE_UP, this.toggle_liveHitTest);
 		this.objectList.push(this.checkBox_hitTestLive);
 		
 		//Editor Settings
@@ -122,5 +123,9 @@ class SettingsMenu extends Sprite
 	{
 		CVar.hit_test = checkBox_hitTest.toggle();
 		this.checkBox_hitTestLive.visible = CVar.hit_test;
+	}
+	private function toggle_liveHitTest(e:MouseEvent):Void 
+	{
+		CVar.hit_test_live = checkBox_hitTestLive.toggle();
 	}
 }

@@ -100,6 +100,7 @@ class LineBase extends Shape
 	}
 	public function render(con:String)
 	{
+		this.hit = false;
 		for (a in this.visList) {
 			a.render(con);
 		}
@@ -230,6 +231,7 @@ class LineBase extends Shape
 	}
 	public function unrender_collide()
 	{
+		if (!CVar.hit_test_live) return;
 		this.hit = false;
 		if (!CVar.color_play) {
 			this.render("play");
