@@ -4,7 +4,7 @@ package global;
  * ...
  * @author Kaelan Evans
  * 
- * Variables that are changed via player input
+ * Client Variables. Variables that are controlled by player input in some form.
  */
 class CVar 
 {
