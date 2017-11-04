@@ -17,14 +17,14 @@ class SVar
 	public static var rider_speed:Float = 0;
 	public static var rider_speed_top:Float = 0;
 	public static var slow_motion:Bool = false;
-	public static var default_rate:Int = 40;
+	public inline static var default_rate:Int = 40;
 	public static var pause_frame:Int = -1;
 	public static var flagged_frame:Int = -1;
 	public static var frame_rate:Float;
-	public static var framerate_avg_rate:Int = 60;
+	public inline static var framerate_avg_rate:Int = 60;
 	public inline static var gridsize:Int = 14;
-	public static var tilesize:Int = 100;
-	public static var eraser_size:Int = 5;
+	public inline static var tilesize:Int = 100;
+	public inline static var eraser_size:Int = 5;
 	public static var sim_running:Bool = false;
 	public static var game_mode:Int = GameState.title;
 	public static var snap_distance:Int = 20;
