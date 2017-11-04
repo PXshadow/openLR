@@ -17,7 +17,7 @@ class SVar
 	public static var rider_speed:Float = 0;
 	public static var rider_speed_top:Float = 0;
 	public static var slow_motion:Bool = false;
-	public inline static var default_rate:Int = 40;
+	public static var default_rate:Int = 40;
 	public static var pause_frame:Int = -1;
 	public static var flagged_frame:Int = -1;
 	public static var frame_rate:Float;
