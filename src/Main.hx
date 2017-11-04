@@ -17,7 +17,6 @@ import platform.CoreBase;
 #end
 
 //third party
-import haxe.ui.Toolkit;
 
 /**
  * ...
@@ -38,8 +37,6 @@ class Main extends Sprite
     public function new() {
         
         super();
-		
-		Toolkit.init();
         
         #if android
             this.core = new AndroidCore();

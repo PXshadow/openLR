@@ -8,6 +8,7 @@ import flash.text.TextFieldType;
 import flash.text.TextFormat;
 import flash.text.TextFormatAlign;
 import openfl.Assets;
+import ui.inter.TextButton;
 
 //secondary
 import platform.TitleCardBase;
@@ -15,9 +16,6 @@ import global.Common;
 import global.Language;
 
 //third party
-import haxe.ui.Toolkit;
-import haxe.ui.components.Button;
-import haxe.ui.core.MouseEvent;
 
 /**
  * ...
@@ -29,7 +27,7 @@ class TitleCardFL extends TitleCardBase
 	var title_info:TextField;
 	var splash:TextField;
 	
-	var new_track:Button;
+	var new_track:TextButton;
 	
 	private var font_a:TextFormat = new TextFormat(Assets.getFont("fonts/Verdana Bold.ttf").fontName, 24, 0, null, null, null, null, null, TextFormatAlign.LEFT);
 	private var font_b:TextFormat = new TextFormat(Assets.getFont("fonts/Verdana.ttf").fontName, 14, 0, null, null, null, null, null, TextFormatAlign.LEFT);
@@ -79,19 +77,14 @@ class TitleCardFL extends TitleCardBase
 		this.splash.height = 246;
 		this.splash.text = Language.Splash_a + "\n\n" + "https://github.com/kevansevans/openLR" + "\n\n" + Language.Splash_b;
 		
-		this.new_track  = new Button();
-		this.new_track .text = "New Track";
-		this.new_track .fontSize = 16;
+		this.new_track = new TextButton(Language.New_track, this.new_track_func, 1);
 		this.addChild(this.new_track);
 		this.new_track.x = 8;
 		this.new_track.y = 200;
-		this.new_track.onClick = function(e:MouseEvent) { 
-			this.new_track_func();
-		}
 		
 		super.add_version_specs();
 	}
-	private function load_track_func(e:MouseEvent):Void 
+	private function load_track_func():Void 
 	{
 		Common.gCode.start(true);
 	}
