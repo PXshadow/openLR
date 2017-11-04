@@ -17,12 +17,9 @@ import global.Common;
  */
 class StepCounter extends Sprite
 {
-	private var mode:String = "Numerical";
-	private var array:Array<Dynamic>;
 	private var min:Float;
 	private var max:Float;
 	private var step:Float;
-	private var index:Int;
 	private var count:Float;
 	public var stepUp:StepButton;
 	public var stepDown:StepButton;
@@ -60,7 +57,6 @@ class StepCounter extends Sprite
 	}
 	public function set_numeric_mode(_min:Float, _max:Float, _step:Float, _default:Float, _unit:String)
 	{
-		this.mode = "Numerical";
 		this.min = _min;
 		this.max = _max;
 		this.step = _step;
