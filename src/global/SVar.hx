@@ -6,7 +6,7 @@ import global.Common;
  * ...
  * @author Kaelan Evans
  * 
- * Server variables. these variables can not be directly changed through player input.
+ * Server variables. Varaibles for the engine or ones indirectly controlled by the player.
  */
 class SVar 
 {
