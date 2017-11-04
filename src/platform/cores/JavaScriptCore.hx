@@ -225,8 +225,8 @@ class JavaScriptCore extends CoreBase
 		this.save_manager.x = (Lib.current.stage.stageWidth * 0.5) - (this.save_manager.width * 0.5);
 		this.save_manager.y = (Lib.current.stage.stageHeight * 0.5) - (this.save_manager.height * 0.5);
 		
-		this.settings_box.x = 200;
-		this.settings_box.y = 200;
+		this.settings_box.x = (Lib.current.stage.stageWidth * 0.5) - (this.settings_box.width * 0.5);
+		this.settings_box.y = 100;
 		
 		this.loadManager.x = (Lib.current.stage.stageWidth * 0.5) - (this.loadManager.width * 0.5);
 		this.loadManager.y = (Lib.current.stage.stageHeight * 0.5) - 300;
