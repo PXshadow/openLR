@@ -68,35 +68,27 @@ class StepCounter extends Sprite
 		unit = _unit;
 		this.label.text = _default + unit;
 	}
-	public function inc():Dynamic
+	public function inc():Float
 	{
-		var _locReturn:Dynamic = "Null";
-		if (mode == "Numerical") {
-			if (this.count < this.max) {
-				this.count += this.step;
-			}
-			if (count > this.max) {
-				this.count = this.max;
-			}
-			this.label.text = this.count + unit;
-			_locReturn = this.count;
+		if (this.count < this.max) {
+			this.count += this.step;
 		}
-		return(_locReturn);
+		if (count > this.max) {
+			this.count = this.max;
+		}
+		this.label.text = this.count + unit;
+		return(this.count);
 	}
-	public function dec():Dynamic
+	public function dec():Float
 	{
-		var _locReturn:Dynamic = "Null";
-		if (mode == "Numerical") {
-			if (this.count > this.min) {
-				this.count -= this.step;
-			}
-			if (count < this.min) {
-				this.count = this.min;
-			}
-			this.label.text = this.count + unit;
-			_locReturn = this.count;
+		if (this.count > this.min) {
+			this.count -= this.step;
 		}
-		return(_locReturn);
+		if (count < this.min) {
+			this.count = this.min;
+		}
+		this.label.text = this.count + unit;
+		return(this.count);
 	}
 }
 class StepButton extends Sprite
