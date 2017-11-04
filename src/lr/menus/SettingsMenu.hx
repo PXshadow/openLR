@@ -1,4 +1,4 @@
-package lr.settings;
+package lr.menus;
 
 import openfl.display.DisplayObject;
 import openfl.display.Sprite;

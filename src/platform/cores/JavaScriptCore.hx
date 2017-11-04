@@ -27,7 +27,7 @@ import global.engine.RiderManager;
 import global.engine.SimManager;
 import lr.scene.TextInfo;
 import lr.scene.Track;
-import lr.settings.SettingsMenu;
+import lr.menus.SettingsMenu;
 import ui.inter.AlertBox;
 import lr.tool.Toolbar;
 import lr.scene.timeline.Ticker;

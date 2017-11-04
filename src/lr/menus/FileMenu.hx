@@ -1,4 +1,4 @@
-package lr.settings;
+package lr.menus;
 
 import openfl.display.MovieClip;
 import openfl.events.MouseEvent;
