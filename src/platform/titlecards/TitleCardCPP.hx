@@ -17,7 +17,7 @@ import global.Language;
 import ui.inter.TextButton;
 
 //third party
-import haxe.ui.components.Button;
+
 
 /**
  * ...
