@@ -3,16 +3,19 @@ package lr.menus;
 import openfl.Assets;
 import openfl.display.DisplayObject;
 import openfl.display.Sprite;
+import openfl.display.Shape;
 import openfl.events.MouseEvent;
 import openfl.text.TextField;
 import openfl.text.TextFormat;
 import openfl.text.TextFormatAlign;
+import ui.inter.StepCounter;
 
 import ui.inter.TextButton;
 import ui.inter.CheckBox;
 import global.Language;
 import global.Common;
 import global.CVar;
+import global.SVar;
 
 /**
  * ...
@@ -30,9 +33,22 @@ class SettingsMenu extends Sprite
 	var dividerTrackSettings:TextField;
 	var dividerEditorSettings:TextField;
 	
+	var forceReturn:Shape;
+	
 	var checkBox_colorPlay:CheckBox;
 	var checkBox_hitTest:CheckBox;
 	var checkBox_hitTestLive:CheckBox;
+	var checkBox_forceZoom:CheckBox;
+	var stepper_forceZoom:StepCounter;
+	var checkBox_autoSlow:CheckBox;
+	var stepper_autoSlowRate:StepCounter;
+	
+	var checkBox_angleSnap:CheckBox;
+	var checkBox_jointSnap:CheckBox;
+	var checkBox_previewMode:CheckBox;
+	var checkBox_skeleton:CheckBox;
+	var stepper_RiderAlpha:StepCounter;
+	var stepper_guiScale:StepCounter;
 	
 	public function new() 
 	{
@@ -49,6 +65,7 @@ class SettingsMenu extends Sprite
 		
 		this.objectList = new Array();
 		
+		this.forceReturn = new Shape();
 		
 		//Track settings
 		this.dividerTrackSettings = new TextField();
@@ -71,6 +88,22 @@ class SettingsMenu extends Sprite
 		this.checkBox_hitTestLive.hitBox.addEventListener(MouseEvent.MOUSE_UP, this.toggle_liveHitTest);
 		this.objectList.push(this.checkBox_hitTestLive);
 		
+		this.checkBox_forceZoom = new CheckBox("Force Zoom");
+		this.objectList.push(this.checkBox_forceZoom);
+		
+		this.stepper_forceZoom = new StepCounter();
+		this.stepper_forceZoom.set_numeric_mode(Common.track_scale_min, Common.track_scale_max, 0.5, 2, "x Scale");
+		this.objectList.push(this.stepper_forceZoom);
+		
+		this.objectList.push(this.forceReturn);
+		
+		this.checkBox_autoSlow = new CheckBox("Auto Slow", false);
+		this.objectList.push (this.checkBox_autoSlow);
+		
+		this.stepper_autoSlowRate = new StepCounter();
+		this.stepper_autoSlowRate.set_numeric_mode(1, 40, 1, 5, " FPS");
+		this.objectList.push(this.stepper_autoSlowRate);
+		
 		//Editor Settings
 		this.dividerEditorSettings = new TextField();
 		this.dividerEditorSettings.defaultTextFormat = font_a;
@@ -78,6 +111,28 @@ class SettingsMenu extends Sprite
 		this.dividerEditorSettings.selectable = false;
 		this.dividerEditorSettings.text = "Editor Settings";
 		this.objectList.push(this.dividerEditorSettings);
+		
+		this.checkBox_angleSnap = new CheckBox("Angle Snap", false);
+		this.objectList.push(this.checkBox_angleSnap);
+		
+		this.checkBox_jointSnap = new CheckBox("Joint Snap", true);
+		this.objectList.push(this.checkBox_jointSnap);
+		
+		this.objectList.push(this.forceReturn);
+		
+		this.checkBox_skeleton = new CheckBox("Skeleton", false);
+		this.checkBox_skeleton.hitBox.addEventListener(MouseEvent.MOUSE_UP, this.toggle_skeleton);
+		this.objectList.push(this.checkBox_skeleton);
+		
+		this.stepper_RiderAlpha = new StepCounter();
+		this.stepper_RiderAlpha.set_numeric_mode(0, 1, 0.1, 1, " Alpha");
+		this.objectList.push(this.stepper_RiderAlpha);
+		
+		this.objectList.push(this.forceReturn);
+		
+		this.stepper_guiScale = new StepCounter();
+		this.stepper_guiScale.set_numeric_mode(0.2, 8, 0.2, 1, " UI Scale");
+		this.objectList.push(this.stepper_guiScale);
 		
 		this.attachItems();
 	}
@@ -93,11 +148,23 @@ class SettingsMenu extends Sprite
 		for (a in this.objectList) {
 			this.list.addChild(a);
 			a.y = i * 30;
-			if (Std.is(a, TextField)) {
+			if (Std.is(a, TextField)) { //Section divider
+				if (i != 0) {
+					if (j != 0) {
+						i += 2;
+						a.y += 30;
+					} else {
+						++i;
+					}
+				} else {
+					++i;
+				}
 				j = 0;
+			} else if (Std.is(a, Shape)) { //Force return
 				++i;
-			} else { 
-				a.x = 30 + (100 * j);
+				j = 0;
+			} else { //Normal object placement
+				a.x = 35 + (105 * j);
 				++j;
 				if (j == 3) {
 					j = 0;
@@ -105,7 +172,7 @@ class SettingsMenu extends Sprite
 				}
 			}
 		}
-		
+
 		this.close = new TextButton("Close", Common.gCode.toggleSettings_box, 1);
 		this.addChild(this.close);
 		this.close.y = 505;
@@ -127,5 +194,9 @@ class SettingsMenu extends Sprite
 	private function toggle_liveHitTest(e:MouseEvent):Void 
 	{
 		CVar.hit_test_live = checkBox_hitTestLive.toggle();
+	}
+	private function toggle_skeleton(e:MouseEvent):Void 
+	{
+		CVar.contact_points = checkBox_skeleton.toggle();
 	}
 }
