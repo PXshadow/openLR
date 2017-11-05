@@ -24,6 +24,7 @@ class CVar
 	
 	public static var force_zoom:Bool = false;
 	public static var force_zoom_ammount:Float = 2;
+	public static var force_zoom_inverse:Bool = false;
 	
 	public static var hit_test:Bool = false;
 	public static var hit_test_live:Bool = false;
@@ -33,7 +34,7 @@ class CVar
 	public static var prev_zoom_ammount:Float;
 	public static var preview_mode:Bool = false;
 	
-	public static var rider_alpha:Float = 1;
+	public static var rider_alpha:Float = 10;
 	
 	public static var slow_motion_auto:Bool = false;
 	public static var slow_motion_rate:Int = 5;

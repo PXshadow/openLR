@@ -13,7 +13,6 @@ import global.KeyBindings;
 class SimManager 
 {
 	var iterator:Timer;
-	//var rider:RiderBase;
 	public var sim_running:Bool = false;
 	public var fast_forward:Bool = false;
 	public var paused:Bool = false;
@@ -56,7 +55,10 @@ class SimManager
 		}
 		if (CVar.force_zoom) {
 			CVar.prev_zoom_ammount = Common.gTrack.scaleX;
-			Common.gTrack.scaleX = Common.gTrack.scaleY = Common.gRiderManager.scaleX = Common.gRiderManager.scaleY = CVar.force_zoom_ammount;
+			Common.gTrack.scaleX = Common.gTrack.scaleY = Common.gRiderManager.scaleX = Common.gRiderManager.scaleY = CVar.force_zoom_ammount * (CVar.force_zoom_inverse ? ( -1) : (1));
+		} else if (CVar.force_zoom_inverse) {
+			CVar.prev_zoom_ammount = Common.gTrack.scaleX;
+			Common.gTrack.scaleX = Common.gTrack.scaleY = Common.gRiderManager.scaleX = Common.gRiderManager.scaleY = (Common.gTrack.scaleX * (CVar.force_zoom_inverse ? ( -1) : (1)));
 		}
 		Common.gCode.return_to_origin_sim();
 	}
@@ -108,7 +110,7 @@ class SimManager
 			SVar.frames_alt = SVar.frames;
 			SVar.frames = 0;
 			this.iterator.stop();
-			if (CVar.force_zoom) {
+			if (CVar.force_zoom || CVar.force_zoom_inverse) {
 				Common.gTrack.scaleX = Common.gTrack.scaleY = Common.gRiderManager.scaleX = Common.gRiderManager.scaleY = CVar.prev_zoom_ammount;
 			}
 			if (this.flagged) {

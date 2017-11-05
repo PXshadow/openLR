@@ -4,18 +4,22 @@ import openfl.Assets;
 import openfl.display.DisplayObject;
 import openfl.display.Sprite;
 import openfl.display.Shape;
-import openfl.events.MouseEvent;
 import openfl.text.TextField;
 import openfl.text.TextFormat;
 import openfl.text.TextFormatAlign;
-import ui.inter.StepCounter;
 
 import ui.inter.TextButton;
-import ui.inter.CheckBox;
 import global.Language;
 import global.Common;
 import global.CVar;
 import global.SVar;
+
+import haxe.ui.Toolkit;
+import haxe.ui.components.CheckBox;
+import haxe.ui.components.HSlider;
+import haxe.ui.components.Label;
+import haxe.ui.core.MouseEvent;
+import haxe.ui.core.UIEvent;
 
 /**
  * ...
@@ -39,28 +43,35 @@ class SettingsMenu extends Sprite
 	var checkBox_hitTest:CheckBox;
 	var checkBox_hitTestLive:CheckBox;
 	var checkBox_forceZoom:CheckBox;
-	var stepper_forceZoom:StepCounter;
+	var checkBox_forceInverse:CheckBox;
 	var checkBox_autoSlow:CheckBox;
-	var stepper_autoSlowRate:StepCounter;
+	var slider_autoSlowRate:HSlider;
+	var slider_forceZoom:HSlider;
+	var label_zoomValue:Label;
+	var label_slowRate:Label;
 	
 	var checkBox_angleSnap:CheckBox;
 	var checkBox_jointSnap:CheckBox;
 	var checkBox_skeleton:CheckBox;
-	var stepper_RiderAlpha:StepCounter;
-	var stepper_guiScale:StepCounter;
 	var checkBox_previewMode:CheckBox;
+	var slider_RiderAlpha:HSlider;
+	var slider_guiScale:HSlider;
+	var label_riderAlpha:Label;
+	var label_guiScale:Label;
 	
 	public function new() 
 	{
 		super();
+		
+		Toolkit.init();
 		
 		this.graphics.clear();
 		this.graphics.lineStyle(4, 0, 1);
 		this.graphics.beginFill(0xFFFFFF, 1);
 		this.graphics.moveTo(0, 0);
 		this.graphics.lineTo(350, 0);
-		this.graphics.lineTo(350, 250);
-		this.graphics.lineTo(0, 250);
+		this.graphics.lineTo(350, 400);
+		this.graphics.lineTo(0, 400);
 		this.graphics.lineTo(0, 0);
 		
 		this.objectList = new Array();
@@ -75,40 +86,84 @@ class SettingsMenu extends Sprite
 		this.dividerTrackSettings.text = "Track Settings";
 		this.objectList.push(this.dividerTrackSettings);
 		
-		this.checkBox_colorPlay = new CheckBox("Color Play", false);
-		this.checkBox_colorPlay.hitBox.addEventListener(MouseEvent.MOUSE_UP, this.toggle_colorPlay);
+		this.checkBox_colorPlay = new CheckBox();
+		this.checkBox_colorPlay.text = "Color Play";
+		this.checkBox_colorPlay.onClick = function (e:MouseEvent):Void {
+			CVar.color_play = this.checkBox_colorPlay.value;
+		}
 		this.objectList.push(this.checkBox_colorPlay);
 		
-		this.checkBox_hitTest = new CheckBox("Hit test", false);
-		this.checkBox_hitTest.hitBox.addEventListener(MouseEvent.MOUSE_UP, this.toggle_hitTest);
+		this.checkBox_hitTest = new CheckBox();
+		this.checkBox_hitTest.text = "Hit Test";
+		this.checkBox_hitTest.onClick = function(e:MouseEvent) {
+			CVar.hit_test = this.checkBox_hitTestLive.visible = this.checkBox_hitTest.value;
+		}
 		this.objectList.push(this.checkBox_hitTest);
 		
-		this.checkBox_hitTestLive = new CheckBox("Live", false);
+		this.checkBox_hitTestLive = new CheckBox();
+		this.checkBox_hitTestLive.text = "Live Hit Test";
 		this.checkBox_hitTestLive.visible = false;
-		this.checkBox_hitTestLive.hitBox.addEventListener(MouseEvent.MOUSE_UP, this.toggle_liveHitTest);
+		this.checkBox_hitTestLive.onClick = function(e:MouseEvent) {
+			CVar.hit_test_live = this.checkBox_hitTestLive.value;
+		}
 		this.objectList.push(this.checkBox_hitTestLive);
 		
-		this.checkBox_forceZoom = new CheckBox("Force Zoom");
-		this.checkBox_forceZoom.hitBox.addEventListener(MouseEvent.MOUSE_UP, this.toggle_forceZoom);
+		this.checkBox_forceZoom = new CheckBox();
+		this.checkBox_forceZoom.text = "Force Zoom";
+		this.checkBox_forceZoom.onClick = function(e:MouseEvent) {
+			CVar.force_zoom = this.label_zoomValue.visible = this.slider_forceZoom.visible = this.checkBox_forceZoom.value;
+		}
 		this.objectList.push(this.checkBox_forceZoom);
 		
-		this.stepper_forceZoom = new StepCounter();
-		this.stepper_forceZoom.set_numeric_mode(Common.track_scale_min, Common.track_scale_max, 0.5, 2, "x Scale");
-		this.stepper_forceZoom.stepUp.addEventListener(MouseEvent.MOUSE_UP, this.stepper_inc_forceZoom);
-		this.stepper_forceZoom.stepDown.addEventListener(MouseEvent.MOUSE_UP, this.stepper_dec_forceZoom);
-		this.objectList.push(this.stepper_forceZoom);
+		this.checkBox_forceInverse = new CheckBox();
+		this.checkBox_forceInverse.text = "Inverse";
+		this.checkBox_forceInverse.onClick = function(e:MouseEvent) {
+			CVar.force_zoom_inverse = this.checkBox_forceInverse.value;
+		}
+		this.objectList.push(this.checkBox_forceInverse);
 		
 		this.objectList.push(this.forceReturn);
 		
-		this.checkBox_autoSlow = new CheckBox("Auto Slow", false);
-		this.checkBox_autoSlow.hitBox.addEventListener(MouseEvent.MOUSE_UP, this.toggle_autoSlow);
+		this.label_zoomValue = new Label();
+		this.label_zoomValue.text = "Zoom: " + CVar.force_zoom_ammount;
+		this.label_zoomValue.visible = false;
+		this.objectList.push(this.label_zoomValue);
+		
+		this.slider_forceZoom = new HSlider();
+		this.slider_forceZoom.value = 4;
+		this.slider_forceZoom.min = Common.track_scale_min;
+		this.slider_forceZoom.max = Common.track_scale_max;
+		this.slider_forceZoom.onChange = function(e:UIEvent):Void {
+			CVar.force_zoom_ammount = this.slider_forceZoom.value;
+			this.label_zoomValue.text = "Zoom: " + CVar.force_zoom_ammount;
+		}
+		this.slider_forceZoom.visible = false;
+		this.objectList.push(this.slider_forceZoom);
+		
+		this.objectList.push(this.forceReturn);
+		
+		this.checkBox_autoSlow = new CheckBox();
+		this.checkBox_autoSlow.text = "Auto Slow-mo";
+		this.checkBox_autoSlow.onClick = function(e:MouseEvent) {
+			CVar.slow_motion_auto = this.checkBox_autoSlow.value;
+		}
 		this.objectList.push (this.checkBox_autoSlow);
 		
-		this.stepper_autoSlowRate = new StepCounter();
-		this.stepper_autoSlowRate.set_numeric_mode(1, 40, 1, 5, " FPS");
-		this.stepper_autoSlowRate.stepUp.addEventListener(MouseEvent.MOUSE_UP, this.stepper_inc_autoSlowRate);
-		this.stepper_autoSlowRate.stepDown.addEventListener(MouseEvent.MOUSE_UP, this.stepper_dec_autoSlowRate);
-		this.objectList.push(this.stepper_autoSlowRate);
+		this.objectList.push(this.forceReturn);
+		
+		this.label_slowRate = new Label();
+		this.label_slowRate.text = "FPS: " + CVar.slow_motion_rate;
+		this.objectList.push(this.label_slowRate);
+		
+		this.slider_autoSlowRate = new HSlider();
+		this.slider_autoSlowRate.value = 5;
+		this.slider_autoSlowRate.min = 1;
+		this.slider_autoSlowRate.max = 40;
+		this.slider_autoSlowRate.onChange = function(e:UIEvent) {
+			CVar.slow_motion_rate = this.slider_autoSlowRate.value;
+			this.label_slowRate.text = "FPS: " + CVar.slow_motion_rate;
+		}
+		this.objectList.push(this.slider_autoSlowRate);
 		
 		//Editor Settings
 		this.dividerEditorSettings = new TextField();
@@ -118,37 +173,69 @@ class SettingsMenu extends Sprite
 		this.dividerEditorSettings.text = "Editor Settings";
 		this.objectList.push(this.dividerEditorSettings);
 		
-		this.checkBox_angleSnap = new CheckBox("Angle Snap", false);
-		this.checkBox_angleSnap.hitBox.addEventListener(MouseEvent.MOUSE_UP, this.toggle_angleSnap);
+		this.checkBox_angleSnap = new CheckBox();
+		this.checkBox_angleSnap.text = "Angle Snap";
+		this.checkBox_angleSnap.onClick = function(e:MouseEvent) {
+			CVar.angle_snap = this.checkBox_angleSnap.value;
+		}
 		this.objectList.push(this.checkBox_angleSnap);
 		
-		this.checkBox_jointSnap = new CheckBox("Joint Snap", true);
-		this.checkBox_jointSnap.hitBox.addEventListener(MouseEvent.MOUSE_UP, this.toggle_jointSnap);
+		this.checkBox_jointSnap = new CheckBox();
+		this.checkBox_jointSnap.text = "Joint Snap";
+		this.checkBox_jointSnap.value = true;
+		this.checkBox_jointSnap.onClick = function(e:MouseEvent) {
+			CVar.line_snap = this.checkBox_jointSnap.value;
+		}
 		this.objectList.push(this.checkBox_jointSnap);
 		
 		this.objectList.push(this.forceReturn);
 		
-		this.checkBox_skeleton = new CheckBox("Skeleton", false);
-		this.checkBox_skeleton.hitBox.addEventListener(MouseEvent.MOUSE_UP, this.toggle_skeleton);
+		this.checkBox_skeleton = new CheckBox();
+		this.checkBox_skeleton.text = "Skeleton";
+		this.checkBox_skeleton.onClick = function(e:MouseEvent) {
+			CVar.contact_points = this.checkBox_skeleton.value;
+		}
 		this.objectList.push(this.checkBox_skeleton);
 		
-		this.stepper_RiderAlpha = new StepCounter();
-		this.stepper_RiderAlpha.set_numeric_mode(0, 1, 0.1, 1, " Alpha");
-		this.stepper_RiderAlpha.stepDown.addEventListener(MouseEvent.MOUSE_UP, this.stepper_dec_riderAlpha);
-		this.stepper_RiderAlpha.stepUp.addEventListener(MouseEvent.MOUSE_UP, this.stepper_inc_riderAlpha);
-		this.objectList.push(this.stepper_RiderAlpha);
+		this.label_riderAlpha = new Label();
+		this.label_riderAlpha.text = "Alpha: ";
+		this.label_riderAlpha.width = 200;
+		this.objectList.push(this.label_riderAlpha);
+		
+		this.slider_RiderAlpha = new HSlider();
+		this.slider_RiderAlpha.min = 0;
+		this.slider_RiderAlpha.max = 10;
+		this.slider_RiderAlpha.value = 10;
+		this.slider_RiderAlpha.onChange = function(e:UIEvent) {
+			CVar.rider_alpha = this.slider_RiderAlpha.value;
+			trace(this.slider_RiderAlpha.value, CVar.rider_alpha);
+		}
+		this.objectList.push(this.slider_RiderAlpha);
+		
+		this.checkBox_previewMode = new CheckBox();
+		this.checkBox_previewMode.text = "Preview mode";
+		this.checkBox_previewMode.onClick = function(e:MouseEvent) {
+			CVar.preview_mode = this.checkBox_previewMode.value;
+			Common.gTrack.set_rendermode_edit();
+		}
+		this.objectList.push(this.checkBox_previewMode);
 		
 		this.objectList.push(this.forceReturn);
 		
-		this.stepper_guiScale = new StepCounter();
-		this.stepper_guiScale.set_numeric_mode(0.2, 8, 0.2, 1, " UI Scale");
-		//this.objectList.push(this.stepper_guiScale);
+		this.label_guiScale = new Label();
+		this.label_guiScale.text = "GUI Scale: ";
+		this.objectList.push(this.label_guiScale);
 		
-		//this.objectList.push(this.forceReturn);
-		
-		this.checkBox_previewMode = new CheckBox("Preview edit", false);
-		this.checkBox_previewMode.hitBox.addEventListener(MouseEvent.MOUSE_UP, this.toggle_previewMode);
-		this.objectList.push(this.checkBox_previewMode);
+		this.slider_guiScale = new HSlider();
+		this.slider_guiScale.value = 1;
+		this.slider_guiScale.min = 1;
+		this.slider_guiScale.max = 5;
+		this.slider_guiScale.onChange = function(e:UIEvent) {
+			CVar.toolbar_scale = this.slider_guiScale.value;
+			Common.gCode.setScale();
+			Common.gCode.align();
+		}
+		this.objectList.push(this.slider_guiScale);
 		
 		this.attachItems();
 	}
@@ -180,7 +267,10 @@ class SettingsMenu extends Sprite
 				++i;
 				j = 0;
 			} else { //Normal object placement
-				a.x = 35 + (105 * j);
+				a.x = 15 + (105 * j);
+				if (Std.is(a, HSlider) && j > 0) { //special indenting for slider
+					a.x -= 45;
+				}
 				++j;
 				if (j == 3) {
 					j = 0;
@@ -191,72 +281,9 @@ class SettingsMenu extends Sprite
 
 		this.close = new TextButton("Close", Common.gCode.toggleSettings_box, 1);
 		this.addChild(this.close);
-		this.close.y = 255;
+		this.close.y = 405;
 	}
 	public function update() {
 		
-	}
-	//setting functions
-	private function toggle_previewMode(e:MouseEvent):Void 
-	{
-		CVar.preview_mode = this.checkBox_previewMode.toggle();
-		Common.gTrack.set_rendermode_edit();
-	}
-	private function stepper_dec_autoSlowRate(e:MouseEvent):Void 
-	{
-		CVar.slow_motion_rate = Std.int(this.stepper_autoSlowRate.dec());
-	}
-	private function stepper_inc_autoSlowRate(e:MouseEvent):Void 
-	{
-		CVar.slow_motion_rate = Std.int(this.stepper_autoSlowRate.inc());
-	}
-	private function stepper_inc_riderAlpha(e:MouseEvent):Void 
-	{
-		CVar.rider_alpha = this.stepper_RiderAlpha.inc();
-	}
-	private function stepper_dec_riderAlpha(e:MouseEvent):Void 
-	{
-		CVar.rider_alpha = this.stepper_RiderAlpha.dec();
-	}
-	private function stepper_dec_forceZoom(e:MouseEvent):Void 
-	{
-		CVar.force_zoom_ammount = this.stepper_forceZoom.dec();
-	}
-	private function stepper_inc_forceZoom(e:MouseEvent):Void 
-	{
-		CVar.force_zoom_ammount = this.stepper_forceZoom.inc();
-	}
-	private function toggle_jointSnap(e:MouseEvent):Void 
-	{
-		CVar.line_snap = this.checkBox_jointSnap.toggle();
-	}
-	private function toggle_angleSnap(e:MouseEvent):Void 
-	{
-		CVar.angle_snap = this.checkBox_angleSnap.toggle();
-	}
-	private function toggle_autoSlow(e:MouseEvent):Void 
-	{
-		CVar.slow_motion_auto = this.checkBox_autoSlow.toggle();
-	}
-	private function toggle_forceZoom(e:MouseEvent):Void 
-	{
-		CVar.force_zoom = this.checkBox_forceZoom.toggle();
-	}
-	private function toggle_colorPlay(e:MouseEvent):Void 
-	{
-		CVar.color_play = checkBox_colorPlay.toggle();
-	}
-	private function toggle_hitTest(e:MouseEvent):Void 
-	{
-		CVar.hit_test = checkBox_hitTest.toggle();
-		this.checkBox_hitTestLive.visible = CVar.hit_test;
-	}
-	private function toggle_liveHitTest(e:MouseEvent):Void 
-	{
-		CVar.hit_test_live = checkBox_hitTestLive.toggle();
-	}
-	private function toggle_skeleton(e:MouseEvent):Void 
-	{
-		CVar.contact_points = checkBox_skeleton.toggle();
 	}
 }

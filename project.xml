@@ -21,8 +21,8 @@
 	<source path="src" />
 	<haxelib name="openfl" />
 	<haxelib name="actuate" />
-	<!--<haxelib name="haxeui-core" /> -->
-	<!--<haxelib name="haxeui-openfl" /> -->
+	<haxelib name="haxeui-core" />
+	<haxelib name="haxeui-openfl" />
 	
 	<!-- assets -->
 	<icon path="assets/logo.png" />
