@@ -171,7 +171,7 @@ class SimManager
 	}
 	private function key_toggle_modifiers(e:KeyboardEvent):Void 
 	{
-		if (SVar.game_mode != GameState.edit) {
+		if (SVar.game_mode == GameState.edit) {
 			return;
 		}
 		if (e.keyCode == KeyBindings.sm_toggle) {
