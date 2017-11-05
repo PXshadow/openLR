@@ -19,8 +19,9 @@ Binaries/Releases can be downloaded here: https://github.com/kevansevans/openLR/
 ## Haxelibs used:
 	
 	HXCPP 3.4.185 (haxelib set hxcpp 3.4.185)
-	openFL 6.3.0 (http://www.openfl.org/) (https://github.com/openfl/openfl)
 	lime 5.8.0 (https://github.com/openfl/lime)
+	openFL 6.3.0 (http://www.openfl.org/) (https://github.com/openfl/openfl)
+	HaxeUI Dev Branch (http://haxeui.org/)
 	
 If possible, openLR will always use the latest update for Haxe, openFL, and Lime. This is to ensure the most efficient builds possible, as performance is a major concern.
 	
@@ -38,28 +39,30 @@ Run in terminal the following commands, select Y to install if prompted:
 	
 	haxelib run openfl setup
 	
+	haxelib git haxeui-core https://github.com/haxeui/haxeui-core
+		
+	haxelib git haxeui-core https://github.com/haxeui/haxeui-openfl
+	
 Running the above commands should install all the needed libraries to compile, including Lime. You may have to install other
 programs, the commands above assume you already have some form of a development enviornment set up on your system.
 
 Run the command `openfl` to verify it was installed correctly. You should see the OpenFL logo appear in your terminal.
 
+Download/Clone this repository.
+
 Change terminal directory to root openLR folder. It should contain the `openLR.hxproj` or `project.xml` files inside of it.
 
-Run the command:
+The following targets are currently supported:
 	
 	openfl build cpp
 	
-Alternative targets include `openfl build html5`, and `openfl build flash`. More will be added as development progresses.
+	openfl build HTML5
 	
-Project will be compiled into bin folder. Be aware that you can compile to other platforms regardless of the platform you are on,
-however, compiling to a non-native platform will not produce a native C++ build, and will most likely suffer from performance hits.
-
-If running on a debian based linux branch, the file 'openLR' will need to be renamed to 'openLR.sh'. This has been tested on Ubuntu and Lubuntu. Other haxe supported linux branches have not been tested.
-
-Note: If you are running Windows 10 Ubuntu Bash, you will need to update Ubuntu and install G++ if you have not already. 
-Run the command `sudo apt install g++` and the project should correctly compile to the Linux target.
-
-If possible, on windows platform you can download Haxe Develop and use that as an IDE. OpenFL (and other libraries) will still need to be installed. Other IDE's can be used, and will most likely support a Haxe plugin that can compile for you without using the terminal.
+	openfl build flash
+	
+	openFL build air
+	
+openLR does not support Neko as a target, so compiling to non-native OS target (e.g. user is on windows and runs `openfl build mac/linux`), the build will fail.
 
 ## Future plans
 
