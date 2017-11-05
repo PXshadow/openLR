@@ -239,7 +239,6 @@ class JavaScriptCore extends CoreBase
 		Common.gTrack.check_visibility();
 	}
 	override public function setScale() {
-		this.timeline.scaleX = this.timeline.scaleY = CVar.toolbar_scale;
 		this.toolBar.scaleX = this.toolBar.scaleY = CVar.toolbar_scale;
 	}
 	override public function return_to_origin(_x:Float = 0, _y:Float = 0) {
