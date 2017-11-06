@@ -12,10 +12,6 @@ import platform.CoreBase;
 //openLR
 import platform.control.Desktop;
 import platform.titlecards.TitleCardFL;
-import file.LoadManager;
-import file.SaveManager;
-import file.AutosaveManager;
-import file.Screenshot;
 import global.Common;
 import global.CVar;
 import global.SVar;

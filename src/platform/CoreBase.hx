@@ -8,12 +8,41 @@ package platform;
 	import flash.display.Sprite;
 #end
 
+import platform.TitleCardBase;
+import platform.ControlBase;
+import global.Common;
+import global.CVar;
+import global.SVar;
+import global.engine.FrameRate;
+import global.Language;
+import global.engine.RiderManager;
+import global.engine.SimManager;
+import lr.scene.TextInfo;
+import lr.scene.Track;
+import lr.menus.SettingsMenu;
+import ui.inter.AlertBox;
+import lr.tool.Toolbar;
+import lr.scene.timeline.Ticker;
+import lr.scene.timeline.TimelineControl;
+
 /**
  * ...
  * @author Kaelan Evans
  */
 class CoreBase extends Sprite
 {
+	
+	private var controlScheme:ControlBase;
+	private var visContainer:Sprite;
+	private var track:Track;
+	private var riders:RiderManager;
+	private var toolBar:Toolbar;
+	private var textInfo:TextInfo;
+	private var FPS:FrameRate;
+	private var title_card:TitleCardBase;
+	private var timeline:TimelineControl;
+	private var settings_box:SettingsMenu;
+	
 	public function new() 
 	{
 		super();

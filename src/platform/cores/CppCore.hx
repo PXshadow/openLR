@@ -15,10 +15,6 @@ import platform.titlecards.TitleCardCPP;
 import platform.ControlBase;
 import platform.control.Desktop;
 import file.init.FileStartCPP;
-import file.LoadManager;
-import file.SaveManager;
-import file.AutosaveManager;
-import file.Screenshot;
 import global.Common;
 import global.CVar;
 import global.SVar;
@@ -40,28 +36,11 @@ import lr.scene.timeline.TimelineControl;
  */
 class CppCore extends CoreBase
 {
-	private var controlScheme:ControlBase;
-	private var mainFileInit:FileStartCPP;
-	private var visContainer:Sprite; //simple display container. This will make it easier to take screenshots and record video without having to move a matrix all around
-	private var track:Track;
-	private var riders:RiderManager;
-	private var toolBar:Toolbar;
-	private var textInfo:TextInfo;
-	private var FPS:FrameRate;
-	private var title_card:TitleCardBase;
-	private var save_manager:SaveManager;
-	private var timeline:TimelineControl;
-	private var loadManager:LoadManager;
-	private var settings_box:SettingsMenu;
-	private var autosave:AutosaveManager;
-	
 	public function new() 
 	{
 		super();
 		
 		Common.gCode = this; //This class
-		
-		this.mainFileInit = new FileStartCPP(); //checks for default folders and saved settings in the track
 			
 		this.title_card = new TitleCardCPP();
 		Lib.current.stage.addChild(this.title_card);
@@ -87,8 +66,6 @@ class CppCore extends CoreBase
 		Common.stage_width = Lib.current.stage.stageWidth;
 		
 		this.FPS = new FrameRate();
-		
-		this.autosave = new AutosaveManager();
 	}
 	
 	public function init_track() //display minimum items
@@ -119,14 +96,6 @@ class CppCore extends CoreBase
 		this.settings_box = new SettingsMenu();
 		Lib.current.stage.addChild(this.settings_box);
 		this.settings_box.visible = false;
-		
-		this.loadManager = new LoadManager();
-		Lib.current.stage.addChild(this.loadManager);
-		this.loadManager.visible = false;
-		
-		this.save_manager = new SaveManager();
-		Lib.current.stage.addChild(this.save_manager);
-		this.save_manager.visible = false;
 		
 		this.timeline = new TimelineControl();
 		Lib.current.stage.addChild(this.timeline);
@@ -162,8 +131,6 @@ class CppCore extends CoreBase
 			this.timeline.visible = false;
 			this.settings_box.update();
 		} else {
-			this.mainFileInit.write_new_settings();
-			this.mainFileInit.write_new_keys();
 			this.settings_box.visible = false;
 			this.track.visible = true;
 			this.toolBar.mouseChildren = true;
@@ -174,42 +141,10 @@ class CppCore extends CoreBase
 		}
 	}
 	override public function toggle_save_menu() {
-		if (this.save_manager.visible != true) {
-			SVar.game_mode = GameState.inmenu;
-			this.save_manager.update();
-			this.save_manager.visible = true;
-			this.track.visible = false;
-			this.toolBar.mouseChildren = false;
-			this.textInfo.visible = false;
-			this.timeline.visible = false;
-		} else {
-			this.save_manager.visible = false;
-			this.track.visible = true;
-			this.toolBar.mouseChildren = true;
-			this.textInfo.visible = true;
-			this.timeline.visible = true;
-			SVar.game_mode = GameState.edit;
-			Common.gToolBase.enable();
-		}
+
 	}
 	override public function toggle_Loader() {
-		if (!this.loadManager.visible) {
-			SVar.game_mode = GameState.inmenu;
-			this.loadManager.visible = true;
-			this.loadManager.update();
-			this.track.visible = false;
-			this.toolBar.visible = false;
-			this.textInfo.visible = false;
-			this.timeline.visible = false;
-		} else {
-			this.loadManager.visible = false;
-			this.track.visible = true;
-			this.toolBar.visible = true;
-			this.textInfo.visible = true;
-			this.timeline.visible = true;
-			SVar.game_mode = GameState.edit;
-			Common.gToolBase.enable();
-		}
+		
 	}
 	private function resize(e:Event):Void
 	{
@@ -230,14 +165,8 @@ class CppCore extends CoreBase
 			Common.gCamera.update_pan_bounds();
 		}
 		
-		this.save_manager.x = (Lib.current.stage.stageWidth * 0.5) - (this.save_manager.width * 0.5);
-		this.save_manager.y = (Lib.current.stage.stageHeight * 0.5) - (this.save_manager.height * 0.5);
-		
 		this.settings_box.x = (Lib.current.stage.stageWidth * 0.5) - (this.settings_box.width * 0.5);
 		this.settings_box.y = 100;
-		
-		this.loadManager.x = (Lib.current.stage.stageWidth * 0.5) - (this.loadManager.width * 0.5);
-		this.loadManager.y = (Lib.current.stage.stageHeight * 0.5) - 300;
 		
 		this.timeline.x = (Lib.current.stage.stageWidth * 0.5) - (this.timeline.width * 0.5);
 		this.timeline.y = Lib.current.stage.stageHeight - this.timeline.height + 25;
@@ -259,13 +188,10 @@ class CppCore extends CoreBase
 		this.track.y = Lib.current.stage.stageHeight * 0.5;
 	}
 	override public function take_screencap() {
-		this.toolBar.visible = false;
-		this.timeline.visible = false;
-		var sc:Screenshot = new Screenshot(this.visContainer);
+
 	}
 	override public function end_screencap() {
-		this.toolBar.visible = true;
-		this.timeline.visible = true;
+		
 	}
 	
 }

@@ -14,8 +14,6 @@ import platform.CoreBase;
 import platform.TitleCardBase;
 import platform.control.Desktop;
 import platform.titlecards.TitleCardJS;
-import file.LoadManager;
-import file.SaveManager;
 import file.AutosaveManager;
 import file.Screenshot;
 import global.Common;
@@ -47,10 +45,9 @@ class JavaScriptCore extends CoreBase
 	private var textInfo:TextInfo;
 	private var FPS:FrameRate;
 	private var title_card:TitleCardBase;
-	private var save_manager:SaveManager;
 	private var timeline:TimelineControl;
-	private var loadManager:LoadManager;
 	private var settings_box:SettingsMenu;
+	private var 
 	
 	public function new() 
 	{
