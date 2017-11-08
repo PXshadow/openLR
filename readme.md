@@ -1,4 +1,4 @@
-# OpenLR, an open source desktop app for Line Rider.
+# OpenLR, an open source app for Line Rider.
 
 ### Original game by Boštjan "fšk" Čadež
 
@@ -21,7 +21,7 @@ Binaries/Releases can be downloaded here: https://github.com/kevansevans/openLR/
 	HXCPP 3.4.185 (haxelib set hxcpp 3.4.185)
 	lime 5.8.1 (https://github.com/openfl/lime)
 	openFL 6.4.0 (http://www.openfl.org/) (https://github.com/openfl/openfl)
-	HaxeUI-OpenFL 0.0.1 https://github.com/haxeui/haxeui-openfl
+	HaxeUI-OpenFL 0.0.1 (https://github.com/haxeui/haxeui-openfl)
 	
 If possible, openLR will always use the latest update for Haxe, openFL, and Lime. This is to ensure the most efficient builds possible, as performance is a major concern.
 	
@@ -50,7 +50,7 @@ Download/Clone this repository.
 
 Change terminal directory to root openLR folder. It should contain the `openLR.hxproj` or `project.xml` files inside of it.
 
-The following targets are currently supported:
+The following targets are currently supported, run these commands in your terminal to compile:
 	
 	openfl build cpp
 	
@@ -64,9 +64,9 @@ openLR does not support Neko as a target, so compiling to non-native OS target (
 
 ## Future plans
 
-Better save format
+Better save format (the LRPK will be a modular system to help benefit collaborators)
 
-Compatibility with other save formats (SOL, JSON, TRK)
+Compatibility with other save formats (SOL, JSON, TRK, with the ability to export to those targets)
 
 Mechanics across various LR builds and titles
 
@@ -82,6 +82,8 @@ Modding support with cppia and hscript
 
 Mobile deployment to Android and iOS
 
+And way down the line, multiplayer connections and support with the www.linerider.com sharing system
+
 ## Special Thanks
 
 Boštjan "fšk" Čadež for Line Rider
@@ -92,7 +94,7 @@ LR-Tools https://github.com/conundrumer/lr-core (Thank you for this)
 
 LRA https://github.com/jealouscloud/linerider-advanced (Thank you for this)
 
-Haxe developers, Lime developers, and OpenFL Developers
+Haxe developers, Lime developers, OpenFL developers, and HaxeUI developers
 
 FlashDevelop/HaxeDevelop for being such a wonderful IDE
 
@@ -105,3 +107,5 @@ HaxeFlixel Discord Server
 And you most of all!
 
 You can contact me at kbeevans@gmail.com for questions or info
+
+Join the Line Rider Discord! https://discord.gg/0ggPNq98iruWoixw
