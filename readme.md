@@ -21,7 +21,7 @@ Binaries/Releases can be downloaded here: https://github.com/kevansevans/openLR/
 	HXCPP 3.4.185 (haxelib set hxcpp 3.4.185)
 	lime 5.8.1 (https://github.com/openfl/lime)
 	openFL 6.4.0 (http://www.openfl.org/) (https://github.com/openfl/openfl)
-	HaxeUI Dev Branch (http://haxeui.org/)
+	HaxeUI-OpenFL 0.0.1 https://github.com/haxeui/haxeui-openfl
 	
 If possible, openLR will always use the latest update for Haxe, openFL, and Lime. This is to ensure the most efficient builds possible, as performance is a major concern.
 	
@@ -38,10 +38,8 @@ Run in terminal the following commands, select Y to install if prompted:
 	haxelib install openfl
 	
 	haxelib run openfl setup
-	
-	haxelib git haxeui-core https://github.com/haxeui/haxeui-core
 		
-	haxelib git haxeui-core https://github.com/haxeui/haxeui-openfl
+	haxelib install haxeui-openfl
 	
 Running the above commands should install all the needed libraries to compile, including Lime. You may have to install other
 programs, the commands above assume you already have some form of a development enviornment set up on your system.

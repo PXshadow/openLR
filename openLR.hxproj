@@ -16,11 +16,12 @@
   </output>
   <!-- Other classes to be compiled into your SWF -->
   <classpaths>
-    <class path="C:\HaxeToolkit\haxe\lib\openfl\6,4,0" />
     <class path="C:\HaxeToolkit\haxe\lib\lime\5,8,1" />
     <class path="C:\HaxeToolkit\haxe\lib\actuate\1,8,7" />
-    <class path="C:\HaxeToolkit\haxe\lib\haxeui-core\git" />
-    <class path="C:\HaxeToolkit\haxe\lib\haxeui-openfl\git" />
+    <class path="C:\HaxeToolkit\haxe\lib\haxeui-openfl\0,0,1" />
+    <class path="C:\HaxeToolkit\haxe\lib\haxeui-core\0,0,1" />
+    <class path="C:\HaxeToolkit\haxe\lib\hscript\2,1,1" />
+    <class path="C:\HaxeToolkit\haxe\lib\openfl\6,4,0" />
     <class path="src" />
     <class path="C:\HaxeToolkit\haxe\lib\openfl\6,4,0\externs\core\openfl" />
     <class path="C:\HaxeToolkit\haxe\lib\openfl\6,4,0\externs\extras" />
