@@ -44,6 +44,7 @@ class SimManager
 		}
 		Common.gRiderManager.set_rider_visual_start();
 		if (!sim_running) {
+			Common.gCode.return_to_origin_sim();
 			this.iterator = new Timer(Std.int(1000 * (1 / SVar.default_rate)));
 			this.iterator.run = function():Void {
 				this.update_sim();
@@ -58,7 +59,6 @@ class SimManager
 			CVar.prev_zoom_ammount = Common.gTrack.scaleX;
 			Common.gTrack.scaleX = Common.gTrack.scaleY = Common.gRiderManager.scaleX = Common.gRiderManager.scaleY = (Common.gTrack.scaleX * (CVar.force_zoom_inverse ? ( -1) : (1)));
 		}
-		Common.gCode.return_to_origin_sim();
 	}
 	function update_sim()
 	{
