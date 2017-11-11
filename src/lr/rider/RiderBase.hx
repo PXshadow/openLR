@@ -135,6 +135,8 @@ class RiderBase extends Sprite
 		
 		this.recorder = new RiderRecorder(_id);
 		this.camera = new RiderCamera();
+		
+		this.recorder.index_frame(0, this.body.anchors, this.scarf.anchors);
 	}
 	function adjust_rider_angle(e:KeyboardEvent) 
 	{
