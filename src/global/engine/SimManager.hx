@@ -34,9 +34,7 @@ class SimManager
 		}
 		if (!flagged) {
 			SVar.frames = 0;
-			if (flag_av) {
-				Common.gRiderManager.restore_start();
-			}
+			Common.gRiderManager.restore_start();
 		} else if (flagged) {
 			Common.gRiderManager.restore_flag();
 		}
