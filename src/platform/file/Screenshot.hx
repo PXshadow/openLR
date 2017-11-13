@@ -1,4 +1,4 @@
-package file;
+package platform.file;
 
 import openfl.geom.Rectangle;
 import openfl.display.Bitmap;

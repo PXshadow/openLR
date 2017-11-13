@@ -9,7 +9,7 @@ class LRPK extends FileBase
 
 	public function new() 
 	{
-		
+		super();
 	}
 	
 }

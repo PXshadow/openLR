@@ -18,10 +18,8 @@ import global.Common;
 import global.Language;
 import lr.tool.Toolbar;
 import ui.inter.TextButton;
-import file.LoadManager;
 import ui.inter.ConfirmDialog;
 import ui.inter.InputText;
-import file.SaveManager;
 import lr.tool.IconBase;
 
 /**
@@ -37,7 +35,6 @@ class IconSave extends IconBase
 	private var save_track:TextButton;
 	private var load_track:TextButton;
 	private var about:TextButton;
-	private var loadManager:LoadManager;
 	private var safety_dialog:ConfirmDialog;
 	private var screen_cap:TextButton;
 	public function new() 
@@ -81,8 +78,6 @@ class IconSave extends IconBase
 			this.removeChild(this.menu);
 			this.open = false;
 		} else if (!open) {
-			this.loadManager = new LoadManager();
-			
 			this.menu = new MovieClip();
 			this.addChild(menu);
 			this.menu.graphics.clear();
@@ -140,6 +135,7 @@ class IconSave extends IconBase
 	}
 	function open_save_menu() 
 	{
+		this.show_menu();
 		Common.gCode.toggle_save_menu();
 	}
 	override private function disable_tool(e:MouseEvent):Void 
@@ -148,7 +144,6 @@ class IconSave extends IconBase
 	}
 	function confirmed_new() {
 		this.removeChild(this.safety_dialog);
-		SaveManager.new_track = true;
 		Common.gTrack.clear_stage();
 		Common.gToolBase.enable();
 	}

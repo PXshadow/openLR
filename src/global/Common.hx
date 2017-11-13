@@ -1,9 +1,6 @@
 package global;
 
-import platform.CoreBase;
-import global.engine.SimManager;
 import openfl.Assets;
-import global.engine.RiderManager;
 import openfl.utils.Object;
 import openfl.display.Stage;
 import openfl.geom.Point;
@@ -11,16 +8,16 @@ import openfl.text.TextFormat;
 import openfl.text.TextFormatAlign;
 import openfl.display.Sprite;
 
+import global.engine.RiderManager;
+import global.engine.SimManager;
 import lr.scene.Track;
-import file.AutosaveManager;
-import file.LoadManager;
-import file.SaveManager;
 import lr.tool.ToolBase;
 import lr.scene.timeline.TimelineControl;
 import lr.tool.Toolbar;
 import lr.scene.TextInfo;
 import lr.nodes.Grid;
 import lr.rider.RiderCamera;
+import platform.CoreBase;
 
 /**
  * ...
@@ -53,14 +50,11 @@ class Common
 	public static var gToolBase:ToolBase;
 	public static var gToolCurrent:ToolBase;
 	public static var gGrid:Grid;
-	public static var gSaveManager:SaveManager;
-	public static var gLoadManager:LoadManager;
 	public static var gSimManager:SimManager;
 	public static var gTextInfo:TextInfo;
 	public static var gToolbar:Toolbar;
 	public static var gCamera:RiderCamera;
 	public static var gTimeline:TimelineControl;
-	public static var gAutoSaveManager:AutosaveManager;
 	
 	public static var line_minLength:Int = 14;
 	public static var line_type:Int = 0;

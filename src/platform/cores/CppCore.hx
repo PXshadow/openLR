@@ -6,6 +6,7 @@ import openfl.events.Event;
 import openfl.display.Stage;
 import openfl.geom.Point;
 import platform.CoreBase;
+import platform.file.exporting.ExportNative;
 
 //third party
 
@@ -14,7 +15,6 @@ import platform.TitleCardBase;
 import platform.titlecards.TitleCardCPP;
 import platform.ControlBase;
 import platform.control.Desktop;
-import file.init.FileStartCPP;
 import global.Common;
 import global.CVar;
 import global.SVar;
@@ -141,7 +141,21 @@ class CppCore extends CoreBase
 		}
 	}
 	override public function toggle_save_menu() {
-
+		return;
+		if (this.exportVisible == false) {
+			this.exportVisible = true;
+			
+			this.toolBar.mouseChildren = false;
+			this.toolBar.mouseEnabled = false;
+			this.timeline.mouseChildren = false;
+			this.timeline.mouseEnabled = false;
+			Lib.current.stage.mouseEnabled = false;
+			
+			this.export = new ExportNative();
+			Lib.current.stage.addChild(this.export);
+			
+			this.align();
+		}
 	}
 	override public function toggle_Loader() {
 		
@@ -170,6 +184,11 @@ class CppCore extends CoreBase
 		
 		this.timeline.x = (Lib.current.stage.stageWidth * 0.5) - (this.timeline.width * 0.5);
 		this.timeline.y = Lib.current.stage.stageHeight - this.timeline.height + 25;
+		
+		if (this.exportVisible) {
+			this.export.x = (Lib.current.stage.stageWidth * 0.5) - (this.export.width * 0.5);
+			this.export.y = (Lib.current.stage.stageHeight * 0.5) - (this.export.height * 0.5);
+		}
 		
 		Common.stage_tl = new Point(0, 0);
 		Common.stage_br = new Point(Lib.current.stage.stageWidth, Lib.current.stage.stageHeight);

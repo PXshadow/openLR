@@ -21,7 +21,6 @@
     <class path="C:\HaxeToolkit\haxe\lib\haxeui-openfl\0,0,1" />
     <class path="C:\HaxeToolkit\haxe\lib\haxeui-core\0,0,1" />
     <class path="C:\HaxeToolkit\haxe\lib\hscript\2,1,1" />
-    <class path="C:\HaxeToolkit\haxe\lib\hxcpp\3,4,188" />
     <class path="C:\HaxeToolkit\haxe\lib\openfl\6,5,0" />
     <class path="src" />
     <class path="C:\HaxeToolkit\haxe\lib\openfl\6,5,0\externs\core\openfl" />
@@ -30,12 +29,12 @@
   </classpaths>
   <!-- Build options -->
   <build>
-    <option directives="lime=5.8.2&#xA;actuate=1.8.7&#xA;haxeui-openfl=0.0.1&#xA;haxeui-core=0.0.1&#xA;hscript=2.1.1&#xA;openfl-webp=0.0.7&#xA;openfl-webm=0.0.4&#xA;hxcpp=3.4.188&#xA;openfl=6.5.0&#xA;tools=5.8.2&#xA;no-compilation&#xA;native&#xA;lime-native&#xA;lime-vorbis&#xA;openfl-native&#xA;lime-cffi&#xA;windows&#xA;desktop&#xA;display" />
+    <option directives="lime=5.8.2&#xA;actuate=1.8.7&#xA;haxeui-openfl=0.0.1&#xA;haxeui-core=0.0.1&#xA;hscript=2.1.1&#xA;openfl=6.5.0&#xA;tools=5.8.2&#xA;no-compilation&#xA;native&#xA;lime-native&#xA;lime-vorbis&#xA;openfl-native&#xA;lime-cffi&#xA;windows&#xA;desktop&#xA;display" />
     <option flashStrict="False" />
     <option noInlineOnDebug="False" />
     <option mainClass="ApplicationMain" />
     <option enabledebug="True" />
-    <option additional="--macro openfl._internal.utils.ExtraParams.include()&#xA;--macro lime.Lib.extraParams()&#xA;-dce full&#xA;-swf-version 17" />
+    <option additional="--macro lime.Lib.extraParams()&#xA;--macro openfl._internal.utils.ExtraParams.include()&#xA;--remap flash:openfl&#xA;-dce full&#xA;-debug " />
   </build>
   <!-- haxelib libraries -->
   <haxelib>

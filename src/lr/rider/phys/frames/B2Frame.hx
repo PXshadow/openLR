@@ -24,9 +24,9 @@ class B2Frame extends FrameBase
 		
 		this.anchors = new Vector(10); //Rider contact points
 		this.anchors[0] = new CPoint(0, 0, 0.8, 0); //2nd Peg
-		this.anchors[1] = new CPoint(0, 10, 0, 1); //Upper Nose
+		this.anchors[1] = new CPoint(0, 10, 0, 1); //first peg
 		this.anchors[2] = new CPoint(30, 10, 0, 2); //Lower Nose
-		this.anchors[3] = new CPoint(35, 0, 0, 3); //1st peg
+		this.anchors[3] = new CPoint(35, 0, 0, 3); //String
 		this.anchors[4] = new CPoint(10, 0, 0.8, 4); //Butt
 		this.anchors[5] = new CPoint(10, -11, 0.8, 5); //Shoulder
 		this.anchors[6] = new CPoint(23, -10, 0.1, 6); //hand

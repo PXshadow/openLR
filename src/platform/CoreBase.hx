@@ -24,6 +24,7 @@ import ui.inter.AlertBox;
 import lr.tool.Toolbar;
 import lr.scene.timeline.Ticker;
 import lr.scene.timeline.TimelineControl;
+import platform.file.ExportBase;
 
 /**
  * ...
@@ -42,6 +43,8 @@ class CoreBase extends Sprite
 	private var title_card:TitleCardBase;
 	private var timeline:TimelineControl;
 	private var settings_box:SettingsMenu;
+	private var export:ExportBase;
+	private var exportVisible:Bool = false;
 	
 	public function new() 
 	{

@@ -77,6 +77,8 @@ class RiderBase extends Sprite
 	public var rider_scale:Float = 0.5;
 	public var rider_x_velocity:Float = 0.4;
 	public var rider_y_velocity:Float = 0;
+	public var rider_pos_x:Float = 0;
+	public var rider_pos_y:Float = 0;
 	
 	var tick_frame = SubFrame.FullTick;
 	
@@ -88,6 +90,9 @@ class RiderBase extends Sprite
 		
 		this.start_point = new StartPointVis();
 		this.addChild(this.start_point);
+		
+		this.rider_pos_x = _x;
+		this.rider_pos_y = _y;
 		
 		this.riderID = _id;
 		
