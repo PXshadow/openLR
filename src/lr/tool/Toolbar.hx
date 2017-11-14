@@ -1,32 +1,18 @@
 package lr.tool;
 
-import lr.tool.icon.IconEraser;
-import lr.tool.icon.IconFlag;
-import lr.tool.icon.IconLine;
-import lr.tool.icon.IconPause;
-import lr.tool.icon.IconPencil;
-import lr.tool.icon.IconPlay;
-import lr.tool.icon.IconSave;
-import lr.tool.icon.IconSettings;
-import lr.tool.icon.IconStop;
-import lr.tool.icon.SwatchBlue;
-import lr.tool.icon.SwatchGreen;
-import lr.tool.icon.SwatchRed;
-import lr.tool.editing.ToolEraser;
-import lr.tool.editing.ToolLine;
-import lr.tool.editing.ToolPencil;
+
 import openfl.Lib;
 import openfl.display.Sprite;
 import openfl.events.KeyboardEvent;
 import openfl.ui.Keyboard;
 import openfl.events.MouseEvent;
 
-import lr.tool.ToolBase;
-import ui.tool.lr.*;
-import ui.tool.icon.*;
 import global.KeyBindings;
 import global.Common;
 import global.SVar;
+import lr.tool.ToolBase;
+import lr.tool.icon.*;
+import lr.tool.editing.*;
 
 /**
  * ...
@@ -43,8 +29,8 @@ class Toolbar extends Sprite
 	public static var swatch:IconBase;
 	private var pencil:IconPencil;
 	private var line:IconLine;
-	private var save:IconSave;
 	private var eraser:IconEraser;
+	private var save:IconSave;
 	private var settings:IconSettings;
 	private var swBlue:SwatchBlue;
 	private var swRed:SwatchRed;
