@@ -1,10 +1,6 @@
 package lr.tool.icon;
 
-import openfl.display.Bitmap;
 import openfl.events.MouseEvent;
-import openfl.Lib;
-import openfl.Assets;
-import openfl.net.URLRequest;
 
 import global.Common;
 import lr.tool.Toolbar;

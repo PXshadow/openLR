@@ -1,17 +1,9 @@
 package lr.tool.editing;
 
-import openfl.Lib;
-import openfl.display.MovieClip;
 import openfl.events.MouseEvent;
-import openfl.utils.Object;
-import openfl.events.Event;
 
-import global.Common;
-import global.SVar;
 import lr.lines.LineBase;
-import lr.nodes.Grid;
-import lr.tool.IconBase;
-import lr.tool.ToolBase;
+import global.Common;
 
 /**
  * ...

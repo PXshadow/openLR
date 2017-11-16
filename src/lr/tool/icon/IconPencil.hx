@@ -1,14 +1,6 @@
 package lr.tool.icon;
 
-import openfl.utils.AssetLibrary;
-
-#if (!flash)
-	import openfl.display.Sprite;
-	import openfl.events.MouseEvent;
-#else
-	import flash.display.Sprite;
-	import flash.events.MouseEvent;
-#end
+import openfl.events.MouseEvent;
 
 import lr.tool.IconBase;
 import lr.tool.Toolbar;

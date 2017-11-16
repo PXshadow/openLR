@@ -3,7 +3,6 @@ package lr.scene.timeline;
 import openfl.Lib;
 import openfl.display.Sprite;
 import openfl.events.MouseEvent;
-import openfl.geom.Point;
 
 import lr.scene.timeline.Ticker;
 import lr.tool.Toolbar;

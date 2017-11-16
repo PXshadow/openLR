@@ -1,12 +1,12 @@
 package global;
 
-import openfl.utils.Object;
 import openfl.ui.Keyboard;
 
 #if (cpp)
+	import haxe.Json;
+	import openfl.utils.Object;
 	import sys.FileSystem;
 	import sys.io.File;
-	import haxe.Json;
 #end
 
 /**

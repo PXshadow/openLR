@@ -1,13 +1,9 @@
 package lr.tool.icon;
 
-import openfl.display.Bitmap;
-import openfl.display.MovieClip;
+import openfl.display.Sprite;
 import openfl.events.MouseEvent;
 import openfl.Lib;
-import openfl.Assets;
 import openfl.net.URLRequest;
-import openfl.ui.Mouse;
-import openfl.ui.MouseCursor;
 
 #if (cpp)
 	import sys.io.File;
@@ -19,7 +15,6 @@ import global.Language;
 import lr.tool.Toolbar;
 import ui.inter.TextButton;
 import ui.inter.ConfirmDialog;
-import ui.inter.InputText;
 import lr.tool.IconBase;
 
 /**
@@ -29,7 +24,7 @@ import lr.tool.IconBase;
 class IconSave extends IconBase
 {
 	private var open:Bool = false;
-	private var menu:MovieClip;
+	private var menu:Sprite;
 	private var buttonList:Array<TextButton>;
 	private var new_track:TextButton;
 	private var save_track:TextButton;
@@ -78,7 +73,7 @@ class IconSave extends IconBase
 			this.removeChild(this.menu);
 			this.open = false;
 		} else if (!open) {
-			this.menu = new MovieClip();
+			this.menu = new Sprite();
 			this.addChild(menu);
 			this.menu.graphics.clear();
 			this.menu.graphics.lineStyle(2, 0xFFFFFF, 0);
