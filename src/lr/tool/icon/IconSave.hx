@@ -140,12 +140,12 @@ class IconSave extends IconBase
 	}
 	override private function disable_tool(e:MouseEvent):Void 
 	{
-		Common.gToolBase.disable();
+		Toolbar.tool.set_tool("None");
 	}
 	function confirmed_new() {
 		this.removeChild(this.safety_dialog);
 		Common.gTrack.clear_stage();
-		Common.gToolBase.enable();
+		Toolbar.tool.set_tool(ToolBase.lastTool);
 	}
 	function negative_new() {
 		this.show_menu();

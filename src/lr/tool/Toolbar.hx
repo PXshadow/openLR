@@ -54,7 +54,7 @@ class Toolbar extends Sprite
 		this.tool_list = new Array();
 		this.swatch_list = new Array();
 		
-		Toolbar.tool = new ToolPencil();
+		Toolbar.tool = new ToolBase();
 		Toolbar.tool.set_listeners();
 		
 		pencil = new IconPencil();
@@ -99,6 +99,8 @@ class Toolbar extends Sprite
 		Toolbar.swatch = swBlue;
 		swBlue.select();
 		
+		Toolbar.tool.set_tool(ToolType.Pencil);
+		
 		this.addEventListener(MouseEvent.MOUSE_OVER, this.disable_stage);
 		this.addEventListener(MouseEvent.MOUSE_OUT, this.enable_stage);
 		
@@ -119,15 +121,31 @@ class Toolbar extends Sprite
 			++i;
 		}
 	}
+	public function update_icons(_type:String) {
+		Toolbar.icon.deselect();
+		switch (_type) {
+			case ToolType.Pencil :
+				Toolbar.icon = this.pencil;
+				Toolbar.swatch.select();
+			case ToolType.Line :
+				Toolbar.icon = this.line;
+				Toolbar.swatch.select();
+			case ToolType.Eraser :
+				Toolbar.icon = this.eraser;
+				Toolbar.swatch.deselect();
+				Common.line_type = -1;
+		}
+		Toolbar.icon.select();
+	}
 	private function enable_stage(e:MouseEvent):Void 
 	{
-		Common.gToolBase.enable();
+		//Common.gToolBase.enable();
 		Lib.current.stage.addEventListener(KeyboardEvent.KEY_UP, key_tool_switch);
 	}
 	
 	private function disable_stage(e:MouseEvent):Void 
 	{
-		Common.gToolBase.disable();
+		//Common.gToolBase.disable();
 		Lib.current.stage.removeEventListener(KeyboardEvent.KEY_UP, key_tool_switch);
 	}
 	public function disable_keys() {
@@ -139,30 +157,31 @@ class Toolbar extends Sprite
 	private function key_tool_switch(e:KeyboardEvent):Void 
 	{
 		if (e.keyCode == KeyBindings.pencil_1 || e.keyCode == KeyBindings.pencil_2) {
-			Common.gToolBase.disable();
+			//Common.gToolBase.disable();
 			icon.deselect();
-			tool = new ToolPencil();
-			tool.set_listeners();
 			icon = pencil;
 			icon.select();
 			swatch.select();
 		}
 		if (e.keyCode == KeyBindings.line_1 || e.keyCode == KeyBindings.line_2) {
-			Common.gToolBase.disable();
+			//Common.gToolBase.disable();
 			icon.deselect();
-			tool = new ToolLine();
 			tool.set_listeners();
 			icon = line;
 			icon.select();
 			swatch.select();
 		}
 		if (e.keyCode == KeyBindings.eraser_1 || e.keyCode == KeyBindings.eraser_2) {
-			Common.gToolBase.disable();
+			//Common.gToolBase.set_tool("None");
 			icon.deselect();
-			tool = new ToolEraser();
-			tool.set_listeners();
 			icon = eraser;
 			icon.select();
+			swatch.deselect();
+			Common.line_type = -1;
+		}
+		if (e.keyCode == Keyboard.R) {
+			//Common.gToolBase.disable();
+			icon.deselect();
 			swatch.deselect();
 			Common.line_type = -1;
 		}

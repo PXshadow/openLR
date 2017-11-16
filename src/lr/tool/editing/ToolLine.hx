@@ -15,7 +15,7 @@ import lr.lines.LineBase;
  * ...
  * @author Kaelan Evans
  */
-class ToolLine extends ToolBase
+class ToolLine extends ToolAction
 {
 	private var x1:Float;
 	private var y1:Float;
@@ -26,10 +26,9 @@ class ToolLine extends ToolBase
 	private var valid:Bool = false;
 	public function new() 
 	{
-		super(Icon.line);
+		super();
 	}
-	override public function mouseDown(e:MouseEvent) {
-		super.mouseDown(e);
+	override public function leftMouseDown(e:MouseEvent) {
 		x1 = Common.gTrack.mouseX;
 		y1 = Common.gTrack.mouseY;
 		x2 = Common.gTrack.mouseX;
@@ -41,11 +40,12 @@ class ToolLine extends ToolBase
 		}
 		c = new Point(Lib.current.stage.mouseX, Lib.current.stage.mouseY);
 		d = new Point(Lib.current.stage.mouseX, Lib.current.stage.mouseY);
-		Lib.current.stage.addEventListener(MouseEvent.MOUSE_MOVE, line_move);
+		this.leftMouseIsDown = true;
 	}
 	
-	private function line_move(e:MouseEvent):Void 
+	override public function leftMouseMove(event:MouseEvent) 
 	{
+		if (!this.leftMouseIsDown) return;
 		x2 = Common.gTrack.mouseX;
 		y2 = Common.gTrack.mouseY;
 		if (this.mod_x || CVar.angle_snap) {
@@ -57,10 +57,8 @@ class ToolLine extends ToolBase
 		d = new Point(Lib.current.stage.mouseX, Lib.current.stage.mouseY);
 		Common.gTrack.renderPreview(new LinePreview(x1, y1, x2, y2, this.mod_shift, Common.line_type));
 	}
-	override public function mouseUp(e:MouseEvent) {
-		super.mouseUp(e);
+	override public function leftMouseUp(e:MouseEvent) {
 		Common.gTrack.clear_preview();
-		Lib.current.stage.removeEventListener(MouseEvent.MOUSE_MOVE, line_move);
 		if (!valid) {
 			return;
 		}
@@ -77,8 +75,10 @@ class ToolLine extends ToolBase
 			SVar.lineID += 1;
 		}
 		valid = false;
+		this.leftMouseIsDown = false;
 	}
-	override public function rMouseDown(e:MouseEvent) {
+	override public function rightMouseDown(e:MouseEvent) {
+		this.rightMouseIsDown = true;
 		x1 = Common.gTrack.mouseX;
 		y1 = Common.gTrack.mouseY;
 		x2 = Common.gTrack.mouseX;
@@ -90,11 +90,11 @@ class ToolLine extends ToolBase
 		}
 		c = new Point(Lib.current.stage.mouseX, Lib.current.stage.mouseY);
 		d = new Point(Lib.current.stage.mouseX, Lib.current.stage.mouseY);
-		Lib.current.stage.addEventListener(MouseEvent.MOUSE_MOVE, line_move_reverse);
 	}
 	
-	private function line_move_reverse(e:MouseEvent):Void 
+	override public function rightMouseMove(event:MouseEvent) 
 	{
+		if (!this.rightMouseIsDown) return;
 		x2 = Common.gTrack.mouseX;
 		y2 = Common.gTrack.mouseY;
 		if (this.mod_x || CVar.angle_snap) {
@@ -105,7 +105,7 @@ class ToolLine extends ToolBase
 		d = new Point(Lib.current.stage.mouseX, Lib.current.stage.mouseY);
 		Common.gTrack.renderPreview(new LinePreview(x1, y1, x2, y2, this.mod_shift, Common.line_type));
 	}
-	override public function rMouseUp(e:MouseEvent) {
+	override public function rightMouseUp(e:MouseEvent) {
 		var _locSnapCheck:Array<Dynamic> = Common.gGrid.snap(x2, y2, 2, this.mod_shift);
 		if (_locSnapCheck[2] == true && Common.line_type != 2) {
 			x2 = _locSnapCheck[0];
@@ -119,6 +119,6 @@ class ToolLine extends ToolBase
 			SVar.lineID += 1;
 		}
 		Common.gTrack.clear_preview();
-		Lib.current.stage.removeEventListener(MouseEvent.MOUSE_MOVE, line_move_reverse);
+		this.rightMouseIsDown = false;
 	}
 }

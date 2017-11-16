@@ -15,7 +15,7 @@ import lr.tool.ToolBase;
  * ...
  * @author Kaelan Evans
  */
-class ToolPencil extends ToolBase
+class ToolPencil extends ToolAction
 {
 	private var x1:Float;
 	private var y1:Float;
@@ -26,10 +26,9 @@ class ToolPencil extends ToolBase
 	private var stroke:Array<LineBase>;
 	public function new() 
 	{
-		super(Icon.pencil);
+		super();
 	}
-	override public function mouseDown(e:MouseEvent) {
-		super.mouseDown(e);
+	override public function leftMouseDown(e:MouseEvent) {
 		x1 = Common.gTrack.mouseX;
 		y1 = Common.gTrack.mouseY;
 		this.stroke = new Array();
@@ -39,11 +38,12 @@ class ToolPencil extends ToolBase
 			y1 = _locSnapCheck[1];
 		}
 		c = new Point(Lib.current.stage.mouseX, Lib.current.stage.mouseY);
-		Lib.current.stage.addEventListener(MouseEvent.MOUSE_MOVE, pencil_move);
+		this.leftMouseIsDown = true;
 	}
 	
-	private function pencil_move(e:MouseEvent):Void 
+	override public function leftMouseMove(e:MouseEvent) 
 	{
+		if (!this.leftMouseIsDown) return;
 		x2 = Common.gTrack.mouseX;
 		y2 = Common.gTrack.mouseY;
 		d = new Point(Lib.current.stage.mouseX, Lib.current.stage.mouseY);
@@ -59,13 +59,12 @@ class ToolPencil extends ToolBase
 			c = new Point(Lib.current.stage.mouseX, Lib.current.stage.mouseY);
 		}
 	}
-	override public function mouseUp(e:MouseEvent) {
-		super.mouseUp(e);
-		Lib.current.stage.removeEventListener(MouseEvent.MOUSE_MOVE, pencil_move);
+	override public function leftMouseUp(e:MouseEvent) {
+		this.leftMouseIsDown = false;
 		Common.gTrack.clear_preview();
 		Common.gGrid.cache_stroke(this.stroke);
 	}
-	override public function rMouseDown(e:MouseEvent) {
+	override public function rightMouseDown(e:MouseEvent) {
 		x1 = Common.gTrack.mouseX;
 		y1 = Common.gTrack.mouseY;
 		this.stroke = new Array();
@@ -75,11 +74,12 @@ class ToolPencil extends ToolBase
 			y1 = _locSnapCheck[1];
 		}
 		c = new Point(Lib.current.stage.mouseX, Lib.current.stage.mouseY);
-		Lib.current.stage.addEventListener(MouseEvent.MOUSE_MOVE, pencil_move_reverse);
+		this.rightMouseIsDown = true;
 	}
 	
-	private function pencil_move_reverse(e:MouseEvent):Void 
+	override public function rightMouseMove(e:MouseEvent) 
 	{
+		if (!this.rightMouseIsDown) return;
 		x2 = Common.gTrack.mouseX;
 		y2 = Common.gTrack.mouseY;
 		d = new Point(Lib.current.stage.mouseX, Lib.current.stage.mouseY);
@@ -95,8 +95,9 @@ class ToolPencil extends ToolBase
 			c = new Point(Lib.current.stage.mouseX, Lib.current.stage.mouseY);
 		}
 	}
-	override public function rMouseUp(e:MouseEvent) {
-		Lib.current.stage.removeEventListener(MouseEvent.MOUSE_MOVE, pencil_move_reverse);
+	override public function rightMouseUp(e:MouseEvent) {
+		this.rightMouseIsDown = false;
 		Common.gTrack.clear_preview();
+		Common.gGrid.cache_stroke(this.stroke);
 	}
 }

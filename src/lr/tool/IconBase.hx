@@ -84,14 +84,14 @@ class IconBase extends Sprite
 	private function enable_tool(e:MouseEvent):Void 
 	{
 		if (!SVar.sim_running || Common.gSimManager.paused) {
-			Common.gToolBase.enable();
+		Common.gToolBase.set_tool(ToolBase.lastTool);
 		}
 	}
 	
 	private function disable_tool(e:MouseEvent):Void 
 	{
 		if (!SVar.sim_running) {
-			Common.gToolBase.disable();
+			Common.gToolBase.set_tool("None");
 		}
 	}
 	

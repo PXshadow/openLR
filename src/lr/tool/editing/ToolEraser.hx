@@ -17,33 +17,30 @@ import lr.tool.ToolBase;
  * ...
  * @author ...
  */
-class ToolEraser extends ToolBase
+class ToolEraser extends ToolAction
 {
 	private var list:Array<LineBase>;
 	public function new() 
 	{
-		super(Icon.eraser);
+		super();
 	}
-	override public function mouseDown(e:MouseEvent)
+	override public function leftMouseDown(e:MouseEvent)
 	{
-		super.mouseDown(e);
 		this.list = new Array();
 		this.erase(e);
-		Lib.current.stage.addEventListener(MouseEvent.MOUSE_MOVE, erase);
+		this.leftMouseIsDown = true;
 	}
-	override public function mouseUp(e:MouseEvent) {
+	override public function leftMouseUp(e:MouseEvent) {
 		if (this.list == null) {
 			return;
 		}
 		if (this.list.length > 0) {
 			Common.gGrid.add_to_history("sub", this.list);
 		}
-		super.mouseUp(e);
-		Lib.current.stage.removeEventListener(MouseEvent.MOUSE_MOVE, erase);
+		this.leftMouseIsDown = false;
 	}
-	override public function rMouseDown(e:MouseEvent):Void 
+	override public function rightMouseDown(e:MouseEvent):Void 
 	{
-		super.rMouseDown(e);
 		this.swapLine(e);
 	}
 	
@@ -65,7 +62,13 @@ class ToolEraser extends ToolBase
 			return;
 		}
 	}
-	private function erase(e:MouseEvent):Void 
+	override public function leftMouseMove(e:MouseEvent) 
+	{
+		if (!this.leftMouseIsDown) return;
+		this.erase(e);
+    }
+	
+	function erase(e:MouseEvent) 
 	{
 		var _line = this.locateLine(e);
 		if (_line == null) return;
@@ -81,5 +84,5 @@ class ToolEraser extends ToolBase
 		} catch (e:String) {
 			return;
 		}
-    } // end of for
+	}
 }
