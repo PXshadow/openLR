@@ -3,15 +3,12 @@ package platform.cores;
 import openfl.Lib;
 import openfl.display.Sprite;
 import openfl.events.Event;
-import openfl.display.Stage;
 import openfl.geom.Point;
-import platform.ControlBase;
 import platform.CoreBase;
 
 //third party
 
 //openLR
-import platform.TitleCardBase;
 import platform.control.Desktop;
 import platform.titlecards.TitleCardJS;
 import platform.file.Screenshot;
@@ -19,16 +16,12 @@ import global.Common;
 import global.CVar;
 import global.SVar;
 import global.engine.FrameRate;
-import global.Language;
 import global.engine.RiderManager;
-import global.engine.SimManager;
 import lr.scene.TextInfo;
 import lr.scene.Track;
 import lr.menus.SettingsMenu;
-import ui.inter.AlertBox;
 import lr.tool.Toolbar;
 import lr.tool.ToolBase;
-import lr.scene.timeline.Ticker;
 import lr.scene.timeline.TimelineControl;
 
 /**
