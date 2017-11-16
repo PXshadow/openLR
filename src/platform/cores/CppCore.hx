@@ -137,7 +137,7 @@ class CppCore extends CoreBase
 			this.textInfo.visible = true;
 			this.timeline.visible = true;
 			SVar.game_mode = GameState.edit;
-			Common.gToolBase.set_tool(ToolBase.lastTool);
+			Common.gToolBase.enable();
 		}
 	}
 	override public function toggle_save_menu() {
