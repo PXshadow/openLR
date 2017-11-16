@@ -63,6 +63,7 @@ class TimelineControl extends Sprite
 			this.ticker_pause = false;
 		} else {
 			SVar.frames_alt = SVar.frames;
+			Toolbar.tool.set_tool(ToolBase.lastTool);
 		}
 	}
 	
