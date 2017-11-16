@@ -27,6 +27,7 @@ import lr.scene.Track;
 import lr.menus.SettingsMenu;
 import ui.inter.AlertBox;
 import lr.tool.Toolbar;
+import lr.tool.ToolBase;
 import lr.scene.timeline.Ticker;
 import lr.scene.timeline.TimelineControl;
 
