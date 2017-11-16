@@ -10,10 +10,9 @@ import openfl.utils.AssetLibrary;
 	import flash.events.MouseEvent;
 #end
 
-import global.Common;
 import lr.tool.IconBase;
 import lr.tool.Toolbar;
-import lr.tool.editing.ToolPencil;
+import lr.tool.ToolBase;
 
 /**
  * ...
@@ -26,11 +25,6 @@ class IconPencil extends IconBase
 		super(Icon.pencil);
 	}
 	override public function up(e:MouseEvent) {
-		Common.gToolBase.disable();
-		Toolbar.icon.deselect();
-		Toolbar.icon = this;
-		this.select();
-		Toolbar.tool = new ToolPencil();
-		Toolbar.swatch.select();
+		Toolbar.tool.set_tool(ToolType.Pencil);
 	}
 }

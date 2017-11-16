@@ -32,7 +32,7 @@ class IconPlay extends IconBase
 		Common.gToolbar.pause.visible = true;
 		Common.gToolbar.set_play_mode();
 		
-		Common.gToolBase.destroy();
+		Toolbar.tool.set_tool("None");
 		
 		Common.gRiderManager.x = Common.gTrack.x;
 		Common.gRiderManager.y = Common.gTrack.y;

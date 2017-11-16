@@ -6,6 +6,8 @@ import openfl.events.MouseEvent;
 import openfl.geom.Point;
 
 import lr.scene.timeline.Ticker;
+import lr.tool.Toolbar;
+import lr.tool.ToolBase;
 import global.Common;
 import global.SVar;
 
@@ -36,13 +38,13 @@ class TimelineControl extends Sprite
 	private function resume(e:MouseEvent):Void 
 	{
 		if (!Common.gSimManager.paused && !Common.gSimManager.sim_running) {
-			Common.gToolBase.enable();
+			Toolbar.tool.set_tool("None");
 		}
 	}
 	
 	private function preScrubSetup(e:MouseEvent):Void 
 	{
-		Common.gToolBase.disable();
+		Toolbar.tool.set_tool(ToolBase.lastTool);
 		this.ticker.addEventListener(MouseEvent.MOUSE_DOWN, downActionScrubber);
 		Lib.current.stage.addEventListener(MouseEvent.MOUSE_UP, releaseActionScrubber);
 		this.ticker.addEventListener(MouseEvent.MOUSE_UP, releaseActionScrubber);
@@ -61,7 +63,6 @@ class TimelineControl extends Sprite
 			Common.gSimManager.resume_sim();
 			this.ticker_pause = false;
 		} else {
-			Common.gToolBase.enable();
 			SVar.frames_alt = SVar.frames;
 		}
 	}

@@ -6,6 +6,8 @@ import openfl.events.MouseEvent;
 
 import global.Common;
 import global.SVar;
+import lr.tool.Toolbar;
+import lr.tool.ToolBase;
 
 /**
  * ...
@@ -43,14 +45,14 @@ class Slider extends Sprite
 		if (Common.gSimManager.paused && SVar.game_mode == GameState.playback) {
 			Common.gSimManager.resume_sim();
 		} else {
-			Common.gToolBase.enable();
+			Toolbar.tool.set_tool(ToolBase.lastTool);
 		}
 		SVar.pause_frame = -1;
 	}
 	
 	private function preInitSlider(e:MouseEvent):Void 
 	{
-		Common.gToolBase.disable();
+		Toolbar.tool.set_tool("None");
 		Lib.current.stage.addEventListener(MouseEvent.MOUSE_MOVE, thisSlide);
 		this.playHead.addEventListener(MouseEvent.MOUSE_UP, endSlider);
 		Lib.current.stage.addEventListener(MouseEvent.MOUSE_UP, endSlider);
