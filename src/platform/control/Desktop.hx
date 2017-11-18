@@ -61,10 +61,11 @@ class Desktop extends ControlBase
 	private function mouseScroll(e:MouseEvent):Void 
 	{
 		if (SVar.game_mode == GameState.edit || SVar.game_mode == GameState.livedraw) {
+			var platDelta:Float;
 			#if (cpp || flash)
-				var platDelta = e.delta;
+				platDelta = e.delta;
 			#elseif (js)
-				var platDelta = e.delta / 100;
+				platDelta = e.delta / 100;
 			#else
 				trace("Unsupported platform, accomodate: ", e.delta);
 				return;
