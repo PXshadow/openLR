@@ -23,7 +23,7 @@ class SVar
 	public static var frame_rate:Float;
 	public inline static var framerate_avg_rate:Int = 60;
 	public inline static var gridsize:Int = 14;
-	public inline static var tilesize:Int = 100;
+	public inline static var tilesize:Int = 140;
 	public inline static var eraser_size:Int = 5;
 	public static var sim_running:Bool = false;
 	public static var game_mode:Int = GameState.title;
