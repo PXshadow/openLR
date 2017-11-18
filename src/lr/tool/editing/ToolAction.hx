@@ -73,7 +73,7 @@ class ToolAction
 		_locReturn = [x, y];
 		return(_locReturn);
 	}
-	public function locateLine(e:MouseEvent):LineBase {
+	public function locateLine(e:MouseEvent, _size:Int = 5):LineBase {
 		var x:Float = Common.gTrack.mouseX;
 		var y:Float = Common.gTrack.mouseY;
 		var _loc20:Object = Common.gridPos(x, y);
@@ -104,7 +104,7 @@ class ToolAction
 					var _loc13:Float = Math.sqrt(Math.pow(x - _loc1.x2, 2) + Math.pow(y - _loc1.y2, 2));
 					var _loc11:Float = Math.abs(_loc1.nx * _loc3 + _loc1.ny * _loc2);
 					var _loc4:Float = (_loc3 * _loc1.dx + _loc2 * _loc1.dy) * _loc1.invSqrDis;
-					if (_loc12 < SVar.eraser_size * _loc9 || _loc13 < SVar.eraser_size * _loc9 || _loc11 < SVar.eraser_size * _loc9 && _loc4 >= 0 && _loc4 <= 1)
+					if (_loc12 < (SVar.eraser_size + _size) * _loc9 || _loc13 < (SVar.eraser_size + _size) * _loc9 || _loc11 < SVar.eraser_size * _loc9 && _loc4 >= 0 && _loc4 <= 1)
 					{
 						return (_loc1);
 					}
