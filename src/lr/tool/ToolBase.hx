@@ -38,9 +38,9 @@ class ToolBase
 		Common.gToolBase = this;
 	}
 	public function set_tool(_type:String) {
+		this.currentTool = new ToolNone();
 		switch(_type) {
 			case ToolType.None :
-				this.currentTool = new ToolNone();
 				return;
 			case ToolType.Pencil :
 				this.currentTool = new ToolPencil();
