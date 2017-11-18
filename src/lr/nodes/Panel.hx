@@ -7,7 +7,6 @@ import global.Common;
 import global.CVar;
 import global.SVar;
 import lr.lines.LineBase;
-import lr.nodes.Grid;
 
 /**
  * ...
@@ -15,8 +14,8 @@ import lr.nodes.Grid;
  */
 class Panel
 {
-	public static var _width:Int = 100;
-	public static var _height:Int = 100;
+	public static var _width:Int = 140;
+	public static var _height:Int = 140;
 	
 	public var primary:Array<LineBase>;
 	public var lowFrame = -1;
@@ -44,6 +43,10 @@ class Panel
 		
 		this.frame.x = this.offset_x;
 		this.frame.y = this.offset_y;
+		
+		#if (cpp)
+			this.frame.cacheAsBitmap = true;
+		#end
 		
 		this.primary = new Array();
 	}
@@ -76,6 +79,9 @@ class Panel
 		}
 	}
 	public function remove_line(_line:LineBase) {
+		#if (cpp)
+			this.frame.cacheAsBitmap = false;
+		#end
 		try {
 			this.frame.removeChild(_line.visList[this.panelIDName]);
 			this.primary.remove(_line);

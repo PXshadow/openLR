@@ -3,8 +3,6 @@ package platform.control;
 import platform.ControlBase;
 import openfl.Lib;
 import openfl.events.MouseEvent;
-import openfl.events.KeyboardEvent;
-import openfl.ui.Keyboard;
 
 import openfl.geom.Point;
 
@@ -56,7 +54,7 @@ class Desktop extends ControlBase
 	public function mMouseMovePan(e:MouseEvent) {
 		Common.gRiderManager.x = Common.gTrack.x;
 		Common.gRiderManager.y = Common.gTrack.y;
-		Common.gTrack.check_visibility();
+		Common.gTrack.check_visibility(true);
 	}
 	private function mouseScroll(e:MouseEvent):Void 
 	{

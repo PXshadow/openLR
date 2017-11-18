@@ -1,8 +1,5 @@
 package lr.scene;
 
-import openfl.events.Event;
-import openfl.geom.Point;
-
 import lr.nodes.Grid;
 import lr.nodes.Panel;
 import lr.lines.LineBase;
@@ -52,7 +49,7 @@ class Track extends Sprite
 		this.check_visibility();
 	}
 	
-	public function check_visibility():Void 
+	public function check_visibility(_isPanning:Bool = false):Void 
 	{
 		var _locStageTL:Point = this.globalToLocal(Common.stage_tl);
 		var _locStageBR:Point = this.globalToLocal(Common.stage_br);
@@ -72,14 +69,14 @@ class Track extends Sprite
 				this.tile_tl.y = _locTileTL.y;
 				this.tile_br.x = _locTileBR.x;
 				this.tile_br.y = _locTileBR.y;
-				this.update_visibility();
+				this.update_visibility(_isPanning);
 			}
 		} else {
 			return;
 		}
 	}
 	
-	function update_visibility() 
+	function update_visibility(_isPanning:Bool = false) 
 	{
 		#if (flash)
 			return;
@@ -102,6 +99,11 @@ class Track extends Sprite
 				a.onStage = false;
 				this.renderList.remove(a);
 			}
+			#if (cpp)
+				if (!_isPanning) {
+					a.frame.cacheAsBitmap = false;
+				}
+			#end
 		}
 		var _loc1:Int = Std.int(this.tile_tl.x -1);
 		var _loc2:Int = Std.int(this.tile_br.x + 1);
@@ -124,6 +126,13 @@ class Track extends Sprite
 				}
 			}
 		}
+		#if (cpp)
+			if (_isPanning) return;
+			for (b in renderList) {
+				if (b.frame.cacheAsBitmap == true) continue;
+				b.frame.cacheAsBitmap = true;
+			}
+		#end
 	}
 	public function renderPreview(_line:LineBase)
 	{
