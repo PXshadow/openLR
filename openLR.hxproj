@@ -19,7 +19,7 @@
     <class path="C:\HaxeToolkit\haxe\lib\lime\5,8,2" />
     <class path="C:\HaxeToolkit\haxe\lib\actuate\1,8,7" />
     <class path="C:\HaxeToolkit\haxe\lib\haxeui-openfl\0,0,1" />
-    <class path="C:\HaxeToolkit\haxe\lib\haxeui-core\0,0,1" />
+    <class path="C:\HaxeToolkit\haxe\lib\haxeui-core\git" />
     <class path="C:\HaxeToolkit\haxe\lib\hscript\2,1,1" />
     <class path="C:\HaxeToolkit\haxe\lib\openfl\6,5,0" />
     <class path="src" />
@@ -34,11 +34,11 @@
     <option noInlineOnDebug="False" />
     <option mainClass="ApplicationMain" />
     <option enabledebug="True" />
-    <option additional="--macro lime.Lib.extraParams()&#xA;--macro openfl._internal.utils.ExtraParams.include()&#xA;--remap flash:openfl&#xA;-dce full&#xA;-debug " />
+    <option additional="--macro lime.Lib.extraParams()&#xA;--macro openfl._internal.utils.ExtraParams.include()&#xA;--remap flash:openfl&#xA;-dce full" />
   </build>
   <!-- haxelib libraries -->
   <haxelib>
-    <!-- example: <library name="..." /> -->
+    <library name="hscript" />
   </haxelib>
   <!-- Class files to compile (other referenced classes will automatically be included) -->
   <compileTargets>
