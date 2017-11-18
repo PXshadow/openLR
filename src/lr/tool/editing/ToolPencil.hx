@@ -62,6 +62,7 @@ class ToolPencil extends ToolAction
 	override public function leftMouseUp(e:MouseEvent) {
 		this.leftMouseIsDown = false;
 		Common.gTrack.clear_preview();
+		if (this.stroke == null || this.stroke.length == 0) return;
 		Common.gGrid.cache_stroke(this.stroke);
 	}
 	override public function rightMouseDown(e:MouseEvent) {
@@ -98,6 +99,7 @@ class ToolPencil extends ToolAction
 	override public function rightMouseUp(e:MouseEvent) {
 		this.rightMouseIsDown = false;
 		Common.gTrack.clear_preview();
+		if (this.stroke == null || this.stroke.length == 0) return;
 		Common.gGrid.cache_stroke(this.stroke);
 	}
 }
