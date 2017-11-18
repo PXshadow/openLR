@@ -76,6 +76,7 @@ class Desktop extends ControlBase
 			Common.gTrack.x = (Lib.current.stage.mouseX) + ((trkLoc.x - Lib.current.stage.mouseX) * (scaleToSet / trkScale));
 			Common.gTrack.y = (Lib.current.stage.mouseY) + ((trkLoc.y - Lib.current.stage.mouseY) * (scaleToSet / trkScale));
 			Common.gTrack.scaleX = Common.gTrack.scaleY = scaleToSet;
+			Common.gTrack.check_visibility();
 		}
 	}
 }
