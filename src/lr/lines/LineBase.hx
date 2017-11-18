@@ -69,14 +69,12 @@ class LineBase extends Shape
 	public var accy:Float;
 	public var acc:Float = 0.1;
 	public var phys:Collision;
-	public var visList:Map<String, LineVis>;
 	public var hit:Bool = false;
 	public var grind:Bool = false;
 	
 	public function new(_type:Int, _x1:Float, _y1:Float, _x2:Float, _y2:Float, _inv:Bool, _lim = -1)
 	{
 		super();
-		this.visList = new Map();
 		this.gridList = new Array();
 		this.gridVisList = new Array();
 		this.type = _type;
@@ -96,13 +94,6 @@ class LineBase extends Shape
 	public function inject_grid_vis_loc(a:Array<Int>)
 	{
 		this.gridVisList.push(a);
-	}
-	public function render(con:String)
-	{
-		this.hit = false;
-		for (a in this.visList) {
-			a.render(con);
-		}
 	}
 	function calculateConstants() 
 	{
@@ -214,29 +205,17 @@ class LineBase extends Shape
     {
         return (_lim);
     } 
-	public function collide(dot:CPoint) {
+	public function collide(dot:CPoint) 
+	{
 		this.phys.collide(dot);
 	}
-	public function render_collide() {
-		if (CVar.hit_test) {
-			for (a in this.visList) {
-				a.renderCollision();
-			}
-			if (!this.hit) {
-				Common.gGrid.lit_lines.push(this);
-				this.hit = true;
-			}
-		}
+	public function render_collide() 
+	{
+
 	}
 	public function unrender_collide()
 	{
-		if (!CVar.hit_test_live) return;
-		this.hit = false;
-		if (!CVar.color_play) {
-			this.render("play");
-		} else {
-			this.render("edit");
-		}
+
 	}
 	public function changeBehavior(_mode:Int) {
 		switch (_mode) {
@@ -305,35 +284,6 @@ class LineBase extends Shape
 				Common.gGrid.updateRegistry(this);
 		}
 		this.calculateConstants();
-		this.updateLineVis(_mode);
-		if (!SVar.sim_running) {
-			if (!CVar.preview_mode) {
-				this.render("edit");
-			} else {
-				this.render("play");
-			}
-		} else {
-			if (!CVar.color_play) {
-				this.render("play");
-			} else {
-				this.render("edit");
-			}
-		}
-	}
-	function updateLineVis(_mode:Int) {
-		for (a in this.visList) {
-			a.type = this.type;
-			a.x1 = this.x1;
-			a.y1 = this.y1;
-			a.x2 = this.x2;
-			a.y2 = this.y2;
-			a.inv = this.inv;
-			a.invDst = this.invDst;
-			a.nx = this.nx;
-			a.ny = this.ny;
-			a.dx = this.dx;
-			a.dy = this.dy;
-		}
 	}
 	function quickDirectionFlip() 
 	{

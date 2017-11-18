@@ -1,11 +1,6 @@
 package lr.nodes;
 
-import lr.lines.LineVis;
-import openfl.display.Sprite;
-
 import global.Common;
-import global.CVar;
-import global.SVar;
 import lr.lines.LineBase;
 
 /**
@@ -29,7 +24,7 @@ class Panel
 	
 	public var onStage:Bool = false;
 	
-	public var frame:Sprite;
+	public var frame:SubPanel;
 	
 	public function new(_x:Int, _y:Int) 
 	{
@@ -39,7 +34,7 @@ class Panel
 		this.offset_x = _x * Panel._width;
 		this.panelIDName = "x" + _x + "y" + _y;
 		
-		this.frame = new Sprite();
+		this.frame = new SubPanel(this.offset_x, this.offset_y);
 		
 		this.frame.x = this.offset_x;
 		this.frame.y = this.offset_y;
@@ -55,38 +50,12 @@ class Panel
 		this.onStage = true;
 	}
 	public function inject_line(_line:LineBase) {
-		
-		var _locVis:LineVis = new LineVis(_line.type, _line.x1, _line.y1, _line.x2, _line.y2, _line.inv, _line.invDst, _line.nx, _line.ny, _line.dx, _line.dy, _line.grind);
-		_line.visList[this.panelIDName] = _locVis;
-		
-		this.frame.addChild(_line.visList[this.panelIDName]);
-		
-		_locVis.x = _locVis.x - this.offset_x;
-		_locVis.y = _locVis.y - this.offset_y;
-		
-		if (!SVar.sim_running) {
-			if (!CVar.preview_mode) {
-				Common.gGrid.lines[_line.ID].render("edit");
-			} else {
-				Common.gGrid.lines[_line.ID].render("play");
-			}
-		} else {
-			if (!CVar.color_play) {
-				Common.gGrid.lines[_line.ID].render("play");
-			} else {
-				Common.gGrid.lines[_line.ID].render("edit");
-			}
-		}
+		this.primary.push(_line);
+		this.frame.drawLines(this.primary);
 	}
 	public function remove_line(_line:LineBase) {
 		#if (cpp)
 			this.frame.cacheAsBitmap = false;
 		#end
-		try {
-			this.frame.removeChild(_line.visList[this.panelIDName]);
-			this.primary.remove(_line);
-		} catch (e:String) {
-			
-		}
 	}
 }

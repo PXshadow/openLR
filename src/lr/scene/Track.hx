@@ -175,9 +175,9 @@ class Track extends Sprite
 			if (grid.lines[a] != null)
 			{
 				if (!CVar.color_play) {
-					grid.lines[a].render("play");
+					
 				} else {
-					grid.lines[a].render("edit");
+					
 				}
 			}
 		}
@@ -186,9 +186,9 @@ class Track extends Sprite
 		for (a in 0...grid.lines.length) {
 			if (grid.lines[a] != null) {
 				if (!CVar.preview_mode) {
-					grid.lines[a].render("edit");
+					
 				} else {
-					grid.lines[a].render("play");
+					
 				}
 				grid.lines[a].visible = true;
 			}
