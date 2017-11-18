@@ -49,7 +49,7 @@ class Track extends Sprite
 		this.check_visibility();
 	}
 	
-	public function check_visibility(_isPanning:Bool = false):Void 
+	public function check_visibility():Void 
 	{
 		var _locStageTL:Point = this.globalToLocal(Common.stage_tl);
 		var _locStageBR:Point = this.globalToLocal(Common.stage_br);
@@ -69,14 +69,14 @@ class Track extends Sprite
 				this.tile_tl.y = _locTileTL.y;
 				this.tile_br.x = _locTileBR.x;
 				this.tile_br.y = _locTileBR.y;
-				this.update_visibility(_isPanning);
+				this.update_visibility();
 			}
 		} else {
 			return;
 		}
 	}
 	
-	function update_visibility(_isPanning:Bool = false) 
+	function update_visibility() 
 	{
 		#if (flash)
 			return;
@@ -99,11 +99,6 @@ class Track extends Sprite
 				a.onStage = false;
 				this.renderList.remove(a);
 			}
-			#if (cpp)
-				if (!_isPanning) {
-					a.frame.cacheAsBitmap = false;
-				}
-			#end
 		}
 		var _loc1:Int = Std.int(this.tile_tl.x -1);
 		var _loc2:Int = Std.int(this.tile_br.x + 1);
@@ -126,13 +121,16 @@ class Track extends Sprite
 				}
 			}
 		}
-		#if (cpp)
-			if (_isPanning) return;
-			for (b in renderList) {
-				if (b.frame.cacheAsBitmap == true) continue;
-				b.frame.cacheAsBitmap = true;
-			}
-		#end
+	}
+	public function decachePanels() {
+		for (a in renderList) {
+			a.frame.cacheAsBitmap = false;
+		}
+	}
+	public function cachePanels() {
+		for (a in renderList) {
+			a.frame.cacheAsBitmap = true;
+		}
 	}
 	public function renderPreview(_line:LineBase)
 	{
