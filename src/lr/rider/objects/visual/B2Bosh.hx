@@ -4,7 +4,6 @@ import openfl.display.Sprite;
 import openfl.display.LineScaleMode;
 import openfl.geom.Point;
 import openfl.utils.AssetLibrary;
-import openfl.Assets;
 
 import global.Common;
 import global.CVar;
@@ -13,11 +12,7 @@ import lr.rider.RiderBase;
 import lr.rider.phys.skeleton.SkeletonBase;
 import lr.rider.objects.VisBase;
 import lr.rider.phys.frames.FrameBase;
-import lr.rider.phys.frames.B2Frame;
-import lr.rider.phys.frames.anchors.CPoint;
 import lr.rider.phys.skeleton.ScarfBase;
-import lr.rider.phys.skeleton.bones.Stick;
-import lr.rider.phys.skeleton.scarf.B2Scarf;
 
 /**
  * ...
