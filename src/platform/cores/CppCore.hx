@@ -15,7 +15,6 @@ import platform.control.Desktop;
 import global.Common;
 import global.CVar;
 import global.SVar;
-import global.engine.FrameRate;
 import global.engine.RiderManager;
 import lr.scene.TextInfo;
 import lr.scene.Track;
@@ -58,8 +57,6 @@ class CppCore extends CoreBase
 		
 		Common.stage_height = Lib.current.stage.stageHeight;
 		Common.stage_width = Lib.current.stage.stageWidth;
-		
-		this.FPS = new FrameRate();
 	}
 	
 	public function init_track() //display minimum items
@@ -124,6 +121,7 @@ class CppCore extends CoreBase
 			this.textInfo.visible = false;
 			this.timeline.visible = false;
 			this.settings_box.update();
+			Toolbar.tool.set_tool("None");
 		} else {
 			this.settings_box.visible = false;
 			this.track.visible = true;
@@ -135,7 +133,7 @@ class CppCore extends CoreBase
 		}
 	}
 	override public function toggle_save_menu() {
-		return;
+		//return;
 		if (this.exportVisible == false) {
 			this.exportVisible = true;
 			
@@ -149,6 +147,8 @@ class CppCore extends CoreBase
 			Lib.current.stage.addChild(this.export);
 			
 			this.align();
+			
+			Toolbar.tool.set_tool("None");
 		}
 	}
 	override public function toggle_Loader() {

@@ -13,7 +13,6 @@ import platform.ControlBase;
 import global.Common;
 import global.CVar;
 import global.SVar;
-import global.engine.FrameRate;
 import global.Language;
 import global.engine.RiderManager;
 import global.engine.SimManager;
@@ -39,7 +38,6 @@ class CoreBase extends Sprite
 	private var riders:RiderManager;
 	private var toolBar:Toolbar;
 	private var textInfo:TextInfo;
-	private var FPS:FrameRate;
 	private var title_card:TitleCardBase;
 	private var timeline:TimelineControl;
 	private var settings_box:SettingsMenu;

@@ -13,7 +13,6 @@ import platform.titlecards.TitleCardFL;
 import global.Common;
 import global.CVar;
 import global.SVar;
-import global.engine.FrameRate;
 import global.engine.RiderManager;
 import lr.scene.TextInfo;
 import lr.scene.Track;
@@ -57,8 +56,6 @@ class FlashCore extends CoreBase
 		
 		Common.stage_height = Lib.current.stage.stageHeight;
 		Common.stage_width = Lib.current.stage.stageWidth;
-		
-		this.FPS = new FrameRate();
 	}
 	
 	public function init_track() //display minimum items
