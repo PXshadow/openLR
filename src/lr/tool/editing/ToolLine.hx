@@ -46,6 +46,8 @@ class ToolLine extends ToolAction
 	override public function leftMouseMove(event:MouseEvent) 
 	{
 		if (!this.leftMouseIsDown) return;
+		Common.gToolbar.visible = false;
+		Common.gTimeline.visible = false;
 		x2 = Common.gTrack.mouseX;
 		y2 = Common.gTrack.mouseY;
 		if (this.mod_x || CVar.angle_snap) {
@@ -59,6 +61,8 @@ class ToolLine extends ToolAction
 	}
 	override public function leftMouseUp(e:MouseEvent) {
 		Common.gTrack.clear_preview();
+		Common.gToolbar.visible = true;
+		Common.gTimeline.visible = true;
 		if (!valid) {
 			return;
 		}
@@ -95,6 +99,8 @@ class ToolLine extends ToolAction
 	override public function rightMouseMove(event:MouseEvent) 
 	{
 		if (!this.rightMouseIsDown) return;
+		Common.gToolbar.visible = false;
+		Common.gTimeline.visible = false;
 		x2 = Common.gTrack.mouseX;
 		y2 = Common.gTrack.mouseY;
 		if (this.mod_x || CVar.angle_snap) {
@@ -106,6 +112,8 @@ class ToolLine extends ToolAction
 		Common.gTrack.renderPreview(new LinePreview(x1, y1, x2, y2, this.mod_shift, Common.line_type));
 	}
 	override public function rightMouseUp(e:MouseEvent) {
+		Common.gToolbar.visible = true;
+		Common.gTimeline.visible = true;
 		var _locSnapCheck:Array<Dynamic> = Common.gGrid.snap(x2, y2, 2, this.mod_shift);
 		if (_locSnapCheck[2] == true && Common.line_type != 2) {
 			x2 = _locSnapCheck[0];

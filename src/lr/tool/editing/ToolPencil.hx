@@ -5,11 +5,8 @@ import openfl.events.MouseEvent;
 import openfl.geom.Point;
 
 import lr.lines.LineBase;
-
 import global.Common;
 import global.SVar;
-import lr.tool.IconBase;
-import lr.tool.ToolBase;
 
 /**
  * ...
@@ -40,10 +37,11 @@ class ToolPencil extends ToolAction
 		c = new Point(Lib.current.stage.mouseX, Lib.current.stage.mouseY);
 		this.leftMouseIsDown = true;
 	}
-	
 	override public function leftMouseMove(e:MouseEvent) 
 	{
 		if (!this.leftMouseIsDown) return;
+		Common.gToolbar.visible = false;
+		Common.gTimeline.visible = false;
 		x2 = Common.gTrack.mouseX;
 		y2 = Common.gTrack.mouseY;
 		d = new Point(Lib.current.stage.mouseX, Lib.current.stage.mouseY);
@@ -60,6 +58,8 @@ class ToolPencil extends ToolAction
 		}
 	}
 	override public function leftMouseUp(e:MouseEvent) {
+		Common.gToolbar.visible = true;
+		Common.gTimeline.visible = true;
 		this.leftMouseIsDown = false;
 		Common.gTrack.clear_preview();
 		if (this.stroke == null || this.stroke.length == 0) return;
@@ -81,6 +81,8 @@ class ToolPencil extends ToolAction
 	override public function rightMouseMove(e:MouseEvent) 
 	{
 		if (!this.rightMouseIsDown) return;
+		Common.gToolbar.visible = false;
+		Common.gTimeline.visible = false;
 		x2 = Common.gTrack.mouseX;
 		y2 = Common.gTrack.mouseY;
 		d = new Point(Lib.current.stage.mouseX, Lib.current.stage.mouseY);
@@ -97,6 +99,8 @@ class ToolPencil extends ToolAction
 		}
 	}
 	override public function rightMouseUp(e:MouseEvent) {
+		Common.gToolbar.visible = true;
+		Common.gTimeline.visible = true;
 		this.rightMouseIsDown = false;
 		Common.gTrack.clear_preview();
 		if (this.stroke == null || this.stroke.length == 0) return;
