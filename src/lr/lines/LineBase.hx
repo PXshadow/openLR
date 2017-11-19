@@ -28,7 +28,7 @@ import global.Common;
 	public var InverseToggle:Int = 2;
 	public var DirectionToggle:Int = 3;
 }
-class LineBase extends Shape
+class LineBase
 {
 	public static var zone = 10;
 	public var mov:Int = 0;
