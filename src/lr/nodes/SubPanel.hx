@@ -24,6 +24,7 @@ class SubPanel extends Sprite
 	private var lineCache:Array<LineBase>;
 	public static var array_hitTest:Array<Sprite> = new Array<Sprite>();
 	public static var array_hitTestActove:Array<Sprite> = new Array<Sprite>();
+	public static var lit_lines:Array<Sprite> = new Array<Sprite>();
 	
 	private var offset_x:Int = 0;
 	private var offset_y:Int = 0;
@@ -113,5 +114,11 @@ class SubPanel extends Sprite
 	public function set_rendermode_edit() {
 		this.layer_color.visible = true;
 		this.layer_scene.visible = false;
+	}
+	public static function derender_litlines() {
+		for (a in SubPanel.lit_lines) {
+			a.visible = false;
+		}
+		SubPanel.lit_lines = new Array<Sprite>();
 	}
 }

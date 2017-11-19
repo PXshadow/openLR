@@ -3,7 +3,9 @@ package global.engine;
 import haxe.Timer;
 import openfl.Lib;
 import openfl.events.KeyboardEvent;
+import openfl.display.Sprite;
 
+import lr.nodes.SubPanel;
 import global.Common;
 import global.KeyBindings;
 /**
@@ -62,11 +64,11 @@ class SimManager
 	}
 	function update_sim()
 	{
-		if (CVar.hit_test) {
-			for (a in Common.gGrid.lit_lines) {
-				a.unrender_collide();
+		if (CVar.hit_test_live) {
+			for (a in SubPanel.lit_lines) {
+				a.visible = false;
 			}
-			Common.gGrid.lit_lines = new Array();
+			SubPanel.lit_lines = new Array<Sprite>();
 		}
 		if (!this.fast_forward && !this.rewind) {
 			Common.gRiderManager.advance_riders();

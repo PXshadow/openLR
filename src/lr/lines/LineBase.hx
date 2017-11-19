@@ -208,11 +208,9 @@ class LineBase
 	}
 	public function render_collide() 
 	{
+		if (!CVar.hit_test) return;
 		SubPanel.array_hitTest[this.ID].visible = true;
-	}
-	public function unrender_collide()
-	{
-		SubPanel.array_hitTest[this.ID].visible = false;
+		SubPanel.lit_lines.push(SubPanel.array_hitTest[this.ID]);
 	}
 	public function changeBehavior(_mode:Int) {
 		switch (_mode) {

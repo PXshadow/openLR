@@ -10,6 +10,7 @@ import global.engine.SimManager;
 import global.Common;
 import global.CVar;
 import global.SVar;
+import lr.nodes.SubPanel;
 
 /**
  * ...
@@ -185,6 +186,7 @@ class Track extends Sprite
 		} else {
 			Common.gGrid.updateRender("Edit");
 		}
+		SubPanel.derender_litlines();
 	}
 	public function clear_stage()
 	{

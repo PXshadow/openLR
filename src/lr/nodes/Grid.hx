@@ -24,7 +24,6 @@ import lr.lines.LineBase;
 class Grid
 {
 	public var lines:Array<LineBase>;
-	public var lit_lines:Array<LineBase>;
 	
 	public static var grid:Map<Int, Map<Int, Storage>>;
 	public static var tile:Map<Int, Map<Int, Panel>>;
@@ -38,7 +37,6 @@ class Grid
 	public function new()
 	{
 		this.lines = new Array();
-		this.lit_lines = new Array();
 		Common.gGrid = this;
 		Grid.grid = new Map();
 		Grid.tile = new Map();
