@@ -5,6 +5,10 @@ import openfl.display.LineScaleMode;
 import openfl.geom.Point;
 import openfl.utils.AssetLibrary;
 
+#if (flash)
+	import openfl.Assets;
+#end
+
 import global.Common;
 import global.CVar;
 import global.engine.RiderManager;
