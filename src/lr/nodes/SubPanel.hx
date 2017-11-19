@@ -28,7 +28,7 @@ class SubPanel extends Sprite
 	private var offset_x:Int = 0;
 	private var offset_y:Int = 0;
 	
-	public var gwelZoneVisible:Bool = false;
+	public var gwellZoneVisible:Bool = false;
 	
 	public function new(_x:Int, _y:Int) 
 	{
@@ -41,7 +41,7 @@ class SubPanel extends Sprite
 		this.layer_color = new Shape();
 		this.layer_black = new Shape();
 		this.layer_scene = new Shape();
-		this.layer_hitTest = new Shape();
+		this.layer_hitTest = new Sprite();
 		
 		this.addChild(this.layer_gwell);
 		this.addChild(this.layer_color);
@@ -50,9 +50,6 @@ class SubPanel extends Sprite
 		this.addChild(this.layer_hitTest);
 		
 		this.layer_scene.visible = false;
-	}
-	public function setMode(mode:Int) {
-
 	}
 	public function drawLines(_lines:Array<LineBase>) {
 		this.lineCache = _lines;
@@ -116,12 +113,5 @@ class SubPanel extends Sprite
 	public function set_rendermode_edit() {
 		this.layer_color.visible = true;
 		this.layer_scene.visible = false;
-	}
-}
-class SubPanelLine extends Sprite
-{
-	public function new()
-	{
-		super();
 	}
 }
