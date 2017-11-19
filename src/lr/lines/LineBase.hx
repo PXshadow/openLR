@@ -4,6 +4,8 @@ import lr.lines.collision.Acceleration;
 import lr.lines.collision.Decceleration;
 import lr.lines.collision.Floor;
 import lr.lines.collision.NoCollision;
+import lr.nodes.Grid;
+import lr.nodes.SubPanel;
 import lr.rider.phys.frames.anchors.CPoint;
 import global.Common;
 
@@ -70,7 +72,6 @@ class LineBase
 	
 	public function new(_type:Int, _x1:Float, _y1:Float, _x2:Float, _y2:Float, _inv:Bool, _lim = -1)
 	{
-		super();
 		this.gridList = new Array();
 		this.gridVisList = new Array();
 		this.type = _type;
@@ -207,16 +208,15 @@ class LineBase
 	}
 	public function render_collide() 
 	{
-
+		SubPanel.array_hitTest[this.ID].visible = true;
 	}
 	public function unrender_collide()
 	{
-
+		SubPanel.array_hitTest[this.ID].visible = false;
 	}
 	public function changeBehavior(_mode:Int) {
 		switch (_mode) {
 			case SwapType.CollisionCycle : //cycles through all line types
-				trace("performed swap");
 				switch (this.type) {
 					case 0 :
 						this.type = 1;
@@ -280,6 +280,16 @@ class LineBase
 				Common.gGrid.updateRegistry(this);
 		}
 		this.calculateConstants();
+		this.updateRender();
+	}
+	
+	function updateRender() 
+	{
+		for (a in Grid.tile) {
+			for (b in a) {
+				b.refresh();
+			}
+		}
 	}
 	function quickDirectionFlip() 
 	{
