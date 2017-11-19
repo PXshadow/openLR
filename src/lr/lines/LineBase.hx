@@ -5,11 +5,7 @@ import lr.lines.collision.Decceleration;
 import lr.lines.collision.Floor;
 import lr.lines.collision.NoCollision;
 import lr.rider.phys.frames.anchors.CPoint;
-import openfl.display.Shape;
-
 import global.Common;
-import global.CVar;
-import global.SVar;
 
 /**
  * ...

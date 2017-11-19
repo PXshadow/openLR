@@ -9,10 +9,8 @@ import openfl.text.TextFormat;
 import openfl.text.TextFormatAlign;
 
 import ui.inter.TextButton;
-import global.Language;
 import global.Common;
 import global.CVar;
-import global.SVar;
 
 import haxe.ui.Toolkit;
 import haxe.ui.components.CheckBox;
@@ -208,7 +206,6 @@ class SettingsMenu extends Sprite
 		this.slider_RiderAlpha.value = 10;
 		this.slider_RiderAlpha.onChange = function(e:UIEvent) {
 			CVar.rider_alpha = this.slider_RiderAlpha.value;
-			trace(this.slider_RiderAlpha.value, CVar.rider_alpha);
 		}
 		this.objectList.push(this.slider_RiderAlpha);
 		
