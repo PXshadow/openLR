@@ -28,6 +28,7 @@ class Grid
 	
 	public static var grid:Map<Int, Map<Int, Storage>>;
 	public static var tile:Map<Int, Map<Int, Panel>>;
+	public static var panelList:Array<SubPanel>;
 	public static var undo_single:Array<LineBase>;
 	public static var redo_single:Array<LineBase>;
 	public static var history:Array<Array<Dynamic>>;
@@ -44,6 +45,7 @@ class Grid
 		Grid.undo_single = new Array();
 		Grid.redo_single = new Array();
 		Grid.history = new Array();
+		Grid.panelList = new Array();
 		Lib.current.stage.addEventListener(KeyboardEvent.KEY_UP, undo_redo);
 	}
 
@@ -494,4 +496,16 @@ class Grid
 		_locArray = [_loc10, _loc11, _loc9];
 		return (_locArray);
 	} // End of the function
+	public function updateRender(_con:String) {
+		switch (_con) {
+			case ("Play") :
+				for (a in Grid.panelList) {
+					a.set_rendermode_playback();
+				}
+			case ("Edit") :
+				for (a in Grid.panelList) {
+					a.set_rendermode_edit();
+				}
+		}
+	}
 }

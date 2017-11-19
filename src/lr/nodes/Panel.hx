@@ -35,6 +35,7 @@ class Panel
 		this.panelIDName = "x" + _x + "y" + _y;
 		
 		this.frame = new SubPanel(this.offset_x, this.offset_y);
+		Grid.panelList.push(this.frame);
 		
 		this.frame.x = this.offset_x;
 		this.frame.y = this.offset_y;
@@ -53,9 +54,14 @@ class Panel
 		this.primary.push(_line);
 		this.frame.drawLines(this.primary);
 	}
+	public function refresh() {
+		this.frame.drawLines(this.primary);
+	}
 	public function remove_line(_line:LineBase) {
 		#if (cpp)
 			this.frame.cacheAsBitmap = false;
 		#end
+		this.primary.remove(_line);
+		this.frame.drawLines(this.primary);
 	}
 }
