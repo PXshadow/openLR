@@ -31,6 +31,7 @@ class Track extends Sprite
 	public var tile_br:Point;
 	
 	public var renderList:Array<Panel>;
+	public var hitTestList:Array<LineBase>;
 	
 	public function new() 
 	{
@@ -171,27 +172,18 @@ class Track extends Sprite
 		this.graphics.clear();
 	}
 	public function set_rendermode_play() {
-		for (a in 0...grid.lines.length) {
-			if (grid.lines[a] != null)
-			{
-				if (!CVar.color_play) {
-					
-				} else {
-					
-				}
-			}
+		this.hitTestList = new Array<LineBase>();
+		if (!CVar.color_play) {
+			Common.gGrid.updateRender("Play");
+		} else {
+			Common.gGrid.updateRender("Edit");
 		}
 	}
 	public function set_rendermode_edit() {
-		for (a in 0...grid.lines.length) {
-			if (grid.lines[a] != null) {
-				if (!CVar.preview_mode) {
-					
-				} else {
-					
-				}
-				grid.lines[a].visible = true;
-			}
+		if (CVar.preview_mode) {
+			Common.gGrid.updateRender("Play");
+		} else {
+			Common.gGrid.updateRender("Edit");
 		}
 	}
 	public function clear_stage()
@@ -211,9 +203,6 @@ class Track extends Sprite
 		SVar.rider_speed_top = 0;
 		CVar.slow_motion_rate = 5;
 		SVar.slow_motion = false;
-	}
-	public function remove_line(_line) {
-		this.canvas.removeChild(Common.gGrid.lines[_line.ID]);
 	}
 	public function set_simmode_play() {
 		this.simManager.start_sim();
