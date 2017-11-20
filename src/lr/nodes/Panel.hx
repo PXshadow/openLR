@@ -52,16 +52,16 @@ class Panel
 	}
 	public function inject_line(_line:LineBase) {
 		this.primary.push(_line);
-		this.frame.drawLines(this.primary);
+		this.frame.drawLine(_line);
 	}
 	public function refresh() {
-		this.frame.drawLines(this.primary);
+		this.frame.refreshLines(this.primary);
 	}
 	public function remove_line(_line:LineBase) {
 		#if (cpp)
 			this.frame.cacheAsBitmap = false;
 		#end
 		this.primary.remove(_line);
-		this.frame.drawLines(this.primary);
+		this.frame.refreshLines(this.primary);
 	}
 }
