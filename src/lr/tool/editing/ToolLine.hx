@@ -7,8 +7,6 @@ import openfl.geom.Point;
 import global.Common;
 import global.CVar;
 import global.SVar;
-import lr.tool.ToolBase;
-import lr.tool.IconBase;
 import lr.lines.LineBase;
 
 /**
@@ -60,6 +58,7 @@ class ToolLine extends ToolAction
 		Common.gTrack.renderPreview(new LinePreview(x1, y1, x2, y2, this.mod_shift, Common.line_type));
 	}
 	override public function leftMouseUp(e:MouseEvent) {
+		this.leftMouseIsDown = false;
 		Common.gTrack.clear_preview();
 		Common.gToolbar.visible = true;
 		Common.gTimeline.visible = true;
@@ -79,7 +78,6 @@ class ToolLine extends ToolAction
 			SVar.lineID += 1;
 		}
 		valid = false;
-		this.leftMouseIsDown = false;
 	}
 	override public function rightMouseDown(e:MouseEvent) {
 		this.rightMouseIsDown = true;
@@ -109,7 +107,7 @@ class ToolLine extends ToolAction
 			y2 = _locSnap[1];
 		}
 		d = new Point(Lib.current.stage.mouseX, Lib.current.stage.mouseY);
-		Common.gTrack.renderPreview(new LinePreview(x1, y1, x2, y2, this.mod_shift, Common.line_type));
+		Common.gTrack.renderPreview(new LinePreview(x2, y2, x1, y1, !this.mod_shift, Common.line_type));
 	}
 	override public function rightMouseUp(e:MouseEvent) {
 		Common.gToolbar.visible = true;
