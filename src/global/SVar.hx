@@ -32,9 +32,9 @@ class SVar
 	public static var rider_count = 0;
 	public static var current_tool:String = "none set";
 	public static var lineCount:Int = 0;
-	public static var blueLineCount:Int = 0;
-	public static var redLineCount:Int = 0;
-	public static var greenLineCount:Int = 0;
+	public static var lineCount_blue:Int = 0;
+	public static var lineCount_red:Int = 0;
+	public static var lineCount_green:Int = 0;
 	public static var lineID:Int = 0;
 	
 	public function new() 

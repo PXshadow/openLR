@@ -149,9 +149,9 @@ class Grid
 	{
 		this.lines = new Array();
 		SVar.lineCount = 0;
-		SVar.blueLineCount = 0;
-		SVar.redLineCount = 0;
-		SVar.greenLineCount = 0;
+		SVar.lineCount_blue = 0;
+		SVar.lineCount_red = 0;
+		SVar.lineCount_green = 0;
 		SVar.lineID = 0;
 		Common.gTextInfo.update();
 		Grid.grid = new Map();
@@ -163,15 +163,15 @@ class Grid
 	public function cacheLine(_line:LineBase) {
 		if (_line.type == LineType.Floor)
 		{
-			SVar.blueLineCount += 1;
+			SVar.lineCount_blue += 1;
 		}
 		else if (_line.type == LineType.Accel)
 		{
-			SVar.redLineCount += 1;
+			SVar.lineCount_red += 1;
 		}
 		else if (_line.type == LineType.Scene)
 		{
-			SVar.greenLineCount += 1;
+			SVar.lineCount_green += 1;
 		}
 		SVar.lineID += 1;
 		SVar.lineCount += 1;
@@ -393,15 +393,15 @@ class Grid
 		this.lines[line.ID] = null;
 		if (line.type == 0)
 		{
-			--SVar.blueLineCount;
+			--SVar.lineCount_blue;
 		}
 		else if (line.type == 1)
 		{
-			--SVar.redLineCount;
+			--SVar.lineCount_red;
 		}
 		else if (line.type == 2)
 		{
-			--SVar.greenLineCount;
+			--SVar.lineCount_green;
 		}
 		--SVar.lineCount;
 		Common.gTextInfo.update();

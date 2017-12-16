@@ -83,9 +83,9 @@ class TextInfo extends Sprite
 		if (mode == 0)
 		{
 			textInfo_A.text = SVar.lineCount + " Lines";
-			textInfo_B.text = SVar.blueLineCount + " Floor";
-			textInfo_C.text = SVar.redLineCount + " Accel";
-			textInfo_D.text = SVar.greenLineCount + " Scene";
+			textInfo_B.text = SVar.lineCount_blue + " Floor";
+			textInfo_C.text = SVar.lineCount_red + " Accel";
+			textInfo_D.text = SVar.lineCount_green + " Scene";
 		}
 	}
 	public function update_sim() {
