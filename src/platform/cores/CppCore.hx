@@ -133,7 +133,6 @@ class CppCore extends CoreBase
 		}
 	}
 	override public function toggle_save_menu() {
-		//return;
 		if (this.exportVisible == false) {
 			this.exportVisible = true;
 			
@@ -149,6 +148,20 @@ class CppCore extends CoreBase
 			this.align();
 			
 			Toolbar.tool.set_tool("None");
+		} else {
+			this.exportVisible = false;
+			
+			this.toolBar.mouseChildren = true;
+			this.toolBar.mouseEnabled = true;
+			this.timeline.mouseChildren = true;
+			this.timeline.mouseEnabled = true;
+			Lib.current.stage.mouseEnabled = true;
+			
+			Lib.current.stage.removeChild(this.export);
+			
+			this.align();
+			
+			Toolbar.tool.set_tool(ToolBase.lastTool);
 		}
 	}
 	override public function toggle_Loader() {
