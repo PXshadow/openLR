@@ -36,6 +36,7 @@ class SVar
 	public static var lineCount_red:Int = 0;
 	public static var lineCount_green:Int = 0;
 	public static var lineID:Int = 0;
+	public static var new_track:Bool = true;
 	
 	public function new() 
 	{

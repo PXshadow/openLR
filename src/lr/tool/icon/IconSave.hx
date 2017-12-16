@@ -12,6 +12,7 @@ import openfl.net.URLRequest;
 
 import global.Common;
 import global.Language;
+import global.SVar;
 import lr.tool.Toolbar;
 import ui.inter.TextButton;
 import ui.inter.ConfirmDialog;
@@ -141,6 +142,7 @@ class IconSave extends IconBase
 		this.removeChild(this.safety_dialog);
 		Common.gTrack.clear_stage();
 		Toolbar.tool.set_tool(ToolBase.lastTool);
+		SVar.new_track = true;
 	}
 	function negative_new() {
 		this.show_menu();

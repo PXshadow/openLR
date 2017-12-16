@@ -14,6 +14,8 @@ import haxe.Json;
 
 import platform.file.ExportBase;
 import platform.file.fileType.*;
+import global.SVar;
+import global.CVar;
 
 //import haxe.ui.components.DropDown;
 import haxe.ui.components.Label;
@@ -119,7 +121,7 @@ class ExportNative extends ExportBase
 		this.addChild(this.textfield_authorName);
 		
 		this.label_TrackDescription = new Label();
-		this.label_TrackDescription.text = "Description:";
+		this.label_TrackDescription.text = "Comment:";
 		this.label_TrackDescription.x = 5;
 		this.label_TrackDescription.y = 65;
 		this.addChild(this.label_TrackDescription);
@@ -200,12 +202,22 @@ class ExportNative extends ExportBase
 		this.addChild(this.textButton_save);
 		this.textButton_save.x = 5;
 		this.textButton_save.y = 305;
+		
+		if (SVar.new_track) {
+			this.textfield_trackName.text = CVar.track_name;
+			this.textfield_authorName.text = CVar.track_author;
+			this.textarea_trackDescription.text = CVar.author_comment;
+		}
 	}
 	function save_track() 
 	{
 		this.track = new FileJSON();
 		this.track.encode(this.textfield_trackName.text, this.textfield_authorName.text, this.textarea_trackDescription.text);
 		this.flush(track.data);
+		CVar.track_name = this.textfield_trackName.text;
+		CVar.track_author = this.textfield_authorName.text;
+		CVar.author_comment = this.textarea_trackDescription.text;
+		SVar.new_track = false;
 		this.exit_save_menu();
 	}
 	function flush(_data:Object) 
