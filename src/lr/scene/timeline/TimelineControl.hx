@@ -36,14 +36,16 @@ class TimelineControl extends Sprite
 	
 	private function resume(e:MouseEvent):Void 
 	{
+		if (Common.gToolBase.currentTool.leftMouseIsDown) return;
 		if (!Common.gSimManager.paused && !Common.gSimManager.sim_running) {
-			Toolbar.tool.set_tool("None");
+			Toolbar.tool.set_tool(ToolBase.lastTool);
 		}
 	}
 	
 	private function preScrubSetup(e:MouseEvent):Void 
 	{
-		Toolbar.tool.set_tool(ToolBase.lastTool);
+		if (Common.gToolBase.currentTool.leftMouseIsDown) return;
+		Toolbar.tool.set_tool("None");
 		this.ticker.addEventListener(MouseEvent.MOUSE_DOWN, downActionScrubber);
 		Lib.current.stage.addEventListener(MouseEvent.MOUSE_UP, releaseActionScrubber);
 		this.ticker.addEventListener(MouseEvent.MOUSE_UP, releaseActionScrubber);
@@ -69,6 +71,7 @@ class TimelineControl extends Sprite
 	
 	private function downActionScrubber(e:MouseEvent):Void 
 	{
+		Toolbar.tool.set_tool("None");
 		this.ticker.removeEventListener(MouseEvent.MOUSE_OUT, resume);
 		Lib.current.stage.addEventListener(MouseEvent.MOUSE_MOVE, scrub);
 		this.ticker.removeEventListener(MouseEvent.MOUSE_OVER, preScrubSetup);

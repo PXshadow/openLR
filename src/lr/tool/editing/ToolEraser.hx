@@ -24,7 +24,6 @@ class ToolEraser extends ToolAction
 	}
 	override public function leftMouseUp(e:MouseEvent) {
 		Common.gToolbar.visible = true;
-		Common.gTimeline.visible = true;
 		if (this.list == null) {
 			return;
 		}
@@ -60,7 +59,6 @@ class ToolEraser extends ToolAction
 	{
 		if (!this.leftMouseIsDown) return;
 		Common.gToolbar.visible = false;
-		Common.gTimeline.visible = false;
 		this.erase(e);
     }
 	

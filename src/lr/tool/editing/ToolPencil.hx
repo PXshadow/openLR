@@ -41,7 +41,6 @@ class ToolPencil extends ToolAction
 	{
 		if (!this.leftMouseIsDown) return;
 		Common.gToolbar.visible = false;
-		Common.gTimeline.visible = false;
 		x2 = Common.gTrack.mouseX;
 		y2 = Common.gTrack.mouseY;
 		d = new Point(Lib.current.stage.mouseX, Lib.current.stage.mouseY);
@@ -59,7 +58,6 @@ class ToolPencil extends ToolAction
 	}
 	override public function leftMouseUp(e:MouseEvent) {
 		Common.gToolbar.visible = true;
-		Common.gTimeline.visible = true;
 		this.leftMouseIsDown = false;
 		Common.gTrack.clear_preview();
 		if (this.stroke == null || this.stroke.length == 0) return;
@@ -82,7 +80,6 @@ class ToolPencil extends ToolAction
 	{
 		if (!this.rightMouseIsDown) return;
 		Common.gToolbar.visible = false;
-		Common.gTimeline.visible = false;
 		x2 = Common.gTrack.mouseX;
 		y2 = Common.gTrack.mouseY;
 		d = new Point(Lib.current.stage.mouseX, Lib.current.stage.mouseY);

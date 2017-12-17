@@ -30,7 +30,7 @@ import global.SVar;
 class ToolBase
 {
 	public static var lastTool:String = "None";
-	var currentTool:ToolAction;
+	public var currentTool:ToolAction;
 	
 	public function new(_type:String = "init") 
 	{
