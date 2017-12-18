@@ -26,6 +26,7 @@ class FileJSON extends FileBase
 	public function parse_json():Object //top object. Gets name, author, etc.
 	{
 		var _locArray = this.json_line_aray_parse();
+		var _locMetaData = this.grabNonVanillaData();
 		var json_object:Object = {
 			"label": this.name,
 			"creator": this.author,
@@ -37,8 +38,15 @@ class FileJSON extends FileBase
 			},
 			"duration": 0,
 			"lines": _locArray,
+			"metadata" : _locMetaData
 		}
 		return(json_object);
+	}
+	
+	function grabNonVanillaData() 
+	{
+		var _locObject:Object = new Object();
+		return _locObject;
 	}
 	
 	function json_settings_array():Object
