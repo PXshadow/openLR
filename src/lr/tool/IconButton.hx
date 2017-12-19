@@ -3,7 +3,6 @@ package lr.tool;
 #if (!flash)
 	import openfl.utils.AssetLibrary;
 	import openfl.display.SimpleButton;
-	import openfl.display.Sprite;
 #else
 	import openfl.Assets;
 	import flash.display.SimpleButton;

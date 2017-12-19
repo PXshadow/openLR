@@ -5,13 +5,9 @@ import openfl.utils.AssetLibrary;
 #if (!flash)
 	import openfl.display.Sprite;
 	import openfl.events.MouseEvent;
-	import openfl.ui.Mouse;
-	import openfl.ui.MouseCursor;
 #else
 	import flash.display.Sprite;
 	import flash.events.MouseEvent;
-	import flash.ui.Mouse;
-	import flash.ui.MouseCursor;
 #end
 
 import global.Common;

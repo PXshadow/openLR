@@ -8,9 +8,6 @@ package global;
  */
 class CVar 
 {
-	public static var add_time_stamp = false;
-	public static var author_collab_list:Array<String>;
-	public static var author_comment:String = "This save was made in an alpha version of openLR. Please respect my rights as a track maker and avoid sharing this save without my permission.";
 	public static var auto_save:Bool = true;
 	public static var auto_save_freq:Int = 10;
 	public static var angle_snap:Bool = false;
