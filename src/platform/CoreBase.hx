@@ -1,29 +1,21 @@
 package platform;
 
 #if (!flash)
-	import openfl.display.Stage;
 	import openfl.display.Sprite;
 #else
-	import flash.display.Stage;
 	import flash.display.Sprite;
 #end
 
 import platform.TitleCardBase;
 import platform.ControlBase;
-import global.Common;
-import global.CVar;
-import global.SVar;
-import global.Language;
 import global.engine.RiderManager;
-import global.engine.SimManager;
 import lr.scene.TextInfo;
 import lr.scene.Track;
 import lr.menus.SettingsMenu;
-import ui.inter.AlertBox;
 import lr.tool.Toolbar;
-import lr.scene.timeline.Ticker;
 import lr.scene.timeline.TimelineControl;
 import platform.file.ExportBase;
+import platform.file.ImportBase;
 
 /**
  * ...
@@ -43,6 +35,8 @@ class CoreBase extends Sprite
 	private var settings_box:SettingsMenu;
 	private var export:ExportBase;
 	private var exportVisible:Bool = false;
+	private var importing:ImportBase;
+	private var importingVisible = false;
 	
 	public function new() 
 	{
@@ -79,6 +73,9 @@ class CoreBase extends Sprite
 		
 	}
 	public function align() {
+
+	}
+	public function silent_load (_path:String) {
 		
 	}
 }

@@ -17,11 +17,15 @@ class TitleCardBase extends Sprite
 	{
 		super();
 	}
+	public function render()
+	{
+		
+	}
 	public function add_version_specs()
 	{
 		this.version_info = new TextField();
 		this.addChild (this.version_info);
-		this.version_info.width = 584;
+		this.version_info.width = 200;
 		this.version_info.selectable = false;
 		var _locString0:String = "Version " + Common.version;
 		var _locString1:String = "";
@@ -43,7 +47,10 @@ class TitleCardBase extends Sprite
 			_locString0 = _locString0 + " Release";
 		#end
 		this.version_info.text = _locString0;
-		this.version_info.x = 8;
-		this.version_info.y = 280;
+		this.version_info.x = 5;
+		this.version_info.y = 50;
+	}
+	public function display_info(_fileName:String, _fileType:Int, _filePath:String) {
+		
 	}
 }

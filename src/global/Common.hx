@@ -2,11 +2,12 @@ package global;
 
 import openfl.Assets;
 import openfl.utils.Object;
-import openfl.display.Stage;
 import openfl.geom.Point;
 import openfl.text.TextFormat;
 import openfl.text.TextFormatAlign;
 import openfl.display.Sprite;
+import platform.TitleCardBase;
+import platform.file.ImportBase;
 
 import global.engine.RiderManager;
 import global.engine.SimManager;
@@ -55,6 +56,8 @@ class Common
 	public static var gToolbar:Toolbar;
 	public static var gCamera:RiderCamera;
 	public static var gTimeline:TimelineControl;
+	public static var gImport:ImportBase;
+	public static var gTitleCard:TitleCardBase;
 	
 	public static var line_minLength:Int = 14;
 	public static var line_type:Int = 0;

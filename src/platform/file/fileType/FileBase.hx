@@ -20,10 +20,20 @@ class FileBase
 	public function encode(_name:String = "", _author:String = "", _description:String = "") {
 		
 	}
-	public function decode() {
+	public function decode(_path:String) {
 		
 	}
-	public function flush() {
-		
+	public function get_lim_to_set(l:Bool, r:Bool):Int {
+		if (!l && !r) {
+			return(0);
+		} else if (l && !r) {
+			return(1);
+		} else if (!l && r) {
+			return(2);
+		} else if (l && r) {
+			return(3);
+		} else {
+			return(0);
+		}
 	}
 }

@@ -1,20 +1,22 @@
 package platform.titlecards;
 
 //Primary
+import lime.system.System;
+import openfl.Lib;
+import openfl.Assets;
 import openfl.display.Sprite;
+import openfl.events.Event;
+import openfl.events.MouseEvent;
 import openfl.text.TextField;
-import openfl.text.TextField;
-import openfl.text.TextFieldType;
 import openfl.text.TextFormat;
 import openfl.text.TextFormatAlign;
-import openfl.events.MouseEvent;
-import openfl.Assets;
+import openfl.utils.AssetLibrary;
+import sys.FileSystem;
 
 //secondary
 import platform.TitleCardBase;
-import global.Common;
-import global.Language;
 import ui.inter.TextButton;
+import global.Common;
 
 //third party
 
@@ -23,80 +25,260 @@ import ui.inter.TextButton;
  * ...
  * @author Kaelan Evans
  */
+@:enum abstract FileType(Int) from Int to Int {
+	public var unknown:Int = -1;
+	public var New:Int = 0;
+	public var Directory:Int = 1;
+	public var JSON:Int = 2;
+	public var TRK:Int = 3;
+	public var SOL:Int = 4;
+}
 class TitleCardCPP extends TitleCardBase
 {
-	private var font_a:TextFormat = new TextFormat(Assets.getFont("fonts/Verdana Bold.ttf").fontName, 24, 0, null, null, null, null, null, TextFormatAlign.LEFT);
-	private var font_b:TextFormat = new TextFormat(Assets.getFont("fonts/Verdana.ttf").fontName, 14, 0, null, null, null, null, null, TextFormatAlign.LEFT);
+	var textField_title:TextField;
+	var textField_versionInfo:TextField;
 	
-	var title:TextField;
-	var title_info:TextField;
-	var splash:TextField;
+	var textField_fileName:TextField;
+	var textField_filePath:TextField;
 	
-	var new_track:TextButton;
-	var load_track:TextButton;
+	var load_file:TextButton;
+	var open_dir:TextButton;
+	
+	private var font_a:TextFormat = new TextFormat(Assets.getFont("fonts/Verdana Bold.ttf").fontName, 34, 0, null, null, null, null, null, TextFormatAlign.LEFT); 
+	private var font_b:TextFormat = new TextFormat(Assets.getFont("fonts/Verdana.ttf").fontName, 14, 0, null, null, null, null, null, TextFormatAlign.LEFT); 
+	
+	var rootDirectory:Array<String>;
+	var iconArray:Array<FileItemIcon>;
+	
+	var currentSelectedPath:String;
+	
+	public static var selected_item:FileItemIcon;
 	
 	public function new() 
 	{
 		super();
 		
+		Common.gTitleCard = this;
+		
+		this.render();
+		
+		this.textField_title = new TextField(); 
+		this.addChild(this.textField_title); 
+		this.textField_title.selectable = false; 
+		this.textField_title.x = this.textField_title.y = 5; 
+		this.textField_title.defaultTextFormat = this.font_a; 
+		this.textField_title.width = 160; 
+		this.textField_title.text = "OpenLR"; 
+		
+		this.load_file = new TextButton("Load", this.invoke_loader, ButtonSize.b120x30);
+		this.addChild(this.load_file);
+		this.load_file.x = 200;
+		this.load_file.y = 5;
+		this.load_file.visible = false;
+		
+		this.open_dir = new TextButton("Explore", this.invoke_loader, ButtonSize.b120x30);
+		this.addChild(this.open_dir);
+		this.open_dir.x = 200;
+		this.open_dir.y = 40;
+		this.open_dir.visible = false;
+		
+		this.textField_fileName = new TextField();
+		this.addChild(this.textField_fileName); 
+		this.textField_fileName.selectable = false; 
+		this.textField_fileName.x = 330; 
+		this.textField_fileName.y = 15; 
+		this.textField_fileName.defaultTextFormat = this.font_b; 
+		this.textField_fileName.width = 500; 
+		this.textField_fileName.text = ""; 
+		
+		this.textField_filePath = new TextField();
+		this.addChild(this.textField_filePath); 
+		this.textField_filePath.selectable = false; 
+		this.textField_filePath.x = 330; 
+		this.textField_filePath.y = 45; 
+		this.textField_filePath.defaultTextFormat = this.font_b; 
+		this.textField_filePath.width = 500; 
+		this.textField_filePath.text = ""; 
+		
+		Lib.current.stage.addChild(this);
+		
+		this.add_version_specs();
+		
+		this.parseDirectory();
+	}
+	override public function display_info(_fileName:String, _fileType:Int, _filePath:String) {
+		this.textField_fileName.text = _fileName;
+		this.textField_filePath.text = _filePath;
+		this.currentSelectedPath = _filePath;
+		switch (_fileType) {
+			case FileType.unknown :
+				this.load_file.visible = true;
+				this.open_dir.visible = false;
+			case FileType.JSON :
+				this.load_file.visible = true;
+				this.open_dir.visible = false;
+			case FileType.TRK :
+				this.load_file.visible = true;
+				this.open_dir.visible = false;
+			case FileType.SOL :
+				this.load_file.visible = true;
+				this.open_dir.visible = false;
+			case FileType.Directory :
+				this.load_file.visible = true;
+				this.open_dir.visible = true;
+			case FileType.New :
+				this.init_env();
+		}
+	}
+	override public function render() {
 		this.graphics.clear();
 		this.graphics.beginFill(0xFFFFFF, 1);
-		this.graphics.lineStyle(3, 0, 1);
 		this.graphics.moveTo(0, 0);
-		this.graphics.lineTo(600, 0);
-		this.graphics.lineTo(600, 300);
-		this.graphics.lineTo(0, 300);
-		this.graphics.lineTo(0, 0);
-		this.graphics.endFill();
-		
-		this.title = new TextField();
-		this.addChild(this.title);
-		this.title.selectable = false;
-		this.title.x = this.title.y = 6;
-		this.title.defaultTextFormat = this.font_a;
-		this.title.width = 120;
-		this.title.text = "OpenLR";
-		
-		this.title_info = new TextField();
-		this.addChild(this.title_info);
-		this.title_info.selectable = false;
-		this.title_info.defaultTextFormat = this.font_b;
-		this.title_info.x = 120;
-		this.title_info.y = 16;
-		this.title_info.width = 500;
-		this.title_info.text = Language.Title;
-		
-		this.graphics.moveTo(8, 44);
-		this.graphics.lineTo(592, 44);
-		
-		this.splash = new TextField();
-		this.addChild(this.splash);
-		this.splash.x = 8;
-		this.splash.y = 54;
-		this.splash.defaultTextFormat = this.font_b;
-		this.splash.wordWrap = true;
-		this.splash.width = 592;
-		this.splash.height = 150;
-		this.splash.text = Language.Splash_a + "\n\n" + "https://github.com/kevansevans/openLR" + "\n\n" + Language.Splash_b;
-		
-		this.new_track = new TextButton(Language.New_track, this.new_track_func, ButtonSize.b120x30);
-		this.addChild(this.new_track);
-		this.new_track.x = 8;
-		this.new_track.y = 200;
-		
-		this.load_track = new TextButton(Language.Load_track, this.load_track_func, ButtonSize.b120x30);
-		this.addChild(this.load_track);
-		this.load_track.x = 8;
-		this.load_track.y = 245;
-		
-		super.add_version_specs();
+		this.graphics.lineTo(Lib.current.stage.stageWidth, 0);
+		this.graphics.lineTo(Lib.current.stage.stageWidth, 80);
+		this.graphics.lineStyle(4, 0, 1);
+		this.graphics.lineTo(0, 80);
 	}
-	private function load_track_func(e:MouseEvent):Void 
+	function parseDirectory() 
 	{
-		Common.gCode.start(true);
+		var _locSaveDirectory:String = System.documentsDirectory + "/openLR/saves";
+		if (!FileSystem.isDirectory(_locSaveDirectory)) {
+			FileSystem.createDirectory(_locSaveDirectory);
+			this.init_env();
+			return;
+		}
+		this.rootDirectory = FileSystem.readDirectory(_locSaveDirectory);
+		if (this.rootDirectory.length == 0) {
+			this.init_env();
+			return;
+		}
+		this.rootDirectory.reverse();
+		this.iconArray = new Array<FileItemIcon>();
+		this.iconArray.push(new FileItemIcon(0, FileType.New, "Key:NewTrack", "null"));
+		var itemCount:Int = 1;
+		for (a in this.rootDirectory) {
+			var b = _locSaveDirectory + "/" + a;
+			if (FileSystem.isDirectory(_locSaveDirectory + "/" + a)) {
+				this.iconArray.push(new FileItemIcon(itemCount, FileType.Directory, a, b));
+			} else {
+				var _locLength = a.length;
+				var _locExtensionJSON:String = a.substring(_locLength - 5, _locLength);
+				var _locExtensionSOLTRK:String = a.substring(_locLength - 4, _locLength);
+				if (_locExtensionJSON == ".json") {
+					this.iconArray.push(new FileItemIcon(itemCount, FileType.JSON, a, b));
+				} else if (_locExtensionSOLTRK == ".trk") {
+					this.iconArray.push(new FileItemIcon(itemCount, FileType.TRK, a, b));
+				} else if (_locExtensionSOLTRK == ".sol") {
+					this.iconArray.push(new FileItemIcon(itemCount, FileType.SOL, a, b));
+				} else {
+					this.iconArray.push(new FileItemIcon(itemCount, FileType.unknown, a, b));
+				}
+			}
+			++itemCount;
+		}
+		this.displayDirectory();
 	}
-	private function new_track_func(e:MouseEvent):Void 
+	function displayDirectory() {
+		var x_offset = 0;
+		var y_offset = 0;
+		var x_max = Math.floor(Lib.current.stage.stageWidth / 120);
+		for (a in this.iconArray) {
+			this.addChild(a);
+			a.x = 10 + (120 * x_offset);
+			a.y = 90 + (140 * y_offset);
+			++x_offset;
+			if (x_offset >= x_max) {
+				x_offset = 0;
+				++y_offset;
+			}
+		}
+		Lib.current.stage.addEventListener(Event.RESIZE, this.resize);
+	}
+	function resize (e:Event) {
+		this.render();
+		
+		var x_offset = 0;
+		var y_offset = 0;
+		var x_max = Math.floor(Lib.current.stage.stageWidth / 120);
+		for (a in this.iconArray) {
+			a.x = 10 + (120 * x_offset);
+			a.y = 90 + (140 * y_offset);
+			++x_offset;
+			if (x_offset >= x_max) {
+				x_offset = 0;
+				++y_offset;
+			}
+		}
+	}
+	function init_env() 
 	{
 		Common.gCode.start();
+		Lib.current.stage.removeChild(this);
+	}
+	function invoke_loader() {
+		Common.gCode.start();
+		Lib.current.stage.removeChild(this);
+		Common.gCode.silent_load(this.currentSelectedPath);
+		Common.gRiderManager.set_single_rider_start(Common.track_start_x, Common.track_start_y);
+	}
+	function update_directory() {
+		
+	}
+}
+class FileItemIcon extends Sprite
+{
+	var iconType:Int = -1;
+	var pathToFile:String = "";
+	var itemName:String;
+	var itemNameField:TextField;
+	var id:Int;
+	var fileType:Int;
+	var path:String;
+	var icon:Sprite;
+	var font_a:TextFormat = new TextFormat(Assets.getFont("fonts/Verdana Bold.ttf").fontName, 10, 0, null, null, null, null, null, TextFormatAlign.CENTER); 
+
+	public function new(_id:Int, _type:Int, _name:String, _path:String) {
+		super();
+		
+		this.id = _id;
+		this.fileType = _type;
+		this.itemName = _name;
+		this.path = _path;
+		
+		var swfLib = AssetLibrary.loadFromFile("swf/files.bundle");
+		swfLib.onComplete(this.attachClips);
+		
+		if (this.itemName == "Key:NewTrack" && this.path == "null") return;
+		this.itemNameField = new TextField();
+		this.itemNameField.text = this.itemName;
+		this.addChild(this.itemNameField); 
+		this.itemNameField.selectable = false; 
+		this.itemNameField.x = 50 - this.itemNameField.width / 2; 
+		this.itemNameField.y = 110;
+		this.itemNameField.defaultTextFormat = this.font_a; 
+	}
+	function attachClips(lib:AssetLibrary) 
+	{
+		switch (this.fileType) {
+			case FileType.unknown:
+				this.icon = lib.getMovieClip("iconUNKNOWN");
+			case FileType.New:
+				this.icon = lib.getMovieClip("iconNew");
+			case FileType.JSON:
+				this.icon = lib.getMovieClip("iconJSON");
+			case FileType.TRK:
+				this.icon = lib.getMovieClip("iconTRK");
+			case FileType.SOL:
+				this.icon = lib.getMovieClip("iconSOL");
+			case FileType.Directory:
+				this.icon = lib.getMovieClip("iconDIR");
+		}
+		this.addChild(this.icon);
+		this.icon.x = this.icon.y = 50;
+		this.icon.addEventListener(MouseEvent.CLICK, this.single);
+	}
+	function single(e:MouseEvent):Void 
+	{
+		Common.gTitleCard.display_info(this.itemName, this.fileType, this.path);
 	}
 }
