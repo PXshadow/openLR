@@ -1,5 +1,7 @@
 # OpenLR, an open source app for Line Rider.
 
+(on hiatus)
+
 ### Original game by Boštjan "fšk" Čadež
 
 ### Build by Kaelan "Kevans" Evans
