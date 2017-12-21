@@ -35,7 +35,7 @@ class FileJSON extends FileBase
 			"label": this.name,
 			"creator": this.author,
 			"description": this.description,
-			"version": "openLR",
+			"version": "6.2",
 			"startPosition": {
 				"x": Common.track_start_x,
 				"y": Common.track_start_y
@@ -69,28 +69,17 @@ class FileJSON extends FileBase
 		
 		return(settings);
 	}
-	private function json_line_aray_parse():Array<Object> //parses line array and organizes data
+	private function json_line_aray_parse():Array<LineObject> //parses line array and organizes data
 	{
 		var lines = Common.gGrid.lines;
 		lines.reverse();
-		var a:Array<Object> = new Array();
+		var a:Array<LineObject> = new Array();
 		var line_Place_Override:Int = 0;
 		for (i in lines) {
 			if (i == null) {
 				continue;
 			}
-			a[line_Place_Override] = new Object();
-			a[line_Place_Override] = {
-				"id": line_Place_Override,
-				"type": i.type,
-				"x1": i.x1,
-				"y1": i.y1,
-				"x2": i.x2,
-				"y2": i.y2,
-				"flipped": i.inv,
-				"leftExtended":  i.lExt,
-				"rightExtended":  i.rExt
-			};
+			a[line_Place_Override] = new LineObject(i.ID, i.type, i.x1, i.y1, i.x2, i.y2, i.inv, i.lExt, i.rExt);
 			++line_Place_Override;
 		}
 		return(a);
@@ -213,4 +202,29 @@ class FileJSON extends FileBase
 		}
 		return("blep");
 	}
+}
+class LineObject 
+{
+	public var id:Int;
+	public var type:Int;
+	public var x1:Float;
+	public var y1:Float;
+	public var x2:Float;
+	public var y2:Float;
+	public var flipped:Bool;
+	public var leftExtended:Bool;
+	public var rightExtended:Bool;
+	public function new(_id:Int, _type:Int, _x1:Float, _y1:Float, _x2:Float, _y2:Float, _inv:Bool, _left:Bool, _right:Bool) 
+	{
+		this.id = _id;
+		this.type = _type;
+		this.x1 = _x1;
+		this.y1 = _y1;
+		this.x2 = _x2;
+		this.y2 = _y2;
+		this.flipped = _inv;
+		this.leftExtended = _left;
+		this.rightExtended = _right;
+	}
+	
 }

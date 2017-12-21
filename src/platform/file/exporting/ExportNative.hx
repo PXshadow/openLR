@@ -5,11 +5,9 @@ import openfl.utils.Object;
 import platform.file.fileType.FileBase;
 import ui.inter.AlertBox;
 import ui.inter.TextButton;
-#if (cpp)
-	import sys.FileSystem;
-	import sys.io.File;
-	import lime.system.System;
-#end
+import sys.FileSystem;
+import sys.io.File;
+import lime.system.System;
 import haxe.Json;
 
 import platform.file.ExportBase;
@@ -70,11 +68,9 @@ class ExportNative extends ExportBase
 	{
 		super();
 		
-		#if (cpp)
-			if (!FileSystem.isDirectory(System.documentsDirectory + "/openLR/saves")) {
-				FileSystem.createDirectory(System.documentsDirectory + "/openLR/saves");
-			}
-		#end
+		if (!FileSystem.isDirectory(System.documentsDirectory + "/openLR/saves")) {
+			FileSystem.createDirectory(System.documentsDirectory + "/openLR/saves");
+		}
 		
 		this.graphics.clear();
 		this.graphics.lineStyle(4, 0, 1);
@@ -203,10 +199,9 @@ class ExportNative extends ExportBase
 		this.textButton_save.x = 5;
 		this.textButton_save.y = 305;
 		
-		if (SVar.new_track) {
+		if (!SVar.new_track) {
 			this.textfield_trackName.text = CVar.track_name;
 			this.textfield_authorName.text = CVar.track_author;
-			this.textarea_trackDescription.text = CVar.author_comment;
 		}
 	}
 	function save_track() 
@@ -216,7 +211,6 @@ class ExportNative extends ExportBase
 		this.flush(track.data);
 		CVar.track_name = this.textfield_trackName.text;
 		CVar.track_author = this.textfield_authorName.text;
-		CVar.author_comment = this.textarea_trackDescription.text;
 		SVar.new_track = false;
 		this.exit_save_menu();
 	}
@@ -226,10 +220,10 @@ class ExportNative extends ExportBase
 		if (!FileSystem.isDirectory(System.documentsDirectory + "/openLR/saves/" + this.textfield_trackName.text)) {
 			FileSystem.createDirectory(System.documentsDirectory + "/openLR/saves/" + this.textfield_trackName.text);
 		}
-		while (FileSystem.exists(System.documentsDirectory + "/openLR/saves/" + this.textfield_trackName.text + "/" + sameNameCount + ".openLR.json")) {
+		while (FileSystem.exists(System.documentsDirectory + "/openLR/saves/" + this.textfield_trackName.text + "/" + sameNameCount + "." + this.textfield_trackName.text + ".openLR.json")) {
 			++sameNameCount;
 		}
-		var file = File.write((System.documentsDirectory + "/openLR/saves/" + this.textfield_trackName.text + "/" + sameNameCount + ".openLR.json"), true); //.json = legacy format
+		var file = File.write((System.documentsDirectory + "/openLR/saves/" + this.textfield_trackName.text + "/" + sameNameCount + "." + this.textfield_trackName.text + ".openLR.json"), true);
 		file.writeString(Json.stringify(_data, null, "\t"));
 		file.close();
 	}

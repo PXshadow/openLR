@@ -6,12 +6,14 @@ import openfl.events.Event;
 import openfl.geom.Point;
 import platform.CoreBase;
 import platform.file.exporting.ExportNative;
+import lime.system.System;
 
 //third party
 
 //openLR
 import platform.titlecards.TitleCardCPP;
 import platform.control.Desktop;
+import platform.file.importing.ImportNative;
 import global.Common;
 import global.CVar;
 import global.SVar;
@@ -36,10 +38,9 @@ class CppCore extends CoreBase
 		Common.gCode = this; //This class
 			
 		this.title_card = new TitleCardCPP();
-		Lib.current.stage.addChild(this.title_card);
 		
-		this.title_card.x = (Lib.current.stage.stageWidth * 0.5) - (this.title_card.width * 0.5);
-		this.title_card.y = (Lib.current.stage.stageHeight * 0.5) - (this.title_card.height * 0.5);
+		this.title_card.x = 0;
+		this.title_card.y = 0;
 	}
 	override public function start(_load:Bool = false) {
 		this.init_env();
@@ -48,8 +49,15 @@ class CppCore extends CoreBase
 		if (_load) {
 			this.toggle_Loader();
 		}
-		Lib.current.stage.removeChild(this.title_card);
 		this.controlScheme = new Desktop();
+		
+		Lib.current.stage.application.onExit.add (function (exitCode) {
+			//Autosave code here
+		});
+	}
+	function resize_title(e:Event):Void 
+	{
+		this.title_card.render();
 	}
 	public function init_env() //Initialize enviornment
 	{
@@ -58,7 +66,10 @@ class CppCore extends CoreBase
 		Common.stage_height = Lib.current.stage.stageHeight;
 		Common.stage_width = Lib.current.stage.stageWidth;
 	}
-	
+	override public function silent_load (_path:String) {
+		this.importing = new ImportNative();
+		this.importing.load(_path);
+	}
 	public function init_track() //display minimum items
 	{
 		this.visContainer = new Sprite();
@@ -165,7 +176,36 @@ class CppCore extends CoreBase
 		}
 	}
 	override public function toggle_Loader() {
-		
+		if (this.importingVisible == false) {
+			this.importingVisible = true;
+			
+			this.toolBar.mouseChildren = false;
+			this.toolBar.mouseEnabled = false;
+			this.timeline.mouseChildren = false;
+			this.timeline.mouseEnabled = false;
+			Lib.current.stage.mouseEnabled = false;
+			
+			this.importing = new ImportNative();
+			Lib.current.stage.addChild(this.importing);
+			
+			this.align();
+			
+			Toolbar.tool.set_tool("None");
+		} else {
+			this.importingVisible = false;
+			
+			this.toolBar.mouseChildren = true;
+			this.toolBar.mouseEnabled = true;
+			this.timeline.mouseChildren = true;
+			this.timeline.mouseEnabled = true;
+			Lib.current.stage.mouseEnabled = true;
+			
+			Lib.current.stage.removeChild(this.importing);
+			
+			this.align();
+			
+			Toolbar.tool.set_tool(ToolBase.lastTool);
+		}
 	}
 	private function resize(e:Event):Void
 	{

@@ -136,8 +136,6 @@ class RiderBase extends Sprite
 		this.start_point.x = this.body.anchors[0].x;
 		this.start_point.y = this.body.anchors[0].y;
 		
-		this.adjust_rider_dimensions();
-		
 		this.recorder = new RiderRecorder(_id);
 		this.camera = new RiderCamera();
 		
@@ -156,32 +154,6 @@ class RiderBase extends Sprite
 		}
 		if (this.rider_angle >= 360) {
 			this.rider_angle = 0;
-		}
-	}
-	
-	function adjust_start_velocity(e:KeyboardEvent) 
-	{
-		switch (e.keyCode) {
-			case Keyboard.NUMPAD_4:
-				this.rider_x_velocity -= 0.2;
-			case Keyboard.NUMPAD_6:
-				this.rider_x_velocity += 0.2;
-			case Keyboard.NUMPAD_8:
-				this.rider_y_velocity -= 0.2;
-			case Keyboard.NUMPAD_2:
-				this.rider_y_velocity += 0.2;
-		}
-		if (this.rider_x_velocity >= 5) {
-			this.rider_x_velocity = 5;
-		}
-		if (this.rider_x_velocity <= -5) {
-			this.rider_x_velocity = -5;
-		}
-		if (this.rider_y_velocity >= 5) {
-			this.rider_y_velocity = 5;
-		}
-		if (this.rider_y_velocity <= -5) {
-			this.rider_y_velocity = -5;
 		}
 	}
 	public function adjust_rider_dimensions() {
@@ -236,14 +208,23 @@ class RiderBase extends Sprite
 			this.reset();
 		}
 		this.camera.pan(this.body.anchors[4]);
-		this.clips.render_body();
+		try {
+			this.clips.render_body();
+		} catch (e:String) {
+			
+		}
+	}
+	public function set_start(_x:Float, _y:Float) {
+		this.rider_pos_x = _x;
+		this.rider_pos_y = _y;
+		this.start_point.x = this.body.anchors[0].x;
+		this.start_point.y = this.body.anchors[0].y;
+		this.body.set_start(_x, _y);
+		this.scarf.set_start(_x, _y);
 	}
 	public function reset() 
 	{
-		this.body.reset();
-		this.scarf.reset();
-		RiderManager.crash[this.riderID] = false;
-		this.adjust_rider_dimensions();
+		//this.inject_postion(0);
 	}
 	public function inject_and_update(_frame:Int) {
 		var _loc1 = SVar.frames;
@@ -310,17 +291,6 @@ class RiderBase extends Sprite
 				this.clips.render_body();
 				this.tick_frame = SubFrame.Momentum;
 		}
-	}
-	public function return_to_start() {
-		this.inject_postion(0);
-	}
-	public function set_start(_x:Float, _y:Float) {
-		this.inject_postion(0);
-		this.body.set_start(_x, _y);
-		this.scarf.set_start(_x, _y);
-		this.inject_and_update(0);
-		this.start_point.x = this.body.anchors[0].x;
-		this.start_point.y = this.body.anchors[0].y;
 	}
 	public function store_location() {
 		if (flagged) {
