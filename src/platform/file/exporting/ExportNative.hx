@@ -1,6 +1,9 @@
 package platform.file.exporting;
 
 import global.Common;
+import haxe.io.Bytes;
+import haxe.io.BytesData;
+import openfl.utils.ByteArray;
 import openfl.utils.Object;
 import platform.file.fileType.FileBase;
 import ui.inter.AlertBox;
@@ -8,7 +11,6 @@ import ui.inter.TextButton;
 import sys.FileSystem;
 import sys.io.File;
 import lime.system.System;
-import haxe.Json;
 
 import platform.file.ExportBase;
 import platform.file.fileType.*;
@@ -206,15 +208,32 @@ class ExportNative extends ExportBase
 	}
 	function save_track() 
 	{
-		this.track = new FileJSON();
+		//this.track = new FileJSON();
+		//this.track.encode(this.textfield_trackName.text, this.textfield_authorName.text, this.textarea_trackDescription.text);
+		//this.flush(track.exportString);
+		
+		this.track = new LRPK();
 		this.track.encode(this.textfield_trackName.text, this.textfield_authorName.text, this.textarea_trackDescription.text);
-		this.flush(track.data);
+		this.flush_lrpk(track.exportBytes);
+		
 		CVar.track_name = this.textfield_trackName.text;
 		CVar.track_author = this.textfield_authorName.text;
 		SVar.new_track = false;
 		this.exit_save_menu();
 	}
-	function flush(_data:Object) 
+	function flush_lrpk(_data:ByteArray) {
+		var sameNameCount:Int = 0;
+		if (!FileSystem.isDirectory(System.documentsDirectory + "/openLR/saves/" + this.textfield_trackName.text)) {
+			FileSystem.createDirectory(System.documentsDirectory + "/openLR/saves/" + this.textfield_trackName.text);
+		}
+		while (FileSystem.exists(System.documentsDirectory + "/openLR/saves/" + this.textfield_trackName.text + "/" + sameNameCount + "." + this.textfield_trackName.text + ".openLR.lrpk")) {
+			++sameNameCount;
+		}
+		var file = File.write((System.documentsDirectory + "/openLR/saves/" + this.textfield_trackName.text + "/" + sameNameCount + "." + this.textfield_trackName.text + ".openLR.lrpk"), true);
+		file.writeBytes(_data, 0, _data.length);
+		file.close();
+	}
+	function flush_json(_data:String) //We're assuming json only for now
 	{
 		var sameNameCount:Int = 0;
 		if (!FileSystem.isDirectory(System.documentsDirectory + "/openLR/saves/" + this.textfield_trackName.text)) {
@@ -224,7 +243,7 @@ class ExportNative extends ExportBase
 			++sameNameCount;
 		}
 		var file = File.write((System.documentsDirectory + "/openLR/saves/" + this.textfield_trackName.text + "/" + sameNameCount + "." + this.textfield_trackName.text + ".openLR.json"), true);
-		file.writeString(Json.stringify(_data, null, "\t"));
+		file.writeString(_data);
 		file.close();
 	}
 	private function acknowledge_warning() {
