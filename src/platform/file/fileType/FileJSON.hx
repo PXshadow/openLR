@@ -1,7 +1,9 @@
 package platform.file.fileType;
 
+import openfl.Lib;
 import openfl.utils.Function;
 import openfl.utils.Object;
+import openfl.events.Event;
 
 import global.Common;
 import global.CVar;
@@ -14,81 +16,102 @@ import lr.nodes.Grid;
  * ...
  * @author Kaelan Evans
  */
+@:enum abstract LRKeys(String) from String to String {
+	public var ret = "\n";
+	public var comma = ",\n";
+	public var braceOpen = "{\n";
+	public var braceClose = "},\n";
+	public var bracketOpen = "[\n";
+	public var bracketClose = "]\n";
+	public var start = '"startPosition": ';
+	public var xpos = '"x": ';
+	public var ypos = '"y": ';
+	public var lines = '"lines": ';
+	public var id = '"id": ';
+	public var type = '"type": ';
+	public var linex1 = '"x1": ';
+	public var linex2 = '"x2": ';
+	public var liney1 = '"y1": ';
+	public var liney2 = '"y2": ';
+	public var inv = '"flipped": ';
+	public var left = '"leftExtended": ';
+	public var right = '"rightExtended": ';
+}
 class FileJSON extends FileBase
 {
-	public function new() 
-	{
+	private var tabLevel:Int = 0;
+	var chunk_lines:Array<Object>;
+	var step:Int = 0;
+	var chunk_size:Int = 50;
+	public function new() {
 		super();
 	}
-	override public function encode(_name:String = "Untitled", _author:String = "Anonymous", _description:String = "This is the water. And this is the well. Drink full and descend. The horse is the white of the eyes and dark within.")
-	{
+	override public function encode(_name:String = "Untitled", _author:String = "Anonymous", _description:String = "This is the water. And this is the well. Drink full and descend. The horse is the white of the eyes and dark within.") {
 		if (_name != null) this.name = _name;
 		if (_author != null) this.author = _author;
 		if (_description != null) this.description = _description;
-		this.data = this.parse_json();
+		this.parse_json();
 	}
-	public function parse_json():Object //top object. Gets name, author, etc.
-	{
-		var _locArray = this.json_line_aray_parse();
-		var _locMetaData:Object = this.grabNonVanillaData();
-		var json_object:Object = {
-			"label": this.name,
-			"creator": this.author,
-			"description": this.description,
-			"version": "6.2",
-			"startPosition": {
-				"x": Common.track_start_x,
-				"y": Common.track_start_y
-			},
-			"duration": 0,
-			"lines": _locArray,
-			"metadata" : _locMetaData
-		}
-		return(json_object);
+	public function parse_json() { //top object. Gets name, author, etc.
+		this.exportString += LRKeys.braceOpen;
+		this.exportString += this.start_block();
+		this.exportString += this.line_block();
 	}
-	
-	function grabNonVanillaData():Object
-	{
-		var _locObject:Object = new Object();
-		var _locSettings = this.json_settings_array();
-		_locObject = {
-			"olr_settings" : _locSettings,
-		}
-		return _locObject;
+	function start_block():String {
+		var _locString:String = "";
+		_locString += LRKeys.start;
+		_locString += LRKeys.braceOpen;
+		_locString += LRKeys.xpos + this.fts(Common.track_start_x) + LRKeys.comma;
+		_locString += LRKeys.ypos + this.fts(Common.track_start_y) + LRKeys.ret;
+		_locString += LRKeys.braceClose;
+		return _locString;
 	}
-	
-	function json_settings_array():Object
-	{
-		var settings:Object = new Object();
-		
-		settings.angle_snap = CVar.angle_snap;
-		settings.line_snap = CVar.line_snap;
-		settings.color_play = CVar.color_play;
-		settings.preview_mode = CVar.preview_mode;
-		settings.hit_test = CVar.hit_test;
-		
-		return(settings);
-	}
-	private function json_line_aray_parse():Array<LineObject> //parses line array and organizes data
-	{
-		var lines = Common.gGrid.lines;
-		lines.reverse();
-		var a:Array<LineObject> = new Array();
-		var line_Place_Override:Int = 0;
-		for (i in lines) {
-			if (i == null) {
+	function line_block():String { //parses line array and organizes data
+		var i = Common.gGrid.lines;
+		i.reverse();
+		var _locString:String = "";
+		_locString += LRKeys.lines;
+		_locString += LRKeys.bracketOpen;
+		for (a in i) {
+			if (a == null) {
 				continue;
 			}
-			a[line_Place_Override] = new LineObject(i.ID, i.type, i.x1, i.y1, i.x2, i.y2, i.inv, i.lExt, i.rExt);
-			++line_Place_Override;
+			_locString += LRKeys.braceOpen;
+			_locString += LRKeys.id + this.its(a.ID) + LRKeys.comma;
+			_locString += LRKeys.type + this.its(a.type) + LRKeys.comma;
+			_locString += LRKeys.linex1 + this.fts(a.x1) + LRKeys.comma;
+			_locString += LRKeys.liney1 + this.fts(a.y1) + LRKeys.comma;
+			_locString += LRKeys.linex2 + this.fts(a.x2) + LRKeys.comma;
+			_locString += LRKeys.liney2 + this.fts(a.y2) + LRKeys.comma;
+			_locString += LRKeys.inv + this.bts(a.inv) + LRKeys.comma;
+			_locString += LRKeys.left + this.bts(a.lExt) + LRKeys.comma;
+			_locString += LRKeys.right + this.bts(a.rExt) + LRKeys.ret;
+			_locString += LRKeys.braceClose;
 		}
-		return(a);
+		_locString += LRKeys.bracketClose;
+		return _locString;
 	}
-	override public function decode(_trackData:Object) 
-	{
+	function grabNonVanillaData():String {
+		return "";
+	}
+	function fts(_v:Float):String {
+		return "";
+	}
+	function its(_v:Int) {
+		return "" + _v;
+	}
+	function bts(_b:Bool) {
+		if (_b) {
+			return "true";
+		} else {
+			return "false";
+		}
+	}
+	override public function decode(_trackData:Object) {
 		CVar.track_name = _trackData.label;
 		Common.track_start_x = _trackData.startPosition.x;
 		Common.track_start_y = _trackData.startPosition.y;
+		Common.gRiderManager.set_start(Common.track_start_x, Common.track_start_y, 0);
 		if (_trackData.lines != null) {
 			this.cache_lines(_trackData);
 		} else if (_trackData.linesArray != null) {
@@ -99,25 +122,47 @@ class FileJSON extends FileBase
 			trace(_locDecompressed);
 		}
 	}
-	function cache_lines_array(_trackData:Object) 
-	{
+	function cache_lines_array(_trackData:Object) {
 		
 	}
-	function cache_lines(_trackData:Object)
-	{
-		_trackData.lines.reverse();
-		for (i in 0..._trackData.lines.length) {
-			var _loc1:LineBase;
-			if (_trackData.lines[i] == null) {
-				continue;
+	function cache_lines(_trackData:Object) {
+		if (_trackData.lines.length >= 5000) {
+			this.step = _trackData.lines.length;
+			this.chunk_lines = _trackData.lines;
+			Lib.current.stage.addEventListener(Event.ENTER_FRAME, chunk_load);
+		} else {
+			_trackData.lines.reverse();
+			for (i in 0..._trackData.lines.length) {
+				var _loc1:LineBase;
+				if (_trackData.lines[i] == null) {
+					continue;
+				}
+				_loc1 = new LineBase(_trackData.lines[i].type, _trackData.lines[i].x1, _trackData.lines[i].y1, _trackData.lines[i].x2, _trackData.lines[i].y2, _trackData.lines[i].flipped);
+				_loc1.ID = _trackData.lines[i].id;
+				_loc1.set_lim(this.get_lim_to_set(_trackData.lines[i].leftExtended, _trackData.lines[i].rightExtended));
+				Common.gGrid.cacheLine(_loc1);
+				//SVar.lineID += 1;
 			}
-			_loc1 = new LineBase(_trackData.lines[i].type, _trackData.lines[i].x1, _trackData.lines[i].y1, _trackData.lines[i].x2, _trackData.lines[i].y2, _trackData.lines[i].flipped);
-			_loc1.ID = SVar.lineID;
-			_loc1.set_lim(this.get_lim_to_set(_trackData.lines[i].leftExtended, _trackData.lines[i].rightExtended));
-			Common.gGrid.cacheLine(_loc1);
-			SVar.lineID += 1;
 		}
 	}
+	function chunk_load(e:Event):Void {
+		for (i in 0...chunk_size) {
+			var _loc1:LineBase;
+			if (chunk_lines[step] == null) {
+				--step;
+				continue;
+			}
+			_loc1 = new LineBase(chunk_lines[step].type, chunk_lines[step].x1, chunk_lines[step].y1, chunk_lines[step].x2, chunk_lines[step].y2, chunk_lines[step].flipped);
+			_loc1.ID = chunk_lines[step].id;
+			_loc1.set_lim(this.get_lim_to_set(chunk_lines[step].leftExtended, chunk_lines[step].rightExtended));
+			Common.gGrid.cacheLine(_loc1);
+			--step;
+			if (step <= 0) {
+				Lib.current.stage.removeEventListener(Event.ENTER_FRAME, chunk_load);
+			}
+		}
+	}
+	//LZ-String decompression
 	var keyStrBase64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
 	var f = String.fromCharCode;
 	function decompress(compressed:String):String {
@@ -202,29 +247,4 @@ class FileJSON extends FileBase
 		}
 		return("blep");
 	}
-}
-class LineObject 
-{
-	public var id:Int;
-	public var type:Int;
-	public var x1:Float;
-	public var y1:Float;
-	public var x2:Float;
-	public var y2:Float;
-	public var flipped:Bool;
-	public var leftExtended:Bool;
-	public var rightExtended:Bool;
-	public function new(_id:Int, _type:Int, _x1:Float, _y1:Float, _x2:Float, _y2:Float, _inv:Bool, _left:Bool, _right:Bool) 
-	{
-		this.id = _id;
-		this.type = _type;
-		this.x1 = _x1;
-		this.y1 = _y1;
-		this.x2 = _x2;
-		this.y2 = _y2;
-		this.flipped = _inv;
-		this.leftExtended = _left;
-		this.rightExtended = _right;
-	}
-	
 }
