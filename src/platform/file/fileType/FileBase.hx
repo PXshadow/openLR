@@ -1,5 +1,6 @@
 package platform.file.fileType;
 
+import openfl.utils.ByteArray;
 import openfl.utils.Object;
 
 /**
@@ -13,6 +14,8 @@ class FileBase
 	var author:String;
 	var description:String;
 	var fileName:String;
+	public var exportString:String = "";
+	public var exportBytes:ByteArray;
 	public function new() 
 	{
 		
@@ -35,5 +38,9 @@ class FileBase
 		} else {
 			return(0);
 		}
+	}
+	public function stringFloat(_v:Float):String 
+	{
+		return "" + _v;
 	}
 }
