@@ -100,7 +100,6 @@ class ImportNative extends ImportBase
 		}
 		try {
 			var file:FileBase;
-			var _locFile;
 			var _locStringA = path.substring(path.length - 5, path.length);
 			var _locStringB = path.substring(path.length - 4, path.length);
 			
