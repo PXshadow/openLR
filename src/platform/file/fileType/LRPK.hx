@@ -2,7 +2,6 @@ package platform.file.fileType;
 
 import lr.lines.LineBase;
 import openfl.utils.ByteArray;
-import haxe.io.BytesData;
 import haxe.io.Bytes;
 
 import global.Common;
@@ -17,11 +16,6 @@ import global.SVar;
 	public var start:String = "STRT";
 	public var lines:String = "LINE";
 	public var EOF:String = "0EOF";
-}
-@:enum abstract PosKeys(Int) from Int to Int {
-	public var keyStr:Int = 4;
-	public var keyInt:Int = 4;
-	public var keyFloat:Int = 4;
 }
 class LRPK extends FileBase
 {
@@ -56,7 +50,6 @@ class LRPK extends FileBase
 	{
 		this.exportBytes.writeUTFBytes(BlockKeys.lines);
 		var i = Common.gGrid.lines;
-		i.reverse();
 		var b:Array<LineBase> = new Array();
 		for (a in i) {
 			if (a == null) {
@@ -81,14 +74,14 @@ class LRPK extends FileBase
 	{
 		var _locBlockSafe:Bool = true;
 		var pos:Int = 0;
-		var _locVer:String = _data.getString(pos, PosKeys.keyStr);
-		pos += PosKeys.keyStr;
+		var _locVer:String = _data.getString(pos, 4);
+		pos += 4;
 		var _locBlock:String = "";
-		var _locLoop:Int = -1;
+		var _locLoop:Int = -2;
 		while (true) {
 			if (_locBlockSafe) {
-				_locBlock = _data.getString(pos, PosKeys.keyStr);
-				pos += PosKeys.keyStr;
+				_locBlock = _data.getString(pos, 4);
+				pos += 4;
 				_locBlockSafe = false;
 				continue;
 			} else {
@@ -97,16 +90,34 @@ class LRPK extends FileBase
 						break;
 					case BlockKeys.start :
 						Common.track_start_x = _data.getFloat(pos);
-						pos += PosKeys.keyFloat;
+						pos += 4;
 						Common.track_start_x = _data.getFloat(pos);
-						pos += PosKeys.keyFloat;
+						pos += 4;
 						_locBlockSafe = true;
 						continue;
 					case BlockKeys.lines :
-						if (_locLoop == -1) {
+						if (_locLoop == -2) {
 							_locLoop = _data.getInt32(pos);
+							pos += 4;
 						}
-						trace(_locLoop);
+						if (_locLoop >= 0) {
+							//trace(_data.getInt32(pos)); //id
+							//trace(_data.getInt32(pos + 4)); //type
+							//trace(_data.getFloat(pos + 8)); //x1
+							//trace(_data.getFloat(pos + 12)); //y1
+							//trace(_data.getFloat(pos + 16)); //x2
+							//trace(_data.getFloat(pos + 20)); //y2
+							//trace(_data.get(pos + 24)); //side
+							//trace(int_lim_to_set(_data.get(pos + 28), _data.get(pos + 32))); //extension
+							pos += 36;
+							--_locLoop;
+							trace(_locLoop);
+							continue;
+						} else {
+							_locBlockSafe = true;
+							continue;
+						}
+						
 				}
 			}
 			break;

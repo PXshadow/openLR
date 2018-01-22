@@ -43,6 +43,19 @@ class FileBase
 			return(0);
 		}
 	}
+	public function int_lim_to_set(l:Int, r:Int):Int {
+		if (l == 0 && r == 0) {
+			return(0);
+		} else if (l == 1 && r == 0) {
+			return(1);
+		} else if (l == 0 && r == 1) {
+			return(2);
+		} else if (l == 1 && r == 1) {
+			return(3);
+		} else {
+			return(0);
+		}
+	}
 	public function stringFloat(_v:Float):String 
 	{
 		return "" + _v;
