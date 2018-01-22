@@ -226,10 +226,10 @@ class ExportNative extends ExportBase
 		if (!FileSystem.isDirectory(System.documentsDirectory + "/openLR/saves/" + this.textfield_trackName.text)) {
 			FileSystem.createDirectory(System.documentsDirectory + "/openLR/saves/" + this.textfield_trackName.text);
 		}
-		while (FileSystem.exists(System.documentsDirectory + "/openLR/saves/" + this.textfield_trackName.text + "/" + sameNameCount + "." + this.textfield_trackName.text + ".openLR.lrpk")) {
+		while (FileSystem.exists(System.documentsDirectory + "/openLR/saves/" + this.textfield_trackName.text + "/" + sameNameCount + "." + this.textfield_trackName.text + ".lrpk")) {
 			++sameNameCount;
 		}
-		var file = File.write((System.documentsDirectory + "/openLR/saves/" + this.textfield_trackName.text + "/" + sameNameCount + "." + this.textfield_trackName.text + ".openLR.lrpk"), true);
+		var file = File.write((System.documentsDirectory + "/openLR/saves/" + this.textfield_trackName.text + "/" + sameNameCount + "." + this.textfield_trackName.text + ".lrpk"), true);
 		file.writeBytes(_data, 0, _data.length);
 		file.close();
 	}
