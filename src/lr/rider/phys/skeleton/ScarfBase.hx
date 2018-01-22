@@ -1,11 +1,11 @@
 package lr.rider.phys.skeleton;
 
 import haxe.ds.Vector;
-import lr.rider.phys.frames.anchors.CPoint;
+import lr.rider.phys.anchors.CPoint;
 import openfl.utils.Object;
 
 import lr.rider.phys.skeleton.bones.ScarfStick;
-import lr.rider.phys.frames.anchors.SPoint;
+import lr.rider.phys.anchors.SPoint;
 
 /**
  * ...

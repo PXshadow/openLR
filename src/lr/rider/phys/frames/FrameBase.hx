@@ -3,7 +3,7 @@ package lr.rider.phys.frames;
 import haxe.ds.Vector;
 import openfl.utils.Object;
 
-import lr.rider.phys.frames.anchors.CPoint;
+import lr.rider.phys.anchors.CPoint;
 
 /**
  * ...

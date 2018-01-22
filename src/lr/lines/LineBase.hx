@@ -1,7 +1,7 @@
 package lr.lines;
 
 import lr.lines.collision.*;
-import lr.rider.phys.frames.anchors.CPoint;
+import lr.rider.phys.anchors.CPoint;
 import lr.nodes.Grid;
 import lr.nodes.SubPanel;
 import global.Common;

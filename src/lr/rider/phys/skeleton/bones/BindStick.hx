@@ -1,7 +1,7 @@
 package lr.rider.phys.skeleton.bones;
 
 import global.engine.RiderManager;
-import lr.rider.phys.frames.anchors.CPoint;
+import lr.rider.phys.anchors.CPoint;
 import lr.rider.phys.skeleton.bones.Stick;
 
 /**

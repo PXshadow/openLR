@@ -1,5 +1,5 @@
 package lr.lines;
-import lr.rider.phys.frames.anchors.CPoint;
+import lr.rider.phys.anchors.CPoint;
 import openfl.utils.Object;
 
 /**

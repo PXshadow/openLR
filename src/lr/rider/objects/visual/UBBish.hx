@@ -12,7 +12,7 @@ import lr.rider.phys.skeleton.SkeletonBase;
 import lr.rider.objects.VisBase;
 import lr.rider.phys.frames.FrameBase;
 import lr.rider.phys.frames.B2Frame;
-import lr.rider.phys.frames.anchors.CPoint;
+import lr.rider.phys.anchors.CPoint;
 import lr.rider.phys.skeleton.ScarfBase;
 import lr.rider.phys.skeleton.bones.Stick;
 import lr.rider.phys.skeleton.scarf.B2Scarf;

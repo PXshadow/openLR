@@ -20,7 +20,7 @@ import lr.rider.objects.VisBase;
 import lr.rider.objects.StartPointVis;
 import lr.rider.objects.visual.B2Bosh;
 import lr.rider.objects.visual.UBBish;
-import lr.rider.phys.frames.anchors.CPoint;
+import lr.rider.phys.anchors.CPoint;
 import lr.rider.phys.skeleton.bones.Stick;
 import lr.rider.phys.skeleton.links.B1Skeleton;
 import lr.rider.phys.skeleton.links.B2Skeleton;

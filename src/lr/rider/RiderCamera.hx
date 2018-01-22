@@ -5,7 +5,7 @@ import openfl.geom.Point;
 import openfl.Lib;
 
 import global.Common;
-import lr.rider.phys.frames.anchors.CPoint;
+import lr.rider.phys.anchors.CPoint;
 
 /**
  * ...

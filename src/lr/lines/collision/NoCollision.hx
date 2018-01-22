@@ -1,6 +1,6 @@
 package lr.lines.collision;
 import lr.lines.Collision;
-import lr.rider.phys.frames.anchors.CPoint;
+import lr.rider.phys.anchors.CPoint;
 
 /**
  * ...
