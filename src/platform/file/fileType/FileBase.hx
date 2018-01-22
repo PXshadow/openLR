@@ -1,5 +1,6 @@
 package platform.file.fileType;
 
+import haxe.io.Bytes;
 import openfl.utils.ByteArray;
 import openfl.utils.Object;
 
@@ -23,7 +24,10 @@ class FileBase
 	public function encode(_name:String = "", _author:String = "", _description:String = "") {
 		
 	}
-	public function decode(_path:String) {
+	public function json_decode(_obj:Object) {
+		
+	}
+	public function lrpk_decode(_data:Bytes) {
 		
 	}
 	public function get_lim_to_set(l:Bool, r:Bool):Int {

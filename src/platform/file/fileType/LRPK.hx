@@ -2,6 +2,7 @@ package platform.file.fileType;
 
 import lr.lines.LineBase;
 import openfl.utils.ByteArray;
+import haxe.io.Bytes;
 
 import global.Common;
 import global.CVar;
@@ -68,7 +69,7 @@ class LRPK extends FileBase
 			this.exportBytes.writeBoolean(c.rExt);
 		}
 	}
-	override public function decode(_data:ByteArray) 
+	override public function lrpk_decode(_data:Bytes) 
 	{
 		
 	}

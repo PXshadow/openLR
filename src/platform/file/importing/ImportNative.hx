@@ -108,11 +108,11 @@ class ImportNative extends ImportBase
 					file = new FileJSON();
 					this.trackData = new Object();
 					this.trackData = Json.parse(File.getContent(path));
-					file.decode(this.trackData);
+					file.json_decode(this.trackData);
 					return;
 				case ".lrpk" :
 					file = new LRPK();
-					file.decode(File.getBytes(path));
+					file.lrpk_decode(File.getBytes(path));
 					return;
 				default :
 					//intentional fall through

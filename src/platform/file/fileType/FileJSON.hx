@@ -107,7 +107,7 @@ class FileJSON extends FileBase
 			return "false";
 		}
 	}
-	override public function decode(_trackData:Object) {
+	override public function json_decode(_trackData:Object) {
 		CVar.track_name = _trackData.label;
 		Common.track_start_x = _trackData.startPosition.x;
 		Common.track_start_y = _trackData.startPosition.y;
