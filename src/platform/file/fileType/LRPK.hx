@@ -2,6 +2,7 @@ package platform.file.fileType;
 
 import lr.lines.LineBase;
 import openfl.utils.ByteArray;
+import haxe.io.BytesData;
 import haxe.io.Bytes;
 
 import global.Common;
@@ -15,6 +16,12 @@ import global.SVar;
 	public var version:String = "V005";
 	public var start:String = "STRT";
 	public var lines:String = "LINE";
+	public var EOF:String = "0EOF";
+}
+@:enum abstract PosKeys(Int) from Int to Int {
+	public var keyStr:Int = 4;
+	public var keyInt:Int = 4;
+	public var keyFloat:Int = 4;
 }
 class LRPK extends FileBase
 {
@@ -37,6 +44,7 @@ class LRPK extends FileBase
 		this.exportBytes.writeUTFBytes(BlockKeys.version);
 		this.writeStartBlock();
 		this.writeLineBlock();
+		this.exportBytes.writeUTFBytes(BlockKeys.EOF);
 	}
 	function writeStartBlock() 
 	{
@@ -71,6 +79,37 @@ class LRPK extends FileBase
 	}
 	override public function lrpk_decode(_data:Bytes) 
 	{
-		
+		var _locBlockSafe:Bool = true;
+		var pos:Int = 0;
+		var _locVer:String = _data.getString(pos, PosKeys.keyStr);
+		pos += PosKeys.keyStr;
+		var _locBlock:String = "";
+		var _locLoop:Int = -1;
+		while (true) {
+			if (_locBlockSafe) {
+				_locBlock = _data.getString(pos, PosKeys.keyStr);
+				pos += PosKeys.keyStr;
+				_locBlockSafe = false;
+				continue;
+			} else {
+				switch (_locBlock) {
+					case BlockKeys.EOF :
+						break;
+					case BlockKeys.start :
+						Common.track_start_x = _data.getFloat(pos);
+						pos += PosKeys.keyFloat;
+						Common.track_start_x = _data.getFloat(pos);
+						pos += PosKeys.keyFloat;
+						_locBlockSafe = true;
+						continue;
+					case BlockKeys.lines :
+						if (_locLoop == -1) {
+							_locLoop = _data.getInt32(pos);
+						}
+						trace(_locLoop);
+				}
+			}
+			break;
+		}
 	}
 }
