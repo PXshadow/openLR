@@ -1,7 +1,5 @@
 # OpenLR, an open source app for Line Rider.
 
-(on hiatus)
-
 ### Original game by Boštjan "fšk" Čadež
 
 ### Build by Kaelan "Kevans" Evans
@@ -67,9 +65,7 @@ openLR does not support Neko as a target, so compiling to non-native OS target (
 
 ## Future plans
 
-Better save format (the LRPK will be a modular system to help benefit collaborators)
-
-Compatibility with other save formats (SOL, JSON, TRK, with the ability to export to those targets)
+Compatibility with other save formats (SOL, JSON, TRK)
 
 Mechanics across various LR builds and titles
 
@@ -85,7 +81,7 @@ Modding support with cppia and hscript
 
 Mobile deployment to Android and iOS
 
-And way down the line, multiplayer connections and support with the www.linerider.com sharing system
+And way down the line, multiplayer connections
 
 ## Special Thanks
 
