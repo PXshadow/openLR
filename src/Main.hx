@@ -47,7 +47,13 @@ class Main extends Sprite
         #elseif js
             this.core = new JavaScriptCore();
         #else
-            trace("Deployment target not supported");
+           this.traceInfo();
         #end
     }
+	function traceInfo() 
+	{
+		trace("Platform not supported");
+		trace(Sys.systemName());
+		trace(Sys.environment());
+	}
 }
