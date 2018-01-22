@@ -106,7 +106,7 @@ class RiderManager extends Sprite
 
 	}
 	public function set_start(_x:Float, _y:Float, _id:Int = 0) {
-
+		this.riderArray[_id].set_start(_x, _y);
 	}
 	public function inject_frame(_frame:Int) {
 		for (a in riderArray) {

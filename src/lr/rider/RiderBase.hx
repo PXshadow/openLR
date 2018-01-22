@@ -91,6 +91,9 @@ class RiderBase extends Sprite
 		this.start_point = new StartPointVis();
 		this.addChild(this.start_point);
 		
+		this.start_point.x = 0;
+		this.start_point.y = 0;
+		
 		this.rider_pos_x = _x;
 		this.rider_pos_y = _y;
 		
@@ -132,9 +135,6 @@ class RiderBase extends Sprite
 		this.grav = new Object();
 		this.grav.x = 0;
 		this.grav.y = 0.175;
-		
-		this.start_point.x = this.body.anchors[0].x;
-		this.start_point.y = this.body.anchors[0].y;
 		
 		this.recorder = new RiderRecorder(_id);
 		this.camera = new RiderCamera();
@@ -215,12 +215,13 @@ class RiderBase extends Sprite
 		}
 	}
 	public function set_start(_x:Float, _y:Float) {
-		this.rider_pos_x = _x;
-		this.rider_pos_y = _y;
-		this.start_point.x = this.body.anchors[0].x;
-		this.start_point.y = this.body.anchors[0].y;
 		this.body.set_start(_x, _y);
 		this.scarf.set_start(_x, _y);
+		this.rider_pos_x = this.body.anchors[0].x;
+		this.rider_pos_y = this.body.anchors[0].y;
+		this.start_point.x = this.body.anchors[0].x;
+		this.start_point.y = this.body.anchors[0].y;
+		this.recorder.index_frame(0, this.body.anchors, this.scarf.anchors);
 	}
 	public function reset() 
 	{
