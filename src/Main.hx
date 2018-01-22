@@ -8,7 +8,7 @@ import platform.CoreBase;
 
 #if android
     import platform.cores.AndroidCore;        
-#elseif (windows || linux || osx)
+#elseif (windows || linux || osx || macos)
     import platform.cores.CppCore;
 #elseif flash
     import platform.cores.FlashCore;
@@ -40,7 +40,7 @@ class Main extends Sprite
         
         #if android
             this.core = new AndroidCore();
-        #elseif (windows || linux || osx)
+        #elseif (windows || linux || osx || macos)
             this.core = new CppCore();
         #elseif (flash || air)
 			this.core = new FlashCore();
