@@ -68,8 +68,8 @@ class LRPK extends FileBase
 			this.exportBytes.writeBoolean(c.rExt);
 		}
 	}
-	override public function decode(_path:String) 
+	override public function decode(_data:ByteArray) 
 	{
-		super.decode(_path);
+		
 	}
 }
