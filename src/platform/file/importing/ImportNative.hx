@@ -12,7 +12,7 @@ import ui.inter.TextButton;
 import ui.inter.AlertBox;
 import global.Common;
 import platform.file.ImportBase;
-import platform.file.fileType.FileJSON;
+import platform.file.fileType.*;
 
 /**
  * ...
@@ -99,18 +99,42 @@ class ImportNative extends ImportBase
 			}
 		}
 		try {
-			var _locFile = File.getContent(path);
-			this.trackData = new Object();
-			this.trackData = Json.parse(_locFile);
+			var file:FileBase;
+			var _locFile;
+			var _locStringA = path.substring(path.length - 5, path.length);
+			var _locStringB = path.substring(path.length - 4, path.length);
+			
+			switch (_locStringA) {
+				case ".json" :
+					file = new FileJSON();
+					this.trackData = new Object();
+					this.trackData = Json.parse(File.getContent(path));
+					file.decode(this.trackData);
+					return;
+				case ".lrpk" :
+					file = new LRPK();
+					file.decode(File.getBytes(path));
+					return;
+				default :
+					//intentional fall through
+			}
+			switch (_locStringB) {
+				case ".sol" :
+					return;
+				case ".trk" :
+					return;
+				default :
+					return;
+			}
+			
 		} catch (_msg:String) {
 			this.visible = false;
-			this.error_alert = new AlertBox("Error! Are you sure that was a compatable JSON file?" + "\n" + "If it was, copy this error and provide a save if possible!" + "\n \n" + _msg + "\n" + this.itemWindow.currentList[FileWindow.selectedIndex], this.hide_error, "Silly Goose!");
+			this.error_alert = new AlertBox("Error! Are you sure that was a valid file?" + "\n" + "If it was, copy this error and provide a save if possible!" + "\n \n" + _msg + "\n" + this.itemWindow.currentList[FileWindow.selectedIndex], this.hide_error, "Silly Goose!");
 			Lib.current.stage.addChild(this.error_alert);
 			this.error_alert.x = (Common.stage_width * 0.5) - (this.error_alert.width * 0.5);
 			this.error_alert.y = (Common.stage_height * 0.5) - (this.error_alert.height * 0.5);
 			return;
 		}
-		file.decode(this.trackData);
 	}
 	private function hide_error() {
 		Lib.current.stage.removeChild(this.error_alert);
