@@ -118,8 +118,6 @@ class FileJSON extends FileBase
 			this.cache_lines_array(_trackData);
 		} else if (_trackData.linesArrayCompressed != null) {
 			var _locDecompressed:String = this.decompress(_trackData.linesArrayCompressed);
-			
-			trace(_locDecompressed);
 		}
 	}
 	function cache_lines_array(_trackData:Object) {
