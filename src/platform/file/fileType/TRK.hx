@@ -72,6 +72,8 @@ package platform.file.fileType;
 		[point64:line point 2]
 	}
 	[EOF]
+	
+	https://github.com/jealouscloud/linerider-advanced/blob/master/src/TrackFiles/TrackLoader.cs
  */
 class TRK extends FileBase 
 {
