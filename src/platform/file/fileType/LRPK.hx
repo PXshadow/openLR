@@ -78,6 +78,7 @@ class LRPK extends FileBase
 		pos += 4;
 		var _locBlock:String = "";
 		var _locLoop:Int = -2;
+		var _locLoopB:Int = -2;
 		while (true) {
 			if (_locBlockSafe) {
 				_locBlock = _data.getString(pos, 4);
@@ -87,31 +88,31 @@ class LRPK extends FileBase
 			} else {
 				switch (_locBlock) {
 					case BlockKeys.EOF :
+						trace("Hit End of File");
 						break;
 					case BlockKeys.start :
 						Common.track_start_x = _data.getFloat(pos);
 						pos += 4;
-						Common.track_start_x = _data.getFloat(pos);
+						Common.track_start_y = _data.getFloat(pos);
 						pos += 4;
 						_locBlockSafe = true;
+						Common.gRiderManager.set_start(Common.track_start_x, Common.track_start_y, 0);
 						continue;
 					case BlockKeys.lines :
 						if (_locLoop == -2) {
 							_locLoop = _data.getInt32(pos);
+							_locLoopB = _data.getInt32(pos);
 							pos += 4;
 						}
 						if (_locLoop >= 0) {
-							//trace(_data.getInt32(pos)); //id
-							//trace(_data.getInt32(pos + 4)); //type
-							//trace(_data.getFloat(pos + 8)); //x1
-							//trace(_data.getFloat(pos + 12)); //y1
-							//trace(_data.getFloat(pos + 16)); //x2
-							//trace(_data.getFloat(pos + 20)); //y2
-							//trace(_data.get(pos + 24)); //side
-							//trace(int_lim_to_set(_data.get(pos + 28), _data.get(pos + 32))); //extension
-							pos += 36;
+							var _locLine:LineBase = new LineBase(_data.getInt32(pos + 4), _data.getFloat(pos + 8), _data.getFloat(pos + 12), _data.getFloat(pos + 16), _data.getFloat(pos + 20), this.itb(_data.get(pos + 24)), this.int_lim_to_set(_data.get(pos + 25), _data.get(pos + 26)));
+							_locLine.set_lim(this.int_lim_to_set(_data.get(pos + 25), _data.get(pos + 26)));
+							_locLine.ID = _data.getInt32(pos);
+							Common.gGrid.cacheLine(_locLine);
+							if (_locLoop != _locLoopB) {
+								pos += 27;
+							}
 							--_locLoop;
-							trace(_locLoop);
 							continue;
 						} else {
 							_locBlockSafe = true;
@@ -121,6 +122,13 @@ class LRPK extends FileBase
 				}
 			}
 			break;
+		}
+	}
+	function itb(_v:Int):Bool {
+		if (_v == 1) {
+			return true;
+		} else {
+			return false;
 		}
 	}
 }
