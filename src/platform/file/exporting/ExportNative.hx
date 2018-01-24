@@ -208,13 +208,13 @@ class ExportNative extends ExportBase
 	}
 	function save_track() 
 	{
-		//this.track = new FileJSON();
-		//this.track.encode(this.textfield_trackName.text, this.textfield_authorName.text, this.textarea_trackDescription.text);
-		//this.flush(track.exportString);
-		
-		this.track = new LRPK();
+		this.track = new FileJSON();
 		this.track.encode(this.textfield_trackName.text, this.textfield_authorName.text, this.textarea_trackDescription.text);
-		this.flush_lrpk(track.exportBytes);
+		this.flush_json(track.exportString);
+		
+		//this.track = new LRPK();
+		//this.track.encode(this.textfield_trackName.text, this.textfield_authorName.text, this.textarea_trackDescription.text);
+		//this.flush_lrpk(track.exportBytes);
 		
 		CVar.track_name = this.textfield_trackName.text;
 		CVar.track_author = this.textfield_authorName.text;

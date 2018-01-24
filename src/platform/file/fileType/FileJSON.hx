@@ -1,5 +1,6 @@
 package platform.file.fileType;
 
+import haxe.Int64;
 import openfl.Lib;
 import openfl.utils.Function;
 import openfl.utils.Object;
@@ -21,6 +22,7 @@ import lr.nodes.Grid;
 	public var comma = ",\n";
 	public var braceOpen = "{\n";
 	public var braceClose = "},\n";
+	public var braceEnd = "}";
 	public var bracketOpen = "[\n";
 	public var bracketClose = "]\n";
 	public var start = '"startPosition": ';
@@ -56,13 +58,14 @@ class FileJSON extends FileBase
 		this.exportString += LRKeys.braceOpen;
 		this.exportString += this.start_block();
 		this.exportString += this.line_block();
+		this.exportString += LRKeys.braceEnd;
 	}
 	function start_block():String {
 		var _locString:String = "";
 		_locString += LRKeys.start;
 		_locString += LRKeys.braceOpen;
-		_locString += LRKeys.xpos + this.fts(Common.track_start_x) + LRKeys.comma;
-		_locString += LRKeys.ypos + this.fts(Common.track_start_y) + LRKeys.ret;
+		_locString += LRKeys.xpos + this.getFloatStringWithPrecision(Common.track_start_x) + LRKeys.comma;
+		_locString += LRKeys.ypos + this.getFloatStringWithPrecision(Common.track_start_y) + LRKeys.ret;
 		_locString += LRKeys.braceClose;
 		return _locString;
 	}
@@ -79,10 +82,10 @@ class FileJSON extends FileBase
 			_locString += LRKeys.braceOpen;
 			_locString += LRKeys.id + this.its(a.ID) + LRKeys.comma;
 			_locString += LRKeys.type + this.its(a.type) + LRKeys.comma;
-			_locString += LRKeys.linex1 + this.fts(a.x1) + LRKeys.comma;
-			_locString += LRKeys.liney1 + this.fts(a.y1) + LRKeys.comma;
-			_locString += LRKeys.linex2 + this.fts(a.x2) + LRKeys.comma;
-			_locString += LRKeys.liney2 + this.fts(a.y2) + LRKeys.comma;
+			_locString += LRKeys.linex1 + this.getFloatStringWithPrecision(a.x1) + LRKeys.comma;
+			_locString += LRKeys.liney1 + this.getFloatStringWithPrecision(a.y1) + LRKeys.comma;
+			_locString += LRKeys.linex2 + this.getFloatStringWithPrecision(a.x2) + LRKeys.comma;
+			_locString += LRKeys.liney2 + this.getFloatStringWithPrecision(a.y2) + LRKeys.comma;
 			_locString += LRKeys.inv + this.bts(a.inv) + LRKeys.comma;
 			_locString += LRKeys.left + this.bts(a.lExt) + LRKeys.comma;
 			_locString += LRKeys.right + this.bts(a.rExt) + LRKeys.ret;
@@ -94,8 +97,65 @@ class FileJSON extends FileBase
 	function grabNonVanillaData():String {
 		return "";
 	}
-	function fts(_v:Float):String {
-		return "";
+	private var cutOff:Int64 = 0;
+	private var decimalOffSet:Int = 1;
+	function getFloatStringWithPrecision(_v:Float):String {
+		var _locIsNegative:Bool = false;
+		if (_v % 1 == 0) {
+			return "" + _v;
+		}
+        var _locFloat64:Float = _v;
+		if (_locFloat64 < 0) {
+			_locFloat64 *= -1;
+			_locIsNegative = true;
+		}
+        var _locInt64:Int64 = Int64.fromFloat(_locFloat64);
+		var _locBuildString:String = "" + _locInt64;
+		this.cutOff = this.getCutOffValue(_locFloat64);
+		while (true) {
+			_locFloat64 *= 10;
+			_locInt64 = Int64.fromFloat(_locFloat64);
+			var tempString = "" + _locInt64;
+			_locBuildString += tempString.substring(tempString.length - 1, tempString.length);
+			if (_locFloat64 > this.cutOff.low) {
+				var sub:Int64 = (Int64.fromFloat(_locFloat64) / cutOff) * cutOff;
+				_locFloat64 -= sub.low;
+			}
+			if (_locBuildString.length >= 17) {
+				_locBuildString = this.truncate(_locBuildString);
+				var forString:String = _locBuildString.substring(0, decimalOffSet);
+				var latString:String = _locBuildString.substring(decimalOffSet, _locBuildString.length);
+				var signString:String = "";
+				if (_locIsNegative) {
+					signString = "-";
+				}
+				var returnString:String = signString + forString + "." + latString;
+				return returnString;
+			}
+		}
+    }
+	function truncate(_s:String):String {
+		var _locString:String = _s;
+		while (true) {
+			if (_locString.substring(_locString.length - 1, _locString.length) == "0") {
+				_locString = _locString.substring(0, _locString.length - 1);
+			} else {
+				return _locString;
+			}
+		}
+	}
+	function getCutOffValue(_v:Float):Int64 {
+		var mod:Int = 1;
+		this.decimalOffSet = 1;
+		while (true) {
+			if (_v / mod > 10) {
+				++decimalOffSet;
+				mod *= 10;
+				continue;
+			} else {
+				return mod;
+			}
+		}
 	}
 	function its(_v:Int) {
 		return "" + _v;
