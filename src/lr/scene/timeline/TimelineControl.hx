@@ -44,24 +44,57 @@ class TimelineControl extends Sprite
 			Toolbar.tool.set_tool(ToolBase.lastTool);
 		}
 	}
-	
 	private function preScrubSetup(e:MouseEvent):Void 
 	{
 		if (Common.gToolBase.currentTool.leftMouseIsDown) return;
-		Toolbar.tool.set_tool("None");
-		this.ticker.addEventListener(MouseEvent.MOUSE_DOWN, downActionScrubber);
-		Lib.current.stage.addEventListener(MouseEvent.MOUSE_UP, releaseActionScrubber);
-		this.ticker.addEventListener(MouseEvent.MOUSE_UP, releaseActionScrubber);
+		this.preScrub();
 	}
-	
-	private function releaseActionScrubber(e:MouseEvent):Void 
+	function preScrub() 
 	{
-		this.ticker.removeEventListener(MouseEvent.MOUSE_DOWN, downActionScrubber);
+		trace("Resetting actions");
+		Toolbar.tool.set_tool("None");
+		this.addEventListener(MouseEvent.MOUSE_DOWN, downActionScrubber);
+		Lib.current.stage.addEventListener(MouseEvent.MOUSE_UP, releaseActionOutside);
+		this.addEventListener(MouseEvent.MOUSE_UP, releaseActionInside);
+	}
+	private function releaseActionInside(e:MouseEvent):Void 
+	{
+		trace("released inside");
+		this.release();
+		this.preScrub();
+	}
+	private function releaseActionOutside(e:MouseEvent):Void 
+	{
+		this.release();
+	}
+	private function downActionScrubber(e:MouseEvent):Void 
+	{
+		Toolbar.tool.set_tool("None");
+		this.removeEventListener(MouseEvent.MOUSE_OUT, resume);
+		this.addEventListener(MouseEvent.MOUSE_OUT, this.hasRolledOut);
+		this.addEventListener(MouseEvent.MOUSE_OVER, this.hasRolledIn);
+		Lib.current.stage.addEventListener(MouseEvent.MOUSE_MOVE, scrub);
+		this.removeEventListener(MouseEvent.MOUSE_OVER, preScrubSetup);
+		this.prevX = this.mouseX;
+		if (Common.gSimManager.sim_running) {
+			Common.gSimManager.pause_sim();
+			this.ticker_pause = true;
+		}
+	}
+	function hasRolledOut(e:MouseEvent) {
+		Lib.current.stage.addEventListener(MouseEvent.MOUSE_UP, releaseActionOutside);
+	}
+	function hasRolledIn(e:MouseEvent) {
+		Lib.current.stage.removeEventListener(MouseEvent.MOUSE_UP, releaseActionOutside);
+	}
+	function release() {
+		this.removeEventListener(MouseEvent.MOUSE_OUT, this.hasRolledOut);
+		this.removeEventListener(MouseEvent.MOUSE_OVER, this.hasRolledIn);
+		this.removeEventListener(MouseEvent.MOUSE_DOWN, downActionScrubber);
 		Lib.current.stage.removeEventListener(MouseEvent.MOUSE_DOWN, downActionScrubber);
-		this.ticker.removeEventListener(MouseEvent.MOUSE_UP, releaseActionScrubber);
-		Lib.current.stage.removeEventListener(MouseEvent.MOUSE_UP, releaseActionScrubber);
-		this.ticker.addEventListener(MouseEvent.MOUSE_OVER, preScrubSetup);
-		this.ticker.addEventListener(MouseEvent.MOUSE_OUT, resume);
+		this.removeEventListener(MouseEvent.MOUSE_UP, releaseActionInside);
+		this.addEventListener(MouseEvent.MOUSE_OVER, preScrubSetup);
+		this.addEventListener(MouseEvent.MOUSE_OUT, resume);
 		Lib.current.stage.removeEventListener(MouseEvent.MOUSE_MOVE, scrub);
 		if (Common.gSimManager.paused && this.ticker_pause) {
 			Common.gSimManager.resume_sim();
@@ -69,19 +102,6 @@ class TimelineControl extends Sprite
 		} else {
 			SVar.frames_alt = SVar.frames;
 			Toolbar.tool.set_tool(ToolBase.lastTool);
-		}
-	}
-	
-	private function downActionScrubber(e:MouseEvent):Void 
-	{
-		Toolbar.tool.set_tool("None");
-		this.ticker.removeEventListener(MouseEvent.MOUSE_OUT, resume);
-		Lib.current.stage.addEventListener(MouseEvent.MOUSE_MOVE, scrub);
-		this.ticker.removeEventListener(MouseEvent.MOUSE_OVER, preScrubSetup);
-		this.prevX = this.mouseX;
-		if (Common.gSimManager.sim_running) {
-			Common.gSimManager.pause_sim();
-			this.ticker_pause = true;
 		}
 	}
 	private var prevX:Float = 0;
