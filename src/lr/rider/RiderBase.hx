@@ -214,6 +214,10 @@ class RiderBase extends Sprite
 			
 		}
 	}
+	public function reset() 
+	{
+		this.set_start(this.rider_pos_x, this.rider_pos_y);
+	}
 	public function set_start(_x:Float, _y:Float) {
 		this.body.set_start(_x, _y);
 		this.scarf.set_start(_x, _y);
@@ -222,10 +226,6 @@ class RiderBase extends Sprite
 		this.start_point.x = this.body.anchors[0].x;
 		this.start_point.y = this.body.anchors[0].y;
 		this.recorder.index_frame(0, this.body.anchors, this.scarf.anchors);
-	}
-	public function reset() 
-	{
-		//this.inject_postion(0);
 	}
 	public function inject_and_update(_frame:Int) {
 		var _loc1 = SVar.frames;

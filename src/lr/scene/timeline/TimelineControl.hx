@@ -23,6 +23,13 @@ class TimelineControl extends Sprite
 		super();
 		Common.gTimeline = this;
 		
+		this.graphics.clear();
+		this.graphics.beginFill(0xAAAAAA, 0.75);
+		this.graphics.moveTo( -15, -15);
+		this.graphics.lineTo(1295, -15);
+		this.graphics.lineTo(1295, 35);
+		this.graphics.lineTo(-15, 35);
+		
 		this.ticker = new Ticker();
 		this.addChild(this.ticker);
 		
@@ -84,12 +91,11 @@ class TimelineControl extends Sprite
 		if (curX - prevX < -4) {
 			Common.gSimManager.scrubberStepForward();
 			this.prevX = this.mouseX;
-			this.update();
 		} else if (curX - prevX > 4) {
 			Common.gSimManager.scrubberStepBack();
 			this.prevX = this.mouseX;
-			this.update();
 		}
+		this.update();
 		Common.gTextInfo.update_sim();
 	}
 	public function update() {
