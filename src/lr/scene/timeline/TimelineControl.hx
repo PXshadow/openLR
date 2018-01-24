@@ -18,7 +18,6 @@ class TimelineControl extends Sprite
 {
 	var ticker:Ticker;
 	var ticker_pause:Bool = false;
-	var slider:Slider;
 	public function new() 
 	{
 		super();
@@ -26,9 +25,6 @@ class TimelineControl extends Sprite
 		
 		this.ticker = new Ticker();
 		this.addChild(this.ticker);
-		
-		this.slider = new Slider();
-		this.addChild(this.slider);
 		
 		this.addEventListener(MouseEvent.MOUSE_OVER, preScrubSetup);
 		this.addEventListener(MouseEvent.MOUSE_OUT, resume);
@@ -98,8 +94,5 @@ class TimelineControl extends Sprite
 	}
 	public function update() {
 		this.ticker.update();
-		this.slider.update();
-		this.slider.x = (this.width * 0.5) - (this.slider.frame_length * 0.5);
-		this.slider.y = - 20;
 	}
 }
