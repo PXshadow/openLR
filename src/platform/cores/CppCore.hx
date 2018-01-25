@@ -120,7 +120,7 @@ class CppCore extends CoreBase
 		Lib.current.stage.addChild(this.timeline);
 		this.timeline.update();
 		this.timeline.x = (Lib.current.stage.stageWidth * 0.5) - (this.timeline.width * 0.5);
-		this.timeline.y = Lib.current.stage.stageHeight - this.timeline.height + 25;
+		this.timeline.y = Lib.current.stage.stageHeight - this.timeline.height + 10;
 	}
 	override public function toggleSettings_box()
 	{
@@ -230,7 +230,7 @@ class CppCore extends CoreBase
 		this.settings_box.y = 100;
 		
 		this.timeline.x = (Lib.current.stage.stageWidth * 0.5) - (this.timeline.width * 0.5);
-		this.timeline.y = Lib.current.stage.stageHeight - this.timeline.height + 25;
+		this.timeline.y = Lib.current.stage.stageHeight - this.timeline.height + 10;
 		
 		if (this.exportVisible) {
 			this.export.x = (Lib.current.stage.stageWidth * 0.5) - (this.export.width * 0.5);
