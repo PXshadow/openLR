@@ -18,6 +18,7 @@ class TimelineControl extends Sprite
 {
 	var ticker:Ticker;
 	var ticker_pause:Bool = false;
+	var isOver:Bool = false;
 	public function new() 
 	{
 		super();
@@ -32,91 +33,72 @@ class TimelineControl extends Sprite
 		
 		this.ticker = new Ticker();
 		this.addChild(this.ticker);
+		this.ticker.mouseEnabled = false;
 		
-		this.addEventListener(MouseEvent.MOUSE_OVER, preScrubSetup);
-		this.addEventListener(MouseEvent.MOUSE_OUT, resume);
+		this.addEventListener(MouseEvent.MOUSE_OVER, this.hover);
+		this.addEventListener(MouseEvent.MOUSE_OUT, this.resume);
 	}
-	
-	private function resume(e:MouseEvent):Void 
+	function hover(e:MouseEvent):Void 
 	{
 		if (Common.gToolBase.currentTool.leftMouseIsDown) return;
-		if (!Common.gSimManager.paused && !Common.gSimManager.sim_running) {
-			Toolbar.tool.set_tool(ToolBase.lastTool);
-		}
+		this.addEventListener(MouseEvent.MOUSE_DOWN, this.downAction);
+		this.disableTool();
 	}
-	private function preScrubSetup(e:MouseEvent):Void 
+	function resume(e:MouseEvent):Void 
 	{
 		if (Common.gToolBase.currentTool.leftMouseIsDown) return;
-		this.preScrub();
+		this.removeEventListener(MouseEvent.MOUSE_DOWN, this.downAction);
+		this.reenableTool();
 	}
-	function preScrub() 
+	function downAction(e:MouseEvent):Void 
 	{
-		trace("Resetting actions");
-		Toolbar.tool.set_tool("None");
-		this.addEventListener(MouseEvent.MOUSE_DOWN, downActionScrubber);
-		Lib.current.stage.addEventListener(MouseEvent.MOUSE_UP, releaseActionOutside);
-		this.addEventListener(MouseEvent.MOUSE_UP, releaseActionInside);
+		this.isOver = true;
+		this.removeEventListener(MouseEvent.MOUSE_OUT, this.resume);
+		this.addEventListener(MouseEvent.MOUSE_OVER, this.enterDown);
+		this.addEventListener(MouseEvent.MOUSE_OUT, this.leaveDown);
+		Lib.current.stage.addEventListener(MouseEvent.MOUSE_UP, this.release);
+		Lib.current.stage.addEventListener(MouseEvent.MOUSE_MOVE, this.scrub);
 	}
-	private function releaseActionInside(e:MouseEvent):Void 
+	function leaveDown(e:MouseEvent):Void 
 	{
-		trace("released inside");
-		this.release();
-		this.preScrub();
+		this.isOver = false;
 	}
-	private function releaseActionOutside(e:MouseEvent):Void 
+	function enterDown(e:MouseEvent):Void 
 	{
-		this.release();
+		this.isOver = true;
 	}
-	private function downActionScrubber(e:MouseEvent):Void 
+	function release(e:MouseEvent):Void 
 	{
-		Toolbar.tool.set_tool("None");
-		this.removeEventListener(MouseEvent.MOUSE_OUT, resume);
-		this.addEventListener(MouseEvent.MOUSE_OUT, this.hasRolledOut);
-		this.addEventListener(MouseEvent.MOUSE_OVER, this.hasRolledIn);
-		Lib.current.stage.addEventListener(MouseEvent.MOUSE_MOVE, scrub);
-		this.removeEventListener(MouseEvent.MOUSE_OVER, preScrubSetup);
-		this.prevX = this.mouseX;
-		if (Common.gSimManager.sim_running) {
-			Common.gSimManager.pause_sim();
-			this.ticker_pause = true;
-		}
-	}
-	function hasRolledOut(e:MouseEvent) {
-		Lib.current.stage.addEventListener(MouseEvent.MOUSE_UP, releaseActionOutside);
-	}
-	function hasRolledIn(e:MouseEvent) {
-		Lib.current.stage.removeEventListener(MouseEvent.MOUSE_UP, releaseActionOutside);
-	}
-	function release() {
-		this.removeEventListener(MouseEvent.MOUSE_OUT, this.hasRolledOut);
-		this.removeEventListener(MouseEvent.MOUSE_OVER, this.hasRolledIn);
-		this.removeEventListener(MouseEvent.MOUSE_DOWN, downActionScrubber);
-		Lib.current.stage.removeEventListener(MouseEvent.MOUSE_DOWN, downActionScrubber);
-		this.removeEventListener(MouseEvent.MOUSE_UP, releaseActionInside);
-		this.addEventListener(MouseEvent.MOUSE_OVER, preScrubSetup);
-		this.addEventListener(MouseEvent.MOUSE_OUT, resume);
-		Lib.current.stage.removeEventListener(MouseEvent.MOUSE_MOVE, scrub);
-		if (Common.gSimManager.paused && this.ticker_pause) {
-			Common.gSimManager.resume_sim();
-			this.ticker_pause = false;
+		Lib.current.stage.removeEventListener(MouseEvent.MOUSE_MOVE, this.scrub);
+		this.removeEventListener(MouseEvent.MOUSE_OVER, this.enterDown);
+		this.removeEventListener(MouseEvent.MOUSE_OUT, this.leaveDown);
+		this.addEventListener(MouseEvent.MOUSE_OVER, this.hover);
+		this.addEventListener(MouseEvent.MOUSE_OUT, this.resume);
+		if (this.isOver) {
+			this.addEventListener(MouseEvent.MOUSE_DOWN, this.downAction);
 		} else {
-			SVar.frames_alt = SVar.frames;
-			Toolbar.tool.set_tool(ToolBase.lastTool);
+			this.reenableTool();
 		}
 	}
-	private var prevX:Float = 0;
-	private function scrub(e:MouseEvent):Void 
+	function reenableTool() {
+		Toolbar.tool.set_tool(ToolBase.lastTool); 
+	}
+	function disableTool() {
+		Toolbar.tool.set_tool("None"); 
+	}
+	private var prevX:Float = 0; 
+	function scrub(e:MouseEvent):Void 
 	{
-		var curX:Float = this.mouseX;
-		if (curX - prevX < -4) {
-			Common.gSimManager.scrubberStepForward();
-			this.prevX = this.mouseX;
-		} else if (curX - prevX > 4) {
-			Common.gSimManager.scrubberStepBack();
-			this.prevX = this.mouseX;
-		}
-		this.update();
-		Common.gTextInfo.update_sim();
+		var curX:Float = this.mouseX; 
+		if (curX - prevX < -4) { 
+			Common.gSimManager.scrubberStepForward(); 
+			this.prevX = this.mouseX; 
+		} else if (curX - prevX > 4) { 
+			Common.gSimManager.scrubberStepBack(); 
+			this.prevX = this.mouseX; 
+		} 
+		this.update(); 
+		Common.gTextInfo.update_sim(); 
 	}
 	public function update() {
 		this.ticker.update();
