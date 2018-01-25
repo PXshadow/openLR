@@ -42,12 +42,14 @@ class TimelineControl extends Sprite
 	{
 		if (Common.gToolBase.currentTool.leftMouseIsDown) return;
 		this.addEventListener(MouseEvent.MOUSE_DOWN, this.downAction);
+		this.addEventListener(MouseEvent.RIGHT_MOUSE_DOWN, this.downActionRight);
 		this.disableTool();
 	}
 	function resume(e:MouseEvent):Void 
 	{
 		if (Common.gToolBase.currentTool.leftMouseIsDown) return;
 		this.removeEventListener(MouseEvent.MOUSE_DOWN, this.downAction);
+		this.removeEventListener(MouseEvent.RIGHT_MOUSE_DOWN, this.downActionRight);
 		this.reenableTool();
 	}
 	function downAction(e:MouseEvent):Void 
@@ -58,6 +60,15 @@ class TimelineControl extends Sprite
 		this.addEventListener(MouseEvent.MOUSE_OUT, this.leaveDown);
 		Lib.current.stage.addEventListener(MouseEvent.MOUSE_UP, this.release);
 		Lib.current.stage.addEventListener(MouseEvent.MOUSE_MOVE, this.scrub);
+	}
+	function downActionRight(e:MouseEvent):Void 
+	{
+		this.isOver = true;
+		this.removeEventListener(MouseEvent.MOUSE_OUT, this.resume);
+		this.addEventListener(MouseEvent.MOUSE_OVER, this.enterDown);
+		this.addEventListener(MouseEvent.MOUSE_OUT, this.leaveDown);
+		Lib.current.stage.addEventListener(MouseEvent.RIGHT_MOUSE_UP, this.release);
+		Lib.current.stage.addEventListener(MouseEvent.MOUSE_MOVE, this.scrubRight);
 	}
 	function leaveDown(e:MouseEvent):Void 
 	{
@@ -70,6 +81,7 @@ class TimelineControl extends Sprite
 	function release(e:MouseEvent):Void 
 	{
 		Lib.current.stage.removeEventListener(MouseEvent.MOUSE_MOVE, this.scrub);
+		Lib.current.stage.removeEventListener(MouseEvent.MOUSE_MOVE, this.scrubRight);
 		this.removeEventListener(MouseEvent.MOUSE_OVER, this.enterDown);
 		this.removeEventListener(MouseEvent.MOUSE_OUT, this.leaveDown);
 		this.addEventListener(MouseEvent.MOUSE_OVER, this.hover);
@@ -95,6 +107,28 @@ class TimelineControl extends Sprite
 			this.prevX = this.mouseX; 
 		} else if (curX - prevX > 4) { 
 			Common.gSimManager.scrubberStepBack(); 
+			this.prevX = this.mouseX; 
+		} 
+		this.update(); 
+		Common.gTextInfo.update_sim(); 
+	}
+	function scrubRight(e:MouseEvent):Void 
+	{
+		var curX:Float = this.mouseX;
+		var value:Int = Math.round(SVar.max_frames / 320);
+		if (curX - prevX < -4) {
+			if (SVar.frames + value >= SVar.max_frames) {
+				Common.gSimManager.injectRiderPosition(SVar.max_frames);
+			} else {
+				Common.gSimManager.injectRiderPosition(SVar.frames + value);
+			}
+			this.prevX = this.mouseX; 
+		} else if (curX - prevX > 4) { 
+			if (SVar.frames - value <= 0) {
+				Common.gSimManager.injectRiderPosition(0);
+			} else {
+				Common.gSimManager.injectRiderPosition(SVar.frames - value);
+			}
 			this.prevX = this.mouseX; 
 		} 
 		this.update(); 
