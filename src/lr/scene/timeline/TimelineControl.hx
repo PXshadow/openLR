@@ -115,10 +115,11 @@ class TimelineControl extends Sprite
 	function scrubRight(e:MouseEvent):Void 
 	{
 		var curX:Float = this.mouseX;
-		var value:Int = Math.round(SVar.max_frames / 320);
+		var value:Int = Math.round(SVar.max_frames / 80);
+		if (value == 0) value = 1;
 		if (curX - prevX < -4) {
 			if (SVar.frames + value >= SVar.max_frames) {
-				Common.gSimManager.injectRiderPosition(SVar.max_frames);
+				Common.gSimManager.injectRiderPosition(SVar.max_frames - 1);
 			} else {
 				Common.gSimManager.injectRiderPosition(SVar.frames + value);
 			}
