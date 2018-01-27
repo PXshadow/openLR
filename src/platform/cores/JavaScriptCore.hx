@@ -110,8 +110,8 @@ class JavaScriptCore extends CoreBase
 		this.timeline = new TimelineControl();
 		Lib.current.stage.addChild(this.timeline);
 		this.timeline.update();
-		this.timeline.x = (Lib.current.stage.stageWidth * 0.5) - (this.timeline.width * 0.5);
-		this.timeline.y = Lib.current.stage.stageHeight - this.timeline.height + 25;
+		this.timeline.x = (Lib.current.stage.stageWidth * 0.5) - (640);
+		this.timeline.y = Lib.current.stage.stageHeight - this.timeline.height;
 	}
 	override public function toggleSettings_box()
 	{
@@ -161,8 +161,8 @@ class JavaScriptCore extends CoreBase
 		this.settings_box.x = (Lib.current.stage.stageWidth * 0.5) - (this.settings_box.width * 0.5);
 		this.settings_box.y = 100;
 		
-		this.timeline.x = (Lib.current.stage.stageWidth * 0.5) - (this.timeline.width * 0.5);
-		this.timeline.y = Lib.current.stage.stageHeight - this.timeline.height + 25;
+		this.timeline.x = (Lib.current.stage.stageWidth * 0.5) - (640);
+		this.timeline.y = Lib.current.stage.stageHeight - this.timeline.height;
 		
 		Common.stage_tl = new Point(0, 0);
 		Common.stage_br = new Point(Lib.current.stage.stageWidth, Lib.current.stage.stageHeight);
