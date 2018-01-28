@@ -6,14 +6,14 @@ import openfl.display.Sprite;
 //Secondary
 import platform.CoreBase;
 
-#if android
-    import platform.cores.AndroidCore;        
+#if (android || ios)
+    import platform.cores.MobileCore;        
 #elseif (sys)
-    import platform.cores.CppCore;
+    import platform.cores.SysCore;
 #elseif flash
     import platform.cores.FlashCore;
 #elseif js
-    import platform.cores.JavaScriptCore;
+    import platform.cores.WebCore;
 #end
 
 //third party
@@ -38,14 +38,14 @@ class Main extends Sprite
         
         super();
         
-        #if android
-            this.core = new AndroidCore();
+        #if (android || ios)
+            this.core = new MobileCore();
         #elseif (sys)
-            this.core = new CppCore();
+            this.core = new SysCore();
         #elseif (flash || air)
 			this.core = new FlashCore();
         #elseif js
-            this.core = new JavaScriptCore();
+            this.core = new WebCore();
         #else
            this.traceInfo();
         #end

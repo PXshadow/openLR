@@ -5,13 +5,14 @@ import openfl.display.Sprite;
 import openfl.events.Event;
 import openfl.geom.Point;
 import platform.CoreBase;
+import platform.file.exporting.ExportNative;
 
 //third party
 
 //openLR
+import platform.titlecards.TitleCardCPP;
 import platform.control.Desktop;
-import platform.titlecards.TitleCardJS;
-import platform.file.Screenshot;
+import platform.file.importing.ImportNative;
 import global.Common;
 import global.CVar;
 import global.SVar;
@@ -27,20 +28,18 @@ import lr.scene.timeline.TimelineControl;
  * ...
  * @author Kaelan Evans
  */
-class JavaScriptCore extends CoreBase
+class SysCore extends CoreBase
 {
-	
 	public function new() 
 	{
 		super();
 		
 		Common.gCode = this; //This class
+			
+		this.title_card = new TitleCardCPP();
 		
-		this.title_card = new TitleCardJS();
-		Lib.current.stage.addChild(this.title_card);
-		
-		this.title_card.x = (Lib.current.stage.stageWidth / 2) - (this.title_card.width / 2);
-		this.title_card.y = (Lib.current.stage.stageHeight / 2) - (this.title_card.height / 2);
+		this.title_card.x = 0;
+		this.title_card.y = 0;
 	}
 	override public function start(_load:Bool = false) {
 		this.init_env();
@@ -49,9 +48,15 @@ class JavaScriptCore extends CoreBase
 		if (_load) {
 			this.toggle_Loader();
 		}
-		Lib.current.stage.removeChild(this.title_card);
 		this.controlScheme = new Desktop();
-		Lib.current.stage.showDefaultContextMenu = false;
+		
+		Lib.current.stage.application.onExit.add (function (exitCode) {
+			//Autosave code here
+		});
+	}
+	function resize_title(e:Event):Void 
+	{
+		this.title_card.render();
 	}
 	public function init_env() //Initialize enviornment
 	{
@@ -60,7 +65,10 @@ class JavaScriptCore extends CoreBase
 		Common.stage_height = Lib.current.stage.stageHeight;
 		Common.stage_width = Lib.current.stage.stageWidth;
 	}
-	
+	override public function silent_load (_path:String) {
+		this.importing = new ImportNative();
+		this.importing.load(_path);
+	}
 	public function init_track() //display minimum items
 	{
 		this.visContainer = new Sprite();
@@ -111,7 +119,7 @@ class JavaScriptCore extends CoreBase
 		Lib.current.stage.addChild(this.timeline);
 		this.timeline.update();
 		this.timeline.x = (Lib.current.stage.stageWidth * 0.5) - (640);
-		this.timeline.y = Lib.current.stage.stageHeight - this.timeline.height;
+		this.timeline.y = Lib.current.stage.stageHeight - 60;
 	}
 	override public function toggleSettings_box()
 	{
@@ -123,6 +131,7 @@ class JavaScriptCore extends CoreBase
 			this.textInfo.visible = false;
 			this.timeline.visible = false;
 			this.settings_box.update();
+			Toolbar.tool.set_tool("None");
 		} else {
 			this.settings_box.visible = false;
 			this.track.visible = true;
@@ -134,10 +143,68 @@ class JavaScriptCore extends CoreBase
 		}
 	}
 	override public function toggle_save_menu() {
-
+		if (this.exportVisible == false) {
+			this.exportVisible = true;
+			
+			this.toolBar.mouseChildren = false;
+			this.toolBar.mouseEnabled = false;
+			this.timeline.mouseChildren = false;
+			this.timeline.mouseEnabled = false;
+			Lib.current.stage.mouseEnabled = false;
+			
+			this.export = new ExportNative();
+			Lib.current.stage.addChild(this.export);
+			
+			this.align();
+			
+			Toolbar.tool.set_tool("None");
+		} else {
+			this.exportVisible = false;
+			
+			this.toolBar.mouseChildren = true;
+			this.toolBar.mouseEnabled = true;
+			this.timeline.mouseChildren = true;
+			this.timeline.mouseEnabled = true;
+			Lib.current.stage.mouseEnabled = true;
+			
+			Lib.current.stage.removeChild(this.export);
+			
+			this.align();
+			
+			Toolbar.tool.set_tool(ToolBase.lastTool);
+		}
 	}
 	override public function toggle_Loader() {
-
+		if (this.importingVisible == false) {
+			this.importingVisible = true;
+			
+			this.toolBar.mouseChildren = false;
+			this.toolBar.mouseEnabled = false;
+			this.timeline.mouseChildren = false;
+			this.timeline.mouseEnabled = false;
+			Lib.current.stage.mouseEnabled = false;
+			
+			this.importing = new ImportNative();
+			Lib.current.stage.addChild(this.importing);
+			
+			this.align();
+			
+			Toolbar.tool.set_tool("None");
+		} else {
+			this.importingVisible = false;
+			
+			this.toolBar.mouseChildren = true;
+			this.toolBar.mouseEnabled = true;
+			this.timeline.mouseChildren = true;
+			this.timeline.mouseEnabled = true;
+			Lib.current.stage.mouseEnabled = true;
+			
+			Lib.current.stage.removeChild(this.importing);
+			
+			this.align();
+			
+			Toolbar.tool.set_tool(ToolBase.lastTool);
+		}
 	}
 	private function resize(e:Event):Void
 	{
@@ -162,7 +229,12 @@ class JavaScriptCore extends CoreBase
 		this.settings_box.y = 100;
 		
 		this.timeline.x = (Lib.current.stage.stageWidth * 0.5) - (640);
-		this.timeline.y = Lib.current.stage.stageHeight - this.timeline.height;
+		this.timeline.y = Lib.current.stage.stageHeight - 60;
+		
+		if (this.exportVisible) {
+			this.export.x = (Lib.current.stage.stageWidth * 0.5) - (this.export.width * 0.5);
+			this.export.y = (Lib.current.stage.stageHeight * 0.5) - (this.export.height * 0.5);
+		}
 		
 		Common.stage_tl = new Point(0, 0);
 		Common.stage_br = new Point(Lib.current.stage.stageWidth, Lib.current.stage.stageHeight);
@@ -181,13 +253,10 @@ class JavaScriptCore extends CoreBase
 		this.track.y = Lib.current.stage.stageHeight * 0.5;
 	}
 	override public function take_screencap() {
-		this.toolBar.visible = false;
-		this.timeline.visible = false;
-		var sc:Screenshot = new Screenshot(this.visContainer);
+
 	}
 	override public function end_screencap() {
-		this.toolBar.visible = true;
-		this.timeline.visible = true;
+		
 	}
 	
 }

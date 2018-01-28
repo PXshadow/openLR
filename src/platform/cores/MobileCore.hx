@@ -8,12 +8,12 @@ import platform.CoreBase;
  * ...
  * @author Kaelan Evans
  */
-class AndroidCore extends CoreBase 
+class MobileCore extends CoreBase 
 {
 
-	public function new(_stage:Stage) 
+	public function new() 
 	{
-		super(_stage);
+		super();
 		
 	}
 	
