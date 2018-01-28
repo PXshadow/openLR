@@ -47,15 +47,7 @@ class Main extends Sprite
         #elseif js
             this.core = new WebCore();
         #else
-           this.traceInfo();
+           trace("Deployment target not supported");
         #end
     }
-	function traceInfo() 
-	{
-		#if(!js)
-			trace("Platform not supported");
-			trace(Sys.systemName()); //Dumps the conditional name the compiler should expect. Add this to the above conditionals for desired/custom core
-			trace(Sys.environment()); //idk might be useful who knows.
-		#end
-	}
 }
