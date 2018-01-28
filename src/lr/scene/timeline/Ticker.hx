@@ -54,19 +54,14 @@ class Tick extends Shape
 		this.graphics.moveTo(0, 0);
 		if (this.frame < 0) {
 			this.graphics.lineStyle(4, 0, 0.1);
-			this.graphics.lineTo(0, 25);
 		} else if (this.frame > SVar.max_frames) {
 			this.graphics.lineStyle(4, 0, 0.5);
-			this.graphics.lineTo(0, 25);
 		} else if (this.frame == SVar.frames) {
 			this.graphics.lineStyle(4, 0x0066FF, 1);
-			this.graphics.lineTo(0, 25);
 		} else if (this.frame == SVar.pause_frame && SVar.pause_frame != -1) {
 			this.graphics.lineStyle(4, 0x00CC00, 1);
-			this.graphics.lineTo(0, 25);
 		} else if (this.frame == SVar.flagged_frame && SVar.flagged_frame != -1) {
 			this.graphics.lineStyle(4, 0xCC0000, 1);
-			this.graphics.lineTo(0, 25);
 		}
 		else {
 			if (this.frame % 10 == 1) {
@@ -74,7 +69,7 @@ class Tick extends Shape
 			} else { 
 				this.graphics.lineStyle(4, 0, 0.4);
 			}
-			this.graphics.lineTo(0, 25);
 		}
+		this.graphics.lineTo(0, 25);
 	}
 }
