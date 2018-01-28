@@ -25,6 +25,7 @@ import global.Common;
  * @author Kaelan Evans
  */
 @:enum abstract FileType(Int) from Int to Int {
+	public var cancel:Int = -2;
 	public var unknown:Int = -1;
 	public var New:Int = 0;
 	public var Directory:Int = 1;
@@ -34,6 +35,8 @@ import global.Common;
 }
 class SaveBrowser extends Sprite
 {
+	var fileLoader:ImportBase;
+	
 	var textField_title:TextField;
 	var textField_versionInfo:TextField;
 	
@@ -125,6 +128,8 @@ class SaveBrowser extends Sprite
 				this.open_dir.visible = true;
 			case FileType.New :
 				this.init_env();
+			case FileType.cancel :
+				Common.gCode.toggle_Loader();
 		}
 	}
 	public function render() {
@@ -151,7 +156,8 @@ class SaveBrowser extends Sprite
 		}
 		this.rootDirectory.reverse();
 		this.iconArray = new Array<FileItemIcon>();
-		this.iconArray.push(new FileItemIcon(0, FileType.New, "Key:NewTrack", "null"));
+		if (Common.gTrack == null) this.iconArray.push(new FileItemIcon(0, FileType.New, "Key:NewTrack", "null"));
+		else this.iconArray.push(new FileItemIcon(0, FileType.cancel, "Key:CancelLoad", "null"));
 		var itemCount:Int = 1;
 		for (a in this.rootDirectory) {
 			var b = _locSaveDirectory + "/" + a;
@@ -209,14 +215,23 @@ class SaveBrowser extends Sprite
 	}
 	function init_env() 
 	{
-		Common.gCode.start();
+		if (Common.gTrack == null) Common.gCode.start();
+		else Common.gTrack.clear_stage();
 		Lib.current.stage.removeChild(this);
 	}
 	function invoke_loader() {
-		Common.gCode.start();
+		if (Common.gTrack == null) Common.gCode.start();
+		else Common.gTrack.clear_stage();
 		Lib.current.stage.removeChild(this);
-		Common.gCode.silent_load(this.currentSelectedPath);
 		Common.gRiderManager.set_single_rider_start(Common.track_start_x, Common.track_start_y);
+		Common.gTrack.visible = true;
+		Common.gToolbar.visible = true;
+		Common.gTimeline.visible = true;
+		
+		#if (sys)
+			this.fileLoader = new ImportNative();
+			this.fileLoader.load(this.currentSelectedPath);
+		#end
 	}
 	function update_directory() {
 		
@@ -247,6 +262,7 @@ class FileItemIcon extends Sprite
 		swfLib.onComplete(this.attachClips);
 		
 		if (this.itemName == "Key:NewTrack" && this.path == "null") return;
+		if (this.itemName == "Key:CancelLoad" && this.path == "null") return;
 		this.itemNameField = new TextField();
 		this.itemNameField.text = this.itemName;
 		this.addChild(this.itemNameField); 
@@ -262,6 +278,8 @@ class FileItemIcon extends Sprite
 				this.icon = lib.getMovieClip("iconUNKNOWN");
 			case FileType.New:
 				this.icon = lib.getMovieClip("iconNew");
+			case FileType.cancel :
+				this.icon = lib.getMovieClip("iconCancel");
 			case FileType.JSON:
 				this.icon = lib.getMovieClip("iconJSON");
 			case FileType.TRK:

@@ -42,45 +42,9 @@ class ImportNative extends ImportBase
 	public function new() 
 	{
 		super();
-		
-		Common.gImport = this;
-		
-		this.loadButton = new TextButton("Load", this.load, ButtonSize.b120x30);
-		this.addChild(this.loadButton);
-		this.loadButton.y = 600;
-		
-		if (!FileSystem.isDirectory(System.documentsDirectory + "/openLR/saves")) {
-			FileSystem.createDirectory(System.documentsDirectory + "/openLR/saves");
-		}
-		this.rootDirectoryList = FileSystem.readDirectory(System.documentsDirectory + "/openLR/saves");
-		this.subFolderDirectoryList = new Map();
-		for (a in this.rootDirectoryList) {
-			var _locNameLength:Int= a.length;
-			var _locExtensionJSON:String = a.substring(_locNameLength - 5, _locNameLength);
-			if (_locExtensionJSON != ".json") {
-				this.subFolderDirectoryList[a] = new Array();
-				this.subFolderDirectoryList[a] = FileSystem.readDirectory(System.documentsDirectory + "/openLR/saves/" + a);
-			}
-		}
-		this.itemWindow = new FileWindow(this.rootDirectoryList);
-		this.addChild(this.itemWindow);
-	}
-	override public function updateList(_path:String, _isRoot:Bool = false) 
-	{
-		this.removeChild(this.itemWindow);
-		if (!_isRoot) {
-			this.subDirectory = _path;
-			this.inSubDir = true;
-			this.itemWindow = new FileWindow(this.subFolderDirectoryList[_path]);
-		} else {
-			this.inSubDir = false;
-			this.itemWindow = new FileWindow(this.rootDirectoryList);
-		}
-		this.addChild(this.itemWindow);
 	}
 	override public function load(_path:String = null) 
 	{
-		var file:FileJSON = new FileJSON();
 		var path:String;
 		if (_path != null) {
 			path = _path;

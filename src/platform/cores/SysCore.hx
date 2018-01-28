@@ -168,27 +168,28 @@ class SysCore extends CoreBase
 	}
 	override public function toggle_Loader() {
 		if (this.importingVisible == false) {
+			
 			this.importingVisible = true;
 			
-			this.toolBar.mouseChildren = false;
-			this.toolBar.mouseEnabled = false;
-			this.timeline.mouseChildren = false;
-			this.timeline.mouseEnabled = false;
-			Lib.current.stage.mouseEnabled = false;
+			this.track.visible = false;
+			this.toolBar.visible = false;
+			this.timeline.visible = false;
+			
+			this.newStartLoader = new SaveBrowser();
+			Lib.current.stage.addChild(this.newStartLoader);
 			
 			this.align();
 			
 			Toolbar.tool.set_tool("None");
 		} else {
+			
 			this.importingVisible = false;
 			
-			this.toolBar.mouseChildren = true;
-			this.toolBar.mouseEnabled = true;
-			this.timeline.mouseChildren = true;
-			this.timeline.mouseEnabled = true;
-			Lib.current.stage.mouseEnabled = true;
+			this.track.visible = true;
+			this.toolBar.visible = true;
+			this.timeline.visible = true;
 			
-			Lib.current.stage.removeChild(this.importing);
+			Lib.current.stage.removeChild(this.newStartLoader);
 			
 			this.align();
 			

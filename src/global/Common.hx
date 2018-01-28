@@ -58,7 +58,6 @@ class Common
 	public static var gCamera:RiderCamera;
 	public static var gTimeline:TimelineControl;
 	public static var gImport:ImportBase;
-	public static var gTitleCard:TitleCardBase;
 	
 	public static var line_minLength:Int = 14;
 	public static var line_type:Int = 0;

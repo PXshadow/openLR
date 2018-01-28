@@ -74,7 +74,4 @@ class CoreBase extends Sprite
 	public function align() {
 
 	}
-	public function silent_load (_path:String) {
-		
-	}
 }
