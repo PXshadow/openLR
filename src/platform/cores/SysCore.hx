@@ -10,9 +10,8 @@ import platform.file.exporting.ExportNative;
 //third party
 
 //openLR
-import platform.titlecards.TitleCardCPP;
 import platform.control.Desktop;
-import platform.file.importing.ImportNative;
+import platform.file.SaveBrowser;
 import global.Common;
 import global.CVar;
 import global.SVar;
@@ -36,18 +35,15 @@ class SysCore extends CoreBase
 		
 		Common.gCode = this; //This class
 			
-		this.title_card = new TitleCardCPP();
+		this.newStartLoader = new SaveBrowser();
 		
-		this.title_card.x = 0;
-		this.title_card.y = 0;
+		this.newStartLoader.x = 0;
+		this.newStartLoader.y = 0;
 	}
 	override public function start(_load:Bool = false) {
 		this.init_env();
 		this.init_track();
 		this.visContainer.visible = true;
-		if (_load) {
-			this.toggle_Loader();
-		}
 		this.controlScheme = new Desktop();
 		
 		Lib.current.stage.application.onExit.add (function (exitCode) {
@@ -56,7 +52,7 @@ class SysCore extends CoreBase
 	}
 	function resize_title(e:Event):Void 
 	{
-		this.title_card.render();
+		this.newStartLoader.render();
 	}
 	public function init_env() //Initialize enviornment
 	{
@@ -64,10 +60,6 @@ class SysCore extends CoreBase
 		
 		Common.stage_height = Lib.current.stage.stageHeight;
 		Common.stage_width = Lib.current.stage.stageWidth;
-	}
-	override public function silent_load (_path:String) {
-		this.importing = new ImportNative();
-		this.importing.load(_path);
 	}
 	public function init_track() //display minimum items
 	{
@@ -183,9 +175,6 @@ class SysCore extends CoreBase
 			this.timeline.mouseChildren = false;
 			this.timeline.mouseEnabled = false;
 			Lib.current.stage.mouseEnabled = false;
-			
-			this.importing = new ImportNative();
-			Lib.current.stage.addChild(this.importing);
 			
 			this.align();
 			

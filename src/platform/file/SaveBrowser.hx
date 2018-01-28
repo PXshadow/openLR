@@ -1,4 +1,4 @@
-package platform.titlecards;
+package platform.file;
 
 //Primary
 import lime.system.System;
@@ -14,12 +14,11 @@ import openfl.utils.AssetLibrary;
 import sys.FileSystem;
 
 //secondary
-import platform.TitleCardBase;
+import platform.file.importing.ImportNative;
 import ui.inter.TextButton;
 import global.Common;
 
 //third party
-
 
 /**
  * ...
@@ -33,7 +32,7 @@ import global.Common;
 	public var TRK:Int = 3;
 	public var SOL:Int = 4;
 }
-class TitleCardCPP extends TitleCardBase
+class SaveBrowser extends Sprite
 {
 	var textField_title:TextField;
 	var textField_versionInfo:TextField;
@@ -58,7 +57,7 @@ class TitleCardCPP extends TitleCardBase
 	{
 		super();
 		
-		Common.gTitleCard = this;
+		Common.gSaveBrowser = this;
 		
 		this.render();
 		
@@ -102,11 +101,9 @@ class TitleCardCPP extends TitleCardBase
 		
 		Lib.current.stage.addChild(this);
 		
-		this.add_version_specs();
-		
 		this.parseDirectory();
 	}
-	override public function display_info(_fileName:String, _fileType:Int, _filePath:String) {
+	public function display_info(_fileName:String, _fileType:Int, _filePath:String) {
 		this.textField_fileName.text = _fileName;
 		this.textField_filePath.text = _filePath;
 		this.currentSelectedPath = _filePath;
@@ -130,7 +127,7 @@ class TitleCardCPP extends TitleCardBase
 				this.init_env();
 		}
 	}
-	override public function render() {
+	public function render() {
 		this.graphics.clear();
 		this.graphics.beginFill(0xFFFFFF, 1);
 		this.graphics.moveTo(0, 0);
@@ -224,6 +221,7 @@ class TitleCardCPP extends TitleCardBase
 	function update_directory() {
 		
 	}
+	
 }
 class FileItemIcon extends Sprite
 {
@@ -279,6 +277,6 @@ class FileItemIcon extends Sprite
 	}
 	function single(e:MouseEvent):Void 
 	{
-		Common.gTitleCard.display_info(this.itemName, this.fileType, this.path);
+		Common.gSaveBrowser.display_info(this.itemName, this.fileType, this.path);
 	}
 }

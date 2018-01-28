@@ -6,7 +6,6 @@ package platform;
 	import flash.display.Sprite;
 #end
 
-import platform.TitleCardBase;
 import platform.ControlBase;
 import global.engine.RiderManager;
 import lr.scene.TextInfo;
@@ -16,6 +15,7 @@ import lr.tool.Toolbar;
 import lr.scene.timeline.TimelineControl;
 import platform.file.ExportBase;
 import platform.file.ImportBase;
+import platform.file.SaveBrowser;
 
 /**
  * ...
@@ -30,7 +30,7 @@ class CoreBase extends Sprite
 	private var riders:RiderManager;
 	private var toolBar:Toolbar;
 	private var textInfo:TextInfo;
-	private var title_card:TitleCardBase;
+	private var newStartLoader:SaveBrowser;
 	private var timeline:TimelineControl;
 	private var settings_box:SettingsMenu;
 	private var export:ExportBase;
