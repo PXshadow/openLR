@@ -91,7 +91,6 @@ class ImportNative extends ImportBase
 			}
 			
 		} catch (_msg:String) {
-			this.visible = false;
 			this.error_alert = new AlertBox("Error! Are you sure that was a valid file?" + "\n" + "If it was, copy this error and provide a save if possible!" + "\n \n" + _msg + "\n" + this.itemWindow.currentList[FileWindow.selectedIndex], this.hide_error, "Silly Goose!");
 			Lib.current.stage.addChild(this.error_alert);
 			this.error_alert.x = (Common.stage_width * 0.5) - (this.error_alert.width * 0.5);
@@ -101,6 +100,5 @@ class ImportNative extends ImportBase
 	}
 	private function hide_error() {
 		Lib.current.stage.removeChild(this.error_alert);
-		this.visible = true;
 	}
 }
