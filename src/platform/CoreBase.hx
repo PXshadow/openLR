@@ -38,8 +38,7 @@ class CoreBase extends Sprite
 	private var importing:ImportBase;
 	private var importingVisible = false;
 	
-	public function new() 
-	{
+	public function new() {
 		super();
 	}
 	public function return_to_origin(_x:Float = 0, _y:Float = 0) {
