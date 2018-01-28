@@ -8,6 +8,7 @@ import openfl.text.TextFormatAlign;
 import openfl.display.Sprite;
 import platform.TitleCardBase;
 import platform.file.ImportBase;
+import platform.file.SaveBrowser;
 
 import global.engine.RiderManager;
 import global.engine.SimManager;
@@ -45,6 +46,7 @@ class Common
 	public static var version:String = "0.0.5";
 	
 	public static var gCode:CoreBase;
+	public static var gSaveBrowser:SaveBrowser;
 	public static var gTrack:Track;
 	public static var gRiderManager:RiderManager;
 	public static var gVisContainer:Sprite;
