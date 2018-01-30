@@ -7,7 +7,6 @@ import sys.io.File;
 import lime.system.System;
 import haxe.Json;
 
-import ui.inter.FileWindow;
 import ui.inter.TextButton;
 import ui.inter.AlertBox;
 import global.Common;
@@ -35,8 +34,6 @@ class ImportNative extends ImportBase
 	
 	var loadButton:TextButton;
 	
-	var itemWindow:FileWindow;
-	
 	var trackData:Object;
 	var error_alert:AlertBox;
 	public function new() 
@@ -45,38 +42,21 @@ class ImportNative extends ImportBase
 	}
 	override public function load(_path:String = null) 
 	{
-		var path:String;
-		if (_path != null) {
-			path = _path;
-			if (FileSystem.isDirectory(_path)) {
-				var tempArray = FileSystem.readDirectory(path);
-				path = _path + "/" + tempArray.pop();
-			}
-		} else if (this.inSubDir) {
-			path = System.documentsDirectory + "/openLR/saves/" + this.subDirectory + "/" + this.subFolderDirectoryList[this.subDirectory][FileWindow.selectedIndex];
-		} else {
-			if (FileSystem.isDirectory(System.documentsDirectory + "/openLR/saves/" + this.rootDirectoryList[FileWindow.selectedIndex])) {
-				var tempArray = FileSystem.readDirectory(System.documentsDirectory + "/openLR/saves/" + this.rootDirectoryList[FileWindow.selectedIndex]);
-				path = System.documentsDirectory + "/openLR/saves/" + this.rootDirectoryList[FileWindow.selectedIndex] + "/" + tempArray.pop();
-			} else {
-				path = System.documentsDirectory + "/openLR/saves/" + this.rootDirectoryList[FileWindow.selectedIndex];
-			}
-		}
 		try {
 			var file:FileBase;
-			var _locStringA = path.substring(path.length - 5, path.length);
-			var _locStringB = path.substring(path.length - 4, path.length);
+			var _locStringA = _path.substring(_path.length - 5, _path.length);
+			var _locStringB = _path.substring(_path.length - 4, _path.length);
 			
 			switch (_locStringA) {
 				case ".json" :
 					file = new FileJSON();
 					this.trackData = new Object();
-					this.trackData = Json.parse(File.getContent(path));
+					this.trackData = Json.parse(File.getContent(_path));
 					file.json_decode(this.trackData);
 					return;
 				case ".lrpk" :
 					file = new LRPK();
-					file.lrpk_decode(File.getBytes(path));
+					file.lrpk_decode(File.getBytes(_path));
 					return;
 				default :
 					//intentional fall through
@@ -91,7 +71,7 @@ class ImportNative extends ImportBase
 			}
 			
 		} catch (_msg:String) {
-			this.error_alert = new AlertBox("Error! Are you sure that was a valid file?" + "\n" + "If it was, copy this error and provide a save if possible!" + "\n \n" + _msg + "\n" + this.itemWindow.currentList[FileWindow.selectedIndex], this.hide_error, "Silly Goose!");
+			this.error_alert = new AlertBox("Error! Are you sure that was a valid file?" + "\n" + "If it was, copy this error and provide a save if possible!" + "\n \n" + _msg + "\n" + _path, this.hide_error, "Silly Goose!");
 			Lib.current.stage.addChild(this.error_alert);
 			this.error_alert.x = (Common.stage_width * 0.5) - (this.error_alert.width * 0.5);
 			this.error_alert.y = (Common.stage_height * 0.5) - (this.error_alert.height * 0.5);
