@@ -66,7 +66,7 @@ class Common
 	public static var line_type:Int = 0;
 	
 	public static var track_scale:Float;
-	public static var track_scale_max:Float = 75;
+	public static var track_scale_max:Float = 35;
 	public static var track_scale_min:Float = 0.5;
 	public static var track_start_x:Float = 0;
 	public static var track_start_y:Float = 0;
