@@ -65,7 +65,7 @@ class CoreBase extends Sprite
 	public function end_screencap() {
 		
 	}
-	public function start(_load:Bool = false) {
+	public function start() {
 		
 	}
 	public function setScale() {

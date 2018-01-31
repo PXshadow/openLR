@@ -40,7 +40,7 @@ class SysCore extends CoreBase
 		this.newStartLoader.x = 0;
 		this.newStartLoader.y = 0;
 	}
-	override public function start(_load:Bool = false) {
+	override public function start() {
 		this.init_env();
 		this.init_track();
 		this.visContainer.visible = true;
