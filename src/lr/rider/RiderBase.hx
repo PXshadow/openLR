@@ -225,6 +225,7 @@ class RiderBase extends Sprite
 		this.rider_pos_y = this.body.anchors[0].y;
 		this.start_point.x = this.body.anchors[0].x;
 		this.start_point.y = this.body.anchors[0].y;
+		RiderManager.crash[this.riderID] = false;
 		this.recorder.index_frame(0, this.body.anchors, this.scarf.anchors);
 	}
 	public function inject_and_update(_frame:Int) {
