@@ -1,6 +1,7 @@
 package global;
 
 import openfl.Assets;
+import openfl.utils.AssetLibrary;
 import openfl.utils.Object;
 import openfl.geom.Point;
 import openfl.text.TextFormat;
@@ -43,6 +44,8 @@ class Common
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	public static var version:String = "0.0.5";
+	
+	public static var OLR_Assets:AssetLibrary;
 	
 	public static var gCode:CoreBase;
 	public static var gSaveBrowser:SaveBrowser;

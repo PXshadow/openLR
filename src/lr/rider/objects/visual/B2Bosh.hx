@@ -61,18 +61,10 @@ class B2Bosh extends VisBase
 	private function getAssets() {
 	
 		#if (!flash)
-			//.bundle files are used to preserve the resolution quality of the rider when scaling for non FL targets
-			var swfLibSled = AssetLibrary.loadFromFile("swf/sled.bundle");
-			swfLibSled.onComplete(sledClip);
-		
-			var swfLibBody = AssetLibrary.loadFromFile("swf/bosh/body.bundle");
-			swfLibBody.onComplete(bodyClip);
-		
-			var swfLibLeg = AssetLibrary.loadFromFile("swf/bosh/leg.bundle");
-			swfLibLeg.onComplete(legClip);
-		
-			var swfLibArm = AssetLibrary.loadFromFile("swf/bosh/arm.bundle");
-			swfLibArm.onComplete(armClip);
+			this.sledClip(Common.OLR_Assets);
+			this.bodyClip(Common.OLR_Assets);
+			this.legClip(Common.OLR_Assets);
+			this.armClip(Common.OLR_Assets);
 		#elseif (flash)
 			this.sledClip();
 			this.bodyClip();
@@ -84,7 +76,7 @@ class B2Bosh extends VisBase
 	{
 		var innerClip:Sprite;
 		#if (!flash)
-			innerClip = lib.getMovieClip("");
+			innerClip = lib.getMovieClip("olr_body");
 		#elseif (flash)
 			innerClip = Assets.getMovieClip("swf-library:olr_body");
 		#end
@@ -98,7 +90,7 @@ class B2Bosh extends VisBase
 	{
 		var innerClip:Sprite;
 		#if (!flash)
-			innerClip = lib.getMovieClip("");
+			innerClip = lib.getMovieClip("olr_sled");
 		#elseif (flash)
 			innerClip = Assets.getMovieClip("swf-library:olr_sled");
 		#end
@@ -114,8 +106,8 @@ class B2Bosh extends VisBase
 		var innerClipA:Sprite;
 		var innerClipB:Sprite;
 		#if (!flash)
-			innerClipA = lib.getMovieClip("");
-			innerClipB = lib.getMovieClip("");
+			innerClipA = lib.getMovieClip("olr_leg");
+			innerClipB = lib.getMovieClip("olr_leg");
 		#elseif (flash)
 			innerClipA = Assets.getMovieClip("swf-library:olr_leg");
 			innerClipB = Assets.getMovieClip("swf-library:olr_leg");
@@ -137,8 +129,8 @@ class B2Bosh extends VisBase
 		var innerClipA:Sprite;
 		var innerClipB:Sprite;
 		#if (!flash)
-			innerClipA = lib.getMovieClip("");
-			innerClipB = lib.getMovieClip("");
+			innerClipA = lib.getMovieClip("olr_arm");
+			innerClipB = lib.getMovieClip("olr_arm");
 		#elseif (flash)
 			innerClipA = Assets.getMovieClip("swf-library:olr_arm");
 			innerClipB = Assets.getMovieClip("swf-library:olr_arm");

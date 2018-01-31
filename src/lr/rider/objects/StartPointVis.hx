@@ -10,6 +10,8 @@ import openfl.display.Sprite;
 
 import lr.rider.RiderBase;
 
+import global.Common;
+
 /**
  * ...
  * @author Kaelan Evans
@@ -31,13 +33,8 @@ class StartPointVis extends Sprite
 	#if (!flash)
 		function loadAsset() 
 		{
-			var swfclip = AssetLibrary.loadFromFile("swf/start.bundle");
-			swfclip.onComplete(this.attach);
-		}
-		function attach(lib:AssetLibrary) 
-		{
 			var innerClip:Sprite;
-			innerClip = lib.getMovieClip("");
+			innerClip = Common.OLR_Assets.getMovieClip("start_olr");
 			innerClip.scaleX = innerClip.scaleY *= 0.5;
 			innerClip.x = innerClip.y = ( -9.2 / 2);
 			this.clip = new Sprite();

@@ -33,9 +33,9 @@ import lr.tool.IconButton;
 	public var flag:String = "flag";
 	public var file:String = "file";
 	public var settings:String = "settings";
-	public var swBlue:String = "sBlue";
-	public var swRed:String = "sRed";
-	public var swGreen:String = "sGreen";
+	public var swBlue:String = "blue";
+	public var swRed:String = "red";
+	public var swGreen:String = "green";
 }
 class IconBase extends Sprite
 {

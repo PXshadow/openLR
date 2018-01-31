@@ -1,7 +1,6 @@
 package lr.tool;
 
 #if (!flash)
-	import openfl.utils.AssetLibrary;
 	import openfl.display.SimpleButton;
 #else
 	import openfl.Assets;
@@ -11,6 +10,7 @@ package lr.tool;
 #end
 	
 import lr.tool.IconBase;
+import global.Common;
 
 /**
  * ...
@@ -24,24 +24,18 @@ class IconButton extends SimpleButton
 		super();
 		
 		#if (!flash)
-			var swfLib = AssetLibrary.loadFromFile("swf/ui/icons/" + _icon + ".bundle");
-			swfLib.onComplete(this.attachClips);
-			swfLib.onError(this.iconFailed);
+			this.attachClip(_icon);
 		#else
 			this.attachFlashClips(_icon);
 		#end
 	}
 	#if (!flash)
-		function iconFailed(lib:AssetLibrary) 
+		function attachClip(_name:String) 
 		{
-			trace("failed Icon");
-		}
-		function attachClips(lib:AssetLibrary) 
-		{
-			this.upState = lib.getMovieClip("up");
-			this.hitTestState = lib.getMovieClip("up");
-			this.overState = lib.getMovieClip("over");
-			this.downState = lib.getMovieClip("down");
+			this.upState = Common.OLR_Assets.getMovieClip("up_" + _name);
+			this.hitTestState = Common.OLR_Assets.getMovieClip("up_" + _name);
+			this.overState = Common.OLR_Assets.getMovieClip("over_" + _name);
+			this.downState = Common.OLR_Assets.getMovieClip("down_" + _name);
 		}
 	#elseif (flash)
 		function attachFlashClips(_object:String) 

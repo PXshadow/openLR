@@ -4,12 +4,14 @@ import openfl.Lib;
 import openfl.display.Sprite;
 import openfl.events.Event;
 import openfl.geom.Point;
-import platform.CoreBase;
-import platform.file.exporting.ExportNative;
+import openfl.utils.AssetLibrary;
+import sys.FileSystem;
 
 //third party
 
 //openLR
+import platform.CoreBase;
+import platform.file.exporting.ExportNative;
 import platform.control.Desktop;
 import platform.file.SaveBrowser;
 import global.Common;
@@ -29,12 +31,21 @@ import lr.scene.timeline.TimelineControl;
  */
 class SysCore extends CoreBase
 {
+	public static var assets:AssetLibrary;
 	public function new() 
 	{
 		super();
 		
+		this.init_paths();
+		
+		var load = AssetLibrary.loadFromFile("swf/assets.bundle");
+		load.onComplete(this.launch);
+	}
+	function launch(lib:AssetLibrary) {
 		Common.gCode = this; //This class
-			
+		
+		Common.OLR_Assets = lib;
+		
 		this.newStartLoader = new SaveBrowser();
 		
 		this.newStartLoader.x = 0;

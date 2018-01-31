@@ -154,6 +154,7 @@ class SaveBrowser extends Sprite
 			this.init_env();
 			return;
 		}
+		
 		this.rootDirectory.reverse();
 		this.iconArray = new Array<FileItemIcon>();
 		if (Common.gTrack == null) this.iconArray.push(new FileItemIcon(0, FileType.New, "Key:NewTrack", "null"));
@@ -258,8 +259,7 @@ class FileItemIcon extends Sprite
 		this.itemName = _name;
 		this.path = _path;
 		
-		var swfLib = AssetLibrary.loadFromFile("swf/files.bundle");
-		swfLib.onComplete(this.attachClips);
+		this.attachClip();
 		
 		if (this.itemName == "Key:NewTrack" && this.path == "null") return;
 		if (this.itemName == "Key:CancelLoad" && this.path == "null") return;
@@ -271,23 +271,23 @@ class FileItemIcon extends Sprite
 		this.itemNameField.y = 110;
 		this.itemNameField.defaultTextFormat = this.font_a; 
 	}
-	function attachClips(lib:AssetLibrary) 
+	function attachClip() 
 	{
 		switch (this.fileType) {
 			case FileType.unknown:
-				this.icon = lib.getMovieClip("iconUNKNOWN");
+				this.icon = Common.OLR_Assets.getMovieClip("iconUNKNOWN");
 			case FileType.New:
-				this.icon = lib.getMovieClip("iconNew");
+				this.icon = Common.OLR_Assets.getMovieClip("iconNew");
 			case FileType.cancel :
-				this.icon = lib.getMovieClip("iconCancel");
+				this.icon = Common.OLR_Assets.getMovieClip("iconCancel");
 			case FileType.JSON:
-				this.icon = lib.getMovieClip("iconJSON");
+				this.icon = Common.OLR_Assets.getMovieClip("iconJSON");
 			case FileType.TRK:
-				this.icon = lib.getMovieClip("iconTRK");
+				this.icon = Common.OLR_Assets.getMovieClip("iconTRK");
 			case FileType.SOL:
-				this.icon = lib.getMovieClip("iconSOL");
+				this.icon = Common.OLR_Assets.getMovieClip("iconSOL");
 			case FileType.Directory:
-				this.icon = lib.getMovieClip("iconDIR");
+				this.icon = Common.OLR_Assets.getMovieClip("iconDIR");
 		}
 		this.addChild(this.icon);
 		this.icon.x = this.icon.y = 50;
