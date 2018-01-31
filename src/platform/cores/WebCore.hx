@@ -4,13 +4,13 @@ import openfl.Lib;
 import openfl.display.Sprite;
 import openfl.events.Event;
 import openfl.geom.Point;
+import openfl.utils.AssetLibrary;
 import platform.CoreBase;
 
 //third party
 
 //openLR
 import platform.control.Desktop;
-import platform.titlecards.TitleCardJS;
 import platform.file.Screenshot;
 import global.Common;
 import global.CVar;
@@ -34,22 +34,20 @@ class WebCore extends CoreBase
 	{
 		super();
 		
+		var load = AssetLibrary.loadFromFile("swf/assets.bundle");
+		load.onComplete(this.launch);
+	}
+	function launch(lib:AssetLibrary) {
 		Common.gCode = this; //This class
 		
-		this.title_card = new TitleCardJS();
-		Lib.current.stage.addChild(this.title_card);
+		Common.OLR_Assets = lib;
 		
-		this.title_card.x = (Lib.current.stage.stageWidth / 2) - (this.title_card.width / 2);
-		this.title_card.y = (Lib.current.stage.stageHeight / 2) - (this.title_card.height / 2);
+		this.start();
 	}
-	override public function start(_load:Bool = false) {
+	override public function start() {
 		this.init_env();
 		this.init_track();
 		this.visContainer.visible = true;
-		if (_load) {
-			this.toggle_Loader();
-		}
-		Lib.current.stage.removeChild(this.title_card);
 		this.controlScheme = new Desktop();
 		Lib.current.stage.showDefaultContextMenu = false;
 	}
