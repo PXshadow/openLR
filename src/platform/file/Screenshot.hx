@@ -1,11 +1,7 @@
 package platform.file;
 
-import openfl.geom.Rectangle;
-import openfl.display.Bitmap;
 import openfl.display.BitmapData;
 import openfl.display.Sprite;
-import openfl.geom.Matrix;
-import openfl.display.PNGEncoderOptions;
 import openfl.utils.ByteArray;
 
 #if (cpp)
@@ -13,7 +9,6 @@ import openfl.utils.ByteArray;
 	import sys.io.File;
 #end
 
-import global.Common;
 /**
  * ...
  * @author Kaelan Evans

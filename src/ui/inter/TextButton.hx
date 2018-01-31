@@ -6,7 +6,6 @@ import openfl.text.TextFormat;
 import openfl.text.TextFormatAlign;
 import openfl.utils.Assets;
 import openfl.display.Bitmap;
-import openfl.display.BitmapData;
 import openfl.display.SimpleButton;
 import openfl.events.MouseEvent;
 import openfl.utils.Function;

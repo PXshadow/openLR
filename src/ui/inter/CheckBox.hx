@@ -1,8 +1,6 @@
 package ui.inter;
 
 import openfl.display.Bitmap;
-import openfl.display.Sprite;
-import openfl.Lib;
 import openfl.Assets;
 import openfl.display.SimpleButton;
 import openfl.display.Sprite;

@@ -7,9 +7,7 @@ import openfl.events.KeyboardEvent;
 import openfl.ui.Keyboard;
 
 import lr.tool.editing.*;
-import global.KeyBindings;
 import global.Common;
-import global.CVar;
 import global.SVar;
 
 @:enum abstract ToolType(String) from String to String {

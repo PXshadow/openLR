@@ -1,6 +1,5 @@
 package lr.rider.objects;
 
-import openfl.display.MovieClip;
 import openfl.Assets;
 import openfl.display.Sprite;
 import openfl.text.TextField;

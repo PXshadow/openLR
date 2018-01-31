@@ -2,9 +2,7 @@ package lr.rider.objects;
 
 import openfl.display.Sprite;
 
-#if (!flash)
-	import openfl.utils.AssetLibrary;
-#elseif (flash)
+#if (flash)
 	import openfl.Assets;
 #end
 

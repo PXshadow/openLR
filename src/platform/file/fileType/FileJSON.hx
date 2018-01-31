@@ -8,10 +8,8 @@ import openfl.events.Event;
 
 import global.Common;
 import global.CVar;
-import global.SVar;
 
 import lr.lines.LineBase;
-import lr.nodes.Grid;
 
 /**
  * ...

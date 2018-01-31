@@ -10,7 +10,6 @@ import openfl.events.MouseEvent;
 import openfl.text.TextField;
 import openfl.text.TextFormat;
 import openfl.text.TextFormatAlign;
-import openfl.utils.AssetLibrary;
 import sys.FileSystem;
 
 //secondary

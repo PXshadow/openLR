@@ -7,8 +7,6 @@ import openfl.text.TextFieldType;
 import openfl.text.TextFormat;
 import openfl.text.TextFormatAlign;
 
-import global.Common;
-
 /**
  * ...
  * @author ...

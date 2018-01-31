@@ -127,8 +127,6 @@ class Common
 	{
 		var _loc2:Int = _loc0;
 		var _loc3:Int = Std.int(_loc2 / 40);
-		var _loc8:Int = _loc2;
-		var _loc7:Int = _loc3;
 		var _loc6:Int = Std.int(_loc3 / 60);
 		var _loc1:Int = _loc2 - _loc3 * 40;
 		var _loc11:String = "";

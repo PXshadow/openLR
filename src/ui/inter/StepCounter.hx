@@ -1,9 +1,6 @@
 package ui.inter;
 
-import openfl.display.Sprite;
 import openfl.events.MouseEvent;
-import openfl.Lib;
-import openfl.Assets;
 import openfl.display.Sprite;
 import openfl.text.TextField;
 import openfl.ui.Mouse;

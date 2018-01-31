@@ -3,7 +3,6 @@ package platform.file;
 import openfl.display.Sprite;
 import openfl.utils.Object;
 
-import global.Common;
 /**
  * ...
  * @author Kaelan Evans

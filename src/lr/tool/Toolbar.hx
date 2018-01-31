@@ -4,7 +4,6 @@ package lr.tool;
 import openfl.Lib;
 import openfl.display.Sprite;
 import openfl.events.KeyboardEvent;
-import openfl.ui.Keyboard;
 import openfl.events.MouseEvent;
 
 import global.KeyBindings;
@@ -12,7 +11,6 @@ import global.Common;
 import global.SVar;
 import lr.tool.ToolBase;
 import lr.tool.icon.*;
-import lr.tool.editing.*;
 
 /**
  * ...

@@ -1,13 +1,8 @@
 package platform.file.exporting;
 
 import global.Common;
-import haxe.io.Bytes;
-import haxe.io.BytesData;
 import openfl.utils.ByteArray;
-import openfl.utils.Object;
 import platform.file.fileType.FileBase;
-import ui.inter.AlertBox;
-import ui.inter.TextButton;
 import sys.FileSystem;
 import sys.io.File;
 import lime.system.System;
@@ -16,6 +11,8 @@ import platform.file.ExportBase;
 import platform.file.fileType.*;
 import global.SVar;
 import global.CVar;
+import ui.inter.AlertBox;
+import ui.inter.TextButton;
 
 //import haxe.ui.components.DropDown;
 import haxe.ui.components.Label;

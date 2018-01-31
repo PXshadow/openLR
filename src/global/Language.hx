@@ -1,7 +1,5 @@
 package global;
 
-import openfl.utils.Object;
-
 /**
  * ...
  * @author Kaelan Evans

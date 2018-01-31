@@ -2,9 +2,7 @@ package platform.file.importing;
 
 import openfl.utils.Object;
 import openfl.Lib;
-import sys.FileSystem;
 import sys.io.File;
-import lime.system.System;
 import haxe.Json;
 
 import ui.inter.TextButton;
