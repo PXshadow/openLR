@@ -157,33 +157,13 @@ class Toolbar extends Sprite
 	private function key_tool_switch(e:KeyboardEvent):Void 
 	{
 		if (e.keyCode == KeyBindings.pencil_1 || e.keyCode == KeyBindings.pencil_2) {
-			//Common.gToolBase.disable();
-			icon.deselect();
-			icon = pencil;
-			icon.select();
-			swatch.select();
+			Toolbar.tool.set_tool(ToolType.Pencil);
 		}
 		if (e.keyCode == KeyBindings.line_1 || e.keyCode == KeyBindings.line_2) {
-			//Common.gToolBase.disable();
-			icon.deselect();
-			tool.set_listeners();
-			icon = line;
-			icon.select();
-			swatch.select();
+			Toolbar.tool.set_tool(ToolType.Line);
 		}
 		if (e.keyCode == KeyBindings.eraser_1 || e.keyCode == KeyBindings.eraser_2) {
-			//Common.gToolBase.set_tool("None");
-			icon.deselect();
-			icon = eraser;
-			icon.select();
-			swatch.deselect();
-			Common.line_type = -1;
-		}
-		if (e.keyCode == Keyboard.R) {
-			//Common.gToolBase.disable();
-			icon.deselect();
-			swatch.deselect();
-			Common.line_type = -1;
+			Toolbar.tool.set_tool(ToolType.Eraser);
 		}
 		if (e.keyCode == KeyBindings.swatch_blue) {
 			swatch.deselect();
