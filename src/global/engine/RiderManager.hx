@@ -1,6 +1,5 @@
 package global.engine;
 import openfl.display.Sprite;
-import openfl.geom.Point;
 
 import lr.rider.RiderBase;
 
@@ -12,6 +11,7 @@ class RiderManager extends Sprite
 {
 	private var riderArray:Array<RiderBase>;
 	public static var crash:Array<Bool>;
+	public static var speed:Array<Float>;
 	public function new() 
 	{
 		super();
@@ -19,6 +19,7 @@ class RiderManager extends Sprite
 		
 		this.riderArray = new Array();
 		RiderManager.crash = new Array();
+		RiderManager.speed = new Array();
 	}
 	public function add_rider(_type:Int, _x:Float, _y:Float) {
 		switch(_type) {

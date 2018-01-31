@@ -176,6 +176,7 @@ class RiderBase extends Sprite
 		this.iterate();
 		this.clips.render_body();
 		this.camera.pan(this.body.anchors[4]);
+		RiderManager.speed[this.riderID] = Math.floor(Math.sqrt(Math.pow(this.body.anchors[5].dx, 2) + Math.pow(this.body.anchors[5].dy - 0.175, 2)) * 1000) / 1000;
 	}
 	public function iterate() {
 		this.body.verlet(this.grav);

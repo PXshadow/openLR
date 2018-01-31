@@ -93,7 +93,7 @@ class TextInfo extends Sprite
 		
 		textInfo_A.text = CVar.track_name;
 		textInfo_B.text = _locTime;
-		textInfo_C.text = SVar.rider_speed + " PPF";
+		textInfo_C.text = SVar.rider_speed + " P/F";
 		textInfo_D.text = SVar.rider_speed_top + " Top";
 	}
 }

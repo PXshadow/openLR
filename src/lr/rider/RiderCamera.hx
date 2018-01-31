@@ -5,6 +5,8 @@ import openfl.geom.Point;
 import openfl.Lib;
 
 import global.Common;
+import global.SVar;
+import global.engine.RiderManager;
 import lr.rider.phys.anchors.CPoint;
 
 /**
@@ -31,7 +33,7 @@ class RiderCamera
 		
 		Lib.current.stage.addChild(this.debug);
 	}
-	public function pan(dot:CPoint) {
+	public function pan(dot:CPoint, _riderID:Int = 0) {
 		var _locPoint:Point = Common.gTrack.localToGlobal(new Point(dot.x, dot.y));
 		var _locXPan:Float = 0;
 		var _locYPan:Float = 0;
@@ -54,7 +56,6 @@ class RiderCamera
 			} else {
 				this.radius = Lib.current.stage.stageHeight * 0.3;
 			}
-			var distance = Math.sqrt(Math.pow(_locPoint.x - this.center_screen.x, 2) + Math.pow(_locPoint.y - this.center_screen.y, 2));
 			var theta = Common.get_angle_radians(this.center_screen, _locPoint);
 			var mid_point:Point = new Point((radius * Math.cos(theta) + this.center_screen.x), (radius * Math.sin(theta)) + this.center_screen.y);
 			var difference:Point = new Point(_locPoint.x - mid_point.x, _locPoint.y - mid_point.y);
@@ -64,6 +65,8 @@ class RiderCamera
 		Common.gTrack.x += _locXPan;
 		Common.gTrack.y += _locYPan;
 		Common.gTrack.check_visibility();
+		SVar.rider_speed = RiderManager.speed[_riderID];
+		if (SVar.rider_speed > SVar.rider_speed_top) SVar.rider_speed_top = SVar.rider_speed;
 	}
 	public function update_pan_bounds() {
 		this.left_bound = Common.stage_width * 0.38;
