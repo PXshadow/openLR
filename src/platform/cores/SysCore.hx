@@ -122,7 +122,7 @@ class SysCore extends CoreBase
 		Lib.current.stage.addChild(this.timeline);
 		this.timeline.update();
 		this.timeline.x = (Lib.current.stage.stageWidth * 0.5) - (640);
-		this.timeline.y = Lib.current.stage.stageHeight - 60;
+		this.timeline.y = Lib.current.stage.stageHeight - 45;
 	}
 	override public function toggleSettings_box()
 	{
@@ -230,7 +230,7 @@ class SysCore extends CoreBase
 		this.settings_box.y = 100;
 		
 		this.timeline.x = (Lib.current.stage.stageWidth * 0.5) - (640);
-		this.timeline.y = Lib.current.stage.stageHeight - 60;
+		this.timeline.y = Lib.current.stage.stageHeight - 45;
 		
 		if (this.exportVisible) {
 			this.export.x = (Lib.current.stage.stageWidth * 0.5) - (this.export.width * 0.5);
