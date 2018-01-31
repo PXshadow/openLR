@@ -144,13 +144,13 @@ class SaveBrowser extends Sprite
 	function parseDirectory() 
 	{
 		var _locSaveDirectory:String = System.documentsDirectory + "/openLR/saves";
-		if (!FileSystem.isDirectory(_locSaveDirectory)) {
+		if (!FileSystem.isDirectory(_locSaveDirectory) && Common.gTrack == null) {
 			FileSystem.createDirectory(_locSaveDirectory);
 			this.init_env();
 			return;
 		}
 		this.rootDirectory = FileSystem.readDirectory(_locSaveDirectory);
-		if (this.rootDirectory.length == 0) {
+		if (this.rootDirectory.length == 0 && Common.gTrack == null) {
 			this.init_env();
 			return;
 		}
