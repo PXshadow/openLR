@@ -57,13 +57,13 @@ class Track extends Sprite
 		var _locStageBR:Point = this.globalToLocal(Common.stage_br);
 		var _locTileTL = Common.tilePos(_locStageTL.x, _locStageTL.y);
 		var _locTileBR = Common.tilePos(_locStageBR.x, _locStageBR.y);
-		
 		if (local_br == null || local_tl == null) {
 			this.local_tl = _locStageTL;
 			this.local_br = _locStageBR;
 			this.tile_tl = new Point(_locTileTL.x, _locTileTL.y);
 			this.tile_br = new Point(_locTileBR.x, _locTileBR.y);
-		} else if (_locStageBR.x != this.local_br.x || _locStageBR.y != this.local_br.y || this.local_tl.x != _locStageTL.x || this.local_tl.y != _locStageTL.y) {
+		}
+		if (_locStageBR.x != this.local_br.x || _locStageBR.y != this.local_br.y || this.local_tl.x != _locStageTL.x || this.local_tl.y != _locStageTL.y) {
 			if (_locTileBR.x != this.tile_br.x || _locTileBR.y != this.tile_br.y || this.tile_tl.x != _locTileTL.x || this.tile_tl.y != _locTileTL.y) {
 				this.local_tl = _locStageTL;
 				this.local_br = _locStageBR;
@@ -84,19 +84,19 @@ class Track extends Sprite
 			return;
 		#end
 		for (a in this.renderList) {
-			if (a.panelPosX < this.tile_tl.x - 1) {
+			if (a.panelPosX < this.tile_tl.x) {
 				Common.gTrack.canvas.removeChild(a.frame);
 				a.onStage = false;
 				this.renderList.remove(a);
-			} else if (a.panelPosX > this.tile_br.x + 1) {
+			} else if (a.panelPosX > this.tile_br.x) {
 				Common.gTrack.canvas.removeChild(a.frame);
 				a.onStage = false;
 				this.renderList.remove(a);
-			} else if (a.panelPosY < this.tile_tl.y - 1) {
+			} else if (a.panelPosY < this.tile_tl.y) {
 				Common.gTrack.canvas.removeChild(a.frame);
 				a.onStage = false;
 				this.renderList.remove(a);
-			} else if (a.panelPosY > this.tile_br.y + 1) {
+			} else if (a.panelPosY > this.tile_br.y) {
 				Common.gTrack.canvas.removeChild(a.frame);
 				a.onStage = false;
 				this.renderList.remove(a);
