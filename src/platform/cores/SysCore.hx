@@ -1,5 +1,6 @@
 package platform.cores;
 
+import lime.system.System;
 import openfl.Lib;
 import openfl.display.Sprite;
 import openfl.events.Event;
@@ -60,6 +61,10 @@ class SysCore extends CoreBase
 		Lib.current.stage.application.onExit.add (function (exitCode) {
 			//Autosave code here
 		});
+	}
+	function init_paths() 
+	{
+		if (!FileSystem.isDirectory(System.documentsDirectory + "/openLR/")) FileSystem.createDirectory(System.documentsDirectory + "/openLR/");
 	}
 	function resize_title(e:Event):Void 
 	{

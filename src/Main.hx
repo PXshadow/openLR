@@ -37,11 +37,11 @@ class Main extends Sprite
     public function new() {
         
         super();
-        
+		
         #if (android || ios)
             this.core = new MobileCore();
         #elseif (sys)
-            this.core = new SysCore();
+			this.core = new SysCore();
         #elseif (flash || air)
 			this.core = new FlashCore();
         #elseif js
