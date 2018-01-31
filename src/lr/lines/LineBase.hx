@@ -117,8 +117,6 @@ class LineBase
 				this.phys = new Floor(this);
 			case LineType.Accel :
 				this.phys = new Acceleration(this);
-			case LineType.Deccel :
-				this.phys = new Decceleration(this);
 			case LineType.Scene :
 				return;
 			default :
@@ -219,15 +217,11 @@ class LineBase
 						this.prevType = 1;
 						this.phys = new Acceleration(this);
 					case 1 :
-						this.type = 3;
-						this.prevType = 3;
-						this.phys = new Decceleration(this);
-					case 2 :
-						return;
-					case 3 :
 						this.type = 0;
 						this.prevType = 0;
 						this.phys = new Floor(this);
+					case 2 :
+						return;
 					default :
 						return;
 				}
@@ -265,9 +259,6 @@ class LineBase
 					case 1 :
 						this.type = 1;
 						this.phys = new Acceleration(this);
-					case 3 :
-						this.type = 3;
-						this.phys = new Decceleration(this);
 					default :
 						this.type = 0;
 						this.phys = new Floor(this);
