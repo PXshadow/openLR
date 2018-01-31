@@ -68,13 +68,13 @@ class ToolBase
 	{
 		switch (e.keyCode) {
 			case (Keyboard.SHIFT) :
-				this.currentTool.mod_shift = true;
+				this.currentTool.mod_shift = false;
 			case (Keyboard.CONTROL) :
-				this.currentTool.mod_ctrl = true;
+				this.currentTool.mod_ctrl = false;
 			case (Keyboard.X) :
-				this.currentTool.mod_x = true;
+				this.currentTool.mod_x = false;
 			case (Keyboard.Z) :
-				this.currentTool.mod_z = true;
+				this.currentTool.mod_z = false;
 		}
 	}
 	function KeyModifierDown(e:KeyboardEvent):Void 
