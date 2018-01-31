@@ -15,7 +15,9 @@ import lr.tool.Toolbar;
 import lr.scene.timeline.TimelineControl;
 import platform.file.ExportBase;
 import platform.file.ImportBase;
-import platform.file.SaveBrowser;
+#if sys
+	import platform.file.SaveBrowser;
+#end
 
 /**
  * ...
@@ -30,13 +32,15 @@ class CoreBase extends Sprite
 	private var riders:RiderManager;
 	private var toolBar:Toolbar;
 	private var textInfo:TextInfo;
-	private var newStartLoader:SaveBrowser;
 	private var timeline:TimelineControl;
 	private var settings_box:SettingsMenu;
 	private var export:ExportBase;
 	private var exportVisible:Bool = false;
 	private var importing:ImportBase;
 	private var importingVisible = false;
+	#if sys
+		private var newStartLoader:SaveBrowser;
+	#end
 	
 	public function new() {
 		super();

@@ -8,7 +8,6 @@ import openfl.text.TextFormat;
 import openfl.text.TextFormatAlign;
 import openfl.display.Sprite;
 import platform.file.ImportBase;
-import platform.file.SaveBrowser;
 
 import global.engine.RiderManager;
 import global.engine.SimManager;
@@ -20,6 +19,9 @@ import lr.tool.ToolBase;
 import lr.nodes.Grid;
 import lr.rider.RiderCamera;
 import platform.CoreBase;
+#if sys
+	import platform.file.SaveBrowser;
+#end
 
 /**
  * ...
@@ -48,7 +50,6 @@ class Common
 	public static var OLR_Assets:AssetLibrary;
 	
 	public static var gCode:CoreBase;
-	public static var gSaveBrowser:SaveBrowser;
 	public static var gTrack:Track;
 	public static var gRiderManager:RiderManager;
 	public static var gVisContainer:Sprite;
@@ -61,6 +62,9 @@ class Common
 	public static var gCamera:RiderCamera;
 	public static var gTimeline:TimelineControl;
 	public static var gImport:ImportBase;
+	#if sys
+		public static var gSaveBrowser:SaveBrowser;
+	#end
 	
 	public static var line_minLength:Int = 14;
 	public static var line_type:Int = 0;
