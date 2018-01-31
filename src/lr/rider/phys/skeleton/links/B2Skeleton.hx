@@ -1,10 +1,9 @@
 package lr.rider.phys.skeleton.links;
 
 import haxe.ds.Vector;
-import lr.rider.phys.anchors.CPoint;
 
+import lr.rider.phys.anchors.CPoint;
 import lr.rider.phys.skeleton.bones.*;
-import lr.rider.phys.contacts.anchors.*;
 
 /**
  * ...
@@ -36,7 +35,7 @@ class B2Skeleton extends SkeletonBase
 		this.edges[11] = new Stick(_anchors[5], _anchors[7]);//
 		this.edges[12] = new Stick(_anchors[4], _anchors[8]);//
 		this.edges[13] = new Stick(_anchors[4], _anchors[9]);//
-		this.edges[14] = new Stick(_anchors[5], _anchors[7]);//Duplicate of edge 11. Necesary for any compatibility with other builds
+		this.edges[14] = new Stick(_anchors[5], _anchors[7]);// Duplicate of edge 11. Necesary for any compatibility with other builds
 		
 		this.edges[15] = new BindStick(_anchors[5], _anchors[0], this.riderID);// Shoulder to second peg
 		this.edges[16] = new BindStick(_anchors[3], _anchors[6], this.riderID);// First peg to hand
