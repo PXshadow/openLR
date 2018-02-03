@@ -7,6 +7,7 @@ import openfl.geom.Point;
 import lr.lines.LineBase;
 import global.Common;
 import global.SVar;
+import global.CVar;
 
 /**
  * ...
@@ -29,7 +30,7 @@ class ToolPencil extends ToolAction
 		x1 = Common.gTrack.mouseX;
 		y1 = Common.gTrack.mouseY;
 		this.stroke = new Array();
-		var _locSnapCheck:Array<Dynamic> = Common.gGrid.snap(x1, y1, 1, this.mod_shift);
+		var _locSnapCheck:Array<Dynamic> = Common.gGrid.snap(x1, y1, 1, CVar.mod_shift);
 		if (_locSnapCheck[2] == true && Common.line_type != 2) {
 			x1 = _locSnapCheck[0];
 			y1 = _locSnapCheck[1];
@@ -44,9 +45,9 @@ class ToolPencil extends ToolAction
 		x2 = Common.gTrack.mouseX;
 		y2 = Common.gTrack.mouseY;
 		d = new Point(Lib.current.stage.mouseX, Lib.current.stage.mouseY);
-		Common.gTrack.renderPreview(new LinePreview(x1, y1, x2, y2, this.mod_shift, Common.line_type));
+		Common.gTrack.renderPreview(new LinePreview(x1, y1, x2, y2, CVar.mod_shift, Common.line_type));
 		if (Common.get_distance(c, d) >= Common.line_minLength) {
-			var _loc1:LineBase = new LineBase(Common.line_type, x1, y1, x2, y2, this.mod_shift);
+			var _loc1:LineBase = new LineBase(Common.line_type, x1, y1, x2, y2, CVar.mod_shift);
 			_loc1.ID = SVar.lineID;
 			Common.gGrid.cacheLine(_loc1);
 			this.stroke.push(_loc1);
@@ -67,7 +68,7 @@ class ToolPencil extends ToolAction
 		x1 = Common.gTrack.mouseX;
 		y1 = Common.gTrack.mouseY;
 		this.stroke = new Array();
-		var _locSnapCheck:Array<Dynamic> = Common.gGrid.snap(x1, y1, 1, this.mod_shift);
+		var _locSnapCheck:Array<Dynamic> = Common.gGrid.snap(x1, y1, 1, CVar.mod_shift);
 		if (_locSnapCheck[2] == true && Common.line_type != 2) {
 			x1 = _locSnapCheck[0];
 			y1 = _locSnapCheck[1];
@@ -83,9 +84,9 @@ class ToolPencil extends ToolAction
 		x2 = Common.gTrack.mouseX;
 		y2 = Common.gTrack.mouseY;
 		d = new Point(Lib.current.stage.mouseX, Lib.current.stage.mouseY);
-		Common.gTrack.renderPreview(new LinePreview(x2, y2, x1, y1, !this.mod_shift, Common.line_type));
+		Common.gTrack.renderPreview(new LinePreview(x2, y2, x1, y1, !CVar.mod_shift, Common.line_type));
 		if (Common.get_distance(c, d) >= Common.line_minLength) {
-			var _loc1:LineBase = new LineBase(Common.line_type, x2, y2, x1, y1, !this.mod_shift);
+			var _loc1:LineBase = new LineBase(Common.line_type, x2, y2, x1, y1, !CVar.mod_shift);
 			_loc1.ID = SVar.lineID;
 			Common.gGrid.cacheLine(_loc1);
 			this.stroke.push(_loc1);

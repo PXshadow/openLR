@@ -14,6 +14,7 @@ import sys.FileSystem;
 import platform.CoreBase;
 import platform.file.exporting.ExportNative;
 import platform.control.Desktop;
+import platform.control.KeyControl;
 import platform.file.SaveBrowser;
 import global.Common;
 import global.CVar;
@@ -53,6 +54,7 @@ class SysCore extends CoreBase
 		this.newStartLoader.y = 0;
 	}
 	override public function start() {
+		this.KeyboardControl = new KeyControl();
 		this.init_env();
 		this.init_track();
 		this.visContainer.visible = true;

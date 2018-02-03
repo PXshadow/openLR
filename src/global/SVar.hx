@@ -10,6 +10,7 @@ import global.Common;
  */
 class SVar 
 {
+	public static var keysEnabled:Bool = true;
 	public static var frames:Int = 0;
 	public static var frames_alt:Int = 0;
 	public static var max_frames:Int = 0;

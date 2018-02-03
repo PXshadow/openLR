@@ -17,10 +17,6 @@ class ToolAction
 {
 	public var leftMouseIsDown:Bool = false;
 	public var rightMouseIsDown:Bool = false;
-	public var mod_shift:Bool = false;
-	public var mod_x:Bool = false;
-	public var mod_z:Bool = false;
-	public var mod_ctrl:Bool = false;
 	
 	public function new() 
 	{

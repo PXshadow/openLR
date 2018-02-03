@@ -1,14 +1,18 @@
 package lr.nodes;
 
-import openfl.Lib;
 import openfl.utils.Object;
-import openfl.events.KeyboardEvent;
 
 import global.Common;
 import global.CVar;
 import global.SVar;
-import global.KeyBindings;
 import lr.lines.LineBase;
+
+@:enum abstract Action(Int) from Int to Int {
+	public var undo_line:Int = 0;
+	public var undo_action:Int = 1;
+	public var redo_line:Int = 2;
+	public var redo_action:Int = 3;
+}
 
 /**
  * ...
@@ -28,10 +32,6 @@ class Grid
 	public static var grid:Map<Int, Map<Int, Storage>>;
 	public static var tile:Map<Int, Map<Int, Panel>>;
 	public static var panelList:Array<SubPanel>;
-	public static var undo_single:Array<LineBase>;
-	public static var redo_single:Array<LineBase>;
-	public static var history:Array<Array<Dynamic>>;
-	public static var history_index:Int = -1;
 	public static var lowFrame:Int = -1;
 	
 	public function new()
@@ -40,109 +40,21 @@ class Grid
 		Common.gGrid = this;
 		Grid.grid = new Map();
 		Grid.tile = new Map();
-		Grid.undo_single = new Array();
-		Grid.redo_single = new Array();
-		Grid.history = new Array();
 		Grid.panelList = new Array();
-		Lib.current.stage.addEventListener(KeyboardEvent.KEY_UP, undo_redo);
-	}
-
-	private function undo_redo(e:KeyboardEvent):Void
-	{
-		if (!SVar.sim_running) {
-			if (e.controlKey)
-			{
-				if (e.keyCode == KeyBindings.undo_stroke) {
-					this.undo_action();
-				} else if (e.keyCode == KeyBindings.redo_stroke) {
-					this.redo_action();
-				}
-			}
-			if (e.keyCode == KeyBindings.undo_line)
-			{
-				if (e.shiftKey)
-				{
-					this.redo_line();
-				}
-				else if (!e.shiftKey)
-				{
-					this.undo_line();
-				}
-			}
-		}
 	}
 	public function add_to_history(_act:String, _list:Array<LineBase>) {
-		if (Grid.history.length == 0) {
-			Grid.history.push([_act, _list]);
-		} else if (Grid.history_index + 1 == Grid.history.length) {
-			Grid.history.push([_act, _list]);
-		} else if (Grid.history_index == -1 && Grid.history.length > 0) {
-			Grid.history.insert(0, [_act, _list]);
-		} else {
-			Grid.history.insert(Grid.history_index, [_act, _list]);
-		}
-		Grid.history_index += 1;
-	}
-	function undo_action() {
-		if (Grid.history_index > -1) {
-			if (Grid.history[Grid.history_index][0] == "add") {
-				this.remove_stroke(Grid.history[Grid.history_index][1]);
-			} else if (Grid.history[Grid.history_index][0] == "sub") {
-				this.redo_stroke(Grid.history[Grid.history_index][1]);
-			}
-			Grid.history_index -= 1;
-		}
-	}
-	function redo_action() {
-		if (Grid.history_index < Grid.history.length - 1) {
-			Grid.history_index += 1;
-			if (Grid.history[Grid.history_index][0] == "add") {
-				this.redo_stroke(Grid.history[Grid.history_index][1]);
-			} else if (Grid.history[Grid.history_index][0] == "sub") {
-				this.remove_stroke(Grid.history[Grid.history_index][1]);
-			}
-		}
-	}
-	function redo_stroke(_list:Array<LineBase>) 
-	{
-		for (i in 0..._list.length) {
-			Common.gGrid.cacheLine(_list[i]);
-		}
-	}
-	function remove_stroke(_list:Array<LineBase>) 
-	{
-		for (i in 0..._list.length) {
-			this.remove_line(_list[i]);
-		}
-	}
-	
-	function redo_line() 
-	{
-		if (Grid.redo_single.length > 0) {
-			var _loc1:LineBase = Grid.redo_single.pop();
-			Common.gGrid.cacheLine(_loc1);
-			this.cache_stroke([_loc1]);
-			Common.gGrid.add_to_history("add", [_loc1]);
-		}
-	}
-	function undo_line()
-	{
-		if (lines.length > 0) {
-			Common.gGrid.add_to_history("sub", [Grid.undo_single[Grid.undo_single.length - 1]]);
-			this.remove_line(Grid.undo_single[Grid.undo_single.length - 1]);
-		}
+
 	}
 	public function cache_stroke(_list:Array<LineBase>)
 	{
-		try {
-			if (_list.length > 0) {
-				for (i in 0..._list.length) {
-					Grid.undo_single.push(_list[i]);
-				}
-				this.add_to_history("add", _list);
-			}
-		} catch (e:String) {
-			trace ("failed line cache");
+		
+	}
+	public function add_remove_action(_type:Int) {
+		switch (_type) {
+			case Action.undo_line :
+			case Action.redo_line :
+			case Action.undo_action :
+			case Action.redo_action :
 		}
 	}
 	public function new_grid()
@@ -388,8 +300,6 @@ class Grid
 			return;
 		}
 		this.remove_from_grid(line);
-		Grid.undo_single.remove(line);
-		Grid.redo_single.push(line);
 		this.lines[line.ID] = null;
 		if (line.type == 0)
 		{

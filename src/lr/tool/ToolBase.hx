@@ -3,8 +3,6 @@ package lr.tool;
 import lr.tool.editing.ToolPencil;
 import openfl.Lib;
 import openfl.events.MouseEvent;
-import openfl.events.KeyboardEvent;
-import openfl.ui.Keyboard;
 
 import lr.tool.editing.*;
 import global.Common;
@@ -58,42 +56,7 @@ class ToolBase
 		Lib.current.stage.addEventListener(MouseEvent.MOUSE_MOVE, rightMouseMove);
 		Lib.current.stage.addEventListener(MouseEvent.RIGHT_MOUSE_DOWN, rightMouseDown);
 		Lib.current.stage.addEventListener(MouseEvent.RIGHT_MOUSE_UP, rightMouseUp);
-		Lib.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, KeyModifierDown);
-		Lib.current.stage.addEventListener(KeyboardEvent.KEY_UP, KeyModifierUp);
 	}
-	
-	function KeyModifierUp(e:KeyboardEvent):Void 
-	{
-		switch (e.keyCode) {
-			case (Keyboard.SHIFT) :
-				this.currentTool.mod_shift = false;
-			case (Keyboard.CONTROL) :
-				this.currentTool.mod_ctrl = false;
-			case (Keyboard.X) :
-				this.currentTool.mod_x = false;
-			case (Keyboard.Z) :
-				this.currentTool.mod_z = false;
-		}
-	}
-	function KeyModifierDown(e:KeyboardEvent):Void 
-	{
-		switch (e.keyCode) {
-			case (Keyboard.SHIFT) :
-				this.currentTool.mod_shift = true;
-			case (Keyboard.CONTROL) :
-				this.currentTool.mod_ctrl = true;
-			case (Keyboard.X) :
-				this.currentTool.mod_x = true;
-			case (Keyboard.Z) :
-				this.currentTool.mod_z = true;
-		}
-	}
-	
-	function KeyNumDown(e:KeyboardEvent):Void 
-	{
-		
-	}
-	
 	function rightMouseUp(event:MouseEvent):Void 
 	{
 		this.currentTool.rightMouseUp(event);

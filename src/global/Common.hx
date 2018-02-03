@@ -179,4 +179,51 @@ class Common
 	public static function font_vb_right(_size:Int):TextFormat {
 		return(new TextFormat(Assets.getFont("fonts/Verdana Bold.ttf").fontName, _size, 0, null, null, null, null, null, TextFormatAlign.RIGHT));
 	}
+	public static function globalPlay() {
+			if (!Common.gSimManager.paused) {
+			Common.track_last_pos_x = Common.gTrack.x;
+			Common.track_last_pos_y = Common.gTrack.y;
+		}
+		Common.gTrack.set_rendermode_play();
+		Common.gTrack.set_simmode_play();
+		
+		Common.gToolbar.pause.visible = true;
+		Common.gToolbar.set_play_mode();
+		
+		Toolbar.tool.set_tool("None");
+		
+		Common.gRiderManager.x = Common.gTrack.x;
+		Common.gRiderManager.y = Common.gTrack.y;
+		
+		Common.gTrack.check_visibility();
+	}
+	public static function globalStop() {
+		Common.gTrack.set_rendermode_edit();
+		Common.gToolbar.pause.visible = false;
+		Common.gToolbar.set_full_edit_mode();
+		Common.gTrack.set_simmode_stop();
+		Common.gSimManager.fast_forward = false;
+		Common.gTimeline.update();
+		if (!Common.gSimManager.paused) {
+			Common.gTrack.x = Common.track_last_pos_x;
+			Common.gTrack.y = Common.track_last_pos_y;
+			Common.gRiderManager.x = Common.gTrack.x;
+			Common.gRiderManager.y = Common.gTrack.y;
+		}
+		Common.gTrack.check_visibility();
+	}
+	public static function globalFlagPlace() {
+		if (SVar.sim_running) {
+			Common.gSimManager.mark_rider_position();
+			Common.gSimManager.show_flag();
+		} else if (!SVar.sim_running) {
+			if (Common.gSimManager.flagged == false) {
+				Common.gSimManager.show_flag();
+				Common.gSimManager.flagged = true;
+			} else if (Common.gSimManager.flagged == true) {
+				Common.gSimManager.hide_flag();
+				Common.gSimManager.flagged = false;
+			}
+		}
+	}
 }

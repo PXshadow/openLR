@@ -4,6 +4,7 @@ import openfl.events.MouseEvent;
 
 import lr.lines.LineBase;
 import global.Common;
+import global.CVar;
 
 /**
  * ...
@@ -41,13 +42,13 @@ class ToolEraser extends ToolAction
 	{
 		var _line = this.locateLine(e);
 		if (_line == null) return;
-		if (mod_z) {
+		if (CVar.mod_z) {
 			_line.changeBehavior(SwapType.DirectionToggle);
 			return;
-		} else if (mod_shift) {
+		} else if (CVar.mod_shift) {
 			_line.changeBehavior(SwapType.InverseToggle);
 			return;
-		} else if (mod_ctrl) {
+		} else if (CVar.mod_ctrl) {
 			_line.changeBehavior(SwapType.SceneryToggle);
 			return;
 		} else {

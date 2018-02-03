@@ -1,12 +1,7 @@
 package lr.tool;
 
-
-import openfl.Lib;
 import openfl.display.Sprite;
-import openfl.events.KeyboardEvent;
-import openfl.events.MouseEvent;
 
-import global.KeyBindings;
 import global.Common;
 import global.SVar;
 import lr.tool.ToolBase;
@@ -47,7 +42,6 @@ class Toolbar extends Sprite
 		super();
 		
 		Common.gToolbar = this;
-		Lib.current.stage.addEventListener(KeyboardEvent.KEY_UP, key_tool_switch);
 		
 		this.tool_list = new Array();
 		this.swatch_list = new Array();
@@ -99,9 +93,6 @@ class Toolbar extends Sprite
 		
 		Toolbar.tool.set_tool(ToolType.Pencil);
 		
-		this.addEventListener(MouseEvent.MOUSE_OVER, this.disable_stage);
-		this.addEventListener(MouseEvent.MOUSE_OUT, this.enable_stage);
-		
 		this.place_icons();
 	}
 	private function place_icons() {
@@ -135,57 +126,20 @@ class Toolbar extends Sprite
 		}
 		Toolbar.icon.select();
 	}
-	private function enable_stage(e:MouseEvent):Void 
-	{
-		//Common.gToolBase.enable();
-		Lib.current.stage.addEventListener(KeyboardEvent.KEY_UP, key_tool_switch);
-	}
-	
-	private function disable_stage(e:MouseEvent):Void 
-	{
-		//Common.gToolBase.disable();
-		Lib.current.stage.removeEventListener(KeyboardEvent.KEY_UP, key_tool_switch);
-	}
-	public function disable_keys() {
-		Lib.current.stage.removeEventListener(KeyboardEvent.KEY_UP, key_tool_switch);
-	}
-	public function enable_keys() {
-		Lib.current.stage.addEventListener(KeyboardEvent.KEY_UP, key_tool_switch);
-	}
-	private function key_tool_switch(e:KeyboardEvent):Void 
-	{
-		if (e.keyCode == KeyBindings.pencil_1 || e.keyCode == KeyBindings.pencil_2) {
-			Toolbar.tool.set_tool(ToolType.Pencil);
+	public function update_swatch(_type:Int) {
+		swatch.deselect();
+		switch(_type) {
+			case 0:
+				Common.line_type = 0;
+				swatch = swBlue;
+			case 1 :
+				Common.line_type = 1;
+				swatch = swRed;
+			case 2 :
+				Common.line_type = 2;
+				swatch = swGreen;
 		}
-		if (e.keyCode == KeyBindings.line_1 || e.keyCode == KeyBindings.line_2) {
-			Toolbar.tool.set_tool(ToolType.Line);
-		}
-		if (e.keyCode == KeyBindings.eraser_1 || e.keyCode == KeyBindings.eraser_2) {
-			Toolbar.tool.set_tool(ToolType.Eraser);
-		}
-		if (e.keyCode == KeyBindings.swatch_blue) {
-			swatch.deselect();
-			Common.line_type = 0;
-			swatch = swBlue;
-			swatch.select();
-		}
-		if (e.keyCode == KeyBindings.swatch_red) {
-			swatch.deselect();
-			Common.line_type = 1;
-			swatch = swRed;
-			swatch.select();
-		}
-		if (e.keyCode == KeyBindings.swatch_green) {
-			swatch.deselect();
-			Common.line_type = 2;
-			swatch = swGreen;
-			swatch.select();
-		}
-		/*
-		if (e.keyCode == Keyboard.NUMBER_4) {
-			swatch.deselect();
-			Common.line_type = 3;
-		}*/
+		swatch.select();
 	}
 	public function set_full_edit_mode() {
 		SVar.game_mode = GameState.edit;

@@ -13,6 +13,7 @@ import lr.scene.Track;
 import lr.menus.SettingsMenu;
 import lr.tool.Toolbar;
 import lr.scene.timeline.TimelineControl;
+import platform.control.KeyControl;
 import platform.file.ExportBase;
 import platform.file.ImportBase;
 #if sys
@@ -27,6 +28,7 @@ class CoreBase extends Sprite
 {
 	
 	private var controlScheme:ControlBase;
+	private var KeyboardControl:KeyControl;
 	private var visContainer:Sprite;
 	private var track:Track;
 	private var riders:RiderManager;

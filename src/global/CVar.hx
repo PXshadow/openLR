@@ -28,6 +28,12 @@ class CVar
 	
 	public static var line_snap:Bool = true;
 	
+	public static var mod_shift:Bool = false;
+	public static var mod_ctrl:Bool = false;
+	public static var mod_alt:Bool = false;
+	public static var mod_x:Bool = false;
+	public static var mod_z:Bool = false;
+	
 	public static var prev_zoom_ammount:Float;
 	public static var preview_mode:Bool = false;
 	

@@ -2,12 +2,10 @@ package global.engine;
 
 import haxe.Timer;
 import openfl.Lib;
-import openfl.events.KeyboardEvent;
 import openfl.display.Sprite;
 
 import lr.nodes.SubPanel;
 import global.Common;
-import global.KeyBindings;
 /**
  * ...
  * @author ...
@@ -24,7 +22,6 @@ class SimManager
 	public function new() 
 	{
 		Common.gSimManager = this;
-		Lib.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, key_toggle_modifiers);
 	}
 	public function start_sim() {
 		if (CVar.slow_motion_auto) {
@@ -171,84 +168,64 @@ class SimManager
 		this.flagged = false;
 		this.flag_av = false;
 	}
-	private function key_toggle_modifiers(e:KeyboardEvent):Void 
-	{
-		if (SVar.game_mode == GameState.edit) {
-			return;
+	public function slow_motion_toggle() {
+		if (SVar.slow_motion)
+		{
+			SVar.slow_motion = false;
+			this.set_reg_speed();
+		} else if (!SVar.slow_motion) {
+			SVar.slow_motion = true;
+			this.set_slow_speed();
 		}
-		if (e.keyCode == KeyBindings.sm_toggle) {
-			if (SVar.sim_running) {
-				if (SVar.slow_motion)
-				{
-					SVar.slow_motion = false;
-					this.set_reg_speed();
-				} else if (!SVar.slow_motion) {
-					SVar.slow_motion = true;
-					this.set_slow_speed();
-				}
-			}
+	}
+	public function fast_forward_toggle() {
+		if (!this.fast_forward) {
+			this.fast_forward = true;
+		} else {
+			this.fast_forward = false;
 		}
-		if (e.keyCode == KeyBindings.ff_toggle) {
-			if (SVar.sim_running) {
-				if (!this.fast_forward) {
-					this.fast_forward = true;
-				} else {
-					this.fast_forward = false;
-				}
-			}
+	}
+	public function rewind_toggle() {
+		if (this.rewind == false) {
+			this.rewind = true;
+			this.fast_forward = false;
+		} else if (this.rewind != false){
+			this.rewind = false;
+			this.fast_forward = false;
 		}
-		if (e.keyCode == KeyBindings.rw_toggle) {
-			if (SVar.sim_running && this.rewind == false) {
-				this.rewind = true;
-				this.fast_forward = false;
-			} else if (SVar.sim_running && this.rewind != false){
-				this.rewind = false;
-				this.fast_forward = false;
-			}
+	}
+	public function pause_play_toggle() {
+		if (!SVar.sim_running && !this.paused) {
+			Common.globalPlay();
+		} else if (SVar.sim_running && !this.paused) {
+			this.pause_sim();
+		} else if (SVar.sim_running && this.paused) {
+			this.resume_sim();
 		}
-		if (e.keyCode == KeyBindings.pp_toggle) {
-			if (!SVar.sim_running && !this.paused) {
-				this.start_sim();
-			} else if (SVar.sim_running && !this.paused) {
-				this.pause_sim();
-			} else if (SVar.sim_running && this.paused) {
-				this.resume_sim();
-			}
+	}
+	public function step_forward() {
+		if (!this.rewind) {
+			this.update_sim();
+		} else {
+			this.rewind = false;
+			this.update_sim();
+			this.rewind = true;
 		}
-		if (e.keyCode == KeyBindings.icon_play) {
-			if (!e.controlKey) {
-				Common.gTrack.set_simmode_play();
-			}
+	}
+	public function step_backward() {
+		if (this.rewind) {
+			this.update_sim();
+		} else {
+			this.rewind = true;
+			this.update_sim();
+			this.rewind = false;
 		}
-		if (e.keyCode == KeyBindings.icon_stop) {
-			Common.gTrack.set_simmode_stop();
-		}
-		if (e.keyCode == KeyBindings.icon_flag) {
-			if (SVar.sim_running) {
-				Common.gSimManager.mark_rider_position();
-				Common.gSimManager.show_flag();
-			} else if (!SVar.sim_running) {
-				if (Common.gSimManager.flagged == false) {
-					Common.gSimManager.show_flag();
-					Common.gSimManager.flagged = true;
-				} else if (Common.gSimManager.flagged == true) {
-					Common.gSimManager.hide_flag();
-					Common.gSimManager.flagged = false;
-				}
-			}
-		}
-		if (e.keyCode == KeyBindings.step_forward) {
-			if (!e.shiftKey) {
-				this.update_sim();
-				Common.gTimeline.update();
-			} else if (e.shiftKey) {
-				this.sup_frame_update();
-			}
-		}
-		if (e.keyCode == KeyBindings.step_backward) {
-			Common.gRiderManager.rewind_riders();
-			Common.gTimeline.update();
-		}
+	}
+	public function sub_step_forward() {
+		
+	}
+	public function sub_step_backward() {
+		
 	}
 	function set_slow_speed() 
 	{
