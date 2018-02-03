@@ -85,32 +85,26 @@ class Common
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//functions
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	public static function get_angle_radians(_a:Point, _b:Point):Float
-	{
+	public static function get_angle_radians(_a:Point, _b:Point):Float {
 		var _locAngle = Math.atan2(_b.y - _a.y, _b.x - _a.x);
 		return (_locAngle);
 	}
-	public static function get_angle_degrees(_a:Point, _b:Point):Float
-	{
+	public static function get_angle_degrees(_a:Point, _b:Point):Float {
 		var _locAngle = Math.atan2(_b.y - _a.y, _b.x - _a.x) * 180 / Math.PI;
 		return (_locAngle);
 	}
-	public static function get_point_vector(_dis:Int, _ang:Float):Point
-	{
+	public static function get_point_vector(_dis:Int, _ang:Float):Point {
 		var _loc1:Point = new Point((_dis * -1) * Math.cos(_ang), (_dis * -1) * Math.sin(_ang));
 		return(_loc1);
 	}
-	public static function get_distance(_a:Point, _b:Point):Float 
-	{
+	public static function get_distance(_a:Point, _b:Point):Float {
 		return(Math.sqrt(Math.pow(_b.y - _a.y, 2) + Math.pow(_b.x - _a.x, 2)));
 	}
-	public static function get_distance_point(_a:Point, _b:Point):Point
-	{
+	public static function get_distance_point(_a:Point, _b:Point):Point {
 		var _loc1:Point = new Point(_b.y - _a.y, _b.x - _a.x);
 		return(_loc1);
 	}
-	public static function gridPos(x:Float, y:Float):Object
-	{
+	public static function gridPos(x:Float, y:Float):Object {
 		var posObject:Object = new Object();
 		posObject.x = Math.floor(x / SVar.gridsize);
 		posObject.y = Math.floor(y / SVar.gridsize);
@@ -118,8 +112,7 @@ class Common
 		posObject.gy = y - SVar.gridsize * posObject.y;
 		return(posObject);
 	}
-	public static function tilePos(x:Float, y:Float):Object
-	{
+	public static function tilePos(x:Float, y:Float):Object {
 		var posObject:Object = new Object();
 		posObject.x = Math.floor(x / SVar.tilesize);
 		posObject.y = Math.floor(y / SVar.tilesize);
@@ -127,8 +120,7 @@ class Common
 		posObject.gy = y - SVar.tilesize * posObject.y;
 		return(posObject);
 	}
-	public static function time(_loc0:Int):String 
-	{
+	public static function time(_loc0:Int):String {
 		var _loc2:Int = _loc0;
 		var _loc3:Int = Std.int(_loc2 / 40);
 		var _loc6:Int = Std.int(_loc3 / 60);

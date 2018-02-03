@@ -13,7 +13,7 @@ import global.SVar;
  * ...
  * @author Kaelan Evans
  */
-class Desktop extends ControlBase
+class MouseControl extends ControlBase
 {
 
 	public function new() 

@@ -51,10 +51,6 @@ class IconBase extends Sprite
 		
 		this.attach_listeners();
 	}
-	function attachNull(lib:AssetLibrary) 
-	{
-		trace("import failed");
-	}
 	private function attach_listeners() {
 		this.iconButton.addEventListener(MouseEvent.MOUSE_OVER, disable_tool);
 		this.iconButton.addEventListener(MouseEvent.MOUSE_OUT, enable_tool);

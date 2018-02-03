@@ -29,7 +29,9 @@ class TimelineControl extends Sprite
 		this.graphics.moveTo( -15, -15);
 		this.graphics.lineTo(1295, -15);
 		this.graphics.lineTo(1295, 35);
-		this.graphics.lineTo(-15, 35);
+		this.graphics.lineTo( -15, 35);
+		
+		this.buttonMode = true;
 		
 		this.ticker = new Ticker();
 		this.addChild(this.ticker);

@@ -10,7 +10,7 @@ import platform.CoreBase;
 //third party
 
 //openLR
-import platform.control.Desktop;
+import platform.control.MouseControl;
 import platform.file.Screenshot;
 import global.Common;
 import global.CVar;
@@ -48,7 +48,7 @@ class WebCore extends CoreBase
 		this.init_env();
 		this.init_track();
 		this.visContainer.visible = true;
-		this.controlScheme = new Desktop();
+		this.controlScheme = new MouseControl();
 		Lib.current.stage.showDefaultContextMenu = false;
 	}
 	public function init_env() //Initialize enviornment

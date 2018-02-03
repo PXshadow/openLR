@@ -13,7 +13,7 @@ import sys.FileSystem;
 //openLR
 import platform.CoreBase;
 import platform.file.exporting.ExportNative;
-import platform.control.Desktop;
+import platform.control.MouseControl;
 import platform.control.KeyControl;
 import platform.file.SaveBrowser;
 import global.Common;
@@ -58,7 +58,7 @@ class SysCore extends CoreBase
 		this.init_env();
 		this.init_track();
 		this.visContainer.visible = true;
-		this.controlScheme = new Desktop();
+		this.controlScheme = new MouseControl();
 		
 		Lib.current.stage.application.onExit.add (function (exitCode) {
 			//Autosave code here

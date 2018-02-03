@@ -8,7 +8,7 @@ import platform.CoreBase;
 //third party
 
 //openLR
-import platform.control.Desktop;
+import platform.control.MouseControl;
 import platform.titlecards.TitleCardFL;
 import global.Common;
 import global.CVar;
@@ -48,7 +48,7 @@ class FlashCore extends CoreBase
 		if (_load) {
 			this.toggle_Loader();
 		}
-		this.controlScheme = new Desktop();
+		this.controlScheme = new MouseControl();
 	}
 	public function init_env() //Initialize enviornment
 	{

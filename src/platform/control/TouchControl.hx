@@ -4,7 +4,7 @@ package platform.control;
  * ...
  * @author Kaelan Evans
  */
-class Touch 
+class TouchControl 
 {
 
 	public function new() 
