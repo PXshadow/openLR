@@ -144,7 +144,9 @@ class KeyBindings
 	public function new() {
 		this.KeyMap = new Map();
 		this.setMapBinds();
-		this.setGlobalBinds();
+		#if sys
+			this.setGlobalBinds();
+		#end
 	}
 	function setGlobalBinds() 
 	{
