@@ -173,6 +173,7 @@ class RiderBase extends Sprite
 	}
 	public function iterate() {
 		this.body.verlet(this.grav);
+		this.scarf.flutter();
 		this.scarf.verlet(this.grav);
 		for (a in 0...6) {
 			this.skeleton.constrain();

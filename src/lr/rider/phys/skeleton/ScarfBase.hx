@@ -65,4 +65,7 @@ class ScarfBase
 			anchors[i].vy = anchors[i].y - _vy;
 		}
 	}
+	public function flutter() {
+		
+	}
 }
