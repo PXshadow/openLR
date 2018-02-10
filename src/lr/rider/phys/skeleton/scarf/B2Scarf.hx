@@ -83,7 +83,7 @@ class B2Scarf extends ScarfBase
 	}
 	override public function flutter() 
 	{
-		this.anchors[1].x += Math.random() * 0.3 * -Math.min(this.origin.dx, 125);
-		this.anchors[1].y += Math.random() * 0.3 * -Math.min(this.origin.dx, 125);
+		this.anchors[1].x += Math.random() * 0.3 * -Math.min(this.shoulder.dx, 125);
+		this.anchors[1].y += Math.random() * 0.3 * -Math.min(this.shoulder.dy, 125);
 	}
 }
