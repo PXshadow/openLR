@@ -17,7 +17,9 @@
 	<window width="1280" height="720" if="cpp" />
 	<window width="1280" height="720" if="flash" />
 	<window width="1920" height="1080" if="js" />
-	<window orientation="landscape" vsync="true" antialiasing="4"/>
+	<window orientation="landscape" />
+	<window vsync="true" antialiasing="4" if="release" />
+	<window vsync="false" antialiasing="0" if="debug" />
 	
 	<!-- classpath, haxe libs -->
 	<source path="src" />
