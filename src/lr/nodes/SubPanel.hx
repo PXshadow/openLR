@@ -1,8 +1,9 @@
 package lr.nodes;
 
-import lr.lines.LineBase;
 import openfl.display.Shape;
 import openfl.display.Sprite;
+
+import lr.lines.LineBase;
 
 /**
  * ...
