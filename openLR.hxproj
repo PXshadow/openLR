@@ -17,7 +17,6 @@
   <!-- Other classes to be compiled into your SWF -->
   <classpaths>
     <class path="C:\HaxeToolkit\haxe\lib\lime\6,2,0" />
-    <class path="C:\HaxeToolkit\haxe\lib\actuate\1,8,7" />
     <class path="C:\HaxeToolkit\haxe\lib\haxeui-openfl\0,0,2" />
     <class path="C:\HaxeToolkit\haxe\lib\haxeui-core\0,0,3" />
     <class path="C:\HaxeToolkit\haxe\lib\hscript\2,1,1" />
@@ -29,7 +28,7 @@
   </classpaths>
   <!-- Build options -->
   <build>
-    <option directives="lime=6.2.0&#xA;actuate=1.8.7&#xA;haxeui-openfl=0.0.2&#xA;haxeui-core=0.0.3&#xA;hscript=2.1.1&#xA;openfl=7.1.2&#xA;tools=6.2.0&#xA;no-compilation&#xA;native&#xA;lime-native&#xA;lime-vorbis&#xA;openfl-native&#xA;lime-cffi&#xA;windows&#xA;desktop&#xA;display" />
+    <option directives="lime=6.2.0&#xA;haxeui-openfl=0.0.2&#xA;haxeui-core=0.0.3&#xA;hscript=2.1.1&#xA;openfl=7.1.2&#xA;tools=6.2.0&#xA;no-compilation&#xA;native&#xA;lime-native&#xA;lime-vorbis&#xA;openfl-native&#xA;lime-cffi&#xA;windows&#xA;desktop&#xA;display" />
     <option flashStrict="False" />
     <option noInlineOnDebug="False" />
     <option mainClass="ApplicationMain" />
