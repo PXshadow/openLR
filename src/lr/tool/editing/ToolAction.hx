@@ -5,7 +5,7 @@ import openfl.geom.Point;
 import openfl.utils.Object;
 
 import lr.lines.LineBase;
-import lr.nodes.GridManager;
+import lr.nodes.Grid;
 import global.Common;
 import global.SVar;
 
@@ -77,20 +77,20 @@ class ToolAction
 		for (_loc19 in -1...2)
 		{
 			var _loc7:Int = (_loc20.x + _loc19);
-			if (GridCollision.grid[_loc7] == null)
+			if (Grid.grid[_loc7] == null)
 			{
 				continue;
 			} // end if
 			for (_loc8 in -1...2)
 			{
 				var _loc5:Int = (_loc20.y + _loc8);
-				if (GridCollision.grid[_loc7][_loc5] == null)
+				if (Grid.grid[_loc7][_loc5] == null)
 				{
 					continue;
 				} // end if
-				for (_loc21 in 0...GridCollision.grid[_loc7][_loc5].primary.length)
+				for (_loc21 in 0...Grid.grid[_loc7][_loc5].primary.length)
 				{
-					var _loc1:LineBase = GridCollision.grid[_loc7][_loc5].primary[_loc21];
+					var _loc1:LineBase = Grid.grid[_loc7][_loc5].primary[_loc21];
 					if (_loc1 == null) {
 						continue;
 					}
