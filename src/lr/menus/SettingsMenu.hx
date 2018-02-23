@@ -276,7 +276,7 @@ class SettingsMenu extends Sprite
 			}
 		}
 
-		this.close = new TextButton("Close", Common.gCode.toggleSettings_box, 1);
+		this.close = new TextButton("Close", Common.gCode.toggleSettings_box);
 		this.addChild(this.close);
 		this.close.y = 405;
 	}

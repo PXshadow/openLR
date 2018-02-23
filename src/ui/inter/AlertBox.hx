@@ -44,7 +44,7 @@ class AlertBox extends MovieClip
 		if (_msg == null) {
 			_msg = Language.Okay;
 		}
-		this.confirm_button = new TextButton(_msg, _action, ButtonSize.b120x30);
+		this.confirm_button = new TextButton(_msg, _action);
 		this.addChild(this.confirm_button);
 		this.confirm_button.x = (this.width * 0.5) - (this.confirm_button.width * 0.5);
 		this.confirm_button.y = 180;

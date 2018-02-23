@@ -42,22 +42,25 @@ class IconSave extends IconBase
 	
 	function set_items() 
 	{
-		this.new_track = new TextButton(Language.New_track, this.make_new_track, ButtonSize.b120x30);
-			this.buttonList.push(this.new_track);
+		this.new_track = new TextButton(Language.New_track, this.make_new_track);
+		this.buttonList.push(this.new_track);
 			
 			#if (cpp || js)
-				this.save_track = new TextButton(Language.Save_track, this.open_save_menu, ButtonSize.b120x30);
-				this.buttonList.push(this.save_track);
+			
+				#if (debug)
+					this.save_track = new TextButton(Language.Save_track, this.open_save_menu);
+					this.buttonList.push(this.save_track);
+				#end
 				
-				this.load_track = new TextButton(Language.Load_track, this.show_loader, ButtonSize.b120x30);
+				this.load_track = new TextButton(Language.Load_track, this.show_loader);
 				this.buttonList.push(this.load_track);
 			#end
 			#if (cpp)
-				this.screen_cap = new TextButton(Language.Screencap, this.take_screenshot, ButtonSize.b120x30);
+				this.screen_cap = new TextButton(Language.Screencap, this.take_screenshot);
 				this.buttonList.push(this.screen_cap);
 			#end
 			
-			this.about = new TextButton("About", this.open_github_page, ButtonSize.b120x30);
+			this.about = new TextButton("About", this.open_github_page);
 			this.buttonList.push(this.about);
 	}
 	override public function up(e:MouseEvent) {

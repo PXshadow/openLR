@@ -71,15 +71,15 @@ class SaveBrowser extends Sprite
 		this.textField_title.width = 160; 
 		this.textField_title.text = "OpenLR"; 
 		
-		this.load_file = new TextButton("Load", this.invoke_loader, ButtonSize.b120x30);
+		this.load_file = new TextButton("Load", this.invoke_loader);
 		this.addChild(this.load_file);
-		this.load_file.x = 200;
+		this.load_file.x = 240;
 		this.load_file.y = 5;
 		this.load_file.visible = false;
 		
-		this.open_dir = new TextButton("Explore", this.invoke_loader, ButtonSize.b120x30);
+		this.open_dir = new TextButton("Explore", this.invoke_loader);
 		this.addChild(this.open_dir);
-		this.open_dir.x = 200;
+		this.open_dir.x = 240;
 		this.open_dir.y = 40;
 		this.open_dir.visible = false;
 		

@@ -188,12 +188,12 @@ class ExportNative extends ExportBase
 		}
 		//this.addChild(this.checkbox_legacySave);
 		
-		this.textButton_cancel = new TextButton("Cancel", this.exit_save_menu, ButtonSize.b120x30);
+		this.textButton_cancel = new TextButton("Cancel", this.exit_save_menu);
 		this.addChild(this.textButton_cancel);
 		this.textButton_cancel.x = 380;
 		this.textButton_cancel.y = 305;
 		
-		this.textButton_save = new TextButton("Save", this.save_track, ButtonSize.b120x30);
+		this.textButton_save = new TextButton("Save", this.save_track);
 		this.addChild(this.textButton_save);
 		this.textButton_save.x = 5;
 		this.textButton_save.y = 305;

@@ -1,13 +1,14 @@
 package ui.inter;
 
 import openfl.display.MovieClip;
+import openfl.events.MouseEvent;
 import openfl.text.TextField;
 import openfl.text.TextFormat;
 import openfl.text.TextFormatAlign;
 import openfl.Assets;
 
-import ui.inter.TextButton;
-import global.Language;
+import lr.tool.IconButton;
+import lr.tool.IconBase;
 
 /**
  * ...
@@ -16,8 +17,8 @@ import global.Language;
 class ConfirmDialog extends MovieClip
 {
 	private var alert_message:TextField;
-	private var yes_button:TextButton;
-	private var no_button:TextButton;
+	private var yes_button:IconButton;
+	private var no_button:IconButton;
 	var font:TextFormat = new TextFormat(Assets.getFont("fonts/Verdana.ttf").fontName, 14, 0, null, null, null, null, null, TextFormatAlign.CENTER);
 	public function new(_msg:String = "Message not set", _yes:Dynamic = null, _no:Dynamic = null) 
 	{
@@ -41,14 +42,16 @@ class ConfirmDialog extends MovieClip
 		this.alert_message.width = this.width;
 		this.alert_message.y = 40;
 		
-		this.yes_button = new TextButton(Language.Yes, _yes, ButtonSize.b120x30);
+		this.yes_button = new IconButton(Icon.yes);
 		this.addChild(this.yes_button);
-		this.yes_button.x = 40;
+		this.yes_button.x = 150;
 		this.yes_button.y = 140;
+		this.yes_button.addEventListener(MouseEvent.CLICK, _yes);
 		
-		this.no_button = new TextButton(Language.No, _no, ButtonSize.b120x30);
+		this.no_button = new IconButton(Icon.no);
+		this.no_button.addEventListener(MouseEvent.CLICK, _no);
 		this.addChild(this.no_button);
-		this.no_button.x = 260;
+		this.no_button.x = 200;
 		this.no_button.y = 140;
 	}
 	

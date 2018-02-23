@@ -1,7 +1,5 @@
 package lr.tool;
 
-import openfl.utils.AssetLibrary;
-
 #if (!flash)
 	import openfl.display.Sprite;
 	import openfl.events.MouseEvent;
@@ -36,6 +34,9 @@ import lr.tool.IconButton;
 	public var swBlue:String = "blue";
 	public var swRed:String = "red";
 	public var swGreen:String = "green";
+	public var no:String = "no";
+	public var yes:String = "yes";
+	public var generic:String = "generic";
 }
 class IconBase extends Sprite
 {
