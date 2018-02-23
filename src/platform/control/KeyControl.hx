@@ -6,7 +6,6 @@ import openfl.Lib;
 import openfl.events.KeyboardEvent;
 import openfl.ui.Keyboard;
 import openfl.utils.Object;
-import platform.control.KeyControl.KeyBindings;
 import sys.FileSystem;
 import sys.io.File;
 
