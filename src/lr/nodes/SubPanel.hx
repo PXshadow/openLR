@@ -110,51 +110,7 @@ class SubPanel extends Sprite
 		this.layer_scene_color.graphics.clear();
 		if (_break) return;
 		for (a in _lines) {
-			var _loc_3:Float = a.nx > 0 ? (Math.ceil(a.nx)) : (Math.floor(a.nx));
-			var _loc_4:Float = a.ny > 0 ? (Math.ceil(a.ny)) : (Math.floor(a.ny)); 
-			switch(a.type) {
-				case (LineType.Floor) :
-					this.layer_color.graphics.lineStyle(2, 0x0066FF, 1, true, "normal", "round");
-					this.layer_color.graphics.moveTo((a.x1 + _loc_3) - this.offset_x, (a.y1 + _loc_4) - this.offset_y);
-					this.layer_color.graphics.lineTo((a.x2 + _loc_3) - this.offset_x, (a.y2 + _loc_4) - this.offset_y);
-					this.layer_black.graphics.lineStyle(2, 0, 1, true, "normal", "round");
-					this.layer_black.graphics.moveTo((a.x1) - this.offset_x, (a.y1) - this.offset_y);
-					this.layer_black.graphics.lineTo((a.x2) - this.offset_x, (a.y2) - this.offset_y);
-					SubPanel.array_hitTest[a.ID] = new Sprite();
-					SubPanel.array_hitTest[a.ID].graphics.clear();
-					SubPanel.array_hitTest[a.ID].graphics.lineStyle(2, 0x0000FF, 1, true, "normal", "round");
-					SubPanel.array_hitTest[a.ID].graphics.moveTo((a.x1) - this.offset_x, (a.y1) - this.offset_y);
-					SubPanel.array_hitTest[a.ID].graphics.lineTo((a.x2) - this.offset_x, (a.y2) - this.offset_y);
-					SubPanel.array_hitTest[a.ID].visible = false;
-					this.layer_hitTest.addChild(SubPanel.array_hitTest[a.ID]);
-				case (LineType.Accel) :
-					this.layer_color.graphics.lineStyle(2, 0xCC0000, 1, true, "normal", "round");
-					this.layer_color.graphics.moveTo((a.x1 + _loc_3) - this.offset_x, (a.y1 + _loc_4) - this.offset_y);
-					this.layer_color.graphics.lineTo((a.x2 + _loc_3) - this.offset_x, (a.y2 + _loc_4) - this.offset_y);
-					this.layer_color.graphics.beginFill(0xCC0000, 1); 
-					this.layer_color.graphics.moveTo((a.x1 + _loc_3) - this.offset_x, (a.y1 + _loc_4) - this.offset_y); 
-					this.layer_color.graphics.lineTo((a.x2 + _loc_3) - this.offset_x, (a.y2 + _loc_4) - this.offset_y); 
-					this.layer_color.graphics.lineTo(a.x2 + (a.nx * 5 - a.dx * a.invDst * 5) - this.offset_x, (a.y2 - this.offset_y) + (a.ny * 5 - a.dy * a.invDst * 5)); 
-					this.layer_color.graphics.lineTo(a.x2 - (a.dx * a.invDst * 5) - this.offset_x, (a.y2 - this.offset_y) - (a.dy * a.invDst * 5)); 
-					this.layer_color.graphics.endFill();
-					this.layer_black.graphics.lineStyle(2, 0, 1, true, "normal", "round");
-					this.layer_black.graphics.moveTo((a.x1) - this.offset_x, (a.y1) - this.offset_y);
-					this.layer_black.graphics.lineTo((a.x2) - this.offset_x, (a.y2) - this.offset_y);
-					SubPanel.array_hitTest[a.ID] = new Sprite();
-					SubPanel.array_hitTest[a.ID].graphics.clear();
-					SubPanel.array_hitTest[a.ID].graphics.lineStyle(2, 0xFF0000, 1, true, "normal", "round");
-					SubPanel.array_hitTest[a.ID].graphics.moveTo((a.x1) - this.offset_x, (a.y1) - this.offset_y);
-					SubPanel.array_hitTest[a.ID].graphics.lineTo((a.x2) - this.offset_x, (a.y2) - this.offset_y);
-					SubPanel.array_hitTest[a.ID].visible = false;
-					this.layer_hitTest.addChild(SubPanel.array_hitTest[a.ID]);
-				case (LineType.Scene) :
-					this.layer_scene_color.graphics.lineStyle(2, 0x00CC00, 1, true, "normal", "round");
-					this.layer_scene_color.graphics.moveTo((a.x1) - this.offset_x, (a.y1) - this.offset_y);
-					this.layer_scene_color.graphics.lineTo((a.x2) - this.offset_x, (a.y2) - this.offset_y);
-					this.layer_scene_black.graphics.lineStyle(2, 0, 1, true, "normal", "round");
-					this.layer_scene_black.graphics.moveTo((a.x1) - this.offset_x, (a.y1) - this.offset_y);
-					this.layer_scene_black.graphics.lineTo((a.x2) - this.offset_x, (a.y2) - this.offset_y);
-			}
+			this.drawLine(a);
 		}
 	}
 	public function refresh() {
