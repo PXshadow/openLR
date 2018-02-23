@@ -31,7 +31,6 @@
 	<icon path="assets/logo.png" />
 	<assets path="assets/fonts" rename="fonts" embed="true" />
 	<assets path="assets/flash" rename="swf" />
-	<assets path="assets/img" rename="img"/>
 	
 	<haxeflag name="-dce full" />
 	
