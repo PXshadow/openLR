@@ -3,6 +3,7 @@ package lr.tool.icon;
 import openfl.events.MouseEvent;
 
 import global.Common;
+import global.CVar;
 import lr.tool.IconBase;
 
 /**
@@ -21,9 +22,9 @@ class IconStop extends IconBase
 		Common.gToolbar.pause.visible = false;
 		Common.gToolbar.set_full_edit_mode();
 		Common.gTrack.set_simmode_stop();
-		Common.gSimManager.fast_forward = false;
+		CVar.fast_forward = false;
 		Common.gTimeline.update();
-		if (!Common.gSimManager.paused) {
+		if (!CVar.paused) {
 			Common.gTrack.x = Common.track_last_pos_x;
 			Common.gTrack.y = Common.track_last_pos_y;
 			Common.gRiderManager.x = Common.gTrack.x;

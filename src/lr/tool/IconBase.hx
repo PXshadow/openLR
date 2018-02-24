@@ -10,6 +10,7 @@ package lr.tool;
 
 import global.Common;
 import global.SVar;
+import global.CVar;
 import lr.tool.IconButton;
 
 /**
@@ -76,7 +77,7 @@ class IconBase extends Sprite
 	
 	private function enable_tool(e:MouseEvent):Void 
 	{
-		if (!SVar.sim_running || Common.gSimManager.paused) {
+		if (!SVar.sim_running || CVar.paused) {
 		Common.gToolBase.set_tool(ToolBase.lastTool);
 		}
 	}

@@ -5,6 +5,8 @@ import openfl.display.Sprite;
 
 import lr.nodes.SubPanel;
 import global.Common;
+import global.CVar;
+
 /**
  * ...
  * @author ...
@@ -33,7 +35,7 @@ class SimManager
 			Common.gRiderManager.restore_flag();
 		}
 		if (CVar.paused) {
-			paused = false;
+			CVar.paused = false;
 			SVar.pause_frame = -1;
 		}
 		Common.gRiderManager.set_rider_visual_start();
@@ -97,15 +99,15 @@ class SimManager
 	}
 	public function end_sim()
 	{
-		if (this.sim_running) {
-			this.sim_running = false;
+		if (SVar.sim_running) {
+			SVar.sim_running = false;
 			SVar.frames_alt = SVar.frames;
 			SVar.frames = 0;
 			this.iterator.stop();
 			if (CVar.force_zoom || CVar.force_zoom_inverse) {
 				Common.gTrack.scaleX = Common.gTrack.scaleY = Common.gRiderManager.scaleX = Common.gRiderManager.scaleY = CVar.prev_zoom_ammount;
 			}
-			if (this.flagged) {
+			if (CVar.flagged) {
 				Common.gRiderManager.restore_flag();
 			} else {
 				Common.gRiderManager.restore_start();
@@ -117,9 +119,9 @@ class SimManager
 	public function pause_sim()
 	{
 		SVar.frames_alt = SVar.frames;
-		this.sim_running = false;
+		SVar.sim_running = false;
 		this.iterator.stop();
-		this.paused = true;
+		CVar.paused = true;
 		SVar.pause_frame = SVar.frames;
 	}
 	public function resume_sim() {
@@ -128,8 +130,8 @@ class SimManager
 			this.update_sim();
 			Common.gTextInfo.update_sim();
 		}
-		this.paused = false;
-		this.sim_running = true;
+		CVar.paused = false;
+		SVar.sim_running = true;
 		SVar.pause_frame = -1;
 	}
 	public function set_rider_start(_x:Float, _y:Float)
@@ -138,7 +140,7 @@ class SimManager
 	}
 	public function mark_rider_position() {
 		Common.gRiderManager.set_flag();
-		this.flagged = true;
+		CVar.flagged = true;
 		this.flag_av = true;
 	}
 	public function hide_flag() {
@@ -160,7 +162,7 @@ class SimManager
 		Common.gRiderManager.destroy_flag();
 		Common.gRiderManager.restore_start();
 		Common.gRiderManager.update_render();
-		this.flagged = false;
+		CVar.flagged = false;
 		this.flag_av = false;
 	}
 	public function slow_motion_toggle() {
@@ -174,46 +176,46 @@ class SimManager
 		}
 	}
 	public function fast_forward_toggle() {
-		if (!this.fast_forward) {
-			this.fast_forward = true;
+		if (!CVar.fast_forward) {
+			CVar.fast_forward = true;
 		} else {
-			this.fast_forward = false;
+			CVar.fast_forward = false;
 		}
 	}
 	public function rewind_toggle() {
-		if (this.rewind == false) {
-			this.rewind = true;
-			this.fast_forward = false;
-		} else if (this.rewind != false){
-			this.rewind = false;
-			this.fast_forward = false;
+		if (CVar.rewind == false) {
+			CVar.rewind = true;
+			CVar.fast_forward = false;
+		} else if (CVar.rewind != false){
+			CVar.rewind = false;
+			CVar.fast_forward = false;
 		}
 	}
 	public function pause_play_toggle() {
-		if (!SVar.sim_running && !this.paused) {
+		if (!SVar.sim_running && !CVar.paused) {
 			Common.globalPlay();
-		} else if (SVar.sim_running && !this.paused) {
+		} else if (SVar.sim_running && !CVar.paused) {
 			this.pause_sim();
-		} else if (SVar.sim_running && this.paused) {
+		} else if (SVar.sim_running && CVar.paused) {
 			this.resume_sim();
 		}
 	}
 	public function step_forward() {
-		if (!this.rewind) {
+		if (!CVar.rewind) {
 			this.update_sim();
 		} else {
-			this.rewind = false;
+			CVar.rewind = false;
 			this.update_sim();
-			this.rewind = true;
+			CVar.rewind = true;
 		}
 	}
 	public function step_backward() {
-		if (this.rewind) {
+		if (CVar.rewind) {
 			this.update_sim();
 		} else {
-			this.rewind = true;
+			CVar.rewind = true;
 			this.update_sim();
-			this.rewind = false;
+			CVar.rewind = false;
 		}
 	}
 	public function sub_step_forward() {

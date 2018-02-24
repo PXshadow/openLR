@@ -3,6 +3,7 @@ package lr.tool.icon;
 import openfl.events.MouseEvent;
 
 import global.Common;
+import global.CVar;
 import lr.tool.Toolbar;
 import lr.tool.IconBase;
 
@@ -18,7 +19,7 @@ class IconPlay extends IconBase
 		super(Icon.play);
 	}
 	override public function up(e:MouseEvent) {
-		if (!Common.gSimManager.paused) {
+		if (!CVar.paused) {
 			Common.track_last_pos_x = Common.gTrack.x;
 			Common.track_last_pos_y = Common.gTrack.y;
 		}

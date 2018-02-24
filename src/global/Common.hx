@@ -172,7 +172,7 @@ class Common
 		return(new TextFormat(Assets.getFont("fonts/Verdana Bold.ttf").fontName, _size, 0, null, null, null, null, null, TextFormatAlign.RIGHT));
 	}
 	public static function globalPlay() {
-			if (!Common.gSimManager.paused) {
+			if (!CVar.paused) {
 			Common.track_last_pos_x = Common.gTrack.x;
 			Common.track_last_pos_y = Common.gTrack.y;
 		}
@@ -194,9 +194,9 @@ class Common
 		Common.gToolbar.pause.visible = false;
 		Common.gToolbar.set_full_edit_mode();
 		Common.gTrack.set_simmode_stop();
-		Common.gSimManager.fast_forward = false;
+		CVar.fast_forward = false;
 		Common.gTimeline.update();
-		if (!Common.gSimManager.paused) {
+		if (!CVar.paused) {
 			Common.gTrack.x = Common.track_last_pos_x;
 			Common.gTrack.y = Common.track_last_pos_y;
 			Common.gRiderManager.x = Common.gTrack.x;
@@ -209,12 +209,12 @@ class Common
 			Common.gSimManager.mark_rider_position();
 			Common.gSimManager.show_flag();
 		} else if (!SVar.sim_running) {
-			if (Common.gSimManager.flagged == false) {
+			if (CVar.flagged == false) {
 				Common.gSimManager.show_flag();
-				Common.gSimManager.flagged = true;
-			} else if (Common.gSimManager.flagged == true) {
+				CVar.flagged = true;
+			} else if (CVar.flagged == true) {
 				Common.gSimManager.hide_flag();
-				Common.gSimManager.flagged = false;
+				CVar.flagged = false;
 			}
 		}
 	}

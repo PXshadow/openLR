@@ -5,6 +5,7 @@ import openfl.events.MouseEvent;
 
 import global.Common;
 import global.SVar;
+import global.CVar;
 import lr.tool.IconBase;
 
 /**
@@ -24,12 +25,12 @@ class IconFlag extends IconBase
 			Common.gSimManager.mark_rider_position();
 			Common.gSimManager.show_flag();
 		} else if (!SVar.sim_running) {
-			if (Common.gSimManager.flagged == false) {
+			if (CVar.flagged == false) {
 				Common.gSimManager.show_flag();
-				Common.gSimManager.flagged = true;
-			} else if (Common.gSimManager.flagged == true) {
+				CVar.flagged = true;
+			} else if (CVar.flagged == true) {
 				Common.gSimManager.hide_flag();
-				Common.gSimManager.flagged = false;
+				CVar.flagged = false;
 			}
 		}
 	}
