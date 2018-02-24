@@ -9,7 +9,7 @@ import platform.CoreBase;
 
 //openLR
 import platform.control.MouseControl;
-import platform.titlecards.TitleCardFL;
+import platform.control.KeyControl;
 import global.Common;
 import global.CVar;
 import global.SVar;
@@ -35,19 +35,12 @@ class FlashCore extends CoreBase
 		
 		Common.gCode = this; //This class
 		
-		this.title_card = new TitleCardFL();
-		Lib.current.stage.addChild(this.title_card);
-		
-		this.title_card.x = (Lib.current.stage.stageWidth * 0.5) - (this.title_card.width * 0.5);
-		this.title_card.y = (Lib.current.stage.stageHeight * 0.5) - (this.title_card.height * 0.5);
+		this.start();
 	}
-	override public function start(_load:Bool = false) {
-		Lib.current.stage.removeChild(this.title_card);
+	override public function start() {
 		this.init_env();
 		this.init_track();
-		if (_load) {
-			this.toggle_Loader();
-		}
+		this.KeyboardControl = new KeyControl();
 		this.controlScheme = new MouseControl();
 	}
 	public function init_env() //Initialize enviornment

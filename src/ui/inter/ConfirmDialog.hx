@@ -46,11 +46,13 @@ class ConfirmDialog extends Sprite
 		
 		if (_newTrack) {
 			var innerClip:Sprite;
+			
 			#if (!flash)
 				innerClip = Common.OLR_Assets.getMovieClip("trash_track");
 			#elseif (flash)
-				innerClip = Assets.getMovieClip("swf-library:trash_can");
+				innerClip = Assets.getMovieClip("swf-library:trash_track");
 			#end
+			
 			trash = new Sprite();
 			trash.addChild(innerClip);
 			this.addChild(this.trash);
