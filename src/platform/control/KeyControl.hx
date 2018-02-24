@@ -6,8 +6,10 @@ import openfl.Lib;
 import openfl.events.KeyboardEvent;
 import openfl.ui.Keyboard;
 import openfl.utils.Object;
-import sys.FileSystem;
-import sys.io.File;
+#if sys
+	import sys.io.File;
+	import sys.FileSystem;
+#end
 
 import global.Common;
 import global.CVar;
@@ -147,31 +149,33 @@ class KeyBindings
 			this.setGlobalBinds();
 		#end
 	}
-	function setGlobalBinds() 
-	{
-		if (!FileSystem.exists(System.documentsDirectory + "openLR/Binds.txt")) {
-			this.write_settings();
-			return;
-		} else {
-			var _locImportedBunds:Object = Json.parse(File.getContent(System.documentsDirectory + "openLR/Binds.txt"));
-			KeyBindings.pencil = this.KeyMap[_locImportedBunds.binds.pencil.toUpperCase()];
-			KeyBindings.line = this.KeyMap[_locImportedBunds.binds.line.toUpperCase()];
-			KeyBindings.eraser = this.KeyMap[_locImportedBunds.binds.eraser.toUpperCase()];
-			KeyBindings.swatch_blue = this.KeyMap[_locImportedBunds.binds.swatch_blue.toUpperCase()];
-			KeyBindings.swatch_red = this.KeyMap[_locImportedBunds.binds.swatch_red.toUpperCase()];
-			KeyBindings.swatch_green = this.KeyMap[_locImportedBunds.binds.swatch_green.toUpperCase()];
-			KeyBindings.play = this.KeyMap[_locImportedBunds.binds.play.toUpperCase()];
-			KeyBindings.stop = this.KeyMap[_locImportedBunds.binds.stop.toUpperCase()];
-			KeyBindings.flag = this.KeyMap[_locImportedBunds.binds.flag.toUpperCase()];
-			KeyBindings.angle_snap = this.KeyMap[_locImportedBunds.binds.angle_snap.toUpperCase()];
-			KeyBindings.ff_toggle = this.KeyMap[_locImportedBunds.binds.ff_toggle.toUpperCase()];
-			KeyBindings.sm_toggle = this.KeyMap[_locImportedBunds.binds.sm_toggle.toUpperCase()];
-			KeyBindings.rw_toggle = this.KeyMap[_locImportedBunds.binds.rw_toggle.toUpperCase()];
-			KeyBindings.pp_toggle = this.KeyMap[_locImportedBunds.binds.pp_toggle.toUpperCase()];
-			KeyBindings.step_forward = this.KeyMap[_locImportedBunds.binds.step_forward.toUpperCase()];
-			KeyBindings.step_backward = this.KeyMap[_locImportedBunds.binds.step_backward.toUpperCase()];
+	#if sys
+		function setGlobalBinds() 
+		{
+			if (!FileSystem.exists(System.documentsDirectory + "openLR/Binds.txt")) {
+				this.write_settings();
+				return;
+			} else {
+				var _locImportedBunds:Object = Json.parse(File.getContent(System.documentsDirectory + "openLR/Binds.txt"));
+				KeyBindings.pencil = this.KeyMap[_locImportedBunds.binds.pencil.toUpperCase()];
+				KeyBindings.line = this.KeyMap[_locImportedBunds.binds.line.toUpperCase()];
+				KeyBindings.eraser = this.KeyMap[_locImportedBunds.binds.eraser.toUpperCase()];
+				KeyBindings.swatch_blue = this.KeyMap[_locImportedBunds.binds.swatch_blue.toUpperCase()];
+				KeyBindings.swatch_red = this.KeyMap[_locImportedBunds.binds.swatch_red.toUpperCase()];
+				KeyBindings.swatch_green = this.KeyMap[_locImportedBunds.binds.swatch_green.toUpperCase()];
+				KeyBindings.play = this.KeyMap[_locImportedBunds.binds.play.toUpperCase()];
+				KeyBindings.stop = this.KeyMap[_locImportedBunds.binds.stop.toUpperCase()];
+				KeyBindings.flag = this.KeyMap[_locImportedBunds.binds.flag.toUpperCase()];
+				KeyBindings.angle_snap = this.KeyMap[_locImportedBunds.binds.angle_snap.toUpperCase()];
+				KeyBindings.ff_toggle = this.KeyMap[_locImportedBunds.binds.ff_toggle.toUpperCase()];
+				KeyBindings.sm_toggle = this.KeyMap[_locImportedBunds.binds.sm_toggle.toUpperCase()];
+				KeyBindings.rw_toggle = this.KeyMap[_locImportedBunds.binds.rw_toggle.toUpperCase()];
+				KeyBindings.pp_toggle = this.KeyMap[_locImportedBunds.binds.pp_toggle.toUpperCase()];
+				KeyBindings.step_forward = this.KeyMap[_locImportedBunds.binds.step_forward.toUpperCase()];
+				KeyBindings.step_backward = this.KeyMap[_locImportedBunds.binds.step_backward.toUpperCase()];
+			}
 		}
-	}
+	#end
 	private function setMapBinds() 
 	{
 		this.KeyMap["0"] = Keyboard.NUMBER_0;
@@ -228,29 +232,31 @@ class KeyBindings
 		this.KeyMap["F12"] = Keyboard.F12;
 		this.KeyMap["SPACE"] = Keyboard.SPACE;
 	}
-	private function write_settings() {
-		var key:Object = new Object(); 
-		key = { 
-			"pencil" : "Q", 
-			"line" : "W", 
-			"eraser" : "E", 
-			"swatch_blue" : "1", 
-			"swatch_red" : "2", 
-			"swatch_green" : "3", 
-			"play" : "Y", 
-			"stop" : "U", 
-			"flag" : "I",
-			"angle_snap" : "X", 
-			"line_snap" : "S", 
-			"ff_toggle" : "N", 
-			"sm_toggle" : "M", 
-			"rw_toggle" : "B", 
-			"pp_toggle" : "SPACE", 
-			"step_forward" : "RIGHT", 
-			"step_backward" : "LEFT",  
-		} 
-		var file = File.write(System.documentsDirectory + "openLR/Binds.txt", true); 
-		file.writeString(Json.stringify(key, null, "\t")); 
-		file.close(); 
-	} 
+	#if sys
+		private function write_settings() {
+			var key:Object = new Object(); 
+			key = { 
+				"pencil" : "Q", 
+				"line" : "W", 
+				"eraser" : "E", 
+				"swatch_blue" : "1", 
+				"swatch_red" : "2", 
+				"swatch_green" : "3", 
+				"play" : "Y", 
+				"stop" : "U", 
+				"flag" : "I",
+				"angle_snap" : "X", 
+				"line_snap" : "S", 
+				"ff_toggle" : "N", 
+				"sm_toggle" : "M", 
+				"rw_toggle" : "B", 
+				"pp_toggle" : "SPACE", 
+				"step_forward" : "RIGHT", 
+				"step_backward" : "LEFT",  
+			} 
+			var file = File.write(System.documentsDirectory + "openLR/Binds.txt", true); 
+			file.writeString(Json.stringify(key, null, "\t")); 
+			file.close(); 
+		}
+	#end
 }
