@@ -1,7 +1,6 @@
 package global.engine;
 
 import haxe.Timer;
-import openfl.Lib;
 import openfl.display.Sprite;
 
 import lr.nodes.SubPanel;
@@ -13,11 +12,7 @@ import global.Common;
 class SimManager 
 {
 	var iterator:Timer;
-	public var sim_running:Bool = false;
-	public var fast_forward:Bool = false;
-	public var paused:Bool = false;
-	public var flagged:Bool = false;
-	public var rewind:Bool = false;
+	
 	private var flag_av:Bool = false;
 	public function new() 
 	{
@@ -31,25 +26,25 @@ class SimManager
 			SVar.slow_motion = false;
 			SVar.default_rate = 40;
 		}
-		if (!flagged) {
+		if (!CVar.flagged) {
 			SVar.frames = 0;
 			Common.gRiderManager.restore_start();
-		} else if (flagged) {
+		} else if (CVar.flagged) {
 			Common.gRiderManager.restore_flag();
 		}
-		if (paused) {
+		if (CVar.paused) {
 			paused = false;
 			SVar.pause_frame = -1;
 		}
 		Common.gRiderManager.set_rider_visual_start();
-		if (!sim_running) {
+		if (!SVar.sim_running) {
 			Common.gCode.return_to_origin_sim();
 			this.iterator = new Timer(Std.int(1000 * (1 / SVar.default_rate)));
 			this.iterator.run = function():Void {
 				this.update_sim();
 				Common.gTextInfo.update_sim();
 			}
-			this.sim_running = true;
+			SVar.sim_running = true;
 		}
 		if (CVar.force_zoom) {
 			CVar.prev_zoom_ammount = Common.gTrack.scaleX;
@@ -67,15 +62,15 @@ class SimManager
 			}
 			SubPanel.lit_lines = new Array<Sprite>();
 		}
-		if (!this.fast_forward && !this.rewind) {
+		if (!CVar.fast_forward && !CVar.rewind) {
 			Common.gRiderManager.advance_riders();
 			++SVar.frames;
-		} else if (this.fast_forward && !this.rewind) {
-			for (a in 0...4) {
+		} else if (CVar.fast_forward && !CVar.rewind) {
+			for (a in 0...CVar.fast_forward_rate) {
 				Common.gRiderManager.advance_riders();
 				++SVar.frames;
 			}
-		} else if (this.rewind) {
+		} else if (CVar.rewind) {
 			Common.gRiderManager.rewind_riders();
 		}
 		if (SVar.frames > SVar.max_frames) {
