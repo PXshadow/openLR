@@ -98,6 +98,8 @@ class Main extends Sprite
 				this.newStartLoader = new SaveBrowser();
 				this.newStartLoader.x = 0;
 				this.newStartLoader.y = 0;
+			#elseif js
+				this.start();
 			#end
 	}
 	#end
