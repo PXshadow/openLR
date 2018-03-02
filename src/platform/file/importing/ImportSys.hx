@@ -23,7 +23,7 @@ import platform.file.fileType.*;
  * 
  * 
  */
-class ImportNative extends ImportBase 
+class ImportSys extends ImportBase 
 {
 	var rootDirectoryList:Array<String>;
 	var subFolderDirectoryList:Map<String, Array<String>>;
