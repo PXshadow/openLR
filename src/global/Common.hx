@@ -18,7 +18,6 @@ import lr.tool.Toolbar;
 import lr.tool.ToolBase;
 import lr.nodes.Grid;
 import lr.rider.RiderCamera;
-import platform.CoreBase;
 #if sys
 	import platform.file.SaveBrowser;
 #end
@@ -49,7 +48,7 @@ class Common
 	
 	public static var OLR_Assets:AssetLibrary;
 	
-	public static var gCode:CoreBase;
+	public static var gCode:Main;
 	public static var gTrack:Track;
 	public static var gRiderManager:RiderManager;
 	public static var gVisContainer:Sprite;
