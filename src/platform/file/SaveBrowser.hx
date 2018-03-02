@@ -13,7 +13,7 @@ import openfl.text.TextFormatAlign;
 import sys.FileSystem;
 
 //secondary
-import platform.file.importing.ImportNative;
+import platform.file.importing.ImportSys;
 import ui.inter.TextButton;
 import global.Common;
 
@@ -229,7 +229,7 @@ class SaveBrowser extends Sprite
 		Common.gTimeline.visible = true;
 		
 		#if (sys)
-			this.fileLoader = new ImportNative();
+			this.fileLoader = new ImportSys();
 			this.fileLoader.load(this.currentSelectedPath);
 		#end
 	}
