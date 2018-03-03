@@ -46,8 +46,8 @@ class IconSave extends IconBase
 		this.buttonList.push(this.new_track);
 			
 		#if sys
-			this.save_track = new TextButton(Language.Save_track, this.open_save_menu);
-			this.buttonList.push(this.save_track);
+			//this.save_track = new TextButton(Language.Save_track, this.open_save_menu);
+			//this.buttonList.push(this.save_track);
 			
 			this.load_track = new TextButton(Language.Load_track, this.show_loader);
 			this.buttonList.push(this.load_track);

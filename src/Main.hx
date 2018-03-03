@@ -34,9 +34,12 @@ import platform.control.KeyControl;
 import platform.control.MouseControl;
 import platform.file.ExportBase;
 import platform.file.ImportBase;
+import platform.file.BrowserBase;
 #if sys
-	import platform.file.SaveBrowser;
+	import platform.file.browser.BrowserSys;
 	import platform.file.exporting.ExportSys;
+#elseif flash
+	import platform.file.browser.BrowserFL;
 #end
 
 /**
@@ -66,9 +69,8 @@ class Main extends Sprite
 	private var exportVisible:Bool = false;
 	private var importing:ImportBase;
 	private var importingVisible = false;
-	#if sys
-		private var newStartLoader:SaveBrowser;
-	#end
+	private var newStartLoader:BrowserBase;
+	
 	public function new() 
 	{
 		super();
@@ -82,27 +84,33 @@ class Main extends Sprite
 			load.onComplete(this.launch);
 		#elseif flash
 			Assets.loadLibrary("olr_fl");
-			
-			Common.gCode = this;
 		
-			this.start();
+			this.launch();
 		#end
 	}
 	#if (sys || js)
-		function launch(lib:AssetLibrary) {
-			Common.gCode = this; //This class
-			
-			Common.OLR_Assets = lib;
-			
-			#if sys
-				this.newStartLoader = new SaveBrowser();
-				this.newStartLoader.x = 0;
-				this.newStartLoader.y = 0;
-			#elseif js
-				this.start();
-			#end
-	}
+		function launch(lib:AssetLibrary = null) {
+	#elseif flash
+		function launch() {
 	#end
+		Common.gCode = this; //This class
+		
+		#if (sys || js)
+			Common.OLR_Assets = lib;
+		#end
+		
+		#if sys
+			this.newStartLoader = new BrowserSys();
+			this.newStartLoader.x = 0;
+			this.newStartLoader.y = 0;
+		#elseif flash
+			this.newStartLoader = new BrowserFL();
+			this.newStartLoader.x = 0;
+			this.newStartLoader.y = 0;
+		#elseif js
+			this.start();
+		#end
+	}
 	public function start() {
 		this.KeyboardControl = new KeyControl();
 		this.init_env();
@@ -119,11 +127,11 @@ class Main extends Sprite
 		{
 			if (!FileSystem.isDirectory(System.documentsDirectory + "/openLR/")) FileSystem.createDirectory(System.documentsDirectory + "/openLR/");
 		}
-		function resize_title(e:Event):Void 
-		{
-			this.newStartLoader.render();
-		}
 	#end
+	function resize_title(e:Event):Void 
+	{
+		this.newStartLoader.render();
+	}
 	public function init_env() //Initialize enviornment
 	{
 		Lib.current.stage.addEventListener(Event.RESIZE, resize);
@@ -244,36 +252,33 @@ class Main extends Sprite
 		if (this.importingVisible == false) {
 			
 			#if sys
-				this.importingVisible = true;
-				
-				this.track.visible = false;
-				this.toolBar.visible = false;
-				this.timeline.visible = false;
-				
-				
-				this.newStartLoader = new SaveBrowser();
-				Lib.current.stage.addChild(this.newStartLoader);
-				
-				this.align();
-				
-				Toolbar.tool.set_tool("None");
+				this.newStartLoader = new BrowserSys();
 			#else
 				return;
 			#end
+			
+			this.importingVisible = true;
+			
+			this.track.visible = false;
+			this.toolBar.visible = false;
+			this.timeline.visible = false;
+			
+			Lib.current.stage.addChild(this.newStartLoader);
+			
+			this.align();
+			
+			Toolbar.tool.set_tool("None");
 		} else {
-			#if sys
-				this.importingVisible = false;
+			this.importingVisible = false;
 			
-				this.track.visible = true;
-				this.toolBar.visible = true;
-				this.timeline.visible = true;
+			this.track.visible = true;
+			this.toolBar.visible = true;
+			this.timeline.visible = true;
 			
-				Lib.current.stage.removeChild(this.newStartLoader);
+			Lib.current.stage.removeChild(this.newStartLoader);
+			this.align();
 			
-				this.align();
-			
-				Toolbar.tool.set_tool(ToolBase.lastTool);
-			#end
+			Toolbar.tool.set_tool(ToolBase.lastTool);
 		}
 	}
 	private function resize(e:Event):Void

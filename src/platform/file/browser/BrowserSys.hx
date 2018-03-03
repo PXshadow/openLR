@@ -1,6 +1,5 @@
-package platform.file;
+package platform.file.browser;
 
-//Primary
 import lime.system.System;
 import openfl.Lib;
 import openfl.Assets;
@@ -12,41 +11,19 @@ import openfl.text.TextFormat;
 import openfl.text.TextFormatAlign;
 import sys.FileSystem;
 
-//secondary
+import platform.file.BrowserBase;
 import platform.file.importing.ImportSys;
 import ui.inter.TextButton;
 import global.Common;
 
-//third party
-
 /**
  * ...
- * @author Kaelan Evans
+ * @author ...
  */
-@:enum abstract FileType(Int) from Int to Int {
-	public var cancel:Int = -2;
-	public var unknown:Int = -1;
-	public var New:Int = 0;
-	public var Directory:Int = 1;
-	public var JSON:Int = 2;
-	public var TRK:Int = 3;
-	public var SOL:Int = 4;
-}
-class SaveBrowser extends Sprite
+class BrowserSys extends BrowserBase
 {
-	var fileLoader:ImportBase;
-	
-	var textField_title:TextField;
-	var textField_versionInfo:TextField;
-	
-	var textField_fileName:TextField;
-	var textField_filePath:TextField;
-	
 	var load_file:TextButton;
 	var open_dir:TextButton;
-	
-	private var font_a:TextFormat = new TextFormat(Assets.getFont("fonts/Verdana Bold.ttf").fontName, 34, 0, null, null, null, null, null, TextFormatAlign.LEFT); 
-	private var font_b:TextFormat = new TextFormat(Assets.getFont("fonts/Verdana.ttf").fontName, 14, 0, null, null, null, null, null, TextFormatAlign.LEFT); 
 	
 	var rootDirectory:Array<String>;
 	var iconArray:Array<FileItemIcon>;
@@ -61,16 +38,12 @@ class SaveBrowser extends Sprite
 		
 		Common.gSaveBrowser = this;
 		
-		this.render();
+		this.add_title_interface();
 		
-		this.textField_title = new TextField(); 
-		this.addChild(this.textField_title); 
-		this.textField_title.selectable = false; 
-		this.textField_title.x = this.textField_title.y = 5; 
-		this.textField_title.defaultTextFormat = this.font_a; 
-		this.textField_title.width = 160; 
-		this.textField_title.text = "OpenLR"; 
-		
+		this.parseDirectory();
+	}
+	override public function add_title_interface() 
+	{
 		this.load_file = new TextButton("Load", this.invoke_loader);
 		this.addChild(this.load_file);
 		this.load_file.x = 240;
@@ -91,7 +64,7 @@ class SaveBrowser extends Sprite
 		this.textField_fileName.defaultTextFormat = this.font_b; 
 		this.textField_fileName.width = 500; 
 		this.textField_fileName.text = ""; 
-		
+			
 		this.textField_filePath = new TextField();
 		this.addChild(this.textField_filePath); 
 		this.textField_filePath.selectable = false; 
@@ -99,13 +72,9 @@ class SaveBrowser extends Sprite
 		this.textField_filePath.y = 45; 
 		this.textField_filePath.defaultTextFormat = this.font_b; 
 		this.textField_filePath.width = 500; 
-		this.textField_filePath.text = ""; 
-		
-		Lib.current.stage.addChild(this);
-		
-		this.parseDirectory();
+		this.textField_filePath.text = "";
 	}
-	public function display_info(_fileName:String, _fileType:Int, _filePath:String) {
+	override public function display_info(_fileName:String, _fileType:Int, _filePath:String) {
 		this.textField_fileName.text = _fileName;
 		this.textField_filePath.text = _filePath;
 		this.currentSelectedPath = _filePath;
@@ -130,15 +99,6 @@ class SaveBrowser extends Sprite
 			case FileType.cancel :
 				Common.gCode.toggle_Loader();
 		}
-	}
-	public function render() {
-		this.graphics.clear();
-		this.graphics.beginFill(0xFFFFFF, 1);
-		this.graphics.moveTo(0, 0);
-		this.graphics.lineTo(Lib.current.stage.stageWidth, 0);
-		this.graphics.lineTo(Lib.current.stage.stageWidth, 80);
-		this.graphics.lineStyle(4, 0, 1);
-		this.graphics.lineTo(0, 80);
 	}
 	function parseDirectory() 
 	{
@@ -195,10 +155,10 @@ class SaveBrowser extends Sprite
 				++y_offset;
 			}
 		}
-		Lib.current.stage.addEventListener(Event.RESIZE, this.resize);
 	}
-	function resize (e:Event) {
-		this.render();
+	override public function resize (e:Event) {
+		
+		super.resize(e);
 		
 		var x_offset = 0;
 		var y_offset = 0;

@@ -18,9 +18,7 @@ import lr.tool.Toolbar;
 import lr.tool.ToolBase;
 import lr.nodes.Grid;
 import lr.rider.RiderCamera;
-#if sys
-	import platform.file.SaveBrowser;
-#end
+import platform.file.BrowserBase;
 
 /**
  * ...
@@ -61,15 +59,13 @@ class Common
 	public static var gCamera:RiderCamera;
 	public static var gTimeline:TimelineControl;
 	public static var gImport:ImportBase;
-	#if sys
-		public static var gSaveBrowser:SaveBrowser;
-	#end
+	public static var gSaveBrowser:BrowserBase;
 	
 	public static var line_minLength:Int = 14;
 	public static var line_type:Int = 0;
 	
 	public static var track_scale:Float;
-	public static var track_scale_max:Float = 35;
+	public static var track_scale_max:Float = 32;
 	public static var track_scale_min:Float = 0.5;
 	public static var track_start_x:Float = 0;
 	public static var track_start_y:Float = 0;
