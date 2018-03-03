@@ -137,13 +137,21 @@ class IconSave extends IconBase
 	{
 		Toolbar.tool.set_tool("None");
 	}
-	function confirmed_new() {
+	#if flash
+		function confirmed_new(e:MouseEvent) {
+	#else
+		function confirmed_new() {
+	#end
 		this.removeChild(this.safety_dialog);
 		Common.gTrack.clear_stage();
 		Toolbar.tool.set_tool(ToolBase.lastTool);
 		SVar.new_track = true;
 	}
-	function negative_new() {
+	#if flash
+		function negative_new(e:MouseEvent) {
+	#else
+		function negative_new(e:MouseEvent) {
+	#end
 		this.show_menu();
 		this.removeChild(this.safety_dialog);
 	}
