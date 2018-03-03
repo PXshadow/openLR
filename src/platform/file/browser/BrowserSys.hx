@@ -2,13 +2,8 @@ package platform.file.browser;
 
 import lime.system.System;
 import openfl.Lib;
-import openfl.Assets;
-import openfl.display.Sprite;
 import openfl.events.Event;
-import openfl.events.MouseEvent;
 import openfl.text.TextField;
-import openfl.text.TextFormat;
-import openfl.text.TextFormatAlign;
 import sys.FileSystem;
 
 import platform.file.BrowserBase;
@@ -26,7 +21,6 @@ class BrowserSys extends BrowserBase
 	var open_dir:TextButton;
 	
 	var rootDirectory:Array<String>;
-	var iconArray:Array<FileItemIcon>;
 	
 	var currentSelectedPath:String;
 	
@@ -35,12 +29,6 @@ class BrowserSys extends BrowserBase
 	public function new() 
 	{
 		super();
-		
-		Common.gSaveBrowser = this;
-		
-		this.add_title_interface();
-		
-		this.parseDirectory();
 	}
 	override public function add_title_interface() 
 	{
@@ -100,8 +88,10 @@ class BrowserSys extends BrowserBase
 				Common.gCode.toggle_Loader();
 		}
 	}
-	function parseDirectory() 
+	override public function parseDirectory() 
 	{
+		super.parseDirectory();
+		
 		var _locSaveDirectory:String = System.documentsDirectory + "/openLR/saves";
 		if (!FileSystem.isDirectory(_locSaveDirectory) && Common.gTrack == null) {
 			FileSystem.createDirectory(_locSaveDirectory);
@@ -113,11 +103,7 @@ class BrowserSys extends BrowserBase
 			this.init_env();
 			return;
 		}
-		
 		this.rootDirectory.reverse();
-		this.iconArray = new Array<FileItemIcon>();
-		if (Common.gTrack == null) this.iconArray.push(new FileItemIcon(0, FileType.New, "Key:NewTrack", "null"));
-		else this.iconArray.push(new FileItemIcon(0, FileType.cancel, "Key:CancelLoad", "null"));
 		var itemCount:Int = 1;
 		for (a in this.rootDirectory) {
 			var b = _locSaveDirectory + "/" + a;
@@ -141,21 +127,6 @@ class BrowserSys extends BrowserBase
 		}
 		this.displayDirectory();
 	}
-	function displayDirectory() {
-		var x_offset = 0;
-		var y_offset = 0;
-		var x_max = Math.floor(Lib.current.stage.stageWidth / 120);
-		for (a in this.iconArray) {
-			this.addChild(a);
-			a.x = 10 + (120 * x_offset);
-			a.y = 90 + (140 * y_offset);
-			++x_offset;
-			if (x_offset >= x_max) {
-				x_offset = 0;
-				++y_offset;
-			}
-		}
-	}
 	override public function resize (e:Event) {
 		
 		super.resize(e);
@@ -173,87 +144,8 @@ class BrowserSys extends BrowserBase
 			}
 		}
 	}
-	function init_env() 
-	{
-		if (Common.gTrack == null) Common.gCode.start();
-		else Common.gTrack.clear_stage();
-		Lib.current.stage.removeChild(this);
-	}
-	function invoke_loader() {
-		if (Common.gTrack == null) Common.gCode.start();
-		else Common.gTrack.clear_stage();
-		Lib.current.stage.removeChild(this);
-		Common.gRiderManager.set_single_rider_start(Common.track_start_x, Common.track_start_y);
-		Common.gTrack.visible = true;
-		Common.gToolbar.visible = true;
-		Common.gTimeline.visible = true;
-		
-		#if (sys)
-			this.fileLoader = new ImportSys();
-			this.fileLoader.load(this.currentSelectedPath);
-		#end
-	}
 	function update_directory() {
 		
 	}
 	
-}
-class FileItemIcon extends Sprite
-{
-	var iconType:Int = -1;
-	var pathToFile:String = "";
-	var itemName:String;
-	var itemNameField:TextField;
-	var id:Int;
-	var fileType:Int;
-	var path:String;
-	var icon:Sprite;
-	var font_a:TextFormat = new TextFormat(Assets.getFont("fonts/Verdana Bold.ttf").fontName, 10, 0, null, null, null, null, null, TextFormatAlign.CENTER); 
-
-	public function new(_id:Int, _type:Int, _name:String, _path:String) {
-		super();
-		
-		this.id = _id;
-		this.fileType = _type;
-		this.itemName = _name;
-		this.path = _path;
-		
-		this.attachClip();
-		
-		if (this.itemName == "Key:NewTrack" && this.path == "null") return;
-		if (this.itemName == "Key:CancelLoad" && this.path == "null") return;
-		this.itemNameField = new TextField();
-		this.itemNameField.text = this.itemName;
-		this.addChild(this.itemNameField); 
-		this.itemNameField.selectable = false; 
-		this.itemNameField.x = 50 - this.itemNameField.width / 2; 
-		this.itemNameField.y = 110;
-		this.itemNameField.defaultTextFormat = this.font_a; 
-	}
-	function attachClip() 
-	{
-		switch (this.fileType) {
-			case FileType.unknown:
-				this.icon = Common.OLR_Assets.getMovieClip("iconUNKNOWN");
-			case FileType.New:
-				this.icon = Common.OLR_Assets.getMovieClip("iconNew");
-			case FileType.cancel :
-				this.icon = Common.OLR_Assets.getMovieClip("iconCancel");
-			case FileType.JSON:
-				this.icon = Common.OLR_Assets.getMovieClip("iconJSON");
-			case FileType.TRK:
-				this.icon = Common.OLR_Assets.getMovieClip("iconTRK");
-			case FileType.SOL:
-				this.icon = Common.OLR_Assets.getMovieClip("iconSOL");
-			case FileType.Directory:
-				this.icon = Common.OLR_Assets.getMovieClip("iconDIR");
-		}
-		this.addChild(this.icon);
-		this.icon.x = this.icon.y = 50;
-		this.icon.addEventListener(MouseEvent.CLICK, this.single);
-	}
-	function single(e:MouseEvent):Void 
-	{
-		Common.gSaveBrowser.display_info(this.itemName, this.fileType, this.path);
-	}
 }

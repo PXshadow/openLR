@@ -5,14 +5,23 @@ import openfl.Assets;
 import openfl.Lib;
 import openfl.display.Sprite;
 import openfl.events.Event;
+import openfl.events.MouseEvent;
 import openfl.text.TextField;
 import openfl.text.TextFormat;
 import openfl.text.TextFormatAlign;
 
 //secondary
+import global.Common;
+#if sys
+	import platform.file.importing.ImportSys;
+#elseif flash
+	import platform.file.importing.ImportFL;
+#elseif js
+
+#end
 
 //third party
-import global.Common;
+
 
 /**
  * ...
@@ -37,11 +46,15 @@ class BrowserBase extends Sprite
 	var textField_fileName:TextField;
 	var textField_filePath:TextField;
 	
+	var iconArray:Array<FileItemIcon>;
+	
 	private var font_a:TextFormat = new TextFormat(Assets.getFont("fonts/Verdana Bold.ttf").fontName, 24, 0, null, null, null, null, null, TextFormatAlign.LEFT); 
 	private var font_b:TextFormat = new TextFormat(Assets.getFont("fonts/Verdana.ttf").fontName, 14, 0, null, null, null, null, null, TextFormatAlign.LEFT); 
 	
 	public function new() {
 		super();
+		
+		Common.gSaveBrowser = this;
 		
 		this.render();
 		
@@ -50,6 +63,10 @@ class BrowserBase extends Sprite
 		Lib.current.stage.addChild(this);
 		
 		Lib.current.stage.addEventListener(Event.RESIZE, this.resize);
+		
+		this.add_title_interface();
+		
+		this.parseDirectory();
 	}
 	public function display_info(_fileName:String, _fileType:Int, _filePath:String) {
 		
@@ -84,6 +101,126 @@ class BrowserBase extends Sprite
 	}
 	public function resize(e:Event) {
 		this.render();
+	}
+	public function parseDirectory() {
+		this.iconArray = new Array<FileItemIcon>();
+		if (Common.gTrack == null) this.iconArray.push(new FileItemIcon(0, FileType.New, "Key:NewTrack", "null"));
+		else this.iconArray.push(new FileItemIcon(0, FileType.cancel, "Key:CancelLoad", "null"));
+	}
+	public function displayDirectory() {
+		var x_offset = 0;
+		var y_offset = 0;
+		var x_max = Math.floor(Lib.current.stage.stageWidth / 120);
+		for (a in this.iconArray) {
+			this.addChild(a);
+			a.x = 10 + (120 * x_offset);
+			a.y = 90 + (140 * y_offset);
+			++x_offset;
+			if (x_offset >= x_max) {
+				x_offset = 0;
+				++y_offset;
+			}
+		}
+	}
+	public function init_env() 
+	{
+		if (Common.gTrack == null) Common.gCode.start();
+		else Common.gTrack.clear_stage();
+		Lib.current.stage.removeChild(this);
+	}
+	public function invoke_loader() {
+		if (Common.gTrack == null) Common.gCode.start();
+		else Common.gTrack.clear_stage();
+		Lib.current.stage.removeChild(this);
+		Common.gRiderManager.set_single_rider_start(Common.track_start_x, Common.track_start_y);
+		Common.gTrack.visible = true;
+		Common.gToolbar.visible = true;
+		Common.gTimeline.visible = true;
+		
+		#if (sys)
+			this.fileLoader = new ImportSys();
+			this.fileLoader.load(this.currentSelectedPath);
+		#elseif flash
+			this.fileLoader = new ImportFL();
+		#end
+	}
+}
+class FileItemIcon extends Sprite
+{
+	var iconType:Int = -1;
+	var pathToFile:String = "";
+	var itemName:String;
+	var itemNameField:TextField;
+	var id:Int;
+	var fileType:Int;
+	var path:String;
+	var icon:Sprite;
+	var font_a:TextFormat = new TextFormat(Assets.getFont("fonts/Verdana Bold.ttf").fontName, 10, 0, null, null, null, null, null, TextFormatAlign.CENTER); 
+
+	public function new(_id:Int, _type:Int, _name:String, _path:String) {
+		super();
+		
+		this.id = _id;
+		this.fileType = _type;
+		this.itemName = _name;
+		this.path = _path;
+		
+		this.attachClip();
+		
+		if (this.itemName == "Key:NewTrack" && this.path == "null") return;
+		if (this.itemName == "Key:CancelLoad" && this.path == "null") return;
+		this.itemNameField = new TextField();
+		this.itemNameField.text = this.itemName;
+		this.addChild(this.itemNameField); 
+		this.itemNameField.selectable = false; 
+		this.itemNameField.x = 50 - this.itemNameField.width / 2; 
+		this.itemNameField.y = 110;
+		this.itemNameField.defaultTextFormat = this.font_a; 
+	}
+	function attachClip() 
+	{
+		#if sys
+			switch (this.fileType) {
+				case FileType.unknown:
+					this.icon = Common.OLR_Assets.getMovieClip("iconUNKNOWN");
+				case FileType.New:
+					this.icon = Common.OLR_Assets.getMovieClip("iconNew");
+				case FileType.cancel :
+					this.icon = Common.OLR_Assets.getMovieClip("iconCancel");
+				case FileType.JSON:
+					this.icon = Common.OLR_Assets.getMovieClip("iconJSON");
+				case FileType.TRK:
+					this.icon = Common.OLR_Assets.getMovieClip("iconTRK");
+				case FileType.SOL:
+					this.icon = Common.OLR_Assets.getMovieClip("iconSOL");
+				case FileType.Directory:
+					this.icon = Common.OLR_Assets.getMovieClip("iconDIR");
+			}
+		#elseif flash
+			switch (this.fileType) {
+				case FileType.unknown:
+					this.icon = Assets.getMovieClip("swf-library:iconUNKNOWN");
+				case FileType.New:
+					this.icon = Assets.getMovieClip("swf-library:iconNew");
+				case FileType.cancel :
+					this.icon = Assets.getMovieClip("swf-library:iconCancel");
+				case FileType.JSON:
+					this.icon = Assets.getMovieClip("swf-library:iconJSON");
+				case FileType.TRK:
+					this.icon = Assets.getMovieClip("swf-library:iconTRK");
+				case FileType.SOL:
+					this.icon = Assets.getMovieClip("swf-library:iconSOL");
+				case FileType.Directory:
+					this.icon = Assets.getMovieClip("swf-library:iconDIR");
+			}
+		#end
+		this.addChild(this.icon);
+		this.icon.x = this.icon.y = 50;
+		this.icon.addEventListener(MouseEvent.CLICK, this.single);
+	}
+	function single(e:MouseEvent):Void 
+	{
+		Common.gSaveBrowser.display_info(this.itemName, this.fileType, this.path);
 	}
 }
 	
