@@ -15,13 +15,9 @@ import lr.rider.objects.FlagMarker;
 import lr.rider.objects.VisBase;
 import lr.rider.objects.StartPointVis;
 import lr.rider.objects.visual.B2Bosh;
-import lr.rider.objects.visual.UBBish;
 import lr.rider.phys.skeletons.B2Skeleton;
-import lr.rider.phys.skeletons.UBSkeleton;
 import lr.rider.phys.frames.B2Frame;
-import lr.rider.phys.frames.B1Frame;
 import lr.rider.phys.frames.FrameBase;
-import lr.rider.phys.frames.UBFrame;
 import lr.rider.phys.scarf.B2Scarf;
 import lr.rider.phys.ScarfBase;
 import lr.rider.phys.SkeletonBase;
@@ -92,38 +88,11 @@ class RiderBase extends Sprite
 		
 		this.riderID = _id;
 		
-		switch (_type) {
-			case 1:
-				this.body = new B1Frame(_x, _y, this.riderID);
-				this.skeleton = new B2Skeleton(this.body.anchors, this.riderID);
-				this.scarf = new B2Scarf(this.body.anchors[5], this.body.anchors[0], _x, _y, this.riderID);
-				this.clips = new B2Bosh(this.body, this.scarf, this.skeleton, this, this.riderID);
-				this.addChild(this.clips);
-			case 2:
-				this.body = new B2Frame(_x, _y, this.riderID);
-				this.skeleton = new B2Skeleton(this.body.anchors, this.riderID);
-				this.scarf = new B2Scarf(this.body.anchors[5], this.body.anchors[0], _x, _y, this.riderID);
-				this.clips = new B2Bosh(this.body, this.scarf, this.skeleton, this, this.riderID);
-				this.addChild(this.clips);
-			case 3:
-				//beta 3 rider normal
-			case 4:
-				//beta 3 rider that falls apart
-			case 5 :
-				//JSON Custom Rider
-			case 6:
-				this.body = new UBFrame(_x, _y, this.riderID);
-				this.skeleton = new UBSkeleton(this.body.anchors, this.riderID);
-				this.scarf = new B2Scarf(this.body.anchors[5], this.body.anchors[0], _x, _y, this.riderID);
-				this.clips = new UBBish(this.body, this.scarf, this.skeleton, this, this.riderID);
-				this.addChild(this.clips);
-			default :
-				this.body = new B2Frame(_x, _y, this.riderID);
-				this.skeleton = new B2Skeleton(this.body.anchors, this.riderID);
-				this.scarf = new B2Scarf(this.body.anchors[5], this.body.anchors[0], _x, _y, this.riderID);
-				this.clips = new B2Bosh(this.body, this.scarf, this.skeleton, this, this.riderID);
-				this.addChild(this.clips);
-		}
+		this.body = new B2Frame(_x, _y, this.riderID);
+		this.skeleton = new B2Skeleton(this.body.anchors, this.riderID);
+		this.scarf = new B2Scarf(this.body.anchors[5], this.body.anchors[0], _x, _y, this.riderID);
+		this.clips = new B2Bosh(this.body, this.scarf, this.skeleton, this, this.riderID);
+		this.addChild(this.clips);
 		
 		this.grav = new Object();
 		this.grav.x = 0;
