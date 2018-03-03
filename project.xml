@@ -12,8 +12,8 @@
 	<app main="Main" file="openLR" path="bin" />
 	
 	<window background="#CCCCCC"/>
-	<window fps="60" if="release"/>
-	<window fps="99999" if="debug"/>
+	<window fps="60" if="release || flash"/>
+	<window fps="999" if="debug" unless="flash" />
 	<window width="1280" height="720" if="cpp" />
 	<window width="1280" height="720" if="flash" />
 	<window width="1920" height="1080" if="js" />
