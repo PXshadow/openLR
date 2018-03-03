@@ -19,7 +19,7 @@ import lr.rider.phys.skeletons.B2Skeleton;
 import lr.rider.phys.frames.B2Frame;
 import lr.rider.phys.frames.FrameBase;
 import lr.rider.phys.scarf.B2Scarf;
-import lr.rider.phys.ScarfBase;
+import lr.rider.phys.scarf.ScarfBase;
 import lr.rider.phys.SkeletonBase;
 
 /**

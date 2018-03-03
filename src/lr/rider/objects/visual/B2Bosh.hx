@@ -16,7 +16,7 @@ import lr.rider.RiderBase;
 import lr.rider.phys.SkeletonBase;
 import lr.rider.objects.VisBase;
 import lr.rider.phys.frames.FrameBase;
-import lr.rider.phys.ScarfBase;
+import lr.rider.phys.scarf.ScarfBase;
 
 /**
  * ...

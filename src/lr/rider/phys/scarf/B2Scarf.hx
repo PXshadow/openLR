@@ -1,7 +1,7 @@
 package lr.rider.phys.scarf;
 
 import haxe.ds.Vector;
-import lr.rider.phys.ScarfBase;
+import lr.rider.phys.scarf.ScarfBase;
 import lr.rider.phys.anchors.CPoint;
 
 import lr.rider.phys.anchors.SPoint;
