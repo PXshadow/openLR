@@ -17,12 +17,7 @@ import global.Common;
  */
 class BrowserSys extends BrowserBase
 {
-	var load_file:TextButton;
-	var open_dir:TextButton;
-	
 	var rootDirectory:Array<String>;
-	
-	var currentSelectedPath:String;
 	
 	public static var selected_item:FileItemIcon;
 	
@@ -32,35 +27,13 @@ class BrowserSys extends BrowserBase
 	}
 	override public function add_title_interface() 
 	{
-		this.load_file = new TextButton("Load", this.invoke_loader);
-		this.addChild(this.load_file);
-		this.load_file.x = 240;
-		this.load_file.y = 5;
-		this.load_file.visible = false;
+		super.add_title_interface();
 		
 		this.open_dir = new TextButton("Explore", this.invoke_loader);
 		this.addChild(this.open_dir);
-		this.open_dir.x = 240;
+		this.open_dir.x = this.load_file.x;
 		this.open_dir.y = 40;
 		this.open_dir.visible = false;
-		
-		this.textField_fileName = new TextField();
-		this.addChild(this.textField_fileName); 
-		this.textField_fileName.selectable = false; 
-		this.textField_fileName.x = 330; 
-		this.textField_fileName.y = 15; 
-		this.textField_fileName.defaultTextFormat = this.font_b; 
-		this.textField_fileName.width = 500; 
-		this.textField_fileName.text = ""; 
-			
-		this.textField_filePath = new TextField();
-		this.addChild(this.textField_filePath); 
-		this.textField_filePath.selectable = false; 
-		this.textField_filePath.x = 330; 
-		this.textField_filePath.y = 45; 
-		this.textField_filePath.defaultTextFormat = this.font_b; 
-		this.textField_filePath.width = 500; 
-		this.textField_filePath.text = "";
 	}
 	override public function display_info(_fileName:String, _fileType:Int, _filePath:String) {
 		this.textField_fileName.text = _fileName;

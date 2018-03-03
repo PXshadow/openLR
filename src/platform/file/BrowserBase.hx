@@ -19,6 +19,7 @@ import global.Common;
 #elseif js
 
 #end
+import ui.inter.TextButton;
 
 //third party
 
@@ -35,10 +36,17 @@ import global.Common;
 	public var JSON:Int = 2;
 	public var TRK:Int = 3;
 	public var SOL:Int = 4;
+	public var SOL6_2:Int = 5;
+	public var SOL6_1:Int = 6;
+	public var SOL6_0:Int = 7;
 }
 class BrowserBase extends Sprite
 {
 	var fileLoader:ImportBase;
+	
+	var load_file:TextButton;
+	var open_dir:TextButton;
+	var currentSelectedPath:String;
 	
 	var textField_title:TextField;
 	var textField_versionInfo:TextField;
@@ -92,12 +100,38 @@ class BrowserBase extends Sprite
 		#elseif js
 			this.textField_title.text = "OpenLR\nHTML5";
 		#elseif flash
-			this.textField_title.text = "OpenLR\nFlash";
+			#if air
+				this.textField_title.text = "OpenLR\nAir";
+			#else
+				this.textField_title.text = "OpenLR\nFlash";
+			#end
 		#end
 		this.textField_title.text += " " + Common.version;
 	}
 	public function add_title_interface() {
+		this.load_file = new TextButton("Load", this.invoke_loader);
+		this.addChild(this.load_file);
+		this.load_file.x = 210;
+		this.load_file.y = 5;
+		this.load_file.visible = false;
 		
+		this.textField_fileName = new TextField();
+		this.addChild(this.textField_fileName); 
+		this.textField_fileName.selectable = false; 
+		this.textField_fileName.x = 420; 
+		this.textField_fileName.y = 15; 
+		this.textField_fileName.defaultTextFormat = this.font_b; 
+		this.textField_fileName.width = 500; 
+		this.textField_fileName.text = ""; 
+			
+		this.textField_filePath = new TextField();
+		this.addChild(this.textField_filePath); 
+		this.textField_filePath.selectable = false; 
+		this.textField_filePath.x = 420; 
+		this.textField_filePath.y = 45; 
+		this.textField_filePath.defaultTextFormat = this.font_b; 
+		this.textField_filePath.width = 500; 
+		this.textField_filePath.text = "";
 	}
 	public function resize(e:Event) {
 		this.render();
@@ -193,10 +227,16 @@ class FileItemIcon extends Sprite
 					this.icon = Common.OLR_Assets.getMovieClip("iconTRK");
 				case FileType.SOL:
 					this.icon = Common.OLR_Assets.getMovieClip("iconSOL");
+				case FileType.SOL6_0:
+					this.icon = Common.OLR_Assets.getMovieClip("iconSOL_6_0");
+				case FileType.SOL6_1:
+					this.icon = Common.OLR_Assets.getMovieClip("iconSOL_6_1");
+				case FileType.SOL6_2:
+					this.icon = Common.OLR_Assets.getMovieClip("iconSOL_6_2");
 				case FileType.Directory:
 					this.icon = Common.OLR_Assets.getMovieClip("iconDIR");
 			}
-		#elseif flash
+		#elseif (flash || air)
 			switch (this.fileType) {
 				case FileType.unknown:
 					this.icon = Assets.getMovieClip("swf-library:iconUNKNOWN");
@@ -210,6 +250,12 @@ class FileItemIcon extends Sprite
 					this.icon = Assets.getMovieClip("swf-library:iconTRK");
 				case FileType.SOL:
 					this.icon = Assets.getMovieClip("swf-library:iconSOL");
+				case FileType.SOL6_0:
+					this.icon = Assets.getMovieClip("swf-library:iconSOL_6_0");
+				case FileType.SOL6_1:
+					this.icon = Assets.getMovieClip("swf-library:iconSOL_6_1");
+				case FileType.SOL6_2:
+					this.icon = Assets.getMovieClip("swf-library:iconSOL_6_2");
 				case FileType.Directory:
 					this.icon = Assets.getMovieClip("swf-library:iconDIR");
 			}
