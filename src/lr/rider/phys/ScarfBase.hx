@@ -1,10 +1,10 @@
-package lr.rider.phys.skeleton;
+package lr.rider.phys;
 
 import haxe.ds.Vector;
 import lr.rider.phys.anchors.CPoint;
 import openfl.utils.Object;
 
-import lr.rider.phys.skeleton.bones.ScarfStick;
+import lr.rider.phys.bones.ScarfStick;
 import lr.rider.phys.anchors.SPoint;
 
 /**

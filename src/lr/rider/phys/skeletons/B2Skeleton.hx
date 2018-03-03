@@ -1,6 +1,10 @@
-package lr.rider.phys.skeleton.links;
+package lr.rider.phys.skeletons;
 
 import haxe.ds.Vector;
+import lr.rider.phys.SkeletonBase;
+import lr.rider.phys.bones.BindStick;
+import lr.rider.phys.bones.RepellStick;
+import lr.rider.phys.bones.Stick;
 
 import lr.rider.phys.anchors.CPoint;
 import lr.rider.phys.skeleton.bones.*;

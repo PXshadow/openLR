@@ -1,10 +1,11 @@
-package lr.rider.phys.skeleton.scarf;
+package lr.rider.phys.scarf;
 
 import haxe.ds.Vector;
+import lr.rider.phys.ScarfBase;
 import lr.rider.phys.anchors.CPoint;
 
 import lr.rider.phys.anchors.SPoint;
-import lr.rider.phys.skeleton.bones.ScarfStick;
+import lr.rider.phys.bones.ScarfStick;
 
 /**
  * ...

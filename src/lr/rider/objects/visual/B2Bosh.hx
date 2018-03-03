@@ -13,10 +13,10 @@ import global.Common;
 import global.CVar;
 import global.engine.RiderManager;
 import lr.rider.RiderBase;
-import lr.rider.phys.skeleton.SkeletonBase;
+import lr.rider.phys.SkeletonBase;
 import lr.rider.objects.VisBase;
 import lr.rider.phys.frames.FrameBase;
-import lr.rider.phys.skeleton.ScarfBase;
+import lr.rider.phys.ScarfBase;
 
 /**
  * ...

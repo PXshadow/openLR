@@ -1,7 +1,7 @@
-package lr.rider.phys.skeleton;
+package lr.rider.phys;
 
 import haxe.ds.Vector;
-import lr.rider.phys.skeleton.bones.Stick;
+import lr.rider.phys.bones.Stick;
 
 /**
  * ...

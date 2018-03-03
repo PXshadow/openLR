@@ -16,15 +16,15 @@ import lr.rider.objects.VisBase;
 import lr.rider.objects.StartPointVis;
 import lr.rider.objects.visual.B2Bosh;
 import lr.rider.objects.visual.UBBish;
-import lr.rider.phys.skeleton.links.B2Skeleton;
-import lr.rider.phys.skeleton.links.UBSkeleton;
+import lr.rider.phys.skeletons.B2Skeleton;
+import lr.rider.phys.skeletons.UBSkeleton;
 import lr.rider.phys.frames.B2Frame;
 import lr.rider.phys.frames.B1Frame;
 import lr.rider.phys.frames.FrameBase;
 import lr.rider.phys.frames.UBFrame;
-import lr.rider.phys.skeleton.scarf.B2Scarf;
-import lr.rider.phys.skeleton.ScarfBase;
-import lr.rider.phys.skeleton.SkeletonBase;
+import lr.rider.phys.scarf.B2Scarf;
+import lr.rider.phys.ScarfBase;
+import lr.rider.phys.SkeletonBase;
 
 /**
  * ...

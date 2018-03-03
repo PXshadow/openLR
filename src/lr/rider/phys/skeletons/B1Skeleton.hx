@@ -1,10 +1,10 @@
-package lr.rider.phys.skeleton.links;
+package lr.rider.phys.skeletons;
 
 /**
  * ...
  * @author Kaelan Evans
  */
-class B3Skeleton 
+class B1Skeleton 
 {
 
 	public function new() 

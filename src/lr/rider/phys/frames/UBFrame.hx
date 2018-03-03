@@ -4,7 +4,7 @@ import haxe.ds.Vector;
 
 import global.engine.RiderManager;
 import lr.rider.phys.anchors.CPoint;
-import lr.rider.phys.skeleton.bones.Stick;
+import lr.rider.phys.bones.Stick;
 
 /**
  * ...

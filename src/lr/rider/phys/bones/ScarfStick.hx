@@ -1,4 +1,4 @@
-package lr.rider.phys.skeleton.bones;
+package lr.rider.phys.bones;
 
 /**
  * ...
