@@ -40,13 +40,13 @@ class BrowserFL extends BrowserBase
 					#end
 					switch (solObject.data.trackList[a].version) {
 						case "6" :
-							this.iconArray.push(new FileItemIcon(itemCount, FileType.SOL6_0, solObject.data.trackList[a].label, b));
+							this.iconArray.push(new FileItemIcon(itemCount, FileType.SOL6_0, solObject.data.trackList[a].label, Std.string(itemCount - 1)));
 						case "6.1" :
-							this.iconArray.push(new FileItemIcon(itemCount, FileType.SOL6_1, solObject.data.trackList[a].label, b));
+							this.iconArray.push(new FileItemIcon(itemCount, FileType.SOL6_1, solObject.data.trackList[a].label, Std.string(itemCount - 1)));
 						case "6.2" :
-							this.iconArray.push(new FileItemIcon(itemCount, FileType.SOL6_2, solObject.data.trackList[a].label, b));
+							this.iconArray.push(new FileItemIcon(itemCount, FileType.SOL6_2, solObject.data.trackList[a].label, Std.string(itemCount - 1)));
 						default :
-							this.iconArray.push(new FileItemIcon(itemCount, FileType.SOL, solObject.data.trackList[a].label, b));
+							this.iconArray.push(new FileItemIcon(itemCount, FileType.SOL, solObject.data.trackList[a].label, Std.string(itemCount - 1)));
 					}
 					
 					++itemCount;

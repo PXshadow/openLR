@@ -176,6 +176,7 @@ class BrowserBase extends Sprite
 			this.fileLoader.load(this.currentSelectedPath);
 		#elseif flash
 			this.fileLoader = new ImportFL();
+			this.fileLoader.load(this.currentSelectedPath);
 		#end
 	}
 }
