@@ -1,5 +1,6 @@
 package platform.file.fileType;
 
+import haxe.Json;
 import haxe.Int64;
 import openfl.Lib;
 import openfl.utils.Function;
@@ -8,6 +9,7 @@ import openfl.events.Event;
 
 import global.Common;
 import global.CVar;
+import global.SVar;
 
 import lr.lines.LineBase;
 
@@ -15,30 +17,11 @@ import lr.lines.LineBase;
  * ...
  * @author Kaelan Evans
  */
-@:enum abstract LRKeys(String) from String to String {
-	public var ret = "\n";
-	public var comma = ",\n";
-	public var braceOpen = "{\n";
-	public var braceClose = "},\n";
-	public var braceEnd = "}";
-	public var bracketOpen = "[\n";
-	public var bracketClose = "]\n";
-	public var start = '"startPosition": ';
-	public var xpos = '"x": ';
-	public var ypos = '"y": ';
-	public var lines = '"lines": ';
-	public var id = '"id": ';
-	public var type = '"type": ';
-	public var linex1 = '"x1": ';
-	public var linex2 = '"x2": ';
-	public var liney1 = '"y1": ';
-	public var liney2 = '"y2": ';
-	public var inv = '"flipped": ';
-	public var left = '"leftExtended": ';
-	public var right = '"rightExtended": ';
-}
 class FileJSON extends FileBase
 {
+	@:extern @:native("__hxcpp_set_float_format") //Credit to !Billy for finding this obscure solution to a problem that plagued me since April 2017
+	static function changeFloat(format:String) {} //This has officially been fixed March 2018
+	
 	private var tabLevel:Int = 0;
 	var chunk_lines:Array<Object>;
 	var step:Int = 0;
@@ -50,120 +33,65 @@ class FileJSON extends FileBase
 		if (_name != null) this.name = _name;
 		if (_author != null) this.author = _author;
 		if (_description != null) this.description = _description;
-		this.parse_json();
+		changeFloat("%.16f");
+		this.exportString = Json.stringify(this.parse_json(), null, "\t");
+		changeFloat("%.3f");
 	}
-	public function parse_json() { //top object. Gets name, author, etc.
-		this.exportString += LRKeys.braceOpen;
-		this.exportString += this.start_block();
-		this.exportString += this.line_block();
-		this.exportString += LRKeys.braceEnd;
+	public function parse_json():Object //top object. Gets name, author, etc.
+	{
+		var _locArray = this.json_line_aray_parse();
+		var _locSettings = this.json_settings_array();
+		var json_object:Object = {
+			"label": this.name,
+			"creator": this.author,
+			"description": this.description,
+			"version": "6.2",
+			"startPosition": {
+				"x": Common.track_start_x,
+				"y": Common.track_start_y
+			},
+			"duration": SVar.max_frames,
+			"lines": _locArray,
+			"openLR": _locSettings,
+		}
+		return(json_object);
 	}
-	function start_block():String {
-		var _locString:String = "";
-		_locString += LRKeys.start;
-		_locString += LRKeys.braceOpen;
-		_locString += LRKeys.xpos + this.getFloatStringWithPrecision(Common.track_start_x) + LRKeys.comma;
-		_locString += LRKeys.ypos + this.getFloatStringWithPrecision(Common.track_start_y) + LRKeys.ret;
-		_locString += LRKeys.braceClose;
-		return _locString;
+	function json_settings_array():Object
+	{
+		var settings:Object = new Object();
+		
+		settings.angle_snap = CVar.angle_snap;
+		settings.line_snap = CVar.line_snap;
+		settings.color_play = CVar.color_play;
+		settings.preview_mode = CVar.preview_mode;
+		settings.hit_test = CVar.hit_test;
+		
+		return(settings);
 	}
-	function line_block():String { //parses line array and organizes data
-		var i = Common.gGrid.lines;
-		i.reverse();
-		var _locString:String = "";
-		_locString += LRKeys.lines;
-		_locString += LRKeys.bracketOpen;
-		for (a in i) {
-			if (a == null) {
+	private function json_line_aray_parse():Array<Object> //parses line array and organizes data
+	{
+		var lines = Common.gGrid.lines;
+		var a:Array<Object> = new Array();
+		var line_Place_Override:Int = 0;
+		for (i in lines) {
+			if (i == null) {
 				continue;
 			}
-			_locString += LRKeys.braceOpen;
-			_locString += LRKeys.id + this.its(a.ID) + LRKeys.comma;
-			_locString += LRKeys.type + this.its(a.type) + LRKeys.comma;
-			_locString += LRKeys.linex1 + this.getFloatStringWithPrecision(a.x1) + LRKeys.comma;
-			_locString += LRKeys.liney1 + this.getFloatStringWithPrecision(a.y1) + LRKeys.comma;
-			_locString += LRKeys.linex2 + this.getFloatStringWithPrecision(a.x2) + LRKeys.comma;
-			_locString += LRKeys.liney2 + this.getFloatStringWithPrecision(a.y2) + LRKeys.comma;
-			_locString += LRKeys.inv + this.bts(a.inv) + LRKeys.comma;
-			_locString += LRKeys.left + this.bts(a.lExt) + LRKeys.comma;
-			_locString += LRKeys.right + this.bts(a.rExt) + LRKeys.ret;
-			_locString += LRKeys.braceClose;
+			a[line_Place_Override] = new Object();
+			a[line_Place_Override] = {
+				"id": i.ID,
+				"type": i.type,
+				"x1": i.x1,
+				"y1": i.y1,
+				"x2": i.x2,
+				"y2": i.y2,
+				"flipped": i.inv,
+				"leftExtended":  i.lExt,
+				"rightExtended":  i.rExt
+			};
+			++line_Place_Override;
 		}
-		_locString += LRKeys.bracketClose;
-		return _locString;
-	}
-	function grabNonVanillaData():String {
-		return "";
-	}
-	private var cutOff:Int64 = 0;
-	private var decimalOffSet:Int = 1;
-	function getFloatStringWithPrecision(_v:Float):String {
-		var _locIsNegative:Bool = false;
-		if (_v % 1 == 0) {
-			return "" + _v;
-		}
-        var _locFloat64:Float = _v;
-		if (_locFloat64 < 0) {
-			_locFloat64 *= -1;
-			_locIsNegative = true;
-		}
-        var _locInt64:Int64 = Int64.fromFloat(_locFloat64);
-		var _locBuildString:String = "" + _locInt64;
-		this.cutOff = this.getCutOffValue(_locFloat64);
-		while (true) {
-			_locFloat64 *= 10;
-			_locInt64 = Int64.fromFloat(_locFloat64);
-			var tempString = "" + _locInt64;
-			_locBuildString += tempString.substring(tempString.length - 1, tempString.length);
-			if (_locFloat64 > this.cutOff.low) {
-				var sub:Int64 = (Int64.fromFloat(_locFloat64) / cutOff) * cutOff;
-				_locFloat64 -= sub.low;
-			}
-			if (_locBuildString.length >= 17) {
-				_locBuildString = this.truncate(_locBuildString);
-				var forString:String = _locBuildString.substring(0, decimalOffSet);
-				var latString:String = _locBuildString.substring(decimalOffSet, _locBuildString.length);
-				var signString:String = "";
-				if (_locIsNegative) {
-					signString = "-";
-				}
-				var returnString:String = signString + forString + "." + latString;
-				return returnString;
-			}
-		}
-    }
-	function truncate(_s:String):String {
-		var _locString:String = _s;
-		while (true) {
-			if (_locString.substring(_locString.length - 1, _locString.length) == "0") {
-				_locString = _locString.substring(0, _locString.length - 1);
-			} else {
-				return _locString;
-			}
-		}
-	}
-	function getCutOffValue(_v:Float):Int64 {
-		var mod:Int = 1;
-		this.decimalOffSet = 1;
-		while (true) {
-			if (_v / mod > 10) {
-				++decimalOffSet;
-				mod *= 10;
-				continue;
-			} else {
-				return mod;
-			}
-		}
-	}
-	function its(_v:Int) {
-		return "" + _v;
-	}
-	function bts(_b:Bool) {
-		if (_b) {
-			return "true";
-		} else {
-			return "false";
-		}
+		return(a);
 	}
 	override public function json_decode(_trackData:Object) {
 		CVar.track_name = _trackData.label;
@@ -182,12 +110,12 @@ class FileJSON extends FileBase
 		
 	}
 	function cache_lines(_trackData:Object) {
+		_trackData.lines.reverse();
 		if (_trackData.lines.length >= 5000) {
 			this.step = _trackData.lines.length;
 			this.chunk_lines = _trackData.lines;
 			Lib.current.stage.addEventListener(Event.ENTER_FRAME, chunk_load);
 		} else {
-			_trackData.lines.reverse();
 			for (i in 0..._trackData.lines.length) {
 				var _loc1:LineBase;
 				if (_trackData.lines[i] == null) {
