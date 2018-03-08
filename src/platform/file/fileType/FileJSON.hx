@@ -21,7 +21,6 @@ class FileJSON extends FileBase
 	@:extern @:native("__hxcpp_set_float_format") //Credit to !Billy for finding this obscure solution to a problem that plagued me since April 2017
 	static function changeFloat(format:String) {} //This has officially been fixed March 2018
 	
-	private var tabLevel:Int = 0;
 	var chunk_lines:Array<Object>;
 	var step:Int = 0;
 	var chunk_size:Int = 100;

@@ -2,11 +2,9 @@ package platform.file.browser;
 
 import flash.net.SharedObject;
 import flash.net.ObjectEncoding;
-import flash.utils.Object;
 
 import global.Common;
 import platform.file.BrowserBase;
-import ui.inter.TextButton;
 
 /**
  * ...
