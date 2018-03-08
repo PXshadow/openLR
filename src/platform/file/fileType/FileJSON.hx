@@ -1,7 +1,6 @@
 package platform.file.fileType;
 
 import haxe.Json;
-import haxe.Int64;
 import openfl.Lib;
 import openfl.utils.Function;
 import openfl.utils.Object;
@@ -25,7 +24,7 @@ class FileJSON extends FileBase
 	private var tabLevel:Int = 0;
 	var chunk_lines:Array<Object>;
 	var step:Int = 0;
-	var chunk_size:Int = 50;
+	var chunk_size:Int = 100;
 	public function new() {
 		super();
 	}
@@ -33,9 +32,9 @@ class FileJSON extends FileBase
 		if (_name != null) this.name = _name;
 		if (_author != null) this.author = _author;
 		if (_description != null) this.description = _description;
-		changeFloat("%.16f");
+		changeFloat("%.16f"); //set exact precision to 16 digits past decimal
 		this.exportString = Json.stringify(this.parse_json(), null, "\t");
-		changeFloat("%.3f");
+		changeFloat("%.15g"); //set back to default behavior
 	}
 	public function parse_json():Object //top object. Gets name, author, etc.
 	{

@@ -4,7 +4,7 @@ package platform.file.fileType;
  * ...
  * @author Kaelan Evans
  */
-class SOL extends FileBase 
+class FileSOL extends FileBase 
 {
 
 	public function new() 
