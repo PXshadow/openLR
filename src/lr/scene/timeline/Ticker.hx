@@ -13,6 +13,12 @@ import global.SVar;
  * 
  * permits frame by frame scrubbing on the fly
  */
+@:enum abstract Color(Int) from Int to Int {
+	public var black:Int = 0;
+	public var pause:Int = 0x00FF00;
+	public var current:Int = 0x0066FF;
+	public var flag:Int = 0xCC0000;
+}
 class Ticker extends Sprite
 {
 	public var tickArray:Vector<Tick>;
@@ -37,7 +43,6 @@ class Ticker extends Sprite
 class Tick extends Shape
 {
 	public var frame:Int = 0;
-	var color = 0xFFFFFF;
 	public function new(_id:Int) 
 	{
 		super();
@@ -53,21 +58,21 @@ class Tick extends Shape
 		this.frame = _id - 160;
 		this.graphics.moveTo(0, 0);
 		if (this.frame < 0) {
-			this.graphics.lineStyle(4, 0, 0.1);
+			this.graphics.lineStyle(4, Color.black, 0.1);
 		} else if (this.frame > SVar.max_frames) {
-			this.graphics.lineStyle(4, 0, 0.5);
+			this.graphics.lineStyle(4, Color.black, 0.5);
 		} else if (this.frame == SVar.frames) {
-			this.graphics.lineStyle(4, 0x0066FF, 1);
+			this.graphics.lineStyle(4, Color.current, 1);
 		} else if (this.frame == SVar.pause_frame && SVar.pause_frame != -1) {
-			this.graphics.lineStyle(4, 0x00CC00, 1);
+			this.graphics.lineStyle(4, Color.pause, 1);
 		} else if (this.frame == SVar.flagged_frame && SVar.flagged_frame != -1) {
-			this.graphics.lineStyle(4, 0xCC0000, 1);
+			this.graphics.lineStyle(4, Color.flag, 1);
 		}
 		else {
 			if (this.frame % 10 == 1) {
-				this.graphics.lineStyle(4, 0, 0.8);
+				this.graphics.lineStyle(4, Color.black, 0.8);
 			} else { 
-				this.graphics.lineStyle(4, 0, 0.4);
+				this.graphics.lineStyle(4, Color.black, 0.4);
 			}
 		}
 		this.graphics.lineTo(0, 25);
