@@ -50,8 +50,8 @@ class BrowserSys extends BrowserBase
 				this.load_file.visible = true;
 				this.open_dir.visible = false;
 			case FileType.SOL :
-				this.load_file.visible = true;
-				this.open_dir.visible = false;
+				this.load_file.visible = false;
+				this.open_dir.visible = true;
 			case FileType.Directory :
 				this.load_file.visible = true;
 				this.open_dir.visible = true;
