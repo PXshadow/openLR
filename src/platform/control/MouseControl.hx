@@ -61,7 +61,6 @@ class MouseControl extends ControlBase
 		if (SVar.game_mode == GameState.edit || SVar.game_mode == GameState.livedraw) {
 			var platDelta:Float;
 			#if (cpp || flash)
-				Common.gTrack.decachePanels();
 				platDelta = e.delta;
 			#elseif (js)
 				platDelta = e.delta / 100;
@@ -76,9 +75,6 @@ class MouseControl extends ControlBase
 			Common.gTrack.y = (Lib.current.stage.mouseY) + ((trkLoc.y - Lib.current.stage.mouseY) * (scaleToSet / trkScale));
 			Common.gTrack.scaleX = Common.gTrack.scaleY = scaleToSet;
 			Common.gTrack.check_visibility();
-			#if (cpp)
-				Common.gTrack.cachePanels();
-			#end
 		}
 	}
 }
