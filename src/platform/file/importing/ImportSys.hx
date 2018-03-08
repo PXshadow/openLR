@@ -52,10 +52,6 @@ class ImportSys extends ImportBase
 					this.trackData = Json.parse(File.getContent(_path));
 					file.json_decode(this.trackData);
 					return;
-				case ".lrpk" :
-					file = new LRPK();
-					file.lrpk_decode(File.getBytes(_path));
-					return;
 				default :
 					//intentional fall through
 			}
