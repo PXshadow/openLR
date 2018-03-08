@@ -253,8 +253,8 @@ class Main extends Sprite
 			
 			#if sys
 				this.newStartLoader = new BrowserSys();
-			#else
-				return;
+			#elseif flash
+				this.newStartLoader = new BrowserFL();
 			#end
 			
 			this.importingVisible = true;
