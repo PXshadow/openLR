@@ -103,19 +103,8 @@ class BrowserSys extends BrowserBase
 	override public function resize (e:Event) {
 		
 		super.resize(e);
-		
-		var x_offset = 0;
-		var y_offset = 0;
-		var x_max = Math.floor(Lib.current.stage.stageWidth / 120);
-		for (a in this.iconArray) {
-			a.x = 10 + (120 * x_offset);
-			a.y = 90 + (140 * y_offset);
-			++x_offset;
-			if (x_offset >= x_max) {
-				x_offset = 0;
-				++y_offset;
-			}
-		}
+	
+		this.displayDirectory();
 	}
 	function update_directory() {
 		

@@ -55,6 +55,10 @@ class BrowserBase extends Sprite
 	var textField_filePath:TextField;
 	
 	var iconArray:Array<FileItemIcon>;
+	var iconTray:Sprite;
+	var iconMask:Sprite;
+	
+	var scrolling:Bool = false;
 	
 	private var font_a:TextFormat = new TextFormat(Assets.getFont("fonts/Verdana Bold.ttf").fontName, 24, 0, null, null, null, null, null, TextFormatAlign.LEFT); 
 	private var font_b:TextFormat = new TextFormat(Assets.getFont("fonts/Verdana.ttf").fontName, 14, 0, null, null, null, null, null, TextFormatAlign.LEFT); 
@@ -64,29 +68,18 @@ class BrowserBase extends Sprite
 		
 		Common.gSaveBrowser = this;
 		
-		this.render();
-		
 		this.draw_title();
+		
+		this.render();
 		
 		Lib.current.stage.addChild(this);
 		
 		Lib.current.stage.addEventListener(Event.RESIZE, this.resize);
+		Lib.current.stage.addEventListener(MouseEvent.MOUSE_WHEEL, this.scroll_list);
 		
 		this.add_title_interface();
 		
 		this.parseDirectory();
-	}
-	public function display_info(_fileName:String, _fileType:Int, _filePath:String) {
-		
-	}
-	public function render() {
-		this.graphics.clear();
-		this.graphics.beginFill(0xFFFFFF, 1);
-		this.graphics.moveTo(0, 0);
-		this.graphics.lineTo(Lib.current.stage.stageWidth, 0);
-		this.graphics.lineTo(Lib.current.stage.stageWidth, 80);
-		this.graphics.lineStyle(4, 0, 1);
-		this.graphics.lineTo(0, 80);
 	}
 	public function draw_title() {
 		this.textField_title = new TextField(); 
@@ -107,6 +100,17 @@ class BrowserBase extends Sprite
 			#end
 		#end
 		this.textField_title.text += " " + Common.version;
+		
+		this.iconTray = new Sprite();
+		this.addChild(this.iconTray);
+		this.iconTray.y = 90;
+		
+		this.iconMask = new Sprite();
+		this.addChild(this.iconMask);
+		this.iconMask.y = 90;
+		this.iconMask.mouseEnabled = false;
+		
+		this.iconTray.mask = this.iconMask;
 	}
 	public function add_title_interface() {
 		this.load_file = new TextButton("Load", this.invoke_loader);
@@ -133,8 +137,54 @@ class BrowserBase extends Sprite
 		this.textField_filePath.width = 500; 
 		this.textField_filePath.text = "";
 	}
+	public function render() {
+		this.graphics.clear();
+		this.graphics.beginFill(0xFFFFFF, 1);
+		this.graphics.moveTo(0, 0);
+		this.graphics.lineTo(Lib.current.stage.stageWidth, 0);
+		this.graphics.lineTo(Lib.current.stage.stageWidth, 80);
+		this.graphics.lineStyle(4, 0, 1);
+		this.graphics.lineTo(0, 80);
+		
+		this.iconMask.graphics.clear();
+		this.iconMask.graphics.beginFill(0, 0.1);
+		this.iconMask.graphics.moveTo(0, 0);
+		this.iconMask.graphics.lineTo(Lib.current.stage.stageWidth, 0);
+		this.iconMask.graphics.lineTo(Lib.current.stage.stageWidth, Lib.current.stage.stageHeight - 80);
+		this.iconMask.graphics.lineTo(0, Lib.current.stage.stageHeight - 80);
+		this.iconMask.graphics.lineTo(0, 0);
+	}
 	public function resize(e:Event) {
 		this.render();
+	}
+	function scroll_list(e:MouseEvent):Void 
+	{
+		if (!this.scrolling) return;
+		
+		var platDelta:Float;
+			#if (cpp || flash)
+				platDelta = e.delta;
+			#elseif (js)
+				platDelta = e.delta / 100;
+			#else
+				trace("Unsupported platform, accomodate: ", e.delta);
+				return;
+			#end
+		if (platDelta > 0) {
+			this.iconTray.y += 11;
+			if (this.iconTray.y >= 90) {
+				this.iconTray.y = 90;
+			}
+		}
+		if (platDelta < 0) {
+			this.iconTray.y -= 11;
+			if (this.iconTray.y + this.iconTray.height <= Lib.current.stage.stageHeight - 15) {
+				this.iconTray.y = Lib.current.stage.stageHeight - this.iconTray.height - 15;
+			}
+		}
+	}
+	public function display_info(_fileName:String, _fileType:Int, _filePath:String) {
+		
 	}
 	public function parseDirectory() {
 		this.iconArray = new Array<FileItemIcon>();
@@ -146,14 +196,19 @@ class BrowserBase extends Sprite
 		var y_offset = 0;
 		var x_max = Math.floor(Lib.current.stage.stageWidth / 120);
 		for (a in this.iconArray) {
-			this.addChild(a);
+			this.iconTray.addChild(a);
 			a.x = 10 + (120 * x_offset);
-			a.y = 90 + (140 * y_offset);
+			a.y = 140 * y_offset;
 			++x_offset;
 			if (x_offset >= x_max) {
 				x_offset = 0;
 				++y_offset;
 			}
+		}
+		if (this.iconTray.height + 80 > Lib.current.stage.stageHeight) { this.scrolling = true; }
+		else {
+			this.scrolling = false;
+			this.iconTray.y = 90;
 		}
 	}
 	public function init_env() 
