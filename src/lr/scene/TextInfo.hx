@@ -36,13 +36,14 @@ class TextInfo extends Sprite
 		textInfo_B = new TextField();
 		textInfo_C = new TextField();
 		textInfo_D = new TextField();
+		textInfo_E = new TextField();
 		textInfo_F = new TextField();
 		
 		this.graphics.clear();
 		this.graphics.beginFill(0xCCCCCC, 0.75);
 		this.graphics.moveTo(0, 0);
-		this.graphics.lineTo(100, 0);
-		this.graphics.lineTo(100, 80);
+		this.graphics.lineTo(120, 0);
+		this.graphics.lineTo(120, 80);
 		this.graphics.lineTo(0, 80);
 		this.graphics.lineTo(0, 0);
 		
@@ -50,24 +51,35 @@ class TextInfo extends Sprite
 		textInfo_B.selectable = false;
 		textInfo_C.selectable = false;
 		textInfo_D.selectable = false;
+		textInfo_E.selectable = false;
 		textInfo_F.selectable = false;
 		textInfo_A.defaultTextFormat = this.font;
 		textInfo_B.defaultTextFormat = this.font;
 		textInfo_C.defaultTextFormat = this.font;
 		textInfo_D.defaultTextFormat = this.font;
+		textInfo_E.defaultTextFormat = this.font;
 		textInfo_F.defaultTextFormat = this.font;
 		
 		this.addChild(this.textInfo_A);
 		this.addChild(this.textInfo_B);
 		this.addChild(this.textInfo_C);
 		this.addChild(this.textInfo_D);
+		this.addChild(this.textInfo_E);
 		this.addChild(this.textInfo_F);
 		
 		
 		this.textInfo_B.y = 15;
 		this.textInfo_C.y = 30;
 		this.textInfo_D.y = 45;
+		this.textInfo_E.y = 60;
 		this.textInfo_F.y = 75;
+		
+		this.textInfo_A.width = 120;
+		this.textInfo_B.width = 120;
+		this.textInfo_C.width = 120;
+		this.textInfo_D.width = 120;
+		this.textInfo_E.width = 120;
+		this.textInfo_F.width = 120;
 		
 		this.update();
 	}
@@ -84,7 +96,7 @@ class TextInfo extends Sprite
 		var _locTime:String = Common.time(SVar.frames);
 		
 		textInfo_A.text = CVar.track_name;
-		textInfo_B.text = _locTime;
+		textInfo_B.text = _locTime + SVar.playbackModifierString;
 		textInfo_C.text = SVar.rider_speed + " P/F";
 		textInfo_D.text = SVar.rider_speed_top + " Top";
 	}
