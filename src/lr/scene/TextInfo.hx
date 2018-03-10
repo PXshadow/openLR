@@ -1,7 +1,6 @@
 package lr.scene;
 
 import openfl.Assets;
-import openfl.display.FPS;
 import openfl.display.Sprite;
 import openfl.text.TextField;
 import openfl.text.TextFormat;
@@ -28,7 +27,6 @@ class TextInfo extends Sprite
 	public var textInfo_E:TextField;
 	public var textInfo_F:TextField;
 	public var mode:Int = 0; //0 = lines, 1 = playback
-	public var fps:FPS;
 	public function new() 
 	{
 		super();
@@ -38,7 +36,6 @@ class TextInfo extends Sprite
 		textInfo_B = new TextField();
 		textInfo_C = new TextField();
 		textInfo_D = new TextField();
-		this.fps = new FPS();
 		textInfo_F = new TextField();
 		
 		this.graphics.clear();
@@ -58,23 +55,18 @@ class TextInfo extends Sprite
 		textInfo_B.defaultTextFormat = this.font;
 		textInfo_C.defaultTextFormat = this.font;
 		textInfo_D.defaultTextFormat = this.font;
-		this.fps.defaultTextFormat = this.font;
 		textInfo_F.defaultTextFormat = this.font;
 		
 		this.addChild(this.textInfo_A);
 		this.addChild(this.textInfo_B);
 		this.addChild(this.textInfo_C);
 		this.addChild(this.textInfo_D);
-		this.addChild(this.fps);
 		this.addChild(this.textInfo_F);
 		
 		
 		this.textInfo_B.y = 15;
 		this.textInfo_C.y = 30;
 		this.textInfo_D.y = 45;
-		this.fps.y = 60;
-		this.fps.x = -2;
-		this.fps.width = this.textInfo_A.width;
 		this.textInfo_F.y = 75;
 		
 		this.update();

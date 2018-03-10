@@ -13,6 +13,7 @@ package;
 	import lime.system.System;
 #end
 import openfl.events.Event;
+import openfl.display.FPS;
 import openfl.geom.Point;
 import openfl.Lib;
 
@@ -70,10 +71,14 @@ class Main extends Sprite
 	private var importing:ImportBase;
 	private var importingVisible = false;
 	private var newStartLoader:BrowserBase;
+	private var fps:FPS;
 	
 	public function new() 
 	{
 		super();
+		
+		this.fps = new FPS(5, 5);
+		this.addChild(this.fps);
 		
 		#if (sys || js)
 			#if sys
