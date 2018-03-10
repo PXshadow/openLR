@@ -34,6 +34,7 @@ class ToolBase
 		Common.gToolBase = this;
 	}
 	public function set_tool(_type:String) {
+		if (SVar.game_mode == GameState.inmenu) return;
 		this.currentTool = new ToolNone();
 		switch(_type) {
 			case ToolType.None :

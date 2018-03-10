@@ -63,8 +63,6 @@ class SettingsMenu extends Sprite
 		
 		Toolkit.init();
 		
-		Common.gToolBase.set_tool(ToolType.None);
-		
 		this.graphics.clear();
 		this.graphics.lineStyle(4, 0, 1);
 		this.graphics.beginFill(0xFFFFFF, 1);

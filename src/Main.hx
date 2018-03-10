@@ -199,6 +199,7 @@ class Main extends Sprite
 	public function toggleSettings_box()
 	{
 		if (!this.settings_box.visible) {
+			Toolbar.tool.set_tool("None");
 			SVar.game_mode = GameState.inmenu;
 			this.settings_box.visible = true;
 			this.track.visible = false;
@@ -206,7 +207,6 @@ class Main extends Sprite
 			this.textInfo.visible = false;
 			this.timeline.visible = false;
 			this.settings_box.update();
-			Toolbar.tool.set_tool("None");
 		} else {
 			this.settings_box.visible = false;
 			this.track.visible = true;
@@ -234,6 +234,7 @@ class Main extends Sprite
 				this.align();
 			
 				Toolbar.tool.set_tool("None");
+				SVar.game_mode = GameState.inmenu;
 			#else
 				return;
 			#end
@@ -250,6 +251,7 @@ class Main extends Sprite
 			
 			this.align();
 			
+			SVar.game_mode = GameState.edit;
 			Toolbar.tool.set_tool(ToolBase.lastTool);
 		}
 	}
@@ -273,6 +275,7 @@ class Main extends Sprite
 			this.align();
 			
 			Toolbar.tool.set_tool("None");
+			SVar.game_mode = GameState.inmenu;
 		} else {
 			this.importingVisible = false;
 			
@@ -283,6 +286,7 @@ class Main extends Sprite
 			Lib.current.stage.removeChild(this.newStartLoader);
 			this.align();
 			
+			SVar.game_mode = GameState.edit;
 			Toolbar.tool.set_tool(ToolBase.lastTool);
 		}
 	}
