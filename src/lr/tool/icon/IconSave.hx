@@ -45,17 +45,17 @@ class IconSave extends IconBase
 		this.new_track = new TextButton(Language.New_track, this.make_new_track);
 		this.buttonList.push(this.new_track);
 			
-		#if sys
-			//this.save_track = new TextButton(Language.Save_track, this.open_save_menu);
-			//this.buttonList.push(this.save_track);
+		this.save_track = new TextButton(Language.Save_track, this.open_save_menu);
+		this.buttonList.push(this.save_track);
 			
-			this.load_track = new TextButton(Language.Load_track, this.show_loader);
-			this.buttonList.push(this.load_track);
+		this.load_track = new TextButton(Language.Load_track, this.show_loader);
+		this.buttonList.push(this.load_track);
 			
+		#if (sys || js || air)
 			this.screen_cap = new TextButton(Language.Screencap, this.take_screenshot);
 			this.buttonList.push(this.screen_cap);
 		#end
-			
+		
 		this.about = new TextButton("About", this.open_github_page);
 		this.buttonList.push(this.about);
 	}
