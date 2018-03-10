@@ -16,6 +16,15 @@ class SimManager
 	var iterator:Timer;
 	
 	private var flag_av:Bool = false;
+	
+	private var playback_rate:Float = 40;
+	private var slow_rate:Float = 5;
+	private var rateBelowOneFPS:Bool = false;
+	private var rewind:Bool = false;
+	
+	private var playbackRates:Array<Int> = [1, 2, 5, 10, 15, 20, 25, 30, 35, 40, 80, 160, 320];
+	private var playbackRateIndex:Int = 9;
+	
 	public function new() 
 	{
 		Common.gSimManager = this;
@@ -23,10 +32,13 @@ class SimManager
 	public function start_sim() {
 		if (CVar.slow_motion_auto) {
 			SVar.slow_motion = true;
-			SVar.default_rate = CVar.slow_motion_rate;
+			this.playback_rate = CVar.slow_motion_rate;
+			this.slow_rate = CVar.slow_motion_rate;
 		} else {
 			SVar.slow_motion = false;
-			SVar.default_rate = 40;
+			this.playback_rate = 40;
+			this.playbackRateIndex = 9;
+			SVar.playbackModifierString = "";
 		}
 		if (!CVar.flagged) {
 			SVar.frames = 0;
@@ -41,7 +53,7 @@ class SimManager
 		Common.gRiderManager.set_rider_visual_start();
 		if (!SVar.sim_running) {
 			Common.gCode.return_to_origin_sim();
-			this.iterator = new Timer(Std.int(1000 * (1 / SVar.default_rate)));
+			this.iterator = new Timer(1000 * ( 1 / 60));
 			this.iterator.run = function():Void {
 				this.update_sim();
 				Common.gTextInfo.update_sim();
@@ -56,23 +68,31 @@ class SimManager
 			Common.gTrack.scaleX = Common.gTrack.scaleY = Common.gRiderManager.scaleX = Common.gRiderManager.scaleY = (Common.gTrack.scaleX * (CVar.force_zoom_inverse ? ( -1) : (1)));
 		}
 	}
+	var milliseconds:Float = 0;
 	function update_sim()
 	{
+		this.milliseconds += 1000 / 60;
+		if (this.milliseconds <= (1000 / this.playback_rate) && this.playback_rate <= 40 || CVar.paused) return;
+		else if (this.milliseconds <= (1000 / 40) && this.playback_rate > 40) return;
+		else milliseconds = 0;
+		
 		if (CVar.hit_test_live) {
 			for (a in SubPanel.lit_lines) {
 				a.visible = false;
 			}
 			SubPanel.lit_lines = new Array<Sprite>();
 		}
-		if (!CVar.fast_forward && !CVar.rewind) {
-			Common.gRiderManager.advance_riders();
-			++SVar.frames;
-		} else if (CVar.fast_forward && !CVar.rewind) {
-			for (a in 0...CVar.fast_forward_rate) {
+		if (!this.rewind) {
+			if (this.playback_rate > 40) {
+				for (i in 0...Std.int(this.playback_rate / 40)) {
+					Common.gRiderManager.advance_riders();
+					++SVar.frames;
+				}
+			} else {
 				Common.gRiderManager.advance_riders();
 				++SVar.frames;
 			}
-		} else if (CVar.rewind) {
+		} else {
 			Common.gRiderManager.rewind_riders();
 		}
 		if (SVar.frames > SVar.max_frames) {
@@ -120,16 +140,10 @@ class SimManager
 	{
 		SVar.frames_alt = SVar.frames;
 		SVar.sim_running = false;
-		this.iterator.stop();
 		CVar.paused = true;
 		SVar.pause_frame = SVar.frames;
 	}
 	public function resume_sim() {
-		this.iterator = new Timer(Std.int(1000 * (1 / SVar.default_rate)));
-		this.iterator.run = function():Void {
-			this.update_sim();
-			Common.gTextInfo.update_sim();
-		}
 		CVar.paused = false;
 		SVar.sim_running = true;
 		SVar.pause_frame = -1;
@@ -165,30 +179,37 @@ class SimManager
 		CVar.flagged = false;
 		this.flag_av = false;
 	}
-	public function slow_motion_toggle() {
-		if (SVar.slow_motion)
-		{
-			SVar.slow_motion = false;
-			this.set_reg_speed();
-		} else if (!SVar.slow_motion) {
-			SVar.slow_motion = true;
-			this.set_slow_speed();
+	public function decrease_playback_rate() {
+		if (this.playbackRateIndex > 0) {
+			--this.playbackRateIndex;
+			this.playback_rate = this.playbackRates[this.playbackRateIndex];
+		} else if (this.playbackRateIndex == 0 && this.playback_rate > 0.0625) {
+			this.playback_rate *= 0.5;
+		}
+		if (this.playback_rate != 40) {
+			SVar.playbackModifierString = " @" + this.playback_rate + "FPS";
+		} else {
+			SVar.playbackModifierString = "";
 		}
 	}
-	public function fast_forward_toggle() {
-		if (!CVar.fast_forward) {
-			CVar.fast_forward = true;
+	public function increase_playback_rate() {
+		if (this.playbackRateIndex < this.playbackRates.length - 1 && this.playbackRateIndex != 0 || this.playback_rate == 1) {
+			++this.playbackRateIndex;
+			this.playback_rate = this.playbackRates[this.playbackRateIndex];
+		} else if (this.playbackRateIndex == 0 && this.playback_rate < 1 ) {
+			this.playback_rate *= 2;
+		}
+		if (this.playback_rate != 40) {
+			SVar.playbackModifierString = " @" + this.playback_rate + "FPS";
 		} else {
-			CVar.fast_forward = false;
+			SVar.playbackModifierString = "";
 		}
 	}
 	public function rewind_toggle() {
-		if (CVar.rewind == false) {
-			CVar.rewind = true;
-			CVar.fast_forward = false;
-		} else if (CVar.rewind != false){
-			CVar.rewind = false;
-			CVar.fast_forward = false;
+		if (this.rewind == false) {
+			this.rewind = true;
+		} else if (this.rewind != false){
+			this.rewind = false;
 		}
 	}
 	public function pause_play_toggle() {
@@ -201,21 +222,21 @@ class SimManager
 		}
 	}
 	public function step_forward() {
-		if (!CVar.rewind) {
+		if (!this.rewind) {
 			this.update_sim();
 		} else {
-			CVar.rewind = false;
+			this.rewind = false;
 			this.update_sim();
-			CVar.rewind = true;
+			this.rewind = true;
 		}
 	}
 	public function step_backward() {
-		if (CVar.rewind) {
+		if (this.rewind) {
 			this.update_sim();
 		} else {
-			CVar.rewind = true;
+			this.rewind = true;
 			this.update_sim();
-			CVar.rewind = false;
+			this.rewind = false;
 		}
 	}
 	public function sub_step_forward() {
@@ -223,27 +244,6 @@ class SimManager
 	}
 	public function sub_step_backward() {
 		
-	}
-	function set_slow_speed() 
-	{
-		this.iterator.stop();
-		SVar.default_rate = CVar.slow_motion_rate;
-		this.iterator = new Timer(Std.int(1000 * (1 / SVar.default_rate)));
-		this.iterator.run = function():Void {
-			this.update_sim();
-			Common.gTextInfo.update_sim();
-		}
-	}
-	
-	function set_reg_speed() 
-	{
-		this.iterator.stop();
-		SVar.default_rate = 40;
-		this.iterator = new Timer(Std.int(1000 * (1 / SVar.default_rate)));
-		this.iterator.run = function():Void {
-			this.update_sim();
-			Common.gTextInfo.update_sim();
-		}
 	}
 	public function injectRiderPosition(_frame:Int) {
 		Common.gRiderManager.inject_frame(_frame);

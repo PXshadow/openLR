@@ -12,8 +12,6 @@ class SVar
 {
 	public static var current_tool:String = "none set";
 	
-	public static var default_rate:Int = 40;
-	
 	public inline static var eraser_size:Int = 5;
 	
 	public static var fl_frames:Int = 0;
@@ -39,6 +37,7 @@ class SVar
 	public inline static var node_tilesize:Int = 140;
 	
 	public static var pause_frame:Int = -1;
+	public static var playbackModifierString:String = "";
 	
 	public static var rider_count = 0;
 	public static var rider_speed:Float = 0;

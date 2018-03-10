@@ -63,10 +63,6 @@ class KeyControl
 				else Common.gGrid.add_remove_action(Action.undo_line);
 			case Keyboard.SPACE :
 				Common.gSimManager.pause_play_toggle();
-			case Keyboard.M :
-				if (SVar.sim_running) Common.gSimManager.slow_motion_toggle();
-			case Keyboard.N :
-				if (SVar.sim_running) Common.gSimManager.fast_forward_toggle();
 			case Keyboard.B :
 				if (SVar.sim_running) Common.gSimManager.rewind_toggle();
 			case Keyboard.I :
@@ -99,7 +95,19 @@ class KeyControl
 				CVar.mod_z = true;
 			case Keyboard.X :
 				CVar.mod_x = true;
+			case Keyboard.EQUAL :
+				this.inc_play_rate();
+			case Keyboard.MINUS :
+				this.dec_play_rate();
 		}
+	}
+	function dec_play_rate() 
+	{
+		Common.gSimManager.decrease_playback_rate();
+	}
+	function inc_play_rate() 
+	{
+		Common.gSimManager.increase_playback_rate();
 	}
 	function keyPress_release(e:KeyboardEvent) {
 		if (!SVar.keysEnabled) return;

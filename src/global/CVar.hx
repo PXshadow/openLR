@@ -19,8 +19,6 @@ class CVar
 	
 	public static var dictionary:String = "English";
 	
-	public static var fast_forward:Bool = false;
-	public static var fast_forward_rate:Int = 4;
 	public static var flagged:Bool = false;
 	public static var force_zoom:Bool = false;
 	public static var force_zoom_ammount:Float = 2;
@@ -41,7 +39,6 @@ class CVar
 	public static var prev_zoom_ammount:Float;
 	public static var preview_mode:Bool = false;
 	
-	public static var rewind:Bool = false;
 	public static var rider_alpha:Float = 10;
 	
 	public static var slow_motion_auto:Bool = false;

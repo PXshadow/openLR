@@ -189,7 +189,6 @@ class Common
 		Common.gToolbar.pause.visible = false;
 		Common.gToolbar.set_full_edit_mode();
 		Common.gTrack.set_simmode_stop();
-		CVar.fast_forward = false;
 		Common.gTimeline.update();
 		if (!CVar.paused) {
 			Common.gTrack.x = Common.track_last_pos_x;

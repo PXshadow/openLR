@@ -11,6 +11,7 @@ import openfl.text.TextFormatAlign;
 import ui.inter.TextButton;
 import global.Common;
 import global.CVar;
+import lr.tool.ToolBase;
 
 import haxe.ui.Toolkit;
 import haxe.ui.components.CheckBox;
@@ -43,7 +44,6 @@ class SettingsMenu extends Sprite
 	var checkBox_forceZoom:CheckBox;
 	var checkBox_forceInverse:CheckBox;
 	var checkBox_autoSlow:CheckBox;
-	var slider_autoSlowRate:HSlider;
 	var slider_forceZoom:HSlider;
 	var label_zoomValue:Label;
 	var label_slowRate:Label;
@@ -62,6 +62,8 @@ class SettingsMenu extends Sprite
 		super();
 		
 		Toolkit.init();
+		
+		Common.gToolBase.set_tool(ToolType.None);
 		
 		this.graphics.clear();
 		this.graphics.lineStyle(4, 0, 1);
@@ -148,20 +150,6 @@ class SettingsMenu extends Sprite
 		this.objectList.push (this.checkBox_autoSlow);
 		
 		this.objectList.push(this.forceReturn);
-		
-		this.label_slowRate = new Label();
-		this.label_slowRate.text = "FPS: " + CVar.slow_motion_rate;
-		this.objectList.push(this.label_slowRate);
-		
-		this.slider_autoSlowRate = new HSlider();
-		this.slider_autoSlowRate.value = 5;
-		this.slider_autoSlowRate.min = 1;
-		this.slider_autoSlowRate.max = 40;
-		this.slider_autoSlowRate.onChange = function(e:UIEvent) {
-			CVar.slow_motion_rate = this.slider_autoSlowRate.value;
-			this.label_slowRate.text = "FPS: " + CVar.slow_motion_rate;
-		}
-		this.objectList.push(this.slider_autoSlowRate);
 		
 		//Editor Settings
 		this.dividerEditorSettings = new TextField();
