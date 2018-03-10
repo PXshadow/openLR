@@ -119,19 +119,19 @@ class Grid
 			var _loc5;
 			if (_loc1.x < 0)
 			{
-				difX = line.dx > 0 ? (SVar.gridsize + _loc1.gx) : (-SVar.gridsize - _loc1.gx);
+				difX = line.dx > 0 ? (SVar.node_gridsize + _loc1.gx) : (-SVar.node_gridsize - _loc1.gx);
 			}
 			else
 			{
-				difX = line.dx > 0 ? (SVar.gridsize - _loc1.gx) : (-(_loc1.gx + 1));
+				difX = line.dx > 0 ? (SVar.node_gridsize - _loc1.gx) : (-(_loc1.gx + 1));
 			}
 			if (_loc1.y < 0)
 			{
-				_loc5 = line.dy > 0 ? (SVar.gridsize + _loc1.gy) : (-SVar.gridsize - _loc1.gy);
+				_loc5 = line.dy > 0 ? (SVar.node_gridsize + _loc1.gy) : (-SVar.node_gridsize - _loc1.gy);
 			}
 			else
 			{
-				_loc5 = line.dy > 0 ? (SVar.gridsize - _loc1.gy) : (-(_loc1.gy + 1));
+				_loc5 = line.dy > 0 ? (SVar.node_gridsize - _loc1.gy) : (-(_loc1.gy + 1));
 			}
 			if (line.dx == 0)
 			{
@@ -223,19 +223,19 @@ class Grid
 			var _loc5;
 			if (_loc1.x < 0)
 			{
-				difX = line.dx > 0 ? (SVar.tilesize + _loc1.gx) : (-SVar.tilesize - _loc1.gx);
+				difX = line.dx > 0 ? (SVar.node_tilesize + _loc1.gx) : (-SVar.node_tilesize - _loc1.gx);
 			}
 			else
 			{
-				difX = line.dx > 0 ? (SVar.tilesize - _loc1.gx) : (-(_loc1.gx + 1));
+				difX = line.dx > 0 ? (SVar.node_tilesize - _loc1.gx) : (-(_loc1.gx + 1));
 			}
 			if (_loc1.y < 0)
 			{
-				_loc5 = line.dy > 0 ? (SVar.tilesize + _loc1.gy) : (-SVar.tilesize - _loc1.gy);
+				_loc5 = line.dy > 0 ? (SVar.node_tilesize + _loc1.gy) : (-SVar.node_tilesize - _loc1.gy);
 			}
 			else
 			{
-				_loc5 = line.dy > 0 ? (SVar.tilesize - _loc1.gy) : (-(_loc1.gy + 1));
+				_loc5 = line.dy > 0 ? (SVar.node_tilesize - _loc1.gy) : (-(_loc1.gy + 1));
 			}
 			if (line.dx == 0)
 			{

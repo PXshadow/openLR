@@ -101,18 +101,18 @@ class Common
 	}
 	public static function gridPos(x:Float, y:Float):Object {
 		var posObject:Object = new Object();
-		posObject.x = Math.floor(x / SVar.gridsize);
-		posObject.y = Math.floor(y / SVar.gridsize);
-		posObject.gx = x - SVar.gridsize * posObject.x;
-		posObject.gy = y - SVar.gridsize * posObject.y;
+		posObject.x = Math.floor(x / SVar.node_gridsize);
+		posObject.y = Math.floor(y / SVar.node_gridsize);
+		posObject.gx = x - SVar.node_gridsize * posObject.x;
+		posObject.gy = y - SVar.node_gridsize * posObject.y;
 		return(posObject);
 	}
 	public static function tilePos(x:Float, y:Float):Object {
 		var posObject:Object = new Object();
-		posObject.x = Math.floor(x / SVar.tilesize);
-		posObject.y = Math.floor(y / SVar.tilesize);
-		posObject.gx = x - SVar.tilesize * posObject.x;
-		posObject.gy = y - SVar.tilesize * posObject.y;
+		posObject.x = Math.floor(x / SVar.node_tilesize);
+		posObject.y = Math.floor(y / SVar.node_tilesize);
+		posObject.gx = x - SVar.node_tilesize * posObject.x;
+		posObject.gy = y - SVar.node_tilesize * posObject.y;
 		return(posObject);
 	}
 	public static function time(_loc0:Int):String {
