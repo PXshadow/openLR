@@ -282,39 +282,25 @@ class RiderBase extends Sprite
 	}
 	function collision() 
 	{
-		for (_loc7 in 0...this.body.anchors.length)
-		{
-			var _loc5 = this.body.anchors[_loc7];
-			var _loc6 = Common.gridPos(_loc5.x, _loc5.y);
-			for (_loc4 in -1...2)
-			{
-				var _loc1 = (_loc6.x + _loc4);
-				if (Grid.grid[_loc1] == null)
-				{
-					continue;
-				}
-				for (_loc3 in -1...2)
-				{
-					var _loc2 = (_loc6.y + _loc3);
-					if (Grid.grid[_loc1][_loc2] == null)
-					{
-						continue;
-					}
-					var tempList:Array<LineBase> = Grid.grid[_loc1][_loc2].secondary;
-					for (_loc8 in tempList)
-					{
-						if (_loc8 == null) {
-							continue;
-						}
-						_loc8.collide(_loc5);
-					}
-					if (Grid.grid[_loc1][_loc2].lowFrame == - 1) {
-						Grid.grid[_loc1][_loc2].lowFrame = SVar.frames;
-					} else if (SVar.frames <  Grid.grid[_loc1][_loc2].lowFrame) {
-						Grid.grid[_loc1][_loc2].lowFrame = SVar.frames;
+		for (dot in this.body.anchors) {
+			
+			var dotGridPos = Common.gridPos(dot.x, dot.y);
+			
+			for (x in -1...2) {
+				
+				var gx = dotGridPos.x + x;
+				if (Grid.grid[gx] == null) continue;
+				
+				for (y in -1...2) {
+					
+					var gy = dotGridPos.y + y;
+					if (Grid.grid[gx][gy] == null) continue;
+					
+					for (line in Grid.grid[gx][gy].secondary) {
+						line.collide(dot);
 					}
 				}
 			}
-		} 
+		}
 	}
 }
