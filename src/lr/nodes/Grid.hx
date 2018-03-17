@@ -85,7 +85,12 @@ class Grid
 		{
 			SVar.lineCount_green += 1;
 		}
-		SVar.lineID += 1;
+		if (_line.ID == -1) {
+			_line.ID = SVar.lineID;
+			SVar.lineID += 1;
+		} else {
+			if (_line.ID > SVar.lineID) SVar.lineID = _line.ID + 1;
+		}
 		SVar.lineCount += 1;
 		this.lines[_line.ID] = _line;
 		this.registerInCollisionGrid(_line);

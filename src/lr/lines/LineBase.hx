@@ -53,7 +53,7 @@ class LineBase
 	public var inv:Bool = false;
 	public var type:Int = -1;
 	public var prevType:Int = -1;
-	public var ID:Int;
+	public var ID:Int = -1;
 	public var gridList:Array<Array<Int>>;
 	public var gridVisList:Array<Array<Int>>;
 	public var prevLine:Int;

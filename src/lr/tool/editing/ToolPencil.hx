@@ -48,10 +48,8 @@ class ToolPencil extends ToolAction
 		Common.gTrack.renderPreview(new LinePreview(x1, y1, x2, y2, CVar.mod_shift, Common.line_type));
 		if (Common.get_distance(c, d) >= Common.line_minLength) {
 			var _loc1:LineBase = new LineBase(Common.line_type, x1, y1, x2, y2, CVar.mod_shift);
-			_loc1.ID = SVar.lineID;
 			Common.gGrid.cacheLine(_loc1);
 			this.stroke.push(_loc1);
-			SVar.lineID += 1;
 			x1 = Common.gTrack.mouseX;
 			y1 = Common.gTrack.mouseY;
 			c = new Point(Lib.current.stage.mouseX, Lib.current.stage.mouseY);
@@ -87,10 +85,8 @@ class ToolPencil extends ToolAction
 		Common.gTrack.renderPreview(new LinePreview(x2, y2, x1, y1, !CVar.mod_shift, Common.line_type));
 		if (Common.get_distance(c, d) >= Common.line_minLength) {
 			var _loc1:LineBase = new LineBase(Common.line_type, x2, y2, x1, y1, !CVar.mod_shift);
-			_loc1.ID = SVar.lineID;
 			Common.gGrid.cacheLine(_loc1);
 			this.stroke.push(_loc1);
-			SVar.lineID += 1;
 			x1 = Common.gTrack.mouseX;
 			y1 = Common.gTrack.mouseY;
 			c = new Point(Lib.current.stage.mouseX, Lib.current.stage.mouseY);

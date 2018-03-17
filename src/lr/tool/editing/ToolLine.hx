@@ -70,10 +70,8 @@ class ToolLine extends ToolAction
 		}
 		if (Common.get_distance(c, d) >= 1) {
 			var _loc1:LineBase = new LineBase(Common.line_type, x1, y1, x2, y2, CVar.mod_shift);
-			_loc1.ID = SVar.lineID;
 			Common.gGrid.cacheLine(_loc1);
 			Common.gGrid.cache_stroke([_loc1]);
-			SVar.lineID += 1;
 		}
 		valid = false;
 	}
@@ -115,10 +113,8 @@ class ToolLine extends ToolAction
 		}
 		if (Common.get_distance(c, d) >= 1) {
 			var _loc1:LineBase = new LineBase(Common.line_type, x2, y2, x1, y1, !CVar.mod_shift);
-			_loc1.ID = SVar.lineID;
 			Common.gGrid.cacheLine(_loc1);
 			Common.gGrid.cache_stroke([_loc1]);
-			SVar.lineID += 1;
 		}
 		Common.gTrack.clear_preview();
 		this.rightMouseIsDown = false;
