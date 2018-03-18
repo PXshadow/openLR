@@ -2,13 +2,10 @@ package lr.rider;
 
 import openfl.display.Sprite;
 import openfl.utils.Object;
-import openfl.ui.Keyboard;
-import openfl.events.KeyboardEvent;
 
 import global.Common;
 import global.SVar;
 import global.engine.RiderManager;
-import lr.lines.LineBase;
 import lr.nodes.Grid;
 import lr.rider.RiderRecorder;
 import lr.rider.objects.FlagMarker;
@@ -103,20 +100,7 @@ class RiderBase extends Sprite
 		
 		this.recorder.index_frame(0, this.body.anchors, this.scarf.anchors);
 	}
-	function adjust_rider_angle(e:KeyboardEvent) 
 	{
-		switch (e.keyCode) {
-			case Keyboard.MINUS:
-				this.rider_angle -= 1;
-			case Keyboard.EQUAL:
-				this.rider_angle += 1;
-		}
-		if (this.rider_angle <= -1) {
-			this.rider_angle = 359;
-		}
-		if (this.rider_angle >= 360) {
-			this.rider_angle = 0;
-		}
 	}
 	public function adjust_rider_dimensions() {
 		this.body.set_frame_angle(this.rider_angle);
