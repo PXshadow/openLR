@@ -1,7 +1,9 @@
 package platform.file.importing;
 
+import lime.system.System;
 import openfl.utils.Object;
 import openfl.Lib;
+import sys.FileSystem;
 import sys.io.File;
 import haxe.Json;
 
@@ -42,14 +44,22 @@ class ImportSys extends ImportBase
 	{
 		try {
 			var file:FileBase;
-			var _locStringA = _path.substring(_path.length - 5, _path.length);
-			var _locStringB = _path.substring(_path.length - 4, _path.length);
+			var truePath = _path;
 			
+			if (FileSystem.isDirectory(_path)) {
+				var tempList = FileSystem.readDirectory(_path);
+				tempList.reverse();
+				truePath = _path + "/" + tempList[0];
+			}
+			
+			var _locStringA = truePath.substring(truePath.length - 5, truePath.length);
+			var _locStringB = truePath.substring(truePath.length - 4, truePath.length);
+
 			switch (_locStringA) {
 				case ".json" :
 					file = new FileJSON();
 					this.trackData = new Object();
-					this.trackData = Json.parse(File.getContent(_path));
+					this.trackData = Json.parse(File.getContent(truePath));
 					file.json_decode(this.trackData);
 					return;
 				default :
