@@ -52,8 +52,8 @@ class IconSave extends IconBase
 		this.buttonList.push(this.load_track);
 			
 		#if (sys || js || air)
-			this.screen_cap = new TextButton(Language.Screencap, this.take_screenshot);
-			this.buttonList.push(this.screen_cap);
+			//this.screen_cap = new TextButton(Language.Screencap, this.take_screenshot);
+			//this.buttonList.push(this.screen_cap);
 		#end
 		
 		this.about = new TextButton("About", this.open_github_page);

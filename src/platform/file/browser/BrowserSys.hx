@@ -54,7 +54,7 @@ class BrowserSys extends BrowserBase
 				this.open_dir.visible = true;
 			case FileType.Directory :
 				this.load_file.visible = true;
-				this.open_dir.visible = true;
+				this.open_dir.visible = false;
 			case FileType.New :
 				this.init_env();
 			case FileType.cancel :
@@ -89,9 +89,11 @@ class BrowserSys extends BrowserBase
 				if (_locExtensionJSON == ".json") {
 					this.iconArray.push(new FileItemIcon(itemCount, FileType.JSON, a, b));
 				} else if (_locExtensionSOLTRK == ".trk") {
-					this.iconArray.push(new FileItemIcon(itemCount, FileType.TRK, a, b));
+					continue;
+					//this.iconArray.push(new FileItemIcon(itemCount, FileType.TRK, a, b));
 				} else if (_locExtensionSOLTRK == ".sol") {
-					this.iconArray.push(new FileItemIcon(itemCount, FileType.SOL, a, b));
+					continue;
+					//this.iconArray.push(new FileItemIcon(itemCount, FileType.SOL, a, b));
 				} else {
 					this.iconArray.push(new FileItemIcon(itemCount, FileType.unknown, a, b));
 				}
