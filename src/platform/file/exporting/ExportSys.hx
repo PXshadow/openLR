@@ -71,8 +71,6 @@ class ExportSys extends ExportBase
 			FileSystem.createDirectory(System.documentsDirectory + "/openLR/saves");
 		}
 		
-		SVar.keysEnabled = false;
-		
 		this.graphics.clear();
 		this.graphics.lineStyle(4, 0, 1);
 		this.graphics.beginFill(0xFFFFFF, 1);
@@ -250,6 +248,5 @@ class ExportSys extends ExportBase
 	}
 	private function exit_save_menu() {
 		Common.gCode.toggle_save_menu();
-		SVar.keysEnabled = true;
 	}
 }

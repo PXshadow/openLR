@@ -36,7 +36,7 @@ class KeyControl
 		Lib.current.stage.addEventListener(KeyboardEvent.KEY_UP, this.keyPress_release);
 	}
 	function keyPress_single(e:KeyboardEvent) {
-		if (!SVar.keysEnabled) return;
+		if (SVar.game_mode == GameState.inmenu) return;
 		switch (e.keyCode) {
 			//Tools
 			case Keyboard.Q :
