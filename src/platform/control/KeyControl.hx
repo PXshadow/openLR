@@ -70,7 +70,7 @@ class KeyControl
 		}
 	}
 	function keyPress_repeat(e:KeyboardEvent) {
-		if (!SVar.keysEnabled) return;
+		if (SVar.game_mode == GameState.inmenu) return;
 		switch (e.keyCode) {
 			case Keyboard.LEFT :
 				if (e.shiftKey) Common.gSimManager.sub_step_backward();
@@ -81,7 +81,7 @@ class KeyControl
 		}
 	}
 	function keyPress_down(e:KeyboardEvent) {
-		if (!SVar.keysEnabled) return;
+		if (SVar.game_mode == GameState.inmenu) return;
 		switch (e.keyCode) {
 			case Keyboard.SHIFT :
 				CVar.mod_shift = true;
@@ -110,7 +110,7 @@ class KeyControl
 		Common.gSimManager.increase_playback_rate();
 	}
 	function keyPress_release(e:KeyboardEvent) {
-		if (!SVar.keysEnabled) return;
+		if (SVar.game_mode == GameState.inmenu) return;
 		switch (e.keyCode) {
 			case Keyboard.SHIFT :
 				CVar.mod_shift = false;
