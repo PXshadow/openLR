@@ -9,6 +9,7 @@ import lr.tool.Toolbar;
 import lr.tool.ToolBase;
 import global.Common;
 import global.SVar;
+import global.CVar;
 
 /**
  * ...
@@ -117,7 +118,7 @@ class TimelineControl extends Sprite
 	function scrubRight(e:MouseEvent):Void 
 	{
 		var curX:Float = this.mouseX;
-		var value:Int = Math.round(SVar.max_frames / 80);
+		var value:Int = Std.int(Math.min(Math.round(SVar.max_frames / 80), 200));
 		if (value == 0) value = 1;
 		if (curX - prevX < -4) {
 			if (SVar.frames + value >= SVar.max_frames) {
