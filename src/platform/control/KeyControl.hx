@@ -165,22 +165,22 @@ class KeyBindings
 				return;
 			} else {
 				var _locImportedBunds:Object = Json.parse(File.getContent(System.documentsDirectory + "openLR/Binds.txt"));
-				KeyBindings.pencil = this.KeyMap[_locImportedBunds.binds.pencil.toUpperCase()];
-				KeyBindings.line = this.KeyMap[_locImportedBunds.binds.line.toUpperCase()];
-				KeyBindings.eraser = this.KeyMap[_locImportedBunds.binds.eraser.toUpperCase()];
-				KeyBindings.swatch_blue = this.KeyMap[_locImportedBunds.binds.swatch_blue.toUpperCase()];
-				KeyBindings.swatch_red = this.KeyMap[_locImportedBunds.binds.swatch_red.toUpperCase()];
-				KeyBindings.swatch_green = this.KeyMap[_locImportedBunds.binds.swatch_green.toUpperCase()];
-				KeyBindings.play = this.KeyMap[_locImportedBunds.binds.play.toUpperCase()];
-				KeyBindings.stop = this.KeyMap[_locImportedBunds.binds.stop.toUpperCase()];
-				KeyBindings.flag = this.KeyMap[_locImportedBunds.binds.flag.toUpperCase()];
-				KeyBindings.angle_snap = this.KeyMap[_locImportedBunds.binds.angle_snap.toUpperCase()];
-				KeyBindings.ff_toggle = this.KeyMap[_locImportedBunds.binds.ff_toggle.toUpperCase()];
-				KeyBindings.sm_toggle = this.KeyMap[_locImportedBunds.binds.sm_toggle.toUpperCase()];
-				KeyBindings.rw_toggle = this.KeyMap[_locImportedBunds.binds.rw_toggle.toUpperCase()];
-				KeyBindings.pp_toggle = this.KeyMap[_locImportedBunds.binds.pp_toggle.toUpperCase()];
-				KeyBindings.step_forward = this.KeyMap[_locImportedBunds.binds.step_forward.toUpperCase()];
-				KeyBindings.step_backward = this.KeyMap[_locImportedBunds.binds.step_backward.toUpperCase()];
+				KeyBindings.pencil = this.KeyMap[_locImportedBunds.pencil.toUpperCase()];
+				KeyBindings.line = this.KeyMap[_locImportedBunds.line.toUpperCase()];
+				KeyBindings.eraser = this.KeyMap[_locImportedBunds.eraser.toUpperCase()];
+				KeyBindings.swatch_blue = this.KeyMap[_locImportedBunds.swatch_blue.toUpperCase()];
+				KeyBindings.swatch_red = this.KeyMap[_locImportedBunds.swatch_red.toUpperCase()];
+				KeyBindings.swatch_green = this.KeyMap[_locImportedBunds.swatch_green.toUpperCase()];
+				KeyBindings.play = this.KeyMap[_locImportedBunds.play.toUpperCase()];
+				KeyBindings.stop = this.KeyMap[_locImportedBunds.stop.toUpperCase()];
+				KeyBindings.flag = this.KeyMap[_locImportedBunds.flag.toUpperCase()];
+				KeyBindings.angle_snap = this.KeyMap[_locImportedBunds.angle_snap.toUpperCase()];
+				KeyBindings.ff_toggle = this.KeyMap[_locImportedBunds.ff_toggle.toUpperCase()];
+				KeyBindings.sm_toggle = this.KeyMap[_locImportedBunds.sm_toggle.toUpperCase()];
+				KeyBindings.rw_toggle = this.KeyMap[_locImportedBunds.rw_toggle.toUpperCase()];
+				KeyBindings.pp_toggle = this.KeyMap[_locImportedBunds.pp_toggle.toUpperCase()];
+				KeyBindings.step_forward = this.KeyMap[_locImportedBunds.step_forward.toUpperCase()];
+				KeyBindings.step_backward = this.KeyMap[_locImportedBunds.step_backward.toUpperCase()];
 			}
 		}
 	#end
