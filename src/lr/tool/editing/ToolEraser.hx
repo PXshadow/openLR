@@ -12,25 +12,17 @@ import global.CVar;
  */
 class ToolEraser extends ToolAction
 {
-	private var list:Array<LineBase>;
 	public function new() 
 	{
 		super();
 	}
 	override public function leftMouseDown(e:MouseEvent)
 	{
-		this.list = new Array();
 		this.erase(e);
 		this.leftMouseIsDown = true;
 	}
 	override public function leftMouseUp(e:MouseEvent) {
 		Common.gToolbar.visible = true;
-		if (this.list == null) {
-			return;
-		}
-		if (this.list.length > 0) {
-			Common.gGrid.add_to_history("sub", this.list);
-		}
 		this.leftMouseIsDown = false;
 	}
 	override public function rightMouseDown(e:MouseEvent):Void 
@@ -73,11 +65,6 @@ class ToolEraser extends ToolAction
 			if (_line.type == Common.line_type) {
 				Common.gGrid.remove_line(_line);
 			}
-		}
-		try {
-			this.list.push(_line);
-		} catch (e:String) {
-			return;
 		}
 	}
 }

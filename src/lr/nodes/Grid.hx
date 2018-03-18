@@ -44,13 +44,6 @@ class Grid
 		Grid.tile = new Map();
 		Grid.panelList = new Array();
 	}
-	public function add_to_history(_act:String, _list:Array<LineBase>) {
-
-	}
-	public function cache_stroke(_list:Array<LineBase>)
-	{
-		
-	}
 	public function add_remove_action(_type:Int) {
 		switch (_type) {
 			case Action.undo_line :

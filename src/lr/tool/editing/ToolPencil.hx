@@ -21,7 +21,6 @@ class ToolPencil extends ToolAction
 	private var y2:Float;
 	private var c:Point;
 	private var d:Point;
-	private var stroke:Array<LineBase>;
 	public function new() 
 	{
 		super();
@@ -29,7 +28,6 @@ class ToolPencil extends ToolAction
 	override public function leftMouseDown(e:MouseEvent) {
 		x1 = Common.gTrack.mouseX;
 		y1 = Common.gTrack.mouseY;
-		this.stroke = new Array();
 		var _locSnapCheck:Array<Dynamic> = Common.gGrid.snap(x1, y1, 1, CVar.mod_shift);
 		if (_locSnapCheck[2] == true && Common.line_type != 2) {
 			x1 = _locSnapCheck[0];
@@ -49,7 +47,6 @@ class ToolPencil extends ToolAction
 		if (Common.get_distance(c, d) >= Common.line_minLength) {
 			var _loc1:LineBase = new LineBase(Common.line_type, x1, y1, x2, y2, CVar.mod_shift);
 			Common.gGrid.cacheLine(_loc1);
-			this.stroke.push(_loc1);
 			x1 = Common.gTrack.mouseX;
 			y1 = Common.gTrack.mouseY;
 			c = new Point(Lib.current.stage.mouseX, Lib.current.stage.mouseY);
@@ -59,13 +56,10 @@ class ToolPencil extends ToolAction
 		Common.gToolbar.visible = true;
 		this.leftMouseIsDown = false;
 		Common.gTrack.clear_preview();
-		if (this.stroke == null || this.stroke.length == 0) return;
-		Common.gGrid.cache_stroke(this.stroke);
 	}
 	override public function rightMouseDown(e:MouseEvent) {
 		x1 = Common.gTrack.mouseX;
 		y1 = Common.gTrack.mouseY;
-		this.stroke = new Array();
 		var _locSnapCheck:Array<Dynamic> = Common.gGrid.snap(x1, y1, 1, CVar.mod_shift);
 		if (_locSnapCheck[2] == true && Common.line_type != 2) {
 			x1 = _locSnapCheck[0];
@@ -86,7 +80,6 @@ class ToolPencil extends ToolAction
 		if (Common.get_distance(c, d) >= Common.line_minLength) {
 			var _loc1:LineBase = new LineBase(Common.line_type, x2, y2, x1, y1, !CVar.mod_shift);
 			Common.gGrid.cacheLine(_loc1);
-			this.stroke.push(_loc1);
 			x1 = Common.gTrack.mouseX;
 			y1 = Common.gTrack.mouseY;
 			c = new Point(Lib.current.stage.mouseX, Lib.current.stage.mouseY);
@@ -97,7 +90,5 @@ class ToolPencil extends ToolAction
 		Common.gTimeline.visible = true;
 		this.rightMouseIsDown = false;
 		Common.gTrack.clear_preview();
-		if (this.stroke == null || this.stroke.length == 0) return;
-		Common.gGrid.cache_stroke(this.stroke);
 	}
 }
