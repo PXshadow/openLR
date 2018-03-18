@@ -28,6 +28,7 @@ import lr.lines.LineBase;
 class Grid
 {
 	public var lines:Array<LineBase>;
+	public var redo_lines:Array<LineBase>;
 	
 	public static var grid:Map<Int, Map<Int, Storage>>;
 	public static var tile:Map<Int, Map<Int, Panel>>;
@@ -37,6 +38,7 @@ class Grid
 	public function new()
 	{
 		this.lines = new Array();
+		this.redo_lines = new Array();
 		Common.gGrid = this;
 		Grid.grid = new Map();
 		Grid.tile = new Map();
@@ -52,7 +54,17 @@ class Grid
 	public function add_remove_action(_type:Int) {
 		switch (_type) {
 			case Action.undo_line :
+				while (true) {
+					var _loc1 = this.lines.pop();
+					if (_loc1 == null) {
+						continue;
+					} else {
+						this.remove_line(_loc1);
+						break;
+					}
+				}
 			case Action.redo_line :
+				this.cacheLine(this.redo_lines.pop());
 			case Action.undo_action :
 			case Action.redo_action :
 		}
@@ -60,6 +72,7 @@ class Grid
 	public function new_grid()
 	{
 		this.lines = new Array();
+		this.redo_lines = new Array();
 		SVar.lineCount = 0;
 		SVar.lineCount_blue = 0;
 		SVar.lineCount_red = 0;
@@ -73,6 +86,7 @@ class Grid
 		this.cacheLine(_line);
 	}
 	public function cacheLine(_line:LineBase) {
+		if (_line == null) return;
 		if (_line.type == LineType.Floor)
 		{
 			SVar.lineCount_blue += 1;
@@ -301,7 +315,7 @@ class Grid
 	}
 	public function remove_line(line:LineBase)
 	{
-		if (this.lines[line.ID] == null) {
+		if (line == null) {
 			return;
 		}
 		this.remove_from_grid(line);
@@ -321,6 +335,7 @@ class Grid
 		--SVar.lineCount;
 		Common.gTextInfo.update();
 		Common.gSimManager.rider_update();
+		this.redo_lines.push(line);
 	}
 	function remove_from_grid(line:LineBase)
 	{
