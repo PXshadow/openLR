@@ -93,7 +93,13 @@ class SimManager
 				++SVar.frames;
 			}
 		} else {
-			Common.gRiderManager.rewind_riders();
+			if (this.playback_rate > 40) {
+				for (i in 0...Std.int(this.playback_rate / 40)) {
+					Common.gRiderManager.rewind_riders();
+				}
+			} else {
+				Common.gRiderManager.rewind_riders();
+			}
 		}
 		if (SVar.frames > SVar.max_frames) {
 			SVar.max_frames = SVar.frames;
