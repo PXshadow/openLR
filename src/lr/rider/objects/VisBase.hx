@@ -14,4 +14,7 @@ class VisBase extends Sprite
 	public function render_body() {
 		
 	}
+	public function set_scarf_color(a:Int, b:Int) {
+		
+	}
 }

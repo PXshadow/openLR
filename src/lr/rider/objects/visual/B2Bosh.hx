@@ -3,6 +3,7 @@ package lr.rider.objects.visual;
 import openfl.display.Sprite;
 import openfl.display.LineScaleMode;
 import openfl.geom.Point;
+import openfl.geom.ColorTransform;
 import openfl.utils.AssetLibrary;
 
 #if (flash)
@@ -26,6 +27,9 @@ class B2Bosh extends VisBase
 {
 	public var bosh:Sprite;
 	
+	private var color_a:Int = 0xD20202;
+	private var color_b:Int = 0xFFFFFF;
+	
 	private var body_vis:Sprite;
 	private var leftArm:Sprite;
 	private var rightArm:Sprite;
@@ -33,6 +37,8 @@ class B2Bosh extends VisBase
 	private var rightLeg:Sprite;
 	private var sled:Sprite;
 	private var string:Sprite;
+	private var scarf_a:Sprite;
+	private var scarf_b:Sprite;
 	private var scarf_vis:Sprite;
 	private var skeleton_vis:Sprite;
 	
@@ -75,14 +81,37 @@ class B2Bosh extends VisBase
 	function bodyClip(lib:AssetLibrary = null) 
 	{
 		var innerClip:Sprite;
+		var innerClipB:Sprite;
+		var innerClipC:Sprite;
 		#if (!flash)
 			innerClip = lib.getMovieClip("olr_body");
+			innerClipB = lib.getMovieClip("scarf_a");
+			innerClipC = lib.getMovieClip("scarf_b");
 		#elseif (flash)
 			innerClip = Assets.getMovieClip("swf-library:olr_body");
 		#end
+		
 		body_vis = new Sprite();
 		body_vis.addChild(innerClip);
-		innerClip.y = -5.40; //X/Y values are obtained from the raw .fla and are not provided in the source
+		
+		scarf_a = new Sprite();
+		scarf_a.addChild(innerClipB);
+		body_vis.addChild(scarf_a);
+		
+		scarf_b = new Sprite();
+		scarf_b.addChild(innerClipC);
+		body_vis.addChild(scarf_b);
+		
+		innerClip.y = -5.40;
+		
+		innerClipB.y = -5;
+		innerClipB.x = 14.4;
+		innerClipB.rotation = 90;
+		
+		innerClipC.y = -3;
+		innerClipC.x = 14.4;
+		innerClipC.rotation = 90;
+		
 		body_vis.scaleX = body_vis.scaleY = 0.5;
 		this.load_clips();
 	}
@@ -209,9 +238,9 @@ class B2Bosh extends VisBase
 			this.render_bones();
 		}
 		#if (flash)
-			this.scarf_vis.graphics.lineStyle(2, 0xFFFFFF, _locFloatAlpha, false, LineScaleMode.NORMAL, "none");
+			this.scarf_vis.graphics.lineStyle(2, this.color_b, _locFloatAlpha, false, LineScaleMode.NORMAL, "none");
 		#else
-			this.scarf_vis.graphics.lineStyle(2, 0xFFFFFF, _locFloatAlpha, false, LineScaleMode.NONE, "none");
+			this.scarf_vis.graphics.lineStyle(2, this.color_b, _locFloatAlpha, false, LineScaleMode.NONE, "none");
 		#end
 		this.scarf_vis.graphics.moveTo(this.scarf.edges[0].a.x, this.scarf.edges[0].a.y);
 		this.scarf_vis.graphics.lineTo(this.scarf.edges[0].b.x, this.scarf.edges[0].b.y);
@@ -220,9 +249,9 @@ class B2Bosh extends VisBase
 		this.scarf_vis.graphics.moveTo(this.scarf.edges[4].a.x, this.scarf.edges[4].a.y);
 		this.scarf_vis.graphics.lineTo(this.scarf.edges[4].b.x, this.scarf.edges[4].b.y);
 		#if (flash)
-			this.scarf_vis.graphics.lineStyle(2, 0xD20202, _locFloatAlpha, false, LineScaleMode.NORMAL, "none");
+			this.scarf_vis.graphics.lineStyle(2, this.color_a, _locFloatAlpha, false, LineScaleMode.NORMAL, "none");
 		#else
-			this.scarf_vis.graphics.lineStyle(2, 0xD20202, _locFloatAlpha, false, LineScaleMode.NONE, "none");
+			this.scarf_vis.graphics.lineStyle(2, this.color_a, _locFloatAlpha, false, LineScaleMode.NONE, "none");
 		#end
 		this.scarf_vis.graphics.moveTo(this.scarf.edges[1].a.x, this.scarf.edges[1].a.y);
 		this.scarf_vis.graphics.lineTo(this.scarf.edges[1].b.x, this.scarf.edges[1].b.y);
@@ -230,6 +259,13 @@ class B2Bosh extends VisBase
 		this.scarf_vis.graphics.lineTo(this.scarf.edges[3].b.x, this.scarf.edges[3].b.y);
 		this.scarf_vis.graphics.moveTo(this.scarf.edges[5].a.x, this.scarf.edges[5].a.y);
 		this.scarf_vis.graphics.lineTo(this.scarf.edges[5].b.x, this.scarf.edges[5].b.y);
+	}
+	override public function set_scarf_color(a:Int, b:Int) {
+		this.color_a = a;
+		this.color_b = b;
+		
+		this.scarf_a.transform.colorTransform = new ColorTransform(((a >> 16) & 0xff) / 255, ((a >> 8) & 0xff) / 255, ((a & 0xff) / 255));
+		this.scarf_b.transform.colorTransform = new ColorTransform(((b >> 16) & 0xff) / 255, ((b >> 8) & 0xff) / 255, ((b & 0xff) / 255));
 	}
 	public function render_bones() {
 		this.bosh.graphics.clear();

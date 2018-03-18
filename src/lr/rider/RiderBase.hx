@@ -23,15 +23,15 @@ import lr.rider.phys.SkeletonBase;
  * ...
  * @author Kaelan Evans
  */
-@:enum abstract RiderType(Int) from Int to Int {
+@:enum abstract RiderType(Int) from Int {
 	public var Beta1:Int = 1;
 	public var Beta2:Int = 2; 
-	public var Beta3a:Int = 3; //Female Rider
+	public var Beta3a:Int = 3; //Female Rider, has pony tail
 	public var Beta3b:Int = 4; //this is the one that falls apart
 	public var JSON:Int = 5;
 	public var UBBishReskin:Int = 6;
 }
-@:enum abstract SubFrame(Int) from Int to Int {
+@:enum abstract SubFrame(Int) from Int {
 	public var Momentum:Int = 0;
 	public var Step1:Int = 1;
 	public var Step2:Int = 2;
@@ -39,6 +39,13 @@ import lr.rider.phys.SkeletonBase;
 	public var Step4:Int = 4;
 	public var Step5:Int = 5;
 	public var FullTick:Int = 6;
+}
+@:enum abstract Rider(Int) from Int {
+	public var Bosh:Int = 0; //0xD20202, 0xFFFFFF
+	public var Coco:Int = 1; //0xD977E6, 0xFFCDFF
+	public var Fin:Int = 2;  //0x108000, 0xFFFFFF
+	public var Essi:Int = 3; //0x65ECFF, 0xFBCCE3
+	public var Chaz:Int = 4; //0x1e373b, 0xb3ea44
 }
 class RiderBase extends Sprite
 {
@@ -77,9 +84,6 @@ class RiderBase extends Sprite
 		this.start_point = new StartPointVis();
 		this.addChild(this.start_point);
 		
-		this.start_point.x = 0;
-		this.start_point.y = 0;
-		
 		this.rider_pos_x = _x;
 		this.rider_pos_y = _y;
 		
@@ -91,6 +95,9 @@ class RiderBase extends Sprite
 		this.clips = new B2Bosh(this.body, this.scarf, this.skeleton, this, this.riderID);
 		this.addChild(this.clips);
 		
+		this.start_point.x = this.body.anchors[1].x;
+		this.start_point.y = this.body.anchors[1].y;
+		
 		this.grav = new Object();
 		this.grav.x = 0;
 		this.grav.y = 0.175;
@@ -99,8 +106,14 @@ class RiderBase extends Sprite
 		this.camera = new RiderCamera();
 		
 		this.recorder.index_frame(0, this.body.anchors, this.scarf.anchors);
+		
+		this.update_color(0x0094b4, 0xD5DDDD);
 	}
+	public function update_color(_a:Int = 0xD20202, _b:Int = 0xFFFFFF) 
 	{
+		this.start_point.set_color(_a, _b);
+		this.clips.set_scarf_color(_a, _b);
+		this.clips.render_body();
 	}
 	public function adjust_rider_dimensions() {
 		this.body.set_frame_angle(this.rider_angle);
@@ -171,10 +184,11 @@ class RiderBase extends Sprite
 		this.scarf.set_start(_x, _y);
 		this.rider_pos_x = this.body.anchors[0].x;
 		this.rider_pos_y = this.body.anchors[0].y;
-		this.start_point.x = this.body.anchors[0].x;
-		this.start_point.y = this.body.anchors[0].y;
+		this.start_point.x = this.body.anchors[1].x;
+		this.start_point.y = this.body.anchors[1].y;
 		RiderManager.crash[this.riderID] = false;
 		this.recorder.index_frame(0, this.body.anchors, this.scarf.anchors);
+		this.clips.render_body();
 	}
 	public function inject_and_update(_frame:Int) {
 		var _loc1 = SVar.frames;
