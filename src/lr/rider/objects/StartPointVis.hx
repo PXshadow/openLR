@@ -62,14 +62,30 @@ class StartPointVis extends Sprite
 	#elseif (flash)
 		function grabFLClip() 
 		{
-			var innerClip:Sprite;
-			innerClip = Assets.getMovieClip ("swf-library:start_olr");
-			innerClip.scaleX = innerClip.scaleY *= 0.5;
-			innerClip.x = innerClip.y = ( -9.2 / 2);
-			this.clip = new Sprite();
-			this.clip.addChild(innerClip);
-			this.addChild(this.clip);
-			this.addChild(clip);
+			var innerClip_a:Sprite;
+			var innerClip_b:Sprite;
+			var innerClip_c:Sprite;
+			innerClip_a = Assets.getMovieClip ("swf-library:start_a");
+			innerClip_b = Assets.getMovieClip ("swf-library:start_b");
+			innerClip_c = Assets.getMovieClip ("swf-library:start_outline");
+			
+			innerClip_b.y = -11;
+			innerClip_c.x = -1;
+			
+			this.start_outline = new Sprite();
+			this.start_outline.addChild(innerClip_c);
+			this.addChild(this.start_outline);
+			
+			this.start_b = new Sprite();
+			this.start_b.addChild(innerClip_b);
+			this.addChild(this.start_b);
+			
+			this.start_a = new Sprite();
+			this.start_a.addChild(innerClip_a);
+			this.addChild(this.start_a);
+			
+			this.scaleX = this.scaleY = 0.75;
+			this.alpha = 0.75;
 		}
 	#end
 		public function set_color(a:Int, b:Int) {

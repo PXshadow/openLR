@@ -89,6 +89,8 @@ class B2Bosh extends VisBase
 			innerClipC = lib.getMovieClip("scarf_b");
 		#elseif (flash)
 			innerClip = Assets.getMovieClip("swf-library:olr_body");
+			innerClipB = Assets.getMovieClip("swf-library:scarf_a");
+			innerClipC = Assets.getMovieClip("swf-library:scarf_b");
 		#end
 		
 		body_vis = new Sprite();

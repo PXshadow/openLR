@@ -53,7 +53,7 @@ class SimManager
 		Common.gRiderManager.set_rider_visual_start();
 		if (!SVar.sim_running) {
 			Common.gCode.return_to_origin_sim();
-			this.iterator = new Timer(1000 * ( 1 / 60));
+			this.iterator = new Timer(Std.int(1000 * ( 1 / 60)));
 			this.iterator.run = function():Void {
 				this.update_sim();
 				Common.gTextInfo.update_sim();
