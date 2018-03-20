@@ -9,7 +9,9 @@ import openfl.geom.ColorTransform;
 
 import lr.rider.RiderBase;
 
-
+#if sys
+	import global.Common;
+#end
 /**
  * ...
  * @author Kaelan Evans
