@@ -1,6 +1,7 @@
 package;
 
 //Primary
+
 #if (!flash)
 	import openfl.utils.AssetLibrary;
 	import openfl.display.Sprite;
@@ -16,6 +17,7 @@ import openfl.events.Event;
 import openfl.display.FPS;
 import openfl.geom.Point;
 import openfl.Lib;
+import platform.online.Dropbox;
 
 //third party
 
@@ -71,6 +73,7 @@ class Main extends Sprite
 	private var importing:ImportBase;
 	private var importingVisible = false;
 	private var newStartLoader:BrowserBase;
+	private var dbx_manager:Dropbox;
 	private var fps:FPS;
 	
 	public function new() 
@@ -108,6 +111,8 @@ class Main extends Sprite
 			this.newStartLoader = new BrowserSys();
 			this.newStartLoader.x = 0;
 			this.newStartLoader.y = 0;
+			
+			//this.dbx_manager = new Dropbox();
 		#elseif flash
 			this.newStartLoader = new BrowserFL();
 			this.newStartLoader.x = 0;

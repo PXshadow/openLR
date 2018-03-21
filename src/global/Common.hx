@@ -8,6 +8,7 @@ import openfl.text.TextFormat;
 import openfl.text.TextFormatAlign;
 import openfl.display.Sprite;
 import platform.file.ImportBase;
+import platform.online.Dropbox;
 
 import global.engine.RiderManager;
 import global.engine.SimManager;
@@ -60,6 +61,7 @@ class Common
 	public static var gTimeline:TimelineControl;
 	public static var gImport:ImportBase;
 	public static var gSaveBrowser:BrowserBase;
+	public static var gDropBox:Dropbox;
 	
 	public static var line_minLength:Int = 14;
 	public static var line_type:Int = 0;
