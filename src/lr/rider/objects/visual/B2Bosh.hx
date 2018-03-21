@@ -98,11 +98,12 @@ class B2Bosh extends VisBase
 		
 		scarf_a = new Sprite();
 		scarf_a.addChild(innerClipB);
-		body_vis.addChild(scarf_a);
 		
 		scarf_b = new Sprite();
 		scarf_b.addChild(innerClipC);
+		
 		body_vis.addChild(scarf_b);
+		body_vis.addChild(scarf_a);
 		
 		innerClip.y = -5.40;
 		
@@ -110,7 +111,7 @@ class B2Bosh extends VisBase
 		innerClipB.x = 14.4;
 		innerClipB.rotation = 90;
 		
-		innerClipC.y = -3;
+		innerClipC.y = -5;
 		innerClipC.x = 14.4;
 		innerClipC.rotation = 90;
 		
