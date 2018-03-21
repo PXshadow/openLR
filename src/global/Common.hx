@@ -212,4 +212,7 @@ class Common
 			}
 		}
 	}
+	public static function rgb_to_hex(_r:Int, _g:Int, _b:Int):Int {
+		return (_r << 16 | _g << 8 | _b);
+	}
 }

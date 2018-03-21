@@ -81,7 +81,7 @@ class RiderBase extends Sprite
 	{
 		super();
 		
-		this.start_point = new StartPointVis();
+		this.start_point = new StartPointVis(_id);
 		this.addChild(this.start_point);
 		
 		this.rider_pos_x = _x;

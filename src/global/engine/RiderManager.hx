@@ -97,6 +97,9 @@ class RiderManager extends Sprite
 		//this function assumes the only rider is the default one
 		this.riderArray[0].set_start(_x, _y);
 	}
+	public function set_rider_colors(_index:Int, _hexA:Int, _hexB:Int) {
+		this.riderArray[_index].update_color(_hexA, _hexB);
+	}
 	public function set_multiple_rider_start(_list:Array<Int>) {
 		
 	}
