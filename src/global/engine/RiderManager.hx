@@ -22,18 +22,7 @@ class RiderManager extends Sprite
 		RiderManager.speed = new Array();
 	}
 	public function add_rider(_type:Int, _x:Float, _y:Float) {
-		switch(_type) {
-			case 1 :
-				this.riderArray[SVar.rider_count] = new RiderBase(RiderType.Beta1, _x, _y, SVar.rider_count);
-			case 2 :
-				this.riderArray[SVar.rider_count] = new RiderBase(RiderType.Beta2, _x, _y, SVar.rider_count);
-			case 3 :
-				this.riderArray[SVar.rider_count] = new RiderBase(RiderType.Beta3a, _x, _y, SVar.rider_count);
-			case 6 :
-				this.riderArray[SVar.rider_count] = new RiderBase(RiderType.UBBishReskin, _x, _y, SVar.rider_count);
-			default:
-				this.riderArray[SVar.rider_count] = new RiderBase(RiderType.Beta2, _x, _y, SVar.rider_count);
-		}
+		this.riderArray[SVar.rider_count] = new RiderBase(_type, _x, _y, SVar.rider_count);
 		Common.gTrack.rider.addChild(this.riderArray[SVar.rider_count]);
 		RiderManager.crash[SVar.rider_count] = false;
 		SVar.rider_count += 1;
