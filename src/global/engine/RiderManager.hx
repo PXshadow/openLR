@@ -23,6 +23,7 @@ class RiderManager extends Sprite
 	}
 	public function add_rider(_type:Int, _x:Float, _y:Float) {
 		this.riderArray[SVar.rider_count] = new RiderBase(_type, _x, _y, SVar.rider_count);
+		this.riderArray[SVar.rider_count].set_init_start();
 		Common.gTrack.rider.addChild(this.riderArray[SVar.rider_count]);
 		RiderManager.crash[SVar.rider_count] = false;
 		SVar.rider_count += 1;

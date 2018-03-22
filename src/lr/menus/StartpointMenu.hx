@@ -38,28 +38,39 @@ class StartpointMenu extends Sprite
 	var swatch_a:Swatch;
 	var swatch_b:Swatch;
 	
-	var color_a:Int = 0x0094b4;
-	var color_b:Int = 0xD5DDDD;
+	var color_a:Int;
+	var color_b:Int;
 	
-	var color_ra(default, set):Int = 0;
-	var color_ga(default, set):Int = 0x94;
-	var color_ba(default, set):Int = 0xb4;
+	var color_ra:Int;
+	var color_ga:Int;
+	var color_ba:Int;
 	
-	var color_rb(default, set):Int = 0xD5;
-	var color_gb(default, set):Int = 0xDD;
-	var color_bb(default, set):Int = 0xDD;
+	var color_rb:Int;
+	var color_gb:Int;
+	var color_bb:Int;
 	
-	public function new(_index:Int, _exit:Dynamic = null) 
+	public function new(_index:Int, _name:String, _exit:Dynamic, _colors:Array<Int>) 
 	{
 		super();
 		
 		this.index = _index;
-		if (_index != 0) {
-			//random color code here
-		}
 		
 		this.addEventListener(MouseEvent.MOUSE_OVER, this.temToolDis);
 		this.addEventListener(MouseEvent.MOUSE_OUT, this.temToolDisDis);
+		
+		this.color_a = _colors[0];
+		this.color_b = _colors[1];
+		
+		this.swatch_a = new Swatch();
+		this.swatch_b = new Swatch();
+		
+		this.color_ra = (this.color_a >> 16) & 0xff;
+		this.color_ga = (this.color_a >> 8) & 0xff;
+		this.color_ba = this.color_a & 0xff;
+		
+		this.color_rb = (this.color_b >> 16) & 0xff;
+		this.color_gb = (this.color_b >> 8) & 0xff;
+		this.color_bb = this.color_b & 0xff;
 		
 		//this.mouseChildren = false;
 		
@@ -86,7 +97,6 @@ class StartpointMenu extends Sprite
 		this.label_rider.y = 5;
 		this.label_rider.text = "Rider Properties (#" + (index + 1) + ")";
 		
-		this.swatch_a = new Swatch();
 		this.addChild(this.swatch_a);
 		this.swatch_a.x = 10;
 		this.swatch_a.y = 25;
@@ -101,7 +111,7 @@ class StartpointMenu extends Sprite
 		this.slider_ra.y = 55;
 		this.slider_ra.value = this.color_ra;
 		this.slider_ra.onChange = function(e:UIEvent):Void {
-			this.color_ra = this.slider_ra.value;
+			this.set_color_ra(this.slider_ra.value);
 		}
 		
 		this.slider_ga = new HSlider();
@@ -113,7 +123,7 @@ class StartpointMenu extends Sprite
 		this.slider_ga.y = 75;
 		this.slider_ga.value = this.color_ga;
 		this.slider_ga.onChange = function(e:UIEvent):Void {
-			this.color_ga = this.slider_ga.value;
+			this.set_color_ga(this.slider_ga.value);
 		}
 		
 		this.slider_ba = new HSlider();
@@ -125,10 +135,9 @@ class StartpointMenu extends Sprite
 		this.slider_ba.y = 95;
 		this.slider_ba.value = this.color_ba;
 		this.slider_ba.onChange = function(e:UIEvent):Void {
-			this.color_ba = this.slider_ba.value;
+			this.set_color_ba(this.slider_ba.value);
 		}
 		
-		this.swatch_b = new Swatch();
 		this.addChild(this.swatch_b);
 		this.swatch_b.x = 10;
 		this.swatch_b.y = 115;
@@ -143,7 +152,7 @@ class StartpointMenu extends Sprite
 		this.slider_rb.y = 145;
 		this.slider_rb.value = this.color_rb;
 		this.slider_rb.onChange = function(e:UIEvent):Void {
-			this.color_rb = this.slider_rb.value;
+			this.set_color_rb(this.slider_rb.value);
 		}
 		
 		this.slider_gb = new HSlider();
@@ -155,7 +164,7 @@ class StartpointMenu extends Sprite
 		this.slider_gb.y = 165;
 		this.slider_gb.value = this.color_gb;
 		this.slider_gb.onChange = function(e:UIEvent):Void {
-			this.color_gb = this.slider_gb.value;
+			this.set_color_gb(this.slider_gb.value);
 		}
 		
 		this.slider_bb = new HSlider();
@@ -167,7 +176,7 @@ class StartpointMenu extends Sprite
 		this.slider_bb.y = 185;
 		this.slider_bb.value = this.color_bb;
 		this.slider_bb.onChange = function(e:UIEvent):Void {
-			this.color_bb = this.slider_bb.value;
+			this.set_color_bb(this.slider_bb.value);
 		}
 	}
 	
@@ -182,15 +191,15 @@ class StartpointMenu extends Sprite
 	}
 	function set_color_ra(_v:Int) {
 		this.update_color_a(_v, this.color_ga, this.color_ba);
-		return this.color_ra = _v;
+		this.color_ra = _v;
 	}
 	function set_color_ga(_v:Int) {
 		this.update_color_a(this.color_ra, _v, this.color_ba);
-		return color_ga = _v;
+		color_ga = _v;
 	}
 	function set_color_ba(_v:Int) {
 		this.update_color_a(this.color_ra, this.color_ga, _v);
-		return color_ba = _v;
+		color_ba = _v;
 	}
 	function update_color_a(_r:Int, _g:Int, _b:Int) {
 		color_a = Common.rgb_to_hex(_r, _g, _b);
@@ -199,15 +208,15 @@ class StartpointMenu extends Sprite
 	}
 	function set_color_rb(_v:Int) {
 		this.update_color_b(_v, this.color_gb, this.color_bb);
-		return this.color_rb = _v;
+		this.color_rb = _v;
 	}
 	function set_color_gb(_v:Int) {
 		this.update_color_b(this.color_rb, _v, this.color_bb);
-		return color_gb = _v;
+		color_gb = _v;
 	}
 	function set_color_bb(_v:Int) {
 		this.update_color_b(this.color_rb, this.color_gb, _v);
-		return color_bb = _v;
+		color_bb = _v;
 	}
 	function update_color_b(_r:Int, _g:Int, _b:Int) {
 		color_b = Common.rgb_to_hex(_r, _g, _b);

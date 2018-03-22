@@ -217,4 +217,8 @@ class Common
 	public static function rgb_to_hex(_r:Int, _g:Int, _b:Int):Int {
 		return (_r << 16 | _g << 8 | _b);
 	}
+	public static function randomRange(minNum:Int, maxNum:Int):Int  
+	{ 
+		return (Math.floor(Math.random() * (maxNum - minNum + 1)) + minNum); 
+	} 
 }

@@ -81,9 +81,6 @@ class RiderBase extends Sprite
 	{
 		super();
 		
-		this.start_point = new StartPointVis(_id);
-		this.addChild(this.start_point);
-		
 		this.rider_pos_x = _x;
 		this.rider_pos_y = _y;
 		
@@ -95,9 +92,6 @@ class RiderBase extends Sprite
 		this.clips = new B2Bosh(this.body, this.scarf, this.skeleton, this, this.riderID);
 		this.addChild(this.clips);
 		
-		this.start_point.x = this.body.anchors[1].x;
-		this.start_point.y = this.body.anchors[1].y;
-		
 		this.grav = new Object();
 		this.grav.x = 0;
 		this.grav.y = 0.175;
@@ -106,8 +100,15 @@ class RiderBase extends Sprite
 		this.camera = new RiderCamera();
 		
 		this.recorder.index_frame(0, this.body.anchors, this.scarf.anchors);
+	}
+	public function set_init_start() {
+		this.start_point = new StartPointVis(this.riderID);
+		this.addChildAt(this.start_point, 0);
 		
-		this.update_color(0x0094b4, 0xD5DDDD);
+		this.start_point.x = this.body.anchors[1].x;
+		this.start_point.y = this.body.anchors[1].y;
+		
+		this.start_point.set_base_properties();
 	}
 	public function update_color(_a:Int = 0xD20202, _b:Int = 0xFFFFFF) 
 	{
