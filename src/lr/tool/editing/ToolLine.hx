@@ -43,7 +43,7 @@ class ToolLine extends ToolAction
 	
 	override public function leftMouseMove(event:MouseEvent) 
 	{
-		if (!this.leftMouseIsDown) return;
+		if (!this.leftMouseIsDown || SVar.game_mode == GameState.inmenu) return;
 		Common.gToolbar.visible = false;
 		x2 = Common.gTrack.mouseX;
 		y2 = Common.gTrack.mouseY;
@@ -91,7 +91,7 @@ class ToolLine extends ToolAction
 	
 	override public function rightMouseMove(event:MouseEvent) 
 	{
-		if (!this.rightMouseIsDown) return;
+		if (!this.rightMouseIsDown || SVar.game_mode == GameState.inmenu) return;
 		Common.gToolbar.visible = false;
 		x2 = Common.gTrack.mouseX;
 		y2 = Common.gTrack.mouseY;

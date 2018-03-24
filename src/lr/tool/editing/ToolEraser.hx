@@ -5,6 +5,7 @@ import openfl.events.MouseEvent;
 import lr.lines.LineBase;
 import global.Common;
 import global.CVar;
+import global.SVar;
 
 /**
  * ...
@@ -18,6 +19,7 @@ class ToolEraser extends ToolAction
 	}
 	override public function leftMouseDown(e:MouseEvent)
 	{
+		if (SVar.game_mode == GameState.inmenu) return;
 		this.erase(e);
 		this.leftMouseIsDown = true;
 	}
@@ -32,6 +34,7 @@ class ToolEraser extends ToolAction
 	
 	private function swapLine(e:MouseEvent) 
 	{
+		if (SVar.game_mode == GameState.inmenu) return;
 		var _line = this.locateLine(e);
 		if (_line == null) return;
 		if (CVar.mod_z) {
@@ -50,7 +53,7 @@ class ToolEraser extends ToolAction
 	}
 	override public function leftMouseMove(e:MouseEvent) 
 	{
-		if (!this.leftMouseIsDown) return;
+		if (!this.leftMouseIsDown || SVar.game_mode == GameState.inmenu) return;
 		Common.gToolbar.visible = false;
 		this.erase(e);
     }
