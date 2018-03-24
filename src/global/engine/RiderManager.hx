@@ -90,6 +90,9 @@ class RiderManager extends Sprite
 	public function set_rider_colors(_index:Int, _hexA:Int, _hexB:Int) {
 		this.riderArray[_index].update_color(_hexA, _hexB);
 	}
+	public function set_rider_name(_index:Int, _name:String) {
+		this.riderArray[_index].update_name(_name);
+	}
 	public function set_multiple_rider_start(_list:Array<Int>) {
 		
 	}

@@ -116,6 +116,9 @@ class RiderBase extends Sprite
 		this.clips.set_scarf_color(_a, _b);
 		this.clips.render_body();
 	}
+	public function update_name(_name:String) {
+		this.start_point.set_rider_name(_name);
+	}
 	public function adjust_rider_dimensions() {
 		this.body.set_frame_angle(this.rider_angle);
 		this.scarf.set_frame_angle(this.rider_angle);

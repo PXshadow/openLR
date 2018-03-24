@@ -1,15 +1,18 @@
 package lr.menus;
 
-import flash.events.Event;
+import openfl.events.Event;
 import openfl.display.Sprite;
 import openfl.events.MouseEvent;
 
 import global.Common;
 import global.engine.RiderManager;
+import global.SVar;
 import lr.tool.IconButton;
 import lr.tool.ToolBase;
 
 import haxe.ui.Toolkit;
+import haxe.ui.core.TextInput;
+import haxe.ui.components.TextField;
 import haxe.ui.components.CheckBox;
 import haxe.ui.components.HSlider;
 import haxe.ui.components.Label;
@@ -25,7 +28,7 @@ class StartpointMenu extends Sprite
 	
 	var exit_button:IconButton;
 	
-	var label_rider:Label;
+	var input_name:TextField;
 	
 	var slider_ra:HSlider;
 	var slider_ga:HSlider;
@@ -91,15 +94,18 @@ class StartpointMenu extends Sprite
 		this.graphics.lineTo(0, 400);
 		this.graphics.lineTo(0, 0);
 		
-		this.label_rider = new Label();
-		this.addChild(this.label_rider);
-		this.label_rider.x = 5;
-		this.label_rider.y = 5;
-		this.label_rider.text = "Rider Properties (#" + (index + 1) + ")";
+		this.input_name = new TextField();
+		this.addChild(this.input_name);
+		this.input_name.x = 5;
+		this.input_name.y = 5;
+		this.input_name.text = _name;
+		this.input_name.onChange = function(e:UIEvent) {
+			this.set_rider_name(this.input_name.text);
+		}
 		
 		this.addChild(this.swatch_a);
 		this.swatch_a.x = 10;
-		this.swatch_a.y = 25;
+		this.swatch_a.y = 35;
 		this.swatch_a.update(this.color_a);
 		
 		this.slider_ra = new HSlider();
@@ -108,7 +114,7 @@ class StartpointMenu extends Sprite
 		this.slider_ra.width = 255;
 		this.addChild(this.slider_ra);
 		this.slider_ra.x = 5;
-		this.slider_ra.y = 55;
+		this.slider_ra.y = 65;
 		this.slider_ra.value = this.color_ra;
 		this.slider_ra.onChange = function(e:UIEvent):Void {
 			this.set_color_ra(this.slider_ra.value);
@@ -120,7 +126,7 @@ class StartpointMenu extends Sprite
 		this.slider_ga.width = 255;
 		this.addChild(this.slider_ga);
 		this.slider_ga.x = 5;
-		this.slider_ga.y = 75;
+		this.slider_ga.y = 85;
 		this.slider_ga.value = this.color_ga;
 		this.slider_ga.onChange = function(e:UIEvent):Void {
 			this.set_color_ga(this.slider_ga.value);
@@ -132,7 +138,7 @@ class StartpointMenu extends Sprite
 		this.slider_ba.width = 255;
 		this.addChild(this.slider_ba);
 		this.slider_ba.x = 5;
-		this.slider_ba.y = 95;
+		this.slider_ba.y = 105;
 		this.slider_ba.value = this.color_ba;
 		this.slider_ba.onChange = function(e:UIEvent):Void {
 			this.set_color_ba(this.slider_ba.value);
@@ -140,7 +146,7 @@ class StartpointMenu extends Sprite
 		
 		this.addChild(this.swatch_b);
 		this.swatch_b.x = 10;
-		this.swatch_b.y = 115;
+		this.swatch_b.y = 125;
 		this.swatch_b.update(this.color_b);
 		
 		this.slider_rb = new HSlider();
@@ -149,7 +155,7 @@ class StartpointMenu extends Sprite
 		this.slider_rb.width = 255;
 		this.addChild(this.slider_rb);
 		this.slider_rb.x = 5;
-		this.slider_rb.y = 145;
+		this.slider_rb.y = 155;
 		this.slider_rb.value = this.color_rb;
 		this.slider_rb.onChange = function(e:UIEvent):Void {
 			this.set_color_rb(this.slider_rb.value);
@@ -161,7 +167,7 @@ class StartpointMenu extends Sprite
 		this.slider_gb.width = 255;
 		this.addChild(this.slider_gb);
 		this.slider_gb.x = 5;
-		this.slider_gb.y = 165;
+		this.slider_gb.y = 175;
 		this.slider_gb.value = this.color_gb;
 		this.slider_gb.onChange = function(e:UIEvent):Void {
 			this.set_color_gb(this.slider_gb.value);
@@ -173,13 +179,15 @@ class StartpointMenu extends Sprite
 		this.slider_bb.width = 255;
 		this.addChild(this.slider_bb);
 		this.slider_bb.x = 5;
-		this.slider_bb.y = 185;
+		this.slider_bb.y = 195;
 		this.slider_bb.value = this.color_bb;
 		this.slider_bb.onChange = function(e:UIEvent):Void {
 			this.set_color_bb(this.slider_bb.value);
 		}
 	}
-	
+	function set_rider_name(_name:String) {
+		Common.gRiderManager.set_rider_name(this.index, _name);
+	}
 	function temToolDisDis(e:Event):Void 
 	{
 		Common.gToolBase.set_tool(ToolBase.lastTool);

@@ -10,6 +10,7 @@ import openfl.text.TextFormatAlign;
 import openfl.Assets;
 
 import global.Common;
+import global.SVar;
 
 import lr.menus.StartpointMenu;
 /**
@@ -84,6 +85,10 @@ class StartPointVis extends Sprite
 		this.label.selectable = false;
 		this.label.mouseEnabled = false;
 	}
+	public function set_rider_name(_name:String) {
+		this.rider_name = _name;
+		this.label.text = _name;
+	}
 	public function set_base_properties() {
 		if (this.rider_index <= this.riderNames.length - 1) {
 			this.rider_name = this.riderNames[rider_index];
@@ -113,6 +118,9 @@ class StartPointVis extends Sprite
 			trace("Herp");
 			StartPointVis.current.exit_properties(null);
 		}
+		
+		SVar.game_mode = GameState.inmenu;
+		
 		StartPointVis.menuAlreadyOpen = true;
 		StartPointVis.current = this;
 		
@@ -125,6 +133,8 @@ class StartPointVis extends Sprite
 		this.menu.y = 25;
 	}
 	public function exit_properties(e:MouseEvent) {
+		SVar.game_mode = GameState.edit;
+		
 		StartPointVis.menuAlreadyOpen = false;
 		
 		this.mouseChildren = false;
