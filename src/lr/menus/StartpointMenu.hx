@@ -231,6 +231,7 @@ class Swatch extends Sprite {
 	}
 	public function update(_fill:Int) {
 		this.graphics.clear();
+		this.graphics.lineStyle(1, 0);
 		this.graphics.beginFill(_fill, 1);
 		this.graphics.moveTo(0, 0);
 		this.graphics.lineTo(25, 0);
