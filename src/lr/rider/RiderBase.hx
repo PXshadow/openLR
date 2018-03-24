@@ -65,6 +65,7 @@ class RiderBase extends Sprite
 	public var flag_vis:Bool = false;
 	
 	public var rider_angle:Float = 0;
+	public var rider_name:String;
 	public var rider_y_flip:Bool = false;
 	public var rider_x_flip:Bool = false;
 	public var rider_scale:Float = 0.5;
@@ -72,6 +73,8 @@ class RiderBase extends Sprite
 	public var rider_y_velocity:Float = 0;
 	public var rider_pos_x:Float = 0;
 	public var rider_pos_y:Float = 0;
+	public var color_a:Int;
+	public var color_b:Int;
 	
 	var tick_frame = SubFrame.FullTick;
 	
@@ -115,9 +118,12 @@ class RiderBase extends Sprite
 		this.start_point.set_color(_a, _b);
 		this.clips.set_scarf_color(_a, _b);
 		this.clips.render_body();
+		this.color_a = _a;
+		this.color_b = _b;
 	}
 	public function update_name(_name:String) {
 		this.start_point.set_rider_name(_name);
+		this.rider_name = _name;
 	}
 	public function adjust_rider_dimensions() {
 		this.body.set_frame_angle(this.rider_angle);

@@ -38,7 +38,7 @@ class FileJSON extends FileBase
 	public function parse_json():Object //top object. Gets name, author, etc.
 	{
 		var _locArray = this.json_line_aray_parse();
-		var _locSettings = this.json_settings_array();
+		var _locOLRMetaData = this.json_OLRMetaData();
 		var json_object:Object = {
 			"label": this.name,
 			"creator": this.author,
@@ -50,9 +50,45 @@ class FileJSON extends FileBase
 			},
 			"duration": SVar.max_frames,
 			"lines": _locArray,
-			"openLR": _locSettings,
+			"extra": _locOLRMetaData,
 		}
 		return(json_object);
+	}
+	
+	function json_OLRMetaData() 
+	{
+		var _loc1 = this.get_rider_info();
+		var _locReturn:Object = {
+			"settings" : {
+				"angle_snap" : CVar.angle_snap,
+				"line_snap" : CVar.line_snap,
+				"color_play" : CVar.color_play,
+				"preview_mode" : CVar.preview_mode,
+				"hit_test" : CVar.hit_test,
+			},
+			"rider_info" : _loc1,
+		}
+		return (_locReturn);
+	}
+	
+	function get_rider_info():Array<Object>
+	{
+		var _locArray:Array<Object> = new Array();
+		var _indexCount:Int = 0;
+		for (a in Common.gRiderManager.riderArray) {
+			_locArray[_indexCount] = new Object();
+			_locArray[_indexCount].pos_x = a.rider_pos_x;
+			_locArray[_indexCount].pos_y = a.rider_pos_y;
+			_locArray[_indexCount].color_a = a.color_a;
+			_locArray[_indexCount].color_b = a.color_b;
+			_locArray[_indexCount].name = a.rider_name;
+			_locArray[_indexCount].velx = a.rider_x_velocity;
+			_locArray[_indexCount].vely = a.rider_y_velocity;
+			_locArray[_indexCount].angle = a.rider_angle;
+			_locArray[_indexCount].scale = a.rider_scale;
+			++_indexCount;
+		}
+		return (_locArray);
 	}
 	function json_settings_array():Object
 	{

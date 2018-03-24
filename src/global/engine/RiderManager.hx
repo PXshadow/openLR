@@ -9,7 +9,7 @@ import lr.rider.RiderBase;
  */
 class RiderManager extends Sprite
 {
-	private var riderArray:Array<RiderBase>;
+	public var riderArray:Array<RiderBase>;
 	public static var crash:Array<Bool>;
 	public static var speed:Array<Float>;
 	public function new() 
