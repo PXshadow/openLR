@@ -4,11 +4,13 @@ import lime.system.System;
 import openfl.Lib;
 import openfl.events.Event;
 import openfl.text.TextField;
+import openfl.events.MouseEvent;
 import sys.FileSystem;
 
 import platform.file.BrowserBase;
 import platform.file.importing.ImportSys;
-import ui.inter.TextButton;
+import lr.tool.IconButton;
+import lr.tool.IconBase;
 import global.Common;
 
 /**
@@ -29,7 +31,8 @@ class BrowserSys extends BrowserBase
 	{
 		super.add_title_interface();
 		
-		this.open_dir = new TextButton("Explore", this.invoke_loader);
+		this.open_dir = new IconButton(Icon.info);
+		this.open_dir.addEventListener(MouseEvent.CLICK, this.invoke_loader);
 		this.addChild(this.open_dir);
 		this.open_dir.x = this.load_file.x;
 		this.open_dir.y = 40;

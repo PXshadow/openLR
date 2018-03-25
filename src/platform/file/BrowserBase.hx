@@ -19,8 +19,8 @@ import global.Common;
 #elseif js
 
 #end
-import ui.inter.TextButton;
-
+import lr.tool.IconBase;
+import lr.tool.IconButton;
 //third party
 
 
@@ -44,8 +44,8 @@ class BrowserBase extends Sprite
 {
 	var fileLoader:ImportBase;
 	
-	var load_file:TextButton;
-	var open_dir:TextButton;
+	var load_file:IconButton;
+	var open_dir:IconButton;
 	var currentSelectedPath:String;
 	
 	var textField_title:TextField;
@@ -113,7 +113,8 @@ class BrowserBase extends Sprite
 		this.iconTray.mask = this.iconMask;
 	}
 	public function add_title_interface() {
-		this.load_file = new TextButton("Load", this.invoke_loader);
+		this.load_file = new IconButton(Icon.yes);
+		this.load_file.addEventListener(MouseEvent.CLICK, this.invoke_loader);
 		this.addChild(this.load_file);
 		this.load_file.x = 210;
 		this.load_file.y = 5;
@@ -122,7 +123,7 @@ class BrowserBase extends Sprite
 		this.textField_fileName = new TextField();
 		this.addChild(this.textField_fileName); 
 		this.textField_fileName.selectable = false; 
-		this.textField_fileName.x = 420; 
+		this.textField_fileName.x = 250; 
 		this.textField_fileName.y = 15; 
 		this.textField_fileName.defaultTextFormat = this.font_b; 
 		this.textField_fileName.width = 500; 
@@ -131,7 +132,7 @@ class BrowserBase extends Sprite
 		this.textField_filePath = new TextField();
 		this.addChild(this.textField_filePath); 
 		this.textField_filePath.selectable = false; 
-		this.textField_filePath.x = 420; 
+		this.textField_filePath.x = 250; 
 		this.textField_filePath.y = 45; 
 		this.textField_filePath.defaultTextFormat = this.font_b; 
 		this.textField_filePath.width = 500; 
@@ -217,7 +218,7 @@ class BrowserBase extends Sprite
 		else Common.gTrack.clear_stage();
 		Lib.current.stage.removeChild(this);
 	}
-	public function invoke_loader() {
+	public function invoke_loader(e:MouseEvent) {
 		if (Common.gTrack == null) Common.gCode.start();
 		else Common.gTrack.clear_stage();
 		Lib.current.stage.removeChild(this);

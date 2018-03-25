@@ -38,6 +38,8 @@ import lr.tool.IconButton;
 	public var no:String = "no";
 	public var yes:String = "yes";
 	public var generic:String = "generic";
+	public var info:String = "info";
+	public var refresh:String = "refresh";
 }
 class IconBase extends Sprite
 {
