@@ -139,6 +139,33 @@ class FileJSON extends FileBase
 		} else if (_trackData.linesArrayCompressed != null) {
 			var _locDecompressed:String = this.decompress(_trackData.linesArrayCompressed);
 		}
+		if (_trackData.extra != null) {
+			this.load_extra(_trackData.extra);
+		}
+	}
+	function load_extra(_info:Object) 
+	{
+		if (_info.settings != null) {
+			if (_info.settings.angle_snap != null) CVar.angle_snap = _info.settings.angle_snap;
+			if (_info.settings.line_snap != null) CVar.angle_snap = _info.settings.line_snap;
+			if (_info.settings.color_play != null) CVar.angle_snap = _info.settings.color_play;
+			if (_info.settings.preview_mode != null) CVar.angle_snap = _info.settings.preview_mode;
+			if (_info.settings.hit_test != null) CVar.angle_snap = _info.settings.hit_test;
+		}
+		if (_info.rider_info != null) {
+			for (a in 0..._info.rider_info.length) {
+				var color_a:Int = -1;
+				var color_b:Int = -1;
+				if (a != 0) {
+					Common.gRiderManager.add_rider(2, 0, 0);
+				}
+				if (_info.rider_info[a].pos_x != null && _info.rider_info[a].pos_y != null) Common.gRiderManager.set_start(_info.rider_info[a].pos_x, _info.rider_info[a].pos_y, a);
+				if (_info.rider_info[a].color_a != null) color_a = _info.rider_info[a].color_a;
+				if (_info.rider_info[a].color_b != null) color_b = _info.rider_info[a].color_b;
+				Common.gRiderManager.set_rider_colors(a, color_a, color_b);
+				if (_info.rider_info[a].name != null) Common.gRiderManager.set_rider_name(a, _info.rider_info[a].name);
+			}
+		}
 	}
 	function cache_lines_array(_trackData:Object) {
 		
