@@ -1,5 +1,6 @@
 package platform.online;
 
+#if sys
 import haxe.Http;
 import lime.system.System;
 import openfl.Lib;
