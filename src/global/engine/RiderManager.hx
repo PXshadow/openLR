@@ -40,7 +40,13 @@ class RiderManager extends Sprite
 	}
 	public function advance_riders() {
 		for (a in riderArray) {
-			a.step_rider();
+			if (SVar.frames >= a.spawn && SVar.frames <= a.despawn || a.spawn <= 0 || a.despawn <= 0) {
+				if (a.clips.visible == false) a.clips.visible = true;
+				a.step_rider();
+			} else {
+				if (a.clips.visible == true) a.clips.visible = false;
+				a.recorder.index_frame(SVar.frames, a.body.anchors, a.scarf.anchors);
+			}
 		}
 	}
 	public function sub_step_riders() {
@@ -56,6 +62,7 @@ class RiderManager extends Sprite
 	public function restore_start() {
 		for (a in riderArray) {
 			a.inject_postion(0);
+			a.visible = true;
 		}
 	}
 	public function set_flag() {

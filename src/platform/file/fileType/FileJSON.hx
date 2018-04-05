@@ -86,6 +86,8 @@ class FileJSON extends FileBase
 			_locArray[_indexCount].vely = a.rider_y_velocity;
 			_locArray[_indexCount].angle = a.rider_angle;
 			_locArray[_indexCount].scale = a.rider_scale;
+			_locArray[_indexCount].spawn = -1;
+			_locArray[_indexCount].despawn = -1;
 			++_indexCount;
 		}
 		return (_locArray);

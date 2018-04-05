@@ -75,6 +75,8 @@ class RiderBase extends Sprite
 	public var rider_pos_y:Float = 0;
 	public var color_a:Int;
 	public var color_b:Int;
+	public var spawn:Int = -1;
+	public var despawn:Int = -1;
 	
 	var tick_frame = SubFrame.FullTick;
 	
