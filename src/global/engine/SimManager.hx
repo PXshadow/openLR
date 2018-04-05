@@ -29,7 +29,7 @@ class SimManager
 	{
 		Common.gSimManager = this;
 	}
-	public function start_sim() {
+	public function start_sim(_fromStart:Bool) {
 		if (CVar.slow_motion_auto) {
 			SVar.slow_motion = true;
 			this.playback_rate = CVar.slow_motion_rate;
@@ -40,7 +40,7 @@ class SimManager
 			this.playbackRateIndex = 9;
 			SVar.playbackModifierString = "";
 		}
-		if (!CVar.flagged) {
+		if (!CVar.flagged || _fromStart) {
 			SVar.frames = 0;
 			Common.gRiderManager.restore_start();
 		} else if (CVar.flagged) {
@@ -125,7 +125,8 @@ class SimManager
 	}
 	public function end_sim()
 	{
-		if (SVar.sim_running) {
+		if (SVar.sim_running || CVar.paused == true) {
+			if (CVar.paused == true) CVar.paused = false;
 			SVar.sim_running = false;
 			SVar.frames_alt = SVar.frames;
 			SVar.frames = 0;

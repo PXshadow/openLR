@@ -36,5 +36,23 @@ class IconPlay extends IconBase
 		
 		Common.gTrack.check_visibility();
 	}
-	
+	override public function alt(e:MouseEvent):Void 
+	{
+		if (!CVar.paused) {
+			Common.track_last_pos_x = Common.gTrack.x;
+			Common.track_last_pos_y = Common.gTrack.y;
+		}
+		Common.gTrack.set_rendermode_play();
+		Common.gTrack.set_simmode_play(true);
+		
+		Common.gToolbar.pause.visible = true;
+		Common.gToolbar.set_play_mode();
+		
+		Toolbar.tool.set_tool("None");
+		
+		Common.gRiderManager.x = Common.gTrack.x;
+		Common.gRiderManager.y = Common.gTrack.y;
+		
+		Common.gTrack.check_visibility();
+	}
 }

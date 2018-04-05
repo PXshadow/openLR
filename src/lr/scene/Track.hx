@@ -202,8 +202,8 @@ class Track extends Sprite
 		CVar.slow_motion_rate = 5;
 		SVar.slow_motion = false;
 	}
-	public function set_simmode_play() {
-		this.simManager.start_sim();
+	public function set_simmode_play(_fromStart:Bool = false) {
+		this.simManager.start_sim(_fromStart);
 		SVar.sim_running = true;
 	}
 	public function set_simmode_resume() {
