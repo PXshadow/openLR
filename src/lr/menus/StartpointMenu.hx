@@ -9,12 +9,12 @@ import global.engine.RiderManager;
 import global.SVar;
 import lr.tool.IconButton;
 import lr.tool.ToolBase;
+import components.HSlider;
 
 import haxe.ui.Toolkit;
 import haxe.ui.core.TextInput;
 import haxe.ui.components.TextField;
 import haxe.ui.components.CheckBox;
-import haxe.ui.components.HSlider;
 import haxe.ui.components.Label;
 import haxe.ui.core.UIEvent;
 
@@ -105,84 +105,66 @@ class StartpointMenu extends Sprite
 		
 		this.addChild(this.swatch_a);
 		this.swatch_a.x = 10;
-		this.swatch_a.y = 35;
+		this.swatch_a.y = 40;
 		this.swatch_a.update(this.color_a);
 		
-		this.slider_ra = new HSlider();
-		this.slider_ra.min = 0;
-		this.slider_ra.max = 255;
-		this.slider_ra.width = 255;
+		this.slider_ra = new HSlider(0, 255, this.color_ra);
+		this.slider_ra.setColors(0xFF0000, 0xFFFFFF, 0);
 		this.addChild(this.slider_ra);
-		this.slider_ra.x = 5;
-		this.slider_ra.y = 65;
-		this.slider_ra.value = this.color_ra;
-		this.slider_ra.onChange = function(e:UIEvent):Void {
-			this.set_color_ra(this.slider_ra.value);
+		this.slider_ra.x = 15;
+		this.slider_ra.y = 80;
+		this.slider_ra.onChange = function() {
+			this.set_color_ra(Std.int(this.slider_ra.value));
 		}
 		
-		this.slider_ga = new HSlider();
-		this.slider_ga.min = 0;
-		this.slider_ga.max = 255;
-		this.slider_ga.width = 255;
+		this.slider_ga = new HSlider(0, 255, this.color_ga);
+		this.slider_ga.setColors(0x00FF00, 0xFFFFFF, 0);
 		this.addChild(this.slider_ga);
-		this.slider_ga.x = 5;
-		this.slider_ga.y = 85;
-		this.slider_ga.value = this.color_ga;
-		this.slider_ga.onChange = function(e:UIEvent):Void {
-			this.set_color_ga(this.slider_ga.value);
+		this.slider_ga.x = 15;
+		this.slider_ga.y = 105;
+		this.slider_ga.onChange = function():Void {
+			this.set_color_ga(Std.int(this.slider_ga.value));
 		}
 		
-		this.slider_ba = new HSlider();
-		this.slider_ba.min = 0;
-		this.slider_ba.max = 255;
-		this.slider_ba.width = 255;
+		this.slider_ba = new HSlider(0, 255, this.color_ba);
+		this.slider_ba.setColors(0x0000FF, 0xFFFFFF, 0);
 		this.addChild(this.slider_ba);
-		this.slider_ba.x = 5;
-		this.slider_ba.y = 105;
-		this.slider_ba.value = this.color_ba;
-		this.slider_ba.onChange = function(e:UIEvent):Void {
-			this.set_color_ba(this.slider_ba.value);
+		this.slider_ba.x = 15;
+		this.slider_ba.y = 130;
+		this.slider_ba.onChange = function():Void {
+			this.set_color_ba(Std.int(this.slider_ba.value));
 		}
 		
 		this.addChild(this.swatch_b);
 		this.swatch_b.x = 10;
-		this.swatch_b.y = 125;
+		this.swatch_b.y = 145;
 		this.swatch_b.update(this.color_b);
 		
-		this.slider_rb = new HSlider();
-		this.slider_rb.min = 0;
-		this.slider_rb.max = 255;
-		this.slider_rb.width = 255;
+		this.slider_rb = new HSlider(0, 255, this.color_rb);
+		this.slider_rb.setColors(0xFF0000, 0xFFFFFF, 0);
 		this.addChild(this.slider_rb);
-		this.slider_rb.x = 5;
-		this.slider_rb.y = 155;
-		this.slider_rb.value = this.color_rb;
-		this.slider_rb.onChange = function(e:UIEvent):Void {
-			this.set_color_rb(this.slider_rb.value);
+		this.slider_rb.x = 15;
+		this.slider_rb.y = 185;
+		this.slider_rb.onChange = function():Void {
+			this.set_color_rb(Std.int(this.slider_rb.value));
 		}
 		
-		this.slider_gb = new HSlider();
-		this.slider_gb.min = 0;
-		this.slider_gb.max = 255;
-		this.slider_gb.width = 255;
+		this.slider_gb = new HSlider(0, 255, this.color_gb);
+		this.slider_gb.setColors(0x00FF00, 0xFFFFFF, 0);
 		this.addChild(this.slider_gb);
-		this.slider_gb.x = 5;
-		this.slider_gb.y = 175;
-		this.slider_gb.value = this.color_gb;
-		this.slider_gb.onChange = function(e:UIEvent):Void {
-			this.set_color_gb(this.slider_gb.value);
+		this.slider_gb.x = 15;
+		this.slider_gb.y = 215;
+		this.slider_gb.onChange = function():Void {
+			this.set_color_gb(Std.int(this.slider_gb.value));
 		}
 		
-		this.slider_bb = new HSlider();
-		this.slider_bb.min = 0;
-		this.slider_bb.max = 255;
-		this.slider_bb.width = 255;
+		this.slider_bb = new HSlider(0, 255, this.color_bb);
+		this.slider_bb.setColors(0x0000FF, 0xFFFFFF, 0);
 		this.addChild(this.slider_bb);
-		this.slider_bb.x = 5;
-		this.slider_bb.y = 195;
-		this.slider_bb.value = this.color_bb;
-		this.slider_bb.onChange = function(e:UIEvent):Void {
-			this.set_color_bb(this.slider_bb.value);
+		this.slider_bb.x = 15;
+		this.slider_bb.y = 240;
+		this.slider_bb.onChange = function():Void {
+			this.set_color_bb(Std.int(this.slider_bb.value));
 		}
 	}
 	function set_rider_name(_name:String) {
