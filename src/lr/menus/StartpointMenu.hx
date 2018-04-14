@@ -9,13 +9,11 @@ import global.engine.RiderManager;
 import global.SVar;
 import lr.tool.IconButton;
 import lr.tool.ToolBase;
+import components.WindowBox;
 import components.HSlider;
 
 import haxe.ui.Toolkit;
-import haxe.ui.core.TextInput;
 import haxe.ui.components.TextField;
-import haxe.ui.components.CheckBox;
-import haxe.ui.components.Label;
 import haxe.ui.core.UIEvent;
 
 /**
@@ -24,6 +22,8 @@ import haxe.ui.core.UIEvent;
  */
 class StartpointMenu extends Sprite
 {
+	var window:WindowBox;
+	
 	var index:Int = -1;
 	
 	var exit_button:IconButton;
@@ -56,6 +56,13 @@ class StartpointMenu extends Sprite
 	{
 		super();
 		
+		Toolkit.init();
+		
+		this.window = new WindowBox("Rider properties #" + (_index + 1), WindowMode.MENU);
+		this.window.negative.addEventListener(MouseEvent.CLICK, _exit);
+		this.window.drag = true;
+		this.addChild(this.window);
+		
 		this.index = _index;
 		
 		this.addEventListener(MouseEvent.MOUSE_OVER, this.temToolDis);
@@ -77,23 +84,6 @@ class StartpointMenu extends Sprite
 		
 		//this.mouseChildren = false;
 		
-		Toolkit.init();
-		
-		this.exit_button = new IconButton("no");
-		this.addChild(this.exit_button);
-		this.exit_button.x = 365;
-		this.exit_button.y = 5;
-		this.exit_button.addEventListener(MouseEvent.CLICK, _exit);
-		
-		this.graphics.clear();
-		this.graphics.beginFill(0xFFFFFF, 1);
-		this.graphics.lineStyle(2, 0, 1);
-		this.graphics.moveTo(0, 0);
-		this.graphics.lineTo(400, 0);
-		this.graphics.lineTo(400, 400);
-		this.graphics.lineTo(0, 400);
-		this.graphics.lineTo(0, 0);
-		
 		this.input_name = new TextField();
 		this.addChild(this.input_name);
 		this.input_name.x = 5;
@@ -102,67 +92,52 @@ class StartpointMenu extends Sprite
 		this.input_name.onChange = function(e:UIEvent) {
 			this.set_rider_name(this.input_name.text);
 		}
+		this.window.add_item(this.input_name, false, true);
 		
-		this.addChild(this.swatch_a);
-		this.swatch_a.x = 10;
-		this.swatch_a.y = 40;
+		this.window.add_item(this.swatch_a, false, true, 0, 35);
 		this.swatch_a.update(this.color_a);
 		
 		this.slider_ra = new HSlider(0, 255, this.color_ra);
 		this.slider_ra.setColors(0xFF0000, 0xFFFFFF, 0);
-		this.addChild(this.slider_ra);
-		this.slider_ra.x = 15;
-		this.slider_ra.y = 80;
+		this.window.add_item(this.slider_ra);
 		this.slider_ra.onChange = function() {
 			this.set_color_ra(Std.int(this.slider_ra.value));
 		}
 		
 		this.slider_ga = new HSlider(0, 255, this.color_ga);
 		this.slider_ga.setColors(0x00FF00, 0xFFFFFF, 0);
-		this.addChild(this.slider_ga);
-		this.slider_ga.x = 15;
-		this.slider_ga.y = 105;
+		this.window.add_item(this.slider_ga);
 		this.slider_ga.onChange = function():Void {
 			this.set_color_ga(Std.int(this.slider_ga.value));
 		}
 		
 		this.slider_ba = new HSlider(0, 255, this.color_ba);
 		this.slider_ba.setColors(0x0000FF, 0xFFFFFF, 0);
-		this.addChild(this.slider_ba);
-		this.slider_ba.x = 15;
-		this.slider_ba.y = 130;
+		this.window.add_item(this.slider_ba, false, true);
 		this.slider_ba.onChange = function():Void {
 			this.set_color_ba(Std.int(this.slider_ba.value));
 		}
 		
-		this.addChild(this.swatch_b);
-		this.swatch_b.x = 10;
-		this.swatch_b.y = 145;
+		this.window.add_item(this.swatch_b, false, true);
 		this.swatch_b.update(this.color_b);
 		
 		this.slider_rb = new HSlider(0, 255, this.color_rb);
 		this.slider_rb.setColors(0xFF0000, 0xFFFFFF, 0);
-		this.addChild(this.slider_rb);
-		this.slider_rb.x = 15;
-		this.slider_rb.y = 185;
+		this.window.add_item(this.slider_rb);
 		this.slider_rb.onChange = function():Void {
 			this.set_color_rb(Std.int(this.slider_rb.value));
 		}
 		
 		this.slider_gb = new HSlider(0, 255, this.color_gb);
 		this.slider_gb.setColors(0x00FF00, 0xFFFFFF, 0);
-		this.addChild(this.slider_gb);
-		this.slider_gb.x = 15;
-		this.slider_gb.y = 215;
+		this.window.add_item(this.slider_gb);
 		this.slider_gb.onChange = function():Void {
 			this.set_color_gb(Std.int(this.slider_gb.value));
 		}
 		
 		this.slider_bb = new HSlider(0, 255, this.color_bb);
 		this.slider_bb.setColors(0x0000FF, 0xFFFFFF, 0);
-		this.addChild(this.slider_bb);
-		this.slider_bb.x = 15;
-		this.slider_bb.y = 240;
+		this.window.add_item(this.slider_bb);
 		this.slider_bb.onChange = function():Void {
 			this.set_color_bb(Std.int(this.slider_bb.value));
 		}
@@ -173,11 +148,13 @@ class StartpointMenu extends Sprite
 	function temToolDisDis(e:Event):Void 
 	{
 		Common.gToolBase.set_tool(ToolBase.lastTool);
+		SVar.game_mode = GameState.edit;
 	}
 	
 	function temToolDis(e:Event):Void 
 	{
 		Common.gToolBase.set_tool("None");
+		SVar.game_mode = GameState.inmenu;
 	}
 	function set_color_ra(_v:Int) {
 		this.update_color_a(_v, this.color_ga, this.color_ba);
