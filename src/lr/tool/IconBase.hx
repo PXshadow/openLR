@@ -20,7 +20,7 @@ import lr.tool.IconButton;
  * Base functions and variables for icons. Default behavior disables mosue tools on rollover and reenables on roll out.
  * 
  */
-@:enum abstract Icon(String) from String to String {
+@:enum abstract Icon(String) from String {
 	public var undefined:String = "undefined";
 	public var pencil:String = "pencil";
 	public var line:String = "line";
