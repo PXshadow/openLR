@@ -201,21 +201,10 @@ class Main extends Sprite
 	public function toggleSettings_box()
 	{
 		if (!this.settings_box.visible) {
-			Toolbar.tool.set_tool("None");
-			SVar.game_mode = GameState.inmenu;
 			this.settings_box.visible = true;
-			this.track.visible = false;
-			this.toolBar.mouseChildren = false;
-			this.textInfo.visible = false;
-			this.timeline.visible = false;
 			this.settings_box.update();
 		} else {
 			this.settings_box.visible = false;
-			this.track.visible = true;
-			this.toolBar.mouseChildren = true;
-			this.textInfo.visible = true;
-			this.timeline.visible = true;
-			SVar.game_mode = GameState.edit;
 			Toolbar.tool.set_tool(ToolBase.lastTool);
 		}
 	}
