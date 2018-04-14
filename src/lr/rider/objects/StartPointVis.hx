@@ -19,9 +19,6 @@ import lr.menus.StartpointMenu;
  */
 class StartPointVis extends Sprite
 {
-	public static var menuAlreadyOpen:Bool = false;
-	public static var current:StartPointVis;
-	
 	var start_a:Sprite;
 	var start_b:Sprite;
 	var color_a:Int;
@@ -114,16 +111,6 @@ class StartPointVis extends Sprite
 	var menu:StartpointMenu;
 	function edit_properties(e:MouseEvent):Void 
 	{
-		if (StartPointVis.menuAlreadyOpen) {
-			trace("Herp");
-			StartPointVis.current.exit_properties(null);
-		}
-		
-		SVar.game_mode = GameState.inmenu;
-		
-		StartPointVis.menuAlreadyOpen = true;
-		StartPointVis.current = this;
-		
 		this.removeEventListener(MouseEvent.DOUBLE_CLICK, this.edit_properties);
 		this.doubleClickEnabled = false;
 		this.mouseChildren = true;
@@ -132,11 +119,8 @@ class StartPointVis extends Sprite
 		this.menu.x = 20;
 		this.menu.y = 25;
 	}
-	public function exit_properties(e:MouseEvent) {
-		SVar.game_mode = GameState.edit;
-		
-		StartPointVis.menuAlreadyOpen = false;
-		
+	public function exit_properties(e:MouseEvent) 
+	{
 		this.mouseChildren = false;
 		this.doubleClickEnabled = true;
 		this.addEventListener(MouseEvent.DOUBLE_CLICK, this.edit_properties);
