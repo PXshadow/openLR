@@ -48,6 +48,7 @@ class Grid
 		switch (_type) {
 			case Action.undo_line :
 				while (true) {
+					if (this.lines.length == 0) return;
 					var _loc1 = this.lines.pop();
 					if (_loc1 == null) {
 						continue;
