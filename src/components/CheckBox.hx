@@ -45,6 +45,8 @@ class CheckBox extends Sprite
 		this.label.setTextFormat(this.font);
 		this.label.text = _name;
 		this.label.selectable = false;
+		this.label.height = this.label.textHeight + 2;
+		this.label.width = this.label.textWidth + 4;
 	}
 	function toggle(e:MouseEvent) {
 		if (this.onChange != null) {
