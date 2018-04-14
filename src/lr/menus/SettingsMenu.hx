@@ -65,6 +65,7 @@ class SettingsMenu extends Sprite
 		this.window = new WindowBox("Settings", WindowMode.MENU, 400);
 		this.addChild(this.window);
 		this.window.drag = true;
+		this.window.x = this.window.y = 20;
 		
 		//Track settings
 		
@@ -161,7 +162,7 @@ class SettingsMenu extends Sprite
 		});
 	}
 	public function update() {
-		
+		this.window.x = this.window.y = 20;
 	}
 	function temToolDisDis(e:MouseEvent):Void 
 	{

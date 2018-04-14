@@ -302,9 +302,6 @@ class Main extends Sprite
 			Common.gCamera.update_pan_bounds();
 		}
 		
-		this.settings_box.x = (Lib.current.stage.stageWidth * 0.5) - (this.settings_box.width * 0.5);
-		this.settings_box.y = 100;
-		
 		this.timeline.x = (Lib.current.stage.stageWidth * 0.5) - (640);
 		this.timeline.y = Lib.current.stage.stageHeight - 45;
 		

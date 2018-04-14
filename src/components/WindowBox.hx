@@ -3,6 +3,7 @@ package components;
 import openfl.Assets;
 import openfl.display.Sprite;
 import openfl.events.MouseEvent;
+import openfl.Lib;
 import openfl.text.TextField;
 import openfl.text.TextFormat;
 import openfl.text.TextFormatAlign;
@@ -170,9 +171,11 @@ class WindowBox extends Sprite
 		if (_bool) {
 			this.windowBar.addEventListener(MouseEvent.MOUSE_DOWN, this.drag_window);
 			this.windowBar.addEventListener(MouseEvent.MOUSE_UP, this.stop_drag);
+			Lib.current.stage.addEventListener(MouseEvent.MOUSE_UP, this.stop_drag);
 		} else {
 			this.windowBar.removeEventListener(MouseEvent.MOUSE_DOWN, this.drag_window);
 			this.windowBar.removeEventListener(MouseEvent.MOUSE_UP, this.stop_drag);
+			Lib.current.stage.removeEventListener(MouseEvent.MOUSE_UP, this.stop_drag);
 		}
 		return this.drag = _bool;
 	}
@@ -208,6 +211,16 @@ class WindowBox extends Sprite
 	function stop_drag(e:MouseEvent):Void 
 	{
 		this.stopDrag();
+		if (this.x + this.wWidth < 0) {
+			this.x = (this.wWidth * -1) + 50;
+		} else if (this.x > Lib.current.stage.stageWidth) {
+			this.x = Lib.current.stage.stageWidth - 50;
+		}
+		if (this.y < 35) {
+			this.y = 35;
+		} else if (this.y > Lib.current.stage.stageHeight) {
+			this.y = Lib.current.stage.stageHeight - 95;
+		}
 	}
 	function drag_window(e:MouseEvent):Void 
 	{
