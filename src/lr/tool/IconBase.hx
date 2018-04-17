@@ -26,6 +26,7 @@ import lr.tool.IconButton;
 	public var line:String = "line";
 	public var eraser:String = "eraser";
 	public var pan:String = "pan";
+	public var zoom:String = "zoom";
 	public var play:String = "play";
 	public var pause:String = "pause";
 	public var stop:String = "stop";

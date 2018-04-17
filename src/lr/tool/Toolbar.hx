@@ -23,6 +23,8 @@ class Toolbar extends Sprite
 	private var pencil:IconPencil;
 	private var line:IconLine;
 	private var eraser:IconEraser;
+	private var pan:IconPan;
+	private var zoom:IconZoom;
 	private var save:IconSave;
 	private var settings:IconSettings;
 	private var swBlue:SwatchBlue;
@@ -57,6 +59,12 @@ class Toolbar extends Sprite
 		
 		eraser = new IconEraser();
 		this.tool_list.push(this.eraser);
+		
+		zoom = new IconZoom();
+		this.tool_list.push(this.zoom);
+		
+		pan = new IconPan();
+		this.tool_list.push(this.pan);
 		
 		pause = new IconPause();
 		this.tool_list.push(this.pause);
@@ -123,11 +131,18 @@ class Toolbar extends Sprite
 				Toolbar.icon = this.eraser;
 				Toolbar.swatch.deselect();
 				Common.line_type = -1;
+			case ToolType.Pan :
+				Toolbar.icon = this.pan;
+				Toolbar.swatch.deselect();
+			case ToolType.Zoom :
+				Toolbar.icon = this.zoom;
+				Toolbar.swatch.deselect();
 		}
 		Toolbar.icon.select();
 	}
 	public function update_swatch(_type:Int) {
 		swatch.deselect();
+		if (Toolbar.icon == this.pan) return;
 		switch(_type) {
 			case 0:
 				Common.line_type = 0;

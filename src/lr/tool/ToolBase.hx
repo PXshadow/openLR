@@ -14,6 +14,7 @@ import global.SVar;
 	public var Line:String = "Line";
 	public var Eraser:String = "Eraser";
 	public var Pan:String = "Pan";
+	public var Zoom:String = "Zoom";
 }
 
 /**
@@ -45,6 +46,10 @@ class ToolBase
 				this.currentTool = new ToolLine();
 			case ToolType.Eraser :
 				this.currentTool = new ToolEraser();
+			case ToolType.Pan :
+				this.currentTool = new ToolPan();
+			case ToolType.Zoom :
+				this.currentTool = new ToolZoom();
 		}
 		if (_type == ToolBase.lastTool) return;
 		Common.gToolbar.update_icons(_type);

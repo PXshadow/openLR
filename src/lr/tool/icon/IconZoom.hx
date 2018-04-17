@@ -6,19 +6,18 @@ import lr.tool.IconBase;
 import lr.tool.Toolbar;
 import lr.tool.ToolBase;
 
-
 /**
  * ...
  * @author Kaelan Evans
  */
-class IconPan extends IconBase
+class IconZoom extends IconBase 
 {
 
 	public function new() 
 	{
-		super(Icon.pan);
+		super(Icon.zoom);
 	}
 	override public function up(e:MouseEvent) {
-		Toolbar.tool.set_tool(ToolType.Pan);
+		Toolbar.tool.set_tool(ToolType.Zoom);
 	}
 }

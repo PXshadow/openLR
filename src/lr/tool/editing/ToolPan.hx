@@ -1,6 +1,6 @@
 package lr.tool.editing;
+
 import openfl.events.MouseEvent;
-import lr.tool.ToolBase;
 
 import global.Common;
 
@@ -8,19 +8,19 @@ import global.Common;
  * ...
  * @author ...
  */
-class ToolPan extends ToolBase
+class ToolPan extends ToolAction
 {
 
 	public function new() 
 	{
 		super();
 	}
-	override public function mouseDown(e:MouseEvent) {
+	override function leftMouseDown(e:MouseEvent):Void 
+	{
 		Common.gTrack.startDrag();
-		Common.gStage.addEventListener(MouseEvent.MOUSE_MOVE, mMouseMove);
 	}
-	override public function mouseUp(e:MouseEvent) {
+	override function leftMouseUp(event:MouseEvent):Void 
+	{
 		Common.gTrack.stopDrag();
-		Common.gStage.removeEventListener(MouseEvent.MOUSE_MOVE, mMouseMove);
 	}
 }
