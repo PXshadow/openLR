@@ -151,8 +151,6 @@ class Toolbar extends Sprite
 		this.eraser.enable();
 		this.save.mouseChildren = true;
 		this.save.enable();
-		this.settings.mouseChildren = true;
-		this.settings.enable();
 		this.swBlue.mouseChildren = true;
 		this.swBlue.enable();
 		this.swRed.mouseChildren = true;
@@ -170,8 +168,6 @@ class Toolbar extends Sprite
 		this.eraser.enable();
 		this.save.mouseChildren = true;
 		this.save.enable();
-		this.settings.mouseChildren = true;
-		this.settings.enable();
 		this.swBlue.mouseChildren = true;
 		this.swBlue.enable();
 		this.swRed.mouseChildren = true;
@@ -189,8 +185,6 @@ class Toolbar extends Sprite
 		this.eraser.disable();
 		this.save.mouseChildren = false;
 		this.save.disable();
-		this.settings.mouseChildren = false;
-		this.settings.disable();
 		this.swBlue.mouseChildren = false;
 		this.swBlue.disable();
 		this.swRed.mouseChildren = false;
