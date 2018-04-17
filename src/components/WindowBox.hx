@@ -22,7 +22,7 @@ import lr.tool.IconButton;
 	public var ERROR:Int = 2;
 	public var MENU:Int = 3;
 	public var CUSTOM:Int = 4;
-	public var PROGRESS:Int = 4;
+	public var PROGRESS:Int = 5;
 }
 class WindowBox extends Sprite
 {
@@ -138,7 +138,7 @@ class WindowBox extends Sprite
 		
 		this.addChild(this.negative);
 		
-		this.negative.x = this.wWidth - 31;
+		this.negative.x = this.wWidth - 32;
 	}
 	function enable_message() 
 	{
@@ -203,7 +203,8 @@ class WindowBox extends Sprite
 				this.frowny.y = this.wHeight - 15;
 				this.frowny.x = (this.wWidth / 2) - (this.frowny.width / 2);
 			case WindowMode.MENU :
-				this.negative.x = this.wWidth - 30;
+				this.negative.x = this.wWidth - 32;
+				this.negative.y = 2;
 			default :
 				return;
 		}
