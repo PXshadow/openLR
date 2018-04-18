@@ -130,19 +130,6 @@ class SettingsMenu extends Sprite
 		}
 		this.window.add_item(this.checkBox_jointSnap, false, true);
 		
-		this.checkBox_skeleton = new CheckBox("Skeleton", CVar.contact_points);
-		this.checkBox_skeleton.onChange = function() {
-			CVar.contact_points = CVar.contact_points == true ? false : true;
-			this.checkBox_skeleton.update(CVar.contact_points);
-		}
-		this.window.add_item(this.checkBox_skeleton, false, true);
-		
-		this.slider_RiderAlpha = new HSlider(0, 10, 10);
-		this.slider_RiderAlpha.onChange = function() {
-			CVar.rider_alpha = this.slider_RiderAlpha.value;
-		}
-		this.window.add_item(this.slider_RiderAlpha, false, true);
-		
 		this.checkBox_previewMode = new CheckBox("Preview mode", CVar.preview_mode);
 		this.checkBox_previewMode.onChange = function() {
 			CVar.preview_mode = this.checkBox_previewMode.value;

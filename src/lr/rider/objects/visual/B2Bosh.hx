@@ -237,9 +237,26 @@ class B2Bosh extends VisBase
 			this.string.graphics.lineTo(this.body.anchors[3].x, this.body.anchors[3].y);
 			this.string.graphics.lineTo(this.body.anchors[7].x, this.body.anchors[7].y);
 		}
-		if (CVar.contact_points) {
-			this.render_bones();
+		this.bosh.graphics.clear();
+		if (Common.gRiderManager.riderArray[this.riderID] != null) {
+			if (Common.gRiderManager.riderArray[this.riderID].bone_vis) {
+				this.render_bones();
+			}
 		}
+		if (Common.gRiderManager.riderArray[this.riderID] != null) {
+			if (Common.gRiderManager.riderArray[this.riderID].vel_vis) {
+				this.render_velocity();
+			}
+		}
+		if (Common.gRiderManager.riderArray[this.riderID] != null) {
+			if (Common.gRiderManager.riderArray[this.riderID].scarf_vis) {
+				this.render_scarf();
+			}
+		}
+	}
+	public function render_scarf() 
+	{
+		var _locFloatAlpha:Float = CVar.rider_alpha * 0.1;
 		#if (flash)
 			this.scarf_vis.graphics.lineStyle(2, this.color_b, _locFloatAlpha, false, LineScaleMode.NORMAL, "none");
 		#else
@@ -271,7 +288,6 @@ class B2Bosh extends VisBase
 		this.scarf_b.transform.colorTransform = new ColorTransform(((b >> 16) & 0xff) / 255, ((b >> 8) & 0xff) / 255, ((b & 0xff) / 255));
 	}
 	public function render_bones() {
-		this.bosh.graphics.clear();
 		#if (flash)
 			this.skeleton_vis.graphics.lineStyle(1, 0xFF6600, 0.5, false, LineScaleMode.NORMAL);
 		#else
@@ -300,6 +316,8 @@ class B2Bosh extends VisBase
 			this.skeleton_vis.graphics.drawCircle(this.body.anchors[i].x, this.body.anchors[i].y, 0.5);
 			this.skeleton_vis.graphics.endFill();
 		}
+	}
+	public function render_velocity() {
 		#if (flash)
 			this.skeleton_vis.graphics.lineStyle(1, 0x0000FF, 0.5, false, LineScaleMode.NORMAL);
 		#else

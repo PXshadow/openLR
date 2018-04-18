@@ -1,5 +1,6 @@
 package lr.menus;
 
+import components.CheckBox;
 import openfl.events.Event;
 import openfl.display.Sprite;
 import openfl.events.MouseEvent;
@@ -51,6 +52,12 @@ class StartpointMenu extends Sprite
 	var color_rb:Int;
 	var color_gb:Int;
 	var color_bb:Int;
+	
+	var slider_rider_angle:HSlider;
+	var skeleton:CheckBox;
+	var velocity:CheckBox;
+	var scarf:CheckBox;
+	var alpha_slider:HSlider;
 	
 	public function new(_index:Int, _name:String, _exit:Dynamic, _colors:Array<Int>) 
 	{
@@ -137,9 +144,35 @@ class StartpointMenu extends Sprite
 		
 		this.slider_bb = new HSlider(0, 255, this.color_bb);
 		this.slider_bb.setColors(0x0000FF, 0xFFFFFF, 0);
-		this.window.add_item(this.slider_bb);
+		this.window.add_item(this.slider_bb, false, true);
 		this.slider_bb.onChange = function():Void {
 			this.set_color_bb(Std.int(this.slider_bb.value));
+		}
+		
+		this.scarf = new CheckBox("Render Scarf", true);
+		this.window.add_item(this.scarf);
+		this.scarf.onChange = function():Void {
+			Common.gRiderManager.set_rider_scarf(this.index, this.scarf.value);
+		}
+		
+		this.skeleton = new CheckBox("Render Skeleton", false);
+		this.window.add_item(this.skeleton);
+		this.skeleton.onChange = function():Void {
+			Common.gRiderManager.set_rider_skeleton(this.index, this.skeleton.value);
+		}
+		
+		this.velocity = new CheckBox("Render Velocity", false);
+		this.window.add_item(this.velocity);
+		this.velocity.onChange = function():Void {
+			Common.gRiderManager.set_rider_velocity(this.index, this.velocity.value);
+		}
+		
+		this.slider_rider_angle = new HSlider(0, 360, 0, RoundMode.FLOOR);
+		this.slider_rider_angle.setColors();
+		//this.window.add_item(this.slider_rider_angle, true, true);
+		this.slider_rider_angle.onChange = function():Void {
+			Common.gRiderManager.set_rider_angle(this.index, (this.slider_rider_angle.value));
+			trace(this.slider_rider_angle.value);
 		}
 	}
 	function set_rider_name(_name:String) {

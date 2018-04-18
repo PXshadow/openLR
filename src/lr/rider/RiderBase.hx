@@ -64,6 +64,13 @@ class RiderBase extends Sprite
 	public var flagged:Bool = false;
 	public var flag_vis:Bool = false;
 	
+	public var bone_vis:Bool = false;
+	public var vel_vis:Bool = false;
+	public var scarf_vis:Bool = true;
+	public var transparency:Float = 1;
+	
+	public var color_a:Int;
+	public var color_b:Int;
 	public var rider_angle:Float = 0;
 	public var rider_name:String;
 	public var rider_y_flip:Bool = false;
@@ -73,8 +80,6 @@ class RiderBase extends Sprite
 	public var rider_y_velocity:Float = 0;
 	public var rider_pos_x:Float = 0;
 	public var rider_pos_y:Float = 0;
-	public var color_a:Int;
-	public var color_b:Int;
 	public var spawn:Int = -1;
 	public var despawn:Int = -1;
 	
@@ -132,6 +137,18 @@ class RiderBase extends Sprite
 		this.scarf.set_frame_angle(this.rider_angle);
 		this.body.adjust_velocity_start(this.rider_x_velocity, this.rider_y_velocity);
 		this.scarf.adjust_velocity_start(this.rider_x_velocity, this.rider_y_velocity);
+	}
+	public function set_start_angle(_angle:Float) {
+		this.rider_angle = _angle;
+		this.body.set_frame_angle(_angle);
+		this.scarf.set_frame_angle(_angle);
+		this.set_start_velocity(this.rider_x_velocity, this.rider_y_velocity);
+	}
+	public function set_start_velocity(_x:Float, _y:Float) {
+		this.rider_x_velocity = _x;
+		this.rider_y_velocity = _y;
+		this.body.adjust_velocity_start(_x, _y);
+		this.scarf.adjust_velocity_start(_x, _y);
 	}
 	public function set_rider_play_mode() {
 		this.start_point.visible = false;
@@ -313,4 +330,8 @@ class RiderBase extends Sprite
 			}
 		}
 	}
+}
+class RiderFlags
+{
+	
 }

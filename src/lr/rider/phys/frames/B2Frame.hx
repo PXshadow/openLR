@@ -78,6 +78,8 @@ class B2Frame extends FrameBase
 			i.vx = i.x - 0.4;
 			i.vy = i.y;
 		}
+		
+		this.set_frame_angle();
 	}
 	override public function crash_check() {
 		var _loc4:Float = this.anchors[3].x - this.anchors[0].x;

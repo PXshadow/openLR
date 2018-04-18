@@ -17,6 +17,10 @@ class FrameBase
 	private var start_y:Float;
 	
 	private var riderID:Int;
+	
+	private var angle:Float = 0;
+	private var velX:Float = 0.4;
+	private var velY:Float = 0;
 	public function new() 
 	{
 		
@@ -47,12 +51,11 @@ class FrameBase
 	public function set_start(_x:Float, _y:Float) {
 		
 	}
-	public function set_frame_angle(_angle:Float) {
-		if (_angle == 0) {
-			return;
+	public function set_frame_angle(_angle:Float = null) {
+		if (_angle != null) {
+			this.angle = _angle;
 		}
-		this.reset();
-		var _locRad = _angle * (Math.PI / 180);
+		var _locRad = angle * (Math.PI / 180);
 		for (a in 0...anchors.length) {
 			var x1 = anchors[a].x - anchors[0].x;
 			var y1 = anchors[a].y - anchors[0].y;

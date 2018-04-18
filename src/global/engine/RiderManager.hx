@@ -100,6 +100,24 @@ class RiderManager extends Sprite
 	public function set_rider_name(_index:Int, _name:String) {
 		this.riderArray[_index].update_name(_name);
 	}
+	public function set_rider_angle(_index:Int, _angle:Float) {
+		this.riderArray[_index].set_start_angle(0);
+		this.riderArray[_index].reset();
+		this.riderArray[_index].set_start_angle(_angle);
+		this.riderArray[_index].clips.render_body();
+	}
+	public function set_rider_skeleton(_index:Int, _v:Bool) {
+		this.riderArray[_index].bone_vis = _v;
+		this.riderArray[_index].clips.render_body();
+	}
+	public function set_rider_velocity(_index:Int, _v:Bool) {
+		this.riderArray[_index].vel_vis = _v;
+		this.riderArray[_index].clips.render_body();
+	}
+	public function set_rider_scarf(_index:Int, _v:Bool) {
+		this.riderArray[_index].scarf_vis = _v;
+		this.riderArray[_index].clips.render_body();
+	}
 	public function set_multiple_rider_start(_list:Array<Int>) {
 		
 	}
