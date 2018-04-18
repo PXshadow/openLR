@@ -124,6 +124,9 @@ class StartPointVis extends Sprite
 		this.mouseChildren = false;
 		this.doubleClickEnabled = true;
 		this.addEventListener(MouseEvent.DOUBLE_CLICK, this.edit_properties);
+		Common.gRiderManager.riderArray[this.rider_index].clips.mouseChildren = false;
+		Common.gRiderManager.riderArray[this.rider_index].clips.doubleClickEnabled = true;
+		Common.gRiderManager.riderArray[this.rider_index].clips.addEventListener(MouseEvent.DOUBLE_CLICK, this.edit_properties);
 		
 		Lib.current.stage.removeChild(this.menu);
 	}
