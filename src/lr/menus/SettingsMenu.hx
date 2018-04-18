@@ -71,15 +71,13 @@ class SettingsMenu extends Sprite
 		
 		this.checkBox_colorPlay = new CheckBox("Color Play", CVar.color_play);
 		this.checkBox_colorPlay.onChange = function () {
-			CVar.color_play = CVar.color_play == true ? false : true;
-			this.checkBox_colorPlay.update(CVar.color_play);
+			CVar.color_play = this.checkBox_colorPlay.value;
 		}
 		this.window.add_item(this.checkBox_colorPlay);
 		
 		this.checkBox_hitTest = new CheckBox("Hit Test", CVar.hit_test);
 		this.checkBox_hitTest.onChange = function() {
-			CVar.hit_test = CVar.hit_test == true ? false : true;
-			this.checkBox_hitTest.update(CVar.hit_test);
+			CVar.hit_test = this.checkBox_hitTest.value;
 			this.checkBox_hitTestLive.visible = CVar.hit_test;
 		}
 		this.window.add_item(this.checkBox_hitTest);
@@ -87,15 +85,13 @@ class SettingsMenu extends Sprite
 		this.checkBox_hitTestLive = new CheckBox("Live Hit Test", CVar.hit_test_live);
 		this.checkBox_hitTestLive.visible = false;
 		this.checkBox_hitTestLive.onChange = function() {
-			CVar.hit_test_live = CVar.hit_test_live == true ? false : true;
-			this.checkBox_hitTestLive.update(CVar.hit_test_live);
+			CVar.hit_test_live = this.checkBox_hitTestLive.value;
 		}
 		this.window.add_item(this.checkBox_hitTestLive, false, true);
 		
 		this.checkBox_forceZoom = new CheckBox("Force Zoom", CVar.force_zoom);
 		this.checkBox_forceZoom.onChange = function() {
-			CVar.force_zoom = CVar.force_zoom == true ? false : true;
-			this.checkBox_forceZoom.update(CVar.force_zoom);
+			CVar.force_zoom = this.checkBox_forceZoom.value;
 			this.slider_forceZoom.visible = CVar.force_zoom;
 			this.label_zoomValue.visible = CVar.force_zoom;
 		}
@@ -124,15 +120,13 @@ class SettingsMenu extends Sprite
 		//Editor Settings
 		this.checkBox_angleSnap = new CheckBox("Angle Snap", CVar.angle_snap);
 		this.checkBox_angleSnap.onChange = function() {
-			CVar.angle_snap = CVar.angle_snap == true ? false : true;
-			this.checkBox_angleSnap.update(CVar.angle_snap);
+			CVar.angle_snap = this.checkBox_angleSnap.value;
 		}
 		this.window.add_item(this.checkBox_angleSnap);
 		
 		this.checkBox_jointSnap = new CheckBox("Joint Snap", CVar.line_snap);
 		this.checkBox_jointSnap.onChange = function() {
-			CVar.line_snap = CVar.line_snap == true ? false : true;
-			this.checkBox_jointSnap.update(CVar.line_snap);
+			CVar.line_snap = this.checkBox_jointSnap.value;
 		}
 		this.window.add_item(this.checkBox_jointSnap, false, true);
 		
@@ -151,8 +145,7 @@ class SettingsMenu extends Sprite
 		
 		this.checkBox_previewMode = new CheckBox("Preview mode", CVar.preview_mode);
 		this.checkBox_previewMode.onChange = function() {
-			CVar.preview_mode = CVar.preview_mode == true ? false : true;
-			this.checkBox_previewMode.update(CVar.preview_mode);
+			CVar.preview_mode = this.checkBox_previewMode.value;
 			Common.gTrack.set_rendermode_edit();
 		}
 		this.window.add_item(this.checkBox_previewMode);

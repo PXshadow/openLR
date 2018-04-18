@@ -21,6 +21,7 @@ class CheckBox extends Sprite
 	private var font:TextFormat = new TextFormat(Assets.getFont("fonts/Verdana.ttf").fontName, 14, 0, null, null, null, null, null, TextFormatAlign.LEFT);
 	public var label:TextField;
 	public var onChange:Function;
+	public var value:Bool;
 	
 	public function new(_name:String, _bool:Bool) 
 	{
@@ -37,6 +38,7 @@ class CheckBox extends Sprite
 		
 		this.checkBG.addEventListener(MouseEvent.CLICK, this.toggle);
 		this.update(_bool);
+		this.value = _bool;
 		
 		this.label = new TextField();
 		this.addChild(this.label);
@@ -49,11 +51,13 @@ class CheckBox extends Sprite
 		this.label.width = this.label.textWidth + 4;
 	}
 	function toggle(e:MouseEvent) {
+		this.value = value == true ? false : true;
+		this.update(this.value);
 		if (this.onChange != null) {
 			this.onChange();
 		}
 	}
-	public function update(_bool:Bool) {
+	function update(_bool:Bool) {
 		if (_bool) {
 			this.checkGreen.visible = true;
 		} else {
