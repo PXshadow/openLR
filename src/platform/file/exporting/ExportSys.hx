@@ -7,11 +7,11 @@ import sys.FileSystem;
 import sys.io.File;
 import lime.system.System;
 
-import platform.file.ExportBase;
-import platform.file.fileType.*;
+import components.WindowBox;
 import global.SVar;
 import global.CVar;
-import ui.inter.AlertBox;
+import platform.file.ExportBase;
+import platform.file.fileType.*;
 import ui.inter.TextButton;
 
 //import haxe.ui.components.DropDown;
@@ -51,9 +51,6 @@ class ExportSys extends ExportBase
 	var option_saveType_JSON:OptionBox;
 	var option_saveType_TRK:OptionBox;
 	var option_saveType_SOL:OptionBox;
-	
-	var alertbox_legacyInformed:Bool = false;
-	var alertbox_legacyWarning:AlertBox;
 	
 	var selectedSaveType:String = "LRPK";
 	var saveTypeLegacy:Bool = false;
@@ -173,21 +170,6 @@ class ExportSys extends ExportBase
 		this.option_saveType_SOL.y = 240;
 		//this.addChild(this.option_saveType_SOL);
 		
-		this.checkbox_legacySave = new CheckBox();
-		this.checkbox_legacySave.visible = false;
-		this.checkbox_legacySave.text = "Legacy save";
-		this.checkbox_legacySave.x = 80;
-		this.checkbox_legacySave.y = 260;
-		this.checkbox_legacySave.onClick = function (e:MouseEvent) {
-			if (!this.alertbox_legacyInformed && this.checkbox_legacySave.value == true) {
-				this.alertbox_legacyWarning = new AlertBox("Legacy saves will not save any features that are exclusive to openLR. If you are familiar with Beta 2, that is the sort of information that will be kept.", this.acknowledge_warning, "Okay");
-				this.addChild(this.alertbox_legacyWarning);
-				this.alertbox_legacyInformed = true;
-			}
-			this.saveTypeLegacy = this.checkbox_legacySave.value;
-		}
-		//this.addChild(this.checkbox_legacySave);
-		
 		this.textButton_cancel = new TextButton("Cancel", this.exit_save_menu);
 		this.addChild(this.textButton_cancel);
 		this.textButton_cancel.x = 380;
@@ -242,9 +224,6 @@ class ExportSys extends ExportBase
 		var file = File.write((System.documentsDirectory + "/openLR/saves/" + this.textfield_trackName.text + "/" + sameNameCount + "." + this.textfield_trackName.text + ".openLR.json"), true);
 		file.writeString(_data);
 		file.close();
-	}
-	private function acknowledge_warning() {
-		this.removeChild(this.alertbox_legacyWarning);
 	}
 	private function exit_save_menu() {
 		Common.gCode.toggle_save_menu();

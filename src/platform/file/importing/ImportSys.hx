@@ -1,14 +1,16 @@
 package platform.file.importing;
 
+import haxe.PosInfos;
 import lime.system.System;
 import openfl.utils.Object;
 import openfl.Lib;
+import openfl.events.MouseEvent;
 import sys.FileSystem;
 import sys.io.File;
 import haxe.Json;
 
 import ui.inter.TextButton;
-import ui.inter.AlertBox;
+import components.WindowBox;
 import global.Common;
 import platform.file.ImportBase;
 import platform.file.fileType.*;
@@ -35,7 +37,7 @@ class ImportSys extends ImportBase
 	var loadButton:TextButton;
 	
 	var trackData:Object;
-	var error_alert:AlertBox;
+	var error_alert:WindowBox;
 	public function new() 
 	{
 		super();
@@ -75,14 +77,16 @@ class ImportSys extends ImportBase
 			}
 			
 		} catch (_msg:String) {
-			this.error_alert = new AlertBox("Error! Are you sure that was a valid file?" + "\n" + "If it was, copy this error and provide a save if possible!" + "\n \n" + _msg + "\n" + _path, this.hide_error, "Silly Goose!");
+			this.error_alert = new WindowBox("Load error!", WindowMode.ERROR, 300, 250);
 			Lib.current.stage.addChild(this.error_alert);
+			this.error_alert.set_message_string("Are you sure that was a valid file?" + "\n" + "If it was, copy this error and provide a save if possible!" + "\n \n" + _msg + "\n" + _path, true);
+			this.error_alert.frowny.addEventListener(MouseEvent.CLICK, this.hide_error);
 			this.error_alert.x = (Common.stage_width * 0.5) - (this.error_alert.width * 0.5);
 			this.error_alert.y = (Common.stage_height * 0.5) - (this.error_alert.height * 0.5);
 			return;
 		}
 	}
-	private function hide_error() {
+	private function hide_error(e:MouseEvent) {
 		Lib.current.stage.removeChild(this.error_alert);
 	}
 }
