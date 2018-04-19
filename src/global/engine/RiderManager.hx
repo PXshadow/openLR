@@ -100,6 +100,10 @@ class RiderManager extends Sprite
 	public function set_rider_name(_index:Int, _name:String) {
 		this.riderArray[_index].update_name(_name);
 	}
+	public function set_rider_alpha(_index:Int, _value:Float) {
+		this.riderArray[_index].rider_alpha = _value;
+		this.riderArray[_index].clips.render_body();
+	}
 	public function set_rider_angle(_index:Int, _angle:Float) {
 		this.riderArray[_index].set_start_angle(0);
 		this.riderArray[_index].reset();

@@ -71,6 +71,7 @@ class RiderBase extends Sprite
 	
 	public var color_a:Int;
 	public var color_b:Int;
+	public var rider_alpha:Float = 10;
 	public var rider_angle:Float = 0;
 	public var rider_name:String;
 	public var rider_y_flip:Bool = false;

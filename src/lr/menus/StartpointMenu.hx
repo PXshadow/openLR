@@ -167,6 +167,13 @@ class StartpointMenu extends Sprite
 			Common.gRiderManager.set_rider_velocity(this.index, this.velocity.value);
 		}
 		
+		this.alpha_slider = new HSlider(0, 1, 1, RoundMode.NONE);
+		this.alpha_slider.setColors();
+		this.window.add_item(this.alpha_slider);
+		this.alpha_slider.onChange = function():Void {
+			Common.gRiderManager.set_rider_alpha(this.index, this.alpha_slider.value);
+		}
+		
 		this.slider_rider_angle = new HSlider(0, 360, 0, RoundMode.FLOOR);
 		this.slider_rider_angle.setColors();
 		//this.window.add_item(this.slider_rider_angle, true, true);
