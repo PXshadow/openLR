@@ -46,6 +46,7 @@ class SVar
 	public static var sim_running:Bool = false;
 	public static var slow_motion:Bool = false;
 	public static var snap_distance:Int = 20;
+	public static var sim_rate:Float = 40;
 	
 	public static var track_date_stamp:String = "";
 	
