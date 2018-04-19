@@ -52,6 +52,9 @@ class FrameBase
 		
 	}
 	public function set_frame_angle(_angle:Float = null) {
+		
+		return;
+		
 		if (_angle != null) {
 			this.angle = _angle;
 		}
