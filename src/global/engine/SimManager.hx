@@ -21,6 +21,7 @@ class SimManager
 	private var slow_rate:Float = 5;
 	private var rateBelowOneFPS:Bool = false;
 	private var rewind:Bool = false;
+	private var ff_loop:Float = 1;
 	
 	private var playbackRates:Array<Int> = [1, 2, 5, 10, 15, 20, 25, 30, 35, 40, 80, 160, 320];
 	private var playbackRateIndex:Int = 9;
@@ -53,11 +54,12 @@ class SimManager
 		Common.gRiderManager.set_rider_visual_start();
 		if (!SVar.sim_running) {
 			Common.gCode.return_to_origin_sim();
-			this.iterator = new Timer(Std.int(1000 * ( 1 / 60)));
-			this.iterator.run = function():Void {
-				this.update_sim();
-				Common.gTextInfo.update_sim();
+			if (CVar.slow_motion_auto) {
+				SVar.sim_rate = 5;
+			} else {
+				SVar.sim_rate = 40;
 			}
+			this.set_timer();
 			SVar.sim_running = true;
 		}
 		if (CVar.force_zoom) {
@@ -68,14 +70,8 @@ class SimManager
 			Common.gTrack.scaleX = Common.gTrack.scaleY = Common.gRiderManager.scaleX = Common.gRiderManager.scaleY = (Common.gTrack.scaleX * (CVar.force_zoom_inverse ? ( -1) : (1)));
 		}
 	}
-	var milliseconds:Float = 0;
 	function update_sim()
 	{
-		this.milliseconds += 1000 / 60;
-		if (this.milliseconds <= (1000 / this.playback_rate) && this.playback_rate <= 40 || CVar.paused) return;
-		else if (this.milliseconds <= (1000 / 40) && this.playback_rate > 40) return;
-		else milliseconds = 0;
-		
 		if (CVar.hit_test_live) {
 			for (a in SubPanel.lit_lines) {
 				a.visible = false;
@@ -130,6 +126,7 @@ class SimManager
 			SVar.sim_running = false;
 			SVar.frames_alt = SVar.frames;
 			SVar.frames = 0;
+			this.ff_loop = 1;
 			this.iterator.stop();
 			if (CVar.force_zoom || CVar.force_zoom_inverse) {
 				Common.gTrack.scaleX = Common.gTrack.scaleY = Common.gRiderManager.scaleX = Common.gRiderManager.scaleY = CVar.prev_zoom_ammount;
@@ -187,29 +184,32 @@ class SimManager
 		this.flag_av = false;
 	}
 	public function decrease_playback_rate() {
-		if (this.playbackRateIndex > 0) {
-			--this.playbackRateIndex;
-			this.playback_rate = this.playbackRates[this.playbackRateIndex];
-		} else if (this.playbackRateIndex == 0 && this.playback_rate > 0.0625) {
-			this.playback_rate *= 0.5;
-		}
-		if (this.playback_rate != 40) {
-			SVar.playbackModifierString = " @" + this.playback_rate + "FPS";
+		if (SVar.sim_rate == 1.25) return;
+		this.iterator.stop();
+		if (SVar.sim_rate <= 40 && this.ff_loop == 1) {
+			SVar.sim_rate /= 2;
 		} else {
-			SVar.playbackModifierString = "";
+			this.ff_loop /= 2;
 		}
+		this.set_timer();
 	}
 	public function increase_playback_rate() {
-		if (this.playbackRateIndex < this.playbackRates.length - 1 && this.playbackRateIndex != 0 || this.playback_rate == 1) {
-			++this.playbackRateIndex;
-			this.playback_rate = this.playbackRates[this.playbackRateIndex];
-		} else if (this.playbackRateIndex == 0 && this.playback_rate < 1 ) {
-			this.playback_rate *= 2;
-		}
-		if (this.playback_rate != 40) {
-			SVar.playbackModifierString = " @" + this.playback_rate + "FPS";
+		if (this.ff_loop == 16) return;
+		this.iterator.stop();
+		if (SVar.sim_rate < 40) {
+			SVar.sim_rate *= 2;
 		} else {
-			SVar.playbackModifierString = "";
+			this.ff_loop *= 2;
+		}
+		this.set_timer();
+	}
+	public function set_timer() {
+		this.iterator = new Timer(Std.int(1000 * ( 1 / SVar.sim_rate)));
+		this.iterator.run = function():Void {
+			for (a in 0...Std.int(this.ff_loop)) {
+				this.update_sim();
+				Common.gTextInfo.update_sim();
+			}
 		}
 	}
 	public function rewind_toggle() {
