@@ -89,23 +89,18 @@ class SettingsMenu extends Sprite
 		}
 		this.window.add_item(this.checkBox_hitTestLive, false, true);
 		
-		this.checkBox_forceZoom = new CheckBox("Force Zoom", CVar.force_zoom);
+		this.checkBox_forceZoom = new CheckBox("Force Zoom: x4", CVar.force_zoom);
 		this.checkBox_forceZoom.onChange = function() {
 			CVar.force_zoom = this.checkBox_forceZoom.value;
 			this.slider_forceZoom.visible = CVar.force_zoom;
-			this.label_zoomValue.visible = CVar.force_zoom;
 		}
 		this.window.add_item(this.checkBox_forceZoom);
 		
-		this.label_zoomValue = new TextField();
-		this.label_zoomValue.text = "Zoom: " + CVar.force_zoom_ammount;
-		this.label_zoomValue.visible = false;
-		//this.window.add_item(this.label_zoomValue);
-		
-		this.slider_forceZoom = new HSlider(Common.track_scale_min, Common.track_scale_max, 4);
+		this.slider_forceZoom = new HSlider(Common.track_scale_min, Common.track_scale_max * 4, 16);
 		this.slider_forceZoom.onChange = function():Void {
-			CVar.force_zoom_ammount = this.slider_forceZoom.value;
-			this.label_zoomValue.text = "Zoom: " + CVar.force_zoom_ammount;
+			CVar.force_zoom_ammount = this.slider_forceZoom.value / 4;
+			this.checkBox_forceZoom.label.text = "Force Zoom: x" + (CVar.force_zoom_ammount);
+			this.checkBox_forceZoom.label.width = this.checkBox_forceZoom.label.textWidth + 2;
 		}
 		this.slider_forceZoom.visible = false;
 		this.window.add_item(this.slider_forceZoom, true, true);
