@@ -179,7 +179,6 @@ class FileJSON extends FileBase
 			this.chunk_lines = _trackData.lines;
 			Lib.current.stage.addEventListener(Event.ENTER_FRAME, chunk_load);
 		} else {
-			if (_trackData.lines[0].id < _trackData.lines[1].id) _trackData.lines.reverse();
 			for (i in 0..._trackData.lines.length) {
 				var _loc1:LineBase;
 				if (_trackData.lines[i] == null) {
