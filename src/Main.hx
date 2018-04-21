@@ -73,6 +73,7 @@ class Main extends Sprite
 	private var importingVisible = false;
 	private var newStartLoader:BrowserBase;
 	private var fps:FPS;
+	private var loadingIcon:Sprite;
 	
 	public function new() 
 	{
@@ -281,6 +282,20 @@ class Main extends Sprite
 			
 			SVar.game_mode = GameState.edit;
 			Toolbar.tool.set_tool(ToolBase.lastTool);
+		}
+	}
+	public function set_load(_v:Bool) {
+		this.toolBar.visible = !_v;
+		this.timeline.visible = !_v;
+		if (_v) {
+			Toolbar.tool.set_tool("None");
+			this.loadingIcon = Common.OLR_Assets.getMovieClip("Loader");
+			this.addChild(this.loadingIcon);
+			this.loadingIcon.x = 15;
+			this.loadingIcon.y = 25;
+		} else {
+			Toolbar.tool.set_tool(ToolBase.lastTool);
+			this.removeChild(this.loadingIcon);
 		}
 	}
 	private function resize(e:Event):Void

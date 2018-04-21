@@ -191,6 +191,7 @@ class FileJSON extends FileBase
 				Common.gGrid.cacheLine(_loc1);
 				//SVar.lineID += 1;
 			}
+			Common.gCode.set_load(false);
 		}
 	}
 	function chunk_load(e:Event):Void {
@@ -207,6 +208,7 @@ class FileJSON extends FileBase
 			--step;
 			if (step <= 0) {
 				Lib.current.stage.removeEventListener(Event.ENTER_FRAME, chunk_load);
+				Common.gCode.set_load(false);
 			}
 		}
 	}

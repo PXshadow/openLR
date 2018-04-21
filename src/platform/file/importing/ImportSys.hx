@@ -59,6 +59,7 @@ class ImportSys extends ImportBase
 
 			switch (_locStringA) {
 				case ".json" :
+					Common.gCode.set_load(true);
 					file = new FileJSON();
 					this.trackData = new Object();
 					this.trackData = Json.parse(File.getContent(truePath));
