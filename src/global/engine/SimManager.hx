@@ -144,13 +144,11 @@ class SimManager
 	public function pause_sim()
 	{
 		SVar.frames_alt = SVar.frames;
-		SVar.sim_running = false;
 		CVar.paused = true;
 		SVar.pause_frame = SVar.frames;
 	}
 	public function resume_sim() {
 		CVar.paused = false;
-		SVar.sim_running = true;
 		SVar.pause_frame = -1;
 	}
 	public function set_rider_start(_x:Float, _y:Float)
