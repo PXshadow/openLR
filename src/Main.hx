@@ -305,7 +305,7 @@ class Main extends Sprite
 	public function align() {
 		this.visContainer.x = this.visContainer.y = 0;
 		
-		this.toolBar.x = (Lib.current.stage.stageWidth / 2) - (128 * CVar.toolbar_scale);
+		this.toolBar.x = (Lib.current.stage.stageWidth / 2) - 128;
 		
 		Common.stage_height = Lib.current.stage.stageHeight;
 		Common.stage_width = Lib.current.stage.stageWidth;
