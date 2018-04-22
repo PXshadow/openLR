@@ -40,7 +40,6 @@ class SettingsMenu extends Sprite
 	var checkBox_hitTest:CheckBox;
 	var checkBox_hitTestLive:CheckBox;
 	var checkBox_forceZoom:CheckBox;
-	var checkBox_forceInverse:CheckBox;
 	var checkBox_autoSlow:CheckBox;
 	var slider_forceZoom:HSlider;
 	var label_zoomValue:TextField;
@@ -48,10 +47,7 @@ class SettingsMenu extends Sprite
 	
 	var checkBox_angleSnap:CheckBox;
 	var checkBox_jointSnap:CheckBox;
-	var checkBox_skeleton:CheckBox;
 	var checkBox_previewMode:CheckBox;
-	var slider_RiderAlpha:HSlider;
-	var slider_guiScale:HSlider;
 	var checkbox_scrollCursor:CheckBox;
 	
 	var window:WindowBox;
@@ -63,7 +59,7 @@ class SettingsMenu extends Sprite
 		this.addEventListener(MouseEvent.MOUSE_OVER, this.temToolDis);
 		this.addEventListener(MouseEvent.MOUSE_OUT, this.temToolDisDis);
 		
-		this.window = new WindowBox("Settings", WindowMode.MENU, 400);
+		this.window = new WindowBox("Settings", WindowMode.MENU, 300);
 		this.addChild(this.window);
 		this.window.drag = true;
 		this.window.x = this.window.y = 20;
@@ -140,11 +136,22 @@ class SettingsMenu extends Sprite
 		this.window.add_item(this.checkbox_scrollCursor, true);
 		
 		this.window.negative.addEventListener(MouseEvent.CLICK, function(e:MouseEvent) {
+			CVar.flushLocal();
 			Common.gCode.toggleSettings_box();
 		});
 	}
 	public function update() {
-		this.window.x = this.window.y = 20;
+		CVar.loadLocal();
+		this.checkBox_angleSnap.set(CVar.local.angle_snap);
+		this.checkBox_autoSlow.set(CVar.volatile.slow_motion_auto);
+		this.checkBox_colorPlay.set(CVar.volatile.color_play);
+		this.checkBox_forceZoom.set(CVar.track.force_zoom);
+		this.checkBox_hitTest.set(CVar.volatile.hit_test);
+		this.checkBox_jointSnap.set(CVar.local.line_snap);
+		this.checkBox_previewMode.set(CVar.volatile.preview_mode);
+		this.checkbox_scrollCursor.set(CVar.local.scroll_cursor);
+		
+		this.slider_forceZoom.set(CVar.track.force_zoom_ammount);
 	}
 	function temToolDisDis(e:MouseEvent):Void 
 	{
