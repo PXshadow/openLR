@@ -38,6 +38,7 @@ class FileJSON extends FileBase
 	public function parse_json():Object //top object. Gets name, author, etc.
 	{
 		var _locArray = this.json_line_aray_parse();
+		var _locRiderInfo = this.get_rider_info();
 		var json_object:Object = {
 			"label": this.name,
 			"creator": this.author,
@@ -49,7 +50,10 @@ class FileJSON extends FileBase
 			},
 			"duration": SVar.max_frames,
 			"lines": _locArray,
-			"extra": CVar.track,
+			"extra": { 
+				"settings" : CVar.track,
+				"rider_info" : _locRiderInfo,
+			}
 		}
 		return(json_object);
 	}
@@ -100,7 +104,9 @@ class FileJSON extends FileBase
 		return(a);
 	}
 	override public function json_decode(_trackData:Object) {
-		CVar.track.name = _trackData.label;
+		if (_trackData.settings != null) {
+			CVar.track.name = _trackData.label;
+		}
 		Common.track_start_x = _trackData.startPosition.x;
 		Common.track_start_y = _trackData.startPosition.y;
 		Common.gRiderManager.set_start(Common.track_start_x, Common.track_start_y, 0);
@@ -117,9 +123,7 @@ class FileJSON extends FileBase
 	}
 	function load_extra(_info:Object) 
 	{
-		if (_info.settings != null) {
-			CVar.track = _info.settings;
-		}
+		CVar.track = _info.settings;
 		if (_info.rider_info != null) {
 			for (a in 0..._info.rider_info.length) {
 				var color_a:Int = -1;
