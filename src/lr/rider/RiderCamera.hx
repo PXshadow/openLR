@@ -25,6 +25,9 @@ class RiderCamera
 	
 	public var circ_camera:Bool = false;
 	
+	public var rider_gx:Null<Int>;
+	public var rider_gy:Null<Int>;
+	
 	var debug:Sprite = new Sprite();
 	
 	public function new() 
@@ -62,9 +65,14 @@ class RiderCamera
 			_locXPan = difference.x * -1;
 			_locYPan = difference.y * -1;
 		}
+		var _locRiderPanel = Common.tilePos(dot.x, dot.y);
+		if (_locRiderPanel.x != this.rider_gx || _locRiderPanel.y != this.rider_gy) {
+			Common.gTrack.check_visibility();
+			this.rider_gx = _locRiderPanel.x;
+			this.rider_gy = _locRiderPanel.y;
+		}
 		Common.gTrack.x += _locXPan;
 		Common.gTrack.y += _locYPan;
-		Common.gTrack.check_visibility();
 		SVar.rider_speed = RiderManager.speed[_riderID];
 		if (SVar.rider_speed > SVar.rider_speed_top) SVar.rider_speed_top = SVar.rider_speed;
 	}

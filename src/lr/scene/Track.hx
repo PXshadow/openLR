@@ -80,9 +80,6 @@ class Track extends Sprite
 	
 	function update_visibility() 
 	{
-		#if (flash)
-			return;
-		#end
 		for (a in this.renderList) {
 			if (a.panelPosX < this.tile_tl.x) {
 				Common.gTrack.canvas.removeChild(a.frame);
@@ -102,10 +99,10 @@ class Track extends Sprite
 				this.renderList.remove(a);
 			}
 		}
-		var _loc1:Int = Std.int(this.tile_tl.x -1);
-		var _loc2:Int = Std.int(this.tile_br.x + 1);
-		var _loc3:Int = Std.int(this.tile_tl.y -1);
-		var _loc4:Int = Std.int(this.tile_br.y + 1);
+		var _loc1:Int = Std.int(this.tile_tl.x -2);
+		var _loc2:Int = Std.int(this.tile_br.x + 2);
+		var _loc3:Int = Std.int(this.tile_tl.y -2);
+		var _loc4:Int = Std.int(this.tile_br.y + 2);
 		for (b in _loc1..._loc2) {
 			if (Grid.tile[b] == null) {
 					continue;
@@ -126,7 +123,7 @@ class Track extends Sprite
 	}
 	public function decachePanels() {
 		for (a in renderList) {
-			a.frame.cacheAsBitmap = false;
+			//a.frame.cacheAsBitmap = false;
 		}
 	}
 	public function cachePanels() {
