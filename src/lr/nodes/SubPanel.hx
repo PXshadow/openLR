@@ -54,7 +54,8 @@ class SubPanel extends Sprite
     this.addChild(this.layer_black); 
     this.addChild(this.layer_hitTest); 
      
-    this.layer_scene_black.visible = false; 
+    this.layer_scene_black.visible = false;
+	this.cacheAsBitmap = true;
   } 
   public function drawLine(_line:LineBase) { 
     var _loc_3:Float = _line.nx > 0 ? (Math.ceil(_line.nx)) : (Math.floor(_line.nx)); 

@@ -40,10 +40,6 @@ class Panel
 		this.frame.x = this.offset_x;
 		this.frame.y = this.offset_y;
 		
-		#if (cpp)
-			this.frame.cacheAsBitmap = true;
-		#end
-		
 		this.primary = new Array();
 	}
 	public function addToStage() {

@@ -328,7 +328,6 @@ class Grid
 		}
 		--SVar.lineCount;
 		Common.gTextInfo.update();
-		Common.gSimManager.rider_update();
 		this.redo_lines.push(line);
 	}
 	function remove_from_grid(line:LineBase)
