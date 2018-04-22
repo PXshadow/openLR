@@ -329,9 +329,6 @@ class Main extends Sprite
 		Common.stage_br = new Point(Lib.current.stage.stageWidth, Lib.current.stage.stageHeight);
 		Common.gTrack.check_visibility();
 	}
-	public function setScale() {
-		this.toolBar.scaleX = this.toolBar.scaleY = CVar.toolbar_scale;
-	}
 	public function return_to_origin(_x:Float = 0, _y:Float = 0) {
 		this.track.x = Lib.current.stage.stageWidth * 0.5 - _x;
 		this.track.y = Lib.current.stage.stageHeight * 0.5 - _y;
