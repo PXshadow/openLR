@@ -72,6 +72,7 @@ class SimManager
 	}
 	function update_sim()
 	{
+		if (CVar.paused) return;
 		if (CVar.hit_test_live) {
 			for (a in SubPanel.lit_lines) {
 				a.visible = false;
