@@ -149,4 +149,12 @@ class HSlider extends Sprite
 			this.onChange();
 		}
 	}
+	public function set(_value:Float) {
+		this.value = _value;
+		
+		var _locRatio = this.value / this.range;
+		this.head.x = 255 * _locRatio;
+		this.headOutline.x = 255 * _locRatio;
+		this.barFill.width = this.head.x;
+	}
 }

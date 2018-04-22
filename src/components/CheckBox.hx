@@ -64,4 +64,8 @@ class CheckBox extends Sprite
 			this.checkGreen.visible = false;
 		}
 	}
+	public function set(_bool:Bool) {
+		this.value = _bool;
+		this.checkGreen.visible = _bool;
+	}
 }
