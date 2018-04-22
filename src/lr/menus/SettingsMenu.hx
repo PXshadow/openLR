@@ -133,6 +133,12 @@ class SettingsMenu extends Sprite
 		}
 		this.window.add_item(this.checkBox_previewMode);
 		
+		this.checkbox_scrollCursor = new CheckBox("Scroll zoom focuses on cursor", CVar.local.scroll_cursor);
+		this.checkbox_scrollCursor.onChange = function():Void {
+			CVar.local.scroll_cursor = this.checkbox_scrollCursor.value;
+		}
+		this.window.add_item(this.checkbox_scrollCursor, true);
+		
 		this.window.negative.addEventListener(MouseEvent.CLICK, function(e:MouseEvent) {
 			Common.gCode.toggleSettings_box();
 		});
