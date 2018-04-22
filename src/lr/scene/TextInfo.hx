@@ -95,9 +95,8 @@ class TextInfo extends Sprite
 	public function update_sim() {
 		var _locTime:String = Common.time(SVar.frames);
 		
-		textInfo_A.text = CVar.track_name;
+		textInfo_A.text = CVar.track.name;
 		textInfo_B.text = _locTime + SVar.playbackModifierString;
 		textInfo_C.text = SVar.rider_speed + " P/F";
-		textInfo_D.text = SVar.rider_speed_top + " Top";
 	}
 }

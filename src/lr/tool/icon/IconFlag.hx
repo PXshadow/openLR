@@ -25,12 +25,12 @@ class IconFlag extends IconBase
 			Common.gSimManager.mark_rider_position();
 			Common.gSimManager.show_flag();
 		} else if (!SVar.sim_running) {
-			if (CVar.flagged == false) {
+			if (CVar.volatile.flagged == false) {
 				Common.gSimManager.show_flag();
-				CVar.flagged = true;
-			} else if (CVar.flagged == true) {
+				CVar.volatile.flagged = true;
+			} else if (CVar.volatile.flagged == true) {
 				Common.gSimManager.hide_flag();
-				CVar.flagged = false;
+				CVar.volatile.flagged = false;
 			}
 		}
 	}

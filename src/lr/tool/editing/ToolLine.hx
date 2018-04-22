@@ -47,7 +47,7 @@ class ToolLine extends ToolAction
 		Common.gToolbar.visible = false;
 		x2 = Common.gTrack.mouseX;
 		y2 = Common.gTrack.mouseY;
-		if (CVar.mod_x || CVar.angle_snap) {
+		if (CVar.mod_x || CVar.local.angle_snap) {
 			var _locSnap = this.angle_snap(x1, y1, x2, y2);
 			x2 = _locSnap[0];
 			y2 = _locSnap[1];
@@ -95,7 +95,7 @@ class ToolLine extends ToolAction
 		Common.gToolbar.visible = false;
 		x2 = Common.gTrack.mouseX;
 		y2 = Common.gTrack.mouseY;
-		if (CVar.mod_x || CVar.angle_snap) {
+		if (CVar.mod_x || CVar.local.angle_snap) {
 			var _locSnap = this.angle_snap(x1, y1, x2, y2);
 			x2 = _locSnap[0];
 			y2 = _locSnap[1];

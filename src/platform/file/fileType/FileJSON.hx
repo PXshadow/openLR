@@ -38,7 +38,6 @@ class FileJSON extends FileBase
 	public function parse_json():Object //top object. Gets name, author, etc.
 	{
 		var _locArray = this.json_line_aray_parse();
-		var _locOLRMetaData = this.json_OLRMetaData();
 		var json_object:Object = {
 			"label": this.name,
 			"creator": this.author,
@@ -50,27 +49,10 @@ class FileJSON extends FileBase
 			},
 			"duration": SVar.max_frames,
 			"lines": _locArray,
-			"extra": _locOLRMetaData,
+			"extra": CVar.track,
 		}
 		return(json_object);
 	}
-	
-	function json_OLRMetaData() 
-	{
-		var _loc1 = this.get_rider_info();
-		var _locReturn:Object = {
-			"settings" : {
-				"angle_snap" : CVar.angle_snap,
-				"line_snap" : CVar.line_snap,
-				"color_play" : CVar.color_play,
-				"preview_mode" : CVar.preview_mode,
-				"hit_test" : CVar.hit_test,
-			},
-			"rider_info" : _loc1,
-		}
-		return (_locReturn);
-	}
-	
 	function get_rider_info():Array<Object>
 	{
 		var _locArray:Array<Object> = new Array();
@@ -91,18 +73,6 @@ class FileJSON extends FileBase
 			++_indexCount;
 		}
 		return (_locArray);
-	}
-	function json_settings_array():Object
-	{
-		var settings:Object = new Object();
-		
-		settings.angle_snap = CVar.angle_snap;
-		settings.line_snap = CVar.line_snap;
-		settings.color_play = CVar.color_play;
-		settings.preview_mode = CVar.preview_mode;
-		settings.hit_test = CVar.hit_test;
-		
-		return(settings);
 	}
 	private function json_line_aray_parse():Array<Object> //parses line array and organizes data
 	{
@@ -130,7 +100,7 @@ class FileJSON extends FileBase
 		return(a);
 	}
 	override public function json_decode(_trackData:Object) {
-		CVar.track_name = _trackData.label;
+		CVar.track.name = _trackData.label;
 		Common.track_start_x = _trackData.startPosition.x;
 		Common.track_start_y = _trackData.startPosition.y;
 		Common.gRiderManager.set_start(Common.track_start_x, Common.track_start_y, 0);
@@ -148,11 +118,7 @@ class FileJSON extends FileBase
 	function load_extra(_info:Object) 
 	{
 		if (_info.settings != null) {
-			if (_info.settings.angle_snap != null) CVar.angle_snap = _info.settings.angle_snap;
-			if (_info.settings.line_snap != null) CVar.angle_snap = _info.settings.line_snap;
-			if (_info.settings.color_play != null) CVar.angle_snap = _info.settings.color_play;
-			if (_info.settings.preview_mode != null) CVar.angle_snap = _info.settings.preview_mode;
-			if (_info.settings.hit_test != null) CVar.angle_snap = _info.settings.hit_test;
+			CVar.track = _info.settings;
 		}
 		if (_info.rider_info != null) {
 			for (a in 0..._info.rider_info.length) {

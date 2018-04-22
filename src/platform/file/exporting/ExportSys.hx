@@ -181,8 +181,8 @@ class ExportSys extends ExportBase
 		this.textButton_save.y = 305;
 		
 		if (!SVar.new_track) {
-			this.textfield_trackName.text = CVar.track_name;
-			this.textfield_authorName.text = CVar.track_author;
+			this.textfield_trackName.text = CVar.track.name;
+			this.textfield_authorName.text = CVar.track.author;
 		}
 	}
 	function save_track() 
@@ -195,8 +195,8 @@ class ExportSys extends ExportBase
 		//this.track.encode(this.textfield_trackName.text, this.textfield_authorName.text, this.textarea_trackDescription.text);
 		//this.flush_lrpk(track.exportBytes);
 		
-		CVar.track_name = this.textfield_trackName.text;
-		CVar.track_author = this.textfield_authorName.text;
+		CVar.track.name = this.textfield_trackName.text;
+		CVar.track.author = this.textfield_authorName.text;
 		SVar.new_track = false;
 		this.exit_save_menu();
 	}

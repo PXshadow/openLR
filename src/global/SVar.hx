@@ -38,6 +38,7 @@ class SVar
 	
 	public static var pause_frame:Int = -1;
 	public static var playbackModifierString:String = "";
+	public static var prev_zoom_ammount:Float;
 	
 	public static var rider_count = 0;
 	public static var rider_speed:Float = 0;

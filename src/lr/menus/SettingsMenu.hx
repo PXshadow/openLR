@@ -69,65 +69,65 @@ class SettingsMenu extends Sprite
 		
 		//Track settings
 		
-		this.checkBox_colorPlay = new CheckBox("Color Play", CVar.color_play);
+		this.checkBox_colorPlay = new CheckBox("Color Play", CVar.volatile.color_play);
 		this.checkBox_colorPlay.onChange = function () {
-			CVar.color_play = this.checkBox_colorPlay.value;
+			CVar.volatile.color_play = this.checkBox_colorPlay.value;
 		}
 		this.window.add_item(this.checkBox_colorPlay);
 		
-		this.checkBox_hitTest = new CheckBox("Hit Test", CVar.hit_test);
+		this.checkBox_hitTest = new CheckBox("Hit Test", CVar.volatile.hit_test);
 		this.checkBox_hitTest.onChange = function() {
-			CVar.hit_test = this.checkBox_hitTest.value;
-			this.checkBox_hitTestLive.visible = CVar.hit_test;
+			CVar.volatile.hit_test = this.checkBox_hitTest.value;
+			this.checkBox_hitTestLive.visible = CVar.volatile.hit_test;
 		}
 		this.window.add_item(this.checkBox_hitTest);
 		
-		this.checkBox_hitTestLive = new CheckBox("Live Hit Test", CVar.hit_test_live);
+		this.checkBox_hitTestLive = new CheckBox("Live Hit Test", CVar.volatile.hit_test_live);
 		this.checkBox_hitTestLive.visible = false;
 		this.checkBox_hitTestLive.onChange = function() {
-			CVar.hit_test_live = this.checkBox_hitTestLive.value;
+			CVar.volatile.hit_test_live = this.checkBox_hitTestLive.value;
 		}
 		this.window.add_item(this.checkBox_hitTestLive, false, true);
 		
-		this.checkBox_forceZoom = new CheckBox("Force Zoom: x4", CVar.force_zoom);
+		this.checkBox_forceZoom = new CheckBox("Force Zoom: x4", CVar.track.force_zoom);
 		this.checkBox_forceZoom.onChange = function() {
-			CVar.force_zoom = this.checkBox_forceZoom.value;
-			this.slider_forceZoom.visible = CVar.force_zoom;
+			CVar.track.force_zoom = this.checkBox_forceZoom.value;
+			this.slider_forceZoom.visible = CVar.track.force_zoom;
 		}
 		this.window.add_item(this.checkBox_forceZoom);
 		
 		this.slider_forceZoom = new HSlider(Common.track_scale_min, Common.track_scale_max * 4, 16);
 		this.slider_forceZoom.onChange = function():Void {
-			CVar.force_zoom_ammount = this.slider_forceZoom.value / 4;
-			this.checkBox_forceZoom.label.text = "Force Zoom: x" + (CVar.force_zoom_ammount);
+			CVar.track.force_zoom_ammount = this.slider_forceZoom.value / 4;
+			this.checkBox_forceZoom.label.text = "Force Zoom: x" + (CVar.track.force_zoom_ammount);
 			this.checkBox_forceZoom.label.width = this.checkBox_forceZoom.label.textWidth + 2;
 		}
 		this.slider_forceZoom.visible = false;
 		this.window.add_item(this.slider_forceZoom, true, true);
 		
-		this.checkBox_autoSlow = new CheckBox("Auto Slow-mo", CVar.slow_motion_auto);
+		this.checkBox_autoSlow = new CheckBox("Auto Slow-mo", CVar.volatile.slow_motion_auto);
 		this.checkBox_autoSlow.onChange = function() {
-			CVar.slow_motion_auto = CVar.slow_motion_auto == true ? false : true;
+			CVar.volatile.slow_motion_auto = CVar.volatile.slow_motion_auto == true ? false : true;
 		}
 		this.window.add_item(this.checkBox_autoSlow, false, true);
 		
 		
 		//Editor Settings
-		this.checkBox_angleSnap = new CheckBox("Angle Snap", CVar.angle_snap);
+		this.checkBox_angleSnap = new CheckBox("Angle Snap", CVar.local.angle_snap);
 		this.checkBox_angleSnap.onChange = function() {
-			CVar.angle_snap = this.checkBox_angleSnap.value;
+			CVar.local.angle_snap = this.checkBox_angleSnap.value;
 		}
 		this.window.add_item(this.checkBox_angleSnap);
 		
-		this.checkBox_jointSnap = new CheckBox("Joint Snap", CVar.line_snap);
+		this.checkBox_jointSnap = new CheckBox("Joint Snap", CVar.local.line_snap);
 		this.checkBox_jointSnap.onChange = function() {
-			CVar.line_snap = this.checkBox_jointSnap.value;
+			CVar.local.line_snap = this.checkBox_jointSnap.value;
 		}
 		this.window.add_item(this.checkBox_jointSnap, false, true);
 		
-		this.checkBox_previewMode = new CheckBox("Preview mode", CVar.preview_mode);
+		this.checkBox_previewMode = new CheckBox("Preview mode", CVar.volatile.preview_mode);
 		this.checkBox_previewMode.onChange = function() {
-			CVar.preview_mode = this.checkBox_previewMode.value;
+			CVar.volatile.preview_mode = this.checkBox_previewMode.value;
 			Common.gTrack.set_rendermode_edit();
 		}
 		this.window.add_item(this.checkBox_previewMode);

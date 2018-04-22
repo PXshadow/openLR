@@ -137,7 +137,7 @@ class Track extends Sprite
 	public function renderPreview(_line:LineBase)
 	{
 		this.graphics.clear();
-		if (!CVar.preview_mode) {
+		if (!CVar.volatile.preview_mode) {
 			var _loc_3:Float = _line.nx > 0 ? (Math.ceil(_line.nx)) : (Math.floor(_line.nx));
 			var _loc_4:Float = _line.ny > 0 ? (Math.ceil(_line.ny)) : (Math.floor(_line.ny));
 			switch(_line.type) {
@@ -170,14 +170,14 @@ class Track extends Sprite
 	}
 	public function set_rendermode_play() {
 		this.hitTestList = new Array<LineBase>();
-		if (!CVar.color_play) {
+		if (!CVar.volatile.color_play) {
 			Common.gGrid.updateRender("Play");
 		} else {
 			Common.gGrid.updateRender("Edit");
 		}
 	}
 	public function set_rendermode_edit() {
-		if (CVar.preview_mode) {
+		if (CVar.volatile.preview_mode) {
 			Common.gGrid.updateRender("Play");
 		} else {
 			Common.gGrid.updateRender("Edit");
@@ -199,7 +199,7 @@ class Track extends Sprite
 		SVar.max_frames = 0;
 		SVar.pause_frame = 0;
 		SVar.rider_speed_top = 0;
-		CVar.slow_motion_rate = 5;
+		CVar.volatile.slow_motion_rate = 5;
 		SVar.slow_motion = false;
 	}
 	public function set_simmode_play(_fromStart:Bool = false) {

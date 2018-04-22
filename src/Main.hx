@@ -191,7 +191,7 @@ class Main extends Sprite
 		SVar.max_frames = 0;
 		SVar.pause_frame = -1;
 		SVar.slow_motion = false;
-		CVar.slow_motion_rate = 5;
+		CVar.volatile.slow_motion_rate = 5;
 		Lib.current.stage.removeChild(this.timeline);
 		this.timeline = new TimelineControl();
 		Lib.current.stage.addChild(this.timeline);

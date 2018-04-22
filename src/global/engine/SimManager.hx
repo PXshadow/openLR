@@ -31,30 +31,30 @@ class SimManager
 		Common.gSimManager = this;
 	}
 	public function start_sim(_fromStart:Bool) {
-		if (CVar.slow_motion_auto) {
+		if (CVar.volatile.slow_motion_auto) {
 			SVar.slow_motion = true;
-			this.playback_rate = CVar.slow_motion_rate;
-			this.slow_rate = CVar.slow_motion_rate;
+			this.playback_rate = CVar.volatile.slow_motion_rate;
+			this.slow_rate = CVar.volatile.slow_motion_rate;
 		} else {
 			SVar.slow_motion = false;
 			this.playback_rate = 40;
 			this.playbackRateIndex = 9;
 			SVar.playbackModifierString = "";
 		}
-		if (!CVar.flagged || _fromStart) {
+		if (!CVar.volatile.flagged || _fromStart) {
 			SVar.frames = 0;
 			Common.gRiderManager.restore_start();
-		} else if (CVar.flagged) {
+		} else if (CVar.volatile.flagged) {
 			Common.gRiderManager.restore_flag();
 		}
 		if (CVar.paused) {
-			CVar.paused = false;
+			CVar.volatile.paused = false;
 			SVar.pause_frame = -1;
 		}
 		Common.gRiderManager.set_rider_visual_start();
 		if (!SVar.sim_running) {
 			Common.gCode.return_to_origin_sim();
-			if (CVar.slow_motion_auto) {
+			if (CVar.volatile.slow_motion_auto) {
 				SVar.sim_rate = 5;
 			} else {
 				SVar.sim_rate = 40;
@@ -62,18 +62,15 @@ class SimManager
 			this.set_timer();
 			SVar.sim_running = true;
 		}
-		if (CVar.force_zoom) {
-			CVar.prev_zoom_ammount = Common.gTrack.scaleX;
-			Common.gTrack.scaleX = Common.gTrack.scaleY = Common.gRiderManager.scaleX = Common.gRiderManager.scaleY = CVar.force_zoom_ammount * (CVar.force_zoom_inverse ? ( -1) : (1));
-		} else if (CVar.force_zoom_inverse) {
-			CVar.prev_zoom_ammount = Common.gTrack.scaleX;
-			Common.gTrack.scaleX = Common.gTrack.scaleY = Common.gRiderManager.scaleX = Common.gRiderManager.scaleY = (Common.gTrack.scaleX * (CVar.force_zoom_inverse ? ( -1) : (1)));
+		if (CVar.track.force_zoom) {
+			SVar.prev_zoom_ammount = Common.gTrack.scaleX;
+			Common.gTrack.scaleX = Common.gTrack.scaleY = Common.gRiderManager.scaleX = Common.gRiderManager.scaleY = CVar.track.force_zoom_ammount;
 		}
 	}
 	function update_sim()
 	{
 		if (CVar.paused) return;
-		if (CVar.hit_test_live) {
+		if (CVar.volatile.hit_test_live) {
 			for (a in SubPanel.lit_lines) {
 				a.visible = false;
 			}
@@ -129,10 +126,10 @@ class SimManager
 			SVar.frames = 0;
 			this.ff_loop = 1;
 			this.iterator.stop();
-			if (CVar.force_zoom || CVar.force_zoom_inverse) {
-				Common.gTrack.scaleX = Common.gTrack.scaleY = Common.gRiderManager.scaleX = Common.gRiderManager.scaleY = CVar.prev_zoom_ammount;
+			if (CVar.track.force_zoom) {
+				Common.gTrack.scaleX = Common.gTrack.scaleY = Common.gRiderManager.scaleX = Common.gRiderManager.scaleY = SVar.prev_zoom_ammount;
 			}
-			if (CVar.flagged) {
+			if (CVar.volatile.flagged) {
 				Common.gRiderManager.restore_flag();
 			} else {
 				Common.gRiderManager.restore_start();
@@ -157,7 +154,7 @@ class SimManager
 	}
 	public function mark_rider_position() {
 		Common.gRiderManager.set_flag();
-		CVar.flagged = true;
+		CVar.volatile.flagged = true;
 		this.flag_av = true;
 	}
 	public function hide_flag() {
@@ -166,20 +163,11 @@ class SimManager
 	public function show_flag() {
 		Common.gRiderManager.enable_flag();
 	}
-	public function rider_update() {
-		return; //this will stay here until it learns to fucking behave
-		var _loc1 = SVar.frames_alt - CVar.track_stepback_update;
-		if (_loc1 <= 0) {
-			//this.rider.inject_frame_and_iterate(0, SVar.frames_alt);
-		} else {
-			//this.rider.inject_frame_and_iterate(_loc1, CVar.track_stepback_update - 1);
-		}
-	}
 	public function reset() {
 		Common.gRiderManager.destroy_flag();
 		Common.gRiderManager.restore_start();
 		Common.gRiderManager.update_render();
-		CVar.flagged = false;
+		CVar.volatile.flagged = false;
 		this.flag_av = false;
 	}
 	public function decrease_playback_rate() {

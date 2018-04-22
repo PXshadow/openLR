@@ -410,7 +410,7 @@ class Grid
 		else {
 			_loc9 = true;
 		}
-		if (!CVar.line_snap)
+		if (!CVar.local.line_snap)
 		{
 			_loc9 = false;
 		}
