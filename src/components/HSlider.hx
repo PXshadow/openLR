@@ -56,6 +56,7 @@ class HSlider extends Sprite
 		
 		this.barFill.mouseEnabled = false;
 		this.head.buttonMode = true;
+		this.buttonMode = true;
 		
 		this.addEventListener(MouseEvent.MOUSE_DOWN, this.startDragHead);
 		this.addEventListener(MouseEvent.MOUSE_UP, this.releaseHead);
