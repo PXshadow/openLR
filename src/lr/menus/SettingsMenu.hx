@@ -52,6 +52,7 @@ class SettingsMenu extends Sprite
 	var checkBox_previewMode:CheckBox;
 	var slider_RiderAlpha:HSlider;
 	var slider_guiScale:HSlider;
+	var checkbox_scrollCursor:CheckBox;
 	
 	var window:WindowBox;
 	

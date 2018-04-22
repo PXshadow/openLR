@@ -8,6 +8,7 @@ import openfl.geom.Point;
 
 import global.Common;
 import global.SVar;
+import global.CVar;
 
 /**
  * ...
@@ -69,10 +70,16 @@ class MouseControl extends ControlBase
 				return;
 			#end
 			var trkLoc:Point = new Point(Common.gTrack.x, Common.gTrack.y);
+			var localPoint:Point;
+			if (CVar.local.scroll_cursor) {
+				localPoint = new Point(Lib.current.stage.mouseX, Lib.current.stage.mouseY);
+			} else {
+				localPoint = new Point(Lib.current.stage.stageWidth / 2, Lib.current.stage.stageHeight / 2);
+			}
 			var trkScale:Float = Common.gTrack.scaleX;
 			var scaleToSet = Math.min(Math.max(trkScale + (trkScale * 0.1 * platDelta), Common.track_scale_min), Common.track_scale_max);
-			Common.gTrack.x = (Lib.current.stage.mouseX) + ((trkLoc.x - Lib.current.stage.mouseX) * (scaleToSet / trkScale));
-			Common.gTrack.y = (Lib.current.stage.mouseY) + ((trkLoc.y - Lib.current.stage.mouseY) * (scaleToSet / trkScale));
+			Common.gTrack.x = (localPoint.x) + ((trkLoc.x - localPoint.x) * (scaleToSet / trkScale));
+			Common.gTrack.y = (localPoint.y) + ((trkLoc.y - localPoint.y) * (scaleToSet / trkScale));
 			Common.gTrack.scaleX = Common.gTrack.scaleY = scaleToSet;
 			Common.gTrack.check_visibility();
 		}
