@@ -67,6 +67,11 @@ class KeyControl
 				if (SVar.sim_running) Common.gSimManager.rewind_toggle();
 			case Keyboard.I :
 				Common.globalFlagPlace();
+			case Keyboard.HOME :
+				Common.gCode.jump_to_position(Common.gRiderManager.riderArray[0].rider_pos_x, Common.gRiderManager.riderArray[0].rider_pos_y);
+			case Keyboard.END :
+				var lastLine = Common.gGrid.getLastLine();
+				if (lastLine != null) Common.gCode.jump_to_position(lastLine.x2, lastLine.y2);
 		}
 	}
 	function keyPress_repeat(e:KeyboardEvent) {
