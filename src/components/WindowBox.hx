@@ -183,6 +183,7 @@ class WindowBox extends Sprite
 		this.windowBar.width = this.wWidth;
 		
 		this.graphics.clear();
+		this.graphics.lineStyle(1, 0xDDDDDD);
 		this.graphics.beginFill(this.fill, 1);
 		this.graphics.moveTo(0, 30);
 		this.graphics.lineTo(0, this.wHeight + 30);
