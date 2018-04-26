@@ -26,7 +26,7 @@ import lr.tool.IconButton;
 }
 class WindowBox extends Sprite
 {
-	private var fontA:TextFormat = new TextFormat(Assets.getFont("fonts/Verdana.ttf").fontName, 16, 0xFFFFFF, null, null, null, null, null, TextFormatAlign.LEFT);
+	private var fontA:TextFormat = new TextFormat(Assets.getFont("fonts/Verdana Bold.ttf").fontName, 14, 0xFFFFFF, null, null, null, null, null, TextFormatAlign.LEFT);
 	private var fontB:TextFormat = new TextFormat(Assets.getFont("fonts/Verdana.ttf").fontName, 12, 0, null, null, null, null, null, TextFormatAlign.LEFT);
 	
 	private var type:Int = -1;
@@ -64,7 +64,7 @@ class WindowBox extends Sprite
 		this.barLabel.setTextFormat(this.fontA);
 		this.addChild(this.barLabel);
 		this.barLabel.x = 2;
-		this.barLabel.y = 4;
+		this.barLabel.y = -1;
 		this.barLabel.width = this.windowBar.width - 30;
 		this.barLabel.text = _title;
 		this.barLabel.selectable = false;
@@ -83,11 +83,11 @@ class WindowBox extends Sprite
 		
 		this.graphics.clear();
 		this.graphics.beginFill(this.fill, 1);
-		this.graphics.moveTo(0, 30);
-		this.graphics.lineTo(0, _height + 30);
-		this.graphics.lineTo(_width, _height + 30);
-		this.graphics.lineTo(_width, 30);
-		this.graphics.lineTo(0, 30);
+		this.graphics.moveTo(0, 20);
+		this.graphics.lineTo(0, _height + 20);
+		this.graphics.lineTo(_width, _height + 20);
+		this.graphics.lineTo(_width, 20);
+		this.graphics.lineTo(0, 20);
 	}
 	function set_error() 
 	{
@@ -185,11 +185,11 @@ class WindowBox extends Sprite
 		this.graphics.clear();
 		this.graphics.lineStyle(1, 0xDDDDDD);
 		this.graphics.beginFill(this.fill, 1);
-		this.graphics.moveTo(0, 30);
-		this.graphics.lineTo(0, this.wHeight + 30);
-		this.graphics.lineTo(this.wWidth, this.wHeight + 30);
-		this.graphics.lineTo(this.wWidth, 30);
-		this.graphics.lineTo(0, 30);
+		this.graphics.moveTo(0, 20);
+		this.graphics.lineTo(0, this.wHeight + 20);
+		this.graphics.lineTo(this.wWidth, this.wHeight + 20);
+		this.graphics.lineTo(this.wWidth, 20);
+		this.graphics.lineTo(0, 20);
 		
 		switch (this.type) {
 			case WindowMode.ACKNOWLEDGE :
