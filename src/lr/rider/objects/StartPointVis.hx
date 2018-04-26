@@ -31,7 +31,7 @@ class StartPointVis extends Sprite
 	var font:TextFormat = new TextFormat(Assets.getFont("fonts/Verdana.ttf").fontName, 4, 0xFFFFFF, null, null, null, null, null, TextFormatAlign.RIGHT);
 	
 	var riderNames:Array<String> = ["Bosh", "Coco", "Fin", "Essi", "Chaz", "Blake", "Noah"];
-	var riderColors:Array<Array<Int>> = [[13763074, 0xFFFFFF], [0xD977E6, 0xFFCDFF], [0x108000, 0xFFFFFF], [0x65ECFF, 0xFBCCE3], [0x1e373b, 0xb3ea44], [0x0094b4, 0xD5DDDD], [0xD20202, 0xff6464]];
+	var riderColors:Array<Array<Int>> = [[0xD51515, 0xFFFFFF], [0xD977E6, 0xFFCDFF], [0x108000, 0xFFFFFF], [0x65ECFF, 0xFBCCE3], [0x1e373b, 0xb3ea44], [0x0094b4, 0xD5DDDD], [0xD20202, 0xff6464]];
 	
 	public function new(_index:Int) 
 	{
