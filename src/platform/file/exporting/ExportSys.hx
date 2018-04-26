@@ -73,7 +73,7 @@ class ExportSys extends ExportBase
 		
 		this.textfield_trackName = new Label(LabelType.INPUT, "Untitled");
 		this.textfield_trackName.y = 5;
-		this.textfield_trackName.x = 80;
+		this.textfield_trackName.x = 100;
 		this.addChild(this.textfield_trackName);
 		
 		this.label_AuthorName = new Label(LabelType.DYNAMIC, "Author:");
@@ -83,7 +83,7 @@ class ExportSys extends ExportBase
 		
 		this.textfield_authorName = new Label(LabelType.INPUT, "Anonymous");
 		this.textfield_authorName.y = 35;
-		this.textfield_authorName.x = 80;
+		this.textfield_authorName.x = 100;
 		this.addChild(this.textfield_authorName);
 		
 		this.label_TrackDescription = new Label(LabelType.DYNAMIC, "Comment:");
@@ -93,7 +93,7 @@ class ExportSys extends ExportBase
 		
 		this.textarea_trackDescription = new Label(LabelType.INPUT_BOX, "This is the water. And this is the well. Drink full and descend. The horse is the white of the eyes and dark within.", 300, 150);
 		this.textarea_trackDescription.y = 65;
-		this.textarea_trackDescription.x = 80;
+		this.textarea_trackDescription.x = 100;
 		this.addChild(this.textarea_trackDescription);
 		
 		this.textButton_cancel = new TextButton("Cancel", this.exit_save_menu);
