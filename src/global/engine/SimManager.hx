@@ -53,7 +53,7 @@ class SimManager
 		}
 		Common.gRiderManager.set_rider_visual_start();
 		if (!SVar.sim_running) {
-			Common.gCode.return_to_origin_sim();
+			Common.gCode.return_to_origin();
 			if (CVar.volatile.slow_motion_auto) {
 				SVar.sim_rate = 5;
 			} else {

@@ -50,7 +50,7 @@ class SettingsMenu extends Sprite
 	var checkBox_previewMode:CheckBox;
 	var checkbox_scrollCursor:CheckBox;
 	
-	var window:WindowBox;
+	public var window:WindowBox;
 	
 	public function new() 
 	{

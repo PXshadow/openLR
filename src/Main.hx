@@ -204,6 +204,8 @@ class Main extends Sprite
 		if (!this.settings_box.visible) {
 			this.settings_box.visible = true;
 			this.settings_box.update();
+			this.settings_box.window.x = 20;
+			this.settings_box.window.y = 20;
 		} else {
 			this.settings_box.visible = false;
 			Toolbar.tool.set_tool(ToolBase.lastTool);
@@ -329,14 +331,19 @@ class Main extends Sprite
 		Common.stage_br = new Point(Lib.current.stage.stageWidth, Lib.current.stage.stageHeight);
 		Common.gTrack.check_visibility();
 	}
-	public function return_to_origin(_x:Float = 0, _y:Float = 0) {
-		this.track.x = Lib.current.stage.stageWidth * 0.5 - _x;
-		this.track.y = Lib.current.stage.stageHeight * 0.5 - _y;
-		this.track.scaleX = this.track.scaleY = 2;
-	}
-	public function return_to_origin_sim() {
+	public function return_to_origin() {
 		this.track.x = Lib.current.stage.stageWidth * 0.5;
 		this.track.y = Lib.current.stage.stageHeight * 0.5;
+		
+		Common.gTrack.check_visibility();
+	}
+	public function jump_to_position(_x:Float, _y:Float, _scale:Null<Float> = null) {
+		this.track.x = _x;
+		this.track.y = _y;
+		
+		if (_scale != null) this.track.scaleX = this.track.scaleY = _scale;
+		
+		Common.gTrack.check_visibility();
 	}
 	public function take_screencap() {
 

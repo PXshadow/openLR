@@ -79,6 +79,20 @@ class Grid
 		this.remove_line(_line);
 		this.cacheLine(_line);
 	}
+	public function getLastLine():Null<LineBase> {
+		for (a in 0...this.lines.length) {
+			if (this.lines[this.lines.length - a] == null) continue;
+			return(this.lines[this.lines.length - a]);
+		}
+		return null;
+	}
+	public function getFirstLine():Null<LineBase> {
+		for (a in 0...this.lines.length) {
+			if (this.lines[a] == null) continue;
+			return(this.lines[a]);
+		}
+		return null;
+	}
 	public function cacheLine(_line:LineBase) {
 		if (_line == null) return;
 		if (_line.type == LineType.Floor)
