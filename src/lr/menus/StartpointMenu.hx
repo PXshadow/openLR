@@ -1,6 +1,5 @@
 package lr.menus;
 
-import components.CheckBox;
 import openfl.events.Event;
 import openfl.display.Sprite;
 import openfl.events.MouseEvent;
@@ -12,10 +11,8 @@ import lr.tool.IconButton;
 import lr.tool.ToolBase;
 import components.WindowBox;
 import components.HSlider;
-
-import haxe.ui.Toolkit;
-import haxe.ui.components.TextField;
-import haxe.ui.core.UIEvent;
+import components.CheckBox;
+import components.Label;
 
 /**
  * ...
@@ -29,7 +26,10 @@ class StartpointMenu extends Sprite
 	
 	var exit_button:IconButton;
 	
-	var input_name:TextField;
+	var input_name:Label;
+	
+	var swatch_a:Swatch;
+	var swatch_hex_a:Label;
 	
 	var slider_ra:HSlider;
 	var slider_ga:HSlider;
@@ -39,8 +39,8 @@ class StartpointMenu extends Sprite
 	var slider_gb:HSlider;
 	var slider_bb:HSlider;
 	
-	var swatch_a:Swatch;
 	var swatch_b:Swatch;
+	var swatch_hex_b:Label;
 	
 	var color_a:Int;
 	var color_b:Int;
@@ -62,8 +62,6 @@ class StartpointMenu extends Sprite
 	public function new(_index:Int, _name:String, _exit:Dynamic, _colors:Array<Int>) 
 	{
 		super();
-		
-		Toolkit.init();
 		
 		this.window = new WindowBox("Rider properties #" + (_index + 1), WindowMode.MENU);
 		this.window.negative.addEventListener(MouseEvent.CLICK, _exit);
@@ -91,18 +89,20 @@ class StartpointMenu extends Sprite
 		
 		//this.mouseChildren = false;
 		
-		this.input_name = new TextField();
-		this.addChild(this.input_name);
-		this.input_name.x = 5;
-		this.input_name.y = 5;
-		this.input_name.text = _name;
-		this.input_name.onChange = function(e:UIEvent) {
-			this.set_rider_name(this.input_name.text);
+		this.input_name = new Label(LabelType.INPUT, _name, 200);
+		this.input_name.onChange = function():Void {
+			this.set_rider_name(this.input_name.value);
 		}
-		this.window.add_item(this.input_name, false, true);
+		this.window.add_item(this.input_name);
 		
-		this.window.add_item(this.swatch_a, false, true, 0, 35);
+		this.window.add_item(this.swatch_a, true, false);
 		this.swatch_a.update(this.color_a);
+		
+		this.swatch_hex_a = new Label(LabelType.INPUT, "D51515", 100);
+		this.window.add_item(this.swatch_hex_a, false, true);
+		this.swatch_hex_a.onChange = function():Void {
+			this.update_hex_a();
+		}
 		
 		this.slider_ra = new HSlider(0, 255, this.color_ra);
 		this.slider_ra.setColors(0xFF0000, 0xFFFFFF, 0);
@@ -125,8 +125,14 @@ class StartpointMenu extends Sprite
 			this.set_color_ba(Std.int(this.slider_ba.value));
 		}
 		
-		this.window.add_item(this.swatch_b, false, true);
+		this.window.add_item(this.swatch_b);
 		this.swatch_b.update(this.color_b);
+		
+		this.swatch_hex_b = new Label(LabelType.INPUT, "FFFFFF", 100);
+		this.window.add_item(this.swatch_hex_b, false, true);
+		this.swatch_hex_b.onChange = function():Void {
+			this.update_hex_b();
+		}
 		
 		this.slider_rb = new HSlider(0, 255, this.color_rb);
 		this.slider_rb.setColors(0xFF0000, 0xFFFFFF, 0);
@@ -182,6 +188,28 @@ class StartpointMenu extends Sprite
 			trace(this.slider_rider_angle.value);
 		}
 	}
+	function update_hex_a() 
+	{
+		var _locHexA:Int = Std.parseInt("0x" + this.swatch_hex_a.value);
+		this.set_color_ra((_locHexA >> 16) & 0xFF, false);
+		this.set_color_ga((_locHexA >> 8) & 0xFF, false);
+		this.set_color_ba((_locHexA) & 0xFF, false);
+		
+		this.slider_ra.set(this.color_ra);
+		this.slider_ba.set(this.color_ba);
+		this.slider_ga.set(this.color_ga);
+	}
+	function update_hex_b() 
+	{
+		var _locHexA:Int = Std.parseInt("0x" + this.swatch_hex_b.value);
+		this.set_color_rb((_locHexA >> 16) & 0xFF, false);
+		this.set_color_gb((_locHexA >> 8) & 0xFF, false);
+		this.set_color_bb((_locHexA) & 0xFF, false);
+		
+		this.slider_rb.set(this.color_rb);
+		this.slider_bb.set(this.color_bb);
+		this.slider_gb.set(this.color_gb);
+	}
 	function set_rider_name(_name:String) {
 		Common.gRiderManager.set_rider_name(this.index, _name);
 	}
@@ -196,39 +224,45 @@ class StartpointMenu extends Sprite
 		Common.gToolBase.set_tool("None");
 		SVar.game_mode = GameState.inmenu;
 	}
-	function set_color_ra(_v:Int) {
-		this.update_color_a(_v, this.color_ga, this.color_ba);
+	function set_color_ra(_v:Int, _textUpdate:Bool = true) {
+		this.update_color_a(_v, this.color_ga, this.color_ba, _textUpdate);
 		this.color_ra = _v;
 	}
-	function set_color_ga(_v:Int) {
-		this.update_color_a(this.color_ra, _v, this.color_ba);
+	function set_color_ga(_v:Int, _textUpdate:Bool = true) {
+		this.update_color_a(this.color_ra, _v, this.color_ba, _textUpdate);
 		color_ga = _v;
 	}
-	function set_color_ba(_v:Int) {
-		this.update_color_a(this.color_ra, this.color_ga, _v);
+	function set_color_ba(_v:Int, _textUpdate:Bool = true) {
+		this.update_color_a(this.color_ra, this.color_ga, _v, _textUpdate);
 		color_ba = _v;
 	}
-	function update_color_a(_r:Int, _g:Int, _b:Int) {
+	function update_color_a(_r:Int, _g:Int, _b:Int, _textUpdate:Bool = true) {
 		color_a = Common.rgb_to_hex(_r, _g, _b);
 		this.swatch_a.update(this.color_a);
 		Common.gRiderManager.set_rider_colors(this.index, this.color_a, this.color_b);
+		if (_textUpdate) {
+			this.swatch_hex_a.set(StringTools.hex(this.color_a, 6));
+		}
 	}
-	function set_color_rb(_v:Int) {
-		this.update_color_b(_v, this.color_gb, this.color_bb);
+	function set_color_rb(_v:Int, _textUpdate:Bool = true) {
+		this.update_color_b(_v, this.color_gb, this.color_bb, _textUpdate);
 		this.color_rb = _v;
 	}
-	function set_color_gb(_v:Int) {
-		this.update_color_b(this.color_rb, _v, this.color_bb);
+	function set_color_gb(_v:Int, _textUpdate:Bool = true) {
+		this.update_color_b(this.color_rb, _v, this.color_bb, _textUpdate);
 		color_gb = _v;
 	}
-	function set_color_bb(_v:Int) {
-		this.update_color_b(this.color_rb, this.color_gb, _v);
+	function set_color_bb(_v:Int, _textUpdate:Bool = true) {
+		this.update_color_b(this.color_rb, this.color_gb, _v, _textUpdate);
 		color_bb = _v;
 	}
-	function update_color_b(_r:Int, _g:Int, _b:Int) {
+	function update_color_b(_r:Int, _g:Int, _b:Int, _textUpdate:Bool = true) {
 		color_b = Common.rgb_to_hex(_r, _g, _b);
 		this.swatch_b.update(this.color_b);
 		Common.gRiderManager.set_rider_colors(this.index, this.color_a, this.color_b);
+		if (_textUpdate) {
+			this.swatch_hex_b.set(StringTools.hex(this.color_b, 6));
+		}
 	}
 }
 class Swatch extends Sprite {
