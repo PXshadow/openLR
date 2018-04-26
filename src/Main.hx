@@ -296,8 +296,9 @@ class Main extends Sprite
 			this.loadingIcon.x = 15;
 			this.loadingIcon.y = 25;
 		} else {
-			Toolbar.tool.set_tool(ToolBase.lastTool);
+			Toolbar.tool.set_tool("Pencil");
 			this.removeChild(this.loadingIcon);
+			SVar.game_mode = GameState.edit;
 		}
 	}
 	private function resize(e:Event):Void
