@@ -18,7 +18,6 @@ Binaries/Releases can be downloaded here: https://github.com/kevansevans/openLR/
 
 ## Haxelibs used:
 	
-	HXCPP 3.4.185 (haxelib set hxcpp 3.4.185)
 	Lime 6.2.0 (https://github.com/openfl/lime)
 	OpenFL 7.1.2 (http://www.openfl.org/) (https://github.com/openfl/openfl)
 	
@@ -31,8 +30,6 @@ Install Haxe from http://haxe.org/download
 (Or use `sudo apt install haxe` through bash)
 	
 Run in terminal the following commands, select Y to install if prompted:
-	
-	haxelib set hxcpp 3.4.185
 	
 	haxelib install openfl
 	
