@@ -28,6 +28,7 @@ OpenLR is not just open source, it's open to anyone and everyone.
 - Provide a more customized track settings that open the doors up for more creative track ideas.
 - Provide an easy to use API that allows for future developers to easily modify and create their own versions.
 - Provide basic support for everything that every other version has used.
+- Provide multiple deployment targets so no one is unable to play from anywhere.
 
 #### Why Haxe and openFL?
 
@@ -58,6 +59,8 @@ Run in terminal the following commands, select Y to install if prompted:
 	
 Running the above commands should install all the needed libraries to compile, including Lime. You may have to install other
 programs, the commands above assume you already have some form of a development enviornment set up on your system.
+
+Linux C++ compiles will need to use hxcpp 3.4.64 currently `haxelib set hxcpp 3.4.64`
 
 Run the command `openfl` to verify it was installed correctly. You should see the OpenFL logo appear in your terminal.
 
