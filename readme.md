@@ -6,13 +6,11 @@
 
 ![](http://i.imgur.com/YlYlSZS.gif)
 	
-#### Play online versions here
+#### Where can I play?
 	
-Flash: https://kevansevans.github.io/flash/openLR.swf
+Downloaded here: https://github.com/kevansevans/openLR/releases
 	
-HTML5: https://kevansevans.github.io/openLR-JS/
-	
-Binaries/Releases can be downloaded here: https://github.com/kevansevans/openLR/releases
+Try an online version here: HTML5: https://kevansevans.github.io/openLR-JS/
 	
 ## What is Open Line Rider?
 
