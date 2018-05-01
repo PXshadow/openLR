@@ -72,8 +72,6 @@ class Common
 	public static var track_last_pos_x:Float = 0;
 	public static var track_last_pos_y:Float = 0;
 	
-	public static var stage_width:Float;
-	public static var stage_height:Float;
 	public static var stage_tl:Point = new Point(0, 0);
 	public static var stage_br:Point = new Point(0, 0);
 	

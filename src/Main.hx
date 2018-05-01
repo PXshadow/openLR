@@ -132,9 +132,6 @@ class Main extends Sprite
 			this.init_paths();
 		#end
 		Lib.current.stage.addEventListener(Event.RESIZE, resize);
-		
-		Common.stage_height = Lib.current.stage.stageHeight;
-		Common.stage_width = Lib.current.stage.stageWidth;
 	}
 	public function init_track() //display minimum items
 	{
