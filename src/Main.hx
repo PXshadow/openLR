@@ -105,16 +105,15 @@ class Main extends Sprite
 		
 		#if sys
 			this.newStartLoader = new BrowserSys();
-			this.newStartLoader.x = 0;
-			this.newStartLoader.y = 0;
-			
 		#elseif flash
 			this.newStartLoader = new BrowserFL();
-			this.newStartLoader.x = 0;
-			this.newStartLoader.y = 0;
 		#elseif js
 			this.start();
+			return;
 		#end
+		
+		this.newStartLoader.x = 0;
+		this.newStartLoader.y = 0;
 	}
 	public function start() {
 		this.KeyboardControl = new KeyControl();
