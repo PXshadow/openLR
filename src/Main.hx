@@ -131,7 +131,7 @@ class Main extends Sprite
 		#if sys
 			this.init_paths();
 		#end
-		Lib.current.stage.addEventListener(Event.RESIZE, resize);
+		Lib.current.stage.addEventListener(Event.RESIZE, this.align);
 	}
 	public function init_track() //display minimum items
 	{
@@ -287,11 +287,7 @@ class Main extends Sprite
 			SVar.game_mode = GameState.edit;
 		}
 	}
-	private function resize(e:Event):Void
-	{
-		this.align();
-	}
-	public function align() {
+	public function align(e:Event = null) {
 		this.visContainer.x = this.visContainer.y = 0;
 		
 		this.toolBar.x = (Lib.current.stage.stageWidth / 2) - 128;
