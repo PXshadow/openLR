@@ -296,9 +296,6 @@ class Main extends Sprite
 		
 		this.toolBar.x = (Lib.current.stage.stageWidth / 2) - 128;
 		
-		Common.stage_height = Lib.current.stage.stageHeight;
-		Common.stage_width = Lib.current.stage.stageWidth;
-		
 		this.textInfo.x = (Lib.current.stage.stageWidth - this.textInfo.width) - 5;
 		this.textInfo.y = 5;
 		

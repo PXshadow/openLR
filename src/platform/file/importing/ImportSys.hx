@@ -82,8 +82,8 @@ class ImportSys extends ImportBase
 			Lib.current.stage.addChild(this.error_alert);
 			this.error_alert.set_message_string("Are you sure that was a valid file?" + "\n" + "If it was, copy this error and provide a save if possible!" + "\n \n" + _msg + "\n" + _path, true);
 			this.error_alert.frowny.addEventListener(MouseEvent.CLICK, this.hide_error);
-			this.error_alert.x = (Common.stage_width * 0.5) - (this.error_alert.width * 0.5);
-			this.error_alert.y = (Common.stage_height * 0.5) - (this.error_alert.height * 0.5);
+			this.error_alert.x = (Lib.current.stage.stageWidth * 0.5) - (this.error_alert.width * 0.5);
+			this.error_alert.y = (Lib.current.stage.stageHeight * 0.5) - (this.error_alert.height * 0.5);
 			return;
 		}
 	}

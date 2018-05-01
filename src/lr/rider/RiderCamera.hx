@@ -15,10 +15,10 @@ import lr.rider.phys.anchors.CPoint;
  */
 class RiderCamera 
 {
-	private var left_bound:Float = Common.stage_width * 0.38;
-	private var right_bound:Float = Common.stage_width * 0.61;
-	private var top_bound:Float = Common.stage_height * 0.38;
-	private var bottom_bound:Float = Common.stage_height * 0.61;
+	private var left_bound:Float = Lib.current.stage.stageWidth * 0.38;
+	private var right_bound:Float = Lib.current.stage.stageWidth * 0.61;
+	private var top_bound:Float = Lib.current.stage.stageHeight * 0.38;
+	private var bottom_bound:Float = Lib.current.stage.stageHeight * 0.61;
 	
 	private var center_screen:Point;
 	private var radius:Float;
@@ -77,9 +77,9 @@ class RiderCamera
 		if (SVar.rider_speed > SVar.rider_speed_top) SVar.rider_speed_top = SVar.rider_speed;
 	}
 	public function update_pan_bounds() {
-		this.left_bound = Common.stage_width * 0.38;
-		this.right_bound = Common.stage_width * 0.61;
-		this.top_bound = Common.stage_height * 0.38;
-		this.bottom_bound = Common.stage_height * 0.61;
+		this.left_bound = Lib.current.stage.stageWidth * 0.38;
+		this.right_bound =Lib.current.stage.stageWidth * 0.61;
+		this.top_bound = Lib.current.stage.stageHeight * 0.38;
+		this.bottom_bound = Lib.current.stage.stageHeight * 0.61;
 	}
 }
