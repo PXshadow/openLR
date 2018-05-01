@@ -292,8 +292,7 @@ class Main extends Sprite
 		
 		this.toolBar.x = (Lib.current.stage.stageWidth / 2) - (this.toolBar.tool_list.length * 32 * 0.5);
 		
-		this.textInfo.x = (Lib.current.stage.stageWidth - this.textInfo.width) - 5;
-		this.textInfo.y = 5;
+		this.textInfo.x = (Lib.current.stage.stageWidth - this.textInfo.width) - 2;
 		
 		if (Common.gCamera != null) {
 			Common.gCamera.update_pan_bounds();
