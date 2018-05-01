@@ -58,40 +58,40 @@ import platform.file.BrowserBase;
 
 class Main extends Sprite 
 {
-	private var controlScheme:ControlBase;
-	private var KeyboardControl:KeyControl;
-	private var visContainer:Sprite;
+	private var controlScheme:ControlBase; //Touch/Mouse detection
+	private var KeyboardControl:KeyControl; //Global keyboard control
+	private var visContainer:Sprite; //Contains track and riders
 	private var track:Track;
 	private var riders:RiderManager;
 	private var toolBar:Toolbar;
 	private var textInfo:TextInfo;
 	private var timeline:TimelineControl;
 	private var settings_box:SettingsMenu;
-	private var export:ExportBase;
+	private var export:ExportBase; //Class that defines how it will handle exporting based on deployment target
 	private var exportVisible:Bool = false;
-	private var importing:ImportBase;
+	private var importing:ImportBase; //Class that defines how it will handle importing based on deployment target
 	private var importingVisible = false;
-	private var newStartLoader:BrowserBase;
+	private var newStartLoader:BrowserBase; //needs a better name
 	private var fps:FPS;
-	private var loadingIcon:Sprite;
+	private var loadingIcon:Sprite; //need a better place for this
 	
 	public function new() 
 	{
 		super();
 		
-		Common.gCode = this; //This class
+		Common.gCode = this; //This class, allows for easy access across rest of program. Common.gCode.doTheThingYouNeed();
 		
 		this.fps = new FPS(5, 5);
 		this.addChild(this.fps);
 		
 		#if (sys || js)
-			var load = AssetLibrary.loadFromFile("swf/assets.bundle");
-			load.onComplete(this.launch);
+			var load = AssetLibrary.loadFromFile("swf/assets.bundle"); //Assets need to be loaded
+			load.onComplete(this.launch); //Can not start unless assets are loaded, or else program will crash with null object pointer
 		#elseif flash
-			this.launch();
+			this.launch(); //Flash Assets are embedded
 		#end
 	}
-	#if (sys || js)
+	#if (sys || js) //prevent uneeded import if not using Sys or JS
 		function launch(lib:AssetLibrary = null) {
 	#elseif flash
 		function launch() {
@@ -105,7 +105,7 @@ class Main extends Sprite
 		#elseif flash
 			this.newStartLoader = new BrowserFL();
 		#elseif js
-			this.start();
+			this.start(); //JS will eventually have it's own loader since it can use flash like cookiers
 			return;
 		#end
 		
@@ -117,8 +117,8 @@ class Main extends Sprite
 		this.KeyboardControl = new KeyControl();
 		this.controlScheme = new MouseControl();
 		
-		this.init_env();
-		this.init_track();
+		this.init_env(); //Establishes first needed events
+		this.init_track(); //Establishes what the player will be interacting with
 		
 		this.visContainer.visible = true;
 		
@@ -129,7 +129,7 @@ class Main extends Sprite
 	public function init_env() //Initialize enviornment
 	{
 		#if sys
-			this.init_paths();
+			this.init_paths(); //Make paths in case they're not present
 		#end
 		Lib.current.stage.addEventListener(Event.RESIZE, this.align);
 	}
@@ -153,27 +153,27 @@ class Main extends Sprite
 		
 		this.riders.add_rider(2, 0, 0); //Duplicate this line for more riders. (//type, //x_pos, //y_pos)
 		
-		this.toolBar = new Toolbar();
+		this.toolBar = new Toolbar(); //Tools to use
 		this.visContainer.addChild(this.toolBar);
 		
-		this.textInfo = new TextInfo();
+		this.textInfo = new TextInfo(); //Displays track info
 		this.visContainer.addChild(this.textInfo);
 		
 		this.settings_box = new SettingsMenu();
 		Lib.current.stage.addChild(this.settings_box);
 		this.settings_box.visible = false;
 		
-		this.timeline = new TimelineControl();
+		this.timeline = new TimelineControl(); //AKA Scrubber
 		Lib.current.stage.addChild(this.timeline);
 		this.timeline.update();
 		
 		this.visContainer.visible = false;
 		
-		this.align();
+		this.align(); //Ensure everything comes in clean
 		
-		SVar.game_mode = GameState.edit;
+		SVar.game_mode = GameState.edit; //Ensure that player has control at start.
 	}
-	public function reset_timeline() {
+	public function reset_timeline() { //Probably can be relocated
 		SVar.frames = 0;
 		SVar.max_frames = 0;
 		SVar.pause_frame = -1;
@@ -217,7 +217,7 @@ class Main extends Sprite
 				Toolbar.tool.set_tool("None");
 				SVar.game_mode = GameState.inmenu;
 			#else
-				return;
+				return; //JS and FLash will soon have saving and loading
 			#end
 		} else {
 			this.exportVisible = false;
@@ -244,7 +244,7 @@ class Main extends Sprite
 			#elseif flash
 				this.newStartLoader = new BrowserFL();
 			#else
-				return;
+				return; //JS will soon have saving and loading
 			#end
 			
 			this.importingVisible = true;
@@ -273,7 +273,7 @@ class Main extends Sprite
 			Toolbar.tool.set_tool(ToolBase.lastTool);
 		}
 	}
-	public function set_load(_v:Bool) {
+	public function set_load(_v:Bool) { //Shows loading animation
 		this.toolBar.visible = !_v;
 		this.timeline.visible = !_v;
 		if (_v) {
@@ -288,7 +288,7 @@ class Main extends Sprite
 			SVar.game_mode = GameState.edit;
 		}
 	}
-	public function align(e:Event = null) {
+	public function align(e:Event = null) { //Adjusts position of elements
 		this.visContainer.x = this.visContainer.y = 0;
 		
 		this.toolBar.x = (Lib.current.stage.stageWidth / 2) - (this.toolBar.tool_list.length * 32 * 0.5);
@@ -311,13 +311,13 @@ class Main extends Sprite
 		Common.stage_br = new Point(Lib.current.stage.stageWidth, Lib.current.stage.stageHeight);
 		Common.gTrack.check_visibility();
 	}
-	public function return_to_origin() {
+	public function return_to_origin() { //Return to start. Currently can not handle moving to a position other than (0, 0)
 		this.track.x = Lib.current.stage.stageWidth * 0.5;
 		this.track.y = Lib.current.stage.stageHeight * 0.5;
 		
 		Common.gTrack.check_visibility();
 	}
-	public function jump_to_position(_x:Float, _y:Float, _scale:Null<Float> = null) {
+	public function jump_to_position(_x:Float, _y:Float, _scale:Null<Float> = null) { //not working at the moment
 		this.track.x = _x;
 		this.track.y = _y;
 		
@@ -325,7 +325,7 @@ class Main extends Sprite
 		
 		Common.gTrack.check_visibility();
 	}
-	public function take_screencap() {
+	public function take_screencap() { //Needs to be reimplemented
 
 	}
 	public function end_screencap() {
