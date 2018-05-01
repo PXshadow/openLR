@@ -79,6 +79,8 @@ class Main extends Sprite
 	{
 		super();
 		
+		Common.gCode = this; //This class
+		
 		this.fps = new FPS(5, 5);
 		this.addChild(this.fps);
 		
@@ -97,8 +99,6 @@ class Main extends Sprite
 	#elseif flash
 		function launch() {
 	#end
-		Common.gCode = this; //This class
-		
 		#if (sys || js)
 			Common.OLR_Assets = lib;
 		#end
