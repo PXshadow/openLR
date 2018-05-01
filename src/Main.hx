@@ -135,10 +135,6 @@ class Main extends Sprite
 			if (!FileSystem.isDirectory(System.documentsDirectory + "/openLR/")) FileSystem.createDirectory(System.documentsDirectory + "/openLR/");
 		}
 	#end
-	function resize_title(e:Event):Void 
-	{
-		this.newStartLoader.render();
-	}
 	public function init_env() //Initialize enviornment
 	{
 		Lib.current.stage.addEventListener(Event.RESIZE, resize);
