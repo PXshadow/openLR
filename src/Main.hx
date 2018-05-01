@@ -86,12 +86,9 @@ class Main extends Sprite
 			#if sys
 				this.init_paths();
 			#end
-		
 			var load = AssetLibrary.loadFromFile("swf/assets.bundle");
 			load.onComplete(this.launch);
 		#elseif flash
-			Assets.loadLibrary("olr_fl");
-		
 			this.launch();
 		#end
 	}
