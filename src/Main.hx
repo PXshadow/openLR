@@ -85,9 +85,6 @@ class Main extends Sprite
 		this.addChild(this.fps);
 		
 		#if (sys || js)
-			#if sys
-				this.init_paths();
-			#end
 			var load = AssetLibrary.loadFromFile("swf/assets.bundle");
 			load.onComplete(this.launch);
 		#elseif flash
@@ -129,14 +126,11 @@ class Main extends Sprite
 			//Autosave code here
 		});
 	}
-	#if sys
-		function init_paths() 
-		{
-			if (!FileSystem.isDirectory(System.documentsDirectory + "/openLR/")) FileSystem.createDirectory(System.documentsDirectory + "/openLR/");
-		}
-	#end
 	public function init_env() //Initialize enviornment
 	{
+		#if sys
+			this.init_paths();
+		#end
 		Lib.current.stage.addEventListener(Event.RESIZE, resize);
 		
 		Common.stage_height = Lib.current.stage.stageHeight;
@@ -347,4 +341,10 @@ class Main extends Sprite
 	public function end_screencap() {
 		
 	}
+	#if sys
+		function init_paths() 
+		{
+			if (!FileSystem.isDirectory(System.documentsDirectory + "/openLR/")) FileSystem.createDirectory(System.documentsDirectory + "/openLR/");
+		}
+	#end
 }
