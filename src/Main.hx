@@ -146,11 +146,12 @@ class Main extends Sprite
 		this.track.scaleX = this.track.scaleY = 2;
 		
 		this.riders = new RiderManager();
-		this.riders.add_rider(2, 0, 0);
 		this.visContainer.addChild(this.riders);
 		this.riders.x = this.track.x;
 		this.riders.y = this.track.y;
 		this.riders.scaleX = this.riders.scaleY = this.track.scaleY;
+		
+		this.riders.add_rider(2, 0, 0); //Duplicate this line for more riders. (//type, //x_pos, //y_pos)
 		
 		this.toolBar = new Toolbar();
 		this.visContainer.addChild(this.toolBar);
