@@ -290,7 +290,7 @@ class Main extends Sprite
 	public function align(e:Event = null) {
 		this.visContainer.x = this.visContainer.y = 0;
 		
-		this.toolBar.x = (Lib.current.stage.stageWidth / 2) - 128;
+		this.toolBar.x = (Lib.current.stage.stageWidth / 2) - (this.toolBar.tool_list.length * 32 * 0.5);
 		
 		this.textInfo.x = (Lib.current.stage.stageWidth - this.textInfo.width) - 5;
 		this.textInfo.y = 5;

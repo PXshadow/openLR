@@ -36,7 +36,7 @@ class Toolbar extends Sprite
 	private var stopB:IconStop;
 	private var flag:IconFlag;
 	
-	private var tool_list:Array<IconBase>;
+	public var tool_list:Array<IconBase>;
 	private var swatch_list:Array<IconBase>;
 	
 	public function new() 
