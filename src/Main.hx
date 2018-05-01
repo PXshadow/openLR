@@ -116,11 +116,14 @@ class Main extends Sprite
 		this.newStartLoader.y = 0;
 	}
 	public function start() {
+		
 		this.KeyboardControl = new KeyControl();
+		this.controlScheme = new MouseControl();
+		
 		this.init_env();
 		this.init_track();
+		
 		this.visContainer.visible = true;
-		this.controlScheme = new MouseControl();
 		
 		Lib.current.stage.application.onExit.add (function (exitCode) {
 			//Autosave code here
