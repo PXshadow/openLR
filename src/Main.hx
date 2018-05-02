@@ -4,10 +4,10 @@ package;
 
 #if (!flash)
 	import openfl.utils.AssetLibrary;
-	import openfl.display.Sprite;
+	import openfl.display.DisplayObjectContainer;
 #else
 	import openfl.Assets;
-	import flash.display.Sprite;
+	import flash.display.DisplayObjectContainer;
 #end
 #if sys
 	import sys.FileSystem;
@@ -56,7 +56,7 @@ import platform.file.BrowserBase;
  * 
  */
 
-class Main extends Sprite 
+class Main extends DisplayObjectContainer 
 {
 	private var controlScheme:ControlBase; //Touch/Mouse detection
 	private var KeyboardControl:KeyControl; //Global keyboard control
@@ -78,6 +78,8 @@ class Main extends Sprite
 	public function new() 
 	{
 		super();
+		//Main is not a button
+		mouseEnabled = false;
 		
 		Common.gCode = this; //This class, allows for easy access across rest of program. Common.gCode.doTheThingYouNeed();
 		
